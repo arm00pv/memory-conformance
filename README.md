@@ -61,6 +61,32 @@ confused when reading bug reports.
   pattern for this server does not reproduce here in this version, and saying so is part of the job:
   a conformance suite that only ever confirms the folklore is not measuring anything.
 
+## The positive control: the probes can pass
+
+A suite that only ever fails measures nothing. `control/memory_server.py` is the smallest MCP memory
+server built so that all six probes pass, and it is the opposite decision from the server that fails:
+**append-only, never rewrite**, with an OS lock around the append and a read-back before the write is
+acknowledged. Unknown fields, unknown record types and concurrent writers survive by construction
+rather than by care.
+
+```
+$ python harness.py --adapter=control --cmd="python control/memory_server.py"
+ack_readback     PASS   acknowledged alpha; a fresh read returned 1 entities
+restart          PASS   three writes across three server lifetimes; all read back
+foreign_field    PASS   the extra field survived the next write
+foreign_record   PASS   the unmodelled record survived
+concurrent       PASS   50 of 50 acknowledged writes survived two servers on one store
+large_record     PASS   100,000 characters written, 100,000 read back
+0 probe(s) failed
+```
+
+**The control lost 4 of 20 concurrent writes on its first version.** It relied on `O_APPEND` alone,
+and on Windows the write position is fixed when the file is opened, so two processes appending at once
+write to the same offset and clobber each other. Adding an OS lock (`msvcrt.locking` on Windows,
+`flock` on POSIX) took it to 0 losses in 5 consecutive runs of 50 concurrent writes. That is the same
+failure the reference server is reported to have, reproduced on demand - and it is why the concurrency
+probe is worth running.
+
 ## Adding a system
 
 The harness talks MCP over stdio, so any MCP server can be probed by changing `--cmd`. A system with

@@ -133,6 +133,27 @@ class ReferenceAdapter:
         return entities
 
 
+class ControlAdapter:
+    """control/memory_server.py - the append-only positive control, same probe surface."""
+
+    def __init__(self, cmd):
+        self.cmd = cmd
+
+    def server(self, store):
+        return McpServer(self.cmd, store).start()
+
+    def write(self, srv, name, observations):
+        return srv.call("memory_write", {"name": name, "observations": observations})
+
+    def read(self, srv):
+        text = srv.call("memory_read", {})
+        try:
+            data = json.loads(text)
+        except ValueError:
+            return None
+        return data.get("entities")
+
+
 def _fresh():
     d = tempfile.mkdtemp(prefix="memconf_")
     return d, os.path.join(d, "memory.json")
@@ -344,7 +365,11 @@ def main(argv=None):
     if not cmd:
         print(__doc__)
         return 2
-    ad = ReferenceAdapter(cmd)
+    adapter_name = "reference"
+    for a in argv:
+        if a.startswith("--adapter="):
+            adapter_name = a.split("=", 1)[1]
+    ad = (ControlAdapter if adapter_name == "control" else ReferenceAdapter)(cmd)
     rows = []
     fails = 0
     for name, fn in PROBES:

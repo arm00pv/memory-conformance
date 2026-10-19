@@ -19,6 +19,11 @@ jobs:
           python harness.py --cmd="node node_modules/@modelcontextprotocol/server-memory/dist/index.js" \
             --json=report.json --expect=expected.json || true
           cat report.json
+      - name: the positive control must pass every probe
+        run: |
+          python harness.py --adapter=control \
+            --cmd="python control/memory_server.py" --expect=expected-control.json
+
       - name: verdicts must match the pinned expectation
         run: |
           python - <<'PY'

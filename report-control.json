@@ -1,0 +1,41 @@
+{
+  "command": "C:\\Python314\\python.exe control/memory_server.py",
+  "probes": [
+    {
+      "probe": "ack_readback",
+      "verdict": "PASS",
+      "evidence": "acknowledged alpha; a fresh read returned 1 entities: ['alpha']",
+      "seconds": 0.3
+    },
+    {
+      "probe": "restart",
+      "verdict": "PASS",
+      "evidence": "three writes across three server lifetimes; read back ['restart-0', 'restart-1', 'restart-2']",
+      "seconds": 0.5
+    },
+    {
+      "probe": "foreign_field",
+      "verdict": "PASS",
+      "evidence": "the extra field survived the next write",
+      "seconds": 0.3
+    },
+    {
+      "probe": "foreign_record",
+      "verdict": "PASS",
+      "evidence": "the unmodelled record survived",
+      "seconds": 0.3
+    },
+    {
+      "probe": "concurrent",
+      "verdict": "PASS",
+      "evidence": "20 of 20 acknowledged writes survived two servers on one store",
+      "seconds": 1.5
+    },
+    {
+      "probe": "large_record",
+      "verdict": "PASS",
+      "evidence": "wrote 100000 characters, read back 100000",
+      "seconds": 0.3
+    }
+  ]
+}
