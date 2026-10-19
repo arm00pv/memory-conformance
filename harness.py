@@ -47,9 +47,15 @@ class McpServer:
         # restart probe seeing records from the probe before it.
         env["MEMORY_FILE_PATH"] = os.path.join(self.store, "memory.json")
         env["RETAINED_DIR"] = self.store
+        # UTF-8, NOT THE LOCALE. Popen(text=True) decodes with the console codepage, which on Windows
+        # is cp1252; a server that emits any non-ASCII character (an em dash in a tool description is
+        # enough) kills the stdout reader thread with UnicodeDecodeError and every later request times
+        # out as if the server had hung. JSON-RPC over stdio is UTF-8 by specification, so decode it as
+        # such. ASCII subjects are unaffected: ASCII is a subset of UTF-8.
         self.proc = subprocess.Popen(self.cmd, shell=True, stdin=subprocess.PIPE,
                                      stdout=subprocess.PIPE, stderr=subprocess.PIPE,
-                                     text=True, bufsize=1, env=env)
+                                     text=True, encoding="utf-8", errors="replace",
+                                     bufsize=1, env=env)
         threading.Thread(target=self._pump_out, daemon=True).start()
         threading.Thread(target=self._pump_err, daemon=True).start()
         self.request("initialize", {"protocolVersion": "2024-11-05", "capabilities": {},
@@ -217,6 +223,118 @@ class RetainedAdapter:
         except ValueError:
             return None
         return data.get("records")
+
+
+class BasicMemoryAdapter:
+    """basic-memory - markdown notes with YAML frontmatter in a project directory.
+
+    Three decisions worth stating, because all three were forced by the subject rather than chosen:
+
+    1. THE STORE IS A DIRECTORY, NOT A FILE. basic-memory stores one markdown file per note
+       (<project>/<directory>/<title>.md) plus a SQLite index in its config directory. Isolation is
+       therefore achieved with a per-store config dir (BASIC_MEMORY_CONFIG_DIR) holding a config.json
+       whose only project points at the store, selected with BASIC_MEMORY_MCP_PROJECT. Nothing is
+       written to the user's ~/.basic-memory config.
+
+    2. SEMANTIC SEARCH IS OFF. Out of the box basic-memory enables fastembed embeddings, which needs a
+       model download this environment does not have. semantic_search_enabled=false makes its default
+       search type "text" - the lexical path the probes and the retrieval cases use anyway - and keeps
+       the whole run offline.
+
+    store_path() raises: the two foreign-data probes annotate a single JSON-lines file and check the
+    bytes after the next write. basic-memory has no such file - its records are markdown documents
+    with YAML frontmatter plus a binary SQLite index - so those two probes cannot be expressed against
+    it, and they report UNKNOWN rather than a verdict. Pointing store_path at a note file instead
+    would be worse than useless: the unmodelled-record probe appends a JSON line to whatever file it
+    is given and would then find it intact simply because basic-memory never rewrites that file,
+    producing a PASS that measures nothing.
+    """
+
+    DIRECTORY = "probe"
+
+    def __init__(self, cmd):
+        self.cmd = cmd
+
+    def store_path(self, store):
+        raise NotImplementedError(
+            "basic-memory keeps one markdown file per note plus a SQLite index, not a single "
+            "JSON-lines store; this probe's annotate-a-file check has no equivalent here")
+
+    def server(self, store):
+        cfg = os.path.join(store, ".bmconfig")
+        notes = os.path.join(store, "notes")
+        for d in (cfg, notes):
+            if not os.path.isdir(d):
+                os.makedirs(d)
+        with open(os.path.join(cfg, "config.json"), "w", encoding="utf-8", newline=chr(10)) as fh:
+            json.dump({"projects": {"probe": {"path": notes, "mode": "local"}},
+                       "default_project": "probe",
+                       "semantic_search_enabled": False,
+                       "auto_update": False,
+                       "cloud_promo_opt_out": True}, fh)
+        # THE TRANSPORT TAKES THE STORE, NOT THE ENVIRONMENT. Every server the probes start gets its
+        # own config dir, so two processes in the concurrency probe share a project (as documented)
+        # without sharing anything with another probe.
+        env = {"BASIC_MEMORY_CONFIG_DIR": cfg, "BASIC_MEMORY_MCP_PROJECT": "probe",
+               "BASIC_MEMORY_LOG_LEVEL": "ERROR"}
+        if os.name == "nt":
+            prefix = "&& ".join('set "%s=%s"' % kv for kv in env.items()) + "&& "
+        else:  # POSIX form, same variables; only the Windows form has been exercised here
+            prefix = "env " + " ".join("%s=%s" % kv for kv in env.items()) + " "
+        cmd = prefix + self.cmd
+        return McpServer(cmd, store).start()
+
+    def write(self, srv, name, observations):
+        content = chr(10).join(observations)
+        return srv.call("write_note", {"title": name, "content": content,
+                                       "directory": self.DIRECTORY, "output_format": "json"})
+
+    def _nodes(self, srv):
+        text = srv.call("list_directory", {"dir_name": "/", "depth": 10, "page_size": 200,
+                                           "output_format": "json"})
+        try:
+            data = json.loads(text)
+        except ValueError:
+            return []
+        out = []
+
+        def walk(nodes):
+            for n in nodes or []:
+                out.append(n)
+                walk(n.get("children"))
+
+        walk(data.get("nodes"))
+        return [n for n in out if n.get("type") == "file"]
+
+    def read(self, srv):
+        ents = []
+        for node in self._nodes(srv):
+            ident = node.get("permalink") or node.get("file_path")
+            try:
+                got = json.loads(srv.call("read_note", {"identifier": ident,
+                                                        "output_format": "json"}))
+            except (ValueError, RuntimeError):
+                continue
+            body = got.get("content") or ""
+            # THE FILE'S FIRST BYTE IS NOT THE RECORD'S. A note body sits below a YAML frontmatter
+            # block, and read_note returns that leading blank line with it; stripping the structural
+            # newlines at either end is the adapter mapping the markdown envelope onto the record, not
+            # the server losing a character. The first version only stripped the leading one and
+            # reported large_record as 100001 characters - a failure the adapter caused, so it is
+            # reported here rather than counted against the subject. Interior bytes are untouched and
+            # the probe's exact-length comparison is unchanged.
+            ents.append({"name": got.get("title") or node.get("title"),
+                         "observations": [body.strip(chr(10) + chr(13))]})
+        return ents
+
+    def search(self, srv, query, k=3):
+        text = srv.call("search_notes", {"query": query, "page_size": max(k, 10),
+                                         "output_format": "json"})
+        try:
+            data = json.loads(text)
+        except ValueError:
+            return []
+        return [r.get("title") for r in (data.get("results") or [])][:k]
 
 
 def _fresh():
@@ -435,7 +553,8 @@ def main(argv=None):
     for a in argv:
         if a.startswith("--adapter="):
             adapter_name = a.split("=", 1)[1]
-    adapters = {"control": ControlAdapter, "retained": RetainedAdapter}
+    adapters = {"control": ControlAdapter, "retained": RetainedAdapter,
+                "basic-memory": BasicMemoryAdapter}
     ad = adapters.get(adapter_name, ReferenceAdapter)(cmd)
     rows = []
     fails = 0

@@ -87,7 +87,8 @@ def main(argv=None):
     if not cmd:
         print(__doc__)
         return 2
-    adapters = {"control": harness.ControlAdapter, "retained": harness.RetainedAdapter}
+    adapters = {"control": harness.ControlAdapter, "retained": harness.RetainedAdapter,
+                "basic-memory": harness.BasicMemoryAdapter}
     ad = adapters.get(adapter_name, harness.ReferenceAdapter)(cmd)
     rows = run(ad)
     summary = summarise(rows, adapter_name)

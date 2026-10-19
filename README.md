@@ -52,7 +52,7 @@ The record-level probe passes: a whole line whose `type` the server does not mod
 next write in this version. So the loss is **field-level**, not line-level, and the two should not be
 confused when reading bug reports.
 
-## Two probe-design errors this harness caught in itself
+## Three errors this harness caught in itself
 
 - **The concurrency probe was not a race.** The first version ran writer 0 to completion and then
   writer 1, which is a sequence: each write read the file the previous one had already rewritten, so
@@ -60,6 +60,12 @@ confused when reading bug reports.
 - **It still passes at 100 writes** ("100 of 100 survived", 3.5 s). A widely reported lost-update
   pattern for this server does not reproduce here in this version, and saying so is part of the job:
   a conformance suite that only ever confirms the folklore is not measuring anything.
+- **The client decoded JSON-RPC as cp1252.** `subprocess.Popen(text=True)` uses the console codepage,
+  so the first subject that emitted a single non-ASCII character - an em dash in a tool description
+  was enough - killed the stdout reader thread with `UnicodeDecodeError`, and every subsequent
+  request timed out as if the server had hung. The transport is UTF-8 by specification and is now
+  decoded as such. All three earlier subjects were re-run after the fix and their verdicts are
+  unchanged; the reference server's `foreign_field` still fails, which is the point.
 
 ## Retrieval: keeping is not finding
 
@@ -72,6 +78,7 @@ that has just restarted, so search cannot ride on anything the writing process s
 | `@modelcontextprotocol/server-memory@1.0.0` | 0/6 h1, 0/6 h3 | 0/6 h1, 0/6 h3 | **0/12** |
 | `retained` (lexical only) | 6/6 h1, 6/6 h3 | 4/6 h1, 5/6 h3 | **10/12 h1, 11/12 h3** |
 | `retained` (hybrid, `all-minilm` vectors) | 6/6 h1, 6/6 h3 | 5/6 h1, 6/6 h3 | **11/12 h1, 12/12 h3** |
+| `basic-memory` 0.23.2 (text index, no embeddings) | 6/6 h1, 6/6 h3 | 5/6 h1, 6/6 h3 | **11/12 h1, 12/12 h3** |
 
 The reference server scores zero, and the reason is not ranking - it is matching. Characterised
 directly:
@@ -87,8 +94,26 @@ the way a person phrases it returns nothing at all. `retained` tokenises, ranks 
 the top k, which is why it answers ten of twelve and misses only the question with no shared
 vocabulary at all ("how many machines do we run" against "three hosts: throne, watchtower and pi").
 
-That remaining miss is the honest ceiling of a lexical store: no amount of ranking fixes a query whose
-words are absent. Embeddings are the answer, and they are not in `retained` yet.
+That remaining miss is the honest ceiling of `retained`: no amount of ranking fixes a query whose
+words are absent from the store. `basic-memory` answers that same question without any embedding, and
+the reason matters when reading the row above - it is not understanding.
+
+Its text search matches each query term as a **prefix** of a stored token, and returns a record if
+any term matches. Characterised directly against a two-note store:
+
+```
+how many machines do we run -> [rec-hosts]   complet    -> [rec-speed]   linters -> []
+run                         -> [rec-hosts]   completing -> []            thr     -> [rec-hosts]
+lint                        -> [rec-speed]   throne     -> [rec-hosts]   machine -> []
+```
+
+So `run` reaches "the estate **runs** on three hosts", which is the whole of why that question is
+answered at rank 1; `completing` does not reach "completes", and no query reaches a word that is not
+in the store at all. Prefix matching is cheaper than a vector index and enough for the one question
+`retained` missed - but it is still character overlap, not semantics, and the twelve questions here
+are too few to tell you where it stops working. Its single k=1 miss is a ranking question, not a
+matching one: "when is a write considered safe" returns `[rec-lock, rec-ack]`, and both are about
+writes being safe.
 
 ## The positive control: the probes can pass
 
@@ -116,13 +141,57 @@ write to the same offset and clobber each other. Adding an OS lock (`msvcrt.lock
 failure the reference server is reported to have, reproduced on demand - and it is why the concurrency
 probe is worth running.
 
-## The three subjects measured so far
+## A fourth subject: `basic-memory`
+
+[basic-memory](https://github.com/basicmachines-co/basic-memory) is markdown-first: one note per file
+with YAML frontmatter, a SQLite index beside it, and MCP tools `write_note`, `read_note`,
+`search_notes` and `list_directory`. Probed at 0.23.2 on Python 3.14.7, Windows, 2026-10-19, with
+semantic search switched off so the run needs no embedding model and stays lexical (see below).
+
+```
+$ python harness.py --adapter=basic-memory --cmd=".venv-bm\Scripts\basic-memory.exe mcp --transport stdio"
+ack_readback     PASS    30.2s  acknowledged alpha; a fresh read returned 1 entities: ['alpha']
+restart          PASS    57.4s  three writes across three server lifetimes; read back ['restart-0', ...]
+foreign_field    UNKNOWN 14.4s  probe could not run: basic-memory keeps one markdown file per note plus
+                                a SQLite index, not a single JSON-lines store; this probe's
+                                annotate-a-file check has no equivalent here
+foreign_record   UNKNOWN 13.9s  (same)
+concurrent       PASS    47.6s  20 of 20 acknowledged writes survived two servers on one store
+large_record     PASS    31.5s  wrote 100000 characters, read back 100000
+0 probe(s) failed
+```
+
+**Four passes, no failures, two questions the suite cannot ask this subject.** `foreign_field` and
+`foreign_record` work by annotating a single JSON-lines store between two writes and looking for the
+bytes afterwards. basic-memory has no such file, so the adapter raises from `store_path()` and both
+probes report UNKNOWN rather than a verdict. Pointing `store_path()` at a note file would be worse
+than useless: the unmodelled-record probe appends a line to whatever file it is handed, and
+basic-memory never rewrites a note it did not touch, so the probe would find the record intact and
+report a PASS that measures nothing. A probe that cannot be expressed is reported as unanswerable -
+it is not converted into a pass, and it is not quietly dropped.
+
+What the four that did run say: a 100,000-character note comes back whole (after the adapter strips
+the frontmatter envelope, which adds a newline the record never had), notes survive restarts, and
+twenty concurrent writes from two server processes sharing one project and one SQLite index all
+survived. The retention promise basic-memory makes to a caller, it keeps.
+
+Two things had to be configured to probe it at all, and neither touches what is measured:
+
+- **A project per store.** Every server is started with `BASIC_MEMORY_CONFIG_DIR` pointing into the
+  probe's temp directory and `BASIC_MEMORY_MCP_PROJECT` selecting the single project registered
+  there, so nothing is written to the user's `~/.basic-memory` and no probe can see another's notes.
+- **Semantic search off.** Out of the box basic-memory enables fastembed embeddings, which want a
+  model download; `semantic_search_enabled: false` makes its default search `text`, which is what
+  the probes and the retrieval cases use anyway.
+
+## The four subjects measured so far
 
 | subject | adapter | result |
 |---|---|---|
 | `@modelcontextprotocol/server-memory@1.0.0` | `reference` | 5/6 - fails `foreign_field` |
 | `control/memory_server.py` | `control` | 6/6 |
 | [retained](https://github.com/arm00pv/retained) | `retained` | **6/6** - including 50/50 concurrent writes across two processes |
+| [basic-memory](https://github.com/basicmachines-co/basic-memory) 0.23.2 | `basic-memory` | **4/6 + 2 unanswerable** - passes `ack_readback`, `restart`, `concurrent`, `large_record`; `foreign_field` and `foreign_record` have no equivalent against a directory of markdown notes |
 
 `retained` is the answer to the probe that fails: append-only, hash-chained, read-back verified before
 the write is acknowledged, so a field the server does not model cannot be lost by it.
@@ -131,7 +200,9 @@ the write is acknowledged, so a field the server does not model cannot be lost b
 
 The harness talks MCP over stdio, so any MCP server can be probed by changing `--cmd`. A system with
 a different tool vocabulary needs a small adapter: implement `server()`, `write()`, `read()` and pass
-it to the probes - `ReferenceAdapter` in `harness.py` is 20 lines and is the template.
+it to the probes - `ReferenceAdapter` in `harness.py` is 20 lines and is the template, and
+`BasicMemoryAdapter` is the worked example for a subject whose records live in a directory of files
+rather than in one store file.
 
 ## Why this exists
 
@@ -142,8 +213,9 @@ success reply is honest about the write and silent about the loss.
 
 ## Limits, stated
 
-- **One server, one version.** Numbers above are `@modelcontextprotocol/server-memory@1.0.0` on
-  2026-10-19, and a different version can pass or fail differently.
+- **One version per server.** Numbers above are `@modelcontextprotocol/server-memory@1.0.0`,
+  `retained` and `basic-memory` 0.23.2 on 2026-10-19, and a different version of any of them can pass
+  or fail differently.
 - **Six probes are not a spec.** They cover retention and concurrency, not retrieval quality, latency
   or token cost.
 - **Probes are deterministic, not sampled.** There is no confidence interval to quote; a probe either
