@@ -41,7 +41,12 @@ class McpServer:
 
     def start(self):
         env = dict(os.environ)
-        env["MEMORY_FILE_PATH"] = self.store
+        # BOTH VARIABLES, ONE DIRECTORY. A probe hands the adapter a directory; each server reads the
+        # variable it knows. The first version set only MEMORY_FILE_PATH, so a server that reads
+        # RETAINED_DIR fell back to a default store and state leaked between probes - visible as the
+        # restart probe seeing records from the probe before it.
+        env["MEMORY_FILE_PATH"] = os.path.join(self.store, "memory.json")
+        env["RETAINED_DIR"] = self.store
         self.proc = subprocess.Popen(self.cmd, shell=True, stdin=subprocess.PIPE,
                                      stdout=subprocess.PIPE, stderr=subprocess.PIPE,
                                      text=True, bufsize=1, env=env)
@@ -116,6 +121,9 @@ class ReferenceAdapter:
     def __init__(self, cmd):
         self.cmd = cmd
 
+    def store_path(self, store):
+        return os.path.join(store, "memory.json")
+
     def server(self, store):
         return McpServer(self.cmd, store).start()
 
@@ -139,6 +147,9 @@ class ControlAdapter:
     def __init__(self, cmd):
         self.cmd = cmd
 
+    def store_path(self, store):
+        return os.path.join(store, "memory.json")
+
     def server(self, store):
         return McpServer(self.cmd, store).start()
 
@@ -154,9 +165,35 @@ class ControlAdapter:
         return data.get("entities")
 
 
+class RetainedAdapter:
+    """retained.py - append-only, hash-chained, read-back verified. Same probe surface."""
+
+    def __init__(self, cmd):
+        self.cmd = cmd
+
+    def store_path(self, store):
+        return os.path.join(store, "records.jsonl")
+
+    def server(self, store):
+        return McpServer(self.cmd, store).start()
+
+    def write(self, srv, name, observations):
+        return srv.call("memory_write", {"text": observations[0] if observations else "",
+                                         "kind": "probe", "scope": "probe",
+                                         "name": name, "observations": observations})
+
+    def read(self, srv):
+        text = srv.call("memory_get", {})
+        try:
+            data = json.loads(text)
+        except ValueError:
+            return None
+        return data.get("records")
+
+
 def _fresh():
     d = tempfile.mkdtemp(prefix="memconf_")
-    return d, os.path.join(d, "memory.json")
+    return d, d
 
 
 def probe_ack_readback(ad):
@@ -208,7 +245,8 @@ def probe_foreign_field(ad):
             ad.write(srv, "keepme", ["a record a human annotated"])
         finally:
             srv.stop()
-        with open(store, encoding="utf-8") as fh:
+        path = ad.store_path(store)
+        with open(path, encoding="utf-8") as fh:
             lines = [json.loads(l) for l in fh if l.strip()]
         marked = False
         for obj in lines:
@@ -217,7 +255,7 @@ def probe_foreign_field(ad):
                 marked = True
         if not marked:
             return False, "could not find the entity in the store to annotate"
-        with open(store, "w", encoding="utf-8", newline=chr(10)) as fh:
+        with open(path, "w", encoding="utf-8", newline=chr(10)) as fh:
             for obj in lines:
                 fh.write(json.dumps(obj) + chr(10))
         srv = ad.server(store)
@@ -225,7 +263,7 @@ def probe_foreign_field(ad):
             ad.write(srv, "trigger", ["one more write"])
         finally:
             srv.stop()
-        with open(store, encoding="utf-8") as fh:
+        with open(ad.store_path(store), encoding="utf-8") as fh:
             after = fh.read()
         ok = "reviewed_by" in after
         return ok, ("the extra field survived the next write" if ok
@@ -243,14 +281,14 @@ def probe_foreign_record(ad):
         finally:
             srv.stop()
         extra = {"type": "note", "content": "written by another tool", "id": "foreign-1"}
-        with open(store, "a", encoding="utf-8", newline=chr(10)) as fh:
+        with open(ad.store_path(store), "a", encoding="utf-8", newline=chr(10)) as fh:
             fh.write(json.dumps(extra) + chr(10))
         srv = ad.server(store)
         try:
             ad.write(srv, "after", ["a write after the foreign record"])
         finally:
             srv.stop()
-        with open(store, encoding="utf-8") as fh:
+        with open(ad.store_path(store), encoding="utf-8") as fh:
             after = fh.read()
         ok = "foreign-1" in after
         return ok, ("the unmodelled record survived" if ok
@@ -369,7 +407,8 @@ def main(argv=None):
     for a in argv:
         if a.startswith("--adapter="):
             adapter_name = a.split("=", 1)[1]
-    ad = (ControlAdapter if adapter_name == "control" else ReferenceAdapter)(cmd)
+    adapters = {"control": ControlAdapter, "retained": RetainedAdapter}
+    ad = adapters.get(adapter_name, ReferenceAdapter)(cmd)
     rows = []
     fails = 0
     for name, fn in PROBES:

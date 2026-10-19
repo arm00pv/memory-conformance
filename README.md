@@ -87,6 +87,17 @@ write to the same offset and clobber each other. Adding an OS lock (`msvcrt.lock
 failure the reference server is reported to have, reproduced on demand - and it is why the concurrency
 probe is worth running.
 
+## The three subjects measured so far
+
+| subject | adapter | result |
+|---|---|---|
+| `@modelcontextprotocol/server-memory@1.0.0` | `reference` | 5/6 - fails `foreign_field` |
+| `control/memory_server.py` | `control` | 6/6 |
+| [retained](https://github.com/arm00pv/retained) | `retained` | **6/6** - including 50/50 concurrent writes across two processes |
+
+`retained` is the answer to the probe that fails: append-only, hash-chained, read-back verified before
+the write is acknowledged, so a field the server does not model cannot be lost by it.
+
 ## Adding a system
 
 The harness talks MCP over stdio, so any MCP server can be probed by changing `--cmd`. A system with
