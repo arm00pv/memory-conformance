@@ -1,0 +1,31 @@
+name: ci
+
+on: [push, pull_request]
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: npm ci
+      - name: probe the reference memory server
+        run: |
+          python harness.py --cmd="node node_modules/@modelcontextprotocol/server-memory/dist/index.js" \
+            --json=report.json --expect=expected.json || true
+          cat report.json
+      - name: verdicts must match the pinned expectation
+        run: |
+          python - <<'PY'
+          import json, sys
+          want = json.load(open('expected.json'))
+          got = {r['probe']: r['verdict'] for r in json.load(open('report.json'))['probes']}
+          drift = {k: (v, got.get(k)) for k, v in want.items() if got.get(k) != v}
+          print('drift:', drift or 'none')
+          sys.exit(1 if drift else 0)
+          PY

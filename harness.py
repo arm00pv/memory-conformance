@@ -333,6 +333,10 @@ def main(argv=None):
             out = a.split("=", 1)[1]
         elif a.startswith("--only="):
             only = a.split("=", 1)[1]
+    expect = None
+    for a in argv:
+        if a.startswith("--expect="):
+            expect = a.split("=", 1)[1]
     per_writer = 10
     for a in argv:
         if a.startswith("--per-writer="):
@@ -361,7 +365,26 @@ def main(argv=None):
         with open(out, "w", encoding="utf-8", newline=chr(10)) as fh:
             fh.write(json.dumps({"command": cmd, "probes": rows}, indent=2) + chr(10))
         print("written to %s" % out)
+    drift = []
+    if expect:
+        # PINNED EXPECTATION. A conformance run against a fixed version is a regression detector: if
+        # the vendor ships a fix, or breaks something new, the verdicts move and somebody has to look.
+        # That is the difference between recording a number and watching it.
+        with open(expect, encoding="utf-8") as fh:
+            want = json.load(fh)
+        for row in rows:
+            got = want.get(row["probe"])
+            if got and got != row["verdict"]:
+                drift.append("%s: expected %s, got %s" % (row["probe"], got, row["verdict"]))
+        if drift:
+            print("DRIFT against %s:" % expect)
+            for d in drift:
+                print("  " + d)
+        else:
+            print("verdicts match %s" % expect)
     print("%d probe(s) failed" % fails)
+    if drift:
+        return 2
     return 0 if fails == 0 else 1
 
 
