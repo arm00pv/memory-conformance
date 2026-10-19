@@ -24,6 +24,12 @@ jobs:
           python harness.py --adapter=control \
             --cmd="python control/memory_server.py" --expect=expected-control.json
 
+      - name: probe retained (the server built to pass these probes)
+        run: |
+          git clone --depth 1 https://github.com/arm00pv/retained /tmp/retained
+          python harness.py --adapter=retained --cmd="python /tmp/retained/retained.py" \
+            --expect=expected-retained.json --per-writer=25
+
       - name: verdicts must match the pinned expectation
         run: |
           python - <<'PY'
