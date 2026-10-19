@@ -131,6 +131,15 @@ class ReferenceAdapter:
         return srv.call("create_entities", {"entities": [
             {"name": name, "entityType": "probe", "observations": observations}]})
 
+    def search(self, srv, query, k=3):
+        text = srv.call("search_nodes", {"query": query})
+        try:
+            data = json.loads(text)
+        except ValueError:
+            return []
+        ents = data.get("entities") if isinstance(data, dict) else []
+        return [e.get("name") for e in (ents or [])][:k]
+
     def read(self, srv):
         text = srv.call("read_graph", {})
         try:
@@ -181,6 +190,25 @@ class RetainedAdapter:
         return srv.call("memory_write", {"text": observations[0] if observations else "",
                                          "kind": "probe", "scope": "probe",
                                          "name": name, "observations": observations})
+
+    def search(self, srv, query, k=3):
+        text = srv.call("memory_search", {"query": query, "k": k})
+        try:
+            data = json.loads(text)
+        except ValueError:
+            return []
+        ids = [h.get("id") for h in (data.get("hits") or [])][:k]
+        if not ids:
+            return []
+        # THE STORE NAMES ITS OWN RECORDS. A caller thinks in the names it wrote; retained answers
+        # with its record ids, so the adapter reads them back and maps - otherwise a correct hit
+        # scores as a miss, which is the exact way a benchmark lies.
+        try:
+            got = json.loads(srv.call("memory_get", {"ids": ids}))
+        except ValueError:
+            return ids
+        by_id = {r["id"]: r for r in (got.get("records") or [])}
+        return [(by_id.get(i) or {}).get("name") or i for i in ids]
 
     def read(self, srv):
         text = srv.call("memory_get", {})

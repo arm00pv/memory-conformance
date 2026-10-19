@@ -61,6 +61,34 @@ confused when reading bug reports.
   pattern for this server does not reproduce here in this version, and saying so is part of the job:
   a conformance suite that only ever confirms the folklore is not measuring anything.
 
+## Retrieval: keeping is not finding
+
+Retention is not retrieval. `retrieval.py` writes twelve memories and asks twelve questions - six that
+share vocabulary with the memory they want, six paraphrases - then reports hit@1 and hit@3 on a server
+that has just restarted, so search cannot ride on anything the writing process still held in memory.
+
+| subject | easy (6) | hard (6) | all 12 |
+|---|---|---|---|
+| `@modelcontextprotocol/server-memory@1.0.0` | 0/6 h1, 0/6 h3 | 0/6 h1, 0/6 h3 | **0/12** |
+| `retained` | 6/6 h1, 6/6 h3 | 4/6 h1, 5/6 h3 | **10/12 h1, 11/12 h3** |
+
+The reference server scores zero, and the reason is not ranking - it is matching. Characterised
+directly:
+
+```
+deployment               -> [rec-key]     deployment key           -> [rec-key]
+key rotates              -> [rec-key]     staging                  -> [rec-port]
+postgres staging port    -> []            environment staging      -> []
+```
+
+It returns a record only when the **whole query string** appears in the record, so a question phrased
+the way a person phrases it returns nothing at all. `retained` tokenises, ranks with `bm25` and takes
+the top k, which is why it answers ten of twelve and misses only the question with no shared
+vocabulary at all ("how many machines do we run" against "three hosts: throne, watchtower and pi").
+
+That remaining miss is the honest ceiling of a lexical store: no amount of ranking fixes a query whose
+words are absent. Embeddings are the answer, and they are not in `retained` yet.
+
 ## The positive control: the probes can pass
 
 A suite that only ever fails measures nothing. `control/memory_server.py` is the smallest MCP memory

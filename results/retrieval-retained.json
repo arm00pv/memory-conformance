@@ -1,0 +1,160 @@
+{
+  "adapter": "retained",
+  "summary": {
+    "easy": {
+      "n": 6,
+      "hit1": 6,
+      "hit3": 6
+    },
+    "hard": {
+      "n": 6,
+      "hit1": 4,
+      "hit3": 5
+    },
+    "all": {
+      "n": 12,
+      "hit1": 10,
+      "hit3": 11
+    }
+  },
+  "rows": [
+    {
+      "query": "deployment key rotates monthly",
+      "expect": "rec-key",
+      "difficulty": "easy",
+      "returned": [
+        "rec-key"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "error": null
+    },
+    {
+      "query": "postgres staging port",
+      "expect": "rec-port",
+      "difficulty": "easy",
+      "returned": [
+        "rec-port"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "error": null
+    },
+    {
+      "query": "off-site backup time",
+      "expect": "rec-backup",
+      "difficulty": "easy",
+      "returned": [
+        "rec-backup"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "error": null
+    },
+    {
+      "query": "nightly report worker",
+      "expect": "rec-report",
+      "difficulty": "easy",
+      "returned": [
+        "rec-report"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "error": null
+    },
+    {
+      "query": "lock for concurrent writers",
+      "expect": "rec-lock",
+      "difficulty": "easy",
+      "returned": [
+        "rec-lock"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "error": null
+    },
+    {
+      "query": "rebuild index from log",
+      "expect": "rec-rebuild",
+      "difficulty": "easy",
+      "returned": [
+        "rec-rebuild"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "error": null
+    },
+    {
+      "query": "how many machines do we run",
+      "expect": "rec-hosts",
+      "difficulty": "hard",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "error": null
+    },
+    {
+      "query": "what happens when replication fails",
+      "expect": "rec-alert",
+      "difficulty": "hard",
+      "returned": [
+        "rec-alert"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "error": null
+    },
+    {
+      "query": "how big is the test corpus",
+      "expect": "rec-corpus",
+      "difficulty": "hard",
+      "returned": [
+        "rec-speed",
+        "rec-corpus",
+        "rec-report"
+      ],
+      "hit1": false,
+      "hit3": true,
+      "error": null
+    },
+    {
+      "query": "why do writes get mangled on Windows",
+      "expect": "rec-crlf",
+      "difficulty": "hard",
+      "returned": [
+        "rec-crlf",
+        "rec-lock",
+        "rec-port"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "error": null
+    },
+    {
+      "query": "how fast is the linter",
+      "expect": "rec-speed",
+      "difficulty": "hard",
+      "returned": [
+        "rec-speed",
+        "rec-report",
+        "rec-ack"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "error": null
+    },
+    {
+      "query": "when is a write considered safe",
+      "expect": "rec-ack",
+      "difficulty": "hard",
+      "returned": [
+        "rec-ack",
+        "rec-report",
+        "rec-alert"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "error": null
+    }
+  ]
+}
