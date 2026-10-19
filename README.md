@@ -70,7 +70,8 @@ that has just restarted, so search cannot ride on anything the writing process s
 | subject | easy (6) | hard (6) | all 12 |
 |---|---|---|---|
 | `@modelcontextprotocol/server-memory@1.0.0` | 0/6 h1, 0/6 h3 | 0/6 h1, 0/6 h3 | **0/12** |
-| `retained` | 6/6 h1, 6/6 h3 | 4/6 h1, 5/6 h3 | **10/12 h1, 11/12 h3** |
+| `retained` (lexical only) | 6/6 h1, 6/6 h3 | 4/6 h1, 5/6 h3 | **10/12 h1, 11/12 h3** |
+| `retained` (hybrid, `all-minilm` vectors) | 6/6 h1, 6/6 h3 | 5/6 h1, 6/6 h3 | **11/12 h1, 12/12 h3** |
 
 The reference server scores zero, and the reason is not ranking - it is matching. Characterised
 directly:
