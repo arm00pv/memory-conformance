@@ -9,29 +9,39 @@ public tools over its own transport - no internals, no mocks, no source reading.
 
 ```
 $ python harness.py --cmd="node node_modules/@modelcontextprotocol/server-memory/dist/index.js"
-ack_readback     PASS      0.7s  acknowledged alpha; a fresh read returned 1 entities: ['alpha']
-restart          PASS      1.9s  three writes across three server lifetimes; read back [restart-0, ...]
-foreign_field    FAIL      1.2s  the extra field was silently dropped by the next write
-foreign_record   PASS      1.1s  the unmodelled record survived
-concurrent       PASS      1.6s  20 of 20 acknowledged writes survived two servers on one store
-large_record     PASS      0.7s  wrote 100000 characters, read back 100000
+isolation        PASS              3.6s  store A's record was not visible from store B
+ack_readback     PASS              4.6s  acknowledged alpha; a fresh read returned 1 entities: ['alpha']
+restart          PASS             15.7s  three writes across three server lifetimes; read back [restart-0, ...]
+findable         PASS              2.3s  all 8 acknowledged records came back in the top 3 for a search on their own name
+foreign_field    FAIL              7.8s  the extra field was silently dropped by the next write
+foreign_record   PASS              5.0s  the unmodelled record survived
+concurrent       PASS              3.6s  20 of 20 acknowledged writes survived two servers on one store
+large_record     PASS              1.9s  wrote 100000 characters, read back 100000
 1 probe(s) failed
 ```
 
-## The six probes
+## The eight probes
 
 | probe | the promise it tests |
 |---|---|
+| `isolation` | a record written into one store is not visible from a different store |
 | `ack_readback` | a write that returned success is returned by a fresh read |
 | `restart` | the write survives the server being stopped and started |
+| `findable` | a record can be found again by the name it was stored under |
 | `foreign_field` | a field the server does not model survives the next write |
 | `foreign_record` | a record type the server does not model survives the next write |
 | `concurrent` | two servers on one store keep every acknowledged write (threads, one server each, released together) |
-| `large_record` | a 100,000-character record comes back whole |
+| `large_record` | a record as large as the subject accepts comes back whole |
 
 Every probe drives the server through MCP `tools/call` and then checks both the answers over the
 wire and the bytes on disk. Each runs against a fresh store in a temporary directory, so probes
 cannot contaminate each other.
+
+`isolation` runs first and is a **precondition, not a feature**. A verdict measured on a subject that
+carries state between stores describes leaked state, so a subject that fails it is reported with a
+warning and its other verdicts must not be published. A probe answers PASS, FAIL, or **UNKNOWN** -
+and UNKNOWN is a real answer: the probe could not be expressed against this subject, which is not
+the same thing as a defect.
 
 ## Result: `@modelcontextprotocol/server-memory@1.0.0`
 
@@ -73,6 +83,11 @@ Retention is not retrieval. `retrieval.py` writes twelve memories and asks twelv
 share vocabulary with the memory they want, six paraphrases - then reports hit@1 and hit@3 on a server
 that has just restarted, so search cannot ride on anything the writing process still held in memory.
 
+> *This section records the original twelve-question run against `retained` and `basic-memory`. The
+> corpus is now 36 records and 30 questions in four bands - including near-duplicate distractors and
+> questions with no answer at all - and every subject in the matrix is measured on it. See the
+> retrieval table above.*
+
 | subject | easy (6) | hard (6) | all 12 |
 |---|---|---|---|
 | `@modelcontextprotocol/server-memory@1.0.0` | 0/6 h1, 0/6 h3 | 0/6 h1, 0/6 h3 | **0/12** |
@@ -110,8 +125,9 @@ lint                        -> [rec-speed]   throne     -> [rec-hosts]   machine
 So `run` reaches "the estate **runs** on three hosts", which is the whole of why that question is
 answered at rank 1; `completing` does not reach "completes", and no query reaches a word that is not
 in the store at all. Prefix matching is cheaper than a vector index and enough for the one question
-`retained` missed - but it is still character overlap, not semantics, and the twelve questions here
-are too few to tell you where it stops working. Its single k=1 miss is a ranking question, not a
+`retained` missed - but it is still character overlap, not semantics. Twelve questions were too few to
+find where it stops working; the thirty-question corpus does, and the answer is the `hard` band. Its
+single k=1 miss in that original run was a ranking question, not a
 matching one: "when is a write considered safe" returns `[rec-lock, rec-ack]`, and both are about
 writes being safe.
 
@@ -150,14 +166,14 @@ semantic search switched off so the run needs no embedding model and stays lexic
 
 ```
 $ python harness.py --adapter=basic-memory --cmd=".venv-bm\Scripts\basic-memory.exe mcp --transport stdio"
-ack_readback     PASS    30.2s  acknowledged alpha; a fresh read returned 1 entities: ['alpha']
-restart          PASS    57.4s  three writes across three server lifetimes; read back ['restart-0', ...]
-foreign_field    UNKNOWN 14.4s  probe could not run: basic-memory keeps one markdown file per note plus
+ack_readback     PASS            30.2s  acknowledged alpha; a fresh read returned 1 entities: ['alpha']
+restart          PASS            57.4s  three writes across three server lifetimes; read back ['restart-0', ...]
+foreign_field    UNKNOWN                        14.4s  basic-memory keeps one markdown file per note plus
                                 a SQLite index, not a single JSON-lines store; this probe's
                                 annotate-a-file check has no equivalent here
-foreign_record   UNKNOWN 13.9s  (same)
-concurrent       PASS    47.6s  20 of 20 acknowledged writes survived two servers on one store
-large_record     PASS    31.5s  wrote 100000 characters, read back 100000
+foreign_record   UNKNOWN                        13.9s  (same)
+concurrent       PASS            47.6s  20 of 20 acknowledged writes survived two servers on one store
+large_record     PASS            31.5s  wrote 100000 characters, read back 100000
 0 probe(s) failed
 ```
 
@@ -184,25 +200,170 @@ Two things had to be configured to probe it at all, and neither touches what is 
   model download; `semantic_search_enabled: false` makes its default search `text`, which is what
   the probes and the retrieval cases use anyway.
 
-## The four subjects measured so far
+## The subjects measured so far
 
-| subject | adapter | result |
-|---|---|---|
-| `@modelcontextprotocol/server-memory@1.0.0` | `reference` | 5/6 - fails `foreign_field` |
-| `control/memory_server.py` | `control` | 6/6 |
-| [retained](https://github.com/arm00pv/retained) | `retained` | **6/6** - including 50/50 concurrent writes across two processes |
-| [basic-memory](https://github.com/basicmachines-co/basic-memory) 0.23.2 | `basic-memory` | **4/6 + 2 unanswerable** - passes `ack_readback`, `restart`, `concurrent`, `large_record`; `foreign_field` and `foreign_record` have no equivalent against a directory of markdown notes |
+```
+$ python matrix.py
 
-`retained` is the answer to the probe that fails: append-only, hash-chained, read-back verified before
-the write is acknowledged, so a field the server does not model cannot be lost by it.
+subject                  isol     ack      restart  find     field    record   conc     large    ceil
+-----------------------------------------------------------------------------------------------------
+control 1.0.0            PASS     PASS     PASS     PASS     PASS     PASS     PASS     PASS      60s
+server-memory 1.0.0      PASS     PASS     PASS     PASS     FAIL     PASS     PASS     PASS      60s
+server-memory 2.0.0      PASS     PASS     PASS     PASS     FAIL     PASS     PASS     PASS      60s
+memento 0.7.0            PASS     PASS     PASS     FAIL     PASS     PASS     PASS     FAIL     180s
+memdb 1.4.0              PASS     PASS     PASS     PASS     PASS     PASS     PASS     PASS      60s
+memory-lean 1.5.0        PASS     PASS     PASS     PASS     FAIL     FAIL     PASS     PASS      60s
+mcp-knowledge-graph 1.3.2 PASS    PASS     PASS     PASS     PASS     FAIL     FAIL     PASS      90s
+zenbrain 0.3.0           PASS     PASS     PASS     PASS     PASS     PASS     PASS     PASS      60s
+memory-mcp-1file 0.9.2   FAIL     (PASS)   (PASS)   (PASS)   (UNKNOWN)  (FAIL)   (FAIL)   (UNKNOWN)   60s
+
+retrieval, cold start, 36 records - a score, not a verdict. hit@3 per band: easy shares
+wording with the answer, hard is a paraphrase, adversarial has a near duplicate competing.
+'noans' is questions with no answer in the store that were answered anyway: 0 is right.
+
+subject                  easy    hard    adver   all h1   all h3   noans   runs      95%
+----------------------------------------------------------------------------------------
+control 1.0.0            8/8     0/8     5/8     13/30    13/30    0/6     13-13     8-18
+server-memory 1.0.0      0/8     0/8     0/8      0/30     0/30    0/6     0-0       0-3
+server-memory 2.0.0      0/8     0/8     0/8      0/30     0/30    0/6     0-0       0-3
+memento 0.7.0            2/8     2/8     4/8      2/30     8/30    6/6     8-8       4-13
+memdb 1.4.0              7/8     0/8     0/8      1/30     7/30    6/6     7-7       4-12
+memory-lean 1.5.0        6/8     0/8     0/8      6/30     6/30    0/6     6-6       3-11
+mcp-knowledge-graph 1.3.2 0/8    0/8     0/8      0/30     0/30    0/6     0-0       0-3
+zenbrain 0.3.0           8/8     8/8     7/8     20/30    23/30    6/6     23-23     18-26
+memory-mcp-1file 0.9.2   8/8     7/8     7/8     19/30    22/30    6/6     22-22     17-26
+```
+
+**Retrieval is measured with questions that have no answer, because otherwise "return everything"
+scores like a search.** The `noans` column is how many unanswerable questions a subject answered
+anyway — a memory that always answers is a memory that cannot say "I don't have that".
+
+**The two axes are close to inverted, and two opposite failures score identically.** Ranked by
+retention the order is control, memdb, zenbrain. Ranked by retrieval it is zenbrain and
+memory-mcp-1file, then the control, then everybody else — and the two servers most people actually use
+come last, at zero.
+
+The sharpest example is a pair a single score would have got wrong:
+
+```
+$ python compare.py memento server-memory-1.0.0
+  only memento correct      8
+  only server-memory        6
+  exact McNemar p = 0.7905  -> not separated by this corpus
+```
+
+They are opposites — one answers everything including six questions that have no answer, the other
+answers nothing at all — and on this corpus they are statistically identical.
+
+- **`@modelcontextprotocol/server-memory`, both versions** — 7 of 8 probes pass, and it answers
+  **none** of the 30 questions. `search_nodes` matches the query as a literal substring:
+  `"postgres staging port"` returns nothing, `"postgres"` returns the record.
+- **memento** — returns the same three entities for a matching name, a nonsense string and the empty
+  query. Its search is a listing, and it speaks on every unanswerable question.
+- **memory-mcp-1file** — the joint-best retriever here (22/30), and the one subject excluded from the
+  conformance table for leaking state between stores.
+
+`runs` and `95%` are two different error bars and both matter. `runs` is the min–max of the whole
+experiment repeated three times: the **measurement** error, and it is zero on every subject here.
+`95%` is the Wilson interval: the **sampling** error, how far a different thirty questions might move
+the score, about four counts either way. A repeatable number whose precision is limited only by the
+size of the corpus is a good place to be.
+
+Two rows whose intervals overlap are not separated by this corpus — and because every subject answers
+the *same* questions, the sharper test is the paired one:
+
+```
+$ python compare.py zenbrain memdb
+  only zenbrain correct    15
+  only memdb correct        0
+  exact McNemar p = 0.0001  -> separated
+```
+
+The control passing all eight is the claim that every probe *can* pass, which is the difference
+between a conformance suite and a set of accusations.
+
+## Cost: the third axis
+
+```
+$ python matrix.py --cost-only        # timings taken in a quiet pass of their own
+
+subject                  startup  lst write write p50 search p50 resp B   amp     vary
+control 1.0.0               0.23s    0.01s    0.009s    0.001s     4175     x72      0%
+server-memory 1.0.0         0.89s    0.05s    0.021s    0.005s       39      x1     62%
+server-memory 2.0.0         0.80s    0.03s    0.013s    0.005s       39      x1     69%
+memento 0.7.0               1.42s    4.54s    0.111s    0.045s     1497     x26    293%
+memdb 1.4.0                 0.42s    0.01s    0.001s    0.002s     1027     x18      0%
+memory-lean 1.5.0           0.12s    0.01s    0.004s    0.002s      164      x3      0%
+mcp-knowledge-graph 1.3.2   0.13s    0.01s    0.005s    0.003s       39      x1      0%
+zenbrain 0.3.0              0.43s    0.01s    0.001s    0.002s      663     x11      0%
+memory-mcp-1file 0.9.2      0.51s    1.56s    0.036s    0.055s     1969     x34     11%
+```
+
+`resp` is the median bytes a server sends back for one question, and `amp` is that divided by the size
+of the correct record — so answering by returning the whole store shows up as a multiplier.
+
+`vary` is how far the worst steady-state measurement moved across three passes, as a fraction of its
+own median, and it is not a rounding detail. **memento's first write ranged from 2.3 s to 14.4 s**
+across three passes on the same machine — the 4.54 s is a median of a six-fold spread, so an agent
+runtime capping a tool call at 10 s faces a coin flip rather than a budget. `memory-mcp-1file`'s
+response size moved 11% between passes: the byte count is exact for one response, and the response is
+the subject's choice, which is why byte counts are repeated too.
+
+**Read this table with the retrieval one, or the cheapest memory looks like the best.** The two
+subjects that cost 39 bytes per question return *nothing*; efficiency achieved by silence is not
+efficiency. The best retriever (`memory-mcp-1file`, 22/30) is also among the most expensive per
+question at 34× the size of the answer. And one marketing claim survives measurement intact:
+`memory-lean` is genuinely lean — 164 bytes, 3×, and the fastest startup in the set.
+
+**`store B/rec` is marginal, not average**, measured between two batches so the preallocation floor
+cancels. Dividing total size by record count reported memento at 350,549 bytes per record; its true
+marginal cost is **zero**, because its 4.3 MB store is allocated once and then holds anything.
+
+The `ceil` column is the per-call ceiling each subject was given, and it changes verdicts. memento
+passes `concurrent` at 180 s and fails it at 60 s on the same machine on the same day. A verdict is
+only meaningful together with the ceiling it was measured under.
+
+Two further subjects were measured before the current probe set and are not in the matrix:
+[retained](https://github.com/arm00pv/retained) passed 6/6 including 50/50 concurrent writes across
+two processes, and [basic-memory](https://github.com/basicmachines-co/basic-memory) 0.23.2 passed 4/6
+with 2 unanswerable — `foreign_field` and `foreign_record` have no equivalent against a directory of
+markdown notes. `retained` is the answer to the probe that fails: append-only, hash-chained,
+read-back verified before the write is acknowledged.
 
 ## Adding a system
 
-The harness talks MCP over stdio, so any MCP server can be probed by changing `--cmd`. A system with
-a different tool vocabulary needs a small adapter: implement `server()`, `write()`, `read()` and pass
-it to the probes - `ReferenceAdapter` in `harness.py` is 20 lines and is the template, and
-`BasicMemoryAdapter` is the worked example for a subject whose records live in a directory of files
-rather than in one store file.
+The harness talks MCP over stdio, so any MCP server can be probed by changing `--cmd`. Three ways in,
+in order of how much you have to write:
+
+**1. Nothing.** `--adapter=auto` lists the server's own tools, proposes a write tool from each
+tool's JSON schema, then tries every plausible reader until one returns a token that was just
+written. A binding that has not been proven is never used. This reaches five of the eight probes.
+
+**2. A manifest - twelve lines of JSON.** Say where the store is and how a record is identified;
+everything else stays discovered:
+
+```json
+{"subject": "@j0hanz/memdb 1.4.0",
+ "command_must_contain": ["memdb"],
+ "store": {"kind": "sqlite", "path": ".memdb/memory.db", "table": "memories",
+           "match": {"column": "content", "op": "contains"},
+           "content_column": "content"}}
+```
+
+```
+$ python manifest.py manifests/memdb.json "node node_modules/@j0hanz/memdb/dist/index.js"
+predicate: {"column": "content", "op": "contains"}  ->  matched the record that was just written
+OK        this manifest describes this subject
+```
+
+A declaration is a claim, so it is checked before any verdict depends on it: the command must match,
+the declared path must exist inside the run's store directory, and the declared predicate must find
+a record that was just written through the server. All eight probes then become answerable.
+
+**3. An adapter**, when the tool vocabulary itself differs. Implement `server()`, `write()`,
+`read()` and pass it to the probes - `ReferenceAdapter` in `harness.py` is 20 lines and is the
+template, and `BasicMemoryAdapter` is the worked example for a subject whose records live in a
+directory of files rather than in one store file.
 
 ## Why this exists
 
@@ -213,12 +374,61 @@ success reply is honest about the write and silent about the loss.
 
 ## Limits, stated
 
-- **One version per server.** Numbers above are `@modelcontextprotocol/server-memory@1.0.0`,
-  `retained` and `basic-memory` 0.23.2 on 2026-10-19, and a different version of any of them can pass
-  or fail differently.
-- **Six probes are not a spec.** They cover retention and concurrency, not retrieval quality, latency
-  or token cost.
-- **Probes are deterministic, not sampled.** There is no confidence interval to quote; a probe either
-  reproduces or it does not, and each one prints what it saw.
+- **One version per server.** Numbers above are `@modelcontextprotocol/server-memory` 1.0.0 and
+  2.0.0, `retained` and `basic-memory` 0.23.2 on 2026-10-19, and a different version of any of them
+  can pass or fail differently. `--expect=` re-runs a pinned report and exits non-zero on drift.
+- **Eight probes are not a spec.** They cover retention, concurrency, findability and one
+  precondition - not retrieval quality, latency or token cost. Retrieval is measured separately
+  (`retrieval.py`, and the second table in `MATRIX.md`) and reported as a score, because
+  "relevant" is a judgement while "returned" is a fact.
+- **Cost is measured once, not repeatedly.** A single quiet pass beats a timing taken while nine
+  other subjects run, and it is still not a distribution: there is no p90 on any cost column and no
+  repeat. Bytes are used rather than tokens because bytes are what the transport carries and what can
+  be counted exactly; a token estimate would be a guess wearing a number's clothes.
+- **Retrieval is repeated three times and is deterministic.** Every subject's `runs` column is a
+  single number: three complete repetitions of the experiment moved nothing. An earlier draft of this
+  README blamed a 22/30 → 24/30 difference on instability; that difference was observed across two
+  runs during which the harness itself was changing, which is not the same thing. Verified properly,
+  zenbrain is 23/30 on four separate invocations and on all three in-run passes.
+- **Cost is repeated three times, and the ranges matter more than the medians.** memento's first
+  write spans 2.3–14.4 s across passes; quoting the 4.5 s median alone would be a claim about a fixed
+  cost that does not exist. Full per-metric ranges, including the noisier startup and restart
+  figures, are in `results/*-cost.json`. Timings under 20 ms are left out of `vary` because a ratio
+  needs something to divide by.
+- **There is no end-to-end session cost.** The bill an agent pays is many writes, many reads and many
+  misses; this measures one of each.
+- **`findable` is a floor, not a benchmark.** It asks only whether a record comes back for its own
+  name. Passing it means a memory can be read back at all; it says nothing about answering questions.
+- **Every probe is run three times.** `--repeat=N` repeats all eight, reports the modal outcome,
+  prints the tally, and marks any disagreement `unstable`. A tie breaks toward the worse outcome, so
+  an unstable subject is never rounded up to PASS. Repeating only the probes that have been *seen* to
+  flake is the assumption that has been retracted twice in this project already.
+  `--repeat-probes=` narrows the list when you deliberately want to save time.
+
+  The result of repeating all of them: **72 verdicts, 216 executions, one unstable row** — and it
+  belongs to the subject already excluded for leaking state. Its `restart` probe passed twice and
+  failed once, and the evidence it printed contained a record written by a *different probe* in a
+  *different store*. The flakiness is a downstream symptom of the isolation failure, which is the
+  strongest argument for `isolation` running first.
+- **Retrieval numbers come with an interval, and the interval is the honest part.** 30 questions
+  separates the ends of the table and not the middle. Every row carries a 95% Wilson interval, and
+  because every subject answers the *same* 30 questions, `compare.py` runs the paired test
+  (exact McNemar) that the marginal counts cannot replace:
+
+  ```
+  $ python compare.py zenbrain memory-mcp-1file
+    correct for both         20
+    only zenbrain correct     2
+    only memory-mcp-1file     2
+    exact McNemar p = 1.0000  -> not separated by this corpus
+  ```
+
+- **The retrieval corpus is authored by this project.** The questions may share its author's
+  vocabulary. The `adversarial` band is the most robust part, because a near-duplicate distractor is
+  hard to match by accident, and `absent` is the most objective, because "nothing" needs no
+  judgement about relevance.
+- **`python matrix.py --report-only`** re-renders both tables from the reports already under
+  `results/` without re-running a subject. A verdict is worth little if the table around it can only
+  be produced by a twenty-minute run.
 
 MIT licensed.
