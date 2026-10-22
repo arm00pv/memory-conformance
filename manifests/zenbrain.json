@@ -1,0 +1,17 @@
+{
+  "subject": "@zensation/mcp 0.3.0",
+  "command_must_contain": [
+    "zensation"
+  ],
+  "why": "SQLite. One store method fans out across six tables by content type; measured with four differently shaped writes and all four landed in learned_facts, so that is the declared table. There is no list-everything tool, so reads go through recall and the name is the only thing proven over the wire - the body is measured on disk.",
+  "store": {
+    "kind": "sqlite",
+    "path": "zenbrain.db",
+    "table": "learned_facts",
+    "match": {
+      "column": "content",
+      "op": "contains"
+    },
+    "content_column": "content"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "subject": "@j0hanz/memdb 1.4.0",
+  "command_must_contain": [
+    "memdb"
+  ],
+  "why": "One row per memory in .memdb/memory.db, created relative to the working directory. There is no name column: the name the caller passes is folded into the row text, so a record is found by containment, not equality. The whole body lives in memories.content, which is what makes a durable length measurable without asking the server to render it back.",
+  "store": {
+    "kind": "sqlite",
+    "path": ".memdb/memory.db",
+    "table": "memories",
+    "match": {
+      "column": "content",
+      "op": "contains"
+    },
+    "content_column": "content"
+  }
+}

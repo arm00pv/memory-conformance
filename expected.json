@@ -1,6 +1,8 @@
 {
+  "isolation": "PASS",
   "ack_readback": "PASS",
   "restart": "PASS",
+  "findable": "PASS",
   "foreign_field": "FAIL",
   "foreign_record": "PASS",
   "concurrent": "PASS",

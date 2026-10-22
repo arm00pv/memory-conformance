@@ -1,0 +1,12 @@
+{
+  "subject": "mcp-knowledge-graph 1.3.2",
+  "command_must_contain": [
+    "mcp-knowledge-graph"
+  ],
+  "why": "JSON Lines, one entity per line. It locates its store by walking up for a project marker and falls back to its own package directory, so the manifest is only correct when the command carries --memory-path pointing at the run's store - which is why that flag is part of the command and not of the environment.",
+  "store": {
+    "kind": "jsonl",
+    "path": "memory.jsonl",
+    "id_key": "name"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "subject": "@iachilles/memento 0.7.0",
+  "command_must_contain": [
+    "memento"
+  ],
+  "why": "CONTROL, not a new subject. memento already has a hand-written adapter in harness.py; this manifest exists so the declarative path can be checked against it. If both produce the same verdicts, the manifest mechanism is equivalent to hand-written code; if they differ, one of them is wrong and the difference is the bug. Observations live in a separate table here, so no content column is declared and on-disk length stays unmeasured.",
+  "store": {
+    "kind": "sqlite",
+    "path": "memory.db",
+    "table": "entities",
+    "match": {
+      "column": "name",
+      "op": "eq"
+    }
+  }
+}

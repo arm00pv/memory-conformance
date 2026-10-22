@@ -1,0 +1,12 @@
+{
+  "subject": "memory-lean 1.5.0",
+  "command_must_contain": [
+    "memory-lean"
+  ],
+  "why": "The same tool vocabulary as the reference server, and it honours MEMORY_FILE_PATH, so the probes can point it at a fresh store. JSON Lines, one entity object per line keyed by name.",
+  "store": {
+    "kind": "jsonl",
+    "path": "memory.json",
+    "id_key": "name"
+  }
+}
