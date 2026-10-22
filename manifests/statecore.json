@@ -1,0 +1,16 @@
+{
+  "subject": "statecore-mcp 1.0.0",
+  "command_must_contain": [
+    "statecore"
+  ],
+  "why": "SQLite, but it does not model records: a note lands inside one JSON state blob in DigestStateSnapshot.state rather than as a row of its own. That makes the two foreign-data probes meaningful (they test whether the server preserves a column and a table it does not know about when it rewrites that blob) and the size probe unanswerable, so no content column is declared and large_record reports UNKNOWN rather than inventing a verdict. The store is only local because the command carries --data pointing at the run's directory; without it the subject writes to ~/.statecore, which the triage run demonstrated by creating it.",
+  "store": {
+    "kind": "sqlite",
+    "path": "statecore.db",
+    "table": "DigestStateSnapshot",
+    "match": {
+      "column": "state",
+      "op": "contains"
+    }
+  }
+}

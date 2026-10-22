@@ -1311,3 +1311,90 @@ Nothing on these three axes is now reported from a single observation without sa
 remains is not more repetition but more axes: there is no end-to-end session cost, no measurement of
 what a memory is worth rather than what it does, and the corpus is still thirty questions written by
 the person who wrote the harness.
+
+---
+
+# Addendum 11: breadth, and what it actually costs
+
+The plan was eight measured subjects to fifteen. It reached eleven: ten measured and one out of
+scope. That yield is the finding, and it says more about the state of this ecosystem than another
+green column would.
+
+## What was tried
+
+Seven packages installed and triaged with a new `triage.py`, which starts each one, proposes a write,
+and reports every file it leaves behind along with the tables of any SQLite store:
+
+| package | outcome |
+|---|---|
+| `statecore-mcp` 1.0.0 | **added** - SQLite, local once `--data` points at the run's directory |
+| `@izumisy/mcp-duckdb-memory-server` 1.1.10 | **added** - DuckDB, local by default |
+| `crbro-memory` 2.10.0 | rejected - works, but writes to `~/.crbro` and offers no way to say otherwise |
+| `rag-memory-epf-mcp` 6.4.1 | rejected - its `sources` field is an array of objects and the binder fills arrays with strings |
+| `@hasna/mementos` 0.17.10 | never starts over stdio from a clean install |
+| `aimem-mcp` 0.3.0 | never starts (declares a Node <21 engine) |
+| `toon-memory` 4.3.5 | ships an installer rather than a server; needs an interactive `init` first |
+
+Two of seven added. The manifest makes *declaring* a subject fourteen lines; it does not make
+*understanding* one cheap, and that is where the hours went.
+
+## Two properties the triage surfaced
+
+**Two subjects wrote to the user's home directory by default.** `statecore-mcp` created
+`~/.statecore/statecore.db` and `crbro-memory` created `~/.crbro` the first time each was started.
+Both were removed. This is worth stating plainly: a memory server that defaults to the home directory
+is one an agent shares with every other agent on the machine, silently. It is the same defect as
+`memory-mcp-1file`, and it is the single most common way a subject fails the isolation precondition.
+
+**DuckDB cannot be shared by two processes at all.** The concurrency probe does not report lost
+writes for it; both servers answer `ok` and the second one cannot open the file:
+
+```
+concurrent  FAIL  10 write(s) failed outright:
+                  "create_entities refused: Cannot read properties of null (reading 'connect')"
+```
+
+That is a third distinct concurrency failure mode, after memento's latency cliff and
+mcp-knowledge-graph's silent loss.
+
+## The new subjects, and the one number that matters
+
+```
+subject                  isol   ack    restart find   field   record  conc   large   resp B  amp
+statecore-mcp 1.0.0      PASS   PASS   PASS    FAIL   PASS    PASS    FAIL   UNKNOWN   5710   x98
+mcp-duckdb-memory 1.1.10 PASS   PASS   PASS    PASS   UNKNOWN UNKNOWN FAIL   UNKNOWN    210    x4
+```
+
+**statecore-mcp is the most expensive memory in the table and answers none of the thirty questions.**
+5,710 bytes per question - 98 times the size of the answer it did not find - against a median of 663
+for the best retriever. It also loses 3 of 20 acknowledged writes across two processes and cannot find
+a record by the name it was given. Cheap is not the same as efficient, and expensive is not the same
+as thorough; this is a subject that is neither.
+
+## Four bugs the breadth found in the binder
+
+Each one turned a working server into "this package does not work", which is the failure mode the
+binder exists to avoid. All four are fixed in `autodetect.py`.
+
+1. **It started the CLI instead of the server.** `@hasna/mementos` publishes `mementos` and
+   `mementos-mcp`; taking the first entry point ran a command-line tool that does not speak MCP, and
+   the result read as "initialize did not answer".
+2. **"learn" was not a write verb.** `crbro-memory` calls its write `crbro_learn`, so the package
+   looked like a memory server with no way to store anything.
+3. **A constrained field got an invented value.** `rag-memory-epf-mcp` declares `status` as an enum
+   of `["active", "provisional"]`; the binder sent `"probe"` and the write was rejected. It now reads
+   the enum and sends a value the schema accepts.
+4. **An optional field was never filled, even when it was the only place the handle could go.**
+   `crbro_learn` will not store anything without a `topic` and does not list one as required, so the
+   binder never sent it. Optional name-shaped fields are now consulted, but only when no required
+   field could carry the name, so an existing binding cannot be disturbed.
+
+That is eleven self-bugs across this project. The pattern has not changed: every one of them was the
+harness assuming something about the subject instead of reading what the subject said.
+
+## What breadth actually taught
+
+Adding subjects is not a way to accumulate green rows. Six of seven new packages could not be
+measured, three of them for reasons that are themselves defects - a global store, an exclusive file
+lock, a server that will not start - and the two that could be measured both failed something. The
+matrix got more useful and less flattering at the same time.

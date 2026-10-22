@@ -58,5 +58,19 @@
     "version": "0.9.2",
     "adapter": "auto",
     "cmd": "node node_modules/memory-mcp-1file/run.js"
+  },
+  {
+    "name": "statecore-mcp",
+    "version": "1.0.0",
+    "manifest": "manifests/statecore.json",
+    "cmd": "node node_modules/statecore-mcp/dist/main.js --data .",
+    "timeout": 60
+  },
+  {
+    "name": "mcp-duckdb-memory-server",
+    "version": "1.1.10",
+    "adapter": "auto",
+    "cmd": "node node_modules/@izumisy/mcp-duckdb-memory-server/dist/index.mjs",
+    "timeout": 90
   }
 ]

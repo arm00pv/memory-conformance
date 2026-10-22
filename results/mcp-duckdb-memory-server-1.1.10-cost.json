@@ -1,0 +1,60 @@
+{
+  "writes": 30,
+  "searches": 8,
+  "ceiling_seconds": 90.0,
+  "startup_p50": 0.325,
+  "startup_max": 0.389,
+  "first_write": 0.144,
+  "write_p50": 0.01,
+  "write_max": 0.144,
+  "store_floor_bytes": null,
+  "store_bytes_per_record": null,
+  "restart": 0.34,
+  "search_p50": 0.005,
+  "search_max": 0.068,
+  "resp_bytes_p50": 210,
+  "resp_bytes_max": 421,
+  "answer_bytes": 58,
+  "amp": 3.6,
+  "repeat": 3,
+  "spread": {
+    "startup_p50": {
+      "min": 0.321,
+      "median": 0.325,
+      "max": 0.507
+    },
+    "first_write": {
+      "min": 0.12,
+      "median": 0.144,
+      "max": 0.156
+    },
+    "write_p50": {
+      "min": 0.008,
+      "median": 0.01,
+      "max": 0.011
+    },
+    "restart": {
+      "min": 0.321,
+      "median": 0.34,
+      "max": 0.496
+    },
+    "search_p50": {
+      "min": 0.004,
+      "median": 0.005,
+      "max": 0.006
+    },
+    "resp_bytes_p50": {
+      "min": 210,
+      "median": 210,
+      "max": 210
+    },
+    "resp_bytes_max": {
+      "min": 421,
+      "median": 421,
+      "max": 421
+    }
+  },
+  "relative_spread": 0.572,
+  "subject": "auto",
+  "command": "node node_modules/@izumisy/mcp-duckdb-memory-server/dist/index.mjs"
+}

@@ -15,10 +15,17 @@ import tempfile
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from harness import McpServer  # noqa: E402
 
-WRITE_HINTS = ("create", "store", "add", "write", "save", "remember", "insert", "put", "append")
+# "learn" and "record" are write verbs too. crbro-memory calls its write tool crbro_learn and
+# publishes fifteen tools that are all prefixed crbro_, so without it the package looked like a
+# server with no write tool at all - a false negative on a working subject, which is the failure
+# this file exists to prevent. A wrong guess cannot lie here: every binding is proven by round-trip.
+WRITE_HINTS = ("create", "store", "add", "write", "save", "remember", "insert", "put", "append",
+               "learn", "record", "capture", "ingest", "memorise", "memorize")
 READ_HINTS = ("read", "list", "dump", "retrieve", "load", "export", "fetch", "all", "nodes")
 SEARCH_HINTS = ("search", "query", "find", "recall", "lookup", "match")
-NAME_HINTS = ("name", "title", "key", "entity", "label")
+# "topic" and "subject" are handles a caller uses to name what they are storing - crbro-memory
+# refuses a write without one and offers it by that name.
+NAME_HINTS = ("name", "title", "key", "entity", "label", "topic", "subject")
 CONTENT_HINTS = ("content", "text", "body", "value", "data", "memory", "message",
                  "observ", "description", "note")
 
@@ -120,6 +127,17 @@ def build_search_args(tool, query):
     return args
 
 
+def enum_value(spec):
+    """A value the schema will actually accept, when a field is constrained to a list.
+
+    Sending "probe" to a field declared as enum ["active", "provisional"] is a rejected write on a
+    perfectly good server, and rag-memory-epf-mcp refuses exactly that. Same class of bug as
+    entityType swallowing the token: the binder inventing a value instead of reading the schema.
+    """
+    opts = [v for v in (spec.get("enum") or []) if isinstance(v, str)]
+    return opts[0] if opts else None
+
+
 def build_write_args(tool, name, observations):
     """Bind (name, observations) onto the tool's own schema.
 
@@ -148,7 +166,7 @@ def build_write_args(tool, name, observations):
             lp = pn.lower()
             if "type" in lp:
                 # entityType is a category, not an identifier - it must not swallow the token
-                obj[pn] = "probe"
+                obj[pn] = enum_value(ps) or "probe"
             elif any(h in lp for h in NAME_HINTS):
                 obj[pn] = name
                 has_name = True
@@ -156,6 +174,9 @@ def build_write_args(tool, name, observations):
                 obj[pn] = list(observations)
             elif any(h in lp for h in CONTENT_HINTS):
                 obj[pn] = observations[0] if observations else ""
+            elif enum_value(ps):
+                # a constrained field gets a value the schema accepts, never an invented one
+                obj[pn] = enum_value(ps)
             elif ps.get("type") == "string":
                 obj[pn] = "probe"
         if not has_name:
@@ -189,6 +210,8 @@ def build_write_args(tool, name, observations):
         elif any(h in lk for h in CONTENT_HINTS):
             args[key] = name + " " + " ".join(observations)
             content_slot = key
+        elif enum_value(spec):
+            args[key] = enum_value(spec)
         elif t == "integer" or t == "number":
             args[key] = 1
         elif t == "boolean":
@@ -197,6 +220,19 @@ def build_write_args(tool, name, observations):
             args[key] = name
             if name_slot is None:
                 name_slot = key
+    # AN OPTIONAL FIELD CAN BE THE ONE THAT CARRIES THE HANDLE. The loop above only fills required
+    # properties, because sending junk to a required field is how a write gets rejected - but
+    # crbro-memory will not store anything without a topic and does not require one in its schema, so
+    # the binder never sent it and a working server looked broken. Only consulted when no required
+    # field could carry the name, so it cannot disturb a binding that already worked.
+    if name_slot is None:
+        for key, spec in props.items():
+            if key in args or spec.get("type") != "string":
+                continue
+            if any(h in key.lower() for h in NAME_HINTS):
+                args[key] = name
+                name_slot = key
+                break
     if name_slot is None and content_slot is None:
         return None
     return args

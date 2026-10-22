@@ -1,0 +1,60 @@
+{
+  "writes": 30,
+  "searches": 8,
+  "ceiling_seconds": 60.0,
+  "startup_p50": 0.362,
+  "startup_max": 0.382,
+  "first_write": 0.021,
+  "write_p50": 0.005,
+  "write_max": 0.021,
+  "store_floor_bytes": 428296,
+  "store_bytes_per_record": 19226,
+  "restart": 0.301,
+  "search_p50": 0.002,
+  "search_max": 0.018,
+  "resp_bytes_p50": 5710,
+  "resp_bytes_max": 5758,
+  "answer_bytes": 58,
+  "amp": 98.4,
+  "repeat": 3,
+  "spread": {
+    "startup_p50": {
+      "min": 0.36,
+      "median": 0.362,
+      "max": 0.366
+    },
+    "first_write": {
+      "min": 0.021,
+      "median": 0.021,
+      "max": 0.022
+    },
+    "write_p50": {
+      "min": 0.005,
+      "median": 0.005,
+      "max": 0.005
+    },
+    "restart": {
+      "min": 0.299,
+      "median": 0.301,
+      "max": 0.32
+    },
+    "search_p50": {
+      "min": 0.002,
+      "median": 0.002,
+      "max": 0.002
+    },
+    "resp_bytes_p50": {
+      "min": 5710,
+      "median": 5710,
+      "max": 5710
+    },
+    "resp_bytes_max": {
+      "min": 5758,
+      "median": 5758,
+      "max": 5758
+    }
+  },
+  "relative_spread": 0.07,
+  "subject": "statecore-mcp 1.0.0",
+  "command": "node node_modules/statecore-mcp/dist/main.js --data ."
+}

@@ -228,8 +228,13 @@ def main(argv):
         print("  cost ...", flush=True)
         cost.append((label, run_cost(entry, int(entry.get("timeout", 60)))))
 
+    # THE SUBJECT COLUMN SIZES ITSELF. It was fixed at 24 characters until a package whose name is
+    # 34 arrived and pushed every other column out of line. A table whose alignment depends on which
+    # subjects happen to be in it is a table that breaks every time it grows.
+    W = max([24] + [len(label) for label, _e, _v, _s, _c in rows])
+
     print()
-    header = "%-24s %s %5s" % ("subject", "  ".join("%-7s" % SHORT[p] for p in PROBES), "ceil")
+    header = "%-*s %s %5s" % (W, "subject", "  ".join("%-7s" % SHORT[p] for p in PROBES), "ceil")
     print(header)
     print("-" * len(header))
     for label, _e, v, _s, ceil in rows:
@@ -240,7 +245,7 @@ def main(argv):
             if out_of_scope and p != "isolation":
                 cell = "(" + cell + ")"
             cells.append("%-7s" % cell)
-        print("%-24s %s %4ds" % (label, "  ".join(cells), ceil))
+        print("%-*s %s %4ds" % (W, label, "  ".join(cells), ceil))
     print()
     print("(x) verdict qualified by a failed isolation precondition - not publishable on its own")
     print("ceil is the per-call ceiling each subject was given; a verdict measured at one ceiling")
@@ -254,8 +259,8 @@ def main(argv):
     print("retrieval, cold start, 36 records - a score, not a verdict. hit@3 per band: easy shares")
     print("wording with the answer, hard is a paraphrase, adversarial has a near duplicate competing.")
     print("'noans' is questions with no answer in the store that were answered anyway: 0 is right.")
-    header2 = "%-24s %-7s %-7s %-7s %-8s %-8s %-7s %-9s %s" % (
-        "subject", "easy", "hard", "adver", "all h1", "all h3", "noans", "runs", "95%")
+    header2 = "%-*s %-7s %-7s %-7s %-8s %-8s %-7s %-9s %s" % (
+        W, "subject", "easy", "hard", "adver", "all h1", "all h3", "noans", "runs", "95%")
     print(header2)
     print("-" * len(header2))
     for label, s in retr:
@@ -275,8 +280,8 @@ def main(argv):
         runs = ""
         if a and a.get("runs"):
             runs = "%d-%d" % (min(a["runs"]), max(a["runs"]))
-        print("%-24s %-7s %-7s %-7s %-8s %-8s %-7s %-9s %s" % (
-            label, cells[0], cells[1], cells[2],
+        print("%-*s %-7s %-7s %-7s %-8s %-8s %-7s %-9s %s" % (
+            W, label, cells[0], cells[1], cells[2],
             "%d/%d" % (a["hit1"], a["n"]) if a else "-",
             "%d/%d" % (a["hit3"], a["n"]) if a else "-",
             "%d/%d" % (ab["answered"], ab["n"]) if ab else "-", runs, ci))
@@ -292,8 +297,8 @@ def main(argv):
     print("server sends back for one question and 'amp' is that divided by the answer's own size - a")
     print("system that answers by returning the whole store shows up here. A subject that returns")
     print("nothing is cheap for the wrong reason, so read this table with the one above it.")
-    header3 = "%-24s %-8s %-8s %-9s %-9s %-8s %-7s %-7s" % (
-        "subject", "startup", "lst write", "write p50", "search p50", "resp B", "amp", "vary")
+    header3 = "%-*s %-8s %-8s %-9s %-9s %-8s %-7s %-7s" % (
+        W, "subject", "startup", "lst write", "write p50", "search p50", "resp B", "amp", "vary")
     print(header3)
     print("-" * len(header3))
     for label, c in cost:
@@ -304,8 +309,8 @@ def main(argv):
         sv = steady_vary(c)
         if sv is not None:
             vary = "%.0f%%" % (sv * 100)
-        print("%-24s %7.2fs %7.2fs %8.3fs %8.3fs %8d %7s %7s" % (
-            label, c["startup_p50"], c["first_write"], c["write_p50"], c["search_p50"],
+        print("%-*s %7.2fs %7.2fs %8.3fs %8.3fs %8d %7s %7s" % (
+            W, label, c["startup_p50"], c["first_write"], c["write_p50"], c["search_p50"],
             c["resp_bytes_p50"], ("x%.0f" % c["amp"]) if c.get("amp") else "-", vary))
     print()
     print("'vary' is how far the worst steady-state measurement moved across %d passes, as a fraction"

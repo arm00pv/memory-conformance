@@ -11,6 +11,8 @@
 | mcp-knowledge-graph 1.3.2 | PASS | PASS | PASS | PASS | PASS | FAIL | FAIL | PASS | 90s |
 | zenbrain 0.3.0 | PASS | PASS | PASS | PASS | PASS | PASS | PASS | PASS | 60s |
 | memory-mcp-1file 0.9.2 | FAIL | (PASS) | (PASS) | (PASS) | (UNKNOWN) | (UNKNOWN) | (FAIL) | (UNKNOWN) | 60s |
+| statecore-mcp 1.0.0 | PASS | PASS | PASS | FAIL | PASS | PASS | FAIL | UNKNOWN | 60s |
+| mcp-duckdb-memory-server 1.1.10 | PASS | PASS | PASS | PASS | UNKNOWN | UNKNOWN | FAIL | UNKNOWN | 90s |
 
 Cells in parentheses belong to a subject that failed `isolation`; its other verdicts describe leaked state.
 
@@ -29,6 +31,8 @@ Cells in parentheses belong to a subject that failed `isolation`; its other verd
 | mcp-knowledge-graph 1.3.2 | 0/8 | 0/8 | 0/8 | 0/30 | 0/30 | 0/6 | 0-0 | 0-3 |
 | zenbrain 0.3.0 | 8/8 | 8/8 | 7/8 | 20/30 | 23/30 | 6/6 | 23-23 | 18-26 |
 | memory-mcp-1file 0.9.2 | 8/8 | 7/8 | 7/8 | 20/30 | 22/30 | 6/6 | 22-22 | 17-26 |
+| statecore-mcp 1.0.0 | 0/8 | 0/8 | 0/8 | 0/30 | 0/30 | 6/6 | 0-0 | 0-3 |
+| mcp-duckdb-memory-server 1.1.10 | 5/8 | 0/8 | 0/8 | 5/30 | 5/30 | 0/6 | 5-5 | 2-10 |
 
 The last column is the 95% Wilson interval for all-band hit@3, in counts. Two subjects whose intervals overlap are not separated by this corpus.
 
@@ -47,5 +51,7 @@ Measured once per subject with nothing else running. "resp" is the median bytes 
 | mcp-knowledge-graph 1.3.2 | 0.13s | 0.01s | 0.005s | 0.003s | 39 | x1 | 150 | 0% |
 | zenbrain 0.3.0 | 0.43s | 0.01s | 0.001s | 0.002s | 663 | x11 | 21424 | 0% |
 | memory-mcp-1file 0.9.2 | 0.51s | 1.56s | 0.036s | 0.055s | 1969 | x34 | - | 11% |
+| statecore-mcp 1.0.0 | 0.36s | 0.02s | 0.005s | 0.002s | 5710 | x98 | 19226 | 5% |
+| mcp-duckdb-memory-server 1.1.10 | 0.33s | 0.14s | 0.010s | 0.005s | 210 | x4 | - | 25% |
 
 `vary` is how far the worst steady-state measurement moved across 3 passes, as a fraction of its own median: first write, write, search and response bytes, with timings under 20 ms excluded because a ratio of millisecond noise is not a measurement. Absolute ranges and the noisier startup and restart figures are in `results/*-cost.json`.

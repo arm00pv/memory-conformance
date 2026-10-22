@@ -884,14 +884,20 @@ def probe_findable(ad, n=8, k=3):
             # useful than counting misses. Found on memento, whose search returns the first three
             # entities alphabetically for a matching name, a nonsense string and the empty query
             # alike - a search that does not search, wearing the shape of one.
-            identical = len(answers) > 1 and len(set(answers)) == 1
+            identical = len(answers) > 1 and len(set(answers)) == 1 and any(answers)
+            silent = all(not a for a in answers)
         finally:
             srv.stop()
         if not missed:
             return True, ("all %d acknowledged records came back in the top %d for a search on their "
                           "own name" % (n, k))
-        why = ("every query returned the same %d records regardless of what was asked - the search "
-               "does not discriminate" % len(answers[0])) if identical else ""
+        if silent:
+            why = "every query returned nothing at all, whatever was asked"
+        elif identical:
+            why = ("every query returned the same %d records regardless of what was asked - the "
+                   "search does not discriminate" % len(answers[0]))
+        else:
+            why = ""
         return False, ("%d of %d acknowledged records were not returned by a search for their own "
                        "name: %s%s" % (len(missed), n, missed[:4], ("; " + why) if why else ""))
     finally:

@@ -1,0 +1,103 @@
+{
+  "command": "node node_modules/statecore-mcp/dist/main.js --data .",
+  "ceiling_seconds": 60.0,
+  "repeat": 3,
+  "probes": [
+    {
+      "probe": "isolation",
+      "verdict": "PASS",
+      "kind": "kept",
+      "evidence": "store A's record was not visible from store B",
+      "seconds": 2.2,
+      "runs": 3,
+      "tally": {
+        "PASS": 3
+      },
+      "unstable": false
+    },
+    {
+      "probe": "ack_readback",
+      "verdict": "PASS",
+      "kind": "kept",
+      "evidence": "acknowledged alpha; a fresh read returned 1 entities: ['alpha']",
+      "seconds": 2.1,
+      "runs": 3,
+      "tally": {
+        "PASS": 3
+      },
+      "unstable": false
+    },
+    {
+      "probe": "restart",
+      "verdict": "PASS",
+      "kind": "kept",
+      "evidence": "three writes across three server lifetimes; read back ['restart-0', 'restart-1', 'restart-2']",
+      "seconds": 4.0,
+      "runs": 3,
+      "tally": {
+        "PASS": 3
+      },
+      "unstable": false
+    },
+    {
+      "probe": "findable",
+      "verdict": "FAIL",
+      "kind": "failed",
+      "evidence": "8 of 8 acknowledged records were not returned by a search for their own name: ['zephyr-quartz', 'ember-lattice', 'cobalt-thistle', 'marlin-obsidian']; every query returned nothing at all, whatever was asked",
+      "seconds": 2.1,
+      "runs": 3,
+      "tally": {
+        "FAIL": 3
+      },
+      "unstable": false
+    },
+    {
+      "probe": "foreign_field",
+      "verdict": "PASS",
+      "kind": "kept",
+      "evidence": "the extra field survived the next write",
+      "seconds": 2.1,
+      "runs": 3,
+      "tally": {
+        "PASS": 3
+      },
+      "unstable": false
+    },
+    {
+      "probe": "foreign_record",
+      "verdict": "PASS",
+      "kind": "kept",
+      "evidence": "the unmodelled record survived",
+      "seconds": 2.2,
+      "runs": 3,
+      "tally": {
+        "PASS": 3
+      },
+      "unstable": false
+    },
+    {
+      "probe": "concurrent",
+      "verdict": "FAIL",
+      "kind": "failed",
+      "evidence": "17 of 20 acknowledged writes survived two servers on one store",
+      "seconds": 3.3,
+      "runs": 3,
+      "tally": {
+        "FAIL": 3
+      },
+      "unstable": false
+    },
+    {
+      "probe": "large_record",
+      "verdict": "UNKNOWN",
+      "kind": "not-applicable",
+      "evidence": "wrote 390 characters; refused at 100000 by its own limit, so 390 was measured, but the declared store held no measurable body",
+      "seconds": 10.2,
+      "runs": 3,
+      "tally": {
+        "UNKNOWN": 3
+      },
+      "unstable": false
+    }
+  ]
+}

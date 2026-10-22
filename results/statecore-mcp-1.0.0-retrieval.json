@@ -1,0 +1,776 @@
+{
+  "adapter": "reference",
+  "summary": {
+    "easy": {
+      "n": 8,
+      "hit1": 0,
+      "hit3": 0,
+      "runs": [
+        0,
+        0,
+        0
+      ]
+    },
+    "hard": {
+      "n": 8,
+      "hit1": 0,
+      "hit3": 0,
+      "runs": [
+        0,
+        0,
+        0
+      ]
+    },
+    "adversarial": {
+      "n": 8,
+      "hit1": 0,
+      "hit3": 0,
+      "runs": [
+        0,
+        0,
+        0
+      ]
+    },
+    "absent": {
+      "n": 6,
+      "answered": 6,
+      "runs": [
+        6,
+        6,
+        6
+      ]
+    },
+    "all": {
+      "n": 30,
+      "hit1": 0,
+      "hit3": 0,
+      "runs": [
+        0,
+        0,
+        0
+      ]
+    }
+  },
+  "rows": [
+    {
+      "query": "staging postgres port",
+      "expect": "db-port-staging",
+      "difficulty": "easy",
+      "returned": [
+        "budget"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "deployment key rotation",
+      "expect": "key-deploy",
+      "difficulty": "easy",
+      "returned": [
+        "budget"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "off-site backup bucket",
+      "expect": "backup-offsite",
+      "difficulty": "easy",
+      "returned": [
+        "budget"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "nightly report worker",
+      "expect": "report-worker",
+      "difficulty": "easy",
+      "returned": [
+        "budget"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "concurrent writers lock",
+      "expect": "mem-lock",
+      "difficulty": "easy",
+      "returned": [
+        "budget"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "rebuild the search index",
+      "expect": "mem-search",
+      "difficulty": "easy",
+      "returned": [
+        "budget"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "estate hosts throne watchtower",
+      "expect": "hosts-three",
+      "difficulty": "easy",
+      "returned": [
+        "budget"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "corpus 105 cases",
+      "expect": "corpus-size",
+      "difficulty": "easy",
+      "returned": [
+        "budget"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "how long are backups kept after they are taken",
+      "expect": "backup-retention",
+      "difficulty": "hard",
+      "returned": [
+        "budget"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "what happens if the primary on call does not answer",
+      "expect": "oncall-escalation",
+      "difficulty": "hard",
+      "returned": [
+        "budget"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "which key is kept inside specialised hardware",
+      "expect": "key-signing",
+      "difficulty": "hard",
+      "returned": [
+        "budget"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "how far behind are copies of the database",
+      "expect": "db-replica",
+      "difficulty": "hard",
+      "returned": [
+        "budget"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "where is customer data physically held",
+      "expect": "region",
+      "difficulty": "hard",
+      "returned": [
+        "budget"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "what must be done to logs before they leave the building",
+      "expect": "pii",
+      "difficulty": "hard",
+      "returned": [
+        "budget"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "how many sessions can the database open at once",
+      "expect": "db-pool",
+      "difficulty": "hard",
+      "returned": [
+        "budget"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "how often is a restore actually attempted",
+      "expect": "backup-restore-test",
+      "difficulty": "hard",
+      "returned": [
+        "budget"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "what port does postgres use in production",
+      "expect": "db-port-prod",
+      "difficulty": "adversarial",
+      "returned": [
+        "budget"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "how long after the deployment key rotates may the old one still be used",
+      "expect": "key-deploy-old",
+      "difficulty": "adversarial",
+      "returned": [
+        "budget"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "which key never leaves its enclosure",
+      "expect": "key-signing",
+      "difficulty": "adversarial",
+      "returned": [
+        "budget"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "how old may the oldest backup copy become",
+      "expect": "backup-retention",
+      "difficulty": "adversarial",
+      "returned": [
+        "budget"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "which host is used only for the always on collector",
+      "expect": "hosts-pi",
+      "difficulty": "adversarial",
+      "returned": [
+        "budget"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "what pages immediately rather than within five minutes",
+      "expect": "alert-disk",
+      "difficulty": "adversarial",
+      "returned": [
+        "budget"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "which git behaviour hides the carriage returns",
+      "expect": "crlf-git",
+      "difficulty": "adversarial",
+      "returned": [
+        "budget"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "can two stores see each other's records",
+      "expect": "mem-store-path",
+      "difficulty": "adversarial",
+      "returned": [
+        "budget"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "what is the office wifi password",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [
+        "budget"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "how many people joined the company last year",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [
+        "budget"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "which cloud provider hosts the analytics warehouse",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [
+        "budget"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "what is the price of the enterprise tier",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [
+        "budget"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "who won the internal hackathon",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [
+        "budget"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "when is the summer party",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [
+        "budget"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    }
+  ]
+}
