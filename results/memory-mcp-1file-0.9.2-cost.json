@@ -1,0 +1,60 @@
+{
+  "writes": 30,
+  "searches": 8,
+  "ceiling_seconds": 60.0,
+  "startup_p50": 0.511,
+  "startup_max": 0.773,
+  "first_write": 1.565,
+  "write_p50": 0.036,
+  "write_max": 1.619,
+  "store_floor_bytes": null,
+  "store_bytes_per_record": null,
+  "restart": 0.515,
+  "search_p50": 0.055,
+  "search_max": 1.581,
+  "resp_bytes_p50": 1969,
+  "resp_bytes_max": 2549,
+  "answer_bytes": 58,
+  "amp": 33.9,
+  "repeat": 3,
+  "spread": {
+    "startup_p50": {
+      "min": 0.509,
+      "median": 0.511,
+      "max": 0.629
+    },
+    "first_write": {
+      "min": 1.561,
+      "median": 1.565,
+      "max": 1.619
+    },
+    "write_p50": {
+      "min": 0.036,
+      "median": 0.036,
+      "max": 0.036
+    },
+    "restart": {
+      "min": 0.504,
+      "median": 0.515,
+      "max": 0.537
+    },
+    "search_p50": {
+      "min": 0.052,
+      "median": 0.055,
+      "max": 0.056
+    },
+    "resp_bytes_p50": {
+      "min": 1766,
+      "median": 1969,
+      "max": 1974
+    },
+    "resp_bytes_max": {
+      "min": 2371,
+      "median": 2549,
+      "max": 2549
+    }
+  },
+  "relative_spread": 0.235,
+  "subject": "auto",
+  "command": "node node_modules/memory-mcp-1file/run.js"
+}

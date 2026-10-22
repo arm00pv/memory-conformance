@@ -1,0 +1,103 @@
+{
+  "command": "node node_modules/@iachilles/memento/index.js",
+  "ceiling_seconds": 180.0,
+  "repeat": 3,
+  "probes": [
+    {
+      "probe": "isolation",
+      "verdict": "PASS",
+      "kind": "kept",
+      "evidence": "store A's record was not visible from store B",
+      "seconds": 13.0,
+      "runs": 3,
+      "tally": {
+        "PASS": 3
+      },
+      "unstable": false
+    },
+    {
+      "probe": "ack_readback",
+      "verdict": "PASS",
+      "kind": "kept",
+      "evidence": "acknowledged alpha; a fresh read returned 1 entities: ['alpha']",
+      "seconds": 8.1,
+      "runs": 3,
+      "tally": {
+        "PASS": 3
+      },
+      "unstable": false
+    },
+    {
+      "probe": "restart",
+      "verdict": "PASS",
+      "kind": "kept",
+      "evidence": "three writes across three server lifetimes; read back ['restart-0', 'restart-1', 'restart-2']",
+      "seconds": 28.1,
+      "runs": 3,
+      "tally": {
+        "PASS": 3
+      },
+      "unstable": false
+    },
+    {
+      "probe": "findable",
+      "verdict": "FAIL",
+      "kind": "failed",
+      "evidence": "5 of 8 acknowledged records were not returned by a search for their own name: ['zephyr-quartz', 'marlin-obsidian', 'tundra-figment', 'quiver-nectar']; every query returned the same 3 records regardless of what was asked - the search does not discriminate",
+      "seconds": 17.7,
+      "runs": 3,
+      "tally": {
+        "FAIL": 3
+      },
+      "unstable": false
+    },
+    {
+      "probe": "foreign_field",
+      "verdict": "PASS",
+      "kind": "kept",
+      "evidence": "the extra field survived the next write",
+      "seconds": 21.7,
+      "runs": 3,
+      "tally": {
+        "PASS": 3
+      },
+      "unstable": false
+    },
+    {
+      "probe": "foreign_record",
+      "verdict": "PASS",
+      "kind": "kept",
+      "evidence": "the unmodelled record survived",
+      "seconds": 19.5,
+      "runs": 3,
+      "tally": {
+        "PASS": 3
+      },
+      "unstable": false
+    },
+    {
+      "probe": "concurrent",
+      "verdict": "PASS",
+      "kind": "kept",
+      "evidence": "20 of 20 acknowledged writes survived two servers on one store",
+      "seconds": 34.6,
+      "runs": 3,
+      "tally": {
+        "PASS": 3
+      },
+      "unstable": false
+    },
+    {
+      "probe": "large_record",
+      "verdict": "FAIL",
+      "kind": "no-ack",
+      "evidence": "tools/call did not answer within 180s",
+      "seconds": 549.9,
+      "runs": 3,
+      "tally": {
+        "FAIL": 3
+      },
+      "unstable": false
+    }
+  ]
+}

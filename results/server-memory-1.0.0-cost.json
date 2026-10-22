@@ -1,0 +1,60 @@
+{
+  "writes": 30,
+  "searches": 8,
+  "ceiling_seconds": 60.0,
+  "startup_p50": 0.892,
+  "startup_max": 0.937,
+  "first_write": 0.047,
+  "write_p50": 0.021,
+  "write_max": 0.052,
+  "store_floor_bytes": 2191,
+  "store_bytes_per_record": 150,
+  "restart": 1.262,
+  "search_p50": 0.005,
+  "search_max": 0.024,
+  "resp_bytes_p50": 39,
+  "resp_bytes_max": 39,
+  "answer_bytes": 58,
+  "amp": 0.7,
+  "repeat": 3,
+  "spread": {
+    "startup_p50": {
+      "min": 0.806,
+      "median": 0.892,
+      "max": 1.002
+    },
+    "first_write": {
+      "min": 0.039,
+      "median": 0.047,
+      "max": 0.047
+    },
+    "write_p50": {
+      "min": 0.013,
+      "median": 0.021,
+      "max": 0.026
+    },
+    "restart": {
+      "min": 0.878,
+      "median": 1.262,
+      "max": 1.285
+    },
+    "search_p50": {
+      "min": 0.005,
+      "median": 0.005,
+      "max": 0.006
+    },
+    "resp_bytes_p50": {
+      "min": 39,
+      "median": 39,
+      "max": 39
+    },
+    "resp_bytes_max": {
+      "min": 39,
+      "median": 39,
+      "max": 39
+    }
+  },
+  "relative_spread": 0.619,
+  "subject": "reference",
+  "command": "node node_modules/@modelcontextprotocol/server-memory/dist/index.js"
+}

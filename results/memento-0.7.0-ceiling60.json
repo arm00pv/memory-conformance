@@ -1,0 +1,62 @@
+{
+  "command": "node node_modules/@iachilles/memento/index.js",
+  "ceiling_seconds": 60.0,
+  "repeat": 3,
+  "probes": [
+    {
+      "probe": "isolation",
+      "verdict": "PASS",
+      "kind": "kept",
+      "evidence": "store A's record was not visible from store B",
+      "seconds": 22.2
+    },
+    {
+      "probe": "ack_readback",
+      "verdict": "PASS",
+      "kind": "kept",
+      "evidence": "acknowledged alpha; a fresh read returned 1 entities: ['alpha']",
+      "seconds": 16.6
+    },
+    {
+      "probe": "restart",
+      "verdict": "PASS",
+      "kind": "kept",
+      "evidence": "three writes across three server lifetimes; read back ['restart-0', 'restart-1', 'restart-2']",
+      "seconds": 35.3
+    },
+    {
+      "probe": "foreign_field",
+      "verdict": "PASS",
+      "kind": "kept",
+      "evidence": "the extra field survived the next write",
+      "seconds": 19.8
+    },
+    {
+      "probe": "foreign_record",
+      "verdict": "PASS",
+      "kind": "kept",
+      "evidence": "the unmodelled record survived",
+      "seconds": 27.5
+    },
+    {
+      "probe": "concurrent",
+      "verdict": "FAIL",
+      "kind": "failed",
+      "evidence": "10 write(s) failed outright: ['w1-0: tools/call did not answer within 60s', 'w1-1: [Errno 22] Invalid argument', 'w1-2: [Errno 22] Invalid argument']  [unstable: FAIL 2, PASS 1 of 3 runs]",
+      "seconds": 164.0,
+      "runs": 3,
+      "tally": {
+        "FAIL": 2,
+        "PASS": 1
+      },
+      "unstable": true
+    },
+    {
+      "probe": "large_record",
+      "verdict": "FAIL",
+      "kind": "no-ack",
+      "evidence": "tools/call did not answer within 60s",
+      "seconds": 65.9
+    }
+  ]
+}

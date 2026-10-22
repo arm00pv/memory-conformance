@@ -1,0 +1,103 @@
+{
+  "command": "node node_modules/memory-lean/server/memory-lean.mjs",
+  "ceiling_seconds": 60.0,
+  "repeat": 3,
+  "probes": [
+    {
+      "probe": "isolation",
+      "verdict": "PASS",
+      "kind": "kept",
+      "evidence": "store A's record was not visible from store B",
+      "seconds": 4.1,
+      "runs": 3,
+      "tally": {
+        "PASS": 3
+      },
+      "unstable": false
+    },
+    {
+      "probe": "ack_readback",
+      "verdict": "PASS",
+      "kind": "kept",
+      "evidence": "acknowledged alpha; a fresh read returned 1 entities: ['alpha']",
+      "seconds": 2.6,
+      "runs": 3,
+      "tally": {
+        "PASS": 3
+      },
+      "unstable": false
+    },
+    {
+      "probe": "restart",
+      "verdict": "PASS",
+      "kind": "kept",
+      "evidence": "three writes across three server lifetimes; read back ['restart-0', 'restart-1', 'restart-2']",
+      "seconds": 3.5,
+      "runs": 3,
+      "tally": {
+        "PASS": 3
+      },
+      "unstable": false
+    },
+    {
+      "probe": "findable",
+      "verdict": "PASS",
+      "kind": "kept",
+      "evidence": "all 8 acknowledged records came back in the top 3 for a search on their own name",
+      "seconds": 2.2,
+      "runs": 3,
+      "tally": {
+        "PASS": 3
+      },
+      "unstable": false
+    },
+    {
+      "probe": "foreign_field",
+      "verdict": "FAIL",
+      "kind": "failed",
+      "evidence": "the extra field was silently dropped by the next write",
+      "seconds": 5.1,
+      "runs": 3,
+      "tally": {
+        "FAIL": 3
+      },
+      "unstable": false
+    },
+    {
+      "probe": "foreign_record",
+      "verdict": "FAIL",
+      "kind": "failed",
+      "evidence": "the unmodelled record was silently removed by the next write",
+      "seconds": 5.8,
+      "runs": 3,
+      "tally": {
+        "FAIL": 3
+      },
+      "unstable": false
+    },
+    {
+      "probe": "concurrent",
+      "verdict": "PASS",
+      "kind": "kept",
+      "evidence": "20 of 20 acknowledged writes survived two servers on one store",
+      "seconds": 3.7,
+      "runs": 3,
+      "tally": {
+        "PASS": 3
+      },
+      "unstable": false
+    },
+    {
+      "probe": "large_record",
+      "verdict": "PASS",
+      "kind": "kept",
+      "evidence": "wrote 195 characters; 195 are still in the store; refused at 100000 by its own limit, so 195 was measured",
+      "seconds": 13.6,
+      "runs": 3,
+      "tally": {
+        "PASS": 3
+      },
+      "unstable": false
+    }
+  ]
+}

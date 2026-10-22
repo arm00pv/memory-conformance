@@ -1,0 +1,104 @@
+{
+  "command": "node node_modules/memory-mcp-1file/run.js",
+  "ceiling_seconds": 60.0,
+  "repeat": 3,
+  "probes": [
+    {
+      "probe": "isolation",
+      "verdict": "FAIL",
+      "kind": "failed",
+      "evidence": "a record written into store A was visible from store B; verdicts for this subject describe leaked state",
+      "seconds": 32.1,
+      "runs": 3,
+      "tally": {
+        "FAIL": 3
+      },
+      "unstable": false
+    },
+    {
+      "probe": "ack_readback",
+      "verdict": "PASS",
+      "kind": "kept",
+      "evidence": "acknowledged alpha; a fresh read returned 2 entities: ['alpha', 'isolation-marker-alpha']",
+      "seconds": 30.0,
+      "runs": 3,
+      "tally": {
+        "PASS": 3
+      },
+      "unstable": false
+    },
+    {
+      "probe": "restart",
+      "verdict": "PASS",
+      "kind": "kept",
+      "evidence": "three writes across three server lifetimes; read back ['alpha', 'isolation-marker-alpha', 'restart-0', 'restart-1', 'restart-2']  [unstable: FAIL 1, PASS 2 of 3 runs]",
+      "seconds": 120.3,
+      "runs": 3,
+      "tally": {
+        "PASS": 2,
+        "FAIL": 1
+      },
+      "unstable": true
+    },
+    {
+      "probe": "findable",
+      "verdict": "PASS",
+      "kind": "kept",
+      "evidence": "all 8 acknowledged records came back in the top 3 for a search on their own name",
+      "seconds": 45.3,
+      "runs": 3,
+      "tally": {
+        "PASS": 3
+      },
+      "unstable": false
+    },
+    {
+      "probe": "foreign_field",
+      "verdict": "UNKNOWN",
+      "kind": "not-applicable",
+      "evidence": "no store is declared for this subject, so the probe had nothing to inspect; add a manifest (see manifests/) to make it answerable",
+      "seconds": 20.0,
+      "runs": 3,
+      "tally": {
+        "UNKNOWN": 3
+      },
+      "unstable": false
+    },
+    {
+      "probe": "foreign_record",
+      "verdict": "UNKNOWN",
+      "kind": "not-applicable",
+      "evidence": "no store is declared for this subject, so the probe had nothing to inspect; add a manifest (see manifests/) to make it answerable",
+      "seconds": 21.2,
+      "runs": 3,
+      "tally": {
+        "UNKNOWN": 3
+      },
+      "unstable": false
+    },
+    {
+      "probe": "concurrent",
+      "verdict": "FAIL",
+      "kind": "no-ack",
+      "evidence": "initialize did not answer within 60s",
+      "seconds": 183.1,
+      "runs": 3,
+      "tally": {
+        "FAIL": 3
+      },
+      "unstable": false
+    },
+    {
+      "probe": "large_record",
+      "verdict": "UNKNOWN",
+      "kind": "not-applicable",
+      "evidence": "adapter cannot measure record content; probe not applicable",
+      "seconds": 0.0,
+      "runs": 3,
+      "tally": {
+        "UNKNOWN": 3
+      },
+      "unstable": false
+    }
+  ]
+}

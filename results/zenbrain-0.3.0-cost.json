@@ -1,0 +1,60 @@
+{
+  "writes": 30,
+  "searches": 8,
+  "ceiling_seconds": 60.0,
+  "startup_p50": 0.432,
+  "startup_max": 0.694,
+  "first_write": 0.014,
+  "write_p50": 0.001,
+  "write_max": 0.037,
+  "store_floor_bytes": 494216,
+  "store_bytes_per_record": 21424,
+  "restart": 0.371,
+  "search_p50": 0.002,
+  "search_max": 0.011,
+  "resp_bytes_p50": 663,
+  "resp_bytes_max": 1057,
+  "answer_bytes": 58,
+  "amp": 11.4,
+  "repeat": 3,
+  "spread": {
+    "startup_p50": {
+      "min": 0.406,
+      "median": 0.432,
+      "max": 0.526
+    },
+    "first_write": {
+      "min": 0.011,
+      "median": 0.014,
+      "max": 0.037
+    },
+    "write_p50": {
+      "min": 0.001,
+      "median": 0.001,
+      "max": 0.001
+    },
+    "restart": {
+      "min": 0.37,
+      "median": 0.371,
+      "max": 0.444
+    },
+    "search_p50": {
+      "min": 0.002,
+      "median": 0.002,
+      "max": 0.002
+    },
+    "resp_bytes_p50": {
+      "min": 663,
+      "median": 663,
+      "max": 663
+    },
+    "resp_bytes_max": {
+      "min": 1057,
+      "median": 1057,
+      "max": 1059
+    }
+  },
+  "relative_spread": 1.857,
+  "subject": "@zensation/mcp 0.3.0",
+  "command": "node node_modules/@zensation/mcp/dist/index.js"
+}

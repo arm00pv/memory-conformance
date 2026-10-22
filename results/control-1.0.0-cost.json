@@ -1,0 +1,60 @@
+{
+  "writes": 30,
+  "searches": 8,
+  "ceiling_seconds": 60.0,
+  "startup_p50": 0.234,
+  "startup_max": 0.546,
+  "first_write": 0.014,
+  "write_p50": 0.009,
+  "write_max": 0.037,
+  "store_floor_bytes": 2041,
+  "store_bytes_per_record": 140,
+  "restart": 0.2,
+  "search_p50": 0.001,
+  "search_max": 0.002,
+  "resp_bytes_p50": 4175,
+  "resp_bytes_max": 4175,
+  "answer_bytes": 58,
+  "amp": 72.0,
+  "repeat": 3,
+  "spread": {
+    "startup_p50": {
+      "min": 0.196,
+      "median": 0.234,
+      "max": 0.382
+    },
+    "first_write": {
+      "min": 0.012,
+      "median": 0.014,
+      "max": 0.014
+    },
+    "write_p50": {
+      "min": 0.009,
+      "median": 0.009,
+      "max": 0.009
+    },
+    "restart": {
+      "min": 0.185,
+      "median": 0.2,
+      "max": 0.604
+    },
+    "search_p50": {
+      "min": 0.001,
+      "median": 0.001,
+      "max": 0.001
+    },
+    "resp_bytes_p50": {
+      "min": 4175,
+      "median": 4175,
+      "max": 4175
+    },
+    "resp_bytes_max": {
+      "min": 4175,
+      "median": 4175,
+      "max": 4175
+    }
+  },
+  "relative_spread": 2.095,
+  "subject": "control",
+  "command": "python control/memory_server.py"
+}

@@ -1,0 +1,60 @@
+{
+  "writes": 30,
+  "searches": 8,
+  "ceiling_seconds": 90.0,
+  "startup_p50": 0.126,
+  "startup_max": 0.153,
+  "first_write": 0.008,
+  "write_p50": 0.005,
+  "write_max": 0.019,
+  "store_floor_bytes": 2237,
+  "store_bytes_per_record": 150,
+  "restart": 0.128,
+  "search_p50": 0.003,
+  "search_max": 0.006,
+  "resp_bytes_p50": 39,
+  "resp_bytes_max": 39,
+  "answer_bytes": 58,
+  "amp": 0.7,
+  "repeat": 3,
+  "spread": {
+    "startup_p50": {
+      "min": 0.123,
+      "median": 0.126,
+      "max": 0.139
+    },
+    "first_write": {
+      "min": 0.007,
+      "median": 0.008,
+      "max": 0.019
+    },
+    "write_p50": {
+      "min": 0.005,
+      "median": 0.005,
+      "max": 0.005
+    },
+    "restart": {
+      "min": 0.121,
+      "median": 0.128,
+      "max": 0.141
+    },
+    "search_p50": {
+      "min": 0.003,
+      "median": 0.003,
+      "max": 0.004
+    },
+    "resp_bytes_p50": {
+      "min": 39,
+      "median": 39,
+      "max": 39
+    },
+    "resp_bytes_max": {
+      "min": 39,
+      "median": 39,
+      "max": 39
+    }
+  },
+  "relative_spread": 1.5,
+  "subject": "mcp-knowledge-graph 1.3.2",
+  "command": "node node_modules/mcp-knowledge-graph/dist/index.js --memory-path ."
+}

@@ -1,0 +1,103 @@
+{
+  "command": "node node_modules/memory-server-next/dist/index.js",
+  "ceiling_seconds": 60.0,
+  "repeat": 3,
+  "probes": [
+    {
+      "probe": "isolation",
+      "verdict": "PASS",
+      "kind": "kept",
+      "evidence": "store A's record was not visible from store B",
+      "seconds": 1.3,
+      "runs": 3,
+      "tally": {
+        "PASS": 3
+      },
+      "unstable": false
+    },
+    {
+      "probe": "ack_readback",
+      "verdict": "PASS",
+      "kind": "kept",
+      "evidence": "acknowledged alpha; a fresh read returned 1 entities: ['alpha']",
+      "seconds": 1.2,
+      "runs": 3,
+      "tally": {
+        "PASS": 3
+      },
+      "unstable": false
+    },
+    {
+      "probe": "restart",
+      "verdict": "PASS",
+      "kind": "kept",
+      "evidence": "three writes across three server lifetimes; read back ['restart-0', 'restart-1', 'restart-2']",
+      "seconds": 2.7,
+      "runs": 3,
+      "tally": {
+        "PASS": 3
+      },
+      "unstable": false
+    },
+    {
+      "probe": "findable",
+      "verdict": "PASS",
+      "kind": "kept",
+      "evidence": "all 8 acknowledged records came back in the top 3 for a search on their own name",
+      "seconds": 1.5,
+      "runs": 3,
+      "tally": {
+        "PASS": 3
+      },
+      "unstable": false
+    },
+    {
+      "probe": "foreign_field",
+      "verdict": "FAIL",
+      "kind": "failed",
+      "evidence": "the extra field was silently dropped by the next write",
+      "seconds": 1.5,
+      "runs": 3,
+      "tally": {
+        "FAIL": 3
+      },
+      "unstable": false
+    },
+    {
+      "probe": "foreign_record",
+      "verdict": "PASS",
+      "kind": "kept",
+      "evidence": "the unmodelled record survived",
+      "seconds": 1.4,
+      "runs": 3,
+      "tally": {
+        "PASS": 3
+      },
+      "unstable": false
+    },
+    {
+      "probe": "concurrent",
+      "verdict": "PASS",
+      "kind": "kept",
+      "evidence": "20 of 20 acknowledged writes survived two servers on one store",
+      "seconds": 2.3,
+      "runs": 3,
+      "tally": {
+        "PASS": 3
+      },
+      "unstable": false
+    },
+    {
+      "probe": "large_record",
+      "verdict": "PASS",
+      "kind": "kept",
+      "evidence": "wrote 100000 characters, read back 100000",
+      "seconds": 1.3,
+      "runs": 3,
+      "tally": {
+        "PASS": 3
+      },
+      "unstable": false
+    }
+  ]
+}

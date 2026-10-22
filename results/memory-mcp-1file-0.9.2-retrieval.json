@@ -1,0 +1,836 @@
+{
+  "adapter": "auto",
+  "summary": {
+    "easy": {
+      "n": 8,
+      "hit1": 7,
+      "hit3": 8,
+      "runs": [
+        8,
+        8,
+        8
+      ]
+    },
+    "hard": {
+      "n": 8,
+      "hit1": 7,
+      "hit3": 7,
+      "runs": [
+        7,
+        7,
+        7
+      ]
+    },
+    "adversarial": {
+      "n": 8,
+      "hit1": 6,
+      "hit3": 7,
+      "runs": [
+        7,
+        7,
+        7
+      ]
+    },
+    "absent": {
+      "n": 6,
+      "answered": 6,
+      "runs": [
+        6,
+        6,
+        6
+      ]
+    },
+    "all": {
+      "n": 30,
+      "hit1": 20,
+      "hit3": 22,
+      "runs": [
+        22,
+        22,
+        22
+      ]
+    }
+  },
+  "rows": [
+    {
+      "query": "staging postgres port",
+      "expect": "db-port-staging",
+      "difficulty": "easy",
+      "returned": [
+        "db-port-staging",
+        "db-port-prod",
+        "db-pool"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "deployment key rotation",
+      "expect": "key-deploy",
+      "difficulty": "easy",
+      "returned": [
+        "key-deploy",
+        "key-deploy-old",
+        "key-root"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "off-site backup bucket",
+      "expect": "backup-offsite",
+      "difficulty": "easy",
+      "returned": [
+        "backup-offsite",
+        "backup-retention",
+        "backup-restore-test"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "nightly report worker",
+      "expect": "report-worker",
+      "difficulty": "easy",
+      "returned": [
+        "backup-offsite",
+        "report-worker",
+        "alert-silence"
+      ],
+      "hit1": false,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "concurrent writers lock",
+      "expect": "mem-lock",
+      "difficulty": "easy",
+      "returned": [
+        "mem-lock",
+        "doc-owner",
+        "corpus-speed"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "rebuild the search index",
+      "expect": "mem-search",
+      "difficulty": "easy",
+      "returned": [
+        "mem-search",
+        "backup-restore-test",
+        "corpus-false-positive"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "estate hosts throne watchtower",
+      "expect": "hosts-three",
+      "difficulty": "easy",
+      "returned": [
+        "hosts-three",
+        "hosts-throne",
+        "budget"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "corpus 105 cases",
+      "expect": "corpus-size",
+      "difficulty": "easy",
+      "returned": [
+        "corpus-size",
+        "corpus-speed",
+        "corpus-false-positive"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "how long are backups kept after they are taken",
+      "expect": "backup-retention",
+      "difficulty": "hard",
+      "returned": [
+        "backup-retention",
+        "backup-offsite",
+        "backup-restore-test"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "what happens if the primary on call does not answer",
+      "expect": "oncall-escalation",
+      "difficulty": "hard",
+      "returned": [
+        "oncall-escalation",
+        "oncall-rota",
+        "alert-replication"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "which key is kept inside specialised hardware",
+      "expect": "key-signing",
+      "difficulty": "hard",
+      "returned": [
+        "key-signing",
+        "key-root",
+        "mem-lock"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "how far behind are copies of the database",
+      "expect": "db-replica",
+      "difficulty": "hard",
+      "returned": [
+        "backup-retention",
+        "db-pool",
+        "backup-offsite"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "where is customer data physically held",
+      "expect": "region",
+      "difficulty": "hard",
+      "returned": [
+        "region",
+        "pii",
+        "mem-store-path"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "what must be done to logs before they leave the building",
+      "expect": "pii",
+      "difficulty": "hard",
+      "returned": [
+        "pii",
+        "key-signing",
+        "oncall-escalation"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "how many sessions can the database open at once",
+      "expect": "db-pool",
+      "difficulty": "hard",
+      "returned": [
+        "db-pool",
+        "db-port-staging",
+        "corpus-size"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "how often is a restore actually attempted",
+      "expect": "backup-restore-test",
+      "difficulty": "hard",
+      "returned": [
+        "backup-restore-test",
+        "backup-retention",
+        "alert-replication"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "what port does postgres use in production",
+      "expect": "db-port-prod",
+      "difficulty": "adversarial",
+      "returned": [
+        "db-port-prod",
+        "db-port-staging",
+        "hosts-pi"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "how long after the deployment key rotates may the old one still be used",
+      "expect": "key-deploy-old",
+      "difficulty": "adversarial",
+      "returned": [
+        "key-deploy",
+        "key-deploy-old",
+        "key-root"
+      ],
+      "hit1": false,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "which key never leaves its enclosure",
+      "expect": "key-signing",
+      "difficulty": "adversarial",
+      "returned": [
+        "key-signing",
+        "key-root",
+        "key-deploy"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "how old may the oldest backup copy become",
+      "expect": "backup-retention",
+      "difficulty": "adversarial",
+      "returned": [
+        "backup-retention",
+        "backup-offsite",
+        "backup-restore-test"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "which host is used only for the always on collector",
+      "expect": "hosts-pi",
+      "difficulty": "adversarial",
+      "returned": [
+        "hosts-pi",
+        "backup-offsite",
+        "db-pool"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "what pages immediately rather than within five minutes",
+      "expect": "alert-disk",
+      "difficulty": "adversarial",
+      "returned": [
+        "corpus-speed",
+        "latency-slo",
+        "oncall-escalation"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "which git behaviour hides the carriage returns",
+      "expect": "crlf-git",
+      "difficulty": "adversarial",
+      "returned": [
+        "crlf-git",
+        "corpus-false-positive",
+        "report-worker"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "can two stores see each other's records",
+      "expect": "mem-store-path",
+      "difficulty": "adversarial",
+      "returned": [
+        "mem-store-path",
+        "region",
+        "db-replica"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "what is the office wifi password",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [
+        "key-deploy",
+        "key-deploy-old",
+        "key-root"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "how many people joined the company last year",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [
+        "db-pool",
+        "vendor",
+        "latency-slo"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "which cloud provider hosts the analytics warehouse",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [
+        "doc-owner",
+        "backup-offsite",
+        "region"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "what is the price of the enterprise tier",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [
+        "vendor",
+        "doc-owner",
+        "budget"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "who won the internal hackathon",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [
+        "doc-owner",
+        "report-worker",
+        "budget"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "when is the summer party",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [
+        "budget",
+        "vendor",
+        "oncall-rota"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    }
+  ]
+}

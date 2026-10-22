@@ -1,0 +1,60 @@
+{
+  "writes": 30,
+  "searches": 8,
+  "ceiling_seconds": 60.0,
+  "startup_p50": 0.795,
+  "startup_max": 0.943,
+  "first_write": 0.032,
+  "write_p50": 0.013,
+  "write_max": 0.06,
+  "store_floor_bytes": 2191,
+  "store_bytes_per_record": 150,
+  "restart": 0.932,
+  "search_p50": 0.005,
+  "search_max": 0.046,
+  "resp_bytes_p50": 39,
+  "resp_bytes_max": 39,
+  "answer_bytes": 58,
+  "amp": 0.7,
+  "repeat": 3,
+  "spread": {
+    "startup_p50": {
+      "min": 0.706,
+      "median": 0.795,
+      "max": 0.822
+    },
+    "first_write": {
+      "min": 0.026,
+      "median": 0.032,
+      "max": 0.048
+    },
+    "write_p50": {
+      "min": 0.009,
+      "median": 0.013,
+      "max": 0.016
+    },
+    "restart": {
+      "min": 0.624,
+      "median": 0.932,
+      "max": 1.047
+    },
+    "search_p50": {
+      "min": 0.005,
+      "median": 0.005,
+      "max": 0.006
+    },
+    "resp_bytes_p50": {
+      "min": 39,
+      "median": 39,
+      "max": 39
+    },
+    "resp_bytes_max": {
+      "min": 39,
+      "median": 39,
+      "max": 39
+    }
+  },
+  "relative_spread": 0.688,
+  "subject": "reference",
+  "command": "node node_modules/memory-server-next/dist/index.js"
+}

@@ -1,0 +1,60 @@
+{
+  "writes": 30,
+  "searches": 8,
+  "ceiling_seconds": 60.0,
+  "startup_p50": 0.419,
+  "startup_max": 0.593,
+  "first_write": 0.011,
+  "write_p50": 0.001,
+  "write_max": 0.03,
+  "store_floor_bytes": 749656,
+  "store_bytes_per_record": 42024,
+  "restart": 0.4,
+  "search_p50": 0.002,
+  "search_max": 0.009,
+  "resp_bytes_p50": 1027,
+  "resp_bytes_max": 8072,
+  "answer_bytes": 58,
+  "amp": 17.7,
+  "repeat": 3,
+  "spread": {
+    "startup_p50": {
+      "min": 0.411,
+      "median": 0.419,
+      "max": 0.452
+    },
+    "first_write": {
+      "min": 0.008,
+      "median": 0.011,
+      "max": 0.03
+    },
+    "write_p50": {
+      "min": 0.001,
+      "median": 0.001,
+      "max": 0.001
+    },
+    "restart": {
+      "min": 0.388,
+      "median": 0.4,
+      "max": 0.449
+    },
+    "search_p50": {
+      "min": 0.001,
+      "median": 0.002,
+      "max": 0.002
+    },
+    "resp_bytes_p50": {
+      "min": 1026,
+      "median": 1027,
+      "max": 1028
+    },
+    "resp_bytes_max": {
+      "min": 8071,
+      "median": 8072,
+      "max": 8350
+    }
+  },
+  "relative_spread": 2.0,
+  "subject": "@j0hanz/memdb 1.4.0",
+  "command": "node node_modules/@j0hanz/memdb/dist/index.js"
+}

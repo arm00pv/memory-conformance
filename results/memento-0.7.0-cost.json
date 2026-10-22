@@ -1,0 +1,60 @@
+{
+  "writes": 30,
+  "searches": 8,
+  "ceiling_seconds": 180.0,
+  "startup_p50": 1.421,
+  "startup_max": 1.793,
+  "first_write": 4.54,
+  "write_p50": 0.111,
+  "write_max": 14.383,
+  "store_floor_bytes": 4308992,
+  "store_bytes_per_record": 0,
+  "restart": 0.857,
+  "search_p50": 0.045,
+  "search_max": 7.211,
+  "resp_bytes_p50": 1497,
+  "resp_bytes_max": 1510,
+  "answer_bytes": 58,
+  "amp": 25.8,
+  "repeat": 3,
+  "spread": {
+    "startup_p50": {
+      "min": 0.697,
+      "median": 1.421,
+      "max": 1.712
+    },
+    "first_write": {
+      "min": 2.286,
+      "median": 4.54,
+      "max": 14.383
+    },
+    "write_p50": {
+      "min": 0.086,
+      "median": 0.111,
+      "max": 0.293
+    },
+    "restart": {
+      "min": 0.77,
+      "median": 0.857,
+      "max": 1.594
+    },
+    "search_p50": {
+      "min": 0.038,
+      "median": 0.045,
+      "max": 0.17
+    },
+    "resp_bytes_p50": {
+      "min": 1497,
+      "median": 1497,
+      "max": 1497
+    },
+    "resp_bytes_max": {
+      "min": 1510,
+      "median": 1510,
+      "max": 1510
+    }
+  },
+  "relative_spread": 2.933,
+  "subject": "memento",
+  "command": "node node_modules/@iachilles/memento/index.js"
+}

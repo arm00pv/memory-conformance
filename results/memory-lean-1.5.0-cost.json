@@ -1,0 +1,60 @@
+{
+  "writes": 30,
+  "searches": 8,
+  "ceiling_seconds": 60.0,
+  "startup_p50": 0.122,
+  "startup_max": 0.137,
+  "first_write": 0.005,
+  "write_p50": 0.004,
+  "write_max": 0.019,
+  "store_floor_bytes": 2328,
+  "store_bytes_per_record": 150,
+  "restart": 0.123,
+  "search_p50": 0.002,
+  "search_max": 0.003,
+  "resp_bytes_p50": 164,
+  "resp_bytes_max": 177,
+  "answer_bytes": 58,
+  "amp": 2.8,
+  "repeat": 3,
+  "spread": {
+    "startup_p50": {
+      "min": 0.122,
+      "median": 0.122,
+      "max": 0.132
+    },
+    "first_write": {
+      "min": 0.005,
+      "median": 0.005,
+      "max": 0.019
+    },
+    "write_p50": {
+      "min": 0.004,
+      "median": 0.004,
+      "max": 0.004
+    },
+    "restart": {
+      "min": 0.123,
+      "median": 0.123,
+      "max": 0.131
+    },
+    "search_p50": {
+      "min": 0.002,
+      "median": 0.002,
+      "max": 0.002
+    },
+    "resp_bytes_p50": {
+      "min": 164,
+      "median": 164,
+      "max": 164
+    },
+    "resp_bytes_max": {
+      "min": 177,
+      "median": 177,
+      "max": 177
+    }
+  },
+  "relative_spread": 2.8,
+  "subject": "memory-lean 1.5.0",
+  "command": "node node_modules/memory-lean/server/memory-lean.mjs"
+}
