@@ -366,6 +366,54 @@ with 2 unanswerable — `foreign_field` and `foreign_record` have no equivalent 
 markdown notes. `retained` is the answer to the probe that fails: append-only, hash-chained,
 read-back verified before the write is acknowledged.
 
+## Run it on your own server
+
+One command, no configuration, and it tells you what it could not measure:
+
+```
+$ python check.py "node my-server.js"
+
+subject : node my-server.js
+binding : discovered, proven by round-trip
+attempt : 1, ceiling 60s
+
+conformance
+  isolation       PASS       store A's record was not visible from store B
+  ack_readback    PASS       acknowledged alpha; a fresh read returned 1 entities: ['alpha']
+  restart         PASS       three writes across three server lifetimes; read back [...]
+  findable        PASS       all 8 acknowledged records came back in the top 3 for a search on their own name
+  foreign_field   UNKNOWN(not-applicable)  no store is declared for this subject [...]
+  foreign_record  UNKNOWN(not-applicable)  no store is declared for this subject [...]
+  concurrent      FAIL       10 write(s) failed outright: ["create_entities refused: ..."]
+  large_record    UNKNOWN(not-applicable)  adapter cannot measure record content
+  4 kept, 3 unknown, 1 failed
+
+retrieval (36 records, 30 questions, cold start)
+  hit@3  easy 5/8  hard 0/8  adversarial 0/8  ->  all 5/30
+  questions with no answer that were answered anyway: 0/6
+
+cost
+  startup 0.59s   first write 0.13s   write 0.010s   search 0.007s
+  210 bytes per question (4x the size of the answer)   - bytes per record
+
+what to do next
+  - foreign_field and foreign_record are UNKNOWN because no store is declared. A manifest of about
+    fourteen lines makes them answerable - see manifests/memdb.json.
+  - Each probe ran once. Add --repeat=3 to find out whether the verdicts are stable.
+```
+
+**UNKNOWN is not a pass.** A badge reports all three counts, so a subject cannot make itself look
+good by being unmeasurable:
+
+```
+$ python check.py "node my-server.js" --badge
+badge written to conformance-badge.svg
+```
+
+Exit codes: `0` every probe that could run was kept, `1` something failed, `2` the subject could not
+be graded at all — which happens when it leaks state between stores, and then no other verdict in the
+report describes it either.
+
 ## Adding a system
 
 The harness talks MCP over stdio, so any MCP server can be probed by changing `--cmd`. Three ways in,
