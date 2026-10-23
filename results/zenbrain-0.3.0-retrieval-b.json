@@ -1,0 +1,1612 @@
+{
+  "adapter": "reference",
+  "summary": {
+    "easy": {
+      "n": 16,
+      "hit1": 15,
+      "hit3": 16,
+      "runs": [
+        16,
+        16,
+        16
+      ]
+    },
+    "hard": {
+      "n": 16,
+      "hit1": 2,
+      "hit3": 2,
+      "runs": [
+        2,
+        2,
+        2
+      ]
+    },
+    "adversarial": {
+      "n": 16,
+      "hit1": 15,
+      "hit3": 15,
+      "runs": [
+        15,
+        15,
+        15
+      ]
+    },
+    "absent": {
+      "n": 12,
+      "answered": 12,
+      "runs": [
+        12,
+        12,
+        12
+      ]
+    },
+    "all": {
+      "n": 60,
+      "hit1": 32,
+      "hit3": 33,
+      "runs": [
+        33,
+        33,
+        33
+      ]
+    }
+  },
+  "rows": [
+    {
+      "query": "What is the maximum permitted speed on the Estuary Line?",
+      "expect": "line-estuary-speed",
+      "difficulty": "easy",
+      "returned": [
+        "line-estuary-speed",
+        "line-ridgeway-speed",
+        "timetable-estuary-frequency"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "At what time does the booking office at Tarnfield Central open?",
+      "expect": "station-tarnfield-office",
+      "difficulty": "easy",
+      "returned": [
+        "station-tarnfield-office",
+        "cater-tarnfield-kiosk",
+        "lostprop-tarnfield-hold"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "When does Saltmarsh depot open each day?",
+      "expect": "depot-saltmarsh-hours",
+      "difficulty": "easy",
+      "returned": [
+        "depot-saltmarsh-hours",
+        "safety-platform-alarm",
+        "fare-ridgeway-ranger"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "How many seats do Kestrel units have?",
+      "expect": "class-kestrel-seating",
+      "difficulty": "easy",
+      "returned": [
+        "class-kestrel-seating",
+        "cater-marlbrook-vending",
+        "class-marlbrook-engine"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "How much is a peak return to Coble Wharf?",
+      "expect": "fare-peak-return",
+      "difficulty": "easy",
+      "returned": [
+        "fare-offpeak-return",
+        "fare-peak-return",
+        "station-coble-platforms"
+      ],
+      "hit1": false,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "Is the section at Blackwater Halt worked by absolute block?",
+      "expect": "signal-blackwater-block",
+      "difficulty": "easy",
+      "returned": [
+        "signal-blackwater-block",
+        "station-blackwater-rename",
+        "signal-kestrel-tcb"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "What is sold at the kiosk on Tarnfield Central platform 2?",
+      "expect": "cater-tarnfield-kiosk",
+      "difficulty": "easy",
+      "returned": [
+        "cater-tarnfield-kiosk",
+        "lostprop-tarnfield-hold",
+        "access-tarnfield-lifts"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "How long is property handed in at Coble Wharf kept?",
+      "expect": "lostprop-coble-hold",
+      "difficulty": "easy",
+      "returned": [
+        "lostprop-coble-hold",
+        "access-hearing-loop",
+        "access-coble-ramp"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "When do Kestrel Line possessions begin?",
+      "expect": "works-kestrel-possession",
+      "difficulty": "easy",
+      "returned": [
+        "works-kestrel-possession",
+        "works-ridgeway-diversion",
+        "line-dunmere-freight"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "Do staff at Coble Wharf use a portable ramp?",
+      "expect": "access-coble-ramp",
+      "difficulty": "easy",
+      "returned": [
+        "access-coble-ramp",
+        "lostprop-coble-hold",
+        "access-hearing-loop"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "How many conductors work a train formed of more than four vehicles?",
+      "expect": "roster-conductors",
+      "difficulty": "easy",
+      "returned": [
+        "roster-conductors",
+        "lostprop-valuables",
+        "signal-kestrel-tcb"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "How often do exams on the A-service fall due?",
+      "expect": "maintain-a-exam",
+      "difficulty": "easy",
+      "returned": [
+        "maintain-a-exam",
+        "timetable-kestrel-last",
+        "lostprop-logging"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "How frequent are Estuary Line trains on weekdays?",
+      "expect": "timetable-estuary-frequency",
+      "difficulty": "easy",
+      "returned": [
+        "timetable-estuary-frequency",
+        "cater-coble-trolley",
+        "timetable-ridgeway-frequency"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "What kind of shelter does Ashcombe Cutting halt have?",
+      "expect": "station-ashcombe-shelter",
+      "difficulty": "easy",
+      "returned": [
+        "station-ashcombe-shelter",
+        "cater-ridgeway-none",
+        "line-ridgeway-speed"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "Which sets are the oldest working units?",
+      "expect": "class-dunmere-age",
+      "difficulty": "easy",
+      "returned": [
+        "class-dunmere-age",
+        "roster-route-sign",
+        "cater-marlbrook-vending"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "Where are hearing loops fitted?",
+      "expect": "access-hearing-loop",
+      "difficulty": "easy",
+      "returned": [
+        "access-hearing-loop",
+        "depot-coble-lathe"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "How late into the night does the branch keep running?",
+      "expect": "timetable-kestrel-last",
+      "difficulty": "hard",
+      "returned": [
+        "station-blackwater-rename",
+        "line-dunmere-freight"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "What will a whole month of commuting set me back?",
+      "expect": "fare-monthly-season",
+      "difficulty": "hard",
+      "returned": [
+        "lostprop-no-fee",
+        "works-kestrel-possession"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "Where are the units scrubbed by machine?",
+      "expect": "depot-fenwick-washer",
+      "difficulty": "hard",
+      "returned": [
+        "cater-marlbrook-vending",
+        "class-marlbrook-engine",
+        "class-dunmere-age"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "If I need assistance, what notice must I give?",
+      "expect": "access-book-notice",
+      "difficulty": "hard",
+      "returned": [
+        "access-book-notice",
+        "fare-under-five",
+        "safety-red-flag"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "How much time off must a crew have before going back on duty?",
+      "expect": "roster-rest",
+      "difficulty": "hard",
+      "returned": [
+        "safety-defect-report",
+        "lostprop-no-fee",
+        "works-kestrel-possession"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "When is the roof over the main concourse rebuilt?",
+      "expect": "works-tarnfield-canopy",
+      "difficulty": "hard",
+      "returned": [
+        "works-ridgeway-diversion",
+        "station-blackwater-rename",
+        "line-dunmere-freight"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "Do any trains sell drink and snacks in a vintage vehicle?",
+      "expect": "cater-evening-specials",
+      "difficulty": "hard",
+      "returned": [
+        "safety-first-aid",
+        "safety-defect-report",
+        "roster-conductors"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "During which months is the branch by the reservoir open to the public?",
+      "expect": "timetable-dunmere-season",
+      "difficulty": "hard",
+      "returned": [
+        "maintain-corrosion",
+        "station-blackwater-rename",
+        "line-dunmere-freight"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "What happens to expensive things nobody comes back for?",
+      "expect": "lostprop-valuables",
+      "difficulty": "hard",
+      "returned": [
+        "lostprop-no-fee",
+        "works-kestrel-possession"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "What is stocked at the very front in case of injury?",
+      "expect": "safety-first-aid",
+      "difficulty": "hard",
+      "returned": [
+        "maintain-corrosion",
+        "maintain-bogie-overhaul",
+        "maintain-wheel-wear"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "Why are some carriages unusually slim?",
+      "expect": "class-estuary-body",
+      "difficulty": "hard",
+      "returned": [
+        "maintain-corrosion",
+        "maintain-bogie-overhaul",
+        "maintain-wheel-wear"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "How many tracks does the harbour terminus have for boarding?",
+      "expect": "station-coble-platforms",
+      "difficulty": "hard",
+      "returned": [
+        "cater-marlbrook-vending",
+        "class-marlbrook-engine",
+        "class-kestrel-seating"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "When is the bodywork inspected for rot?",
+      "expect": "maintain-corrosion",
+      "difficulty": "hard",
+      "returned": [
+        "works-ridgeway-diversion",
+        "station-blackwater-rename",
+        "line-dunmere-freight"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "When are the underframes stripped and rebuilt?",
+      "expect": "maintain-bogie-overhaul",
+      "difficulty": "hard",
+      "returned": [
+        "works-ridgeway-diversion",
+        "station-blackwater-rename",
+        "line-dunmere-freight"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "What must a conductor know before working a road unsupervised?",
+      "expect": "roster-route-sign",
+      "difficulty": "hard",
+      "returned": [
+        "roster-route-sign",
+        "signal-fenwick-crossing",
+        "class-dunmere-age"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "Why does the stop have a different name from the old goods yard?",
+      "expect": "station-blackwater-rename",
+      "difficulty": "hard",
+      "returned": [
+        "line-dunmere-freight",
+        "timetable-marlbrook-extras",
+        "signal-fenwick-crossing"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "What does an off-peak return to Coble Wharf come to?",
+      "expect": "fare-offpeak-return",
+      "difficulty": "adversarial",
+      "returned": [
+        "fare-offpeak-return",
+        "fare-peak-return",
+        "access-coble-ramp"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "What limits trains on the Ridgeway Line to 60 miles per hour?",
+      "expect": "line-ridgeway-speed",
+      "difficulty": "adversarial",
+      "returned": [
+        "line-ridgeway-speed",
+        "line-estuary-speed",
+        "safety-red-flag"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "At what wear level must wheel treads be reprofiled?",
+      "expect": "maintain-wheel-wear",
+      "difficulty": "adversarial",
+      "returned": [
+        "maintain-wheel-wear",
+        "depot-coble-lathe",
+        "safety-red-flag"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "When does the Dunmere Line shut for track renewal?",
+      "expect": "works-dunmere-renewal",
+      "difficulty": "adversarial",
+      "returned": [
+        "works-dunmere-renewal",
+        "works-ridgeway-diversion",
+        "line-dunmere-freight"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "Which units use a 3+2 seating layout?",
+      "expect": "class-ridgeway-seating",
+      "difficulty": "adversarial",
+      "returned": [
+        "class-ridgeway-seating",
+        "class-kestrel-seating",
+        "access-coble-ramp"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "How often do Ridgeway Line trains run on Sundays?",
+      "expect": "timetable-ridgeway-frequency",
+      "difficulty": "adversarial",
+      "returned": [
+        "timetable-ridgeway-frequency",
+        "timetable-estuary-frequency",
+        "timetable-dunmere-season"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "How many steps lead up to Pike Hill's platform?",
+      "expect": "station-pikehill-island",
+      "difficulty": "adversarial",
+      "returned": [
+        "station-pikehill-island",
+        "access-pikehill-path",
+        "timetable-kestrel-last"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "How many route miles does the Saltmarsh Junction signal box control?",
+      "expect": "signal-saltmarsh-panel",
+      "difficulty": "adversarial",
+      "returned": [
+        "signal-saltmarsh-panel",
+        "safety-platform-alarm",
+        "line-estuary-speed"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "What happens to items found on trains at Tarnfield Central?",
+      "expect": "lostprop-tarnfield-hold",
+      "difficulty": "adversarial",
+      "returned": [
+        "lostprop-tarnfield-hold",
+        "lostprop-valuables",
+        "cater-tarnfield-kiosk"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "What refreshment do the Marlbrook Line units carry?",
+      "expect": "cater-marlbrook-vending",
+      "difficulty": "adversarial",
+      "returned": [
+        "cater-marlbrook-vending",
+        "class-marlbrook-engine",
+        "timetable-marlbrook-extras"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "Which depot site holds the simulator used to train drivers?",
+      "expect": "depot-tarnfield-sim",
+      "difficulty": "adversarial",
+      "returned": [
+        "depot-tarnfield-sim",
+        "depot-coble-lathe",
+        "depot-fenwick-washer"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "How do wheelchair users reach the platforms at Tarnfield Central?",
+      "expect": "access-tarnfield-lifts",
+      "difficulty": "adversarial",
+      "returned": [
+        "access-tarnfield-lifts",
+        "access-coble-ramp",
+        "cater-tarnfield-kiosk"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "Which hours rate applies to Sunday shift work?",
+      "expect": "roster-sunday-rate",
+      "difficulty": "adversarial",
+      "returned": [
+        "roster-sunday-rate",
+        "roster-rest",
+        "works-tarnfield-canopy"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "Where does the Marlbrook Line take its power from?",
+      "expect": "line-marlbrook-power",
+      "difficulty": "adversarial",
+      "returned": [
+        "line-marlbrook-power",
+        "timetable-marlbrook-extras",
+        "cater-marlbrook-vending"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "How long is the Kestrel Line?",
+      "expect": "line-kestrel-length",
+      "difficulty": "adversarial",
+      "returned": [
+        "timetable-kestrel-last",
+        "signal-kestrel-tcb",
+        "works-kestrel-possession"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "How much is a day ticket for unlimited rides on the Ridgeway Line?",
+      "expect": "fare-ridgeway-ranger",
+      "difficulty": "adversarial",
+      "returned": [
+        "fare-ridgeway-ranger",
+        "timetable-ridgeway-frequency",
+        "cater-ridgeway-none"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "If my trip is cancelled, am I entitled to compensation?",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [
+        "maintain-corrosion",
+        "maintain-bogie-overhaul",
+        "maintain-wheel-wear"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "Do you permit dogs on your railway?",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [
+        "maintain-corrosion",
+        "maintain-bogie-overhaul",
+        "maintain-wheel-wear"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "Is wireless internet available?",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [
+        "maintain-corrosion",
+        "maintain-bogie-overhaul",
+        "maintain-wheel-wear"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "How big a suitcase fits in the racks?",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [
+        "maintain-corrosion",
+        "maintain-bogie-overhaul",
+        "maintain-wheel-wear"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "Is there a toilet nearby?",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [
+        "maintain-corrosion",
+        "maintain-bogie-overhaul",
+        "maintain-wheel-wear"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "Is a reservation possible?",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [
+        "maintain-corrosion",
+        "maintain-bogie-overhaul",
+        "maintain-wheel-wear"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "Do you offer a discount for groups?",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [
+        "maintain-corrosion",
+        "maintain-bogie-overhaul",
+        "maintain-wheel-wear"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "Is smoking allowed anywhere?",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [
+        "maintain-corrosion",
+        "maintain-bogie-overhaul",
+        "maintain-wheel-wear"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "Is charging a phone possible on the move?",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [
+        "maintain-corrosion",
+        "maintain-bogie-overhaul",
+        "maintain-wheel-wear"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "Is parking available overnight?",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [
+        "maintain-corrosion",
+        "maintain-bogie-overhaul",
+        "maintain-wheel-wear"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "Might I borrow an umbrella?",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [
+        "maintain-corrosion",
+        "maintain-bogie-overhaul",
+        "maintain-wheel-wear"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "Do you allow bicycles?",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [
+        "maintain-corrosion",
+        "maintain-bogie-overhaul",
+        "maintain-wheel-wear"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    }
+  ]
+}

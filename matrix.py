@@ -86,7 +86,7 @@ def steady_vary(cost):
     return worst if sp else None
 
 
-def run_retrieval(entry, timeout):
+def run_retrieval(entry, timeout, cases=None, suffix=""):
     """Second axis: can the subject ANSWER a question about what it kept?
 
     The probe table cannot see this. A store that keeps everything and returns nothing on a query
@@ -95,11 +95,14 @@ def run_retrieval(entry, timeout):
     backup with a perfect score.
     """
     slug = ("%s-%s" % (entry["name"], entry["version"])).replace("/", "_").replace("@", "")
-    out = os.path.join("results", slug + "-retrieval.json")
+    out = os.path.join("results", slug + "-retrieval" + suffix + ".json")
     # REPEATED, BECAUSE THE INTERVAL IS THE WRONG ERROR BAR ON ITS OWN: it covers sampling variance
     # and not the same experiment run twice, which moved zenbrain by two questions in one day.
     args = [sys.executable, "retrieval.py", "--cmd=" + entry["cmd"],
             "--timeout=%d" % timeout, "--repeat=%d" % RETRIEVAL_REPEAT, "--json=" + out]
+    # A SECOND CORPUS IS THE ONLY WAY TO ASK WHETHER THE ORDERING WAS AN ARTEFACT OF THE QUESTIONS.
+    if cases:
+        args.append("--cases=" + cases)
     args += (["--manifest=" + entry["manifest"]] if entry.get("manifest")
              else ["--adapter=" + entry.get("adapter", "reference")])
     subprocess.run(args, capture_output=True, text=True, encoding="utf-8", errors="replace")
@@ -399,6 +402,14 @@ def main(argv):
                  " not a measurement. Absolute ranges and the noisier startup and restart figures"
                  " are in `results/*-cost.json`." % (COST_REPEAT, int(VARY_FLOOR_SECONDS * 1000))
                  + chr(10))
+        # THE TABLE ABOVE IS ONE CORPUS'S OPINION. Saying so in the generated file, rather than only in
+        # the README, is the difference between a number with a caveat and a number without one.
+        if os.path.isfile(os.path.join(HERE, "REPLICATION.md")):
+            fh.write(chr(10) + "## Replication" + chr(10) + chr(10) +
+                     "The same subjects on a second corpus, written by an author who never saw this one,"
+                     " are compared in `REPLICATION.md`. Five of the ten neighbouring pairs in"
+                     " the retrieval table do not reach the same conclusion on both, so a separation"
+                     " there holds for this question set until a third corpus agrees." + chr(10))
     print("written to MATRIX.md")
     return 0
 

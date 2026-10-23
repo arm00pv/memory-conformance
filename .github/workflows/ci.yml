@@ -3,6 +3,20 @@ name: ci
 on: [push, pull_request]
 
 jobs:
+  corpus:
+    # THE QUESTION SET IS PART OF THE INSTRUMENT, so it is checked like one. This needs no memory
+    # server, no npm and no network: it asks whether the corpus still satisfies the assumptions its
+    # own bands rest on, and whether a defect somebody accepted has quietly been fixed or a new one
+    # appeared. It runs first because it is the cheapest way for this repository to be wrong.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: the question sets must satisfy their own assumptions
+        run: python validate_corpus.py --baseline=corpus-known.json
+
   probe:
     runs-on: ubuntu-latest
     steps:

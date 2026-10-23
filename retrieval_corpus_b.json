@@ -1,0 +1,595 @@
+{
+  "why": "This set measures whether a memory server returns the single right record for a short, permanently true fact about one fictional regional railway, and — just as important — returns nothing at all when the store holds no such fact. The easy band reuses the answer record's own distinctive words so a keyword search should succeed, while the hard band paraphrases the same facts the way a half-remembering person would, with almost no borrowed phrasing. The adversarial band plants a near-duplicate record that competes for the same words so only a reader that actually distinguishes the two can answer, and the absent band asks about everyday railway topics the store deliberately never mentions, where the only correct output is an empty result.",
+  "records": [
+    {
+      "id": "line-estuary-speed",
+      "text": "The Estuary Line has a maximum permitted speed of 90 miles per hour between Saltmarsh Junction and Coble Wharf."
+    },
+    {
+      "id": "line-ridgeway-speed",
+      "text": "The Ridgeway Line is limited to 60 miles per hour throughout because of tight curves in Ashcombe Cutting."
+    },
+    {
+      "id": "line-kestrel-length",
+      "text": "The Kestrel Line runs 22 miles from Tarnfield Central to Pike Hill, the shortest route in the network."
+    },
+    {
+      "id": "line-marlbrook-power",
+      "text": "The Marlbrook Line is the only electrified route, taking power at 750 volts from an overhead line."
+    },
+    {
+      "id": "line-dunmere-freight",
+      "text": "Goods trains may use the Dunmere Line only before 06:00, when the branch is otherwise closed to freight."
+    },
+    {
+      "id": "line-kestrel-single",
+      "text": "The Kestrel Line is single track beyond Fenwick Road, so opposing trains wait at the passing loop."
+    },
+    {
+      "id": "station-coble-platforms",
+      "text": "Coble Wharf has four platforms, two of them bay platforms used only in the morning peak."
+    },
+    {
+      "id": "station-tarnfield-office",
+      "text": "The booking office at Tarnfield Central is open from 05:45 to 20:15 on weekdays."
+    },
+    {
+      "id": "station-pikehill-island",
+      "text": "Pike Hill has a single island platform, reached by a footbridge with 42 steps."
+    },
+    {
+      "id": "station-ashcombe-shelter",
+      "text": "Ashcombe Cutting halt has no buildings; people wait in a timber shelter on the up side."
+    },
+    {
+      "id": "station-blackwater-rename",
+      "text": "Blackwater Halt was renamed from Blackwater Sidings when the branch reopened to passengers."
+    },
+    {
+      "id": "depot-saltmarsh-hours",
+      "text": "Saltmarsh depot opens for unit preparation at 04:30 and closes at 23:00 every day of the week."
+    },
+    {
+      "id": "depot-wray-capacity",
+      "text": "Wray Sike depot can stable eight three-car units under cover."
+    },
+    {
+      "id": "depot-fenwick-washer",
+      "text": "Fenwick Road depot holds the network's only mechanical washer plant."
+    },
+    {
+      "id": "depot-ashcombe-fuel",
+      "text": "Ashcombe depot stores the fuel bowsers that supply the diesel fleet."
+    },
+    {
+      "id": "depot-coble-lathe",
+      "text": "Coble Wharf depot is the only site fitted with a wheel lathe for reprofiling wheel treads."
+    },
+    {
+      "id": "depot-tarnfield-sim",
+      "text": "Tarnfield Central depot houses the driver training simulator and the crew classrooms."
+    },
+    {
+      "id": "class-kestrel-seating",
+      "text": "Kestrel units have 2+2 seating and 168 seats, most of them at tables of four."
+    },
+    {
+      "id": "class-ridgeway-seating",
+      "text": "Ridgeway units use 3+2 high-density seating and hold 214 seated passengers."
+    },
+    {
+      "id": "class-estuary-body",
+      "text": "Estuary units are three-car diesels with a narrow body, built to clear the estuary bridges."
+    },
+    {
+      "id": "class-dunmere-age",
+      "text": "The Dunmere sets are the oldest working units, having entered service in 1984."
+    },
+    {
+      "id": "class-marlbrook-engine",
+      "text": "Marlbrook units have no diesel engine and rely wholly on the overhead supply."
+    },
+    {
+      "id": "fare-peak-return",
+      "text": "A peak return from Tarnfield Central to Coble Wharf costs 14 pounds 50."
+    },
+    {
+      "id": "fare-offpeak-return",
+      "text": "An off-peak return from Tarnfield Central to Coble Wharf costs 9 pounds 20."
+    },
+    {
+      "id": "fare-ridgeway-ranger",
+      "text": "The Ridgeway Ranger day ticket gives unlimited travel on that route for 8 pounds."
+    },
+    {
+      "id": "fare-under-five",
+      "text": "Children under five ride free and need no ticket at all."
+    },
+    {
+      "id": "fare-monthly-season",
+      "text": "A monthly season from Pike Hill to Saltmarsh Junction costs 96 pounds."
+    },
+    {
+      "id": "roster-signon",
+      "text": "Early turns begin with sign-on at the home depot 35 minutes before the first departure."
+    },
+    {
+      "id": "roster-rest",
+      "text": "At least eleven hours must separate the end of one shift from the start of the next."
+    },
+    {
+      "id": "roster-conductors",
+      "text": "Any train formed of more than four vehicles works with two conductors on board."
+    },
+    {
+      "id": "roster-sunday-rate",
+      "text": "Sunday shift work is paid at time and a half for every grade."
+    },
+    {
+      "id": "roster-route-sign",
+      "text": "Guards must learn a route before working it alone and renew that knowledge every year."
+    },
+    {
+      "id": "works-dunmere-renewal",
+      "text": "The Dunmere Line shuts for track renewal in the first fortnight of August each year."
+    },
+    {
+      "id": "works-ridgeway-diversion",
+      "text": "When the Ridgeway Line is shut, trains are diverted over the Kestrel Line."
+    },
+    {
+      "id": "works-kestrel-possession",
+      "text": "Kestrel Line possessions begin after 22:30 and must be handed back by 05:00."
+    },
+    {
+      "id": "works-estuary-bridge",
+      "text": "Repairs to Coble swing bridge are done at neap tides so the channel stays open."
+    },
+    {
+      "id": "works-tarnfield-canopy",
+      "text": "Rebuilding the Tarnfield Central canopy is restricted to Sunday nights."
+    },
+    {
+      "id": "signal-saltmarsh-panel",
+      "text": "The Saltmarsh Junction signal box controls 46 route miles from a single panel."
+    },
+    {
+      "id": "signal-wray-token",
+      "text": "Wray Sike tunnel is worked with a physical token passed from driver to driver."
+    },
+    {
+      "id": "signal-fenwick-crossing",
+      "text": "Fenwick Road crossing has automatic half barriers, so trains must never stop on it."
+    },
+    {
+      "id": "signal-blackwater-block",
+      "text": "Blackwater Halt is absolute block, worked from Coble Wharf box by bell codes."
+    },
+    {
+      "id": "signal-kestrel-tcb",
+      "text": "The Kestrel Line uses track circuit block, with signals no more than half a mile apart."
+    },
+    {
+      "id": "access-tarnfield-lifts",
+      "text": "Tarnfield Central has lifts to all four platforms and tactile paving along every edge."
+    },
+    {
+      "id": "access-coble-ramp",
+      "text": "Staff at Coble Wharf use a portable ramp so wheelchair users can get on and off."
+    },
+    {
+      "id": "access-book-notice",
+      "text": "Help should be requested two hours ahead by ringing the control centre."
+    },
+    {
+      "id": "access-pikehill-path",
+      "text": "Pike Hill's ramped path to the island platform is open from dawn until dusk."
+    },
+    {
+      "id": "access-hearing-loop",
+      "text": "Hearing loops are fitted at every booking window and at the Coble Wharf desk."
+    },
+    {
+      "id": "lostprop-coble-hold",
+      "text": "Property handed in at Coble Wharf is kept 28 days in the wharf office."
+    },
+    {
+      "id": "lostprop-tarnfield-hold",
+      "text": "Items found on trains are held at Tarnfield Central for fourteen days."
+    },
+    {
+      "id": "lostprop-no-fee",
+      "text": "Getting an item back costs nothing, but the owner must show proof it was theirs."
+    },
+    {
+      "id": "lostprop-logging",
+      "text": "Each found item is photographed and logged against the service it came from."
+    },
+    {
+      "id": "lostprop-valuables",
+      "text": "Unclaimed items worth more than 50 pounds go to a central store at Saltmarsh."
+    },
+    {
+      "id": "cater-tarnfield-kiosk",
+      "text": "The kiosk on Tarnfield Central platform 2 sells hot rolls, tea and coffee."
+    },
+    {
+      "id": "cater-coble-trolley",
+      "text": "A trolley runs on Estuary Line trains between 07:00 and 19:00 on weekdays."
+    },
+    {
+      "id": "cater-ridgeway-none",
+      "text": "Nothing is served on the Ridgeway Line between Ashcombe Cutting and Pike Hill."
+    },
+    {
+      "id": "cater-marlbrook-vending",
+      "text": "Marlbrook Line units have vending machines only, restocked at Fenwick Road."
+    },
+    {
+      "id": "cater-evening-specials",
+      "text": "Two evening specials each week serve local cider and pies in a converted carriage."
+    },
+    {
+      "id": "safety-evac-drill",
+      "text": "Every crew member completes an evacuation drill within 30 days of starting."
+    },
+    {
+      "id": "safety-defect-report",
+      "text": "Drivers report any defect to the controller before taking the next duty."
+    },
+    {
+      "id": "safety-platform-alarm",
+      "text": "The emergency alarm on each platform rings in the Saltmarsh Junction box."
+    },
+    {
+      "id": "safety-first-aid",
+      "text": "First aid kits are kept in the cab of every leading vehicle."
+    },
+    {
+      "id": "safety-red-flag",
+      "text": "Drivers must slow to 20 miles per hour wherever a red warning flag is shown."
+    },
+    {
+      "id": "timetable-estuary-frequency",
+      "text": "Estuary Line trains run every 15 minutes on weekdays and every 30 minutes on Sundays."
+    },
+    {
+      "id": "timetable-ridgeway-frequency",
+      "text": "Ridgeway Line trains run every 20 minutes on weekdays and hourly on Sundays."
+    },
+    {
+      "id": "timetable-kestrel-last",
+      "text": "The last Kestrel Line service leaves Pike Hill at 23:40."
+    },
+    {
+      "id": "timetable-dunmere-season",
+      "text": "Dunmere Line trains run only between May and September."
+    },
+    {
+      "id": "timetable-marlbrook-extras",
+      "text": "Marlbrook Line peak extras run non-stop and take 18 minutes end to end."
+    },
+    {
+      "id": "maintain-a-exam",
+      "text": "A-service exams fall due every 2,500 miles or 28 days, whichever arrives first."
+    },
+    {
+      "id": "maintain-brake-test",
+      "text": "A brake continuity test is made at the start of every daily diagram."
+    },
+    {
+      "id": "maintain-wheel-wear",
+      "text": "Wheel treads are reprofiled once wear reaches 38 millimetres."
+    },
+    {
+      "id": "maintain-bogie-overhaul",
+      "text": "Bogie overhauls take place every 250,000 miles at Wray Sike depot."
+    },
+    {
+      "id": "maintain-corrosion",
+      "text": "Body corrosion checks are made in the two months before each winter."
+    }
+  ],
+  "queries": [
+    {
+      "query": "What is the maximum permitted speed on the Estuary Line?",
+      "expect": "line-estuary-speed",
+      "difficulty": "easy"
+    },
+    {
+      "query": "At what time does the booking office at Tarnfield Central open?",
+      "expect": "station-tarnfield-office",
+      "difficulty": "easy"
+    },
+    {
+      "query": "When does Saltmarsh depot open each day?",
+      "expect": "depot-saltmarsh-hours",
+      "difficulty": "easy"
+    },
+    {
+      "query": "How many seats do Kestrel units have?",
+      "expect": "class-kestrel-seating",
+      "difficulty": "easy"
+    },
+    {
+      "query": "How much is a peak return to Coble Wharf?",
+      "expect": "fare-peak-return",
+      "difficulty": "easy"
+    },
+    {
+      "query": "Is the section at Blackwater Halt worked by absolute block?",
+      "expect": "signal-blackwater-block",
+      "difficulty": "easy"
+    },
+    {
+      "query": "What is sold at the kiosk on Tarnfield Central platform 2?",
+      "expect": "cater-tarnfield-kiosk",
+      "difficulty": "easy"
+    },
+    {
+      "query": "How long is property handed in at Coble Wharf kept?",
+      "expect": "lostprop-coble-hold",
+      "difficulty": "easy"
+    },
+    {
+      "query": "When do Kestrel Line possessions begin?",
+      "expect": "works-kestrel-possession",
+      "difficulty": "easy"
+    },
+    {
+      "query": "Do staff at Coble Wharf use a portable ramp?",
+      "expect": "access-coble-ramp",
+      "difficulty": "easy"
+    },
+    {
+      "query": "How many conductors work a train formed of more than four vehicles?",
+      "expect": "roster-conductors",
+      "difficulty": "easy"
+    },
+    {
+      "query": "How often do exams on the A-service fall due?",
+      "expect": "maintain-a-exam",
+      "difficulty": "easy"
+    },
+    {
+      "query": "How frequent are Estuary Line trains on weekdays?",
+      "expect": "timetable-estuary-frequency",
+      "difficulty": "easy"
+    },
+    {
+      "query": "What kind of shelter does Ashcombe Cutting halt have?",
+      "expect": "station-ashcombe-shelter",
+      "difficulty": "easy"
+    },
+    {
+      "query": "Which sets are the oldest working units?",
+      "expect": "class-dunmere-age",
+      "difficulty": "easy"
+    },
+    {
+      "query": "Where are hearing loops fitted?",
+      "expect": "access-hearing-loop",
+      "difficulty": "easy"
+    },
+    {
+      "query": "How late into the night does the branch keep running?",
+      "expect": "timetable-kestrel-last",
+      "difficulty": "hard"
+    },
+    {
+      "query": "What will a whole month of commuting set me back?",
+      "expect": "fare-monthly-season",
+      "difficulty": "hard"
+    },
+    {
+      "query": "Where are the units scrubbed by machine?",
+      "expect": "depot-fenwick-washer",
+      "difficulty": "hard"
+    },
+    {
+      "query": "If I need assistance, what notice must I give?",
+      "expect": "access-book-notice",
+      "difficulty": "hard"
+    },
+    {
+      "query": "How much time off must a crew have before going back on duty?",
+      "expect": "roster-rest",
+      "difficulty": "hard"
+    },
+    {
+      "query": "When is the roof over the main concourse rebuilt?",
+      "expect": "works-tarnfield-canopy",
+      "difficulty": "hard"
+    },
+    {
+      "query": "Do any trains sell drink and snacks in a vintage vehicle?",
+      "expect": "cater-evening-specials",
+      "difficulty": "hard"
+    },
+    {
+      "query": "During which months is the branch by the reservoir open to the public?",
+      "expect": "timetable-dunmere-season",
+      "difficulty": "hard"
+    },
+    {
+      "query": "What happens to expensive things nobody comes back for?",
+      "expect": "lostprop-valuables",
+      "difficulty": "hard"
+    },
+    {
+      "query": "What is stocked at the very front in case of injury?",
+      "expect": "safety-first-aid",
+      "difficulty": "hard"
+    },
+    {
+      "query": "Why are some carriages unusually slim?",
+      "expect": "class-estuary-body",
+      "difficulty": "hard"
+    },
+    {
+      "query": "How many tracks does the harbour terminus have for boarding?",
+      "expect": "station-coble-platforms",
+      "difficulty": "hard"
+    },
+    {
+      "query": "When is the bodywork inspected for rot?",
+      "expect": "maintain-corrosion",
+      "difficulty": "hard"
+    },
+    {
+      "query": "When are the underframes stripped and rebuilt?",
+      "expect": "maintain-bogie-overhaul",
+      "difficulty": "hard"
+    },
+    {
+      "query": "What must a conductor know before working a road unsupervised?",
+      "expect": "roster-route-sign",
+      "difficulty": "hard"
+    },
+    {
+      "query": "Why does the stop have a different name from the old goods yard?",
+      "expect": "station-blackwater-rename",
+      "difficulty": "hard"
+    },
+    {
+      "query": "What does an off-peak return to Coble Wharf come to?",
+      "expect": "fare-offpeak-return",
+      "difficulty": "adversarial"
+    },
+    {
+      "query": "What limits trains on the Ridgeway Line to 60 miles per hour?",
+      "expect": "line-ridgeway-speed",
+      "difficulty": "adversarial"
+    },
+    {
+      "query": "At what wear level must wheel treads be reprofiled?",
+      "expect": "maintain-wheel-wear",
+      "difficulty": "adversarial"
+    },
+    {
+      "query": "When does the Dunmere Line shut for track renewal?",
+      "expect": "works-dunmere-renewal",
+      "difficulty": "adversarial"
+    },
+    {
+      "query": "Which units use a 3+2 seating layout?",
+      "expect": "class-ridgeway-seating",
+      "difficulty": "adversarial"
+    },
+    {
+      "query": "How often do Ridgeway Line trains run on Sundays?",
+      "expect": "timetable-ridgeway-frequency",
+      "difficulty": "adversarial"
+    },
+    {
+      "query": "How many steps lead up to Pike Hill's platform?",
+      "expect": "station-pikehill-island",
+      "difficulty": "adversarial"
+    },
+    {
+      "query": "How many route miles does the Saltmarsh Junction signal box control?",
+      "expect": "signal-saltmarsh-panel",
+      "difficulty": "adversarial"
+    },
+    {
+      "query": "What happens to items found on trains at Tarnfield Central?",
+      "expect": "lostprop-tarnfield-hold",
+      "difficulty": "adversarial"
+    },
+    {
+      "query": "What refreshment do the Marlbrook Line units carry?",
+      "expect": "cater-marlbrook-vending",
+      "difficulty": "adversarial"
+    },
+    {
+      "query": "Which depot site holds the simulator used to train drivers?",
+      "expect": "depot-tarnfield-sim",
+      "difficulty": "adversarial"
+    },
+    {
+      "query": "How do wheelchair users reach the platforms at Tarnfield Central?",
+      "expect": "access-tarnfield-lifts",
+      "difficulty": "adversarial"
+    },
+    {
+      "query": "Which hours rate applies to Sunday shift work?",
+      "expect": "roster-sunday-rate",
+      "difficulty": "adversarial"
+    },
+    {
+      "query": "Where does the Marlbrook Line take its power from?",
+      "expect": "line-marlbrook-power",
+      "difficulty": "adversarial"
+    },
+    {
+      "query": "How long is the Kestrel Line?",
+      "expect": "line-kestrel-length",
+      "difficulty": "adversarial"
+    },
+    {
+      "query": "How much is a day ticket for unlimited rides on the Ridgeway Line?",
+      "expect": "fare-ridgeway-ranger",
+      "difficulty": "adversarial"
+    },
+    {
+      "query": "If my trip is cancelled, am I entitled to compensation?",
+      "expect": null,
+      "difficulty": "absent"
+    },
+    {
+      "query": "Do you permit dogs on your railway?",
+      "expect": null,
+      "difficulty": "absent"
+    },
+    {
+      "query": "Is wireless internet available?",
+      "expect": null,
+      "difficulty": "absent"
+    },
+    {
+      "query": "How big a suitcase fits in the racks?",
+      "expect": null,
+      "difficulty": "absent"
+    },
+    {
+      "query": "Is there a toilet nearby?",
+      "expect": null,
+      "difficulty": "absent"
+    },
+    {
+      "query": "Is a reservation possible?",
+      "expect": null,
+      "difficulty": "absent"
+    },
+    {
+      "query": "Do you offer a discount for groups?",
+      "expect": null,
+      "difficulty": "absent"
+    },
+    {
+      "query": "Is smoking allowed anywhere?",
+      "expect": null,
+      "difficulty": "absent"
+    },
+    {
+      "query": "Is charging a phone possible on the move?",
+      "expect": null,
+      "difficulty": "absent"
+    },
+    {
+      "query": "Is parking available overnight?",
+      "expect": null,
+      "difficulty": "absent"
+    },
+    {
+      "query": "Might I borrow an umbrella?",
+      "expect": null,
+      "difficulty": "absent"
+    },
+    {
+      "query": "Do you allow bicycles?",
+      "expect": null,
+      "difficulty": "absent"
+    }
+  ]
+}
