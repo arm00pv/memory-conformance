@@ -30,7 +30,11 @@ jobs:
           python harness.py --adapter=control \
             --cmd="python control/memory_server.py" --expect=expected-control.json
 
-      - name: probe retained (the server built to pass these probes)
+      # A PIN IS A REGRESSION DETECTOR, NOT AN ALL-PASS ASSERTION. retained is pinned with one known
+      # failure: a record from another tool with no seq field makes it refuse every later write, so
+      # foreign_record is FAIL. It was previously pinned PASS because the client swallowed the isError
+      # flag and counted a refusal as an acknowledgement. The pin now records what the subject does.
+      - name: probe retained (pinned, including its one known refusal)
         run: |
           git clone --depth 1 https://github.com/arm00pv/retained /tmp/retained
           python harness.py --adapter=retained --cmd="python /tmp/retained/retained.py" \

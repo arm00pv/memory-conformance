@@ -36,7 +36,9 @@ Options
   --only=NAME           run one probe
   --timeout=SECONDS     per-call ceiling; raise it for a slow subject rather than believing a timeout
   --json=PATH           write the full report
-  --expect=PATH         compare verdicts against a pinned report and exit 2 on drift
+  --expect=PATH         compare against a pinned report: exit 2 on drift, 2 also when the run
+                        could not produce verdicts, 0 when the verdicts match - a pin may describe a
+                        known failure and the job should stay green while it is still that
   --repeat=N            run the repeat-prone probes N times (default 1)
   --repeat-probes=a,b   narrow which probes repeat (--repeat-probes=all by default, which is
                         every one: a probe not repeated is a probe whose stability is assumed)
@@ -593,8 +595,17 @@ class ControlAdapter(ReferenceAdapter):
         return data.get("entities")
 
 
-class RetainedAdapter:
-    """retained.py - append-only, hash-chained, read-back verified. Same probe surface."""
+class RetainedAdapter(ReferenceAdapter):
+    """retained.py - append-only, hash-chained, read-back verified. Same probe surface.
+
+    Inherits ReferenceAdapter for the out-of-band store edits, and that inheritance is a bug fix
+    rather than a convenience. When the foreign-data probes were moved behind adapter methods so a
+    SQLite subject could answer them, this adapter was left behind: it still only provided
+    store_path, so both probes raised AttributeError and were reported as harness errors instead of
+    verdicts. The old probes had opened records.jsonl themselves and needed nothing else, which is
+    why the breakage was invisible on the machine where it happened and only surfaced in CI, three
+    phases later, against a subject that is not installed locally.
+    """
 
     def __init__(self, cmd):
         self.cmd = cmd
@@ -629,9 +640,17 @@ class RetainedAdapter:
             return first
 
     def search(self, srv, query, k=3):
-        text = self.search_text(srv, query, k)
+        """Answer the question, in two calls.
+
+        NOT BUILT ON search_text. That method concatenates both wire responses so the cost of
+        answering can be measured, and concatenated JSON is not JSON: parsing it here made every
+        search return nothing, and made this adapter look like a server that cannot find its own
+        records. The measurement view and the answering view are different things and this is the
+        adapter that proves it, because it is the only one that has to make two calls.
+        """
+        first = srv.call("memory_search", {"query": query, "k": k})
         try:
-            data = json.loads(text)
+            data = json.loads(first)
         except ValueError:
             return []
         ids = [h.get("id") for h in (data.get("hits") or [])][:k]
@@ -1313,8 +1332,12 @@ def main(argv=None):
         print()
         print("!! a verdict was reached through an unusual path: %s" % ", ".join(other_kinds))
     print("%d probe(s) failed" % fails)
-    if drift:
-        return 2
+    # WITH A PIN, THE PIN IS THE EXPECTATION. A subject can legitimately be pinned with a known
+    # failure - "this one refuses a foreign record, and we know" - and the job should stay green
+    # while that remains true and go red the moment it changes. Reporting absolute failures here
+    # made a pinned expectation unusable for anything that is not all green.
+    if expect:
+        return 2 if drift else 0
     return 0 if fails == 0 else 1
 
 
