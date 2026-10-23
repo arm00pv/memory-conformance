@@ -65,6 +65,15 @@
       "hit3": true,
       "answered": true,
       "error": null,
+      "keyword": "maximum permitted speed estuary line",
+      "returned_keyword": [
+        "cater-coble-trolley",
+        "class-estuary-body",
+        "line-estuary-speed"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": true,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           true,
@@ -91,6 +100,15 @@
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "time booking office tarnfield central open",
+      "returned_keyword": [
+        "access-book-notice",
+        "access-tarnfield-lifts",
+        "cater-tarnfield-kiosk"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           false,
@@ -117,6 +135,15 @@
       "hit3": true,
       "answered": true,
       "error": null,
+      "keyword": "saltmarsh depot open day",
+      "returned_keyword": [
+        "access-pikehill-path",
+        "depot-ashcombe-fuel",
+        "depot-coble-lathe"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           true,
@@ -143,6 +170,15 @@
       "hit3": true,
       "answered": true,
       "error": null,
+      "keyword": "seat kestrel unit",
+      "returned_keyword": [
+        "class-dunmere-age",
+        "class-estuary-body",
+        "class-kestrel-seating"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": true,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           true,
@@ -169,6 +205,15 @@
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "peak return coble wharf",
+      "returned_keyword": [
+        "access-coble-ramp",
+        "access-hearing-loop",
+        "depot-coble-lathe"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           false,
@@ -195,6 +240,15 @@
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "section blackwater halt worked absolute block",
+      "returned_keyword": [
+        "depot-coble-lathe",
+        "maintain-brake-test",
+        "safety-platform-alarm"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           false,
@@ -221,6 +275,15 @@
       "hit3": true,
       "answered": true,
       "error": null,
+      "keyword": "sold kiosk tarnfield central platform 2",
+      "returned_keyword": [
+        "access-tarnfield-lifts",
+        "cater-marlbrook-vending",
+        "cater-tarnfield-kiosk"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": true,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           true,
@@ -247,6 +310,15 @@
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "property handed coble wharf kept",
+      "returned_keyword": [
+        "access-coble-ramp",
+        "access-hearing-loop",
+        "depot-coble-lathe"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           false,
@@ -273,6 +345,15 @@
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "kestrel line possession begin",
+      "returned_keyword": [
+        "class-kestrel-seating",
+        "line-estuary-speed",
+        "line-kestrel-length"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           false,
@@ -299,6 +380,15 @@
       "hit3": true,
       "answered": true,
       "error": null,
+      "keyword": "staff coble wharf portable ramp",
+      "returned_keyword": [
+        "access-coble-ramp",
+        "access-hearing-loop",
+        "depot-coble-lathe"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           true,
@@ -325,6 +415,15 @@
       "hit3": true,
       "answered": true,
       "error": null,
+      "keyword": "conductor work train formed four vehicle",
+      "returned_keyword": [
+        "depot-tarnfield-sim",
+        "depot-wray-capacity",
+        "lostprop-tarnfield-hold"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           true,
@@ -351,6 +450,15 @@
       "hit3": true,
       "answered": true,
       "error": null,
+      "keyword": "exam service fall due",
+      "returned_keyword": [
+        "cater-evening-specials",
+        "lostprop-logging",
+        "maintain-a-exam"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": true,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           true,
@@ -377,6 +485,15 @@
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "frequent estuary line train weekday",
+      "returned_keyword": [
+        "cater-coble-trolley",
+        "cater-evening-specials",
+        "line-kestrel-single"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           false,
@@ -403,6 +520,15 @@
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "kind shelter ashcombe cutting halt",
+      "returned_keyword": [
+        "cater-ridgeway-none",
+        "depot-ashcombe-fuel",
+        "depot-wray-capacity"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           false,
@@ -429,6 +555,15 @@
       "hit3": true,
       "answered": true,
       "error": null,
+      "keyword": "oldest working unit",
+      "returned_keyword": [
+        "class-dunmere-age",
+        "class-marlbrook-engine",
+        "lostprop-logging"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           true,
@@ -455,6 +590,15 @@
       "hit3": true,
       "answered": true,
       "error": null,
+      "keyword": "hearing loop fitted",
+      "returned_keyword": [
+        "access-hearing-loop",
+        "line-kestrel-single",
+        "maintain-corrosion"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           true,
@@ -481,6 +625,15 @@
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "late night branch running",
+      "returned_keyword": [
+        "access-book-notice",
+        "line-dunmere-freight",
+        "roster-sunday-rate"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           false,
@@ -507,6 +660,15 @@
       "hit3": true,
       "answered": true,
       "error": null,
+      "keyword": "whole month commuting back",
+      "returned_keyword": [
+        "cater-evening-specials",
+        "cater-marlbrook-vending",
+        "fare-monthly-season"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": true,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           true,
@@ -533,6 +695,15 @@
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "unit scrubbed machine",
+      "returned_keyword": [
+        "cater-marlbrook-vending",
+        "class-dunmere-age",
+        "class-estuary-body"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           false,
@@ -559,6 +730,15 @@
       "hit3": true,
       "answered": true,
       "error": null,
+      "keyword": "assistance notice",
+      "returned_keyword": [
+        "access-book-notice",
+        "depot-wray-capacity",
+        "lostprop-logging"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           true,
@@ -585,6 +765,15 @@
       "hit3": true,
       "answered": true,
       "error": null,
+      "keyword": "time crew going back duty",
+      "returned_keyword": [
+        "class-dunmere-age",
+        "lostprop-no-fee",
+        "roster-route-sign"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           true,
@@ -611,6 +800,15 @@
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "roof main concourse rebuilt",
+      "returned_keyword": [
+        "access-hearing-loop",
+        "access-tarnfield-lifts",
+        "cater-evening-specials"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           false,
@@ -637,6 +835,15 @@
       "hit3": true,
       "answered": true,
       "error": null,
+      "keyword": "train sell drink snack vintage vehicle",
+      "returned_keyword": [
+        "cater-evening-specials",
+        "cater-marlbrook-vending",
+        "cater-tarnfield-kiosk"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           true,
@@ -663,6 +870,15 @@
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "month branch reservoir open public",
+      "returned_keyword": [
+        "access-hearing-loop",
+        "access-pikehill-path",
+        "fare-monthly-season"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           false,
@@ -689,6 +905,15 @@
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "happen expensive thing come back",
+      "returned_keyword": [
+        "fare-monthly-season",
+        "fare-offpeak-return",
+        "fare-peak-return"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           false,
@@ -715,6 +940,15 @@
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "stocked front case injury",
+      "returned_keyword": [
+        "access-hearing-loop",
+        "depot-coble-lathe",
+        "depot-tarnfield-sim"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           false,
@@ -741,6 +975,15 @@
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "carriage unusually slim",
+      "returned_keyword": [
+        "cater-evening-specials",
+        "depot-wray-capacity",
+        "line-dunmere-freight"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           false,
@@ -767,6 +1010,15 @@
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "track harbour terminu boarding",
+      "returned_keyword": [
+        "access-hearing-loop",
+        "cater-coble-trolley",
+        "line-estuary-speed"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           false,
@@ -793,6 +1045,15 @@
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "bodywork inspected rot",
+      "returned_keyword": [
+        "class-dunmere-age",
+        "lostprop-logging",
+        "maintain-bogie-overhaul"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           false,
@@ -819,6 +1080,15 @@
       "hit3": true,
       "answered": true,
       "error": null,
+      "keyword": "underframe stripped rebuilt",
+      "returned_keyword": [
+        "access-tarnfield-lifts",
+        "cater-marlbrook-vending",
+        "depot-coble-lathe"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           true,
@@ -845,6 +1115,15 @@
       "hit3": true,
       "answered": true,
       "error": null,
+      "keyword": "conductor working road unsupervised",
+      "returned_keyword": [
+        "line-kestrel-single",
+        "roster-conductors",
+        "roster-route-sign"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": true,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           true,
@@ -871,6 +1150,15 @@
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "stop different name old good yard",
+      "returned_keyword": [
+        "cater-marlbrook-vending",
+        "depot-wray-capacity",
+        "line-dunmere-freight"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           false,
@@ -897,6 +1185,15 @@
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "peak return coble wharf come",
+      "returned_keyword": [
+        "access-coble-ramp",
+        "access-hearing-loop",
+        "depot-coble-lathe"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           false,
@@ -923,6 +1220,15 @@
       "hit3": true,
       "answered": true,
       "error": null,
+      "keyword": "limit train ridgeway line 60 mile hour",
+      "returned_keyword": [
+        "line-dunmere-freight",
+        "line-estuary-speed",
+        "line-ridgeway-speed"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": true,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           true,
@@ -949,6 +1255,15 @@
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "wear level wheel tread reprofiled",
+      "returned_keyword": [
+        "access-coble-ramp",
+        "access-hearing-loop",
+        "access-tarnfield-lifts"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           false,
@@ -975,6 +1290,15 @@
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "dunmere line shut track renewal",
+      "returned_keyword": [
+        "class-dunmere-age",
+        "line-dunmere-freight",
+        "line-kestrel-single"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           false,
@@ -1001,6 +1325,15 @@
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "unit 3 2 seating layout",
+      "returned_keyword": [
+        "access-hearing-loop",
+        "cater-marlbrook-vending",
+        "class-dunmere-age"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           false,
@@ -1027,6 +1360,15 @@
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "ridgeway line train sunday",
+      "returned_keyword": [
+        "cater-coble-trolley",
+        "cater-ridgeway-none",
+        "class-ridgeway-seating"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           false,
@@ -1053,6 +1395,15 @@
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "step lead pike hill s platform",
+      "returned_keyword": [
+        "access-pikehill-path",
+        "access-tarnfield-lifts",
+        "cater-ridgeway-none"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           false,
@@ -1079,6 +1430,15 @@
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "route mile saltmarsh junction signal box control",
+      "returned_keyword": [
+        "fare-monthly-season",
+        "line-estuary-speed",
+        "line-marlbrook-power"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           false,
@@ -1105,6 +1465,15 @@
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "happen item train tarnfield central",
+      "returned_keyword": [
+        "access-tarnfield-lifts",
+        "cater-tarnfield-kiosk",
+        "depot-tarnfield-sim"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           false,
@@ -1131,6 +1500,15 @@
       "hit3": true,
       "answered": true,
       "error": null,
+      "keyword": "refreshment marlbrook line unit carry",
+      "returned_keyword": [
+        "cater-marlbrook-vending",
+        "class-marlbrook-engine",
+        "line-dunmere-freight"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           true,
@@ -1157,6 +1535,15 @@
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "depot site hold simulator train driver",
+      "returned_keyword": [
+        "depot-ashcombe-fuel",
+        "depot-coble-lathe",
+        "depot-fenwick-washer"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           false,
@@ -1183,6 +1570,15 @@
       "hit3": true,
       "answered": true,
       "error": null,
+      "keyword": "wheelchair user reach platform tarnfield central",
+      "returned_keyword": [
+        "access-coble-ramp",
+        "access-tarnfield-lifts",
+        "cater-tarnfield-kiosk"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": true,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           true,
@@ -1209,6 +1605,15 @@
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "hour rate applie sunday shift work",
+      "returned_keyword": [
+        "cater-coble-trolley",
+        "class-dunmere-age",
+        "depot-saltmarsh-hours"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           false,
@@ -1235,6 +1640,15 @@
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "marlbrook line power",
+      "returned_keyword": [
+        "cater-marlbrook-vending",
+        "class-marlbrook-engine",
+        "line-marlbrook-power"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": true,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           false,
@@ -1261,6 +1675,15 @@
       "hit3": true,
       "answered": true,
       "error": null,
+      "keyword": "kestrel line",
+      "returned_keyword": [
+        "class-kestrel-seating",
+        "line-estuary-speed",
+        "line-kestrel-length"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": true,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           true,
@@ -1287,6 +1710,15 @@
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "day ticket unlimited ride ridgeway line",
+      "returned_keyword": [
+        "cater-ridgeway-none",
+        "class-ridgeway-seating",
+        "fare-ridgeway-ranger"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": true,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           false,
@@ -1313,6 +1745,15 @@
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "trip cancelled entitled compensation",
+      "returned_keyword": [
+        "access-hearing-loop",
+        "fare-monthly-season",
+        "fare-offpeak-return"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           false,
@@ -1339,6 +1780,15 @@
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "permit dog railway",
+      "returned_keyword": [
+        "fare-ridgeway-ranger",
+        "line-dunmere-freight",
+        "line-kestrel-single"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           false,
@@ -1365,6 +1815,15 @@
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "wireless internet available",
+      "returned_keyword": [
+        "access-coble-ramp",
+        "access-hearing-loop",
+        "cater-tarnfield-kiosk"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           false,
@@ -1391,6 +1850,15 @@
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "big suitcase fit rack",
+      "returned_keyword": [
+        "access-coble-ramp",
+        "access-hearing-loop",
+        "class-ridgeway-seating"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           false,
@@ -1417,6 +1885,15 @@
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "toilet nearby",
+      "returned_keyword": [
+        "access-coble-ramp",
+        "access-hearing-loop",
+        "access-tarnfield-lifts"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           false,
@@ -1443,6 +1920,15 @@
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "reservation possible",
+      "returned_keyword": [
+        "access-coble-ramp",
+        "access-hearing-loop",
+        "cater-evening-specials"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           false,
@@ -1469,6 +1955,15 @@
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "offer discount group",
+      "returned_keyword": [
+        "access-hearing-loop",
+        "cater-marlbrook-vending",
+        "cater-tarnfield-kiosk"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           false,
@@ -1495,6 +1990,15 @@
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "smoking allowed anywhere",
+      "returned_keyword": [
+        "access-hearing-loop",
+        "line-estuary-speed",
+        "maintain-brake-test"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           false,
@@ -1521,6 +2025,15 @@
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "charging phone possible move",
+      "returned_keyword": [
+        "access-coble-ramp",
+        "access-tarnfield-lifts",
+        "cater-evening-specials"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           false,
@@ -1547,6 +2060,15 @@
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "parking available overnight",
+      "returned_keyword": [
+        "access-book-notice",
+        "access-pikehill-path",
+        "cater-evening-specials"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           false,
@@ -1573,6 +2095,15 @@
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "borrow umbrella",
+      "returned_keyword": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           false,
@@ -1599,6 +2130,15 @@
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "allow bicycle",
+      "returned_keyword": [
+        "access-tarnfield-lifts",
+        "cater-evening-specials",
+        "depot-coble-lathe"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           false,

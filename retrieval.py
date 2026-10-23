@@ -31,8 +31,17 @@ import tempfile
 import harness
 
 
-def _one_pass(ad, cases, k):
-    """One complete experiment: build the store, restart, ask every question."""
+def _one_pass(ad, cases, k, shapes=False):
+    """One complete experiment: build the store, restart, ask every question.
+
+    WITH shapes ON, EVERY QUESTION IS ALSO ASKED AS A KEYWORD STRING - the same words with the words
+    that carry no meaning removed. That second phrasing is derived mechanically from the question, so
+    it is identical for every subject and contains no author's vocabulary, and the distance between the
+    two answers is a property of the subject rather than of the corpus. It was added because corpus B
+    showed that memory-lean scores 14/60 on keyword-shaped questions and 0/60 on question-shaped ones:
+    a score computed from one phrasing only says as much about who wrote the questions as about the
+    server.
+    """
     if hasattr(ad, "reset"):
         ad.reset()
     d = tempfile.mkdtemp(prefix="memret_")
@@ -56,12 +65,15 @@ def _one_pass(ad, cases, k):
                 want = q.get("expect")
                 hit1 = bool(want) and ids[:1] == [want]
                 hit3 = bool(want) and want in ids[:k]
-                rows.append({"query": q["query"], "expect": want,
-                             "difficulty": q["difficulty"], "returned": ids[:k],
-                             "hit1": hit1, "hit3": hit3,
-                             # an absent question was answered if anything came back at all
-                             "answered": bool(ids),
-                             "error": q.get("error")})
+                row = {"query": q["query"], "expect": want,
+                       "difficulty": q["difficulty"], "returned": ids[:k],
+                       "hit1": hit1, "hit3": hit3,
+                       # an absent question was answered if anything came back at all
+                       "answered": bool(ids),
+                       "error": q.get("error")}
+                if shapes:
+                    row.update(_ask_keyword(ad, srv, q, want, k))
+                rows.append(row)
         finally:
             srv.stop()
     finally:
@@ -69,7 +81,28 @@ def _one_pass(ad, cases, k):
     return rows
 
 
-def run(ad, k=3, cases_path=None, repeat=1):
+def _ask_keyword(ad, srv, q, want, k):
+    """The same question as a keyword string, asked on the same running server.
+
+    Asked inside the same pass rather than in a second experiment, so the two phrasings see one store,
+    one restart and one binding: anything that differs between them is the phrasing and not the setup.
+    """
+    import words
+    kw = words.keyword_form(q["query"])
+    field = {"keyword": kw}
+    try:
+        ids = ad.search(srv, kw, k)
+    except Exception as exc:
+        field["keyword_error"] = str(exc)
+        ids = []
+    field["returned_keyword"] = ids[:k]
+    field["hit1_keyword"] = bool(want) and ids[:1] == [want]
+    field["hit3_keyword"] = bool(want) and want in ids[:k]
+    field["answered_keyword"] = bool(ids)
+    return field
+
+
+def run(ad, k=3, cases_path=None, repeat=1, shapes=False):
     """Repeat the whole experiment and take each question's majority answer.
 
     THE INTERVAL WAS THE WRONG ERROR BAR ON ITS OWN. A Wilson interval says how much a different set
@@ -84,7 +117,7 @@ def run(ad, k=3, cases_path=None, repeat=1):
     with open(cases_path, encoding="utf-8") as fh:
         cases = json.load(fh)
     repeat = max(1, int(repeat))
-    passes = [_one_pass(ad, cases, k) for _ in range(repeat)]
+    passes = [_one_pass(ad, cases, k, shapes) for _ in range(repeat)]
     if repeat == 1:
         return passes[0]
     rows = []
@@ -92,7 +125,10 @@ def run(ad, k=3, cases_path=None, repeat=1):
         same = [p[i] for p in passes]
         row = dict(first)
         # majority, with a tie resolving to the worse outcome - the same rule the probes use
-        for key in ("hit1", "hit3", "answered"):
+        for key in ("hit1", "hit3", "answered", "hit1_keyword", "hit3_keyword",
+                    "answered_keyword"):
+            if not all(key in s for s in same):
+                continue
             votes = [bool(s.get(key)) for s in same]
             row[key] = sum(votes) * 2 > len(votes)
         row["per_run"] = {"hit3": [bool(s.get("hit3")) for s in same],
@@ -140,6 +176,7 @@ def main(argv=None):
     manifest_path = None
     cases_path = None
     repeat = 1
+    shapes = False
     for a in argv:
         if a.startswith("--cmd="):
             cmd = a.split("=", 1)[1]
@@ -155,6 +192,9 @@ def main(argv=None):
             cases_path = a.split("=", 1)[1]
         elif a.startswith("--repeat="):
             repeat = max(1, int(a.split("=", 1)[1]))
+        elif a == "--shapes":
+            # ask every question again as a keyword string, in the same pass
+            shapes = True
     if not cmd:
         print(__doc__)
         return 2
@@ -171,7 +211,7 @@ def main(argv=None):
         label = mf.subject
     else:
         ad = adapters.get(adapter_name, harness.ReferenceAdapter)(cmd)
-    rows = run(ad, cases_path=cases_path, repeat=repeat)
+    rows = run(ad, cases_path=cases_path, repeat=repeat, shapes=shapes)
     summary = summarise(rows, label)
     if repeat > 1:
         # the spread is per-run totals before any majority was taken, which is the only honest way to

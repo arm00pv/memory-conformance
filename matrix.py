@@ -103,6 +103,10 @@ def run_retrieval(entry, timeout, cases=None, suffix=""):
     # A SECOND CORPUS IS THE ONLY WAY TO ASK WHETHER THE ORDERING WAS AN ARTEFACT OF THE QUESTIONS.
     if cases:
         args.append("--cases=" + cases)
+    # AND THE SAME QUESTION ASKED TWO WAYS IS THE ONLY WAY TO ASK WHETHER THE SCORE WAS AN ARTEFACT OF
+    # THE PHRASING. On by default: a score without its shape is the incomplete measurement that corpus
+    # B exposed, and it costs one extra search per question rather than a second experiment.
+    args.append("--shapes")
     args += (["--manifest=" + entry["manifest"]] if entry.get("manifest")
              else ["--adapter=" + entry.get("adapter", "reference")])
     subprocess.run(args, capture_output=True, text=True, encoding="utf-8", errors="replace")
@@ -410,6 +414,12 @@ def main(argv):
                      " are compared in `REPLICATION.md`. Five of the ten neighbouring pairs in"
                      " the retrieval table do not reach the same conclusion on both, so a separation"
                      " there holds for this question set until a third corpus agrees." + chr(10))
+        if os.path.isfile(os.path.join(HERE, "SHAPE.md")):
+            fh.write(chr(10) + "The retrieval score is also a pair: every question is asked again with"
+                     " the words that carry no meaning removed, and `SHAPE.md` reports the gap."
+                     " One subject moves by twenty-three questions out of sixty when only the phrasing"
+                     " changes and two more by fourteen or more, so a hit@3 number without its phrasing"
+                     " is half a measurement." + chr(10))
     print("written to MATRIX.md")
     return 0
 

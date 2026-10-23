@@ -65,6 +65,15 @@
       "hit3": true,
       "answered": true,
       "error": null,
+      "keyword": "staging postgre port",
+      "returned_keyword": [
+        "net-vpn",
+        "db-port-prod",
+        "db-port-staging"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": true,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           true,
@@ -91,6 +100,15 @@
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "deployment key rotation",
+      "returned_keyword": [
+        "key-root",
+        "key-signing",
+        "maint-drain"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           false,
@@ -117,6 +135,15 @@
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "site backup bucket",
+      "returned_keyword": [
+        "data-backup-key",
+        "backup-restore-test",
+        "backup-retention"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           false,
@@ -142,6 +169,14 @@
       "hit3": true,
       "answered": true,
       "error": null,
+      "keyword": "nightly report worker",
+      "returned_keyword": [
+        "report-timezone",
+        "report-worker"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": true,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           true,
@@ -167,6 +202,14 @@
       "hit3": true,
       "answered": true,
       "error": null,
+      "keyword": "concurrent writer lock",
+      "returned_keyword": [
+        "ci-cache",
+        "mem-lock"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": true,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           true,
@@ -185,14 +228,21 @@
       "expect": "mem-search",
       "difficulty": "easy",
       "returned": [
-        "maint-window",
-        "latency-slo",
-        "rel-rollback"
+        "key-deploy",
+        "key-deploy-old",
+        "maint-window"
       ],
       "hit1": false,
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "rebuild search index",
+      "returned_keyword": [
+        "mem-search"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           false,
@@ -219,6 +269,15 @@
       "hit3": true,
       "answered": true,
       "error": null,
+      "keyword": "estate host throne watchtower",
+      "returned_keyword": [
+        "maint-drain",
+        "hosts-throne",
+        "hosts-three"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": true,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           true,
@@ -245,6 +304,13 @@
       "hit3": true,
       "answered": true,
       "error": null,
+      "keyword": "corpu 105 case",
+      "returned_keyword": [
+        "corpus-size"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           true,
@@ -271,6 +337,15 @@
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "backup kept",
+      "returned_keyword": [
+        "data-backup-key",
+        "backup-offsite",
+        "backup-restore-test"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           false,
@@ -289,14 +364,23 @@
       "expect": "oncall-escalation",
       "difficulty": "hard",
       "returned": [
-        "rel-rollback",
-        "net-cdn",
-        "auth-session"
+        "key-deploy",
+        "key-deploy-old",
+        "crlf-binary"
       ],
       "hit1": false,
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "happen primary call answer",
+      "returned_keyword": [
+        "oncall-escalation",
+        "db-replica",
+        "latency-slo"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           false,
@@ -323,6 +407,15 @@
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "key kept inside specialised hardware",
+      "returned_keyword": [
+        "key-deploy",
+        "key-deploy-old",
+        "key-root"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           false,
@@ -341,14 +434,21 @@
       "expect": "db-replica",
       "difficulty": "hard",
       "returned": [
-        "auth-session",
-        "auth-refresh",
-        "vendor"
+        "key-deploy",
+        "key-deploy-old",
+        "crlf-binary"
       ],
       "hit1": false,
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "far behind copie database",
+      "returned_keyword": [
+        "db-replica"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           false,
@@ -375,6 +475,15 @@
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "customer data physically",
+      "returned_keyword": [
+        "data-backup-key",
+        "data-anonymise",
+        "pii"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           false,
@@ -401,6 +510,15 @@
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "log leave building",
+      "returned_keyword": [
+        "data-audit",
+        "net-mtu",
+        "data-anonymise"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           false,
@@ -421,12 +539,20 @@
       "returned": [
         "maint-window",
         "latency-slo",
-        "rel-rollback"
+        "crlf-binary"
       ],
       "hit1": false,
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "session database open",
+      "returned_keyword": [
+        "net-firewall",
+        "auth-session"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           false,
@@ -453,6 +579,13 @@
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "restore actually attempted",
+      "returned_keyword": [
+        "backup-restore-test"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           false,
@@ -479,6 +612,14 @@
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "port postgre production",
+      "returned_keyword": [
+        "db-port-staging",
+        "db-port-prod"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": true,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           false,
@@ -499,12 +640,21 @@
       "returned": [
         "maint-window",
         "latency-slo",
-        "rel-rollback"
+        "backup-offsite"
       ],
       "hit1": false,
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "deployment key rotate old",
+      "returned_keyword": [
+        "key-root",
+        "key-signing",
+        "data-backup-key"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           false,
@@ -531,6 +681,15 @@
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "key leave enclosure",
+      "returned_keyword": [
+        "key-deploy",
+        "key-deploy-old",
+        "net-mtu"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           false,
@@ -551,12 +710,21 @@
       "returned": [
         "maint-window",
         "latency-slo",
-        "rel-rollback"
+        "crlf-binary"
       ],
       "hit1": false,
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "old oldest backup copy become",
+      "returned_keyword": [
+        "data-backup-key",
+        "backup-offsite",
+        "backup-restore-test"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           false,
@@ -576,13 +744,21 @@
       "difficulty": "adversarial",
       "returned": [
         "latency-slo",
-        "net-cdn",
-        "auth-session"
+        "crlf-binary",
+        "backup-offsite"
       ],
       "hit1": false,
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "host collector",
+      "returned_keyword": [
+        "hosts-pi",
+        "maint-drain"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           false,
@@ -609,6 +785,15 @@
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "page immediately rather five minute",
+      "returned_keyword": [
+        "latency-slo",
+        "auth-lockout",
+        "bill-refund"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           false,
@@ -627,14 +812,22 @@
       "expect": "crlf-git",
       "difficulty": "adversarial",
       "returned": [
-        "maint-window",
-        "latency-slo",
-        "rel-rollback"
+        "key-deploy",
+        "key-deploy-old",
+        "maint-window"
       ],
       "hit1": false,
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "git behaviour hide carriage return",
+      "returned_keyword": [
+        "crlf-binary",
+        "crlf-git"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": true,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           false,
@@ -661,6 +854,15 @@
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "store see s record",
+      "returned_keyword": [
+        "bill-tax",
+        "bill-currency",
+        "mem-store-path"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": true,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           false,
@@ -681,12 +883,19 @@
       "returned": [
         "maint-window",
         "latency-slo",
-        "net-cdn"
+        "crlf-binary"
       ],
       "hit1": false,
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "office wifi password",
+      "returned_keyword": [
+        "auth-password"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           false,
@@ -705,14 +914,23 @@
       "expect": null,
       "difficulty": "absent",
       "returned": [
-        "maint-window",
-        "latency-slo",
-        "rel-rollback"
+        "key-deploy",
+        "key-deploy-old",
+        "maint-window"
       ],
       "hit1": false,
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "people joined company last year",
+      "returned_keyword": [
+        "net-cdn",
+        "key-root",
+        "maint-freeze"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           false,
@@ -731,14 +949,21 @@
       "expect": null,
       "difficulty": "absent",
       "returned": [
-        "maint-window",
-        "latency-slo",
-        "rel-rollback"
+        "key-deploy",
+        "key-deploy-old",
+        "maint-window"
       ],
       "hit1": false,
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "cloud provider host analytic warehouse",
+      "returned_keyword": [
+        "maint-drain"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           false,
@@ -757,14 +982,19 @@
       "expect": null,
       "difficulty": "absent",
       "returned": [
-        "net-cdn",
-        "auth-session",
-        "vendor"
+        "crlf-binary",
+        "backup-offsite",
+        "net-cdn"
       ],
       "hit1": false,
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "price enterprise tier",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
       "per_run": {
         "hit3": [
           false,
@@ -783,14 +1013,19 @@
       "expect": null,
       "difficulty": "absent",
       "returned": [
-        "maint-window",
-        "latency-slo",
-        "rel-rollback"
+        "key-deploy",
+        "key-deploy-old",
+        "maint-window"
       ],
       "hit1": false,
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "won internal hackathon",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
       "per_run": {
         "hit3": [
           false,
@@ -811,12 +1046,17 @@
       "returned": [
         "maint-window",
         "latency-slo",
-        "net-cdn"
+        "crlf-binary"
       ],
       "hit1": false,
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "summer party",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
       "per_run": {
         "hit3": [
           false,
@@ -843,6 +1083,15 @@
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "access token fifteen minute",
+      "returned_keyword": [
+        "auth-refresh",
+        "oncall-escalation",
+        "auth-lockout"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           false,
@@ -869,6 +1118,15 @@
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "dns ttl five minute",
+      "returned_keyword": [
+        "latency-slo",
+        "auth-lockout",
+        "bill-refund"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           false,
@@ -895,6 +1153,15 @@
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "invoice payable thirty day",
+      "returned_keyword": [
+        "key-deploy",
+        "key-deploy-old",
+        "auth-refresh"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           false,
@@ -921,6 +1188,15 @@
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "shared runner build eleven minute",
+      "returned_keyword": [
+        "corpus-false-positive",
+        "hosts-throne",
+        "net-dns-ttl"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           false,
@@ -947,6 +1223,15 @@
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "maintenance first sunday month",
+      "returned_keyword": [
+        "alert-silence",
+        "backup-restore-test",
+        "maint-notice"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           false,
@@ -973,6 +1258,15 @@
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "account lock five failed sign attempt",
+      "returned_keyword": [
+        "net-dns-ttl",
+        "latency-slo",
+        "bill-refund"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           false,
@@ -999,6 +1293,15 @@
       "hit3": true,
       "answered": true,
       "error": null,
+      "keyword": "wireguard tunnel staging network",
+      "returned_keyword": [
+        "net-mtu",
+        "db-port-staging",
+        "net-vpn"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": true,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           true,
@@ -1025,6 +1328,15 @@
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "refund five working day",
+      "returned_keyword": [
+        "net-dns-ttl",
+        "latency-slo",
+        "auth-lockout"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           false,
@@ -1051,6 +1363,13 @@
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "login stay valid renewed",
+      "returned_keyword": [
+        "maint-cert"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           false,
@@ -1077,6 +1396,14 @@
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "quickly traffic switched away dead server",
+      "returned_keyword": [
+        "rel-canary",
+        "net-firewall"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           false,
@@ -1103,6 +1430,14 @@
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "service reached outside",
+      "returned_keyword": [
+        "latency-slo",
+        "data-anonymise"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           false,
@@ -1129,6 +1464,15 @@
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "customer actually charged",
+      "returned_keyword": [
+        "data-export",
+        "bill-tax",
+        "bill-currency"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           false,
@@ -1155,6 +1499,15 @@
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "undoing bad release",
+      "returned_keyword": [
+        "rel-canary",
+        "rel-cadence",
+        "maint-patching"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           false,
@@ -1181,6 +1534,15 @@
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "personal data kept leave",
+      "returned_keyword": [
+        "data-backup-key",
+        "data-retention",
+        "region"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": true,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           false,
@@ -1199,14 +1561,23 @@
       "expect": "maint-notice",
       "difficulty": "hard",
       "returned": [
-        "maint-window",
-        "rel-rollback",
-        "net-cdn"
+        "key-deploy",
+        "key-deploy-old",
+        "maint-window"
       ],
       "hit1": false,
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "warning customer service",
+      "returned_keyword": [
+        "data-export",
+        "bill-tax",
+        "bill-currency"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           false,
@@ -1225,14 +1596,21 @@
       "expect": "maint-patching",
       "difficulty": "hard",
       "returned": [
-        "latency-slo",
-        "rel-rollback",
-        "vendor"
+        "key-deploy",
+        "key-deploy-old",
+        "latency-slo"
       ],
       "hit1": false,
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "security fixe installed host",
+      "returned_keyword": [
+        "maint-drain"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           false,
@@ -1251,14 +1629,22 @@
       "expect": "auth-refresh",
       "difficulty": "adversarial",
       "returned": [
-        "maint-window",
-        "latency-slo",
-        "rel-rollback"
+        "key-deploy",
+        "key-deploy-old",
+        "maint-window"
       ],
       "hit1": false,
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "refresh token last",
+      "returned_keyword": [
+        "auth-token-ttl",
+        "auth-refresh"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": true,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           false,
@@ -1285,6 +1671,15 @@
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "account stay locked wrong password",
+      "returned_keyword": [
+        "auth-lockout",
+        "data-retention",
+        "auth-mfa"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           false,
@@ -1305,12 +1700,20 @@
       "returned": [
         "maint-window",
         "latency-slo",
-        "net-cdn"
+        "crlf-binary"
       ],
       "hit1": false,
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "tunnel mtu",
+      "returned_keyword": [
+        "net-vpn",
+        "net-mtu"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": true,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           false,
@@ -1337,6 +1740,15 @@
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "day customer pay invoice",
+      "returned_keyword": [
+        "data-export",
+        "bill-tax",
+        "bill-currency"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           false,
@@ -1363,6 +1775,15 @@
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "happen failed payment",
+      "returned_keyword": [
+        "auth-lockout",
+        "alert-replication",
+        "bill-dunning"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": true,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           false,
@@ -1383,12 +1804,21 @@
       "returned": [
         "maint-window",
         "latency-slo",
-        "rel-rollback"
+        "crlf-binary"
       ],
       "hit1": false,
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "stop shipping release year",
+      "returned_keyword": [
+        "rel-canary",
+        "net-cdn",
+        "rel-cadence"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           false,
@@ -1415,6 +1845,15 @@
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "share user see new release first",
+      "returned_keyword": [
+        "maint-window",
+        "rel-canary",
+        "rel-cadence"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": true,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           false,
@@ -1441,6 +1880,13 @@
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "far ahead certificate renewed",
+      "returned_keyword": [
+        "maint-cert"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           false,
@@ -1459,14 +1905,19 @@
       "expect": null,
       "difficulty": "absent",
       "returned": [
-        "net-cdn",
-        "auth-session",
-        "vendor"
+        "crlf-binary",
+        "backup-offsite",
+        "net-cdn"
       ],
       "hit1": false,
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "name chief executive",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
       "per_run": {
         "hit3": [
           false,
@@ -1485,14 +1936,19 @@
       "expect": null,
       "difficulty": "absent",
       "returned": [
-        "maint-window",
-        "latency-slo",
-        "rel-rollback"
+        "key-deploy",
+        "key-deploy-old",
+        "maint-window"
       ],
       "hit1": false,
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "parking space office",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
       "per_run": {
         "hit3": [
           false,
@@ -1513,12 +1969,17 @@
       "returned": [
         "maint-window",
         "latency-slo",
-        "net-cdn"
+        "crlf-binary"
       ],
       "hit1": false,
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "colour company logo",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
       "per_run": {
         "hit3": [
           false,
@@ -1539,12 +2000,17 @@
       "returned": [
         "maint-window",
         "latency-slo",
-        "net-cdn"
+        "crlf-binary"
       ],
       "hit1": false,
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "responsible office plant",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
       "per_run": {
         "hit3": [
           false,
@@ -1565,12 +2031,17 @@
       "returned": [
         "maint-window",
         "latency-slo",
-        "net-cdn"
+        "crlf-binary"
       ],
       "hit1": false,
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "maximum holiday allowance",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
       "per_run": {
         "hit3": [
           false,
@@ -1589,14 +2060,21 @@
       "expect": null,
       "difficulty": "absent",
       "returned": [
-        "maint-window",
-        "latency-slo",
-        "rel-rollback"
+        "key-deploy",
+        "key-deploy-old",
+        "maint-window"
       ],
       "hit1": false,
       "hit3": false,
       "answered": true,
       "error": null,
+      "keyword": "football team company sponsor",
+      "returned_keyword": [
+        "doc-owner"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
       "per_run": {
         "hit3": [
           false,
