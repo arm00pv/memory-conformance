@@ -43,6 +43,18 @@ def run(script, cmd, extra, ceiling, repeat, out):
         return json.load(fh), proc
 
 
+def corpus_counts():
+    """The corpus size, read from the corpus. Three files used to state it in prose and all three
+    were falsified the moment the corpus grew."""
+    path = os.path.join(HERE, "retrieval_corpus.json")
+    try:
+        with open(path, encoding="utf-8") as fh:
+            doc = json.load(fh)
+    except Exception:
+        return (0, 0)
+    return (len(doc.get("records") or []), len(doc.get("queries") or []))
+
+
 def badge_svg(kept, unknown, failed):
     """A self-contained badge. No service is called, so it works offline and cannot rot."""
     label = "memory-conformance"
@@ -62,10 +74,41 @@ def badge_svg(kept, unknown, failed):
             '<text x="%d" y="14">%s</text></g></svg>' % (lw + 10, value))
 
 
+def register(name, version, cmd, manifest, leaking):
+    """Add the subject to subjects.json so the next matrix run includes it.
+
+    A subject that leaks state is still registered, and marked, because "this one is out of scope and
+    here is why" is a result. Dropping it would quietly shrink the denominator.
+    """
+    path = os.path.join(HERE, "subjects.json")
+    with open(path, encoding="utf-8") as fh:
+        subjects = json.load(fh)
+    entry = {"name": name, "version": version, "cmd": cmd}
+    if manifest:
+        entry["manifest"] = manifest
+    else:
+        entry["adapter"] = "auto"
+    existing = [i for i, s in enumerate(subjects)
+                if s.get("name") == name and str(s.get("version")) == str(version)]
+    if existing:
+        subjects[existing[0]] = entry
+        action = "updated"
+    else:
+        subjects.append(entry)
+        action = "added"
+    with open(path, "w", encoding="utf-8", newline="\n") as fh:
+        fh.write(json.dumps(subjects, indent=2) + "\n")
+    print()
+    print("subjects.json %s: %s %s%s" % (action, name, version,
+                                         " (out of scope: leaks state)" if leaking else ""))
+    print("now run  python matrix.py --report-only  to fold it into MATRIX.md")
+
+
 def main(argv=None):
     argv = list(sys.argv[1:] if argv is None else argv)
     cmd = None
     adapter, manifest, repeat, ceiling, want_badge = "auto", None, 1, 60, False
+    submit, name, version = False, None, None
     for a in argv:
         if a.startswith("--cmd="):
             cmd = a.split("=", 1)[1]
@@ -79,6 +122,12 @@ def main(argv=None):
             ceiling = float(a.split("=", 1)[1])
         elif a == "--badge":
             want_badge = True
+        elif a == "--submit":
+            submit = True
+        elif a.startswith("--name="):
+            name = a.split("=", 1)[1]
+        elif a.startswith("--version="):
+            version = a.split("=", 1)[1]
         elif not a.startswith("-"):
             cmd = a
     if not cmd:
@@ -86,10 +135,22 @@ def main(argv=None):
         return 2
 
     extra = (["--manifest=" + manifest] if manifest else ["--adapter=" + adapter])
-    tmp = tempfile.mkdtemp(prefix="check_")
-    p_json = os.path.join(tmp, "probes.json")
-    r_json = os.path.join(tmp, "retrieval.json")
-    c_json = os.path.join(tmp, "cost.json")
+    if submit:
+        # A SUBMITTED NUMBER SHOULD BE A REPEATED ONE. Three attempts is what the published matrix
+        # uses; anything less is a claim about a single draw.
+        repeat = max(repeat, 3)
+
+    if submit:
+        slug = ("%s-%s" % (name or os.path.basename(cmd.split()[-1]), version or "0")).replace("/", "_")
+        os.makedirs(os.path.join(HERE, "results"), exist_ok=True)
+        p_json = os.path.join(HERE, "results", slug + ".json")
+        r_json = os.path.join(HERE, "results", slug + "-retrieval.json")
+        c_json = os.path.join(HERE, "results", slug + "-cost.json")
+    else:
+        tmp = tempfile.mkdtemp(prefix="check_")
+        p_json = os.path.join(tmp, "probes.json")
+        r_json = os.path.join(tmp, "retrieval.json")
+        c_json = os.path.join(tmp, "cost.json")
 
     print("subject : %s" % cmd)
     print("binding : %s" % ("declared in " + manifest if manifest else "discovered, proven by round-trip"))
@@ -128,7 +189,7 @@ def main(argv=None):
         a = summary.get("all") or {}
         ab = summary.get("absent") or {}
         print()
-        print("retrieval (36 records, 30 questions, cold start)")
+        print("retrieval (%d records, %d questions, cold start)" % corpus_counts())
         print("  hit@3  easy %s  hard %s  adversarial %s  ->  all %d/%d"
               % tuple(["%d/%d" % (summary[b]["hit3"], summary[b]["n"]) if b in summary else "-/-"
                        for b in ("easy", "hard", "adversarial")] + [a.get("hit3", 0), a.get("n", 0)]))
@@ -181,6 +242,10 @@ def main(argv=None):
         print()
         print("badge written to %s - copy it into your README and link it to the full report:" % path)
         print("  ![memory-conformance](%s)" % path)
+
+    if submit:
+        register(name or os.path.basename(cmd.split()[-1]), version or "0", cmd, manifest,
+                 rows.get("isolation", {}).get("verdict") == "FAIL")
 
     if rows.get("isolation", {}).get("verdict") == "FAIL":
         return 2

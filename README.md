@@ -84,7 +84,7 @@ share vocabulary with the memory they want, six paraphrases - then reports hit@1
 that has just restarted, so search cannot ride on anything the writing process still held in memory.
 
 > *This section records the original twelve-question run against `retained` and `basic-memory`. The
-> corpus is now 36 records and 30 questions in four bands - including near-duplicate distractors and
+> corpus is now 72 records and 60 questions in fourteen clusters - including near-duplicate distractors and
 > questions with no answer at all - and every subject in the matrix is measured on it. See the
 > retrieval table above.*
 
@@ -225,26 +225,27 @@ does not transfer to another, and memento is the proof: same machine, PASS at 18
 FAIL at 60s on the same probe.
 1 subject(s) out of scope, 10 measured
 
-retrieval, cold start, 36 records - a score, not a verdict. hit@3 per band: easy shares
-wording with the answer, hard is a paraphrase, adversarial has a near duplicate competing.
-'noans' is questions with no answer in the store that were answered anyway: 0 is right.
+retrieval, cold start, 72 records and 60 questions - a score, not a verdict. hit@3 per
+per band - easy shares wording with the answer, hard is a paraphrase, adversarial has a
+near duplicate competing. 'noans' is questions with no answer that were answered anyway;
+0 is right.
 subject                         easy    hard    adver   all h1   all h3   noans   runs      95%
 -----------------------------------------------------------------------------------------------
-control 1.0.0                   8/8     0/8     5/8     13/30    13/30    0/6     13-13     8-18
-server-memory 1.0.0             0/8     0/8     0/8     0/30     0/30     0/6     0-0       0-3
-server-memory 2.0.0             0/8     0/8     0/8     0/30     0/30     0/6     0-0       0-3
-memento 0.7.0                   2/8     2/8     4/8     2/30     8/30     6/6     8-8       4-13
-memdb 1.4.0                     7/8     0/8     0/8     1/30     7/30     6/6     7-7       4-12
-memory-lean 1.5.0               6/8     0/8     0/8     6/30     6/30     0/6     6-6       3-11
-mcp-knowledge-graph 1.3.2       0/8     0/8     0/8     0/30     0/30     0/6     0-0       0-3
-zenbrain 0.3.0                  8/8     8/8     7/8     20/30    23/30    6/6     23-23     18-26
-memory-mcp-1file 0.9.2          8/8     7/8     7/8     20/30    22/30    6/6     22-22     17-26
-statecore-mcp 1.0.0             0/8     0/8     0/8     0/30     0/30     6/6     0-0       0-3
-mcp-duckdb-memory-server 1.1.10 5/8     0/8     0/8     5/30     5/30     0/6     5-5       2-10
+control 1.0.0                   16/16   0/16    9/16    25/60    25/60    0/12    25-25     18-33
+server-memory 1.0.0             0/16    0/16    0/16    0/60     0/60     0/12    0-0       0-4
+server-memory 2.0.0             0/16    0/16    0/16    0/60     0/60     0/12    0-0       0-4
+memento 0.7.0                   3/16    3/16    5/16    3/60     11/60    12/12   11-11     6-18
+memdb 1.4.0                     6/16    0/16    0/16    0/60     6/60     12/12   6-6       3-12
+memory-lean 1.5.0               14/16   0/16    0/16    14/60    14/60    0/12    14-14     9-21
+mcp-knowledge-graph 1.3.2       0/16    0/16    0/16    0/60     0/60     0/12    0-0       0-4
+zenbrain 0.3.0                  16/16   7/16    14/16   31/60    37/60    12/12   37-37     29-44
+memory-mcp-1file 0.9.2          16/16   13/16   14/16   41/60    43/60    12/12   43-43     36-49
+statecore-mcp 1.0.0             0/16    0/16    0/16    0/60     0/60     12/12   0-0       0-4
+mcp-duckdb-memory-server 1.1.10 8/16    0/16    2/16    10/60    10/60    0/12    10-10     6-17
 
 'runs' is the min-max of the same experiment repeated 3 times; '95%' is the Wilson
 interval for the majority result, in counts. The first covers repeating the experiment,
-the second covers asking a different thirty questions. They are not the same error.
+the second covers asking a different set of 60 questions. They are not the same error.
 
 cost, measured once per subject with nothing else running. 'resp' is the median bytes the
 server sends back for one question and 'amp' is that divided by the answer's own size - a
@@ -283,26 +284,29 @@ The sharpest example is a pair a single score would have got wrong:
 
 ```
 $ python compare.py memento server-memory-1.0.0
-  only memento correct      8
-  only server-memory        6
-  exact McNemar p = 0.7905  -> not separated by this corpus
+  only memento correct     11
+  only server-memory       12
+  exact McNemar p = 1.0000  -> not separated by this corpus
 ```
 
-They are opposites — one answers everything including six questions that have no answer, the other
-answers nothing at all — and on this corpus they are statistically identical.
+They are opposites — one answers everything including all twelve questions that have no answer, the
+other answers nothing at all — and on this corpus they are statistically identical.
 
 - **`@modelcontextprotocol/server-memory`, both versions** — 7 of 8 probes pass, and it answers
-  **none** of the 30 questions. `search_nodes` matches the query as a literal substring:
+  **none** of the 60 questions. `search_nodes` matches the query as a literal substring:
   `"postgres staging port"` returns nothing, `"postgres"` returns the record.
 - **memento** — returns the same three entities for a matching name, a nonsense string and the empty
   query. Its search is a listing, and it speaks on every unanswerable question.
-- **memory-mcp-1file** — the joint-best retriever here (22/30), and the one subject excluded from the
-  conformance table for leaking state between stores.
+- **memory-mcp-1file** — the highest raw retrieval count here, 43 of 60 against zenbrain's 37, and
+  the one subject excluded from the conformance table for leaking state between stores. The paired
+  test will not separate those two either (10 discordant questions against 4, p = 0.18): sixty
+  questions establishes that both are far better than memdb (31–0) and does not establish which of
+  them is better than the other.
 
 `runs` and `95%` are two different error bars and both matter. `runs` is the min–max of the whole
 experiment repeated three times: the **measurement** error, and it is zero on every subject here.
-`95%` is the Wilson interval: the **sampling** error, how far a different thirty questions might move
-the score, about four counts either way. A repeatable number whose precision is limited only by the
+`95%` is the Wilson interval: the **sampling** error, how far a different sixty questions might move
+the score, about seven counts either way. A repeatable number whose precision is limited only by the
 size of the corpus is a good place to be.
 
 Two rows whose intervals overlap are not separated by this corpus — and because every subject answers
@@ -347,7 +351,7 @@ the subject's choice, which is why byte counts are repeated too.
 
 **Read this table with the retrieval one, or the cheapest memory looks like the best.** The two
 subjects that cost 39 bytes per question return *nothing*; efficiency achieved by silence is not
-efficiency. The best retriever (`memory-mcp-1file`, 22/30) is also among the most expensive per
+efficiency. The highest raw retriever (`memory-mcp-1file`, 43/60) is also among the most expensive per
 question at 34× the size of the answer. And one marketing claim survives measurement intact:
 `memory-lean` is genuinely lean — 164 bytes, 3×, and the fastest startup in the set.
 
@@ -388,7 +392,7 @@ conformance
   large_record    UNKNOWN(not-applicable)  adapter cannot measure record content
   4 kept, 3 unknown, 1 failed
 
-retrieval (36 records, 30 questions, cold start)
+retrieval (72 records, 60 questions, cold start)
   hit@3  easy 5/8  hard 0/8  adversarial 0/8  ->  all 5/30
   questions with no answer that were answered anyway: 0/6
 
@@ -471,7 +475,7 @@ success reply is honest about the write and silent about the loss.
   be counted exactly; a token estimate would be a guess wearing a number's clothes.
 - **Retrieval is repeated three times and is deterministic.** Every subject's `runs` column is a
   single number: three complete repetitions of the experiment moved nothing. An earlier draft of this
-  README blamed a 22/30 → 24/30 difference on instability; that difference was observed across two
+  README blamed a 22/30 → 24/30 difference on instability (both on the then thirty-question corpus); that difference was observed across two
   runs during which the harness itself was changing, which is not the same thing. Verified properly,
   zenbrain is 23/30 on four separate invocations and on all three in-run passes.
 - **Cost is repeated three times, and the ranges matter more than the medians.** memento's first
@@ -494,9 +498,9 @@ success reply is honest about the write and silent about the loss.
   failed once, and the evidence it printed contained a record written by a *different probe* in a
   *different store*. The flakiness is a downstream symptom of the isolation failure, which is the
   strongest argument for `isolation` running first.
-- **Retrieval numbers come with an interval, and the interval is the honest part.** 30 questions
+- **Retrieval numbers come with an interval, and the interval is the honest part.** 60 questions
   separates the ends of the table and not the middle. Every row carries a 95% Wilson interval, and
-  because every subject answers the *same* 30 questions, `compare.py` runs the paired test
+  because every subject answers the *same* 60 questions, `compare.py` runs the paired test
   (exact McNemar) that the marginal counts cannot replace:
 
   ```

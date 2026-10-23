@@ -1,5 +1,5 @@
 {
-  "why": "Thirty-six records in eight topic clusters, so a question about production can be answered wrongly with the staging record. Thirty questions in four bands: easy shares wording, hard is a paraphrase, adversarial has a near duplicate competing, absent has no answer and the correct behaviour is to return nothing. The absent band is the one that stops 'return everything' from scoring like a search.",
+  "why": "Seventy-two records in fourteen topic clusters, so a question about the production port can be answered wrongly with the staging one, and a question about the release freeze can be answered with the schema migration freeze. Sixty questions in four bands: easy shares wording, hard is a paraphrase, adversarial has a near duplicate competing, absent has no answer and the correct behaviour is to return nothing. The absent band is the one that stops 'return everything' from scoring like a search.",
   "records": [
     {
       "id": "key-deploy",
@@ -144,6 +144,150 @@
     {
       "id": "latency-slo",
       "text": "The service aims to answer ninety five percent of requests inside two hundred milliseconds."
+    },
+    {
+      "id": "auth-token-ttl",
+      "text": "Access tokens expire after fifteen minutes and must be refreshed."
+    },
+    {
+      "id": "auth-refresh",
+      "text": "The refresh token lasts thirty days and is rotated on every use."
+    },
+    {
+      "id": "auth-mfa",
+      "text": "Multi-factor authentication is required for every administrator account."
+    },
+    {
+      "id": "auth-password",
+      "text": "Passwords must be at least sixteen characters and are hashed with argon2."
+    },
+    {
+      "id": "auth-lockout",
+      "text": "An account locks for fifteen minutes after five failed sign-in attempts."
+    },
+    {
+      "id": "auth-session",
+      "text": "A session ends when the browser tab closes unless it was marked persistent."
+    },
+    {
+      "id": "net-dns-ttl",
+      "text": "DNS records are published with a five minute TTL so failover is quick."
+    },
+    {
+      "id": "net-vpn",
+      "text": "Engineers reach the staging network through a WireGuard tunnel."
+    },
+    {
+      "id": "net-firewall",
+      "text": "Inbound traffic is denied by default; only 443 and 22 are open."
+    },
+    {
+      "id": "net-cdn",
+      "text": "Static assets are served from the CDN edge with a one year cache."
+    },
+    {
+      "id": "net-mtu",
+      "text": "The tunnel MTU is set to 1380 to leave room for the encapsulation."
+    },
+    {
+      "id": "net-ipv6",
+      "text": "IPv6 is enabled on the public load balancer and disabled internally."
+    },
+    {
+      "id": "bill-terms",
+      "text": "Invoices are payable within thirty days of the issue date."
+    },
+    {
+      "id": "bill-cycle",
+      "text": "Customers are billed monthly on the anniversary of their signup."
+    },
+    {
+      "id": "bill-currency",
+      "text": "All invoices are issued in euros regardless of the customer's country."
+    },
+    {
+      "id": "bill-refund",
+      "text": "Refunds are processed within five working days of approval."
+    },
+    {
+      "id": "bill-dunning",
+      "text": "Three failed payment attempts suspend the account automatically."
+    },
+    {
+      "id": "bill-tax",
+      "text": "VAT is calculated at the rate of the customer's billing country."
+    },
+    {
+      "id": "ci-duration",
+      "text": "A full build takes eleven minutes on the shared runner."
+    },
+    {
+      "id": "ci-cache",
+      "text": "The dependency cache is keyed on the lock file hash and expires weekly."
+    },
+    {
+      "id": "rel-cadence",
+      "text": "A release is cut every second Thursday unless something is on fire."
+    },
+    {
+      "id": "rel-rollback",
+      "text": "A rollback is a redeploy of the previous image and takes ninety seconds."
+    },
+    {
+      "id": "rel-freeze",
+      "text": "No releases ship between the twentieth of December and the second of January."
+    },
+    {
+      "id": "rel-canary",
+      "text": "Every release reaches ten percent of traffic for one hour before going wide."
+    },
+    {
+      "id": "data-retention",
+      "text": "Customer records are deleted thirty days after account closure."
+    },
+    {
+      "id": "data-export",
+      "text": "A customer can request a full export of their data at any time."
+    },
+    {
+      "id": "data-backup-key",
+      "text": "Backups are encrypted at rest with a key held in the same vault as the signing key."
+    },
+    {
+      "id": "data-residency",
+      "text": "European customers are served only from European data centres."
+    },
+    {
+      "id": "data-anonymise",
+      "text": "Analytics events are stripped of identifiers before they leave the service."
+    },
+    {
+      "id": "data-audit",
+      "text": "Every read of personal data is written to an append-only audit log."
+    },
+    {
+      "id": "maint-window",
+      "text": "Maintenance happens on the first Sunday of each month between 02:00 and 04:00 UTC."
+    },
+    {
+      "id": "maint-notice",
+      "text": "Customers are told about planned maintenance seven days in advance."
+    },
+    {
+      "id": "maint-freeze",
+      "text": "Schema migrations are not run during the end of year freeze."
+    },
+    {
+      "id": "maint-drain",
+      "text": "A host is drained for twenty minutes before it is taken out of rotation."
+    },
+    {
+      "id": "maint-patching",
+      "text": "Operating system patches are applied within fourteen days of release."
+    },
+    {
+      "id": "maint-cert",
+      "text": "TLS certificates are renewed thirty days before they expire."
     }
   ],
   "queries": [
@@ -294,6 +438,156 @@
     },
     {
       "query": "when is the summer party",
+      "expect": null,
+      "difficulty": "absent"
+    },
+    {
+      "query": "access token fifteen minutes",
+      "expect": "auth-token-ttl",
+      "difficulty": "easy"
+    },
+    {
+      "query": "dns ttl five minute",
+      "expect": "net-dns-ttl",
+      "difficulty": "easy"
+    },
+    {
+      "query": "invoices payable thirty days",
+      "expect": "bill-terms",
+      "difficulty": "easy"
+    },
+    {
+      "query": "shared runner build eleven minutes",
+      "expect": "ci-duration",
+      "difficulty": "easy"
+    },
+    {
+      "query": "maintenance first sunday of each month",
+      "expect": "maint-window",
+      "difficulty": "easy"
+    },
+    {
+      "query": "account locks five failed sign in attempts",
+      "expect": "auth-lockout",
+      "difficulty": "easy"
+    },
+    {
+      "query": "wireguard tunnel staging network",
+      "expect": "net-vpn",
+      "difficulty": "easy"
+    },
+    {
+      "query": "refunds five working days",
+      "expect": "bill-refund",
+      "difficulty": "easy"
+    },
+    {
+      "query": "how long does a login stay valid before it must be renewed",
+      "expect": "auth-token-ttl",
+      "difficulty": "hard"
+    },
+    {
+      "query": "how quickly can traffic be switched away from a dead server",
+      "expect": "net-dns-ttl",
+      "difficulty": "hard"
+    },
+    {
+      "query": "which services can be reached from outside at all",
+      "expect": "net-firewall",
+      "difficulty": "hard"
+    },
+    {
+      "query": "when are customers actually charged",
+      "expect": "bill-cycle",
+      "difficulty": "hard"
+    },
+    {
+      "query": "how long does undoing a bad release take",
+      "expect": "rel-rollback",
+      "difficulty": "hard"
+    },
+    {
+      "query": "how long is personal data kept once someone leaves",
+      "expect": "data-retention",
+      "difficulty": "hard"
+    },
+    {
+      "query": "how much warning do customers get before we take the service down",
+      "expect": "maint-notice",
+      "difficulty": "hard"
+    },
+    {
+      "query": "when are security fixes installed on the hosts",
+      "expect": "maint-patching",
+      "difficulty": "hard"
+    },
+    {
+      "query": "how long does the refresh token last",
+      "expect": "auth-refresh",
+      "difficulty": "adversarial"
+    },
+    {
+      "query": "how long does an account stay locked after too many wrong passwords",
+      "expect": "auth-lockout",
+      "difficulty": "adversarial"
+    },
+    {
+      "query": "what is the tunnel mtu",
+      "expect": "net-mtu",
+      "difficulty": "adversarial"
+    },
+    {
+      "query": "how many days do customers have to pay an invoice",
+      "expect": "bill-terms",
+      "difficulty": "adversarial"
+    },
+    {
+      "query": "what happens after three failed payments",
+      "expect": "bill-dunning",
+      "difficulty": "adversarial"
+    },
+    {
+      "query": "when do we stop shipping releases for the year",
+      "expect": "rel-freeze",
+      "difficulty": "adversarial"
+    },
+    {
+      "query": "what share of users sees a new release first",
+      "expect": "rel-canary",
+      "difficulty": "adversarial"
+    },
+    {
+      "query": "how far ahead are certificates renewed",
+      "expect": "maint-cert",
+      "difficulty": "adversarial"
+    },
+    {
+      "query": "what is the name of the chief executive",
+      "expect": null,
+      "difficulty": "absent"
+    },
+    {
+      "query": "how many parking spaces are at the office",
+      "expect": null,
+      "difficulty": "absent"
+    },
+    {
+      "query": "what colour is the company logo",
+      "expect": null,
+      "difficulty": "absent"
+    },
+    {
+      "query": "who is responsible for the office plants",
+      "expect": null,
+      "difficulty": "absent"
+    },
+    {
+      "query": "what is the maximum holiday allowance",
+      "expect": null,
+      "difficulty": "absent"
+    },
+    {
+      "query": "which football team does the company sponsor",
       "expect": null,
       "difficulty": "absent"
     }

@@ -1398,3 +1398,75 @@ Adding subjects is not a way to accumulate green rows. Six of seven new packages
 measured, three of them for reasons that are themselves defects - a global store, an exclusive file
 lock, a server that will not start - and the two that could be measured both failed something. The
 matrix got more useful and less flattering at the same time.
+
+---
+
+# Addendum 12: doubling the corpus, and what it did not buy
+
+The retrieval corpus is now 72 records in fourteen clusters and 60 questions in the same four bands.
+Every retrieval number in this document is superseded, and all eleven subjects were re-measured
+against it with three repetitions each.
+
+## What changed
+
+```
+                       30 questions                60 questions
+memory-mcp-1file       22/30                      43/60
+zenbrain               23/30                      37/60
+control                13/30                      25/60
+memory-lean             6/30                      14/60
+memento                 8/30                      11/60
+memdb                   7/30                       6/60
+mcp-duckdb              -                          10/60
+server-memory 1.0/2.0   0/30                       0/60
+mcp-knowledge-graph     0/30                       0/60
+statecore               0/30                       0/60
+```
+
+The separations from the floor got much stronger, because there is twice as much evidence for them:
+
+```
+zenbrain     vs memdb   31-0 discordant,  p < 0.0001   separated
+control      vs memdb   31-0 discordant,  p < 0.0001   separated
+memory-lean  vs memdb   20-0 discordant,  p < 0.0001   separated
+```
+
+## What it did not buy
+
+**The two best retrievers are still not separated.** That was the whole reason for doubling the
+corpus:
+
+```
+memory-mcp-1file vs zenbrain   10-4 discordant,  p = 0.18   not separated
+```
+
+Sixty questions establishes that both are far better than memdb and does not establish which of them
+is better than the other. Their independent intervals overlap too (36-49 against 29-44), so this is
+not an artefact of the marginal test.
+
+The reason is visible in the bands. Both answer every easy question and most adversarial ones; they
+diverge on the twelve `hard` paraphrases and disagree on only ten questions overall. A corpus
+separates two systems in proportion to how differently they fail, and these two fail alike.
+
+## The lesson, stated plainly
+
+A corpus written by one person separates **"answers at all" from "answers nothing"** very easily -
+that gap is 43 against 0 and it will survive any amount of shuffling. It does not separate two
+systems that both answer, because it takes a large number of questions that happen to sit on their
+particular disagreements, and I cannot see where those are without already knowing the answer.
+
+That is the argument for the questions being written by somebody else, and it is not a thing more
+work by me can fix. The corpus is in `retrieval_corpus.json`; a second author's questions can be added
+to it and re-measured with one command.
+
+## Two numbers that were wrong in three places each
+
+The corpus size was written out in prose in `matrix.py`, `check.py` and `README.md`. Doubling the
+corpus falsified all three at once, and none of them was noticed until the tables were regenerated.
+They now read the size from `retrieval_corpus.json`, because a number that describes the instrument
+should come from the instrument.
+
+`sync_readme.py` is now a permanent tool rather than something rewritten each time: it puts the live
+output of `matrix.py --report-only` into the README's table block. That block had already drifted a
+subject behind when this was written, and hand-syncing documentation is a thing that fails silently
+and then reports itself as true.

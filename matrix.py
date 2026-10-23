@@ -45,6 +45,20 @@ def wilson(k, n, z=1.96):
 
 
 PROBE_REPEAT = 3
+def corpus_size():
+    """How many records and questions the retrieval corpus holds, read rather than remembered.
+
+    Three files used to state "36 records" in prose, and doubling the corpus silently falsified all
+    three. A number that describes the instrument should come from the instrument.
+    """
+    path = os.path.join(HERE, "retrieval_corpus.json")
+    if not os.path.isfile(path):
+        return (0, 0)
+    with open(path, encoding="utf-8") as fh:
+        doc = json.load(fh)
+    return (len(doc.get("records") or []), len(doc.get("queries") or []))
+
+
 RETRIEVAL_REPEAT = 3
 COST_REPEAT = 3
 # The cost metrics whose movement is a statement about the subject. Process spawn and restart are
@@ -256,9 +270,12 @@ def main(argv):
 
     # --- second axis -------------------------------------------------------
     print()
-    print("retrieval, cold start, 36 records - a score, not a verdict. hit@3 per band: easy shares")
-    print("wording with the answer, hard is a paraphrase, adversarial has a near duplicate competing.")
-    print("'noans' is questions with no answer in the store that were answered anyway: 0 is right.")
+    n_rec, n_q = corpus_size()
+    print("retrieval, cold start, %d records and %d questions - a score, not a verdict. hit@3 per"
+          % (n_rec, n_q))
+    print("per band - easy shares wording with the answer, hard is a paraphrase, adversarial has a")
+    print("near duplicate competing. 'noans' is questions with no answer that were answered anyway;")
+    print("0 is right.")
     header2 = "%-*s %-7s %-7s %-7s %-8s %-8s %-7s %-9s %s" % (
         W, "subject", "easy", "hard", "adver", "all h1", "all h3", "noans", "runs", "95%")
     print(header2)
@@ -289,7 +306,8 @@ def main(argv):
     print("'runs' is the min-max of the same experiment repeated %d times; '95%%' is the Wilson"
           % RETRIEVAL_REPEAT)
     print("interval for the majority result, in counts. The first covers repeating the experiment,")
-    print("the second covers asking a different thirty questions. They are not the same error.")
+    print("the second covers asking a different set of %d questions. They are not the same error."
+          % n_q)
 
     # --- third axis --------------------------------------------------------
     print()
@@ -331,7 +349,8 @@ def main(argv):
         fh.write(chr(10) + "Cells in parentheses belong to a subject that failed `isolation`; its"
                  " other verdicts describe leaked state." + chr(10))
         fh.write(chr(10) + "## Retrieval: a score, not a verdict" + chr(10) + chr(10))
-        fh.write("36 records, 30 questions, cold start. hit@3 per band; \"easy\" shares wording with"
+        fh.write("%d records, %d questions, cold start. hit@3 per band; \"easy\" shares wording with"
+                 % (n_rec, n_q) +
                  " its answer, \"hard\" is a paraphrase, \"adversarial\" has a near duplicate competing."
                  " \"noans\" is questions with no answer in the store that were answered anyway." + chr(10) + chr(10))
         fh.write("| subject | easy h3 | hard h3 | adversarial h3 | all h1 | all h3 | no-answer answered"

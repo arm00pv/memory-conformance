@@ -2,52 +2,52 @@
   "adapter": "memento",
   "summary": {
     "easy": {
-      "n": 8,
+      "n": 16,
       "hit1": 1,
-      "hit3": 2,
+      "hit3": 3,
       "runs": [
-        2,
-        2,
-        2
+        3,
+        3,
+        3
       ]
     },
     "hard": {
-      "n": 8,
+      "n": 16,
       "hit1": 0,
-      "hit3": 2,
+      "hit3": 3,
       "runs": [
-        2,
-        2,
-        2
+        3,
+        3,
+        3
       ]
     },
     "adversarial": {
-      "n": 8,
-      "hit1": 1,
-      "hit3": 4,
+      "n": 16,
+      "hit1": 2,
+      "hit3": 5,
       "runs": [
-        4,
-        4,
-        4
+        5,
+        5,
+        5
       ]
     },
     "absent": {
-      "n": 6,
-      "answered": 6,
+      "n": 12,
+      "answered": 12,
       "runs": [
-        6,
-        6,
-        6
+        12,
+        12,
+        12
       ]
     },
     "all": {
-      "n": 30,
-      "hit1": 2,
-      "hit3": 8,
+      "n": 60,
+      "hit1": 3,
+      "hit3": 11,
       "runs": [
-        8,
-        8,
-        8
+        11,
+        11,
+        11
       ]
     }
   },
@@ -83,9 +83,9 @@
       "expect": "key-deploy",
       "difficulty": "easy",
       "returned": [
-        "alert-replication",
-        "crlf-binary",
-        "db-pool"
+        "auth-refresh",
+        "ci-cache",
+        "crlf-binary"
       ],
       "hit1": false,
       "hit3": false,
@@ -161,9 +161,9 @@
       "expect": "mem-lock",
       "difficulty": "easy",
       "returned": [
-        "alert-disk",
-        "corpus-false-positive",
-        "db-replica"
+        "auth-lockout",
+        "auth-password",
+        "ci-cache"
       ],
       "hit1": false,
       "hit3": false,
@@ -188,8 +188,8 @@
       "difficulty": "easy",
       "returned": [
         "alert-replication",
-        "backup-restore-test",
-        "budget"
+        "auth-password",
+        "auth-refresh"
       ],
       "hit1": false,
       "hit3": false,
@@ -213,9 +213,9 @@
       "expect": "hosts-three",
       "difficulty": "easy",
       "returned": [
-        "alert-silence",
+        "auth-token-ttl",
         "budget",
-        "db-pool"
+        "data-backup-key"
       ],
       "hit1": false,
       "hit3": false,
@@ -240,18 +240,18 @@
       "difficulty": "easy",
       "returned": [
         "alert-replication",
-        "corpus-size",
-        "corpus-speed"
+        "auth-lockout",
+        "bill-refund"
       ],
       "hit1": false,
-      "hit3": true,
+      "hit3": false,
       "answered": true,
       "error": null,
       "per_run": {
         "hit3": [
-          true,
-          true,
-          true
+          false,
+          false,
+          false
         ],
         "answered": [
           true,
@@ -265,7 +265,7 @@
       "expect": "backup-retention",
       "difficulty": "hard",
       "returned": [
-        "alert-replication",
+        "auth-refresh",
         "backup-offsite",
         "backup-retention"
       ],
@@ -293,7 +293,7 @@
       "returned": [
         "alert-replication",
         "alert-silence",
-        "corpus-false-positive"
+        "bill-dunning"
       ],
       "hit1": false,
       "hit3": false,
@@ -317,9 +317,9 @@
       "expect": "key-signing",
       "difficulty": "hard",
       "returned": [
-        "crlf-binary",
-        "hosts-pi",
-        "hosts-throne"
+        "auth-password",
+        "ci-cache",
+        "data-backup-key"
       ],
       "hit1": false,
       "hit3": false,
@@ -343,9 +343,9 @@
       "expect": "db-replica",
       "difficulty": "hard",
       "returned": [
-        "alert-replication",
         "backup-offsite",
-        "backup-retention"
+        "backup-retention",
+        "data-backup-key"
       ],
       "hit1": false,
       "hit3": false,
@@ -369,9 +369,9 @@
       "expect": "region",
       "difficulty": "hard",
       "returned": [
-        "backup-offsite",
-        "backup-retention",
-        "key-signing"
+        "data-anonymise",
+        "data-backup-key",
+        "data-export"
       ],
       "hit1": false,
       "hit3": false,
@@ -395,7 +395,7 @@
       "expect": "pii",
       "difficulty": "hard",
       "returned": [
-        "alert-silence",
+        "auth-password",
         "corpus-false-positive",
         "corpus-speed"
       ],
@@ -421,9 +421,9 @@
       "expect": "db-pool",
       "difficulty": "hard",
       "returned": [
-        "alert-replication",
-        "budget",
-        "crlf-binary"
+        "auth-mfa",
+        "auth-password",
+        "auth-session"
       ],
       "hit1": false,
       "hit3": false,
@@ -448,18 +448,18 @@
       "difficulty": "hard",
       "returned": [
         "alert-replication",
-        "backup-restore-test",
-        "budget"
+        "auth-refresh",
+        "auth-token-ttl"
       ],
       "hit1": false,
-      "hit3": true,
+      "hit3": false,
       "answered": true,
       "error": null,
       "per_run": {
         "hit3": [
-          true,
-          true,
-          true
+          false,
+          false,
+          false
         ],
         "answered": [
           true,
@@ -499,9 +499,9 @@
       "expect": "key-deploy-old",
       "difficulty": "adversarial",
       "returned": [
-        "alert-replication",
-        "backup-retention",
-        "key-deploy"
+        "auth-refresh",
+        "auth-token-ttl",
+        "ci-cache"
       ],
       "hit1": false,
       "hit3": false,
@@ -525,9 +525,9 @@
       "expect": "key-signing",
       "difficulty": "adversarial",
       "returned": [
-        "crlf-binary",
-        "hosts-three",
-        "hosts-throne"
+        "auth-session",
+        "ci-cache",
+        "data-backup-key"
       ],
       "hit1": false,
       "hit3": false,
@@ -551,19 +551,19 @@
       "expect": "backup-retention",
       "difficulty": "adversarial",
       "returned": [
-        "alert-replication",
-        "backup-offsite",
-        "backup-retention"
+        "auth-refresh",
+        "auth-token-ttl",
+        "backup-offsite"
       ],
       "hit1": false,
-      "hit3": true,
+      "hit3": false,
       "answered": true,
       "error": null,
       "per_run": {
         "hit3": [
-          true,
-          true,
-          true
+          false,
+          false,
+          false
         ],
         "answered": [
           true,
@@ -579,7 +579,7 @@
       "returned": [
         "backup-offsite",
         "crlf-binary",
-        "db-pool"
+        "data-audit"
       ],
       "hit1": false,
       "hit3": false,
@@ -603,19 +603,19 @@
       "expect": "alert-disk",
       "difficulty": "adversarial",
       "returned": [
-        "alert-disk",
         "alert-replication",
-        "corpus-speed"
+        "auth-lockout",
+        "auth-token-ttl"
       ],
-      "hit1": true,
-      "hit3": true,
+      "hit1": false,
+      "hit3": false,
       "answered": true,
       "error": null,
       "per_run": {
         "hit3": [
-          true,
-          true,
-          true
+          false,
+          false,
+          false
         ],
         "answered": [
           true,
@@ -655,9 +655,9 @@
       "expect": "mem-store-path",
       "difficulty": "adversarial",
       "returned": [
-        "backup-retention",
-        "db-port-prod",
-        "db-port-staging"
+        "data-audit",
+        "data-export",
+        "data-retention"
       ],
       "hit1": false,
       "hit3": false,
@@ -681,9 +681,9 @@
       "expect": null,
       "difficulty": "absent",
       "returned": [
-        "crlf-binary",
-        "db-pool",
-        "hosts-pi"
+        "auth-mfa",
+        "auth-password",
+        "ci-cache"
       ],
       "hit1": false,
       "hit3": false,
@@ -707,9 +707,9 @@
       "expect": null,
       "difficulty": "absent",
       "returned": [
+        "bill-cycle",
         "budget",
-        "db-pool",
-        "hosts-three"
+        "data-audit"
       ],
       "hit1": false,
       "hit3": false,
@@ -733,9 +733,9 @@
       "expect": null,
       "difficulty": "absent",
       "returned": [
-        "backup-offsite",
-        "crlf-binary",
-        "db-pool"
+        "data-anonymise",
+        "data-backup-key",
+        "data-export"
       ],
       "hit1": false,
       "hit3": false,
@@ -759,9 +759,9 @@
       "expect": null,
       "difficulty": "absent",
       "returned": [
-        "budget",
-        "crlf-binary",
-        "crlf-git"
+        "bill-currency",
+        "bill-cycle",
+        "bill-terms"
       ],
       "hit1": false,
       "hit3": false,
@@ -786,8 +786,8 @@
       "difficulty": "absent",
       "returned": [
         "alert-replication",
-        "corpus-false-positive",
-        "hosts-throne"
+        "auth-password",
+        "ci-cache"
       ],
       "hit1": false,
       "hit3": false,
@@ -811,9 +811,789 @@
       "expect": null,
       "difficulty": "absent",
       "returned": [
+        "auth-session",
         "backup-restore-test",
-        "budget",
+        "bill-cycle"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "access token fifteen minutes",
+      "expect": "auth-token-ttl",
+      "difficulty": "easy",
+      "returned": [
+        "alert-replication",
+        "auth-lockout",
+        "auth-refresh"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "dns ttl five minute",
+      "expect": "net-dns-ttl",
+      "difficulty": "easy",
+      "returned": [
+        "alert-replication",
+        "auth-lockout",
+        "auth-token-ttl"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "invoices payable thirty days",
+      "expect": "bill-terms",
+      "difficulty": "easy",
+      "returned": [
+        "auth-refresh",
+        "bill-currency",
+        "bill-refund"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "shared runner build eleven minutes",
+      "expect": "ci-duration",
+      "difficulty": "easy",
+      "returned": [
+        "alert-replication",
+        "auth-token-ttl",
+        "ci-duration"
+      ],
+      "hit1": false,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "maintenance first sunday of each month",
+      "expect": "maint-window",
+      "difficulty": "easy",
+      "returned": [
+        "alert-silence",
+        "backup-restore-test",
+        "budget"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "account locks five failed sign in attempts",
+      "expect": "auth-lockout",
+      "difficulty": "easy",
+      "returned": [
+        "alert-replication",
+        "auth-lockout",
+        "auth-mfa"
+      ],
+      "hit1": false,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "wireguard tunnel staging network",
+      "expect": "net-vpn",
+      "difficulty": "easy",
+      "returned": [
+        "crlf-binary",
+        "db-pool",
+        "db-port-prod"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "refunds five working days",
+      "expect": "bill-refund",
+      "difficulty": "easy",
+      "returned": [
+        "alert-replication",
+        "auth-lockout",
+        "auth-refresh"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "how long does a login stay valid before it must be renewed",
+      "expect": "auth-token-ttl",
+      "difficulty": "hard",
+      "returned": [
+        "auth-lockout",
+        "auth-refresh",
+        "auth-token-ttl"
+      ],
+      "hit1": false,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "how quickly can traffic be switched away from a dead server",
+      "expect": "net-dns-ttl",
+      "difficulty": "hard",
+      "returned": [
+        "alert-replication",
+        "alert-silence",
+        "data-anonymise"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "which services can be reached from outside at all",
+      "expect": "net-firewall",
+      "difficulty": "hard",
+      "returned": [
+        "auth-token-ttl",
+        "data-anonymise",
+        "data-export"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "when are customers actually charged",
+      "expect": "bill-cycle",
+      "difficulty": "hard",
+      "returned": [
+        "bill-currency",
+        "bill-cycle",
+        "bill-tax"
+      ],
+      "hit1": false,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "how long does undoing a bad release take",
+      "expect": "rel-rollback",
+      "difficulty": "hard",
+      "returned": [
+        "alert-replication",
+        "auth-refresh",
+        "auth-token-ttl"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "how long is personal data kept once someone leaves",
+      "expect": "data-retention",
+      "difficulty": "hard",
+      "returned": [
+        "backup-retention",
+        "ci-cache",
+        "data-anonymise"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "how much warning do customers get before we take the service down",
+      "expect": "maint-notice",
+      "difficulty": "hard",
+      "returned": [
+        "alert-silence",
+        "bill-cycle",
+        "data-anonymise"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "when are security fixes installed on the hosts",
+      "expect": "maint-patching",
+      "difficulty": "hard",
+      "returned": [
+        "backup-offsite",
+        "backup-retention",
+        "budget"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "how long does the refresh token last",
+      "expect": "auth-refresh",
+      "difficulty": "adversarial",
+      "returned": [
+        "auth-refresh",
+        "auth-token-ttl",
+        "ci-cache"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "how long does an account stay locked after too many wrong passwords",
+      "expect": "auth-lockout",
+      "difficulty": "adversarial",
+      "returned": [
+        "auth-lockout",
+        "auth-password",
+        "auth-refresh"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "what is the tunnel mtu",
+      "expect": "net-mtu",
+      "difficulty": "adversarial",
+      "returned": [
+        "auth-mfa",
+        "backup-offsite",
+        "hosts-three"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "how many days do customers have to pay an invoice",
+      "expect": "bill-terms",
+      "difficulty": "adversarial",
+      "returned": [
+        "auth-refresh",
+        "bill-currency",
+        "bill-cycle"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "what happens after three failed payments",
+      "expect": "bill-dunning",
+      "difficulty": "adversarial",
+      "returned": [
+        "alert-replication",
+        "auth-lockout",
+        "bill-dunning"
+      ],
+      "hit1": false,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "when do we stop shipping releases for the year",
+      "expect": "rel-freeze",
+      "difficulty": "adversarial",
+      "returned": [
+        "corpus-false-positive",
+        "crlf-git",
+        "key-root"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "what share of users sees a new release first",
+      "expect": "rel-canary",
+      "difficulty": "adversarial",
+      "returned": [
+        "auth-refresh",
+        "auth-token-ttl",
+        "db-replica"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "how far ahead are certificates renewed",
+      "expect": "maint-cert",
+      "difficulty": "adversarial",
+      "returned": [
+        "auth-refresh",
+        "auth-token-ttl",
+        "corpus-speed"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "what is the name of the chief executive",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [
+        "auth-mfa",
+        "data-anonymise",
+        "data-export"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "how many parking spaces are at the office",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [
+        "crlf-binary",
+        "data-backup-key",
         "db-pool"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "what colour is the company logo",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [
+        "auth-refresh",
+        "bill-currency",
+        "bill-terms"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "who is responsible for the office plants",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [
+        "auth-mfa",
+        "crlf-binary",
+        "data-backup-key"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "what is the maximum holiday allowance",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [
+        "auth-refresh",
+        "bill-terms",
+        "budget"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "which football team does the company sponsor",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [
+        "bill-cycle",
+        "budget",
+        "crlf-binary"
       ],
       "hit1": false,
       "hit3": false,

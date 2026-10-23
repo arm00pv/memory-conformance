@@ -2,17 +2,17 @@
   "adapter": "auto",
   "summary": {
     "easy": {
-      "n": 8,
-      "hit1": 5,
-      "hit3": 5,
+      "n": 16,
+      "hit1": 8,
+      "hit3": 8,
       "runs": [
-        5,
-        5,
-        5
+        8,
+        8,
+        8
       ]
     },
     "hard": {
-      "n": 8,
+      "n": 16,
       "hit1": 0,
       "hit3": 0,
       "runs": [
@@ -22,17 +22,17 @@
       ]
     },
     "adversarial": {
-      "n": 8,
-      "hit1": 0,
-      "hit3": 0,
+      "n": 16,
+      "hit1": 2,
+      "hit3": 2,
       "runs": [
-        0,
-        0,
-        0
+        2,
+        2,
+        2
       ]
     },
     "absent": {
-      "n": 6,
+      "n": 12,
       "answered": 0,
       "runs": [
         0,
@@ -41,13 +41,13 @@
       ]
     },
     "all": {
-      "n": 30,
-      "hit1": 5,
-      "hit3": 5,
+      "n": 60,
+      "hit1": 10,
+      "hit3": 10,
       "runs": [
-        5,
-        5,
-        5
+        10,
+        10,
+        10
       ]
     }
   },
@@ -705,6 +705,678 @@
     },
     {
       "query": "when is the summer party",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "access token fifteen minutes",
+      "expect": "auth-token-ttl",
+      "difficulty": "easy",
+      "returned": [
+        "auth-lockout"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "dns ttl five minute",
+      "expect": "net-dns-ttl",
+      "difficulty": "easy",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "invoices payable thirty days",
+      "expect": "bill-terms",
+      "difficulty": "easy",
+      "returned": [
+        "bill-terms"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "shared runner build eleven minutes",
+      "expect": "ci-duration",
+      "difficulty": "easy",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "maintenance first sunday of each month",
+      "expect": "maint-window",
+      "difficulty": "easy",
+      "returned": [
+        "maint-window"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "account locks five failed sign in attempts",
+      "expect": "auth-lockout",
+      "difficulty": "easy",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "wireguard tunnel staging network",
+      "expect": "net-vpn",
+      "difficulty": "easy",
+      "returned": [
+        "net-vpn"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "refunds five working days",
+      "expect": "bill-refund",
+      "difficulty": "easy",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "how long does a login stay valid before it must be renewed",
+      "expect": "auth-token-ttl",
+      "difficulty": "hard",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "how quickly can traffic be switched away from a dead server",
+      "expect": "net-dns-ttl",
+      "difficulty": "hard",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "which services can be reached from outside at all",
+      "expect": "net-firewall",
+      "difficulty": "hard",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "when are customers actually charged",
+      "expect": "bill-cycle",
+      "difficulty": "hard",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "how long does undoing a bad release take",
+      "expect": "rel-rollback",
+      "difficulty": "hard",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "how long is personal data kept once someone leaves",
+      "expect": "data-retention",
+      "difficulty": "hard",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "how much warning do customers get before we take the service down",
+      "expect": "maint-notice",
+      "difficulty": "hard",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "when are security fixes installed on the hosts",
+      "expect": "maint-patching",
+      "difficulty": "hard",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "how long does the refresh token last",
+      "expect": "auth-refresh",
+      "difficulty": "adversarial",
+      "returned": [
+        "auth-refresh"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "how long does an account stay locked after too many wrong passwords",
+      "expect": "auth-lockout",
+      "difficulty": "adversarial",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "what is the tunnel mtu",
+      "expect": "net-mtu",
+      "difficulty": "adversarial",
+      "returned": [
+        "net-mtu"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "how many days do customers have to pay an invoice",
+      "expect": "bill-terms",
+      "difficulty": "adversarial",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "what happens after three failed payments",
+      "expect": "bill-dunning",
+      "difficulty": "adversarial",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "when do we stop shipping releases for the year",
+      "expect": "rel-freeze",
+      "difficulty": "adversarial",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "what share of users sees a new release first",
+      "expect": "rel-canary",
+      "difficulty": "adversarial",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "how far ahead are certificates renewed",
+      "expect": "maint-cert",
+      "difficulty": "adversarial",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "what is the name of the chief executive",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "how many parking spaces are at the office",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "what colour is the company logo",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "who is responsible for the office plants",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "what is the maximum holiday allowance",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "which football team does the company sponsor",
       "expect": null,
       "difficulty": "absent",
       "returned": [],
