@@ -3,9 +3,11 @@
     "note": "defects looked at and accepted, so that a new one fails the build",
     "errors": [
       "6 record(s) answer more than one question: auth-lockout, auth-token-ttl, backup-retention, bill-terms, key-signing, net-dns-ttl",
-      "adversarial question 'which host is used only for the always on collector' competes with nothing: no other record carries any of the words it shares with 'hosts-pi' (alway, collector), so this is a hard question labelled adversarial",
+      "adversarial question 'which host is used only for the always on collector' competes with nothing: no other record carries any of the words it shares with 'hosts-pi' (collector), so this is a hard question labelled adversarial",
       "adversarial question \"can two stores see each other's records\" competes with nothing: no other record carries any of the words it shares with 'mem-store-path' (see, store), so this is a hard question labelled adversarial",
-      "adversarial question 'how far ahead are certificates renewed' competes with nothing: no other record carries any of the words it shares with 'maint-cert' (certificate, renewed), so this is a hard question labelled adversarial"
+      "adversarial question 'how far ahead are certificates renewed' competes with nothing: no other record carries any of the words it shares with 'maint-cert' (certificate, renewed), so this is a hard question labelled adversarial",
+      "hard question 'which key is kept inside specialised hardware' shares 2 words with 'key-signing' (hardware, key) - a keyword match, not a paraphrase",
+      "hard question 'where is customer data physically held' shares 2 words with 'region' (customer, data) - a keyword match, not a paraphrase"
     ]
   }
 }

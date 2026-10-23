@@ -1678,3 +1678,123 @@ replicated by another" to a measured instrument:
 - the absent band as a score, not a column: "of the questions that have no answer, how many did it
   decline", with the same weight as hit@3, so that a system that answers everything cannot sit at the
   top of a recall table without paying for it.
+
+---
+
+## Addendum 14: the same question, asked two ways
+
+Addendum 13 ended by saying the next corpus should ask each fact in both shapes. This is that, done
+mechanically instead of by authoring a third question set - because a corpus always carries its author's
+phrasing, and asking the same words twice does not.
+
+### The mechanism
+
+`words.py` now holds the only tokenizer this repository has, used by the corpus validator and by
+the retrieval harness, because two tools disagreeing about which words carry meaning is how a repository
+contradicts itself. `keyword_form()` takes a question and drops the words that cannot distinguish
+one record from another: "What is the maximum permitted speed on the Estuary Line?" becomes "maximum
+permitted speed estuary line".
+
+With `--shapes` on - now the default for every retrieval run - each question is put twice inside the
+SAME pass: same store, same restart, same tool binding, same three repetitions. Anything that differs
+between the two answers is the phrasing, and nothing else.
+
+### The result
+
+Correct answers, the metric the paired test uses: the right record in the top three, or silence on a
+question that has no answer. That is not MATRIX.md's hit@3 column, which counts hits only, so a subject
+that finds nothing but declines all twelve unanswerable questions is 12 here and 0 there.
+
+| subject | A as written | A as keywords | B as written | B as keywords |
+|---|---|---|---|---|
+| memory-mcp-1file 0.9.2 | 43 | **43** | 45 | **37** |
+| control 1.0.0 | 37 | **41** | 44 | **44** |
+| zenbrain 0.3.0 | 37 | **32** | 33 | **34** |
+| memory-lean 1.5.0 | 26 | **30** | 12 | **28** |
+| mcp-duckdb-memory-server 1.1.10 | 22 | **22** | 25 | **29** |
+| memento 0.7.0 | 11 | **10** | 19 | **17** |
+| server-memory 1.0.0, 2.0.0, mcp-knowledge-graph 1.3.2 | 12 | **14** | 12 | **14** |
+| memdb 1.4.0 | 6 | **29** | 2 | **16** |
+| statecore-mcp 1.0.0 | 0 | **0** | 12 | **12** |
+
+Eight of eleven subjects score differently on corpus A and nine of eleven on corpus B. Fifty-nine and
+sixty-one question outcomes respectively change with nothing changing but the words used to ask. The
+rank correlation between the two phrasings is 0.86 and 0.81.
+
+### Two of these are lookup tables wearing a search interface
+
+memdb goes from 6 to 29 on corpus A and 2 to 16 on corpus B when the questions are put as words.
+memory-lean goes from 12 to 28 on corpus B - the same subject whose 14/60 against 0/60 across the two
+corpora looked like a bug in Addendum 13. Neither is inconsistent; both need the user to type the words
+rather than ask the question.
+
+That is a product property and not a defect, and one hit@3 number cannot say it. "memdb finds 6 of 60"
+and "memdb finds 29 of 60" are the same system measured twice, and the difference is who is typing.
+
+### The one that goes the other way
+
+memory-mcp-1file is unchanged on corpus A (43 to 43) and loses eight on corpus B (45 to 37) when the
+words are stripped, seven of them in the hard band: 13 of 16 paraphrases as questions, 6 as keywords.
+So its advantage over zenbrain is real, is concentrated in the band where a paraphrase has to be
+understood rather than matched, AND NEEDS TO BE ASKED AS A QUESTION TO APPEAR. Put the same corpus B
+questions as keywords and the gap goes with it: 5-2, p = 0.45.
+
+Which decides the top-two claim in both directions, and the direction never reverses while the verdict
+does:
+
+| | as written | as keywords |
+|---|---|---|
+| corpus A | 10-4, p = 0.18, not separated | 13-2, p = 0.0074, separated |
+| corpus B | 12-0, p = 0.0005, separated | 5-2, p = 0.45, not separated |
+
+### One comparison that is meaningless without a phrasing
+
+memdb against memento, the same two subjects, the same two corpora:
+
+| | as written | as keywords |
+|---|---|---|
+| corpus A | 6-11, not separated | 25-6, separated for memdb |
+| corpus B | 2-19, separated for memento | 13-14, tied |
+
+Every possible answer appears. Nothing about either subject changed; the phrasing moved 50 questions.
+A table of one phrasing cannot express this, and every earlier table in this project was read as though
+it could.
+
+### It reproduced, with one exception that is itself a finding
+
+Every result was re-measured from scratch after the change, and MATRIX.md regenerated from the new
+results is byte-identical to the committed one: 72 probe verdicts, nine subjects, three passes each, and
+every retrieval score, all reproduced on a later day with a harness that asks twice as many questions.
+
+The exception is memory-mcp-1file's corpus-B total, which came back 44 on one invocation and 45 on two
+later ones. That is the discovery-bound binding already recorded in Addendum 11: inside one invocation
+the three passes agree exactly, and between invocations AutoAdapter may bind a different one of the
+subject's several search tools. A number that depends on which tool discovery happened to pick is quoted
+with that in mind.
+
+### Three more of my own mistakes
+
+6. The stopword list never contained **and**, **or**, **but**, **if**, **because** or **while**. A
+   conjunction was being counted as a word that distinguishes one record from another, which is enough
+   for two unrelated records to look like they compete for the same words - the exact test the
+   adversarial band rests on - and it put "and" into every derived keyword string. The list is fixed and
+   is now the only copy in the repository.
+7. **The hard band was never checked.** Every other band had a mechanical check; this one had a sentence,
+   "a paraphrase that shares almost nothing with the wording of the answer". Counting it found two corpus
+   A questions that share two words with their own answer - "where is customer data physically held"
+   against a record that says "customer data" - which are keyword questions wearing a paraphrase's
+   label. Both flattered the leader: memory-mcp-1file is 13/16 on the labelled band and 11/14 with them
+   set aside. The threshold (at most one shared word) is written into the check, and it was chosen after
+   measuring both corpora, which is worth knowing when reading it.
+8. **A killed job kept running.** I stopped the first measurement, but the python process it started did
+   not stop with it, and the next run's log redirect failed on the file the orphan still held. The job
+   status said "completed"; the process table said otherwise, and the orphan was still overwriting
+   results with keyword strings built from the pre-fix stopword list. The same lesson this document keeps
+   recording, now about my own tooling: a report of completion is not evidence of it.
+
+### What the table means now
+
+A retrieval score is now a pair, and the pair is the measurement. "memdb 6/60" is not a fact about memdb;
+"6/60 asked as written, 29/60 asked as keywords" is. The next thing to fix is not the corpus and not the
+phrasing: it is that the two numbers travel together into every table and every claim, and that neither
+of them is ever the silently chosen one.

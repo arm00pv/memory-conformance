@@ -543,15 +543,20 @@ success reply is honest about the write and silent about the loss.
   subject's recall advantage concentrated in the hard band (13 of 16 on both corpora). What did not: five
   of the ten neighbouring pairs, including the second-place subject against the positive control.
   `validate_corpus.py` now checks the corpus itself - unique ids, one answer per question, no
-  unanswerable question covered by a record, a real competitor behind every adversarial question - and
-  it found four defects in the corpus every earlier number was computed from. They are pinned in
-  `corpus-known.json`: a new one fails the build, and a pinned one that stops reproducing is reported
-  as drift.
-- **The corpus asks each fact in one shape only.** Corpus A's easy band is written as keyword strings
-  ("access token fifteen minutes"), corpus B's as questions ("How long does an access token last?"). For
-  a subject whose search matches words, that difference is worth 14 of 60 questions - memory-lean scores
-  14/60 on one and 0/60 on the other, and a six-query controlled test reproduces the mechanism in a
-  minute. Bands that ask each fact both ways would separate matching from ranking; this corpus does not.
+  unanswerable question covered by a record, a real competitor behind every adversarial question, and
+  every hard question genuinely paraphrased rather than sharing its answer's words - and it found six
+  defects in the corpus every earlier number was computed from. They are pinned in `corpus-known.json`:
+  a new one fails the build, and a pinned one that stops reproducing is reported as drift. Two of the
+  six are hard-band questions that share two words with their own answer ("where is customer data
+  physically held" against a record that says "customer data"), which is a keyword question wearing a
+  paraphrase's label.
+- **Every question is now asked twice, and that is the point.** Corpus A's easy band is written as
+  keyword strings ("access token fifteen minutes"), corpus B's as questions ("How long does an access
+  token last?"). For a subject whose search matches words, that difference is worth 14 of 60 questions -
+  memory-lean scores 14/60 on one and 0/60 on the other. So `retrieval.py` asks each question again with
+  the meaningless words removed, in the same pass and on the same store, and `shape.py` reports the gap:
+  the same question asked two ways, with the difference belonging to the server rather than to whoever
+  wrote the corpus. See `SHAPE.md`.
 - **`python matrix.py --report-only`** re-renders both tables from the reports already under
   `results/` without re-running a subject. A verdict is worth little if the table around it can only
   be produced by a twenty-minute run.

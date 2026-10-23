@@ -59,3 +59,5 @@ Measured once per subject with nothing else running. "resp" is the median bytes 
 ## Replication
 
 The same subjects on a second corpus, written by an author who never saw this one, are compared in `REPLICATION.md`. Five of the ten neighbouring pairs in the retrieval table do not reach the same conclusion on both, so a separation there holds for this question set until a third corpus agrees.
+
+The retrieval score is also a pair: every question is asked again with the words that carry no meaning removed, and `SHAPE.md` reports the gap. One subject moves by twenty-three questions out of sixty when only the phrasing changes and two more by fourteen or more, so a hit@3 number without its phrasing is half a measurement.

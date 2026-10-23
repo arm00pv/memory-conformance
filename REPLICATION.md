@@ -14,7 +14,7 @@ are NOT comparable as numbers - they count answers to different questions. The o
 | memory-lean 1.5.0               | 14/60 | **0/60** | 0/16 | 0/16 | 0/16 | 0/12 |
 | mcp-knowledge-graph 1.3.2       | 0/60 | **0/60** | 0/16 | 0/16 | 0/16 | 0/12 |
 | zenbrain 0.3.0                  | 37/60 | **33/60** | 16/16 | 2/16 | 15/16 | 12/12 |
-| memory-mcp-1file 0.9.2          | 43/60 | **44/60** | 16/16 | 13/16 | 15/16 | 12/12 |
+| memory-mcp-1file 0.9.2          | 43/60 | **45/60** | 16/16 | 13/16 | 16/16 | 12/12 |
 | statecore-mcp 1.0.0             | 0/60 | **0/60** | 0/16 | 0/16 | 0/16 | 0/12 |
 | mcp-duckdb-memory-server 1.1.10 | 10/60 | **13/60** | 9/16 | 0/16 | 4/16 | 0/12 |
 
@@ -43,7 +43,7 @@ answer, silence. sep is p < 0.05.
 
 | pair | corpus A | corpus B | same conclusion |
 |---|---|---|---|
-| memory-mcp-1file 0.9.2 / zenbrain 0.3.0 | 0.180 (10-4) not | 0.003 (12-1) sep | **no** |
+| memory-mcp-1file 0.9.2 / zenbrain 0.3.0 | 0.180 (10-4) not | 0.000 (12-0) sep | **no** |
 | zenbrain 0.3.0 / control 1.0.0 | 1.000 (13-13) not | 0.007 (2-13) sep | **no** |
 | control 1.0.0 / memory-lean 1.5.0 | 0.001 (11-0) sep | 0.000 (32-0) sep | yes |
 | memory-lean 1.5.0 / memento 0.7.0 | 0.011 (23-8) sep | 0.281 (12-19) not | **no** |

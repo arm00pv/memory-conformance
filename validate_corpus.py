@@ -22,42 +22,17 @@ are facts about the corpus worth printing, not defects in it.
 import glob
 import json
 import os
-import re
 import sys
+
+from words import STOP, tokens
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 BAND_COUNT = {"easy": 0, "hard": 0, "adversarial": 0, "absent": 0}
 BANDS = ("easy", "hard", "adversarial", "absent")
 
-# WHY A STOPWORD LIST RATHER THAN A STEMGER: the questions are short and the vocabulary is small, so
-# the cheap thing works and the expensive thing would hide its own failures. The list is checked
-# against nothing - it is deliberately short, and every word it removes is a word that cannot
-# distinguish one record from another anyway.
-STOP = set("""a an the is are was were be been being am do does did done doing of in on at to for from
-by with within without about into onto over under between among through during before after above below
-up down out off again further then once here there when where why how all any both each few more most
-other some such no nor not only own same so than too very can could should would may might must will
-shall have has had having i me my we our us you your he him his she her it its they them their this
-that these those what which who whom whose get gets got make makes made take takes taken give gives
-give use used using need needs want wants keep keeps held hold put puts set sets run runs say says said
-tell tells told find finds found know knows ask asks one two three many much long often usually
-doesn dont doesn isn aren wasn weren whats hows that's it's""".split())
-
-
-def tokens(text):
-    """The words of a phrase that could distinguish one record from another.
-
-    A trailing s is dropped so that "keys" meets "key", which is the only morphology this corpus needs.
-    Digits are kept: "5432" is the most distinctive word in the sentence that contains it.
-    """
-    out = []
-    for w in re.findall(r"[a-z0-9]+", (text or "").lower()):
-        if w in STOP:
-            continue
-        if len(w) > 3 and w.endswith("s") and not w.endswith("ss"):
-            w = w[:-1]
-        out.append(w)
-    return out
+# THE STOPWORD LIST AND THE TOKENIZER LIVE IN words.py, because a second tool needs them to mean the
+# same thing. STOP is still imported here by name so that anything reading this file sees where the
+# reduction comes from rather than a call to a function with no visible contents.
 
 
 def jaccard(a, b):
@@ -209,6 +184,30 @@ def check(path):
     for q, shared, n in thin:
         errors.append("easy question %r shares only %d of %d words with the record it names"
                       % (q, shared, n))
+
+    # --- hard means paraphrased -------------------------------------------
+    # THE ONE BAND NOTHING CHECKED. Its definition is "a paraphrase that shares almost nothing with the
+    # wording of the answer", and that is measurable: count the distinguishing words the question has in
+    # common with the record it names. One shared word is the most "almost nothing" can mean; more than
+    # one and the question is a keyword match wearing the label, which makes the band easier than the
+    # thing it claims to test. The threshold was set AFTER measuring both corpora - corpus A reaches
+    # three shared words, corpus B never exceeds one - and it is stated here rather than discovered in
+    # the results.
+    HARD_SHARE = 1
+    too_close = []
+    for q in queries:
+        if q.get("difficulty") != "hard":
+            continue
+        want = q.get("expect")
+        if want not in texts:
+            continue
+        shared = sorted(set(tokens(q.get("query"))) & set(tokens(texts[want])))
+        if len(shared) > HARD_SHARE:
+            too_close.append((q.get("query"), want, shared))
+    facts["hard_paraphrased"] = len(too_close) == 0
+    for q, want, shared in too_close:
+        errors.append("hard question %r shares %d words with %r (%s) - a keyword match, not a paraphrase"
+                      % (q, len(shared), want, ", ".join(shared)))
 
     # --- warnings: not defects, but things a reader should know ------------
     unused = [rid for rid in texts if rid not in set(wants)]
