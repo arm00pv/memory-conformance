@@ -10,7 +10,7 @@ claim about silence. A subject's SCORE is what the paired test pairs on - the ri
 top three, plus a credit for declining a question with no answer. Its HITS are only the questions
 that have an answer and were answered correctly. "It answers nothing" is a claim about hits.
 
-**5 of the 11 claims hold in every setting measured.** The rest are printed beside the setting
+**5 of the 12 claims hold in every setting measured.** The rest are printed beside the setting
 that breaks them, because that setting is the claim's real scope.
 
 | claim | A written | A keywords | B written | B keywords | status |
@@ -21,6 +21,7 @@ that breaks them, because that setting is the claim's real scope.
 | reference-silent | yes | no | yes | no | **ONE PHRASING** |
 | small-servers-silent | yes | no | yes | no | **ONE PHRASING** |
 | memento-speaks | yes | yes | yes | yes | **HOLDS** |
+| can-forget | no | no | **FAILS** |
 | leaks-state | yes | yes | **HOLDS** |
 | leanest | yes | no | **MIXED** |
 | best-hard | yes | yes | yes | yes | **HOLDS** |
@@ -64,6 +65,10 @@ that breaks them, because that setting is the claim's real scope.
   - A keywords: true (12 of 12 unanswerable questions answered)
   - B written: true (12 of 12 unanswerable questions answered)
   - B keywords: true (12 of 12 unanswerable questions answered)
+
+**can-forget** - every subject can be asked to forget a record, and forgets it. *FAILS*
+  - A written: false (5 cannot be asked (memdb, zenbrain, memory-mcp-1file, statecore-mcp, mcp-duckdb-memory-server); 0 were asked and did not forget (none))
+  - B written: false (5 cannot be asked (memdb, zenbrain, memory-mcp-1file, statecore-mcp, mcp-duckdb-memory-server); 0 were asked and did not forget (none))
 
 **leaks-state** - memory-mcp-1file leaks state between stores and is out of scope. *HOLDS*
   - A written: true (isolation FAIL)

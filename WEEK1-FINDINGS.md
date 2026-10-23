@@ -2052,3 +2052,66 @@ corpora and which phrasings it survives.
 - **The adversarial band has no winner that survives both corpora**, and the ledger now records that as
   a MIXED claim rather than a sentence in prose. Resolving it needs a third corpus from a genuinely
   different author, and this harness can only offer another instance of the same one.
+
+---
+
+## Addendum 18: the ninth probe, and the promise nobody tests
+
+Every probe so far asked what the subject KEPT. None asked whether it can be made to STOP keeping
+something - deletion, the operation anyone with a wrong fact, a private record or a mistake in their
+memory actually needs, and the one that fails in the same direction as the write: the caller is told "ok"
+either way.
+
+### The probe
+
+Three records with no word in common are written, the middle one is forgotten, the server is restarted,
+and the store is read on a process that saw neither the write nor the deletion. PASS requires **both**
+halves: the forgotten record gone, and the two others still there. The second half is what makes the first
+meaningful - a store that drops everything is indistinguishable from one that forgot exactly what it was
+told to.
+
+UNKNOWN is the verdict when the subject publishes no way to be asked, and it is now UNKNOWN rather than
+FAIL. The distinction is the whole point: a subject that cannot be asked is not a subject that lied. The
+promise is broken when the caller is told the record is gone and it is not.
+
+The nine probes, measured on eleven subjects, three attempts each:
+
+| | forget |
+|---|---|
+| control, server-memory 1.0.0 and 2.0.0, memento, memory-lean, mcp-knowledge-graph | **PASS** |
+| memdb, zenbrain, memory-mcp-1file, statecore-mcp, mcp-duckdb-memory-server | **UNKNOWN** - no tool that can be shown to delete one record |
+
+**Nobody was asked to forget and kept the record.** Five of eleven cannot be asked at all, and they
+include the two subjects at the top of the retrieval table: memory-mcp-1file and zenbrain. The best
+retrievers in this suite publish no documented way to remove anything, which is a fact worth having
+before someone stores something they may need to take back.
+
+That is the ledger's twelfth claim and it fails: `can-forget` - "every subject can be asked to forget a
+record, and forgets it" - is false on both corpora, five subjects named.
+
+### Two more of my own mistakes, both caught by the new probe printing the answer
+
+**12. The sentinel went in the wrong function.** `_deleter` was set in `reset()` instead of
+`__init__()`" and every discovery-bound subject - seven of eleven - reported a harness error on the first
+run of the new probe while the hand-written adapters answered it. The log said
+`'ManifestAdapter' object has no attribute '_deleter'`, which is at least an honest failure
+message; the danger was the other direction, where a probe that cannot run reports UNKNOWN and looks like
+a subject that cannot answer.
+
+**13. The control's own verification had been lying since it was written.** `control/memory_server.py`
+appends bytes and then reads the file back to confirm they landed; it has answered
+`{"ok": false, ..., "readback_verified": false}` on EVERY write it has ever made. The cause is
+Windows: `os.open()` there translates `\n` into `\r\n` unless `O_BINARY` is passed, so
+the bytes on disk never equalled the bytes it wrote and its own check said so. Eighteen phases of the
+suite passed over it, because the suite checks the read-back itself and never asked the control whether
+its verification had succeeded.
+
+The probe that found it is the one that prints the subject's own answer in its evidence. Nothing else in
+this repository reads what the subject said it did.
+
+### What this costs
+
+The probe axis is re-measured for every subject, and nothing else: retrieval and cost do not depend on a
+new probe, and re-rolling them would move numbers that did not change. MATRIX.md's verdict table gained a
+column; the control, the reference server and the pinned expectations were updated to include it; and
+every previous addendum's "eight probes" is now history rather than description.

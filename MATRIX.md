@@ -1,18 +1,18 @@
 # Measured subjects
 
-| subject | isolation | ack_readback | restart | findable | foreign_field | foreign_record | concurrent | large_record | ceiling |
-|---|---|---|---|---|---|---|---|---|---|
-| control 1.0.0 | PASS | PASS | PASS | PASS | PASS | PASS | PASS | PASS | 60s |
-| server-memory 1.0.0 | PASS | PASS | PASS | PASS | FAIL | PASS | PASS | PASS | 60s |
-| server-memory 2.0.0 | PASS | PASS | PASS | PASS | FAIL | PASS | PASS | PASS | 60s |
-| memento 0.7.0 | PASS | PASS | PASS | FAIL | PASS | PASS | PASS | FAIL | 180s |
-| memdb 1.4.0 | PASS | PASS | PASS | PASS | PASS | PASS | PASS | PASS | 60s |
-| memory-lean 1.5.0 | PASS | PASS | PASS | PASS | FAIL | FAIL | PASS | PASS | 60s |
-| mcp-knowledge-graph 1.3.2 | PASS | PASS | PASS | PASS | PASS | FAIL | FAIL | PASS | 90s |
-| zenbrain 0.3.0 | PASS | PASS | PASS | PASS | PASS | PASS | PASS | PASS | 60s |
-| memory-mcp-1file 0.9.2 | FAIL | (PASS) | (PASS) | (PASS) | (UNKNOWN) | (UNKNOWN) | (FAIL) | (UNKNOWN) | 60s |
-| statecore-mcp 1.0.0 | PASS | PASS | PASS | FAIL | PASS | PASS | FAIL | UNKNOWN | 60s |
-| mcp-duckdb-memory-server 1.1.10 | PASS | PASS | PASS | PASS | UNKNOWN | UNKNOWN | FAIL | UNKNOWN | 90s |
+| subject | isolation | ack_readback | restart | forget | findable | foreign_field | foreign_record | concurrent | large_record | ceiling |
+|---|---|---|---|---|---|---|---|---|---|---|
+| control 1.0.0 | PASS | PASS | PASS | PASS | PASS | PASS | PASS | PASS | PASS | 60s |
+| server-memory 1.0.0 | PASS | PASS | PASS | PASS | PASS | FAIL | PASS | PASS | PASS | 60s |
+| server-memory 2.0.0 | PASS | PASS | PASS | PASS | PASS | FAIL | PASS | PASS | PASS | 60s |
+| memento 0.7.0 | PASS | PASS | PASS | PASS | FAIL | PASS | PASS | PASS | FAIL | 180s |
+| memdb 1.4.0 | PASS | PASS | PASS | UNKNOWN | PASS | PASS | PASS | PASS | PASS | 60s |
+| memory-lean 1.5.0 | PASS | PASS | PASS | PASS | PASS | FAIL | FAIL | PASS | PASS | 60s |
+| mcp-knowledge-graph 1.3.2 | PASS | PASS | PASS | PASS | PASS | PASS | FAIL | FAIL | PASS | 90s |
+| zenbrain 0.3.0 | PASS | PASS | PASS | UNKNOWN | PASS | PASS | PASS | PASS | PASS | 60s |
+| memory-mcp-1file 0.9.2 | FAIL | (PASS) | (PASS) | (UNKNOWN) | (PASS) | (UNKNOWN) | (UNKNOWN) | (FAIL) | (UNKNOWN) | 60s |
+| statecore-mcp 1.0.0 | PASS | PASS | PASS | UNKNOWN | FAIL | PASS | PASS | FAIL | UNKNOWN | 60s |
+| mcp-duckdb-memory-server 1.1.10 | PASS | PASS | PASS | UNKNOWN | PASS | UNKNOWN | UNKNOWN | FAIL | UNKNOWN | 90s |
 
 Cells in parentheses belong to a subject that failed `isolation`; its other verdicts describe leaked state.
 

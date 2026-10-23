@@ -12,6 +12,7 @@ $ python harness.py --cmd="node node_modules/@modelcontextprotocol/server-memory
 isolation        PASS              3.6s  store A's record was not visible from store B
 ack_readback     PASS              4.6s  acknowledged alpha; a fresh read returned 1 entities: ['alpha']
 restart          PASS             15.7s  three writes across three server lifetimes; read back [restart-0, ...]
+forget           PASS              3.0s  asked to forget one record; the other two came back and it did not
 findable         PASS              2.3s  all 8 acknowledged records came back in the top 3 for a search on their own name
 foreign_field    FAIL              7.8s  the extra field was silently dropped by the next write
 foreign_record   PASS              5.0s  the unmodelled record survived
@@ -45,13 +46,14 @@ scope. Three of them:
 The suite's own error bar is in there too: five of the ten neighbouring pairs in the ranking do not reach
 the same conclusion on both corpora.
 
-## The eight probes
+## The nine probes
 
 | probe | the promise it tests |
 |---|---|
 | `isolation` | a record written into one store is not visible from a different store |
 | `ack_readback` | a write that returned success is returned by a fresh read |
 | `restart` | the write survives the server being stopped and started |
+| `forget` | a record can be made to stop being kept, and the others are still there afterwards |
 | `findable` | a record can be found again by the name it was stored under |
 | `foreign_field` | a field the server does not model survives the next write |
 | `foreign_record` | a record type the server does not model survives the next write |
@@ -252,19 +254,19 @@ Two things had to be configured to probe it at all, and neither touches what is 
 ```
 $ python matrix.py
 
-subject                         isol     ack      restart  find     field    record   conc     large    ceil
-------------------------------------------------------------------------------------------------------------
-control 1.0.0                   PASS     PASS     PASS     PASS     PASS     PASS     PASS     PASS      60s
-server-memory 1.0.0             PASS     PASS     PASS     PASS     FAIL     PASS     PASS     PASS      60s
-server-memory 2.0.0             PASS     PASS     PASS     PASS     FAIL     PASS     PASS     PASS      60s
-memento 0.7.0                   PASS     PASS     PASS     FAIL     PASS     PASS     PASS     FAIL     180s
-memdb 1.4.0                     PASS     PASS     PASS     PASS     PASS     PASS     PASS     PASS      60s
-memory-lean 1.5.0               PASS     PASS     PASS     PASS     FAIL     FAIL     PASS     PASS      60s
-mcp-knowledge-graph 1.3.2       PASS     PASS     PASS     PASS     PASS     FAIL     FAIL     PASS      90s
-zenbrain 0.3.0                  PASS     PASS     PASS     PASS     PASS     PASS     PASS     PASS      60s
-memory-mcp-1file 0.9.2          FAIL     (PASS)   (PASS)   (PASS)   (UNKNOWN)  (UNKNOWN)  (FAIL)   (UNKNOWN)   60s
-statecore-mcp 1.0.0             PASS     PASS     PASS     FAIL     PASS     PASS     FAIL     UNKNOWN   60s
-mcp-duckdb-memory-server 1.1.10 PASS     PASS     PASS     PASS     UNKNOWN  UNKNOWN  FAIL     UNKNOWN   90s
+subject                         isol     ack      restart  forget   find     field    record   conc     large    ceil
+---------------------------------------------------------------------------------------------------------------------
+control 1.0.0                   PASS     PASS     PASS     PASS     PASS     PASS     PASS     PASS     PASS      60s
+server-memory 1.0.0             PASS     PASS     PASS     PASS     PASS     FAIL     PASS     PASS     PASS      60s
+server-memory 2.0.0             PASS     PASS     PASS     PASS     PASS     FAIL     PASS     PASS     PASS      60s
+memento 0.7.0                   PASS     PASS     PASS     PASS     FAIL     PASS     PASS     PASS     FAIL     180s
+memdb 1.4.0                     PASS     PASS     PASS     UNKNOWN  PASS     PASS     PASS     PASS     PASS      60s
+memory-lean 1.5.0               PASS     PASS     PASS     PASS     PASS     FAIL     FAIL     PASS     PASS      60s
+mcp-knowledge-graph 1.3.2       PASS     PASS     PASS     PASS     PASS     PASS     FAIL     FAIL     PASS      90s
+zenbrain 0.3.0                  PASS     PASS     PASS     UNKNOWN  PASS     PASS     PASS     PASS     PASS      60s
+memory-mcp-1file 0.9.2          FAIL     (PASS)   (PASS)   (UNKNOWN)  (PASS)   (UNKNOWN)  (UNKNOWN)  (FAIL)   (UNKNOWN)   60s
+statecore-mcp 1.0.0             PASS     PASS     PASS     UNKNOWN  FAIL     PASS     PASS     FAIL     UNKNOWN   60s
+mcp-duckdb-memory-server 1.1.10 PASS     PASS     PASS     UNKNOWN  PASS     UNKNOWN  UNKNOWN  FAIL     UNKNOWN   90s
 
 (x) verdict qualified by a failed isolation precondition - not publishable on its own
 ceil is the per-call ceiling each subject was given; a verdict measured at one ceiling
@@ -372,7 +374,7 @@ $ python compare.py zenbrain memdb
   exact McNemar p = 0.0001  -> separated
 ```
 
-The control passing all eight is the claim that every probe *can* pass, which is the difference
+The control passing all nine is the claim that every probe *can* pass, which is the difference
 between a conformance suite and a set of accusations.
 
 ## Cost: the third axis
@@ -480,7 +482,9 @@ in order of how much you have to write:
 
 **1. Nothing.** `--adapter=auto` lists the server's own tools, proposes a write tool from each
 tool's JSON schema, then tries every plausible reader until one returns a token that was just
-written. A binding that has not been proven is never used. This reaches five of the eight probes.
+written, and does the same for a delete tool - a name that looks like deletion is not a deletion, so
+the candidate is called on a record this adapter wrote and kept only if the next read no longer has it.
+A binding that has not been proven is never used. This reaches six of the nine probes.
 
 **2. A manifest - twelve lines of JSON.** Say where the store is and how a record is identified;
 everything else stays discovered:
@@ -501,7 +505,7 @@ OK        this manifest describes this subject
 
 A declaration is a claim, so it is checked before any verdict depends on it: the command must match,
 the declared path must exist inside the run's store directory, and the declared predicate must find
-a record that was just written through the server. All eight probes then become answerable.
+a record that was just written through the server. All nine probes then become answerable.
 
 **3. An adapter**, when the tool vocabulary itself differs. Implement `server()`, `write()`,
 `read()` and pass it to the probes - `ReferenceAdapter` in `harness.py` is 20 lines and is the
@@ -520,10 +524,16 @@ success reply is honest about the write and silent about the loss.
 - **One version per server.** Numbers above are `@modelcontextprotocol/server-memory` 1.0.0 and
   2.0.0, `retained` and `basic-memory` 0.23.2 on 2026-10-19, and a different version of any of them
   can pass or fail differently. `--expect=` re-runs a pinned report and exits non-zero on drift.
-- **Eight probes are not a spec.** They cover retention, concurrency, findability and one
+- **Nine probes are not a spec.** They cover retention, deletion, concurrency, findability and one
   precondition - not retrieval quality, latency or token cost. Retrieval is measured separately
   (`retrieval.py`, and the second table in `MATRIX.md`) and reported as a score, because
   "relevant" is a judgement while "returned" is a fact.
+- **`forget` is UNKNOWN for five of eleven subjects, and that is a result.** memdb, zenbrain,
+  memory-mcp-1file, statecore and duckdb publish no tool that can be shown to delete one record, so the
+  promise cannot be tested against them - the probe reports UNKNOWN(not-applicable) with the reason and
+  never FAIL. Nobody in the field was asked to forget and kept the record. A subject that cannot be asked
+  is not a subject that lied; it is a memory with no documented way to correct itself, which is worth
+  knowing before you store anything you might need to take back.
 - **Cost is measured once, not repeatedly.** A single quiet pass beats a timing taken while nine
   other subjects run, and it is still not a distribution: there is no p90 on any cost column and no
   repeat. Bytes are used rather than tokens because bytes are what the transport carries and what can
@@ -542,17 +552,17 @@ success reply is honest about the write and silent about the loss.
   misses; this measures one of each.
 - **`findable` is a floor, not a benchmark.** It asks only whether a record comes back for its own
   name. Passing it means a memory can be read back at all; it says nothing about answering questions.
-- **Every probe is run three times.** `--repeat=N` repeats all eight, reports the modal outcome,
+- **Every probe is run three times.** `--repeat=N` repeats all nine, reports the modal outcome,
   prints the tally, and marks any disagreement `unstable`. A tie breaks toward the worse outcome, so
   an unstable subject is never rounded up to PASS. Repeating only the probes that have been *seen* to
   flake is the assumption that has been retracted twice in this project already.
   `--repeat-probes=` narrows the list when you deliberately want to save time.
 
-  The result of repeating all of them: **72 verdicts, 216 executions, one unstable row** — and it
-  belongs to the subject already excluded for leaking state. Its `restart` probe passed twice and
-  failed once, and the evidence it printed contained a record written by a *different probe* in a
-  *different store*. The flakiness is a downstream symptom of the isolation failure, which is the
-  strongest argument for `isolation` running first.
+  The result of repeating all of them: **99 verdicts, 297 executions, no unstable row** in the run that
+  added `forget`. The one unstable row this suite has ever recorded belonged to the subject already
+  excluded for leaking state: its `restart` probe passed twice and failed once, and the evidence it
+  printed contained a record written by a *different probe* in a *different store*. That flakiness is a
+  downstream symptom of the isolation failure, which is the strongest argument for `isolation` first.
 - **Retrieval numbers come with an interval, and the interval is the honest part.** 60 questions
   separates the ends of the table and not the middle. Every row carries a 95% Wilson interval, and
   because every subject answers the *same* 60 questions, `compare.py` runs the paired test
