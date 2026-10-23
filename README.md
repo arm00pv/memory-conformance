@@ -149,8 +149,9 @@ Two findings from that replication are worth more than the table:
 - **A score of 37/60 beat a score of 25/60 by nothing at all.** zenbrain against the positive control is
   thirteen questions to thirteen, p = 1.0, on corpus A, because the twelve unanswerable questions cancel
   the twelve-question recall gap exactly. On corpus B the control wins, thirteen to two.
-- **memory-lean's 14/60 was the corpus, not the subject.** It scores 0/60 on corpus B because its
-  matching is word-based and corpus B's questions are questions.
+- **memory-lean's 14/60 was the corpus, not the subject.** It scores 0/60 on corpus B as written and
+  28/60 on the same questions put as keywords, because its matching is word-based and corpus B asks
+  questions. Which of those numbers is "its score" depends on who is typing.
 
 ## The positive control: the probes can pass
 
@@ -250,23 +251,26 @@ retrieval, cold start, 72 records and 60 questions - a score, not a verdict. hit
 per band - easy shares wording with the answer, hard is a paraphrase, adversarial has a
 near duplicate competing. 'noans' is questions with no answer that were answered anyway;
 0 is right.
-subject                         easy    hard    adver   all h1   all h3   noans   runs      95%
------------------------------------------------------------------------------------------------
-control 1.0.0                   16/16   0/16    9/16    25/60    25/60    0/12    25-25     18-33
-server-memory 1.0.0             0/16    0/16    0/16    0/60     0/60     0/12    0-0       0-4
-server-memory 2.0.0             0/16    0/16    0/16    0/60     0/60     0/12    0-0       0-4
-memento 0.7.0                   3/16    3/16    5/16    3/60     11/60    12/12   11-11     6-18
-memdb 1.4.0                     6/16    0/16    0/16    0/60     6/60     12/12   6-6       3-12
-memory-lean 1.5.0               14/16   0/16    0/16    14/60    14/60    0/12    14-14     9-21
-mcp-knowledge-graph 1.3.2       0/16    0/16    0/16    0/60     0/60     0/12    0-0       0-4
-zenbrain 0.3.0                  16/16   7/16    14/16   31/60    37/60    12/12   37-37     29-44
-memory-mcp-1file 0.9.2          16/16   13/16   14/16   41/60    43/60    12/12   43-43     36-49
-statecore-mcp 1.0.0             0/16    0/16    0/16    0/60     0/60     12/12   0-0       0-4
-mcp-duckdb-memory-server 1.1.10 8/16    0/16    2/16    10/60    10/60    0/12    10-10     6-17
+subject                         easy    hard    adver   all h1   all h3   kw h3    change   noans   runs      95%
+-----------------------------------------------------------------------------------------------------------------
+control 1.0.0                   16/16   0/16    9/16    25/60    25/60    29/60    +4       0/12    25-25     18-33
+server-memory 1.0.0             0/16    0/16    0/16    0/60     0/60     2/60     +2       0/12    0-0       0-4
+server-memory 2.0.0             0/16    0/16    0/16    0/60     0/60     2/60     +2       0/12    0-0       0-4
+memento 0.7.0                   3/16    3/16    5/16    3/60     11/60    10/60    -1       12/12   11-11     6-18
+memdb 1.4.0                     6/16    0/16    0/16    0/60     6/60     21/60    +15      12/12   6-6       3-12
+memory-lean 1.5.0               14/16   0/16    0/16    14/60    14/60    18/60    +4       0/12    14-14     9-21
+mcp-knowledge-graph 1.3.2       0/16    0/16    0/16    0/60     0/60     2/60     +2       0/12    0-0       0-4
+zenbrain 0.3.0                  16/16   7/16    14/16   31/60    37/60    32/60    -5       12/12   37-37     29-44
+memory-mcp-1file 0.9.2          16/16   13/16   14/16   41/60    43/60    43/60    +0       12/12   43-43     36-49
+statecore-mcp 1.0.0             0/16    0/16    0/16    0/60     0/60     0/60     +0       12/12   0-0       0-4
+mcp-duckdb-memory-server 1.1.10 8/16    0/16    2/16    10/60    10/60    10/60    +0       0/12    10-10     6-17
 
 'runs' is the min-max of the same experiment repeated 3 times; '95%' is the Wilson
 interval for the majority result, in counts. The first covers repeating the experiment,
 the second covers asking a different set of 60 questions. They are not the same error.
+'kw h3' is the same 60 questions asked again with the words that carry no meaning removed:
+one subject is 6/60 and 29/60 on the same corpus depending on which is asked, so a score
+quoted without its phrasing is half a measurement. Per-band detail is in SHAPE.md.
 
 cost, measured once per subject with nothing else running. 'resp' is the median bytes the
 server sends back for one question and 'amp' is that divided by the answer's own size - a
@@ -314,15 +318,18 @@ They are opposites — one answers everything including all twelve questions tha
 other answers nothing at all — and on this corpus they are statistically identical.
 
 - **`@modelcontextprotocol/server-memory`, both versions** — 7 of 8 probes pass, and it answers
-  **none** of the 60 questions. `search_nodes` matches the query as a literal substring:
-  `"postgres staging port"` returns nothing, `"postgres"` returns the record.
+  **almost none** of the 60 questions: 0 as written, 2 as keywords. `search_nodes` matches the query
+  as a literal substring, so `"postgres staging port"` returns nothing and `"postgres"` returns the
+  record - which is why stripping the meaningless words is worth two questions to it and nothing to
+  most of the rest.
 - **memento** — returns the same three entities for a matching name, a nonsense string and the empty
   query. Its search is a listing, and it speaks on every unanswerable question.
-- **memory-mcp-1file** — the highest raw retrieval count here, 43 of 60 against zenbrain's 37, and
-  the one subject excluded from the conformance table for leaking state between stores. The paired
-  test will not separate those two either (10 discordant questions against 4, p = 0.18): sixty
-  questions establishes that both are far better than memdb (31–0) and does not establish which of
-  them is better than the other.
+- **memory-mcp-1file** — the highest retrieval count here (43 of 60 as written, 43 as keywords)
+  against zenbrain's 37 and 32, and the one subject excluded from the conformance table for leaking
+  state between stores. Whether the two are separated depends on the phrasing: 10 discordant
+  questions against 4, p = 0.18, as written; 13 against 2, p = 0.0074, as keywords. Sixty questions
+  establishes that both are far better than memdb (31–0) and does not establish, on the questions
+  alone, which of them is better than the other.
 
 `runs` and `95%` are two different error bars and both matter. `runs` is the min–max of the whole
 experiment repeated three times: the **measurement** error, and it is zero on every subject here.
@@ -372,8 +379,9 @@ the subject's choice, which is why byte counts are repeated too.
 
 **Read this table with the retrieval one, or the cheapest memory looks like the best.** The two
 subjects that cost 39 bytes per question return *nothing*; efficiency achieved by silence is not
-efficiency. The highest raw retriever (`memory-mcp-1file`, 43/60) is also among the most expensive per
-question at 34× the size of the answer. And one marketing claim survives measurement intact:
+efficiency. The highest retriever (`memory-mcp-1file`, 43/60 as written and 43 as keywords) is also
+among the most expensive per question at 34× the size of the answer. And one marketing claim survives
+measurement intact:
 `memory-lean` is genuinely lean — 164 bytes, 3×, and the fastest startup in the set.
 
 **`store B/rec` is marginal, not average**, measured between two batches so the preallocation floor
@@ -398,7 +406,7 @@ One command, no configuration, and it tells you what it could not measure:
 ```
 $ python check.py "node my-server.js"
 
-subject : node my-server.js
+subject : node node_modules/mcp-knowledge-graph/dist/index.js --memory-path .
 binding : discovered, proven by round-trip
 attempt : 1, ceiling 60s
 
@@ -409,17 +417,18 @@ conformance
   findable        PASS       all 8 acknowledged records came back in the top 3 for a search on their own name
   foreign_field   UNKNOWN(not-applicable)  no store is declared for this subject [...]
   foreign_record  UNKNOWN(not-applicable)  no store is declared for this subject [...]
-  concurrent      FAIL       10 write(s) failed outright: ["create_entities refused: ..."]
-  large_record    UNKNOWN(not-applicable)  adapter cannot measure record content
+  concurrent      FAIL       10 of 20 acknowledged writes survived two servers on one store
+  large_record    UNKNOWN(not-applicable)  adapter cannot measure record content [...]
   4 kept, 3 unknown, 1 failed
 
 retrieval (72 records, 60 questions, cold start)
-  hit@3  easy 5/8  hard 0/8  adversarial 0/8  ->  all 5/30
-  questions with no answer that were answered anyway: 0/6
+  hit@3  easy 0/16  hard 0/16  adversarial 0/16  ->  all 0/60
+  hit@3, the same 60 questions put as keywords          ->  all 2/60  (+2)
+  questions with no answer answered anyway: 0/12 as written, 0/12 as keywords
 
 cost
-  startup 0.59s   first write 0.13s   write 0.010s   search 0.007s
-  210 bytes per question (4x the size of the answer)   - bytes per record
+  startup 0.10s   first write 0.02s   write 0.004s   search 0.004s
+  39 bytes per question (1x the size of the answer)   - bytes per record
 
 what to do next
   - foreign_field and foreign_record are UNKNOWN because no store is declared. A manifest of about

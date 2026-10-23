@@ -20,19 +20,19 @@ Cells in parentheses belong to a subject that failed `isolation`; its other verd
 
 72 records, 60 questions, cold start. hit@3 per band; "easy" shares wording with its answer, "hard" is a paraphrase, "adversarial" has a near duplicate competing. "noans" is questions with no answer in the store that were answered anyway.
 
-| subject | easy h3 | hard h3 | adversarial h3 | all h1 | all h3 | no-answer answered | runs | h3 95% |
-|---|---|---|---|---|---|---|---|---|
-| control 1.0.0 | 16/16 | 0/16 | 9/16 | 25/60 | 25/60 | 0/12 | 25-25 | 18-33 |
-| server-memory 1.0.0 | 0/16 | 0/16 | 0/16 | 0/60 | 0/60 | 0/12 | 0-0 | 0-4 |
-| server-memory 2.0.0 | 0/16 | 0/16 | 0/16 | 0/60 | 0/60 | 0/12 | 0-0 | 0-4 |
-| memento 0.7.0 | 3/16 | 3/16 | 5/16 | 3/60 | 11/60 | 12/12 | 11-11 | 6-18 |
-| memdb 1.4.0 | 6/16 | 0/16 | 0/16 | 0/60 | 6/60 | 12/12 | 6-6 | 3-12 |
-| memory-lean 1.5.0 | 14/16 | 0/16 | 0/16 | 14/60 | 14/60 | 0/12 | 14-14 | 9-21 |
-| mcp-knowledge-graph 1.3.2 | 0/16 | 0/16 | 0/16 | 0/60 | 0/60 | 0/12 | 0-0 | 0-4 |
-| zenbrain 0.3.0 | 16/16 | 7/16 | 14/16 | 31/60 | 37/60 | 12/12 | 37-37 | 29-44 |
-| memory-mcp-1file 0.9.2 | 16/16 | 13/16 | 14/16 | 41/60 | 43/60 | 12/12 | 43-43 | 36-49 |
-| statecore-mcp 1.0.0 | 0/16 | 0/16 | 0/16 | 0/60 | 0/60 | 12/12 | 0-0 | 0-4 |
-| mcp-duckdb-memory-server 1.1.10 | 8/16 | 0/16 | 2/16 | 10/60 | 10/60 | 0/12 | 10-10 | 6-17 |
+| subject | easy h3 | hard h3 | adversarial h3 | all h1 | all h3 | h3 as keywords | change | no-answer answered | runs | h3 95% |
+|---|---|---|---|---|---|---|---|---|---|---|
+| control 1.0.0 | 16/16 | 0/16 | 9/16 | 25/60 | 25/60 | 29/60 | +4 | 0/12 | 25-25 | 18-33 |
+| server-memory 1.0.0 | 0/16 | 0/16 | 0/16 | 0/60 | 0/60 | 2/60 | +2 | 0/12 | 0-0 | 0-4 |
+| server-memory 2.0.0 | 0/16 | 0/16 | 0/16 | 0/60 | 0/60 | 2/60 | +2 | 0/12 | 0-0 | 0-4 |
+| memento 0.7.0 | 3/16 | 3/16 | 5/16 | 3/60 | 11/60 | 10/60 | -1 | 12/12 | 11-11 | 6-18 |
+| memdb 1.4.0 | 6/16 | 0/16 | 0/16 | 0/60 | 6/60 | 21/60 | +15 | 12/12 | 6-6 | 3-12 |
+| memory-lean 1.5.0 | 14/16 | 0/16 | 0/16 | 14/60 | 14/60 | 18/60 | +4 | 0/12 | 14-14 | 9-21 |
+| mcp-knowledge-graph 1.3.2 | 0/16 | 0/16 | 0/16 | 0/60 | 0/60 | 2/60 | +2 | 0/12 | 0-0 | 0-4 |
+| zenbrain 0.3.0 | 16/16 | 7/16 | 14/16 | 31/60 | 37/60 | 32/60 | -5 | 12/12 | 37-37 | 29-44 |
+| memory-mcp-1file 0.9.2 | 16/16 | 13/16 | 14/16 | 41/60 | 43/60 | 43/60 | +0 | 12/12 | 43-43 | 36-49 |
+| statecore-mcp 1.0.0 | 0/16 | 0/16 | 0/16 | 0/60 | 0/60 | 0/60 | +0 | 12/12 | 0-0 | 0-4 |
+| mcp-duckdb-memory-server 1.1.10 | 8/16 | 0/16 | 2/16 | 10/60 | 10/60 | 10/60 | +0 | 0/12 | 10-10 | 6-17 |
 
 The last column is the 95% Wilson interval for all-band hit@3, in counts. Two subjects whose intervals overlap are not separated by this corpus.
 

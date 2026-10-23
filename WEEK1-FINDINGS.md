@@ -1798,3 +1798,88 @@ A retrieval score is now a pair, and the pair is the measurement. "memdb 6/60" i
 "6/60 asked as written, 29/60 asked as keywords" is. The next thing to fix is not the corpus and not the
 phrasing: it is that the two numbers travel together into every table and every claim, and that neither
 of them is ever the silently chosen one.
+
+---
+
+## Addendum 15: the pair travels, and five numbers it caught on the way
+
+Addendum 14 ended with a promise: stop letting one phrasing be the number. A number that lives only in
+`SHAPE.md` is a number nobody reads - the places a number is actually read are the table, the
+paired comparison and the one command a server author runs. So the pair now travels into all three.
+
+- `retrieval.py` carries the keyword totals in the same summary it prints the written ones in, on
+  the line below them.
+- `matrix.py` gained two columns, `kw h3` and `change`, in both the console table and
+  `MATRIX.md`, so the published table cannot show a retrieval score alone.
+- `compare.py` reports both verdicts by default and says **THE PHRASING DECIDES THIS ONE** when they
+  disagree. That sentence is the product: the same pair is "not separated" as written and "separated"
+  as keywords, and the tool now refuses to print one of those without the other.
+- `check.py`, the command someone runs on their own package, prints both - including whether the
+  subject speaks on unanswerable questions under each phrasing, which is not the same number either.
+- CI asserts all of it: a grep for the two columns in the matrix output and for the verdict sentence in
+  `compare.py` output. A table that goes back to one phrasing now fails the build.
+
+### What the pair caught, in this repository's own README
+
+Five claims. Every one of them was true in the phrasing it was measured in, and every one misleads
+without it:
+
+1. **"answers none of the 60 questions"** about `@modelcontextprotocol/server-memory` - 0 as
+   written, 2 as keywords. "None" was the wrong word for a subject that can be made to answer two.
+2. **"the highest raw retrieval count, 43 of 60 against zenbrain's 37 ... not separated (p = 0.18)"** -
+   the count is right and the verdict is phrasing-dependent: 13-2 and p = 0.0074 as keywords.
+3. **"the highest raw retriever (memory-mcp-1file, 43/60) is also among the most expensive"** in the
+   cost section - right, and now printed as 43 and 43 rather than 43 alone.
+4. **memory-lean's "0/60 on corpus B"** - 0 as written and 28 on the same questions as keywords. "It
+   cannot find anything" was wrong; "it cannot answer a question" is right, and the two sentences are
+   about different systems from the same corpus.
+5. **The `check.py` example output** quoted eight questions per band, from the thirty-question
+   corpus, four phases after the corpus became sixty. It is regenerated now, from a real run rather
+   than typed out - the first time that block has been produced by the tool it claims to be a
+   transcript of.
+
+None of the five was a lie when it was written. All five are the same defect this suite exists to catch
+- a number separated from the condition it was measured under - found in the suite's own README, which
+is the place it is easiest to miss because the author reads their own prose as intent rather than as
+data.
+
+### And the number I made up
+
+I edited the README example block to read "easy 11/16 ... all 11/60 ... all 29/60 (+18)" before I ran it.
+Those numbers were invented to fit the shape of the output, and I caught it two edits later, ran the
+subject for real, and replaced the block with what actually came back - 0/60 and 2/60.
+
+The invented numbers were plausible, and that is exactly the problem. A fabricated example does not
+fail; it sits there reading like data, in the section of the README whose purpose is to show what real
+data looks like. **Self-bug 9**, and the first one in this series that nobody else could have caught,
+because the subject it describes was never run.
+
+### The table as it now stands
+
+hit@3, as published. The keyword column is the same sixty questions with the words that carry no
+meaning removed.
+
+| subject | hit@3 as written | hit@3 as keywords | change |
+|---|---|---|---|
+| memory-mcp-1file 0.9.2 | 43/60 | **43/60** | +0 |
+| zenbrain 0.3.0 | 37/60 | **32/60** | -5 |
+| control 1.0.0 | 25/60 | **29/60** | +4 |
+| memory-lean 1.5.0 | 14/60 | **18/60** | +4 |
+| memento 0.7.0 | 11/60 | **10/60** | -1 |
+| mcp-duckdb-memory-server 1.1.10 | 10/60 | **10/60** | +0 |
+| memdb 1.4.0 | 6/60 | **21/60** | +15 |
+| server-memory 1.0.0, 2.0.0, mcp-knowledge-graph 1.3.2 | 0/60 | **2/60** | +2 |
+| statecore-mcp 1.0.0 | 0/60 | **0/60** | +0 |
+
+The two columns agree for four subjects and disagree for seven.
+
+### What is still open
+
+- **Corpus A's six defects are pinned, not fixed.** The two hard-band questions that share their
+  answer's wording are still in the corpus, still labelled a paraphrase, and still flattering whoever
+  finds them. Pinning records a defect; it does not remove it.
+- **One author, one model.** Independence of information was tested. Independence of mind was not, and
+  the two corpora were written by the same model family.
+- **One subject's number moves between invocations.** memory-mcp-1file's corpus-B total is 44 or 45
+  depending on which search tool discovery binds, and the report carries that as a range rather than a
+  value.
