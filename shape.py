@@ -64,11 +64,9 @@ def totals(rows, shape):
     return out
 
 
-def load(path):
-    if not os.path.isfile(path):
-        return []
-    with open(path, encoding="utf-8") as fh:
-        return json.load(fh).get("rows") or []
+def load(path, corpus_path=None):
+    """Saved rows, refusing any measured against a corpus that has since changed (matrix.load_rows)."""
+    return matrix.load_rows(path, corpus_path)
 
 
 def measure(subjects, want, force):
@@ -79,7 +77,7 @@ def measure(subjects, want, force):
         label = "%s %s" % (entry["name"], entry["version"])
         for cases, suffix in ((None, ""), (CORPUS_B, "-b")):
             path = os.path.join("results", slug + "-retrieval" + suffix + ".json")
-            if not force and has_shapes(load(path)):
+            if not force and has_shapes(load(path, cases or CORPUS_A)):
                 continue
             print("measuring %s on %s (both shapes) ..."
                   % (label, os.path.basename(cases or CORPUS_A)), flush=True)
@@ -142,7 +140,8 @@ def main(argv):
                 continue
             label = "%s %s" % (entry["name"], entry["version"])
             rows = load(os.path.join("results",
-                                     matrix.slug_of(entry) + "-retrieval" + suffix + ".json"))
+                                     matrix.slug_of(entry) + "-retrieval" + suffix + ".json"),
+                        corpus)
             if not has_shapes(rows):
                 continue
             table.append((label, rows, totals(rows, "written"), totals(rows, "keyword")))

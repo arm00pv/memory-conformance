@@ -86,6 +86,69 @@ def steady_vary(cost):
     return worst if sp else None
 
 
+def corpus_queries(corpus_path):
+    """The questions a corpus file holds, as the tuples a saved report would have recorded."""
+    with open(corpus_path, encoding="utf-8") as fh:
+        doc = json.load(fh)
+    return [(q.get("query"), q.get("expect"), q.get("difficulty")) for q in doc["queries"]]
+
+
+def load_rows(path, corpus_path=None):
+    """The saved per-question rows, or nothing when they answer a corpus that is no longer on disk.
+
+    THE INSTRUMENT CAN CHANGE UNDER A NUMBER. Ten questions in retrieval_corpus.json were rewritten to
+    fix the defects the validator proved, and every saved result for that corpus silently became an
+    answer to a question nobody asks any more - nothing about the file's existence says so. So the rows
+    are checked against the corpus they claim to be about, and a mismatch is treated as no measurement.
+    """
+    if not os.path.isfile(path):
+        return []
+    with open(path, encoding="utf-8") as fh:
+        rows = json.load(fh).get("rows") or []
+    if corpus_path and os.path.isfile(corpus_path):
+        want = corpus_queries(corpus_path)
+        got = [(r.get("query"), r.get("expect"), r.get("difficulty")) for r in rows]
+        if got != want:
+            print("  STALE: %s was measured against a different %s"
+                  % (os.path.basename(path), os.path.basename(corpus_path)))
+            return []
+    return rows
+
+
+def shape_extremes(retr):
+    """The subject whose score moves most between the two phrasings, read from the summaries.
+
+    THIS USED TO BE A NUMBER IN THE PROSE. "One subject is 6/60 and 29/60" was true when it was
+    written and survived a corpus repair that moved it to 6/60 and 19/60, which is the same defect as a
+    stale table with none of a table's visibility. The number now comes from the rows being printed.
+    """
+    worst = None
+    for label, s in retr:
+        a = (s or {}).get("all") or {}
+        if "hit3_keyword" not in a:
+            continue
+        change = abs(a["hit3_keyword"] - a["hit3"])
+        if worst is None or change > worst[4]:
+            worst = (label, a["hit3"], a["n"], a["hit3_keyword"], change)
+    return worst[:4] if worst else None
+
+
+def replication_note():
+    """The neighbouring-pair result, read from the report rather than remembered."""
+    path = os.path.join(HERE, "REPLICATION.json")
+    if not os.path.isfile(path):
+        return ""
+    with open(path, encoding="utf-8") as fh:
+        doc = json.load(fh)
+    pairs, agree = doc.get("pairs") or 0, doc.get("agree") or 0
+    if not pairs:
+        return ""
+    bad = pairs - agree
+    return (" %d of the %d neighbouring pairs in the retrieval table do not reach the same conclusion"
+            " on both, so a separation there holds for this question set until a third corpus agrees."
+            % (bad, pairs)) if bad else (" Every neighbouring pair reaches the same conclusion on both.")
+
+
 def run_retrieval(entry, timeout, cases=None, suffix=""):
     """Second axis: can the subject ANSWER a question about what it kept?
 
@@ -324,10 +387,15 @@ def main(argv):
     print("interval for the majority result, in counts. The first covers repeating the experiment,")
     print("the second covers asking a different set of %d questions. They are not the same error."
           % n_q)
+    worst = shape_extremes(retr)
     print("'kw h3' is the same %d questions asked again with the words that carry no meaning removed:"
           % n_q)
-    print("one subject is 6/60 and 29/60 on the same corpus depending on which is asked, so a score")
-    print("quoted without its phrasing is half a measurement. Per-band detail is in SHAPE.md.")
+    if worst:
+        print("%s is %d/%d one way and %d/%d the other on the same corpus, so a score quoted without"
+              % (worst[0], worst[1], worst[2], worst[3], worst[2]))
+        print("its phrasing is half a measurement. Per-band detail is in SHAPE.md.")
+    else:
+        print("a score quoted without its phrasing is half a measurement. Per-band detail is in SHAPE.md.")
 
     # --- third axis --------------------------------------------------------
     print()
@@ -426,15 +494,17 @@ def main(argv):
         if os.path.isfile(os.path.join(HERE, "REPLICATION.md")):
             fh.write(chr(10) + "## Replication" + chr(10) + chr(10) +
                      "The same subjects on a second corpus, written by an author who never saw this one,"
-                     " are compared in `REPLICATION.md`. Five of the ten neighbouring pairs in"
-                     " the retrieval table do not reach the same conclusion on both, so a separation"
-                     " there holds for this question set until a third corpus agrees." + chr(10))
+                     " are compared in `REPLICATION.md`." + replication_note() + chr(10))
         if os.path.isfile(os.path.join(HERE, "SHAPE.md")):
+            worst = shape_extremes(retr)
             fh.write(chr(10) + "The retrieval score is also a pair: every question is asked again with"
                      " the words that carry no meaning removed, and `SHAPE.md` reports the gap."
-                     " One subject moves by twenty-three questions out of sixty when only the phrasing"
-                     " changes and two more by fourteen or more, so a hit@3 number without its phrasing"
-                     " is half a measurement." + chr(10))
+                     + ((" %s is %d/%d one way and %d/%d the other on the same corpus, so a hit@3"
+                         " number without its phrasing is half a measurement."
+                         % (worst[0], worst[1], worst[2], worst[3], worst[2]))
+                        if worst else
+                        " A hit@3 number without its phrasing is half a measurement.")
+                     + chr(10))
     print("written to MATRIX.md")
     return 0
 

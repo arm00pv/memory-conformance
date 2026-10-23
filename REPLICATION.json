@@ -1,0 +1,7 @@
+{
+  "subjects": 11,
+  "pairs": 10,
+  "agree": 5,
+  "rho": 0.8852999383605784,
+  "corpus_b": "retrieval_corpus_b.json"
+}

@@ -80,27 +80,12 @@ def spearman(a, b):
 
 
 def load_rows(path, corpus_path=None):
-    """The saved rows, unless they were measured against a different corpus than the one on disk.
+    """The saved rows, through the one staleness guard in this repository (matrix.load_rows).
 
-    THE INSTRUMENT CAN CHANGE UNDER A NUMBER. Edit one question in a corpus and every saved result
-    silently becomes an answer to a question nobody asked any more, and nothing about the file's
-    existence says so. So the saved rows are checked against the corpus they claim to be about, and a
-    mismatch is treated as no measurement rather than as a measurement.
+    It lives in matrix.py because shape.py needs the same guard, and two copies of a check is how one
+    of them ends up not running.
     """
-    if not os.path.isfile(path):
-        return []
-    with open(path, encoding="utf-8") as fh:
-        rows = json.load(fh).get("rows") or []
-    if corpus_path and os.path.isfile(corpus_path):
-        with open(corpus_path, encoding="utf-8") as fh:
-            doc = json.load(fh)
-        want = [(q.get("query"), q.get("expect"), q.get("difficulty")) for q in doc["queries"]]
-        got = [(r.get("query"), r.get("expect"), r.get("difficulty")) for r in rows]
-        if got != want:
-            print("  STALE: %s was measured against a different %s" %
-                  (os.path.basename(path), os.path.basename(corpus_path)))
-            return []
-    return rows
+    return matrix.load_rows(path, corpus_path)
 
 
 def hits(rows):
@@ -246,6 +231,12 @@ def main(argv):
 
     with open("REPLICATION.md", "w", encoding="utf-8", newline=chr(10)) as fh:
         fh.write(chr(10).join(OUT) + chr(10))
+    # THE COUNTS TRAVEL AS DATA. "Five of the ten neighbouring pairs" was typed into MATRIX.md's
+    # generator and would have survived the next repair that changed it, which is the same defect as a
+    # stale table with none of a table's visibility.
+    with open("REPLICATION.json", "w", encoding="utf-8", newline=chr(10)) as fh:
+        fh.write(json.dumps({"subjects": len(have), "pairs": agree + disagree, "agree": agree,
+                             "rho": rho, "corpus_b": CORPUS_B}, indent=2) + chr(10))
     print()
     print("written to REPLICATION.md")
     return 0

@@ -5,6 +5,8 @@
       "n": 16,
       "hit1": 0,
       "hit3": 0,
+      "hit1_keyword": 0,
+      "hit3_keyword": 0,
       "runs": [
         0,
         0,
@@ -15,6 +17,8 @@
       "n": 16,
       "hit1": 0,
       "hit3": 0,
+      "hit1_keyword": 0,
+      "hit3_keyword": 0,
       "runs": [
         0,
         0,
@@ -25,6 +29,8 @@
       "n": 16,
       "hit1": 0,
       "hit3": 0,
+      "hit1_keyword": 0,
+      "hit3_keyword": 0,
       "runs": [
         0,
         0,
@@ -34,6 +40,7 @@
     "absent": {
       "n": 12,
       "answered": 12,
+      "answered_keyword": 12,
       "runs": [
         12,
         12,
@@ -44,6 +51,8 @@
       "n": 60,
       "hit1": 0,
       "hit3": 0,
+      "hit1_keyword": 0,
+      "hit3_keyword": 0,
       "runs": [
         0,
         0,
@@ -363,8 +372,8 @@
       }
     },
     {
-      "query": "which key is kept inside specialised hardware",
-      "expect": "key-signing",
+      "query": "How long must a passphrase be, and how is it stored?",
+      "expect": "auth-password",
       "difficulty": "hard",
       "returned": [
         "budget"
@@ -373,7 +382,7 @@
       "hit3": false,
       "answered": true,
       "error": null,
-      "keyword": "key kept inside specialised hardware",
+      "keyword": "passphrase stored",
       "returned_keyword": [
         "budget"
       ],
@@ -425,7 +434,7 @@
       }
     },
     {
-      "query": "where is customer data physically held",
+      "query": "In which city is the personal information of users kept?",
       "expect": "region",
       "difficulty": "hard",
       "returned": [
@@ -435,7 +444,7 @@
       "hit3": false,
       "answered": true,
       "error": null,
-      "keyword": "customer data physically",
+      "keyword": "city personal information user kept",
       "returned_keyword": [
         "budget"
       ],
@@ -642,8 +651,8 @@
       }
     },
     {
-      "query": "how old may the oldest backup copy become",
-      "expect": "backup-retention",
+      "query": "Where is the key that protects the backups kept?",
+      "expect": "data-backup-key",
       "difficulty": "adversarial",
       "returned": [
         "budget"
@@ -652,7 +661,7 @@
       "hit3": false,
       "answered": true,
       "error": null,
-      "keyword": "old oldest backup copy become",
+      "keyword": "key protect backup kept",
       "returned_keyword": [
         "budget"
       ],
@@ -673,8 +682,8 @@
       }
     },
     {
-      "query": "which host is used only for the always on collector",
-      "expect": "hosts-pi",
+      "query": "In which currency are invoices issued to a customer in another country?",
+      "expect": "bill-currency",
       "difficulty": "adversarial",
       "returned": [
         "budget"
@@ -683,7 +692,7 @@
       "hit3": false,
       "answered": true,
       "error": null,
-      "keyword": "host collector",
+      "keyword": "currency invoice issued customer another country",
       "returned_keyword": [
         "budget"
       ],
@@ -766,8 +775,8 @@
       }
     },
     {
-      "query": "can two stores see each other's records",
-      "expect": "mem-store-path",
+      "query": "How often is a release cut?",
+      "expect": "rel-cadence",
       "difficulty": "adversarial",
       "returned": [
         "budget"
@@ -776,7 +785,7 @@
       "hit3": false,
       "answered": true,
       "error": null,
-      "keyword": "store see s record",
+      "keyword": "release cut",
       "returned_keyword": [
         "budget"
       ],
@@ -1231,8 +1240,8 @@
       }
     },
     {
-      "query": "how long does a login stay valid before it must be renewed",
-      "expect": "auth-token-ttl",
+      "query": "Does shutting the window log me out?",
+      "expect": "auth-session",
       "difficulty": "hard",
       "returned": [
         "budget"
@@ -1241,7 +1250,7 @@
       "hit3": false,
       "answered": true,
       "error": null,
-      "keyword": "login stay valid renewed",
+      "keyword": "shutting window log",
       "returned_keyword": [
         "budget"
       ],
@@ -1262,8 +1271,8 @@
       }
     },
     {
-      "query": "how quickly can traffic be switched away from a dead server",
-      "expect": "net-dns-ttl",
+      "query": "How long is a machine left to settle before it stops taking work?",
+      "expect": "maint-drain",
       "difficulty": "hard",
       "returned": [
         "budget"
@@ -1272,7 +1281,7 @@
       "hit3": false,
       "answered": true,
       "error": null,
-      "keyword": "quickly traffic switched away dead server",
+      "keyword": "machine left settle stop taking work",
       "returned_keyword": [
         "budget"
       ],
@@ -1510,8 +1519,8 @@
       }
     },
     {
-      "query": "how long does an account stay locked after too many wrong passwords",
-      "expect": "auth-lockout",
+      "query": "How soon does someone hear about a failed replication?",
+      "expect": "alert-replication",
       "difficulty": "adversarial",
       "returned": [
         "budget"
@@ -1520,7 +1529,7 @@
       "hit3": false,
       "answered": true,
       "error": null,
-      "keyword": "account stay locked wrong password",
+      "keyword": "soon hear failed replication",
       "returned_keyword": [
         "budget"
       ],
@@ -1572,8 +1581,8 @@
       }
     },
     {
-      "query": "how many days do customers have to pay an invoice",
-      "expect": "bill-terms",
+      "query": "Is every read of personal information recorded?",
+      "expect": "data-audit",
       "difficulty": "adversarial",
       "returned": [
         "budget"
@@ -1582,7 +1591,7 @@
       "hit3": false,
       "answered": true,
       "error": null,
-      "keyword": "day customer pay invoice",
+      "keyword": "every read personal information recorded",
       "returned_keyword": [
         "budget"
       ],
@@ -1696,8 +1705,8 @@
       }
     },
     {
-      "query": "how far ahead are certificates renewed",
-      "expect": "maint-cert",
+      "query": "How fast must ninety five percent of requests be answered?",
+      "expect": "latency-slo",
       "difficulty": "adversarial",
       "returned": [
         "budget"
@@ -1706,7 +1715,7 @@
       "hit3": false,
       "answered": true,
       "error": null,
-      "keyword": "far ahead certificate renewed",
+      "keyword": "fast ninety five percent request answered",
       "returned_keyword": [
         "budget"
       ],
