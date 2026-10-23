@@ -216,13 +216,20 @@ def check(path):
     if longrec:
         warnings.append("%d record(s) longer than 160 characters: %s"
                         % (len(longrec), ", ".join(longrec[:5])))
+    # NEAR-IDENTICAL QUESTIONS ARE THE POINT WHEN THEY TEST DIFFERENT FACTS. "How much is a peak return to
+    # Coble Wharf?" and "What does an off-peak return to Coble Wharf come to?" are two words apart and
+    # deliberately so: they are the pair a keyword matcher cannot tell apart. Warning on them charged the
+    # corpus for doing its job. What is actually redundant is two questions that land on the SAME record,
+    # because then one fact is being counted twice and a subject's score depends on it twice.
     near = []
-    for i, a in enumerate(qs):
-        for b in qs[i + 1:]:
-            if jaccard(a, b) >= 0.8:
-                near.append((a, b))
+    for i, a in enumerate(queries):
+        for b in queries[i + 1:]:
+            if a.get("expect") and a.get("expect") == b.get("expect"):
+                if jaccard(a.get("query"), b.get("query")) >= 0.8:
+                    near.append((a.get("query"), b.get("query")))
     if near:
-        warnings.append("%d question pair(s) are near paraphrases of each other: %s"
+        warnings.append("%d question pair(s) are near paraphrases of each other AND name the same"
+                        " record, so one fact is being counted twice: %s"
                         % (len(near), "; ".join("%r/%r" % x for x in near[:3])))
     return errors, warnings, facts
 

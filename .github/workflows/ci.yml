@@ -26,6 +26,11 @@ jobs:
           grep -q "kw h3" /tmp/matrix.txt
           grep -q "change" /tmp/matrix.txt
           echo "the matrix table carries the phrasing pair"
+      - name: every published claim must be evaluable, and must print its scope
+        run: |
+          python claims.py
+          test -s CLAIMS.md
+          grep -q "claims hold in every setting measured" CLAIMS.md
       - name: a paired claim must say when the phrasing decides it
         run: |
           python compare.py memory-mcp-1file zenbrain > /tmp/cmp.txt
