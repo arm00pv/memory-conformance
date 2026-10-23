@@ -9,25 +9,25 @@ are NOT comparable as numbers - they count answers to different questions. The o
 | control 1.0.0                   | 25/60 | **32/60** | 16/16 | 1/16 | 15/16 | 0/12 |
 | server-memory 1.0.0             | 0/60 | **0/60** | 0/16 | 0/16 | 0/16 | 0/12 |
 | server-memory 2.0.0             | 0/60 | **0/60** | 0/16 | 0/16 | 0/16 | 0/12 |
-| memento 0.7.0                   | 11/60 | **19/60** | 9/16 | 6/16 | 4/16 | 12/12 |
+| memento 0.7.0                   | 14/60 | **19/60** | 9/16 | 6/16 | 4/16 | 12/12 |
 | memdb 1.4.0                     | 6/60 | **1/60** | 0/16 | 1/16 | 0/16 | 11/12 |
 | memory-lean 1.5.0               | 14/60 | **0/60** | 0/16 | 0/16 | 0/16 | 0/12 |
 | mcp-knowledge-graph 1.3.2       | 0/60 | **0/60** | 0/16 | 0/16 | 0/16 | 0/12 |
-| zenbrain 0.3.0                  | 37/60 | **33/60** | 16/16 | 2/16 | 15/16 | 12/12 |
-| memory-mcp-1file 0.9.2          | 43/60 | **45/60** | 16/16 | 13/16 | 16/16 | 12/12 |
+| zenbrain 0.3.0                  | 40/60 | **33/60** | 16/16 | 2/16 | 15/16 | 12/12 |
+| memory-mcp-1file 0.9.2          | 42/60 | **45/60** | 16/16 | 13/16 | 16/16 | 12/12 |
 | statecore-mcp 1.0.0             | 0/60 | **0/60** | 0/16 | 0/16 | 0/16 | 0/12 |
-| mcp-duckdb-memory-server 1.1.10 | 10/60 | **13/60** | 9/16 | 0/16 | 4/16 | 0/12 |
+| mcp-duckdb-memory-server 1.1.10 | 12/60 | **13/60** | 9/16 | 0/16 | 4/16 | 0/12 |
 
-Rank correlation between the two orderings: **rho = 0.86** over 11 subjects.
+Rank correlation between the two orderings: **rho = 0.89** over 11 subjects.
 
 | subject                         | rank A | rank B | move |
 |---|---|---|---|
 | control 1.0.0                   | 3 | 3 | same |
 | server-memory 1.0.0             | 8 | 7 | +1 |
 | server-memory 2.0.0             | 9 | 8 | +1 |
-| memento 0.7.0                   | 5 | 4 | +1 |
+| memento 0.7.0                   | 4 | 4 | same |
 | memdb 1.4.0                     | 7 | 6 | +1 |
-| memory-lean 1.5.0               | 4 | 9 | -5 |
+| memory-lean 1.5.0               | 5 | 9 | -4 |
 | mcp-knowledge-graph 1.3.2       | 10 | 10 | same |
 | zenbrain 0.3.0                  | 2 | 2 | same |
 | memory-mcp-1file 0.9.2          | 1 | 1 | same |
@@ -43,12 +43,12 @@ answer, silence. sep is p < 0.05.
 
 | pair | corpus A | corpus B | same conclusion |
 |---|---|---|---|
-| memory-mcp-1file 0.9.2 / zenbrain 0.3.0 | 0.180 (10-4) not | 0.000 (12-0) sep | **no** |
-| zenbrain 0.3.0 / control 1.0.0 | 1.000 (13-13) not | 0.007 (2-13) sep | **no** |
-| control 1.0.0 / memory-lean 1.5.0 | 0.001 (11-0) sep | 0.000 (32-0) sep | yes |
-| memory-lean 1.5.0 / memento 0.7.0 | 0.011 (23-8) sep | 0.281 (12-19) not | **no** |
-| memento 0.7.0 / mcp-duckdb-memory-server 1.1.10 | 0.071 (10-21) not | 0.362 (12-18) not | yes |
-| mcp-duckdb-memory-server 1.1.10 / memdb 1.4.0 | 0.000 (18-2) sep | 0.000 (24-1) sep | yes |
+| memory-mcp-1file 0.9.2 / zenbrain 0.3.0 | 0.581 (8-5) not | 0.000 (12-0) sep | **no** |
+| zenbrain 0.3.0 / control 1.0.0 | 0.701 (15-12) not | 0.007 (2-13) sep | **no** |
+| control 1.0.0 / memento 0.7.0 | 0.000 (29-6) sep | 0.000 (30-5) sep | yes |
+| memento 0.7.0 / memory-lean 1.5.0 | 0.058 (11-23) not | 0.281 (19-12) not | yes |
+| memory-lean 1.5.0 / mcp-duckdb-memory-server 1.1.10 | 0.791 (8-6) not | 0.000 (0-13) sep | **no** |
+| mcp-duckdb-memory-server 1.1.10 / memdb 1.4.0 | 0.000 (20-2) sep | 0.000 (24-1) sep | yes |
 | memdb 1.4.0 / server-memory 1.0.0 | 0.238 (6-12) not | 0.006 (1-11) sep | **no** |
 | server-memory 1.0.0 / server-memory 2.0.0 | 1.000 (0-0) not | 1.000 (0-0) not | yes |
 | server-memory 2.0.0 / mcp-knowledge-graph 1.3.2 | 1.000 (0-0) not | 1.000 (0-0) not | yes |

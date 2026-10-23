@@ -22,17 +22,17 @@ Cells in parentheses belong to a subject that failed `isolation`; its other verd
 
 | subject | easy h3 | hard h3 | adversarial h3 | all h1 | all h3 | h3 as keywords | change | no-answer answered | runs | h3 95% |
 |---|---|---|---|---|---|---|---|---|---|---|
-| control 1.0.0 | 16/16 | 0/16 | 9/16 | 25/60 | 25/60 | 29/60 | +4 | 0/12 | 25-25 | 18-33 |
+| control 1.0.0 | 16/16 | 0/16 | 9/16 | 25/60 | 25/60 | 30/60 | +5 | 0/12 | 25-25 | 18-33 |
 | server-memory 1.0.0 | 0/16 | 0/16 | 0/16 | 0/60 | 0/60 | 2/60 | +2 | 0/12 | 0-0 | 0-4 |
 | server-memory 2.0.0 | 0/16 | 0/16 | 0/16 | 0/60 | 0/60 | 2/60 | +2 | 0/12 | 0-0 | 0-4 |
-| memento 0.7.0 | 3/16 | 3/16 | 5/16 | 3/60 | 11/60 | 10/60 | -1 | 12/12 | 11-11 | 6-18 |
-| memdb 1.4.0 | 6/16 | 0/16 | 0/16 | 0/60 | 6/60 | 21/60 | +15 | 12/12 | 6-6 | 3-12 |
+| memento 0.7.0 | 3/16 | 4/16 | 7/16 | 6/60 | 14/60 | 12/60 | -2 | 12/12 | 14-14 | 9-21 |
+| memdb 1.4.0 | 6/16 | 0/16 | 0/16 | 0/60 | 6/60 | 19/60 | +13 | 12/12 | 6-6 | 3-12 |
 | memory-lean 1.5.0 | 14/16 | 0/16 | 0/16 | 14/60 | 14/60 | 18/60 | +4 | 0/12 | 14-14 | 9-21 |
 | mcp-knowledge-graph 1.3.2 | 0/16 | 0/16 | 0/16 | 0/60 | 0/60 | 2/60 | +2 | 0/12 | 0-0 | 0-4 |
-| zenbrain 0.3.0 | 16/16 | 7/16 | 14/16 | 31/60 | 37/60 | 32/60 | -5 | 12/12 | 37-37 | 29-44 |
-| memory-mcp-1file 0.9.2 | 16/16 | 13/16 | 14/16 | 41/60 | 43/60 | 43/60 | +0 | 12/12 | 43-43 | 36-49 |
+| zenbrain 0.3.0 | 16/16 | 8/16 | 16/16 | 33/60 | 40/60 | 33/60 | -7 | 12/12 | 40-40 | 32-46 |
+| memory-mcp-1file 0.9.2 | 16/16 | 12/16 | 14/16 | 39/60 | 42/60 | 42/60 | +0 | 11/12 | 42-42 | 34-48 |
 | statecore-mcp 1.0.0 | 0/16 | 0/16 | 0/16 | 0/60 | 0/60 | 0/60 | +0 | 12/12 | 0-0 | 0-4 |
-| mcp-duckdb-memory-server 1.1.10 | 8/16 | 0/16 | 2/16 | 10/60 | 10/60 | 10/60 | +0 | 0/12 | 10-10 | 6-17 |
+| mcp-duckdb-memory-server 1.1.10 | 8/16 | 1/16 | 3/16 | 12/60 | 12/60 | 13/60 | +1 | 0/12 | 12-12 | 7-19 |
 
 The last column is the 95% Wilson interval for all-band hit@3, in counts. Two subjects whose intervals overlap are not separated by this corpus.
 
@@ -58,6 +58,6 @@ Measured once per subject with nothing else running. "resp" is the median bytes 
 
 ## Replication
 
-The same subjects on a second corpus, written by an author who never saw this one, are compared in `REPLICATION.md`. Five of the ten neighbouring pairs in the retrieval table do not reach the same conclusion on both, so a separation there holds for this question set until a third corpus agrees.
+The same subjects on a second corpus, written by an author who never saw this one, are compared in `REPLICATION.md`. 5 of the 10 neighbouring pairs in the retrieval table do not reach the same conclusion on both, so a separation there holds for this question set until a third corpus agrees.
 
-The retrieval score is also a pair: every question is asked again with the words that carry no meaning removed, and `SHAPE.md` reports the gap. One subject moves by twenty-three questions out of sixty when only the phrasing changes and two more by fourteen or more, so a hit@3 number without its phrasing is half a measurement.
+The retrieval score is also a pair: every question is asked again with the words that carry no meaning removed, and `SHAPE.md` reports the gap. memdb 1.4.0 is 6/60 one way and 19/60 the other on the same corpus, so a hit@3 number without its phrasing is half a measurement.

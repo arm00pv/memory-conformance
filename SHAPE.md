@@ -14,19 +14,19 @@ adversarial columns count hits only, so a +1 there and a +0 in the total is the 
 
 | subject                         | as written | as keywords | change | easy | hard | adversarial |
 |---|---|---|---|---|---|---|
-| control 1.0.0                   | 37/60 | **41/60** | +4 | +0 | +2 | +2 |
+| control 1.0.0                   | 37/60 | **42/60** | +5 | +0 | +1 | +4 |
 | server-memory 1.0.0             | 12/60 | **14/60** | +2 | +0 | +0 | +2 |
 | server-memory 2.0.0             | 12/60 | **14/60** | +2 | +0 | +0 | +2 |
-| memento 0.7.0                   | 11/60 | **10/60** | -1 | +0 | +0 | -1 |
-| memdb 1.4.0                     | 6/60 | **29/60** | +23 | +1 | +4 | +10 |
+| memento 0.7.0                   | 14/60 | **12/60** | -2 | +0 | +0 | -2 |
+| memdb 1.4.0                     | 6/60 | **27/60** | +21 | +1 | +4 | +8 |
 | memory-lean 1.5.0               | 26/60 | **30/60** | +4 | +0 | +0 | +4 |
 | mcp-knowledge-graph 1.3.2       | 12/60 | **14/60** | +2 | +0 | +0 | +2 |
-| zenbrain 0.3.0                  | 37/60 | **32/60** | -5 | +0 | -1 | -4 |
-| memory-mcp-1file 0.9.2          | 43/60 | **43/60** | +0 | +0 | +1 | -1 |
+| zenbrain 0.3.0                  | 40/60 | **33/60** | -7 | +0 | -4 | -3 |
+| memory-mcp-1file 0.9.2          | 43/60 | **42/60** | -1 | +0 | +1 | -1 |
 | statecore-mcp 1.0.0             | 0/60 | **0/60** | +0 | +0 | +0 | +0 |
-| mcp-duckdb-memory-server 1.1.10 | 22/60 | **22/60** | +0 | -2 | +1 | +1 |
+| mcp-duckdb-memory-server 1.1.10 | 24/60 | **25/60** | +1 | -2 | +0 | +3 |
 
-Rank correlation between the two phrasings: **rho = 0.86** over 11 subjects. 8 of 11 subjects
+Rank correlation between the two phrasings: **rho = 0.79** over 11 subjects. 10 of 11 subjects
 score differently depending on how the question is put.
 
 Questions that change outcome between the two phrasings, first twelve:
@@ -34,19 +34,19 @@ Questions that change outcome between the two phrasings, first twelve:
 | subject | band | question | right as written | right as keywords |
 |---|---|---|---|---|
 | control 1.0.0 | hard | how long are backups kept after they are taken | no | yes |
-| control 1.0.0 | hard | where is customer data physically held | no | yes |
 | control 1.0.0 | adversarial | how long after the deployment key rotates may the old one still be used | no | yes |
+| control 1.0.0 | adversarial | Where is the key that protects the backups kept? | no | yes |
+| control 1.0.0 | adversarial | How soon does someone hear about a failed replication? | no | yes |
 | control 1.0.0 | adversarial | what happens after three failed payments | no | yes |
 | server-memory 1.0.0 | adversarial | how long does the refresh token last | no | yes |
 | server-memory 1.0.0 | adversarial | what is the tunnel mtu | no | yes |
 | server-memory 2.0.0 | adversarial | how long does the refresh token last | no | yes |
 | server-memory 2.0.0 | adversarial | what is the tunnel mtu | no | yes |
 | memento 0.7.0 | easy | corpus 105 cases | no | yes |
-| memento 0.7.0 | adversarial | how old may the oldest backup copy become | no | yes |
 | memento 0.7.0 | adversarial | which git behaviour hides the carriage returns | yes | no |
 | memento 0.7.0 | easy | shared runner build eleven minutes | yes | no |
 
-59 question outcomes in total change with the phrasing alone - no subject changed,
+61 question outcomes in total change with the phrasing alone - no subject changed,
 no store changed, no ranking changed, only the words used to ask.
 
 ## retrieval_corpus_b.json

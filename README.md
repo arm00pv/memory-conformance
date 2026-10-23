@@ -139,16 +139,16 @@ railway, deliberately a different world from corpus A's ops estate - written by 
 specification and told not to read this repository's corpus, matrix or results. `replicate.py` runs
 every subject on both and reports the comparison to `REPLICATION.md`.
 
-The totals are not comparable: 43 of 60 and 44 of 60 count answers to different questions. The order and
+The totals are not comparable: 42 of 60 and 45 of 60 count answers to different questions. The order and
 the separations are. Of the ten neighbouring pairs in the corpus A table, **five reach the same
 conclusion on both corpora**. That is the honest error bar on this project's own ranking, and it is
 larger than any interval in it.
 
 Two findings from that replication are worth more than the table:
 
-- **A score of 37/60 beat a score of 25/60 by nothing at all.** zenbrain against the positive control is
-  thirteen questions to thirteen, p = 1.0, on corpus A, because the twelve unanswerable questions cancel
-  the twelve-question recall gap exactly. On corpus B the control wins, thirteen to two.
+- **A score of 40/60 beat a score of 25/60 by nothing at all.** zenbrain against the positive control is
+  fifteen questions to twelve, p = 0.70, on corpus A: the twelve unanswerable questions and the control's
+  keyword matching cancel the recall gap. On corpus B the control wins, thirteen to two.
 - **memory-lean's 14/60 was the corpus, not the subject.** It scores 0/60 on corpus B as written and
   28/60 on the same questions put as keywords, because its matching is word-based and corpus B asks
   questions. Which of those numbers is "its score" depends on who is typing.
@@ -253,24 +253,24 @@ near duplicate competing. 'noans' is questions with no answer that were answered
 0 is right.
 subject                         easy    hard    adver   all h1   all h3   kw h3    change   noans   runs      95%
 -----------------------------------------------------------------------------------------------------------------
-control 1.0.0                   16/16   0/16    9/16    25/60    25/60    29/60    +4       0/12    25-25     18-33
+control 1.0.0                   16/16   0/16    9/16    25/60    25/60    30/60    +5       0/12    25-25     18-33
 server-memory 1.0.0             0/16    0/16    0/16    0/60     0/60     2/60     +2       0/12    0-0       0-4
 server-memory 2.0.0             0/16    0/16    0/16    0/60     0/60     2/60     +2       0/12    0-0       0-4
-memento 0.7.0                   3/16    3/16    5/16    3/60     11/60    10/60    -1       12/12   11-11     6-18
-memdb 1.4.0                     6/16    0/16    0/16    0/60     6/60     21/60    +15      12/12   6-6       3-12
+memento 0.7.0                   3/16    4/16    7/16    6/60     14/60    12/60    -2       12/12   14-14     9-21
+memdb 1.4.0                     6/16    0/16    0/16    0/60     6/60     19/60    +13      12/12   6-6       3-12
 memory-lean 1.5.0               14/16   0/16    0/16    14/60    14/60    18/60    +4       0/12    14-14     9-21
 mcp-knowledge-graph 1.3.2       0/16    0/16    0/16    0/60     0/60     2/60     +2       0/12    0-0       0-4
-zenbrain 0.3.0                  16/16   7/16    14/16   31/60    37/60    32/60    -5       12/12   37-37     29-44
-memory-mcp-1file 0.9.2          16/16   13/16   14/16   41/60    43/60    43/60    +0       12/12   43-43     36-49
+zenbrain 0.3.0                  16/16   8/16    16/16   33/60    40/60    33/60    -7       12/12   40-40     32-46
+memory-mcp-1file 0.9.2          16/16   12/16   14/16   39/60    42/60    42/60    +0       11/12   42-42     34-48
 statecore-mcp 1.0.0             0/16    0/16    0/16    0/60     0/60     0/60     +0       12/12   0-0       0-4
-mcp-duckdb-memory-server 1.1.10 8/16    0/16    2/16    10/60    10/60    10/60    +0       0/12    10-10     6-17
+mcp-duckdb-memory-server 1.1.10 8/16    1/16    3/16    12/60    12/60    13/60    +1       0/12    12-12     7-19
 
 'runs' is the min-max of the same experiment repeated 3 times; '95%' is the Wilson
 interval for the majority result, in counts. The first covers repeating the experiment,
 the second covers asking a different set of 60 questions. They are not the same error.
 'kw h3' is the same 60 questions asked again with the words that carry no meaning removed:
-one subject is 6/60 and 29/60 on the same corpus depending on which is asked, so a score
-quoted without its phrasing is half a measurement. Per-band detail is in SHAPE.md.
+memdb 1.4.0 is 6/60 one way and 19/60 the other on the same corpus, so a score quoted without
+its phrasing is half a measurement. Per-band detail is in SHAPE.md.
 
 cost, measured once per subject with nothing else running. 'resp' is the median bytes the
 server sends back for one question and 'amp' is that divided by the answer's own size - a
@@ -324,12 +324,12 @@ other answers nothing at all — and on this corpus they are statistically ident
   most of the rest.
 - **memento** — returns the same three entities for a matching name, a nonsense string and the empty
   query. Its search is a listing, and it speaks on every unanswerable question.
-- **memory-mcp-1file** — the highest retrieval count here (43 of 60 as written, 43 as keywords)
-  against zenbrain's 37 and 32, and the one subject excluded from the conformance table for leaking
-  state between stores. Whether the two are separated depends on the phrasing: 10 discordant
-  questions against 4, p = 0.18, as written; 13 against 2, p = 0.0074, as keywords. Sixty questions
-  establishes that both are far better than memdb (31–0) and does not establish, on the questions
-  alone, which of them is better than the other.
+- **memory-mcp-1file** — the highest retrieval count here (42 of 60 as written, 42 as keywords)
+  against zenbrain's 40 and 33, and the one subject excluded from the conformance table for leaking
+  state between stores. Whether the two are separated depends on the phrasing: 8 discordant questions
+  against 5, p = 0.58, as written; 11 against 2, p = 0.0225, as keywords. Sixty questions establishes
+  that both are far better than memdb and does not establish, on the questions alone, which of them is
+  better than the other.
 
 `runs` and `95%` are two different error bars and both matter. `runs` is the min–max of the whole
 experiment repeated three times: the **measurement** error, and it is zero on every subject here.
@@ -379,7 +379,7 @@ the subject's choice, which is why byte counts are repeated too.
 
 **Read this table with the retrieval one, or the cheapest memory looks like the best.** The two
 subjects that cost 39 bytes per question return *nothing*; efficiency achieved by silence is not
-efficiency. The highest retriever (`memory-mcp-1file`, 43/60 as written and 43 as keywords) is also
+efficiency. The highest retriever (`memory-mcp-1file`, 42/60 as written and 42 as keywords) is also
 among the most expensive per question at 34× the size of the answer. And one marketing claim survives
 measurement intact:
 `memory-lean` is genuinely lean — 164 bytes, 3×, and the fastest startup in the set.
@@ -551,14 +551,15 @@ success reply is honest about the write and silent about the loss.
   the ordering overall (rho = 0.86), the top two in their order, the four subjects at zero, and one
   subject's recall advantage concentrated in the hard band (13 of 16 on both corpora). What did not: five
   of the ten neighbouring pairs, including the second-place subject against the positive control.
-  `validate_corpus.py` now checks the corpus itself - unique ids, one answer per question, no
-  unanswerable question covered by a record, a real competitor behind every adversarial question, and
-  every hard question genuinely paraphrased rather than sharing its answer's words - and it found six
-  defects in the corpus every earlier number was computed from. They are pinned in `corpus-known.json`:
-  a new one fails the build, and a pinned one that stops reproducing is reported as drift. Two of the
-  six are hard-band questions that share two words with their own answer ("where is customer data
-  physically held" against a record that says "customer data"), which is a keyword question wearing a
-  paraphrase's label.
+  `validate_corpus.py` checks the corpus itself - unique ids, one answer per question, no unanswerable
+  question covered by a record, a real competitor behind every adversarial question, and every hard
+  question genuinely paraphrased rather than sharing its answer's words - and it found six defects in the
+  corpus every earlier number was computed from: two hard questions that shared their answer's wording,
+  six records answering two questions each, and three "adversarial" questions with nothing to compete
+  against. **All six are repaired**: ten questions rewritten, no record touched, and `corpus-known.json`
+  is now empty, so the next defect is a build failure rather than a table entry. The repair moved the
+  ranking - the runner-up gained three questions and the leader lost one, which is the direction a
+  defective corpus always leans. See Addendum 16.
 - **Every question is now asked twice, and that is the point.** Corpus A's easy band is written as
   keyword strings ("access token fifteen minutes"), corpus B's as questions ("How long does an access
   token last?"). For a subject whose search matches words, that difference is worth 14 of 60 questions -

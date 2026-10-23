@@ -1883,3 +1883,103 @@ The two columns agree for four subjects and disagree for seven.
 - **One subject's number moves between invocations.** memory-mcp-1file's corpus-B total is 44 or 45
   depending on which search tool discovery binds, and the report carries that as a range rather than a
   value.
+
+---
+
+## Addendum 16: paying the pinned debt, and what it did to the ranking
+
+Addendum 15 ended with the thing still open: corpus A's six defects were pinned, not fixed. A pin says
+"this is wrong and I know it is wrong"; it does not make it right, and every number computed from the
+corpus was still computed from it.
+
+### The repair
+
+Ten questions rewritten, no record touched. Ten, against a count of eleven defects, because two of them
+were the same question - the hard question on `key-signing` was both a duplicated answer and a
+keyword match, and retargeting it fixed both.
+
+The rules the repair was held to:
+
+- **one fact, one question.** Every record that answers something now answers exactly one question, so
+  no fact carries double weight.
+- **a band's label must be true.** An "adversarial" question needs a near duplicate to compete with; a
+  "hard" question must share at most one word with its answer.
+- **no record may be edited.** Records are the store every subject is measured against; changing them
+  changes the experiment for all 45 questions that still work, and that is a different repair.
+
+| what was wrong | repaired to | band | new answer |
+|---|---|---|---|
+| `where is customer data physically held` - shared 2 words with its answer | In which city is the personal information of users kept? | hard | region |
+| `which key is kept inside specialised hardware` - shared 2 words, and key-signing answered twice | How long must a passphrase be, and how is it stored? | hard | auth-password |
+| auth-token-ttl answered twice | Does shutting the window log me out? | hard | auth-session |
+| net-dns-ttl answered twice | How long is a machine left to settle before it stops taking work? | hard | maint-drain |
+| backup-retention answered twice | Where is the key that protects the backups kept? | adversarial | data-backup-key |
+| bill-terms answered twice | Is every read of personal information recorded? | adversarial | data-audit |
+| auth-lockout answered twice | How soon does someone hear about a failed replication? | adversarial | alert-replication |
+| `which host is used only for the always on collector` - competed with nothing | In which currency are invoices issued to a customer in another country? | adversarial | bill-currency |
+| `can two stores see each other's records` - competed with nothing | How often is a release cut? | adversarial | rel-cadence |
+| `how far ahead are certificates renewed` - competed with nothing | How fast must ninety five percent of requests be answered? | adversarial | latency-slo |
+
+The three questions that competed with nothing could not be repaired by rewording: competition is a
+property of the STORE, and those three records carry words no other record carries. Rather than add
+near-duplicate records - which would have changed the store every subject is measured against - those
+three questions were re-aimed at records that already had a competitor sitting beside them and no
+question of their own.
+
+### The validator after the repair
+
+retrieval_corpus.json: 72 records, 60 questions (easy 16, hard 16, adversarial 16, absent 12), 48
+distinct answers, 24 distractors, adversarial rival shares 1 and 2 words (no zeros, where before there
+were three), and no hard question sharing more than one word with its answer.
+
+`corpus-known.json` is now empty. The mechanism stays, with nothing pinned in it, so the next
+defect that appears is a build failure rather than a line in a table. Three records lost their questions
+(hosts-pi, mem-store-path, maint-cert) and became distractors; nine previously unused records gained one.
+
+### The cost, and the guard that made it visible
+
+Changing the instrument invalidates every number measured with it. That is exactly the failure this
+project keeps recording, so the guard written for it fired first: `matrix.load_rows` compares a
+saved report's questions against the corpus it claims to be about, and it refused all eleven corpus-A
+result files on the first read. Nothing was reported from a corpus that no longer exists.
+
+### What the change did to the numbers
+
+Corpus A, hit@3, before and after the repair. Corpus B is untouched and its column is there to show what
+a corpus that was never defective looks like.
+
+| subject | A before | A after | B |
+|---|---|---|---|
+| zenbrain 0.3.0 | 37/60 | **40/60** | 33/60 |
+| memory-mcp-1file 0.9.2 | 43/60 | **42/60** | 45/60 |
+| control 1.0.0 | 25/60 | **25/60** | 44/60 |
+| memento 0.7.0 | 11/60 | **14/60** | 19/60 |
+| mcp-duckdb-memory-server 1.1.10 | 10/60 | **12/60** | 13/60 |
+| memory-lean 1.5.0 | 14/60 | **14/60** | 0/60 |
+| memdb 1.4.0 | 6/60 | **6/60** | 1/60 |
+
+THE DEFECTS WERE DOING REAL WORK IN THE RANKING, and in the direction these things always do - for
+whoever was leading. The runner-up gained three questions, the leader lost one, and the adversarial band
+changed hands: zenbrain is now 16 of 16 on corpus A's adversarial questions where it was 14, while
+memory-mcp-1file is 14 where it was 14. The paired comparison between them, 10-4 (p = 0.18) as written
+before the repair, is 8-5 (p = 0.58) after it. The lead that the defects were propping up was two
+questions of real difference and four questions of a corpus that was wrong in the leader's favour.
+
+Two other subjects moved in the opposite direction from last phase's conclusion, and it is worth saying
+so plainly: memento went from 11 to 14, because several of its misses were on questions that were
+duplicated or unanswerable-by-design, and duckdb went from 10 to 12. Neither becomes a different
+product; both were being measured by a defective instrument.
+
+rho between the two corpora moved from 0.86 to 0.89, and the neighbouring pairs still disagree five
+times out of ten. Fixing corpus A made the two corpora agree slightly better. It did not make them
+agree.
+
+### What is still open
+
+- **Corpus B still carries four warnings**: an absent question sharing one word with a record, one
+  near-paraphrase pair, and three adversarial questions with a one-word trap. Warnings, not defects, and
+  printed on every run rather than suppressed.
+- **One author, one model.** Unchanged.
+- **The adversarial band now has no winner that survives both corpora.** zenbrain leads it 16-14 on
+  corpus A and trails 15-16 on corpus B. That is two question sets disagreeing, with no defects on
+  either side to blame it on.
