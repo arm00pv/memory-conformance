@@ -23,6 +23,9 @@ WRITE_HINTS = ("create", "store", "add", "write", "save", "remember", "insert", 
                "learn", "record", "capture", "ingest", "memorise", "memorize")
 READ_HINTS = ("read", "list", "dump", "retrieve", "load", "export", "fetch", "all", "nodes")
 SEARCH_HINTS = ("search", "query", "find", "recall", "lookup", "match")
+# "forget" is the verb a memory server uses for deletion, and it is not a synonym of "delete" in any
+# tokeniser - crbro-memory and others call the tool forget, not delete.
+DELETE_HINTS = ("delete", "forget", "remove", "purge", "drop", "erase", "discard")
 # "topic" and "subject" are handles a caller uses to name what they are storing - crbro-memory
 # refuses a write without one and offers it by that name.
 NAME_HINTS = ("name", "title", "key", "entity", "label", "topic", "subject")
@@ -101,6 +104,45 @@ def search_candidates(tools, exclude):
 def pick_search(tools, exclude):
     c = search_candidates(tools, exclude)
     return c[0] if c else None
+
+
+def delete_candidates(tools, exclude=None):
+    """Tools that plausibly forget a record, best first. Proven by round-trip before use, like the rest."""
+    scored = [(score(t["name"], DELETE_HINTS), t) for t in tools]
+    scored = [(s, t) for s, t in scored if s > 0]
+    scored.sort(key=lambda st: -st[0])
+    return [t for _s, t in scored if t["name"] != (exclude or {}).get("name")]
+
+
+def build_delete_args(tool, name):
+    """Arguments that ask this tool to forget one record, or None when no safe mapping exists.
+
+    A deletion that cannot be aimed at one record is worse than no deletion at all, so a tool whose
+    required arguments cannot all be filled from the name is left alone rather than called hopefully.
+    """
+    props = props_of(tool)
+    req = required_of(tool)
+    keys = [k for k in props if any(h in k.lower() for h in NAME_HINTS)]
+    keys.sort(key=lambda k: (k not in req, k))
+    if not keys:
+        return None
+    spec = props[keys[0]]
+    args = {keys[0]: [name] if spec.get("type") == "array" else name}
+    for r in req:
+        if r in args:
+            continue
+        other = props.get(r) or {}
+        if "enum" in other:
+            args[r] = enum_value(other)
+        elif other.get("type") in ("number", "integer"):
+            args[r] = 1
+        elif other.get("type") == "boolean":
+            args[r] = True
+        elif other.get("type") == "string":
+            args[r] = name
+        else:
+            return None
+    return args
 
 
 def build_search_args(tool, query):

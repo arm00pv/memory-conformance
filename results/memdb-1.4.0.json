@@ -8,7 +8,7 @@
       "verdict": "PASS",
       "kind": "kept",
       "evidence": "store A's record was not visible from store B",
-      "seconds": 7.8,
+      "seconds": 13.8,
       "runs": 3,
       "tally": {
         "PASS": 3
@@ -20,7 +20,7 @@
       "verdict": "PASS",
       "kind": "kept",
       "evidence": "acknowledged alpha; a fresh read returned 1 entities: ['alpha']",
-      "seconds": 7.3,
+      "seconds": 9.2,
       "runs": 3,
       "tally": {
         "PASS": 3
@@ -32,10 +32,22 @@
       "verdict": "PASS",
       "kind": "kept",
       "evidence": "three writes across three server lifetimes; read back ['restart-0', 'restart-1', 'restart-2']",
-      "seconds": 32.0,
+      "seconds": 37.4,
       "runs": 3,
       "tally": {
         "PASS": 3
+      },
+      "unstable": false
+    },
+    {
+      "probe": "forget",
+      "verdict": "UNKNOWN",
+      "kind": "not-applicable",
+      "evidence": "this subject publishes no way to be asked to forget, so the promise cannot be tested: this subject publishes no delete tool whose effect could be proven",
+      "seconds": 8.3,
+      "runs": 3,
+      "tally": {
+        "UNKNOWN": 3
       },
       "unstable": false
     },
@@ -44,7 +56,7 @@
       "verdict": "PASS",
       "kind": "kept",
       "evidence": "all 8 acknowledged records came back in the top 3 for a search on their own name",
-      "seconds": 11.4,
+      "seconds": 21.6,
       "runs": 3,
       "tally": {
         "PASS": 3
@@ -56,7 +68,7 @@
       "verdict": "PASS",
       "kind": "kept",
       "evidence": "the extra field survived the next write",
-      "seconds": 17.2,
+      "seconds": 22.5,
       "runs": 3,
       "tally": {
         "PASS": 3
@@ -68,7 +80,7 @@
       "verdict": "PASS",
       "kind": "kept",
       "evidence": "the unmodelled record survived",
-      "seconds": 18.5,
+      "seconds": 15.2,
       "runs": 3,
       "tally": {
         "PASS": 3
@@ -80,7 +92,7 @@
       "verdict": "PASS",
       "kind": "kept",
       "evidence": "20 of 20 acknowledged writes survived two servers on one store",
-      "seconds": 9.9,
+      "seconds": 14.7,
       "runs": 3,
       "tally": {
         "PASS": 3
@@ -92,7 +104,7 @@
       "verdict": "PASS",
       "kind": "kept",
       "evidence": "wrote 50000 characters; 50000 are still in the store; refused at 100000 by its own limit, so 50000 was measured",
-      "seconds": 10.9,
+      "seconds": 9.4,
       "runs": 3,
       "tally": {
         "PASS": 3

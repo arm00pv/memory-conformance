@@ -16,6 +16,7 @@ probes test, and it is built around the opposite decision from the server that f
 
 Tools:
   memory_write {name, observations, fields?}  -> {ok, seq, line, bytes, readback_verified}
+  memory_forget {name}                        -> {ok, forgotten, bytes}   (appends a tombstone)
   memory_read  {}                             -> {entities: [...]}
   memory_verify {}                            -> {records, verified, corrupt_lines, path}
 
@@ -63,7 +64,14 @@ def _append_line(obj):
     data = (line + chr(10)).encode("utf-8")
 
     def do():
-        fd = os.open(STORE, os.O_WRONLY | os.O_CREAT | os.O_APPEND, 0o644)
+        # O_BINARY IS NOT OPTIONAL ON WINDOWS. Without it the C runtime translates this "\n" into
+        # "\r\n" on the way out, so the bytes on disk never match the bytes this server wrote - and
+        # the read-back check below was FALSE for every write this server ever made, on every probe,
+        # for eighteen phases. Nothing noticed because the suite checks the read-back itself and never
+        # asked the control whether its own verification had passed. A server that reports failure and
+        # does the right thing is still reporting failure.
+        fd = os.open(STORE, os.O_WRONLY | os.O_CREAT | os.O_APPEND | getattr(os, "O_BINARY", 0),
+                     0o644)
         try:
             os.write(fd, data)
             os.fsync(fd)
@@ -109,8 +117,24 @@ def tool_write(args):
             "readback_verified": verified}
 
 
+def _live():
+    """The records a reader should see: everything except tombstones and what they name."""
+    ents, corrupt = _records()
+    dead = {e.get("tombstone") for e in ents if "tombstone" in e}
+    return [e for e in ents if "tombstone" not in e and e.get("name") not in dead], corrupt
+
+
+def tool_forget(args):
+    """FORGETTING IS AN APPEND TOO. This store never rewrites, so a deletion is a tombstone line: the
+    bytes that were written stay written, a reader after a restart sees the record gone, and nothing
+    that was acknowledged is ever destroyed - including the evidence that it existed."""
+    name = args.get("name")
+    line, size, verified = _append_line({"tombstone": name})
+    return {"ok": verified, "forgotten": name, "bytes": size}
+
+
 def tool_read(args):
-    ents, _corrupt = _records()
+    ents, _corrupt = _live()
     return {"entities": ents, "count": len(ents)}
 
 
@@ -135,6 +159,8 @@ TOOLS = {
         "name": {"type": "string"}, "observations": {"type": "array", "items": {"type": "string"}},
         "entityType": {"type": "string"}, "fields": {"type": "object"}},
         "required": ["name"]}),
+    "memory_forget": (tool_forget, {"type": "object", "properties": {
+        "name": {"type": "string"}}, "required": ["name"]}),
     "memory_read": (tool_read, {"type": "object", "properties": {}}),
     "memory_verify": (tool_verify, {"type": "object", "properties": {}}),
 }

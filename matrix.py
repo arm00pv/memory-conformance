@@ -18,11 +18,11 @@ import sys
 import time
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-PROBES = ["isolation", "ack_readback", "restart", "findable", "foreign_field", "foreign_record",
-          "concurrent", "large_record"]
-SHORT = {"isolation": "isol", "ack_readback": "ack", "restart": "restart", "findable": "find",
-         "foreign_field": "field", "foreign_record": "record", "concurrent": "conc",
-         "large_record": "large"}
+PROBES = ["isolation", "ack_readback", "restart", "forget", "findable", "foreign_field",
+          "foreign_record", "concurrent", "large_record"]
+SHORT = {"isolation": "isol", "ack_readback": "ack", "restart": "restart", "forget": "forget",
+         "findable": "find", "foreign_field": "field", "foreign_record": "record",
+         "concurrent": "conc", "large_record": "large"}
 
 
 def wilson(k, n, z=1.96):

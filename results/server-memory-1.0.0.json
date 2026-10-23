@@ -8,7 +8,7 @@
       "verdict": "PASS",
       "kind": "kept",
       "evidence": "store A's record was not visible from store B",
-      "seconds": 5.1,
+      "seconds": 2.8,
       "runs": 3,
       "tally": {
         "PASS": 3
@@ -20,7 +20,7 @@
       "verdict": "PASS",
       "kind": "kept",
       "evidence": "acknowledged alpha; a fresh read returned 1 entities: ['alpha']",
-      "seconds": 1.8,
+      "seconds": 2.4,
       "runs": 3,
       "tally": {
         "PASS": 3
@@ -32,7 +32,19 @@
       "verdict": "PASS",
       "kind": "kept",
       "evidence": "three writes across three server lifetimes; read back ['restart-0', 'restart-1', 'restart-2']",
-      "seconds": 3.3,
+      "seconds": 6.3,
+      "runs": 3,
+      "tally": {
+        "PASS": 3
+      },
+      "unstable": false
+    },
+    {
+      "probe": "forget",
+      "verdict": "PASS",
+      "kind": "kept",
+      "evidence": "asked to forget plinth-obsidian and the subject answered 'Entities deleted successfully'; after a restart the other two came back and it did not",
+      "seconds": 3.0,
       "runs": 3,
       "tally": {
         "PASS": 3
@@ -44,7 +56,7 @@
       "verdict": "PASS",
       "kind": "kept",
       "evidence": "all 8 acknowledged records came back in the top 3 for a search on their own name",
-      "seconds": 1.9,
+      "seconds": 4.0,
       "runs": 3,
       "tally": {
         "PASS": 3
@@ -56,7 +68,7 @@
       "verdict": "FAIL",
       "kind": "failed",
       "evidence": "the extra field was silently dropped by the next write",
-      "seconds": 1.8,
+      "seconds": 4.0,
       "runs": 3,
       "tally": {
         "FAIL": 3
@@ -68,7 +80,7 @@
       "verdict": "PASS",
       "kind": "kept",
       "evidence": "the unmodelled record survived",
-      "seconds": 1.8,
+      "seconds": 3.0,
       "runs": 3,
       "tally": {
         "PASS": 3
@@ -80,7 +92,7 @@
       "verdict": "PASS",
       "kind": "kept",
       "evidence": "20 of 20 acknowledged writes survived two servers on one store",
-      "seconds": 2.8,
+      "seconds": 5.4,
       "runs": 3,
       "tally": {
         "PASS": 3
@@ -92,7 +104,7 @@
       "verdict": "PASS",
       "kind": "kept",
       "evidence": "wrote 100000 characters, read back 100000",
-      "seconds": 1.8,
+      "seconds": 2.3,
       "runs": 3,
       "tally": {
         "PASS": 3

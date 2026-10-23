@@ -211,6 +211,28 @@ def c_leaks_state(ctx, corpus, shape):
     return verdict == "FAIL", "isolation %s" % verdict
 
 
+def c_can_forget(ctx, corpus, shape):
+    """Every subject can be asked to forget, and does.
+
+    THE TWO FAILURES ARE DIFFERENT AND BOTH MATTER. A subject that publishes no way to be asked cannot
+    be tested - that is a capability gap - and a subject that was asked and kept the record has broken
+    the promise. The claim is the conjunction, and the detail names which is which.
+    """
+    blocked, failed = [], []
+    for label in CONTEXT["labels"]:
+        r = (probes(label).get("forget") or {})
+        if not r:
+            continue
+        if r.get("verdict") == "FAIL":
+            failed.append(label)
+        elif r.get("verdict") == "UNKNOWN":
+            blocked.append(label)
+    return (not blocked and not failed,
+            "%d cannot be asked (%s); %d were asked and did not forget (%s)"
+            % (len(blocked), ", ".join(n.split()[0] for n in blocked) or "none",
+               len(failed), ", ".join(n.split()[0] for n in failed) or "none"))
+
+
 def c_leanest(ctx, corpus, shape):
     best = None
     for label in CONTEXT["labels"]:
@@ -267,6 +289,8 @@ CLAIMS = [
      c_small_servers_silent, True),
     ("memento-speaks", "memento answers every unanswerable question.",
      c_memento_speaks, True),
+    ("can-forget", "every subject can be asked to forget a record, and forgets it.",
+     c_can_forget, False),
     ("leaks-state", "memory-mcp-1file leaks state between stores and is out of scope.",
      c_leaks_state, False),
     ("leanest", "memory-lean returns fewer bytes per question than any subject that answers anything.",

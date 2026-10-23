@@ -2,6 +2,7 @@
   "isolation": "PASS",
   "ack_readback": "PASS",
   "restart": "PASS",
+  "forget": "PASS",
   "findable": "PASS",
   "foreign_field": "FAIL",
   "foreign_record": "PASS",

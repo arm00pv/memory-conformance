@@ -8,7 +8,7 @@
       "verdict": "PASS",
       "kind": "kept",
       "evidence": "store A's record was not visible from store B",
-      "seconds": 2.6,
+      "seconds": 14.9,
       "runs": 3,
       "tally": {
         "PASS": 3
@@ -20,7 +20,7 @@
       "verdict": "PASS",
       "kind": "kept",
       "evidence": "acknowledged alpha; a fresh read returned 1 entities: ['alpha']",
-      "seconds": 2.4,
+      "seconds": 10.8,
       "runs": 3,
       "tally": {
         "PASS": 3
@@ -32,10 +32,22 @@
       "verdict": "PASS",
       "kind": "kept",
       "evidence": "three writes across three server lifetimes; read back ['restart-0', 'restart-1', 'restart-2']",
-      "seconds": 4.7,
+      "seconds": 21.9,
       "runs": 3,
       "tally": {
         "PASS": 3
+      },
+      "unstable": false
+    },
+    {
+      "probe": "forget",
+      "verdict": "UNKNOWN",
+      "kind": "not-applicable",
+      "evidence": "this subject publishes no way to be asked to forget, so the promise cannot be tested: this subject publishes no delete tool whose effect could be proven",
+      "seconds": 7.5,
+      "runs": 3,
+      "tally": {
+        "UNKNOWN": 3
       },
       "unstable": false
     },
@@ -44,7 +56,7 @@
       "verdict": "PASS",
       "kind": "kept",
       "evidence": "all 8 acknowledged records came back in the top 3 for a search on their own name",
-      "seconds": 2.7,
+      "seconds": 31.5,
       "runs": 3,
       "tally": {
         "PASS": 3
@@ -56,7 +68,7 @@
       "verdict": "UNKNOWN",
       "kind": "not-applicable",
       "evidence": "no store is declared for this subject, so the probe had nothing to inspect; add a manifest (see manifests/) to make it answerable",
-      "seconds": 1.2,
+      "seconds": 10.7,
       "runs": 3,
       "tally": {
         "UNKNOWN": 3
@@ -68,7 +80,7 @@
       "verdict": "UNKNOWN",
       "kind": "not-applicable",
       "evidence": "no store is declared for this subject, so the probe had nothing to inspect; add a manifest (see manifests/) to make it answerable",
-      "seconds": 1.2,
+      "seconds": 11.0,
       "runs": 3,
       "tally": {
         "UNKNOWN": 3
@@ -80,7 +92,7 @@
       "verdict": "FAIL",
       "kind": "failed",
       "evidence": "10 write(s) failed outright: [\"w0-0: create_entities refused: Cannot read properties of null (reading 'connect')\", \"w0-1: create_entities refused: Cannot read properties of null (reading 'connect')\", \"w0-2: create_entities refused: Cannot read properties of null (reading 'connect')\"]; 10 write(s) failed outright: [\"w1-0: create_entities refused: Cannot read properties of null (reading 'connect')\",",
-      "seconds": 2.5,
+      "seconds": 9.7,
       "runs": 3,
       "tally": {
         "FAIL": 3

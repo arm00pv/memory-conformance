@@ -6,7 +6,9 @@
   python check.py "node my-server.js" --repeat=3 --badge
 
 This is the command to run on your own package. It answers three questions with the numbers behind
-each of them: does it keep what it acknowledges, can it find what it kept, and what does it cost.
+each of them: does it keep what it acknowledges, can it find what it kept, and what does it cost -
+measured in both phrasings, because the same subject scores differently depending on how a question is
+put.
 
 It never guesses a binding without proving it, and it never turns "I could not measure this" into a
 pass or a failure. A probe that cannot be expressed against a subject is reported as UNKNOWN, and
@@ -25,8 +27,8 @@ import sys
 import tempfile
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-PROBES = ["isolation", "ack_readback", "restart", "findable", "foreign_field", "foreign_record",
-          "concurrent", "large_record"]
+PROBES = ["isolation", "ack_readback", "restart", "forget", "findable", "foreign_field",
+          "foreign_record", "concurrent", "large_record"]
 PAD = max(len(p) for p in PROBES) + 1
 
 

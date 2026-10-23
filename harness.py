@@ -224,6 +224,21 @@ class ReferenceAdapter:
         entities = data.get("entities") if isinstance(data, dict) else None
         return entities
 
+    def delete(self, srv, name):
+        """Ask the subject to forget one record, if it publishes a way to be asked.
+
+        THE TOOL LIST IS THE SUBJECT'S OWN ANSWER. Assuming a server has delete_entities because the
+        reference implementation does is how a probe reports a subject defect for a tool that was never
+        there - and a subject with no way to forget is not broken, it is a subject this question cannot
+        be put to. Asking first turns that into UNKNOWN, which is what it is.
+        """
+        tools = [t.get("name") for t in (srv.request("tools/list", {}).get("tools") or [])]
+        for tool, args in (("delete_entities", {"entityNames": [name]}),
+                           ("forget", {"name": name}), ("delete", {"name": name})):
+            if tool in tools:
+                return srv.call(tool, args)
+        raise ToolRefused("this subject publishes no tool that can be asked to forget a record")
+
     # --- out-of-band store edits -------------------------------------------------
     # The two store probes need to act as "another tool" writing to the same store. How that is done
     # depends on the backend, so it lives behind storeops.py and the probes stay backend-agnostic. An
@@ -269,6 +284,11 @@ class MementoAdapter(ReferenceAdapter):
                                     match={"column": "name", "op": "eq"})
 
 
+# A SENTINEL, NOT None. "not looked for yet" and "looked for and not there" are different answers,
+# and collapsing them would re-run the proof on every call or never run it at all.
+_UNSET = object()
+
+
 class AutoAdapter:
     """A subject with no hand-written adapter: the binding is discovered and then proven.
 
@@ -297,6 +317,12 @@ class AutoAdapter:
         self.cmd = self._absolutize(cmd)
         self.written = set()
         self._binding = None
+        # A SENTINEL, NOT None, and it belongs in __init__ as well as reset(). "not looked for yet"
+        # and "looked for and not there" are different answers, and the first version of this set it
+        # only in reset() - so every discovery-bound subject raised AttributeError on the new probe
+        # while the hand-written adapters answered it, which is the harness reporting its own bug as
+        # the subject's silence.
+        self._deleter = _UNSET
         # what was actually sent under each name, so a later on-disk measurement compares against
         # the bytes that left here rather than against the bytes the probe asked for
         self._sent = {}
@@ -335,6 +361,7 @@ class AutoAdapter:
         repeating the experiment and holding the conclusion fixed.
         """
         self._binding = None
+        self._deleter = _UNSET
         self.written = set()
         self._sent = {}
         self._tools = []
@@ -419,6 +446,46 @@ class AutoAdapter:
         hits = [(p, n) for p, n in hits if p >= 0]
         hits.sort()
         return [n for _p, n in hits][:k]
+
+    def delete(self, srv, name):
+        """Forget one record through the subject's own delete tool, proven before it is used."""
+        import autodetect as ad
+        self._discover(srv)
+        if self._deleter is _UNSET:
+            self._deleter = self._bind_delete(srv)
+        if not self._deleter:
+            raise ToolRefused("this subject publishes no delete tool whose effect could be proven")
+        return srv.call(self._deleter["name"], ad.build_delete_args(self._deleter, name),
+                        timeout=PROBE_TIMEOUT)
+
+    def _bind_delete(self, srv):
+        """Prove a delete tool the way every binding here is proven: by doing it and reading back.
+
+        A name that looks like deletion is not a deletion. The candidate is called on a token this
+        adapter wrote, and the binding is kept only if the token is gone from the next read.
+        """
+        import autodetect as ad
+        w, r, _s = self._binding
+        for i, cand in enumerate(ad.delete_candidates(getattr(self, "_tools", []), w)):
+            tok = "delete-token-%d" % (i + 1)
+            args = ad.build_delete_args(cand, tok)
+            if not args:
+                continue
+            try:
+                srv.call(w["name"], ad.build_write_args(w, tok, ["deletion probe"]),
+                         timeout=PROBE_TIMEOUT)
+                srv.call(cand["name"], args, timeout=PROBE_TIMEOUT)
+            except Exception:
+                continue
+            if r is None:
+                continue
+            try:
+                got = srv.call(r["name"], ad.build_read_args(r), timeout=PROBE_TIMEOUT)
+            except Exception:
+                continue
+            if tok not in got:
+                return cand
+        return None
 
     def read(self, srv):
         import autodetect as ad
@@ -553,6 +620,10 @@ class ControlAdapter(ReferenceAdapter):
 
     def write(self, srv, name, observations):
         return srv.call("memory_write", {"name": name, "observations": observations})
+
+    def delete(self, srv, name):
+        """The control forgets by appending a tombstone, because it never rewrites its store."""
+        return srv.call("memory_forget", {"name": name})
 
     # A control has to demonstrate correct behaviour, and "answer every question with something" is
     # not correct. Stopwords are dropped and a record has to match at least half of what is left,
@@ -851,6 +922,66 @@ def probe_restart(ad):
         shutil.rmtree(d, ignore_errors=True)
 
 
+def probe_forget(ad):
+    """Can the subject be asked to forget, and does the record actually go?
+
+    THE ONE PROMISE THE SUITE NEVER TESTED. Every other probe asks what the subject kept; none asked
+    whether it can be made to stop keeping it. Deletion is the operation that matters most to anyone
+    with a wrong fact, a private record or a mistake in their memory, and it is the one that fails in
+    the same direction as the write: the caller is told "ok" and believes it either way.
+
+    THREE STATES. PASS when the forgotten record is gone after a restart AND the two records nobody
+    asked about are still there - the second half is what makes the first meaningful, because a store
+    that drops everything looks identical to a store that forgot exactly what it was told to. FAIL
+    when the record is still readable. UNKNOWN when the subject publishes no way to ask, which is a
+    subject this question cannot be put to rather than a broken one.
+
+    THE THREE NAMES SHARE NO TOKEN, for the reason findable's do not: a reading that returns
+    "everything" would otherwise be indistinguishable from one that honours the request.
+    """
+    forget = getattr(ad, "delete", None)
+    if not callable(forget):
+        return None, ("this adapter has no way to ask the subject to forget, so the probe cannot be"
+                      " expressed against it; that is a gap in the harness, not a defect in the subject")
+    names = ["tundra-halcyon", "plinth-obsidian", "ember-thistle"]
+    d, store = _fresh()
+    try:
+        srv = ad.server(store)
+        try:
+            for nm in names:
+                ad.write(srv, nm, ["observation about %s" % nm])
+            try:
+                answer = forget(srv, names[1])
+            except ToolRefused as exc:
+                # A SUBJECT THAT CANNOT BE ASKED IS NOT A SUBJECT THAT FAILED. "This memory has no way
+                # to forget" is a capability gap and a real thing for a user to know, but it is not the
+                # promise broken - the promise is broken when the caller is told the record is gone and
+                # it is not. So: UNKNOWN with the reason, and the reason is printed.
+                return None, ("this subject publishes no way to be asked to forget, so the promise"
+                              " cannot be tested: %s" % str(exc)[:160])
+        finally:
+            srv.stop()
+        # A COLD READ, on a server that never saw the write or the deletion.
+        srv = ad.server(store)
+        try:
+            ents = ad.read(srv) or []
+        finally:
+            srv.stop()
+        have = [e.get("name") for e in ents if isinstance(e, dict)]
+        kept = [n for n in (names[0], names[2]) if n in have]
+        if len(kept) != 2:
+            return None, ("the two records nobody asked to forget did not both come back (%d of 2), so"
+                          " a successful deletion cannot be told from a store that lost everything;"
+                          " read back %s" % (len(kept), have[:5]))
+        gone = names[1] not in have
+        said = " ".join(str(answer).split())[:80] if answer else "no answer"
+        return gone, ("asked to forget %s and the subject answered %r; after a restart the other two"
+                      " came back and it %s" % (names[1], said,
+                                               "did not" if gone else "STILL DID"))
+    finally:
+        shutil.rmtree(d, ignore_errors=True)
+
+
 # No word appears twice: a query for one name must identify one record.
 NAMES = ["zephyr-quartz", "ember-lattice", "cobalt-thistle", "marlin-obsidian",
          "tundra-figment", "halcyon-basalt", "quiver-nectar", "plinth-zodiac"]
@@ -1135,6 +1266,7 @@ def probe_isolation(ad):
 PROBES = [("isolation", probe_isolation),
           ("ack_readback", probe_ack_readback),
           ("restart", probe_restart),
+          ("forget", probe_forget),
           ("findable", probe_findable),
           ("foreign_field", probe_foreign_field),
           ("foreign_record", probe_foreign_record),
