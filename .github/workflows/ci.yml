@@ -13,7 +13,13 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - run: npm ci
+      # THIS JOB PROBES THREE SERVERS AND NONE OF THEM IS AN OPTIONAL SUBJECT. The seventeen other
+      # memory servers this repository measures are declared as optionalDependencies, because several
+      # of them build native extensions and one of those (better-sqlite3, via node-gyp 8) cannot build
+      # under Python 3.12 at all - distutils was removed. Installing them here proved nothing about
+      # the harness and broke the build; --omit=optional keeps the job to what it actually tests and
+      # leaves local runs free to install every subject.
+      - run: npm ci --omit=optional
       - name: probe the reference memory server
         run: |
           python harness.py --cmd="node node_modules/@modelcontextprotocol/server-memory/dist/index.js" \
