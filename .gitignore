@@ -2,6 +2,7 @@ node_modules/
 __pycache__/
 report.json
 *.pyc
+*.log
 
 # Store directories a subject creates relative to its working directory. They appear in the repo
 # root whenever a probe runs from here rather than from a temp directory, and they are evidence, not

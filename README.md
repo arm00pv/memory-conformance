@@ -131,6 +131,27 @@ single k=1 miss in that original run was a ranking question, not a
 matching one: "when is a write considered safe" returns `[rec-lock, rec-ack]`, and both are about
 writes being safe.
 
+## A second corpus, written blind
+
+Every retrieval number in this file rests on a question set written by the same hand that wrote the
+analysis. `retrieval_corpus_b.json` is a second one - 72 records and 60 questions about a fictional
+railway, deliberately a different world from corpus A's ops estate - written by an author given only a
+specification and told not to read this repository's corpus, matrix or results. `replicate.py` runs
+every subject on both and reports the comparison to `REPLICATION.md`.
+
+The totals are not comparable: 43 of 60 and 44 of 60 count answers to different questions. The order and
+the separations are. Of the ten neighbouring pairs in the corpus A table, **five reach the same
+conclusion on both corpora**. That is the honest error bar on this project's own ranking, and it is
+larger than any interval in it.
+
+Two findings from that replication are worth more than the table:
+
+- **A score of 37/60 beat a score of 25/60 by nothing at all.** zenbrain against the positive control is
+  thirteen questions to thirteen, p = 1.0, on corpus A, because the twelve unanswerable questions cancel
+  the twelve-question recall gap exactly. On corpus B the control wins, thirteen to two.
+- **memory-lean's 14/60 was the corpus, not the subject.** It scores 0/60 on corpus B because its
+  matching is word-based and corpus B's questions are questions.
+
 ## The positive control: the probes can pass
 
 A suite that only ever fails measures nothing. `control/memory_server.py` is the smallest MCP memory
@@ -505,16 +526,32 @@ success reply is honest about the write and silent about the loss.
 
   ```
   $ python compare.py zenbrain memory-mcp-1file
-    correct for both         20
-    only zenbrain correct     2
-    only memory-mcp-1file     2
-    exact McNemar p = 1.0000  -> not separated by this corpus
+    questions                 60
+    correct for both          33
+    only zenbrain correct      4
+    only memory-mcp-1file     10
+    exact McNemar p = 0.1796  -> not separated by this corpus
   ```
 
-- **The retrieval corpus is authored by this project.** The questions may share its author's
-  vocabulary. The `adversarial` band is the most robust part, because a near-duplicate distractor is
-  hard to match by accident, and `absent` is the most objective, because "nothing" needs no
-  judgement about relevance.
+  A question with no answer counts as answered correctly when the subject returns nothing, so this
+  pairing prices silence: a subject that answers every unanswerable question loses those questions even
+  where its recall matches.
+
+- **The retrieval corpus is authored by this project, and a second corpus written blind says half of
+  the pairwise separations do not survive it.** See `REPLICATION.md` and Addendum 13. What replicated:
+  the ordering overall (rho = 0.86), the top two in their order, the four subjects at zero, and one
+  subject's recall advantage concentrated in the hard band (13 of 16 on both corpora). What did not: five
+  of the ten neighbouring pairs, including the second-place subject against the positive control.
+  `validate_corpus.py` now checks the corpus itself - unique ids, one answer per question, no
+  unanswerable question covered by a record, a real competitor behind every adversarial question - and
+  it found four defects in the corpus every earlier number was computed from. They are pinned in
+  `corpus-known.json`: a new one fails the build, and a pinned one that stops reproducing is reported
+  as drift.
+- **The corpus asks each fact in one shape only.** Corpus A's easy band is written as keyword strings
+  ("access token fifteen minutes"), corpus B's as questions ("How long does an access token last?"). For
+  a subject whose search matches words, that difference is worth 14 of 60 questions - memory-lean scores
+  14/60 on one and 0/60 on the other, and a six-query controlled test reproduces the mechanism in a
+  minute. Bands that ask each fact both ways would separate matching from ranking; this corpus does not.
 - **`python matrix.py --report-only`** re-renders both tables from the reports already under
   `results/` without re-running a subject. A verdict is worth little if the table around it can only
   be produced by a twenty-minute run.

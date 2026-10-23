@@ -55,3 +55,7 @@ Measured once per subject with nothing else running. "resp" is the median bytes 
 | mcp-duckdb-memory-server 1.1.10 | 0.33s | 0.14s | 0.010s | 0.005s | 210 | x4 | - | 25% |
 
 `vary` is how far the worst steady-state measurement moved across 3 passes, as a fraction of its own median: first write, write, search and response bytes, with timings under 20 ms excluded because a ratio of millisecond noise is not a measurement. Absolute ranges and the noisier startup and restart figures are in `results/*-cost.json`.
+
+## Replication
+
+The same subjects on a second corpus, written by an author who never saw this one, are compared in `REPLICATION.md`. Five of the ten neighbouring pairs in the retrieval table do not reach the same conclusion on both, so a separation there holds for this question set until a third corpus agrees.
