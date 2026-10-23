@@ -12,6 +12,14 @@ questions that flipped, so the number can be argued with rather than only believ
 
   python compare.py zenbrain memdb
   python compare.py --band=adversarial zenbrain memdb
+  python compare.py --shape=written zenbrain memdb     # one phrasing only
+  python compare.py --shape=keywords zenbrain memdb
+
+BOTH PHRASINGS BY DEFAULT, and their verdicts printed together. That is not a decoration: the same
+pair of subjects is "not separated" when the questions are asked as written and "separated" when the
+same questions are asked as keywords, and a claim that quotes one of those without the other is
+quoting whichever one it liked. The exit code is not the verdict - this tool reports, it does not gate.
+
 
 It reads the reports already under results/, so it never re-runs a subject.
 """
@@ -59,6 +67,13 @@ def correct(row):
     return bool(row["hit3"])
 
 
+def correct_keyword(row):
+    """Correct when the same question is put as a keyword string, from the same saved report."""
+    return correct({"difficulty": row["difficulty"],
+                    "answered": bool(row.get("answered_keyword")),
+                    "hit3": bool(row.get("hit3_keyword"))})
+
+
 def exact_mcnemar(b, c):
     """Two-sided exact McNemar: how surprising is this split, if the two were equally good?"""
     n = b + c
@@ -71,9 +86,12 @@ def exact_mcnemar(b, c):
 def main(argv):
     band = None
     args = []
+    shape = "both"
     for a in argv:
         if a.startswith("--band="):
-            band = a.split("=", 1)[1]
+            band_value = a.split("=", 1)[1]
+        elif a.startswith("--shape="):
+            shape = a.split("=", 1)[1]
         else:
             args.append(a)
     if len(args) != 2:
@@ -87,39 +105,59 @@ def main(argv):
     for x, y in zip(ra, rb):
         if x["query"] != y["query"]:
             raise SystemExit("the reports are not the same corpus: %r vs %r" % (x["query"], y["query"]))
-    pairs = [(x, y) for x, y in zip(ra, rb) if band is None or x["difficulty"] == band]
+    pairs = [(x, y) for x, y in zip(ra, rb)
+             if band is None or x["difficulty"] == band]
     if not pairs:
         print("no questions in band %r" % band)
         return 2
-    a_ok = [correct(x) for x, _y in pairs]
-    b_ok = [correct(y) for _x, y in pairs]
-    both = sum(1 for p, q in zip(a_ok, b_ok) if p and q)
-    neither = sum(1 for p, q in zip(a_ok, b_ok) if not p and not q)
-    only_a = sum(1 for p, q in zip(a_ok, b_ok) if p and not q)
-    only_b = sum(1 for p, q in zip(b_ok, a_ok) if p and not q)
-    n = len(pairs)
+
+    shapes = [shape] if shape in ("written", "keywords") else ["written", "keywords"]
+    if "keywords" in shapes and not all("hit3_keyword" in r for r in ra + rb):
+        raise SystemExit("these reports were measured without the shape axis; re-run them with"
+                         " retrieval.py --shapes (matrix.py does this by default)")
 
     print("%-30s vs %-30s  (%s)" % (da.get("_path", "?"), db.get("_path", "?"),
-                                       band or "all bands"))
-    print()
-    print("  questions                 %d" % n)
-    print("  correct for both          %d" % both)
-    print("  correct for neither       %d" % neither)
-    print("  only %-20s %d" % (args[0] + " correct", only_a))
-    print("  only %-20s %d" % (args[1] + " correct", only_b))
-    print()
-    p = exact_mcnemar(only_a, only_b)
-    verdict = ("separated" if p < 0.05 else
-               "not separated by this corpus" if only_a or only_b else "identical")
-    print("  exact McNemar p = %.4f  -> %s" % (p, verdict))
-    if only_a or only_b:
+                                   band or "all bands"))
+    verdicts = {}
+    for which in shapes:
+        fn = correct if which == "written" else correct_keyword
+        a_ok = [fn(x) for x, _y in pairs]
+        b_ok = [fn(y) for _x, y in pairs]
+        both = sum(1 for p, q in zip(a_ok, b_ok) if p and q)
+        neither = sum(1 for p, q in zip(a_ok, b_ok) if not p and not q)
+        only_a = sum(1 for p, q in zip(a_ok, b_ok) if p and not q)
+        only_b = sum(1 for p, q in zip(b_ok, a_ok) if p and not q)
+        pv = exact_mcnemar(only_a, only_b)
+        separated = pv < 0.05
+        verdicts[which] = separated
         print()
-        print("  the questions that flipped:")
-        for x, y in pairs:
-            cx, cy = correct(x), correct(y)
-            if cx != cy:
-                who = args[0] if cx else args[1]
-                print("    %-8s %-48s %s" % (x["difficulty"], x["query"][:48], who))
+        print("  as %s" % ("written" if which == "written" else "keywords"))
+        print("    questions               %d" % len(pairs))
+        print("    correct for both        %d" % both)
+        print("    correct for neither     %d" % neither)
+        print("    only %-18s %d" % (args[0] + " correct", only_a))
+        print("    only %-18s %d" % (args[1] + " correct", only_b))
+        print("    exact McNemar p = %.4f  -> %s"
+              % (pv, "separated" if separated else
+                 ("not separated by this corpus" if only_a or only_b else "identical")))
+        if len(shapes) == 1 and (only_a or only_b):
+            print()
+            print("    the questions that flipped:")
+            for x, y in pairs:
+                cx, cy = fn(x), fn(y)
+                if cx != cy:
+                    who = args[0] if cx else args[1]
+                    print("      %-8s %-48s %s" % (x["difficulty"], x["query"][:48], who))
+    if len(shapes) == 2:
+        print()
+        if verdicts["written"] == verdicts["keywords"]:
+            print("  the two phrasings reach the same verdict: %s"
+                  % ("separated" if verdicts["written"] else "not separated"))
+        else:
+            print("  THE PHRASING DECIDES THIS ONE: separated as %s, not separated as %s."
+                  % ("keywords" if verdicts["keywords"] else "written",
+                     "written" if verdicts["keywords"] else "keywords"))
+            print("  Neither number is the answer on its own. Report the pair.")
     return 0
 
 

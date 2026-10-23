@@ -187,7 +187,13 @@ def load_saved(entry):
             report = json.load(fh)
     if os.path.isfile(retr):
         with open(retr, encoding="utf-8") as fh:
-            summary = json.load(fh).get("summary")
+            doc = json.load(fh)
+        summary = doc.get("summary")
+        # THE ROWS KNOW WHAT THE SUMMARY WAS WRITTEN BEFORE. A saved report predates the shape axis
+        # but its per-question rows still carry both phrasings, so the keyword totals are recomputed
+        # from them instead of the subject being measured again to fill in a column.
+        import retrieval
+        summary = retrieval.with_keywords(summary, doc.get("rows") or [])
     return report, summary
 
 
@@ -283,8 +289,9 @@ def main(argv):
     print("per band - easy shares wording with the answer, hard is a paraphrase, adversarial has a")
     print("near duplicate competing. 'noans' is questions with no answer that were answered anyway;")
     print("0 is right.")
-    header2 = "%-*s %-7s %-7s %-7s %-8s %-8s %-7s %-9s %s" % (
-        W, "subject", "easy", "hard", "adver", "all h1", "all h3", "noans", "runs", "95%")
+    header2 = "%-*s %-7s %-7s %-7s %-8s %-8s %-8s %-8s %-7s %-9s %s" % (
+        W, "subject", "easy", "hard", "adver", "all h1", "all h3", "kw h3", "change", "noans",
+        "runs", "95%")
     print(header2)
     print("-" * len(header2))
     for label, s in retr:
@@ -304,10 +311,12 @@ def main(argv):
         runs = ""
         if a and a.get("runs"):
             runs = "%d-%d" % (min(a["runs"]), max(a["runs"]))
-        print("%-*s %-7s %-7s %-7s %-8s %-8s %-7s %-9s %s" % (
+        kw = "%d/%d" % (a["hit3_keyword"], a["n"]) if a and "hit3_keyword" in a else "-"
+        change = ("%+d" % (a["hit3_keyword"] - a["hit3"])) if a and "hit3_keyword" in a else "-"
+        print("%-*s %-7s %-7s %-7s %-8s %-8s %-8s %-8s %-7s %-9s %s" % (
             W, label, cells[0], cells[1], cells[2],
             "%d/%d" % (a["hit1"], a["n"]) if a else "-",
-            "%d/%d" % (a["hit3"], a["n"]) if a else "-",
+            "%d/%d" % (a["hit3"], a["n"]) if a else "-", kw, change,
             "%d/%d" % (ab["answered"], ab["n"]) if ab else "-", runs, ci))
     print()
     print("'runs' is the min-max of the same experiment repeated %d times; '95%%' is the Wilson"
@@ -315,6 +324,10 @@ def main(argv):
     print("interval for the majority result, in counts. The first covers repeating the experiment,")
     print("the second covers asking a different set of %d questions. They are not the same error."
           % n_q)
+    print("'kw h3' is the same %d questions asked again with the words that carry no meaning removed:"
+          % n_q)
+    print("one subject is 6/60 and 29/60 on the same corpus depending on which is asked, so a score")
+    print("quoted without its phrasing is half a measurement. Per-band detail is in SHAPE.md.")
 
     # --- third axis --------------------------------------------------------
     print()
@@ -360,9 +373,9 @@ def main(argv):
                  % (n_rec, n_q) +
                  " its answer, \"hard\" is a paraphrase, \"adversarial\" has a near duplicate competing."
                  " \"noans\" is questions with no answer in the store that were answered anyway." + chr(10) + chr(10))
-        fh.write("| subject | easy h3 | hard h3 | adversarial h3 | all h1 | all h3 | no-answer answered"
-                 " | runs | h3 95% |" + chr(10))
-        fh.write("|---|---|---|---|---|---|---|---|---|" + chr(10))
+        fh.write("| subject | easy h3 | hard h3 | adversarial h3 | all h1 | all h3 | h3 as keywords"
+                 " | change | no-answer answered | runs | h3 95% |" + chr(10))
+        fh.write("|---|---|---|---|---|---|---|---|---|---|---|" + chr(10))
         for label, s in retr:
             if not s:
                 fh.write("| %s | - | - | - | - | - | - | - | - |" % label + chr(10))
@@ -375,6 +388,8 @@ def main(argv):
             ab = s.get("absent") or {}
             cells.append("%d/%d" % (a["hit1"], a["n"]) if a else "-")
             cells.append("%d/%d" % (a["hit3"], a["n"]) if a else "-")
+            cells.append(("%d/%d" % (a["hit3_keyword"], a["n"])) if a and "hit3_keyword" in a else "-")
+            cells.append(("%+d" % (a["hit3_keyword"] - a["hit3"])) if a and "hit3_keyword" in a else "-")
             cells.append("%d/%d" % (ab["answered"], ab["n"]) if ab else "-")
             cells.append(("%d-%d" % (min(a["runs"]), max(a["runs"]))) if a and a.get("runs") else "-")
             cells.append(("%d-%d" % wilson(a["hit3"], a["n"])) if a else "-")

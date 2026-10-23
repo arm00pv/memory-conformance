@@ -182,7 +182,9 @@ def main(argv=None):
     print("  %d kept, %d unknown, %d failed" % (kept, unknown, failed))
 
     summary = None
-    got, _p = run("retrieval.py", cmd, extra, int(ceiling), repeat, r_json)
+    # BOTH PHRASINGS, ALWAYS: the same subject is 6/60 and 29/60 on one corpus depending only on how
+    # the question is put, so a retrieval section with one number in it is a report about the wording.
+    got, _p = run("retrieval.py", cmd, extra + ["--shapes"], int(ceiling), repeat, r_json)
     if got:
         summary = got.get("summary")
     if summary:
@@ -193,8 +195,16 @@ def main(argv=None):
         print("  hit@3  easy %s  hard %s  adversarial %s  ->  all %d/%d"
               % tuple(["%d/%d" % (summary[b]["hit3"], summary[b]["n"]) if b in summary else "-/-"
                        for b in ("easy", "hard", "adversarial")] + [a.get("hit3", 0), a.get("n", 0)]))
-        print("  questions with no answer that were answered anyway: %d/%d"
-              % (ab.get("answered", 0), ab.get("n", 0)))
+        if "hit3_keyword" in a:
+            print("  hit@3, the same %d questions put as keywords          ->  all %d/%d  (%+d)"
+                  % (a.get("n", 0), a["hit3_keyword"], a.get("n", 0),
+                     a["hit3_keyword"] - a.get("hit3", 0)))
+            if ab.get("answered_keyword") is not None:
+                print("  questions with no answer answered anyway: %d/%d as written, %d/%d as keywords"
+                      % (ab.get("answered", 0), ab.get("n", 0), ab["answered_keyword"], ab.get("n", 0)))
+        else:
+            print("  questions with no answer that were answered anyway: %d/%d"
+                  % (ab.get("answered", 0), ab.get("n", 0)))
 
     cost, _p = run("cost.py", cmd, extra, int(ceiling), repeat, c_json)
     if cost:

@@ -141,7 +141,48 @@ def _spread(passes, key):
     return [sum(1 for r in p if r.get(key)) for p in passes]
 
 
+def keyword_counts(rows):
+    """Per-band totals in the keyword phrasing, or nothing at all when the run did not ask both.
+
+    ONE PLACE THAT KNOWS WHAT "AS KEYWORDS" MEANS. matrix.py and check.py both report this number,
+    and result files written before the shape axis existed are still evidence - so they are read,
+    and the totals are recomputed from the per-question rows rather than the file being re-measured.
+    """
+    if not rows or not all("hit3_keyword" in r for r in rows):
+        return {}
+    out = {}
+    for band in ("easy", "hard", "adversarial", "absent", "all"):
+        sel = [r for r in rows if band == "all" or r["difficulty"] == band]
+        if not sel:
+            continue
+        if band == "absent":
+            out[band] = {"n": len(sel),
+                         "answered_keyword": sum(1 for r in sel if r["answered_keyword"])}
+        else:
+            out[band] = {"n": len(sel),
+                         "hit1_keyword": sum(1 for r in sel if r["hit1_keyword"]),
+                         "hit3_keyword": sum(1 for r in sel if r["hit3_keyword"])}
+    return out
+
+
+def with_keywords(summary, rows):
+    """Merge the keyword totals into a summary, so an old saved report reads like a new one."""
+    kw = keyword_counts(rows)
+    if not kw or not summary:
+        return summary
+    for band, counts in kw.items():
+        summary.setdefault(band, {}).update(counts)
+    return summary
+
+
 def summarise(rows, label):
+    """Per-band totals, in both phrasings when the run asked both.
+
+    A SCORE FROM ONE PHRASING IS HALF A MEASUREMENT. That is what the shape axis proved: the same
+    subject is 6/60 and 29/60 on the same corpus depending on whether the question is asked as
+    written or as keywords. So when the keyword counts are there they are carried in the same
+    summary, printed on the line below, and never separated from the number they qualify.
+    """
     out = {}
     for band in ("easy", "hard", "adversarial", "absent", "all"):
         sel = [r for r in rows if band == "all" or r["difficulty"] == band]
@@ -154,10 +195,17 @@ def summarise(rows, label):
             out[band] = {"n": len(sel),
                          "hit1": sum(1 for r in sel if r["hit1"]),
                          "hit3": sum(1 for r in sel if r["hit3"])}
+    for band, counts in keyword_counts(rows).items():
+        out.setdefault(band, {}).update(counts)
     print("%-24s %s" % (label, "  ".join(
         ("%s %d/%d,%d/%d" % (b[:5], v["hit1"], v["n"], v["hit3"], v["n"])) if "hit1" in v
         else ("noans %d/%d" % (v["answered"], v["n"]))
         for b, v in out.items())))
+    if any("hit3_keyword" in v or "answered_keyword" in v for v in out.values()):
+        print("%-24s %s" % ("  the same, as keywords", "  ".join(
+            ("%s %d/%d" % (b[:5], v["hit3_keyword"], v["n"])) if "hit3_keyword" in v
+            else ("noans %d/%d" % (v["answered_keyword"], v["n"]))
+            for b, v in out.items())))
     for r in rows:
         if r["difficulty"] == "absent":
             if r["answered"]:
@@ -236,6 +284,12 @@ def main(argv=None):
     absent_n = sum(1 for r in rows if r["difficulty"] == "absent")
     print("%d question(s) with an answer were missed at k=3; %d of %d questions with no answer were "
           "answered anyway" % (missed, spoke, absent_n))
+    if rows and all("hit3_keyword" in r for r in rows):
+        missed_k = sum(1 for r in rows if r.get("expect") and not r["hit3_keyword"])
+        spoke_k = sum(1 for r in rows if r["difficulty"] == "absent" and r["answered_keyword"])
+        print("asked as keywords: %d missed, %d of %d with no answer answered anyway - a difference of "
+              "%+d question(s) with nothing changed but the words"
+              % (missed_k, spoke_k, absent_n, (missed - missed_k) - (spoke_k - spoke)))
     return 0
 
 

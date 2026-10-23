@@ -17,6 +17,23 @@ jobs:
       - name: the question sets must satisfy their own assumptions
         run: python validate_corpus.py --baseline=corpus-known.json
 
+      # A NUMBER WITHOUT ITS PHRASING IS THE DEFECT THIS REPOSITORY EXISTS TO CATCH, so the two tools
+      # that publish one are checked here. These read the committed results, so they cost nothing and
+      # they fail the moment a table goes back to reporting a single phrasing.
+      - name: every retrieval table must carry both phrasings
+        run: |
+          python matrix.py --report-only > /tmp/matrix.txt
+          grep -q "kw h3" /tmp/matrix.txt
+          grep -q "change" /tmp/matrix.txt
+          echo "the matrix table carries the phrasing pair"
+      - name: a paired claim must say when the phrasing decides it
+        run: |
+          python compare.py memory-mcp-1file zenbrain > /tmp/cmp.txt
+          cat /tmp/cmp.txt
+          grep -q "as written" /tmp/cmp.txt
+          grep -q "as keywords" /tmp/cmp.txt
+          grep -q "THE PHRASING DECIDES THIS ONE" /tmp/cmp.txt
+
   probe:
     runs-on: ubuntu-latest
     steps:
