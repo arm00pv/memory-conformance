@@ -1983,3 +1983,72 @@ agree.
 - **The adversarial band now has no winner that survives both corpora.** zenbrain leads it 16-14 on
   corpus A and trails 15-16 on corpus B. That is two question sets disagreeing, with no defects on
   either side to blame it on.
+
+---
+
+## Addendum 17: the ledger, and five of eleven
+
+Seventeen addenda is not a document, it is a diff. A reader arriving at this repository now has to
+reconstruct what is true from a chain of corrections, and the corrections are the interesting part only
+if you already know where they landed. So the claims are evaluated instead of remembered.
+
+`claims.py` takes every sentence this repository has published about its subjects - eleven of them -
+and checks each one against the committed results on both corpora and in both phrasings. It writes
+`CLAIMS.md` and prints one line: **five of the eleven hold in every setting measured.**
+
+| claim | verdict |
+|---|---|
+| memory-mcp-1file answers more answerable questions than any other subject | **HOLDS** - alone at the top on both corpora, in both phrasings |
+| memory-mcp-1file leads the hard band | **HOLDS** |
+| memento answers every unanswerable question | **HOLDS** - 12 of 12, four settings |
+| memory-mcp-1file leaks state between stores | **HOLDS** - isolation FAIL |
+| one subject's answer count moves by ten or more on phrasing alone | **HOLDS** |
+| memory-mcp-1file is better than zenbrain by the paired test | MIXED - 8-5 (p = 0.58) on A as written, 11-2 (p = 0.02) as keywords, 12-0 on B as written, 5-2 (p = 0.45) on B as keywords |
+| zenbrain leads the adversarial band | MIXED - 16/16 on A as written, tied at 13 as keywords, and behind on both of B's |
+| memory-lean returns fewer bytes than any subject that answers anything | MIXED - 164 bytes and the cheapest on A; void on B, where it answers nothing and does not qualify |
+| server-memory answers no answerable question | ONE PHRASING - 0 of 48 as written, 2 of 48 as keywords |
+| the smallest servers here find nothing | ONE PHRASING - the same two questions, the same way |
+| zenbrain is better than the positive control | **FAILS** - in all four readings, and the control is ahead in three of them |
+
+### The sharpest line in it
+
+**ZENBRAIN IS NOT BETTER THAN THE POSITIVE CONTROL, AND THE CONTROL IS AHEAD ON THREE OF FOUR READINGS.**
+The control is a server written to pass the eight probes with a plain keyword search bolted on; it is not
+trying to be good at retrieval. A subject that cannot beat it has not demonstrated retrieval beyond
+keyword matching, and the marginal counts that made it look like a twelve-question win - 40/60 against
+25/60 on corpus A - are cancelled by the twelve questions it answers that have no answer.
+
+This is the result the suite was built to produce and could not produce for sixteen addenda, because
+nobody had put the claims in one place where a single mechanical check could contradict them.
+
+### Two measurements, kept apart
+
+The first draft of this ledger asked whether "server-memory answers no question at all" and got back
+**12 of 60 answered**. That is not a bug in the result, it is a bug in the question: the metric the paired
+test uses counts *declining an unanswerable question* as correct, so a subject that finds nothing at all
+scores 12 for being silent twelve times. Silence is part of being better than another server - it is not
+"answering". The ledger now carries both: a score for the pairwise claims and a hit count for the ones
+that are about finding things. **Self-bug 10.**
+
+And a smaller one in the same file: the first draft reported a subject as "alone at the top" whenever it
+came first in a sorted list, which is what happens to the alphabetically earlier of two tied subjects.
+memory-mcp-1file ties the positive control at 42 hits on corpus A as keywords, and the ledger called that
+a lead. A tie is not a lead; the detail line now says "tied with" and the claim fails. **Self-bug 11.**
+
+### What this changes
+
+The README now opens with the ledger rather than with a table, and every number in it can be traced to a
+claim with a verdict and a setting. A new claim belongs in `CLAIMS.md`, not in prose: if it cannot be
+evaluated against these results then it is not yet a finding, and if it can be, the tool will say which
+corpora and which phrasings it survives.
+
+### What is still open
+
+- **One author, one model.** Both corpora were written by the same model family, one of them blind to
+  the results. Independence of information was tested; independence of mind was not.
+- **Corpus B still carries three warnings** - adversarial questions whose near duplicate is only one
+  shared word away. They are printed on every run and are not defects, which is exactly why they will
+  keep sitting there.
+- **The adversarial band has no winner that survives both corpora**, and the ledger now records that as
+  a MIXED claim rather than a sentence in prose. Resolving it needs a third corpus from a genuinely
+  different author, and this harness can only offer another instance of the same one.

@@ -20,6 +20,31 @@ large_record     PASS              1.9s  wrote 100000 characters, read back 1000
 1 probe(s) failed
 ```
 
+## What holds, and on how many corpora
+
+`claims.py` re-checks every claim this repository makes against the committed results, on two
+independently written corpora and in two phrasings, and writes the verdicts to `CLAIMS.md`:
+
+```
+$ python claims.py
+**5 of the 11 claims hold in every setting measured.**
+```
+
+Five survive everywhere, including the one that matters most: **memory-mcp-1file answers more
+answerable questions than anything else here**, on both corpora and in both phrasings, alone at the top.
+The other six are printed beside the setting that breaks them, because that setting is their real
+scope. Three of them:
+
+- "server-memory answers no question at all" - true as written, false when the words are stripped: it
+  answers two.
+- "memory-lean returns fewer bytes than any subject that answers anything" - true on corpus A, and void
+  on corpus B, where it answers nothing as written and so does not qualify.
+- "zenbrain is better than the positive control" - false in all four readings. The control, a server
+  written to pass the eight probes with a keyword search bolted on, is ahead on three of them.
+
+The suite's own error bar is in there too: five of the ten neighbouring pairs in the ranking do not reach
+the same conclusion on both corpora.
+
 ## The eight probes
 
 | probe | the promise it tests |
