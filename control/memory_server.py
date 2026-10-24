@@ -21,12 +21,31 @@ Tools:
   memory_verify {}                            -> {records, verified, corrupt_lines, path}
 
 stdio only, newline-delimited JSON-RPC, no dependencies beyond the standard library.
+
+DELIBERATELY BROKEN COPIES. Set MEMORY_MUTANT=<name> and this same file becomes a subject that breaks
+exactly one promise, so the probe that watches that promise has something to fail on. A control proves
+the probes CAN pass; this proves each probe CAN fail, and neither of the two is worth much alone. The
+names live in mutants.py with the verdict vector each one is expected to produce.
 """
 import json
 import os
 import sys
 
 STORE = os.environ.get("MEMORY_FILE_PATH") or os.path.join(os.getcwd(), "memory.json")
+
+# ONE PROMISE, BROKEN ON PURPOSE. Empty means "the control as documented".
+MUTANT = (os.environ.get("MEMORY_MUTANT") or "").strip()
+
+# A SECOND FILE THE MUTANT CAN WRITE TO. Kept out of the store directory on purpose: the isolation
+# probe hands the server two different directories and expects them to stay different, so a leak has
+# to be somewhere the per-store path does not reach.
+# GATED ON THE MUTANT. A leak that is merely available is a leak that every other mutant gets for
+# free, and a verdict vector nobody predicted is not a test - it is a surprise.
+LEAK = ((os.environ.get("MEMORY_LEAK_PATH") or "").strip()
+        if MUTANT == "leak-everywhere" else "")
+
+# The store as this process first saw it. Never re-read, which is what makes two processes disagree.
+_CACHE = None
 
 
 def _locked(fn):
@@ -85,6 +104,50 @@ def _append_line(obj):
     return line, len(data), ok
 
 
+def _rewrite(rows):
+    """Replace the whole store with these rows. The mutation lever: a server that rewrites has to
+    decide what it keeps, and everything it does not model is what disappears."""
+    def do():
+        fd = os.open(STORE, os.O_WRONLY | os.O_CREAT | os.O_TRUNC | getattr(os, "O_BINARY", 0),
+                     0o644)
+        try:
+            blob = "".join(json.dumps(obj, sort_keys=True) + chr(10) for obj in rows)
+            os.write(fd, blob.encode("utf-8"))
+            os.fsync(fd)
+        finally:
+            os.close(fd)
+
+    _locked(do)
+    return len(rows)
+
+
+def _leak_append(obj):
+    """Write the same record somewhere no per-store path points at."""
+    if not LEAK:
+        return
+    with open(LEAK, "a", encoding="utf-8", newline=chr(10)) as fh:
+        fh.write(json.dumps(obj, sort_keys=True) + chr(10))
+
+
+def _leak_records():
+    out = []
+    if not LEAK:
+        return out
+    try:
+        with open(LEAK, encoding="utf-8") as fh:
+            for raw in fh:
+                raw = raw.strip()
+                if not raw:
+                    continue
+                try:
+                    out.append(json.loads(raw))
+                except ValueError:
+                    pass
+    except FileNotFoundError:
+        pass
+    return out
+
+
 def _records():
     out = []
     corrupt = 0
@@ -104,6 +167,7 @@ def _records():
 
 
 def tool_write(args):
+    global _CACHE
     # UNKNOWN FIELDS RIDE ALONG. A caller - or another tool - may attach anything; it is stored and
     # returned untouched, because this server has no model to lose it in.
     obj = {"name": args.get("name"), "entityType": args.get("entityType", "probe"),
@@ -111,7 +175,48 @@ def tool_write(args):
     for key, value in (args.get("fields") or {}).items():
         if key not in obj:
             obj[key] = value
+
+    if MUTANT == "truncate-large":
+        obj["observations"] = [o[:1000] if isinstance(o, str) else o
+                               for o in obj["observations"]]
+    if MUTANT == "no-persist":
+        # The write is acknowledged and never happens. This is the failure every memory server is
+        # one bug away from, and the one the caller cannot detect from the answer alone.
+        return {"ok": True, "seq": 0, "bytes": 0, "line": "", "readback_verified": True}
+    if MUTANT == "stale-cache":
+        # Read once at startup, rewrite from that copy forever. One process is indistinguishable from
+        # correct; two processes on one store each overwrite the other's writes.
+        if _CACHE is None:
+            _CACHE = list(_records()[0])
+        _CACHE.append(obj)
+        return {"ok": True, "seq": _rewrite(_CACHE), "bytes": 0, "line": "",
+                "readback_verified": True}
+
     line, size, verified = _append_line(obj)
+    if MUTANT == "keep-last":
+        # Only the newest record survives a write. A single write is unaffected, which is exactly why
+        # ack_readback still passes it and restart does not.
+        _rewrite([obj])
+    elif MUTANT == "reshape-modelled":
+        # The reference implementation's actual defect, confined to the field axis: a record this
+        # server would have written is re-serialised from its own model, so anything attached to it
+        # by another tool is dropped - while a record it would never have written is passed through
+        # untouched, which is why this one fails foreign_field and leaves foreign_record passing.
+        KEEP = ("name", "entityType", "observations")
+        rows, _corrupt = _records()
+        out = []
+        for row in rows:
+            if isinstance(row, dict) and row.get("name"):
+                out.append(dict((k, row[k]) for k in KEEP if k in row))
+            else:
+                out.append(row)
+        _rewrite(out)
+    elif MUTANT == "drop-unnamed":
+        # Everything this server would have written, it keeps; everything else it silently discards -
+        # including the fields it does not model, on the records it does.
+        rows, _corrupt = _records()
+        _rewrite([o for o in rows if isinstance(o, dict) and o.get("name")])
+    _leak_append(obj)
     seq = len(_records()[0])
     return {"ok": verified, "seq": seq, "bytes": size, "line": line,
             "readback_verified": verified}
@@ -120,6 +225,7 @@ def tool_write(args):
 def _live():
     """The records a reader should see: everything except tombstones and what they name."""
     ents, corrupt = _records()
+    ents = ents + _leak_records()
     dead = {e.get("tombstone") for e in ents if "tombstone" in e}
     return [e for e in ents if "tombstone" not in e and e.get("name") not in dead], corrupt
 
@@ -129,7 +235,20 @@ def tool_forget(args):
     bytes that were written stay written, a reader after a restart sees the record gone, and nothing
     that was acknowledged is ever destroyed - including the evidence that it existed."""
     name = args.get("name")
-    line, size, verified = _append_line({"tombstone": name})
+    if MUTANT == "no-forget":
+        # Acknowledged, and the record stays exactly where it was.
+        return {"ok": True, "forgotten": name, "bytes": 0}
+    if MUTANT == "forget-all":
+        # The over-forgetting direction, which looks identical from the caller's side. The probe has
+        # to notice that the records nobody asked about went too, or this passes as a clean delete.
+        doomed = [e.get("name") for e in _live()[0] if e.get("name")]
+    else:
+        doomed = [name]
+    size = 0
+    verified = True
+    for victim in doomed:
+        _line, size, verified = _append_line({"tombstone": victim})
+        _leak_append({"tombstone": victim})
     return {"ok": verified, "forgotten": name, "bytes": size}
 
 

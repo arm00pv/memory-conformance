@@ -39,6 +39,26 @@ jobs:
           grep -q "as keywords" /tmp/cmp.txt
           grep -q "THE PHRASING DECIDES THIS ONE" /tmp/cmp.txt
 
+  mutants:
+    # DOES THE SUITE HAVE TEETH. The probe job below shows three real subjects passing and failing;
+    # this one shows that each of the nine probes CAN fail, by running the control with exactly one
+    # promise broken and comparing against the verdicts written down before the run. It needs no npm
+    # and no network, takes about a minute, and it is the only job here that would notice a probe
+    # that had quietly stopped being able to fail anything.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: every probe must be failed by the subject built to break it
+        run: python mutants.py
+      - name: the generated table must match the run
+        run: |
+          test -s MUTANTS.md
+          grep -q "on its own" MUTANTS.md
+          grep -q "Every predicted verdict matched" MUTANTS.md
+
   probe:
     runs-on: ubuntu-latest
     steps:

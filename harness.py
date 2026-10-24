@@ -12,6 +12,7 @@ Probes, each independent and each run against a fresh store:
   isolation        a record written into one store is not visible from another store
   ack_readback     a write that returned success is returned by a fresh read
   restart          the same write survives the server being stopped and started
+  forget           a record can be made to stop being kept, and the others are still there after
   findable         a record can be found again by the name it was stored under
   foreign_field    a field the server does not model survives the next write
   foreign_record   a record type the server does not model survives the next write
@@ -30,10 +31,12 @@ Subjects
   --adapter=retained    retained.py                                 hand-bound
   --adapter=basic-memory                                            hand-bound
   --adapter=auto        any server: the binding is discovered and proven
+  --adapter=mutant      control/memory_server.py with one promise broken (see mutants.py)
   --manifest=x.json     any server, with its store declared instead of coded
 
 Options
   --only=NAME           run one probe
+  --mutant=NAME         which promise the mutant adapter breaks; ignored by the other adapters
   --timeout=SECONDS     per-call ceiling; raise it for a slow subject rather than believing a timeout
   --json=PATH           write the full report
   --expect=PATH         compare against a pinned report: exit 2 on drift, 2 also when the run
@@ -664,6 +667,34 @@ class ControlAdapter(ReferenceAdapter):
         except ValueError:
             return None
         return data.get("entities")
+
+
+class MutantAdapter(ControlAdapter):
+    """The control with one promise broken, so the probe that watches it has something to fail on.
+
+    WHY THIS EXISTS. A control proves the probes can pass. It says nothing about whether they can
+    fail, and a probe that has never returned FAIL on any subject in the table is indistinguishable
+    from a probe with a bug that always says PASS - which is not hypothetical here: the forget probe
+    was published with six PASSes, five "cannot be asked" and no FAIL at all, so nothing in the
+    published results showed the probe had teeth.
+
+    Two mutations cannot be expressed in the server at all. "The search does not search" is a
+    property of what the caller gets back, not of what the process does, so blind-search and
+    mute-search are broken here. Every other mutation is server-side and selected by MEMORY_MUTANT,
+    which the child inherits; this class only has to know which of them it is.
+    """
+
+    MUTANT = ""
+
+    def search(self, srv, query, k=3):
+        if self.MUTANT == "mute-search":
+            # Nothing is ever found. A memory that stores perfectly and answers nothing.
+            return []
+        if self.MUTANT == "blind-search":
+            # Something is always found, and it is the same something whatever was asked.
+            ents = self.read(srv) or []
+            return sorted(str(e.get("name")) for e in ents if e.get("name"))[:k]
+        return ControlAdapter.search(self, srv, query, k)
 
 
 class RetainedAdapter(ReferenceAdapter):
@@ -1373,9 +1404,10 @@ def main(argv=None):
         print(__doc__)
         return 2
 
+    MutantAdapter.MUTANT = (opt("mutant") or "").strip()
     adapters = {"control": ControlAdapter, "retained": RetainedAdapter,
                 "basic-memory": BasicMemoryAdapter, "memento": MementoAdapter,
-                "auto": AutoAdapter}
+                "auto": AutoAdapter, "mutant": MutantAdapter}
     if manifest_path:
         import manifest as manifestmod
         try:
