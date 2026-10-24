@@ -104,21 +104,43 @@ def _append_line(obj):
     return line, len(data), ok
 
 
+def _write_rows(rows):
+    fd = os.open(STORE, os.O_WRONLY | os.O_CREAT | os.O_TRUNC | getattr(os, "O_BINARY", 0),
+                 0o644)
+    try:
+        blob = "".join(json.dumps(obj, sort_keys=True) + chr(10) for obj in rows)
+        os.write(fd, blob.encode("utf-8"))
+        os.fsync(fd)
+    finally:
+        os.close(fd)
+    return len(rows)
+
+
 def _rewrite(rows):
     """Replace the whole store with these rows. The mutation lever: a server that rewrites has to
     decide what it keeps, and everything it does not model is what disappears."""
-    def do():
-        fd = os.open(STORE, os.O_WRONLY | os.O_CREAT | os.O_TRUNC | getattr(os, "O_BINARY", 0),
-                     0o644)
-        try:
-            blob = "".join(json.dumps(obj, sort_keys=True) + chr(10) for obj in rows)
-            os.write(fd, blob.encode("utf-8"))
-            os.fsync(fd)
-        finally:
-            os.close(fd)
-
-    _locked(do)
+    _locked(lambda: _write_rows(rows))
     return len(rows)
+
+
+def _remodel(transform):
+    """Read, transform and rewrite as ONE step under ONE lock.
+
+    ONE MUTATION AT A TIME, AND THE LOCK IS PART OF THAT. The field and record mutations rewrite the
+    whole store, and the first version read the store outside the lock and wrote it back inside, so
+    two concurrent writers could each overwrite the other's append with what they had read a moment
+    earlier. That is a concurrency defect bolted onto a mutation that was supposed to be about what
+    the server keeps - two promises broken, and the row stops saying which one the probe caught.
+
+    It also made the table platform-dependent and nothing noticed: on Windows the race did not bite
+    and both mutants passed `concurrent`, on Linux it wiped the store and both failed it. The
+    prediction was written for one mutation and the code shipped two, which is the kind of thing only
+    a second scheduler finds.
+    """
+    def do():
+        rows, _corrupt = _records()
+        return _write_rows(transform(rows))
+    return _locked(do)
 
 
 def _leak_append(obj):
@@ -203,19 +225,21 @@ def tool_write(args):
         # by another tool is dropped - while a record it would never have written is passed through
         # untouched, which is why this one fails foreign_field and leaves foreign_record passing.
         KEEP = ("name", "entityType", "observations")
-        rows, _corrupt = _records()
-        out = []
-        for row in rows:
-            if isinstance(row, dict) and row.get("name"):
-                out.append(dict((k, row[k]) for k in KEEP if k in row))
-            else:
-                out.append(row)
-        _rewrite(out)
+
+        def remodel(rows):
+            out = []
+            for row in rows:
+                if isinstance(row, dict) and row.get("name"):
+                    out.append(dict((k, row[k]) for k in KEEP if k in row))
+                else:
+                    out.append(row)
+            return out
+
+        _remodel(remodel)
     elif MUTANT == "drop-unnamed":
         # Everything this server would have written, it keeps; everything else it silently discards -
         # including the fields it does not model, on the records it does.
-        rows, _corrupt = _records()
-        _rewrite([o for o in rows if isinstance(o, dict) and o.get("name")])
+        _remodel(lambda rows: [o for o in rows if isinstance(o, dict) and o.get("name")])
     _leak_append(obj)
     seq = len(_records()[0])
     return {"ok": verified, "seq": seq, "bytes": size, "line": line,

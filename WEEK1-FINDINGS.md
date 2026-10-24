@@ -2154,7 +2154,7 @@ blind-search         findable        .    .    .    .    FAIL .    .    .    .
 
 All 99 predicted verdicts matched on the first run. That is evidence only because the matrix is not
 flat: eleven mutants produce five different patterns, and a harness that could not fail would have
-printed eleven rows of PASS.
+printed eleven rows of PASS. It was also, in part, luck of the scheduler - see mistake 17.
 
 ### Seven probes fail alone, and two cannot
 
@@ -2184,7 +2184,7 @@ That is why the probe writes three records sharing no word and insists the other
 it was written, the second half looked like a tidiness check. It is the half that catches the
 interesting failure, and the mutation battery is the first thing that demonstrated it does.
 
-### Three more of my own mistakes
+### Four more of my own mistakes
 
 **14. The README stated a claim count that was already wrong.** It said "5 of the 11 claims hold in
 every setting measured" for a whole phase after a twelfth claim had been added, and the sentence
@@ -2208,6 +2208,23 @@ predicted - eleven surprising matrices instead of eleven predictions. Caught by 
 before the first run rather than by a run, which is the cheaper way to find it, and it is only
 recorded because the tempting reading of "all 99 matched first time" is that the mutants are too
 gentle. They are not; this one was simply not live yet.
+
+**17. The battery was platform-dependent, and the first run could not tell.** `reshape-modelled` and
+`drop-unnamed` rewrite the whole store, and the first version read the store *outside* the lock and
+wrote it back *inside*. Two concurrent writers could therefore each overwrite the other's append with
+what they had read a moment earlier - a concurrency defect bolted onto mutations that were supposed to
+be about what the server keeps.
+
+On Windows the race never bit and both mutants passed `concurrent`, exactly as the registry predicted.
+On Linux the store ended the run empty - "0 of 20 acknowledged writes survived" - and CI failed the
+battery on its very first push. So the headline "99 of 99 matched first time" was partly an accident
+of one operating system, and I had no way to know that from the run that produced it.
+
+The read now happens inside the same lock as the write, both mutants break one promise again, and the
+predictions survived unchanged. That is the better evidence: a prediction that has to be adjusted to
+fit the code is not a prediction any more. It is the second thing here that only a second platform
+found, after the CRLF bug in 13, and the lesson repeats - a result measured on the machine that
+produced it has not been measured against the machine that will believe it.
 
 ### What this proves, and what it does not
 
