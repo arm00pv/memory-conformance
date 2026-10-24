@@ -325,6 +325,24 @@ def classify(cells):
     return "MIXED"
 
 
+def sync_readme(headline):
+    """Put this run's headline into README.md. True if the sentence was there, False if not."""
+    import re
+    try:
+        with open("README.md", encoding="utf-8") as fh:
+            text = fh.read()
+    except OSError:
+        return None
+    pattern = re.compile(r"\*\*\d+ of the \d+ claims hold in every setting measured\.\*\*")
+    if not pattern.search(text):
+        return False
+    new = pattern.sub(headline, text)
+    if new != text:
+        with open("README.md", "w", encoding="utf-8", newline=chr(10)) as fh:
+            fh.write(new)
+    return True
+
+
 def main(argv):
     os.chdir(HERE)
     with open("subjects.json", encoding="utf-8") as fh:
@@ -379,6 +397,21 @@ def main(argv):
         fh.write(chr(10).join(OUT) + chr(10))
     print()
     print("written to CLAIMS.md")
+
+    # THE README STATES THIS COUNT IN PROSE, WHICH IS HOW IT WENT STALE. "5 of the 11 claims" sat in
+    # the README for a whole phase after a twelfth claim was added, because the only thing that wrote
+    # the number was this tool and the only thing that read it was a person. A number nothing
+    # re-derives is a number that is already wrong; it is just still plausible. So the sentence is
+    # rewritten from the ledger here, and the run fails if it cannot be.
+    headline = "**%d of the %d claims hold in every setting measured.**" % (held, len(rows_out))
+    synced = sync_readme(headline)
+    if synced is None:
+        print("README.md is not readable; the claim count in it is unverified")
+        return 1
+    if synced is False:
+        print("README.md no longer states the claim count, so it cannot be kept in step")
+        return 1
+    print("README claim count: %s" % headline.strip("*"))
     return 0
 
 

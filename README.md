@@ -28,13 +28,13 @@ independently written corpora and in two phrasings, and writes the verdicts to `
 
 ```
 $ python claims.py
-**5 of the 11 claims hold in every setting measured.**
+**5 of the 12 claims hold in every setting measured.**
 ```
 
 Five survive everywhere, including the one that matters most: **memory-mcp-1file answers more
 answerable questions than anything else here**, on both corpora and in both phrasings, alone at the top.
-The other six are printed beside the setting that breaks them, because that setting is their real
-scope. Three of them:
+The rest are printed beside the setting that breaks them, because that setting is their real scope.
+Three of them:
 
 - "server-memory answers no question at all" - true as written, false when the words are stripped: it
   answers two.
@@ -183,19 +183,22 @@ Two findings from that replication are worth more than the table:
 ## The positive control: the probes can pass
 
 A suite that only ever fails measures nothing. `control/memory_server.py` is the smallest MCP memory
-server built so that all six probes pass, and it is the opposite decision from the server that fails:
+server built so that all nine probes pass, and it is the opposite decision from the server that fails:
 **append-only, never rewrite**, with an OS lock around the append and a read-back before the write is
 acknowledged. Unknown fields, unknown record types and concurrent writers survive by construction
 rather than by care.
 
 ```
 $ python harness.py --adapter=control --cmd="python control/memory_server.py"
-ack_readback     PASS   acknowledged alpha; a fresh read returned 1 entities
-restart          PASS   three writes across three server lifetimes; all read back
-foreign_field    PASS   the extra field survived the next write
-foreign_record   PASS   the unmodelled record survived
-concurrent       PASS   50 of 50 acknowledged writes survived two servers on one store
-large_record     PASS   100,000 characters written, 100,000 read back
+isolation        PASS   0.3s  store A's record was not visible from store B
+ack_readback     PASS   0.2s  acknowledged alpha; a fresh read returned 1 entities: ['alpha']
+restart          PASS   0.5s  three writes across three server lifetimes; read back ['restart-0', ...]
+forget           PASS   0.3s  asked to forget plinth-obsidian; after a restart the other two came back and it did not
+findable         PASS   0.4s  all 8 acknowledged records came back in the top 3 for a search on their own name
+foreign_field    PASS   0.3s  the extra field survived the next write
+foreign_record   PASS   0.3s  the unmodelled record survived
+concurrent       PASS   1.5s  20 of 20 acknowledged writes survived two servers on one store
+large_record     PASS   0.2s  wrote 100000 characters, read back 100000
 0 probe(s) failed
 ```
 
@@ -206,6 +209,54 @@ write to the same offset and clobber each other. Adding an OS lock (`msvcrt.lock
 failure the reference server is reported to have, reproduced on demand - and it is why the concurrency
 probe is worth running.
 
+## The negative control: the probes can fail
+
+A control proves the probes **can** pass. It says nothing about whether they can fail, and until this
+phase nothing in this repository asked. The `forget` probe had just been published with six PASSes,
+five "this subject cannot be asked" and **no FAIL at all** - so nothing in the table distinguished
+"no subject broke this promise" from "this probe would not have noticed if one had".
+
+`mutants.py` takes the control, breaks exactly one promise in it, and checks the whole nine-probe run
+against the verdicts written down **before** the run. The prediction is what is being tested; filling
+it in from what the run happened to print would make the table a description of the code instead of a
+check on it.
+
+```
+$ python mutants.py
+mutant               aimed at        iso  ack  rst  fgt  fnd  ffd  frc  cnc  lrg
+------------------------------------------------------------------------------
+leak-everywhere      isolation       FAIL .    .    .    .    .    .    .    .
+no-persist           ack_readback    .    FAIL FAIL unk  FAIL unk  .    FAIL FAIL
+keep-last            restart         .    .    FAIL unk  FAIL FAIL FAIL FAIL .
+no-forget            forget          .    .    .    FAIL .    .    .    .    .
+forget-all           forget          .    .    .    unk  .    .    .    .    .
+reshape-modelled     foreign_field   .    .    .    .    .    FAIL .    .    .
+drop-unnamed         foreign_record  .    .    .    .    .    .    FAIL .    .
+stale-cache          concurrent      .    .    .    .    .    .    .    FAIL .
+truncate-large       large_record    .    .    .    .    .    .    .    .    FAIL
+mute-search          findable        .    .    .    .    FAIL .    .    .    .
+blind-search         findable        .    .    .    .    FAIL .    .    .    .
+```
+
+All 99 predicted verdicts matched, on all eleven mutants. The generated table is
+[`MUTANTS.md`](MUTANTS.md), CI runs the whole battery on every push, and `--only=no-forget` runs
+one.
+
+**Seven of the nine fail alone** - one mutation reaches that probe and stops: `isolation`, `forget`,
+`findable`, `foreign_field`, `foreign_record`, `concurrent`, `large_record`. The two that cannot be
+isolated are `ack_readback` and `restart`, and the reason is structural rather than a weakness in the
+probes: every probe begins by writing a record and reading it back, so a subject that loses writes at
+the root fails all of them. `keep-last` still pulls the two apart - it replaces the store with each
+new record, so one write survives it and three do not.
+
+`forget` is attacked twice, and the second attack is the one worth reading. `no-forget` acknowledges
+the deletion and keeps the record: a plain FAIL, caught. `forget-all` deletes **everything** instead,
+and the answer the caller gets back is byte-for-byte the same. The probe returns no verdict at all
+rather than a PASS, because the two records nobody asked about are gone too, and a store that lost
+everything cannot be told apart from a store that forgot exactly what it was told to. Over-deleting
+and breaking are different defects and the probe cannot say which it saw, so it says that. Deletion
+fails in two opposite directions, which is why the probe writes three records with no word in common
+and insists the other two survive.
 ## A fourth subject: `basic-memory`
 
 [basic-memory](https://github.com/basicmachines-co/basic-memory) is markdown-first: one note per file
@@ -534,6 +585,11 @@ success reply is honest about the write and silent about the loss.
   never FAIL. Nobody in the field was asked to forget and kept the record. A subject that cannot be asked
   is not a subject that lied; it is a memory with no documented way to correct itself, which is worth
   knowing before you store anything you might need to take back.
+- **The mutations are one author's idea of what breaks.** Eleven subjects were built to break one
+  promise each and every probe failed the one aimed at it, which shows the probes have teeth; it does
+  not show they would catch every defect a real memory server can have, only the ones somebody here
+  thought of. Each mutant is the control's own code with one lever in it, so they inherit its shape.
+  The honest count is "nine probes, eleven demonstrations of failure", not "nine probes, complete".
 - **Cost is measured once, not repeatedly.** A single quiet pass beats a timing taken while nine
   other subjects run, and it is still not a distribution: there is no p90 on any cost column and no
   repeat. Bytes are used rather than tokens because bytes are what the transport carries and what can

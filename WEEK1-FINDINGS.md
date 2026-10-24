@@ -2115,3 +2115,115 @@ The probe axis is re-measured for every subject, and nothing else: retrieval and
 new probe, and re-rolling them would move numbers that did not change. MATRIX.md's verdict table gained a
 column; the control, the reference server and the pinned expectations were updated to include it; and
 every previous addendum's "eight probes" is now history rather than description.
+---
+
+## Addendum 19: does the suite have teeth
+
+Addendum 18 ended with the forget probe published as **six PASSes, five "this subject cannot be
+asked", and no FAIL at all.** Nothing in that table distinguished "no subject broke this promise"
+from "this probe would not have noticed if one had". The same is true of every probe here: each one
+has been *run*, and none had been *tested*. `restart` has never returned FAIL on any subject, and
+`ack_readback` has never returned anything but PASS.
+
+A verifier is only worth what its demonstrated failures are worth. So the next phase does not add a
+tenth probe; it takes the positive control and breaks one promise in it at a time.
+
+### The prediction is the test
+
+`mutants.py` holds eleven mutants. Each is the control with one lever thrown, and each carries the
+verdict all nine probes **must** return - written into the registry before anything ran. That
+ordering is the whole design. Taking the expected vector from what the run happened to print would
+have made the table a description of the code instead of a check on it, and it would have passed
+just as green.
+
+```
+mutant               aimed at        iso  ack  rst  fgt  fnd  ffd  frc  cnc  lrg
+------------------------------------------------------------------------------
+leak-everywhere      isolation       FAIL .    .    .    .    .    .    .    .
+no-persist           ack_readback    .    FAIL FAIL unk  FAIL unk  .    FAIL FAIL
+keep-last            restart         .    .    FAIL unk  FAIL FAIL FAIL FAIL .
+no-forget            forget          .    .    .    FAIL .    .    .    .    .
+forget-all           forget          .    .    .    unk  .    .    .    .    .
+reshape-modelled     foreign_field   .    .    .    .    .    FAIL .    .    .
+drop-unnamed         foreign_record  .    .    .    .    .    .    FAIL .    .
+stale-cache          concurrent      .    .    .    .    .    .    .    FAIL .
+truncate-large       large_record    .    .    .    .    .    .    .    .    FAIL
+mute-search          findable        .    .    .    .    FAIL .    .    .    .
+blind-search         findable        .    .    .    .    FAIL .    .    .    .
+```
+
+All 99 predicted verdicts matched on the first run. That is evidence only because the matrix is not
+flat: eleven mutants produce five different patterns, and a harness that could not fail would have
+printed eleven rows of PASS.
+
+### Seven probes fail alone, and two cannot
+
+`isolation`, `forget`, `findable`, `foreign_field`, `foreign_record`, `concurrent` and
+`large_record` each have a mutant that reaches them and nothing else. `ack_readback` and `restart`
+do not, and the reason is structural rather than a weakness in the probes: every probe begins by
+writing a record and reading it back, so a subject that loses writes at the root fails all nine.
+A mutation cannot break the first without breaking the others, and the table says which cascade
+rather than hiding it.
+
+`keep-last` pulls the two apart anyway: each write replaces the store with itself, so one write
+survives and three do not. `ack_readback` passes it and `restart` fails it, which is the difference
+between the two probes stated in the only way that means anything - a subject that satisfies one and
+not the other.
+
+### The forget probe gets attacked from both sides
+
+`no-forget` acknowledges the deletion and keeps the record. Plain FAIL, caught.
+
+`forget-all` deletes **everything** instead, and the answer the caller gets back is byte-for-byte
+the same. The probe returns no verdict - not PASS - because the two records nobody asked about are
+gone too, and a store that lost everything cannot be told apart from a store that forgot exactly
+what it was told to. Over-deleting and breaking are different defects, the probe cannot say which it
+witnessed, so it says that.
+
+That is why the probe writes three records sharing no word and insists the other two survive. When
+it was written, the second half looked like a tidiness check. It is the half that catches the
+interesting failure, and the mutation battery is the first thing that demonstrated it does.
+
+### Three more of my own mistakes
+
+**14. The README stated a claim count that was already wrong.** It said "5 of the 11 claims hold in
+every setting measured" for a whole phase after a twelfth claim had been added, and the sentence
+after it - "the other six are printed beside the setting that breaks them" - named a count as well,
+now seven. Both were hand-maintained prose about a number that `claims.py` computes.
+
+This is the same defect the repository exists to find, sitting in its own front page. The fix is not
+the edited number: `claims.py` now rewrites that sentence from the ledger it just built, and the run
+fails if the README no longer contains it. The second sentence no longer names a count at all.
+
+**15. The battery summarised itself wrongly, in the direction that flattered it.** The first
+generated `MUTANTS.md` reported "8 fail alone" and then listed seven probes with `findable` twice.
+The predicate asked whether some *other probe* had any killer, which is false for every probe once
+the cascades are counted, so the list came out empty and the fallback text claimed the opposite. A
+correct predicate is one mutant that kills this probe and nothing else; it now yields seven, and the
+duplicated name came from the same bug.
+
+**16. The leak was not gated on its mutant.** `MEMORY_LEAK_PATH` was read whenever it was set, so
+every mutant would have leaked state between stores and produced verdict vectors nobody had
+predicted - eleven surprising matrices instead of eleven predictions. Caught by re-reading the code
+before the first run rather than by a run, which is the cheaper way to find it, and it is only
+recorded because the tempting reading of "all 99 matched first time" is that the mutants are too
+gentle. They are not; this one was simply not live yet.
+
+### What this proves, and what it does not
+
+It proves that each of the nine probes can return FAIL, that seven of them can do it without
+collateral, and that the suite distinguishes eleven different defects from each other and from the
+control. It does not prove the probes would catch every defect a real memory server can have - only
+the ones somebody here thought to build. A failure mode nobody has imagined yet is still unproven,
+and every mutant is the control with a lever in it, so they all inherit the control's shape.
+
+The honest count is nine probes and eleven demonstrations of failure, not nine probes and
+completeness. The battery runs in CI in about a minute, needs no npm and no network, and is the only
+job that would notice a probe quietly losing the ability to fail.
+
+### What this costs
+
+One new file (`mutants.py`), one generated table (`MUTANTS.md`), about forty lines of levers in the
+control server, and one CI job. No subject verdict, retrieval score or cost figure moves: nothing
+here touches what was measured before, only whether the thing doing the measuring works.
+
