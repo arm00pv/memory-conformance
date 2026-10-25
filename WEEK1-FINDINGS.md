@@ -2343,5 +2343,94 @@ One probe, one mutant, one store primitive and about fifteen lines of adapter. T
 not re-rolled: `matrix.py --probes-only` re-measures the probes and reads retrieval and cost from disk,
 because a new probe does not change how fast a server starts or how many questions it answers, and
 re-running them would move numbers that did not change and invite the reader to think they had.
+---
+
+## Addendum 21: where the retrieval score comes from
+
+The conformance probes got a mutation battery because a probe that has never failed is not a probe.
+The retrieval axis never got the same treatment. Eleven subjects have been scored out of sixty for
+several phases, and nothing here had ever measured what a subject has to do to score nothing, what the
+maximum is, or what "not searching at all" looks like. Forty-two out of sixty was therefore a number
+on a scale whose ends were both unknown - it could have been 95% of what the corpus allows, or the top
+of a scale that ends at 44.
+
+### Four controls, one of which cheats
+
+`calibration.py` runs the same sixty questions against four controls. Three are the positive server
+broken on purpose; the fourth is the answer key wired to a search tool.
+
+| control | what it is | hits (A) | score (A) | hits (B) | score (B) |
+|---|---|---|---|---|---|
+| `oracle` | the corpus own answer key, wired to a search tool | 48/60 | **60/60** | 48/60 | **60/60** |
+| `control` | the positive control term overlap | 25/60 | 37/60 | 32/60 | 44/60 |
+| `blind-search` | the same three records to every question | 2/60 | 2/60 | 3/60 | 3/60 |
+| `mute-search` | returns nothing, ever | 0/60 | 12/60 | 0/60 | 12/60 |
+
+**The ceiling is 48 hits and it is reachable.** Twelve of the sixty questions have no answer. The
+oracle answers all forty-eight and declines all twelve, so the most a search can hit is 48 - and
+memory-mcp-1file is at 42 of them, 87% of the available maximum, with the control at 52%. That is a
+different sentence from the one the table used to support, and the only one that could be checked.
+
+**The floor of the score is 12, not 0.** Declining a question with no answer is correct, so a memory
+that answers nothing collects all twelve. The hit count has a true floor of zero; the score every
+paired test is computed from does not.
+
+### The part that changes how the rest should be read
+
+| subject | corpus A | corpus B written | corpus B as keywords |
+|---|---|---|---|
+| `statecore-mcp` | **0** | 12 | 12 |
+| `memdb` | **6** | **2** | 16 |
+| a memory that answers nothing | 12 | 12 | 12 |
+| `server-memory` 1.0.0 and 2.0.0, `mcp-knowledge-graph` | 12 | 12 | 14 |
+
+**A real subject can finish below a program that does nothing.** `statecore-mcp` scores zero on corpus
+A and `memdb` six; on corpus B as written `memdb` scores two. All three answer every unanswerable
+question and get none of them right, so they come in under a control that never answers anything.
+
+And on corpus B asked as keywords, nobody does - the lowest score is `statecore-mcp` at exactly 12, a
+tie rather than a loss. So the claim `silence-scores-better` is **MIXED**: true in three of the four
+settings, false in the fourth. It was not reworded until it passed. The setting that breaks it is the
+claim real scope, which is what the ledger exists to say.
+
+The score is doing what it says. Silence is never punished and answering is only rewarded when the
+answer is right - a defensible definition, and a paired test is meant to be built on one. But it is
+not a ranking, and a subject that answers freely is penalised twice while one that says nothing is not
+penalised at all. That is why the headline claim is stated in **hits**, where the floor really is zero.
+
+### The oracle is allowed to cheat, and that is the point
+
+`oracle-search` reads `retrieval_corpus.json` and returns the expected record. It is not a subject and
+appears in no other table. Its only job is to make the ceiling a measurement instead of an assumption:
+if the answer key does not score sixty, the failure is in the corpus or in the scoring, and no subject
+should be graded on it. It also pins the twelve-point floor, because the oracle declines the
+unanswerable questions by construction and gets them right for the same reason a mute server does.
+
+### One more of my own mistakes
+
+**22. The corpus the oracle is given was decided by argv order.** `--mutant=oracle-search` resolved the
+`--cases` path when it was parsed, so `--mutant` before `--cases` would have handed the oracle corpus
+A answers on a run over corpus B - an oracle that scores 48 on a corpus it was never given is either a
+miracle or a bug, and it would have been the bug. Resolved after every option is read instead. Caught
+while writing the script rather than by a run; recorded because the failure would have looked like a
+very good result.
+
+### What this does not establish
+
+It does not say the questions are good ones. A corpus can have a reachable ceiling and still ask only
+easy questions, which is what the bands, the second corpus and the phrasing pair are for - and the
+validator still reports eleven one-word adversarial traps in corpus A against three in corpus B, which
+is a real weakness in the weaker corpus and not one this phase addressed.
+
+It also does not make the controls subjects, and it does not add a row to any subject score. Nothing
+about any real server changed: what changed is what its number is quoted against.
+
+### What this costs
+
+One script, one generated table, two controls that already existed, one new one, and a step in a CI job
+that was already running. The ledger gains three claims - `scale-ceiling` and `floor-not-zero` hold on
+both corpora in both phrasings, `silence-scores-better` is MIXED - and seven of sixteen now hold
+everywhere.
+
 
 

@@ -75,6 +75,28 @@ def probes(label):
         return {r["probe"]: r for r in json.load(fh).get("probes") or []}
 
 
+def calibration(mutant, corpus):
+    """One saved control run, or None when it answers a corpus that is no longer on disk.
+
+    THE SAME STALENESS GUARD THE RETRIEVAL ROWS GET, for the same reason: a calibration file that was
+    measured against sixty questions nobody asks any more would go on quietly certifying a scale it no
+    longer describes.
+    """
+    path = os.path.join("results", "calibration-%s-%s.json" % (mutant, corpus))
+    if not os.path.isfile(path):
+        return None
+    with open(path, encoding="utf-8") as fh:
+        doc = json.load(fh)
+    corpus_path = CORPORA[corpus][0]
+    if os.path.isfile(corpus_path):
+        want = matrix.corpus_queries(corpus_path)
+        got = [(r.get("query"), r.get("expect"), r.get("difficulty"))
+               for r in doc.get("rows") or []]
+        if got != want:
+            return None
+    return doc
+
+
 def cost(label):
     path = os.path.join("results", matrix.slug_of(entry_of(label)) + "-cost.json")
     if not os.path.isfile(path):
@@ -203,6 +225,84 @@ def c_memento_speaks(ctx, corpus, shape):
     return (v == 12, "%d of 12 unanswerable questions answered" % v) if v is not None else None
 
 
+def _subject_total(label, corpus, shape):
+    """One subject's score, the same number the paired tests pair on."""
+    rs = rows(label, corpus)
+    if not rs:
+        return None, 0
+    return sum(1 for r in rs if ok(r, shape)), len(rs)
+
+
+def _control_total(mutant, corpus, shape):
+    doc = calibration(mutant, corpus)
+    if not doc:
+        return None, None
+    rows = doc.get("rows") or []
+    n = len(rows)
+    if shape == "keywords":
+        got = sum(1 for r in rows if compare.correct_keyword(r))
+    else:
+        got = sum(1 for r in rows if compare.correct(r))
+    return got, n
+
+
+def c_scale_ceiling(ctx, corpus, shape):
+    """The retrieval score's maximum is reachable by something.
+
+    A SCORE WHOSE CEILING NOBODY HAS MEASURED IS NOT A MEASUREMENT. Forty-two out of sixty describes a
+    subject and says nothing about whether sixty was ever available - the questions might have made a
+    perfect answer impossible. The oracle is the corpus's own answer key wired to a search tool, so if
+    it does not score every question, the failure is in the corpus or in the scoring and not in any
+    subject.
+    """
+    got, n = _control_total("oracle-search", corpus, shape)
+    if got is None:
+        return None
+    return got == n, "an oracle returning the corpus's own answers scored %d of %d" % (got, n)
+
+
+def c_floor_not_zero(ctx, corpus, shape):
+    """A subject that answers no question at all still scores the unanswerable ones.
+
+    THE FLOOR OF THE SCORE IS NOT ZERO, and every paired test is computed from this score. Twelve
+    questions out of sixty have no answer, and returning nothing on them is correct, so a memory that
+    does nothing collects twelve points. That is right - declining is correct behaviour - but a reader
+    comparing 43 with 12 is comparing a subject with a scale, not with another subject, and the ledger
+    should say so.
+    """
+    got, n = _control_total("mute-search", corpus, shape)
+    if got is None:
+        return None
+    doc = calibration("mute-search", corpus)
+    absent = sum(1 for r in doc.get("rows") or [] if r.get("difficulty") == "absent")
+    return got > 0, ("a subject that never answers scored %d of %d, the %d questions with no answer"
+                     % (got, n, absent))
+
+
+def c_silence_scores_better(ctx, corpus, shape):
+    """At least one subject scores worse than a memory that answers nothing at all.
+
+    THE SCORE IS RIGHT AND ITS FLOOR IS A TRAP. Returning nothing on a question with no answer is
+    correct behaviour, so a subject that never answers collects all twelve of them - and a subject that
+    answers them all wrongly collects none. Answering is only rewarded when the answer is right;
+    silence is never punished. That is defensible as a metric, and it means a real subject can finish
+    below a program that does nothing, which is worth a claim rather than a footnote.
+    """
+    floor, _n = _control_total("mute-search", corpus, shape)
+    if floor is None:
+        return None
+    worse = []
+    for label in ctx["labels"]:
+        got, _total = _subject_total(label, corpus, shape)
+        if got is None:
+            continue
+        if got < floor:
+            worse.append("%s %d" % (label.split()[0], got))
+    return bool(worse), ("%d subject(s) below the %d that answering nothing scores%s"
+                         % (len(worse), floor,
+                            (" (" + ", ".join(worse) + ")") if worse else ""))
+
+
 def c_verbatim(ctx, corpus, shape):
     """Every subject returns a record exactly as it was written.
 
@@ -317,6 +417,12 @@ CLAIMS = [
      c_can_forget, False),
     ("verbatim-all", "every subject returns a record exactly as it was written.",
      c_verbatim, False),
+    ("scale-ceiling", "the retrieval score's maximum is reachable by something.",
+     c_scale_ceiling, True),
+    ("floor-not-zero", "a subject that answers nothing still scores the unanswerable questions.",
+     c_floor_not_zero, True),
+    ("silence-scores-better", "at least one subject scores worse than a memory that answers nothing.",
+     c_silence_scores_better, True),
     ("leaks-state", "memory-mcp-1file leaks state between stores and is out of scope.",
      c_leaks_state, False),
     ("leanest", "memory-lean returns fewer bytes per question than any subject that answers anything.",

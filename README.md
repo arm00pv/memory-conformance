@@ -29,7 +29,7 @@ independently written corpora and in two phrasings, and writes the verdicts to `
 
 ```
 $ python claims.py
-**5 of the 13 claims hold in every setting measured.**
+**7 of the 16 claims hold in every setting measured.**
 ```
 
 Five survive everywhere, including the one that matters most: **memory-mcp-1file answers more
@@ -160,6 +160,40 @@ single k=1 miss in that original run was a ranking question, not a
 matching one: "when is a write considered safe" returns `[rec-lock, rec-ack]`, and both are about
 writes being safe.
 
+## What the retrieval score means
+
+Forty-two out of sixty describes a subject. It does not say whether sixty was ever available, and
+until this phase nothing here had measured either end of that scale - the retrieval table was eleven
+subjects and no controls at all. `calibration.py` runs the same sixty questions against four of them,
+each the positive memory server with one thing changed:
+
+| control | what it is | hits (A) | score (A) | hits (B) | score (B) |
+|---|---|---|---|---|---|
+| `oracle` | the corpus own answer key wired to a search tool | 48/60 | **60/60** | 48/60 | **60/60** |
+| `control` | the positive control term overlap | 25/60 | 37/60 | 32/60 | 44/60 |
+| `blind-search` | the same three records to every question | 2/60 | 2/60 | 3/60 | 3/60 |
+| `mute-search` | returns nothing, ever | 0/60 | 12/60 | 0/60 | 12/60 |
+
+**The ceiling is 48 hits and one subject is at 42 of them.** Twelve of the sixty questions have no
+answer; the oracle answers all forty-eight and declines all twelve, so the most any search can hit is
+48 and it is reachable. memory-mcp-1file is at 87% of that ceiling and the control is at 52%, which is
+a different sentence from "best of a bad bunch" - and the only one that can be supported.
+
+**The floor of the score is 12, not 0.** Declining a question that has no answer is correct, so a
+memory that answers nothing collects all twelve of them. The hit count has a true floor of zero; the
+score every paired test is computed from does not, and the gap is exactly the twelve unanswerable
+questions.
+
+**And a subject can finish below the floor.** On corpus A, `statecore-mcp` scores 0 and `memdb` 6. On
+corpus B as written, `memdb` scores 2. All three answer every unanswerable question and get none of
+them right, so they finish under a program that says nothing at all. On corpus B asked as keywords
+nobody does - `statecore-mcp` ties at 12 - which is where the ledger leaves `silence-scores-better`
+as MIXED rather than adjusting it until it passes.
+
+That is the score doing what it says: silence is never punished, and answering is only rewarded when
+the answer is right. It is a defensible metric for a paired test and it is not a ranking, which is why
+the headline claim is stated in hits and not in score. The full table is
+[`CALIBRATION.md`](CALIBRATION.md).
 ## A second corpus, written blind
 
 Every retrieval number in this file rests on a question set written by the same hand that wrote the

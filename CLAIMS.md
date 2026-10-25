@@ -10,7 +10,7 @@ claim about silence. A subject's SCORE is what the paired test pairs on - the ri
 top three, plus a credit for declining a question with no answer. Its HITS are only the questions
 that have an answer and were answered correctly. "It answers nothing" is a claim about hits.
 
-**5 of the 13 claims hold in every setting measured.** The rest are printed beside the setting
+**7 of the 16 claims hold in every setting measured.** The rest are printed beside the setting
 that breaks them, because that setting is the claim's real scope.
 
 | claim | A written | A keywords | B written | B keywords | status |
@@ -23,6 +23,9 @@ that breaks them, because that setting is the claim's real scope.
 | memento-speaks | yes | yes | yes | yes | **HOLDS** |
 | can-forget | no | no | **FAILS** |
 | verbatim-all | no | no | **FAILS** |
+| scale-ceiling | yes | yes | yes | yes | **HOLDS** |
+| floor-not-zero | yes | yes | yes | yes | **HOLDS** |
+| silence-scores-better | yes | yes | yes | no | **MIXED** |
 | leaks-state | yes | yes | **HOLDS** |
 | leanest | yes | no | **MIXED** |
 | best-hard | yes | yes | yes | yes | **HOLDS** |
@@ -74,6 +77,24 @@ that breaks them, because that setting is the claim's real scope.
 **verbatim-all** - every subject returns a record exactly as it was written. *FAILS*
   - A written: false (0 altered it (none); 3 could not be compared (memory-mcp-1file, statecore-mcp, mcp-duckdb-memory-server))
   - B written: false (0 altered it (none); 3 could not be compared (memory-mcp-1file, statecore-mcp, mcp-duckdb-memory-server))
+
+**scale-ceiling** - the retrieval score's maximum is reachable by something. *HOLDS*
+  - A written: true (an oracle returning the corpus's own answers scored 60 of 60)
+  - A keywords: true (an oracle returning the corpus's own answers scored 60 of 60)
+  - B written: true (an oracle returning the corpus's own answers scored 60 of 60)
+  - B keywords: true (an oracle returning the corpus's own answers scored 60 of 60)
+
+**floor-not-zero** - a subject that answers nothing still scores the unanswerable questions. *HOLDS*
+  - A written: true (a subject that never answers scored 12 of 60, the 12 questions with no answer)
+  - A keywords: true (a subject that never answers scored 12 of 60, the 12 questions with no answer)
+  - B written: true (a subject that never answers scored 12 of 60, the 12 questions with no answer)
+  - B keywords: true (a subject that never answers scored 12 of 60, the 12 questions with no answer)
+
+**silence-scores-better** - at least one subject scores worse than a memory that answers nothing. *MIXED*
+  - A written: true (2 subject(s) below the 12 that answering nothing scores (memdb 6, statecore-mcp 0))
+  - A keywords: true (1 subject(s) below the 12 that answering nothing scores (statecore-mcp 0))
+  - B written: true (1 subject(s) below the 12 that answering nothing scores (memdb 2))
+  - B keywords: false (0 subject(s) below the 12 that answering nothing scores)
 
 **leaks-state** - memory-mcp-1file leaks state between stores and is out of scope. *HOLDS*
   - A written: true (isolation FAIL)
