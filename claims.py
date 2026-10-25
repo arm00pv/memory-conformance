@@ -203,6 +203,30 @@ def c_memento_speaks(ctx, corpus, shape):
     return (v == 12, "%d of 12 unanswerable questions answered" % v) if v is not None else None
 
 
+def c_verbatim(ctx, corpus, shape):
+    """Every subject returns a record exactly as it was written.
+
+    THE NARROWEST PROMISE HERE, AND THE ONLY ONE THAT NEEDS NO JUDGEMENT ABOUT WHAT "THE SAME" MEANS.
+    Nine strings - 2, 3 and 4-byte UTF-8, a combining pair next to its precomposed twin, right-to-left
+    text, JSON escapes, a zero-width space, and a newline inside the body of a newline-delimited
+    transport - are written as one record and compared byte for byte on a process that never saw the
+    write. Either the bytes match or they do not.
+    """
+    altered, unknown = [], []
+    for label in ctx["labels"]:
+        r = (probes(label).get("verbatim") or {})
+        if not r:
+            continue
+        if r.get("verdict") == "FAIL":
+            altered.append(label)
+        elif r.get("verdict") == "UNKNOWN":
+            unknown.append(label)
+    return (not altered and not unknown,
+            "%d altered it (%s); %d could not be compared (%s)"
+            % (len(altered), ", ".join(n.split()[0] for n in altered) or "none",
+               len(unknown), ", ".join(n.split()[0] for n in unknown) or "none"))
+
+
 def c_leaks_state(ctx, corpus, shape):
     p = probes(LEADER)
     if not p:
@@ -291,6 +315,8 @@ CLAIMS = [
      c_memento_speaks, True),
     ("can-forget", "every subject can be asked to forget a record, and forgets it.",
      c_can_forget, False),
+    ("verbatim-all", "every subject returns a record exactly as it was written.",
+     c_verbatim, False),
     ("leaks-state", "memory-mcp-1file leaks state between stores and is out of scope.",
      c_leaks_state, False),
     ("leanest", "memory-lean returns fewer bytes per question than any subject that answers anything.",

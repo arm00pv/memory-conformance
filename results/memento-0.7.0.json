@@ -8,7 +8,7 @@
       "verdict": "PASS",
       "kind": "kept",
       "evidence": "store A's record was not visible from store B",
-      "seconds": 23.4,
+      "seconds": 20.7,
       "runs": 3,
       "tally": {
         "PASS": 3
@@ -20,7 +20,19 @@
       "verdict": "PASS",
       "kind": "kept",
       "evidence": "acknowledged alpha; a fresh read returned 1 entities: ['alpha']",
-      "seconds": 16.7,
+      "seconds": 15.1,
+      "runs": 3,
+      "tally": {
+        "PASS": 3
+      },
+      "unstable": false
+    },
+    {
+      "probe": "verbatim",
+      "verdict": "PASS",
+      "kind": "kept",
+      "evidence": "all 9 strings came back byte for byte, over the wire: 2, 3 and 4-byte UTF-8, a combining pair, right-to-left text, JSON escapes, a zero-width space and an embedded newline, under a non-ASCII name - in an order of the subject's own choosing, so every character survived and the sequence did not",
+      "seconds": 14.1,
       "runs": 3,
       "tally": {
         "PASS": 3
@@ -32,7 +44,7 @@
       "verdict": "PASS",
       "kind": "kept",
       "evidence": "three writes across three server lifetimes; read back ['restart-0', 'restart-1', 'restart-2']",
-      "seconds": 60.6,
+      "seconds": 67.3,
       "runs": 3,
       "tally": {
         "PASS": 3
@@ -44,7 +56,7 @@
       "verdict": "PASS",
       "kind": "kept",
       "evidence": "asked to forget plinth-obsidian and the subject answered 'Entities deleted'; after a restart the other two came back and it did not",
-      "seconds": 26.1,
+      "seconds": 35.6,
       "runs": 3,
       "tally": {
         "PASS": 3
@@ -56,7 +68,7 @@
       "verdict": "FAIL",
       "kind": "failed",
       "evidence": "5 of 8 acknowledged records were not returned by a search for their own name: ['zephyr-quartz', 'marlin-obsidian', 'tundra-figment', 'quiver-nectar']; every query returned the same 3 records regardless of what was asked - the search does not discriminate",
-      "seconds": 40.5,
+      "seconds": 63.4,
       "runs": 3,
       "tally": {
         "FAIL": 3
@@ -68,7 +80,7 @@
       "verdict": "PASS",
       "kind": "kept",
       "evidence": "the extra field survived the next write",
-      "seconds": 21.3,
+      "seconds": 33.4,
       "runs": 3,
       "tally": {
         "PASS": 3
@@ -80,7 +92,7 @@
       "verdict": "PASS",
       "kind": "kept",
       "evidence": "the unmodelled record survived",
-      "seconds": 19.8,
+      "seconds": 29.8,
       "runs": 3,
       "tally": {
         "PASS": 3
@@ -92,7 +104,7 @@
       "verdict": "PASS",
       "kind": "kept",
       "evidence": "20 of 20 acknowledged writes survived two servers on one store",
-      "seconds": 39.1,
+      "seconds": 66.1,
       "runs": 3,
       "tally": {
         "PASS": 3
@@ -104,7 +116,7 @@
       "verdict": "FAIL",
       "kind": "no-ack",
       "evidence": "tools/call did not answer within 180s",
-      "seconds": 556.1,
+      "seconds": 552.0,
       "runs": 3,
       "tally": {
         "FAIL": 3

@@ -1,6 +1,7 @@
 {
   "isolation": "PASS",
   "ack_readback": "PASS",
+  "verbatim": "PASS",
   "restart": "PASS",
   "forget": "PASS",
   "findable": "PASS",

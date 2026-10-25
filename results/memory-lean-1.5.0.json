@@ -8,7 +8,7 @@
       "verdict": "PASS",
       "kind": "kept",
       "evidence": "store A's record was not visible from store B",
-      "seconds": 4.6,
+      "seconds": 5.1,
       "runs": 3,
       "tally": {
         "PASS": 3
@@ -20,7 +20,19 @@
       "verdict": "PASS",
       "kind": "kept",
       "evidence": "acknowledged alpha; a fresh read returned 1 entities: ['alpha']",
-      "seconds": 7.4,
+      "seconds": 5.4,
+      "runs": 3,
+      "tally": {
+        "PASS": 3
+      },
+      "unstable": false
+    },
+    {
+      "probe": "verbatim",
+      "verdict": "PASS",
+      "kind": "kept",
+      "evidence": "all 9 strings came back byte for byte, in the store, which this subject does not return over the wire: 2, 3 and 4-byte UTF-8, a combining pair, right-to-left text, JSON escapes, a zero-width space and an embedded newline, under a non-ASCII name",
+      "seconds": 5.1,
       "runs": 3,
       "tally": {
         "PASS": 3
@@ -32,7 +44,7 @@
       "verdict": "PASS",
       "kind": "kept",
       "evidence": "three writes across three server lifetimes; read back ['restart-0', 'restart-1', 'restart-2']",
-      "seconds": 13.3,
+      "seconds": 18.4,
       "runs": 3,
       "tally": {
         "PASS": 3
@@ -44,7 +56,7 @@
       "verdict": "PASS",
       "kind": "kept",
       "evidence": "asked to forget plinth-obsidian and the subject answered 'Deleted 1 entities, 0 relations.'; after a restart the other two came back and it did not",
-      "seconds": 1.9,
+      "seconds": 8.2,
       "runs": 3,
       "tally": {
         "PASS": 3
@@ -56,7 +68,7 @@
       "verdict": "PASS",
       "kind": "kept",
       "evidence": "all 8 acknowledged records came back in the top 3 for a search on their own name",
-      "seconds": 3.2,
+      "seconds": 7.9,
       "runs": 3,
       "tally": {
         "PASS": 3
@@ -68,7 +80,7 @@
       "verdict": "FAIL",
       "kind": "failed",
       "evidence": "the extra field was silently dropped by the next write",
-      "seconds": 2.2,
+      "seconds": 6.4,
       "runs": 3,
       "tally": {
         "FAIL": 3
@@ -80,7 +92,7 @@
       "verdict": "FAIL",
       "kind": "failed",
       "evidence": "the unmodelled record was silently removed by the next write",
-      "seconds": 1.7,
+      "seconds": 5.9,
       "runs": 3,
       "tally": {
         "FAIL": 3
@@ -92,7 +104,7 @@
       "verdict": "PASS",
       "kind": "kept",
       "evidence": "20 of 20 acknowledged writes survived two servers on one store",
-      "seconds": 3.0,
+      "seconds": 11.2,
       "runs": 3,
       "tally": {
         "PASS": 3
@@ -104,7 +116,7 @@
       "verdict": "PASS",
       "kind": "kept",
       "evidence": "wrote 195 characters; 195 are still in the store; refused at 100000 by its own limit, so 195 was measured",
-      "seconds": 14.3,
+      "seconds": 38.9,
       "runs": 3,
       "tally": {
         "PASS": 3

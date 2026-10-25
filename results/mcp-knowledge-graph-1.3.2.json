@@ -8,7 +8,7 @@
       "verdict": "PASS",
       "kind": "kept",
       "evidence": "store A's record was not visible from store B",
-      "seconds": 9.5,
+      "seconds": 14.4,
       "runs": 3,
       "tally": {
         "PASS": 3
@@ -20,7 +20,19 @@
       "verdict": "PASS",
       "kind": "kept",
       "evidence": "acknowledged alpha; a fresh read returned 1 entities: ['alpha']",
-      "seconds": 5.4,
+      "seconds": 8.2,
+      "runs": 3,
+      "tally": {
+        "PASS": 3
+      },
+      "unstable": false
+    },
+    {
+      "probe": "verbatim",
+      "verdict": "PASS",
+      "kind": "kept",
+      "evidence": "all 9 strings came back byte for byte, in the store, which this subject does not return over the wire: 2, 3 and 4-byte UTF-8, a combining pair, right-to-left text, JSON escapes, a zero-width space and an embedded newline, under a non-ASCII name",
+      "seconds": 8.0,
       "runs": 3,
       "tally": {
         "PASS": 3
@@ -32,7 +44,7 @@
       "verdict": "PASS",
       "kind": "kept",
       "evidence": "three writes across three server lifetimes; read back ['restart-0', 'restart-1', 'restart-2']",
-      "seconds": 6.2,
+      "seconds": 7.4,
       "runs": 3,
       "tally": {
         "PASS": 3
@@ -44,7 +56,7 @@
       "verdict": "PASS",
       "kind": "kept",
       "evidence": "asked to forget plinth-obsidian and the subject answered 'Entities deleted successfully'; after a restart the other two came back and it did not",
-      "seconds": 5.8,
+      "seconds": 10.4,
       "runs": 3,
       "tally": {
         "PASS": 3
@@ -56,7 +68,7 @@
       "verdict": "PASS",
       "kind": "kept",
       "evidence": "all 8 acknowledged records came back in the top 3 for a search on their own name",
-      "seconds": 9.5,
+      "seconds": 5.8,
       "runs": 3,
       "tally": {
         "PASS": 3
@@ -68,7 +80,7 @@
       "verdict": "PASS",
       "kind": "kept",
       "evidence": "the extra field survived the next write",
-      "seconds": 8.3,
+      "seconds": 5.2,
       "runs": 3,
       "tally": {
         "PASS": 3
@@ -80,7 +92,7 @@
       "verdict": "FAIL",
       "kind": "subject-error",
       "evidence": "MCP error: {\"code\": -32603, \"message\": \"Unexpected non-whitespace character after JSON at position 87 (line 1 column 88)\"}",
-      "seconds": 5.4,
+      "seconds": 3.2,
       "runs": 3,
       "tally": {
         "FAIL": 3
@@ -91,8 +103,8 @@
       "probe": "concurrent",
       "verdict": "FAIL",
       "kind": "failed",
-      "evidence": "1 of 20 acknowledged writes survived two servers on one store; 13 of 20 acknowledged writes survived two servers on one store",
-      "seconds": 4.7,
+      "evidence": "12 of 20 acknowledged writes survived two servers on one store; 9 of 20 acknowledged writes survived two servers on one store",
+      "seconds": 13.0,
       "runs": 3,
       "tally": {
         "FAIL": 3
@@ -104,7 +116,7 @@
       "verdict": "PASS",
       "kind": "kept",
       "evidence": "wrote 100000 characters; 100000 are still in the store",
-      "seconds": 1.4,
+      "seconds": 3.4,
       "runs": 3,
       "tally": {
         "PASS": 3

@@ -8,7 +8,7 @@
       "verdict": "PASS",
       "kind": "kept",
       "evidence": "store A's record was not visible from store B",
-      "seconds": 22.4,
+      "seconds": 26.8,
       "runs": 3,
       "tally": {
         "PASS": 3
@@ -20,10 +20,22 @@
       "verdict": "PASS",
       "kind": "kept",
       "evidence": "acknowledged alpha; a fresh read returned 1 entities: ['alpha']",
-      "seconds": 19.9,
+      "seconds": 8.4,
       "runs": 3,
       "tally": {
         "PASS": 3
+      },
+      "unstable": false
+    },
+    {
+      "probe": "verbatim",
+      "verdict": "UNKNOWN",
+      "kind": "not-applicable",
+      "evidence": "a plain ASCII record written the same way does not come back either - not over the wire, and not from a store this harness can read - so this probe cannot see this subject's record bodies at all. That is a gap in the probe against this subject, not a verdict about its text",
+      "seconds": 9.8,
+      "runs": 3,
+      "tally": {
+        "UNKNOWN": 3
       },
       "unstable": false
     },
@@ -32,7 +44,7 @@
       "verdict": "PASS",
       "kind": "kept",
       "evidence": "three writes across three server lifetimes; read back ['restart-0', 'restart-1', 'restart-2']",
-      "seconds": 30.2,
+      "seconds": 28.7,
       "runs": 3,
       "tally": {
         "PASS": 3
@@ -44,7 +56,7 @@
       "verdict": "UNKNOWN",
       "kind": "not-applicable",
       "evidence": "this subject publishes no way to be asked to forget, so the promise cannot be tested: this subject publishes no delete tool whose effect could be proven",
-      "seconds": 5.9,
+      "seconds": 9.7,
       "runs": 3,
       "tally": {
         "UNKNOWN": 3
@@ -56,7 +68,7 @@
       "verdict": "FAIL",
       "kind": "failed",
       "evidence": "8 of 8 acknowledged records were not returned by a search for their own name: ['zephyr-quartz', 'ember-lattice', 'cobalt-thistle', 'marlin-obsidian']; every query returned nothing at all, whatever was asked",
-      "seconds": 14.2,
+      "seconds": 20.9,
       "runs": 3,
       "tally": {
         "FAIL": 3
@@ -68,7 +80,7 @@
       "verdict": "PASS",
       "kind": "kept",
       "evidence": "the extra field survived the next write",
-      "seconds": 11.9,
+      "seconds": 19.4,
       "runs": 3,
       "tally": {
         "PASS": 3
@@ -80,7 +92,7 @@
       "verdict": "PASS",
       "kind": "kept",
       "evidence": "the unmodelled record survived",
-      "seconds": 15.1,
+      "seconds": 22.6,
       "runs": 3,
       "tally": {
         "PASS": 3
@@ -92,7 +104,7 @@
       "verdict": "FAIL",
       "kind": "failed",
       "evidence": "17 of 20 acknowledged writes survived two servers on one store",
-      "seconds": 26.7,
+      "seconds": 18.9,
       "runs": 3,
       "tally": {
         "FAIL": 3
@@ -104,7 +116,7 @@
       "verdict": "UNKNOWN",
       "kind": "not-applicable",
       "evidence": "wrote 390 characters; refused at 100000 by its own limit, so 390 was measured, but the declared store held no measurable body",
-      "seconds": 73.1,
+      "seconds": 46.5,
       "runs": 3,
       "tally": {
         "UNKNOWN": 3

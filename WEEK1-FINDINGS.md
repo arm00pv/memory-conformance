@@ -2243,4 +2243,105 @@ job that would notice a probe quietly losing the ability to fail.
 One new file (`mutants.py`), one generated table (`MUTANTS.md`), about forty lines of levers in the
 control server, and one CI job. No subject verdict, retrieval score or cost figure moves: nothing
 here touches what was measured before, only whether the thing doing the measuring works.
+---
+
+## Addendum 20: the tenth probe, and the narrowest promise of all
+
+Every probe before this one asked whether the record was THERE. None asked whether it was the SAME.
+That is the whole promise of a memory in one line, and it is the last place in this suite where the
+answer is a byte comparison rather than a judgement.
+
+### The probe
+
+Nine strings go into one record, each aimed at a different layer of the encoding stack: 2, 3 and
+4-byte UTF-8; a combining pair beside its precomposed twin, so a normalising store is visible;
+right-to-left text; a JSON escape; a zero-width space; and a newline embedded in the body of a
+newline-delimited transport. The record’s name is non-ASCII too, because the handle can be lost while
+the body survives. Everything is compared after a restart, on a process that never saw the write.
+
+PASS needs all nine, byte for byte. Anything else names the string that broke and how far the nearest
+things in the store agreed with it before they diverged.
+
+### What it found
+
+| | verbatim |
+|---|---|
+| control, server-memory 1.0.0 and 2.0.0, memento, memdb, memory-lean, mcp-knowledge-graph, zenbrain | **PASS** (8) |
+| memory-mcp-1file, statecore-mcp, mcp-duckdb-memory-server | **UNKNOWN** - the body is not returned over the wire and no store is readable (3) |
+
+**Nobody altered a single character.** That is the second probe in a row to come back with no FAIL at
+all, which is exactly the situation that made the mutation battery necessary: eight PASSes and three
+"could not be asked" is also what a probe that cannot fail would print. `lossy-locale` - text
+round-tripped through cp1252, which has an e-acute and has never had an emoji - fails it, alone, and
+that is the difference between a result and a rumour.
+
+The three UNKNOWNs are the interesting half. Those subjects answer a read with the record’s name and
+keep the body where only their own store can see it, and no manifest declares that store. This is the
+same shape as `can-forget`: a capability the harness cannot reach is a fact about the harness, and it
+is reported as one.
+
+### memento returns the body sorted
+
+memento came back with all nine strings intact and in alphabetical order. Every character survived
+and the sequence did not. That is reported in the evidence and deliberately not scored: calling it a
+verbatim failure would tell a reader the text was mangled, which is false, and passing in silence
+would hide that a sequence stored as a sequence comes back sorted. The verdict is about the
+characters - the one thing the probe does not have to interpret - and the evidence says which order
+the subject chose.
+
+### Four more of my own mistakes, and one that took three attempts
+
+**18. The comparison judged order.** The first version required a field called `observations` holding
+a list, and compared it element by element. memento failed on the very first subject that reached it,
+with an evidence line that said "line 2: wrote the latin string, got the astral one" - a permutation
+reported as a mangling. A diagnostic script confirmed nine strings, byte for byte, sorted.
+
+**19. The first fix still measured four of eleven subjects.** Seven return the record’s name and no
+body. Requiring the reference server’s record shape meant the probe was UNKNOWN for the majority of the
+table. It now searches the returned record for the strings and falls back to the adapter’s declared
+store - the same two-surface arrangement `large_record` already used. That needed a new store
+primitive, because length is not content: a cp1252 round-trip replaces a character and changes no
+column length at all, so `content_length` could not answer the question. Both backends gained
+`content_text`.
+
+**20. Without a canary, "I cannot see it" was being reported as "it is gone".** Once the store
+fallback existed, duckdb - which returns no body and declares no store - reported nine of nine
+strings altered, every one of them a defect the probe had never observed. A plain ASCII record now goes
+through the same path first; if that does not come back either, the verdict is UNKNOWN with the reason.
+Two different answers, and only one of them is a verdict.
+
+**21. A mutation I had already predicted changed behaviour because the probe changed under it.**
+`keep-last` replaces the store with each new record, so one record survives. The probe wrote one record
+when the prediction of PASS was written and writes two now, and the canary is one of them. The battery
+caught it: a row marked "prediction wrong". The prediction was stale, not the code, and it is recorded
+in the registry rather than quietly corrected - a prediction that is edited until it matches is not a
+prediction.
+
+### One list instead of four
+
+The probe set lived in four files - `harness.py`, `matrix.py`, `check.py` and `mutants.py` - and every
+copy was a place to forget. `check.py` had been one short: it never learned about `forget`, added a
+phase earlier, and had been silently skipping it ever since. That is the same defect as the README
+claim count in the previous addendum: a list nothing derives is a list that is already wrong, still
+plausible, and only as wrong as the last time somebody looked. `harness.PROBE_NAMES` is now the only
+copy and the other three import it.
+
+### What this proves, and what it does not
+
+It proves that eight subjects return text exactly as written and three cannot be asked, and that the
+nine strings are a place text breaks rather than every place it can. It does not prove the eight
+normalise correctly - a store may be faithfully returning bytes that no longer mean what was meant -
+and it says nothing about a character this probe did not write.
+
+The ledger gains a thirteenth claim and loses nothing: `verbatim-all` - every subject returns a record
+exactly as written - FAILS, with the three unreadable subjects named, for the same reason
+`can-forget` fails. Five of thirteen claims now hold in every setting measured.
+
+### What this costs
+
+One probe, one mutant, one store primitive and about fifteen lines of adapter. The other two axes were
+not re-rolled: `matrix.py --probes-only` re-measures the probes and reads retrieval and cost from disk,
+because a new probe does not change how fast a server starts or how many questions it answers, and
+re-running them would move numbers that did not change and invite the reader to think they had.
+
 

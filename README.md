@@ -11,6 +11,7 @@ public tools over its own transport - no internals, no mocks, no source reading.
 $ python harness.py --cmd="node node_modules/@modelcontextprotocol/server-memory/dist/index.js"
 isolation        PASS              3.6s  store A's record was not visible from store B
 ack_readback     PASS              4.6s  acknowledged alpha; a fresh read returned 1 entities: ['alpha']
+verbatim         PASS              7.9s  all 9 strings came back byte for byte, over the wire: 2, 3 and 4-byte UTF-8, ...
 restart          PASS             15.7s  three writes across three server lifetimes; read back [restart-0, ...]
 forget           PASS              3.0s  asked to forget one record; the other two came back and it did not
 findable         PASS              2.3s  all 8 acknowledged records came back in the top 3 for a search on their own name
@@ -28,7 +29,7 @@ independently written corpora and in two phrasings, and writes the verdicts to `
 
 ```
 $ python claims.py
-**5 of the 12 claims hold in every setting measured.**
+**5 of the 13 claims hold in every setting measured.**
 ```
 
 Five survive everywhere, including the one that matters most: **memory-mcp-1file answers more
@@ -41,17 +42,18 @@ Three of them:
 - "memory-lean returns fewer bytes than any subject that answers anything" - true on corpus A, and void
   on corpus B, where it answers nothing as written and so does not qualify.
 - "zenbrain is better than the positive control" - false in all four readings. The control, a server
-  written to pass the eight probes with a keyword search bolted on, is ahead on three of them.
+  written to pass every probe here with a keyword search bolted on, is ahead on three of them.
 
 The suite's own error bar is in there too: five of the ten neighbouring pairs in the ranking do not reach
 the same conclusion on both corpora.
 
-## The nine probes
+## The ten probes
 
 | probe | the promise it tests |
 |---|---|
 | `isolation` | a record written into one store is not visible from a different store |
 | `ack_readback` | a write that returned success is returned by a fresh read |
+| `verbatim` | the record comes back as the record that was written, character for character |
 | `restart` | the write survives the server being stopped and started |
 | `forget` | a record can be made to stop being kept, and the others are still there afterwards |
 | `findable` | a record can be found again by the name it was stored under |
@@ -183,7 +185,7 @@ Two findings from that replication are worth more than the table:
 ## The positive control: the probes can pass
 
 A suite that only ever fails measures nothing. `control/memory_server.py` is the smallest MCP memory
-server built so that all nine probes pass, and it is the opposite decision from the server that fails:
+server built so that all ten probes pass, and it is the opposite decision from the server that fails:
 **append-only, never rewrite**, with an OS lock around the append and a read-back before the write is
 acknowledged. Unknown fields, unknown record types and concurrent writers survive by construction
 rather than by care.
@@ -192,6 +194,7 @@ rather than by care.
 $ python harness.py --adapter=control --cmd="python control/memory_server.py"
 isolation        PASS   0.3s  store A's record was not visible from store B
 ack_readback     PASS   0.2s  acknowledged alpha; a fresh read returned 1 entities: ['alpha']
+verbatim         PASS   0.5s  all 9 strings came back byte for byte, over the wire: 2, 3 and 4-byte UTF-8, ...
 restart          PASS   0.5s  three writes across three server lifetimes; read back ['restart-0', ...]
 forget           PASS   0.3s  asked to forget plinth-obsidian; after a restart the other two came back and it did not
 findable         PASS   0.4s  all 8 acknowledged records came back in the top 3 for a search on their own name
@@ -223,31 +226,32 @@ check on it.
 
 ```
 $ python mutants.py
-mutant               aimed at        iso  ack  rst  fgt  fnd  ffd  frc  cnc  lrg
-------------------------------------------------------------------------------
-leak-everywhere      isolation       FAIL .    .    .    .    .    .    .    .
-no-persist           ack_readback    .    FAIL FAIL unk  FAIL unk  .    FAIL FAIL
-keep-last            restart         .    .    FAIL unk  FAIL FAIL FAIL FAIL .
-no-forget            forget          .    .    .    FAIL .    .    .    .    .
-forget-all           forget          .    .    .    unk  .    .    .    .    .
-reshape-modelled     foreign_field   .    .    .    .    .    FAIL .    .    .
-drop-unnamed         foreign_record  .    .    .    .    .    .    FAIL .    .
-stale-cache          concurrent      .    .    .    .    .    .    .    FAIL .
-truncate-large       large_record    .    .    .    .    .    .    .    .    FAIL
-mute-search          findable        .    .    .    .    FAIL .    .    .    .
-blind-search         findable        .    .    .    .    FAIL .    .    .    .
+mutant               aimed at        iso  ack  vbt  rst  fgt  fnd  ffd  frc  cnc  lrg
+----------------------------------------------------------------------------------------
+leak-everywhere      isolation       FAIL .    .    .    .    .    .    .    .    .
+no-persist           ack_readback    .    FAIL FAIL FAIL unk  FAIL unk  .    FAIL FAIL
+keep-last            restart         .    .    FAIL FAIL unk  FAIL FAIL FAIL FAIL .
+no-forget            forget          .    .    .    .    FAIL .    .    .    .    .
+forget-all           forget          .    .    .    .    unk  .    .    .    .    .
+reshape-modelled     foreign_field   .    .    .    .    .    .    FAIL .    .    .
+drop-unnamed         foreign_record  .    .    .    .    .    .    .    FAIL .    .
+stale-cache          concurrent      .    .    .    .    .    .    .    .    FAIL .
+truncate-large       large_record    .    .    .    .    .    .    .    .    .    FAIL
+lossy-locale         verbatim        .    .    FAIL .    .    .    .    .    .    .
+mute-search          findable        .    .    .    .    .    FAIL .    .    .    .
+blind-search         findable        .    .    .    .    .    FAIL .    .    .    .
 ```
 
-All 99 predicted verdicts matched, on all eleven mutants. The generated table is
+All 120 predicted verdicts matched, on all twelve mutants. The generated table is
 [`MUTANTS.md`](MUTANTS.md), CI runs the whole battery on every push, and `--only=no-forget` runs
 one.
 
-**Seven of the nine fail alone** - one mutation reaches that probe and stops: `isolation`, `forget`,
-`findable`, `foreign_field`, `foreign_record`, `concurrent`, `large_record`. The two that cannot be
-isolated are `ack_readback` and `restart`, and the reason is structural rather than a weakness in the
-probes: every probe begins by writing a record and reading it back, so a subject that loses writes at
-the root fails all of them. `keep-last` still pulls the two apart - it replaces the store with each
-new record, so one write survives it and three do not.
+**Eight of the ten fail alone** - one mutation reaches that probe and stops: `isolation`, `verbatim`,
+`forget`, `findable`, `foreign_field`, `foreign_record`, `concurrent`, `large_record`. The two that
+cannot be isolated are `ack_readback` and `restart`, and the reason is structural rather than a
+weakness in the probes: every probe begins by writing a record and reading it back, so a subject that
+loses writes at the root fails all of them. `keep-last` still pulls the two apart - it replaces the
+store with each new record, so one write survives it and three do not.
 
 `forget` is attacked twice, and the second attack is the one worth reading. `no-forget` acknowledges
 the deletion and keeps the record: a plain FAIL, caught. `forget-all` deletes **everything** instead,
@@ -535,7 +539,11 @@ in order of how much you have to write:
 tool's JSON schema, then tries every plausible reader until one returns a token that was just
 written, and does the same for a delete tool - a name that looks like deletion is not a deletion, so
 the candidate is called on a record this adapter wrote and kept only if the next read no longer has it.
-A binding that has not been proven is never used. This reaches six of the nine probes.
+A binding that has not been proven is never used. This reaches five of the ten probes. The rest
+report UNKNOWN, either because they need to look behind the transport - `foreign_field`,
+`foreign_record`, `large_record` and now `verbatim`, since a discovered binding proves which tools to
+call and says nothing about where the bytes end up - or because no tool could be shown to delete a
+record (`forget`).
 
 **2. A manifest - twelve lines of JSON.** Say where the store is and how a record is identified;
 everything else stays discovered:
@@ -556,7 +564,7 @@ OK        this manifest describes this subject
 
 A declaration is a claim, so it is checked before any verdict depends on it: the command must match,
 the declared path must exist inside the run's store directory, and the declared predicate must find
-a record that was just written through the server. All nine probes then become answerable.
+a record that was just written through the server. Every probe then becomes answerable.
 
 **3. An adapter**, when the tool vocabulary itself differs. Implement `server()`, `write()`,
 `read()` and pass it to the probes - `ReferenceAdapter` in `harness.py` is 20 lines and is the
@@ -575,7 +583,14 @@ success reply is honest about the write and silent about the loss.
 - **One version per server.** Numbers above are `@modelcontextprotocol/server-memory` 1.0.0 and
   2.0.0, `retained` and `basic-memory` 0.23.2 on 2026-10-19, and a different version of any of them
   can pass or fail differently. `--expect=` re-runs a pinned report and exits non-zero on drift.
-- **Nine probes are not a spec.** They cover retention, deletion, concurrency, findability and one
+- **`verbatim` scores characters, not order.** Nine strings are compared byte for byte and the order
+  they come back in is printed beside the verdict rather than judged. A subject that returns a
+  record's lines sorted has kept every character and lost the sequence, and both facts are worth
+  knowing; scoring that as a character failure would tell a reader the text was garbled, which is not
+  what happened. The nine strings are also not every string - they cover four UTF-8 widths, a
+  combining pair, right-to-left text, JSON escapes, a zero-width space and an embedded newline,
+  which is where text usually breaks first, not where it always breaks.
+- **The probes are not a spec.** They cover retention, deletion, concurrency, findability and one
   precondition - not retrieval quality, latency or token cost. Retrieval is measured separately
   (`retrieval.py`, and the second table in `MATRIX.md`) and reported as a score, because
   "relevant" is a judgement while "returned" is a fact.
@@ -589,7 +604,7 @@ success reply is honest about the write and silent about the loss.
   promise each and every probe failed the one aimed at it, which shows the probes have teeth; it does
   not show they would catch every defect a real memory server can have, only the ones somebody here
   thought of. Each mutant is the control's own code with one lever in it, so they inherit its shape.
-  The honest count is "nine probes, eleven demonstrations of failure", not "nine probes, complete".
+  The honest count is "every probe, twelve demonstrations of failure", not "every probe, complete".
 - **Cost is measured once, not repeatedly.** A single quiet pass beats a timing taken while nine
   other subjects run, and it is still not a distribution: there is no p90 on any cost column and no
   repeat. Bytes are used rather than tokens because bytes are what the transport carries and what can

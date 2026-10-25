@@ -9,19 +9,20 @@ the run.
 
 A probe that has never failed anything is indistinguishable from a probe that cannot.
 
-| mutant | aimed at | iso | ack | rst | fgt | fnd | ffd | frc | cnc | lrg |
-|---|---|---|---|---|---|---|---|---|---|---|
-| `leak-everywhere` | isolation | **FAIL** | · | · | · | · | · | · | · | · |
-| `no-persist` | ack_readback | · | **FAIL** | **FAIL** | unk | **FAIL** | unk | · | **FAIL** | **FAIL** |
-| `keep-last` | restart | · | · | **FAIL** | unk | **FAIL** | **FAIL** | **FAIL** | **FAIL** | · |
-| `no-forget` | forget | · | · | · | **FAIL** | · | · | · | · | · |
-| `forget-all` | forget | · | · | · | unk | · | · | · | · | · |
-| `reshape-modelled` | foreign_field | · | · | · | · | · | **FAIL** | · | · | · |
-| `drop-unnamed` | foreign_record | · | · | · | · | · | · | **FAIL** | · | · |
-| `stale-cache` | concurrent | · | · | · | · | · | · | · | **FAIL** | · |
-| `truncate-large` | large_record | · | · | · | · | · | · | · | · | **FAIL** |
-| `mute-search` | findable | · | · | · | · | **FAIL** | · | · | · | · |
-| `blind-search` | findable | · | · | · | · | **FAIL** | · | · | · | · |
+| mutant | aimed at | iso | ack | vbt | rst | fgt | fnd | ffd | frc | cnc | lrg |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| `leak-everywhere` | isolation | **FAIL** | · | · | · | · | · | · | · | · | · |
+| `no-persist` | ack_readback | · | **FAIL** | **FAIL** | **FAIL** | unk | **FAIL** | unk | · | **FAIL** | **FAIL** |
+| `keep-last` | restart | · | · | **FAIL** | **FAIL** | unk | **FAIL** | **FAIL** | **FAIL** | **FAIL** | · |
+| `no-forget` | forget | · | · | · | · | **FAIL** | · | · | · | · | · |
+| `forget-all` | forget | · | · | · | · | unk | · | · | · | · | · |
+| `reshape-modelled` | foreign_field | · | · | · | · | · | · | **FAIL** | · | · | · |
+| `drop-unnamed` | foreign_record | · | · | · | · | · | · | · | **FAIL** | · | · |
+| `stale-cache` | concurrent | · | · | · | · | · | · | · | · | **FAIL** | · |
+| `truncate-large` | large_record | · | · | · | · | · | · | · | · | · | **FAIL** |
+| `lossy-locale` | verbatim | · | · | **FAIL** | · | · | · | · | · | · | · |
+| `mute-search` | findable | · | · | · | · | · | **FAIL** | · | · | · | · |
+| `blind-search` | findable | · | · | · | · | · | **FAIL** | · | · | · | · |
 
 Legend: `·` the probe passed, exactly as the control does — the mutation did not reach it.
 **FAIL** the probe caught it. `unk` no verdict could be returned.
@@ -37,17 +38,19 @@ Legend: `·` the probe passed, exactly as the control does — the mutation did 
 - **`drop-unnamed`** — Anything that is not a record this server would have written is discarded on the next write, and modelled fields on its own records are kept. The mirror of reshape-modelled.
 - **`stale-cache`** — The store is read once at startup and rewritten from that copy forever. One process is indistinguishable from correct; two processes each lose the other's writes.
 - **`truncate-large`** — Anything longer than 1000 characters is cut to 1000 and acknowledged as stored. A silent cap, which is the failure the ladder in the probe exists to see.
+- **`lossy-locale`** — Text is round-tripped through the machine's own codepage on the way to disk. cp1252 has an e-acute and does not have a CJK character, and nothing in it is an emoji. Every other probe in this suite uses ASCII names and passes it.
 - **`mute-search`** — The store is perfect and nothing is ever found. Retention without retrieval.
 - **`blind-search`** — The same three records come back whatever is asked - memento's real defect, which every other probe in the suite would have scored as a pass.
 
 ## Summary
 
-9 probes, 9 of them failed by at least one subject built to break exactly that promise.
+10 probes, 10 of them failed by at least one subject built to break exactly that promise.
 
 | probe | failed by |
 |---|---|
 | isolation | `leak-everywhere` **on its own** |
 | ack_readback | `no-persist` |
+| verbatim | `no-persist`, `keep-last`, `lossy-locale` **on its own** |
 | restart | `no-persist`, `keep-last` |
 | forget | `no-forget` **on its own** |
 | findable | `no-persist`, `keep-last`, `mute-search` **on its own**, `blind-search` |
@@ -56,7 +59,7 @@ Legend: `·` the probe passed, exactly as the control does — the mutation did 
 | concurrent | `no-persist`, `keep-last`, `stale-cache` **on its own** |
 | large_record | `no-persist`, `truncate-large` **on its own** |
 
-7 of 9 fail **alone** - one mutation reached that probe and stopped there: `isolation`, `forget`, `findable`, `foreign_field`, `foreign_record`, `concurrent`, `large_record`.
+8 of 10 fail **alone** - one mutation reached that probe and stopped there: `isolation`, `verbatim`, `forget`, `findable`, `foreign_field`, `foreign_record`, `concurrent`, `large_record`.
 
 The remaining 2 cannot be isolated, and the reason is structural rather than a weakness
 in the probes: `ack_readback`, `restart`. Every probe begins by writing a record and
@@ -68,5 +71,5 @@ a store that deleted everything answers a clean delete exactly as convincingly a
 store that deleted one record, so the probe declines to certify either way. Declining is
 the correct answer, and it is why the probe counts the records nobody named.
 
-Every predicted verdict matched, on every mutant, for all 9 probes.
+Every predicted verdict matched, on every mutant, for all 10 probes.
 
