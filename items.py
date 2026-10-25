@@ -85,15 +85,22 @@ def analyse(corpus_label, corpus_path, suffix, shape):
     """Per-question difficulty and discrimination over every in-scope subject."""
     usable, excluded = subjects(shape)
     per_subject = {}
-    for label in usable:
+    # THE EXCLUDED SUBJECT'S ROWS ARE LOADED TOO, AND THAT IS A CORRECTION. The first version dropped
+    # them and then reported that the hard band was answered by nobody - after removing the subject
+    # that answers twelve of its sixteen questions. Excluding a subject from the scoring is right;
+    # excluding it from the description of what the questions can measure is how an exclusion silently
+    # becomes a conclusion. It is tagged and reported separately instead.
+    for label in usable + excluded:
         rows = rows_for(label, suffix)
         if not rows:
             continue
         per_subject[label] = {"rows": {r["query"]: r for r in rows},
-                              "total": sum(1 for r in rows if right(r, shape))}
-    if len(per_subject) < 4:
-        return None, excluded, usable
-    ordered = sorted(per_subject, key=lambda s: -per_subject[s]["total"])
+                              "total": sum(1 for r in rows if right(r, shape)),
+                              "in_scope": label in usable}
+    scored = {k: v for k, v in per_subject.items() if v["in_scope"]}
+    if len(scored) < 4:
+        return None, excluded, usable, per_subject
+    ordered = sorted(scored, key=lambda s: -scored[s]["total"])
     half = max(1, len(ordered) // 2)
     top, bottom = ordered[:half], ordered[len(ordered) - half:]
     with open(corpus_path, encoding="utf-8") as fh:
@@ -102,8 +109,8 @@ def analyse(corpus_label, corpus_path, suffix, shape):
     for q in corpus.get("queries") or []:
         query = q["query"]
         got = {}
-        for label in per_subject:
-            row = per_subject[label]["rows"].get(query)
+        for label in scored:
+            row = scored[label]["rows"].get(query)
             if row is not None:
                 got[label] = bool(right(row, shape))
         n = len(got)
@@ -116,7 +123,7 @@ def analyse(corpus_label, corpus_path, suffix, shape):
                       "expect": q.get("expect"), "n": n, "p": p,
                       "d": p_top - p_bottom,
                       "flat": p == 0.0 or p == 1.0})
-    return items, excluded, usable
+    return items, excluded, usable, per_subject
 
 
 def trap_table(corpus_path, items):
@@ -139,6 +146,24 @@ def trap_table(corpus_path, items):
     return out
 
 
+def coverage(per_subject, band, shape):
+    """How many subjects answer anything in this band, and how much of it the leader accounts for.
+
+    A BAND'S INFORMATION IS BOUNDED BY HOW MANY SUBJECTS CAN ENTER IT. A band answered by one subject
+    has one subject's worth of variance in it however many questions it holds, and a band where the
+    top subject takes most of the correct answers is largely a description of that subject.
+    """
+    counts = []
+    for label, data in per_subject.items():
+        rows = [r for r in data["rows"].values() if r["difficulty"] == band]
+        if not rows:
+            continue
+        counts.append((sum(1 for r in rows if right(r, shape)), len(rows), label,
+                       data.get("in_scope", True)))
+    counts.sort(reverse=True)
+    return counts
+
+
 def main(argv=None):
     argv = list(sys.argv[1:] if argv is None else argv)
     shape = "written"
@@ -149,7 +174,7 @@ def main(argv=None):
 
     report = []
     for label, path, suffix in CORPORA:
-        items, excluded, usable = analyse(label, path, suffix, shape)
+        items, excluded, usable, per_subject = analyse(label, path, suffix, shape)
         if items is None:
             print("corpus %s: not enough subjects with saved rows" % label)
             continue
@@ -167,6 +192,15 @@ def main(argv=None):
         print("  %d of %d questions separate nobody at all" % (len(flat), len(items)))
         # THE TRAP TABLE HAS TO REACH THE CONSOLE, not only the markdown: CI greps what this prints,
         # and a number that lives only in a generated file is a number nobody checks.
+        for band in ("easy", "hard", "adversarial"):
+            cov = coverage(per_subject, band, shape)
+            inscope = [c for c in cov if c[3] and c[0] > 0]
+            outside = [c for c in cov if not c[3] and c[0] > 0]
+            top = ", ".join("%s %d" % (c[2].split()[0], c[0]) for c in inscope[:3]) or "nobody"
+            extra = ("; plus %s" % ", ".join("%s %d" % (c[2].split()[0], c[0]) for c in outside)
+                     if outside else "")
+            print("  %-12s answered by %d of %d in-scope subjects (%s%s)"
+                  % (band, len(inscope), len([c for c in cov if c[3]]), top, extra))
         traps = trap_table(path, items)
         narrow = [t for t in traps if t["trap"] < 2]
         wide = [t for t in traps if t["trap"] >= 2]
@@ -176,7 +210,9 @@ def main(argv=None):
                      ("%+.2f" % (sum(t["d"] for t in narrow) / len(narrow))) if narrow else "-",
                      len(wide),
                      ("%+.2f" % (sum(t["d"] for t in wide) / len(wide))) if wide else "-"))
-        report.append({"label": label, "items": items, "excluded": excluded, "traps": traps})
+        report.append({"label": label, "items": items, "excluded": excluded, "traps": traps,
+                       "coverage": dict((b, coverage(per_subject, b, shape))
+                                        for b in ("easy", "hard", "adversarial"))})
     if not report:
         return 1
     write_md(md, report, shape)
@@ -211,6 +247,20 @@ def write_md(path, report, shape):
             add("| %s | %d | %d | %.2f | %+.2f |"
                 % (band, len(sel), sum(1 for i in sel if i["flat"]),
                    sum(i["p"] for i in sel) / len(sel), sum(i["d"] for i in sel) / len(sel)))
+        add("")
+        add("| band | answered by | of which the leader |")
+        add("|---|---|---|")
+        for band, cov in (block.get("coverage") or {}).items():
+            inscope = [c for c in cov if c[3]]
+            answering = [c for c in inscope if c[0] > 0]
+            outside = [c for c in cov if not c[3] and c[0] > 0]
+            add("| %s | %d of %d | %s |"
+                % (band, len(answering), len(inscope),
+                   ", ".join("%s %d" % (c[2].split()[0], c[0]) for c in answering[:3]) or "nobody"))
+            if outside:
+                add("")
+                add("> Excluded from the score, but they answer too: %s."
+                    % ", ".join("%s %d" % (c[2].split()[0], c[0]) for c in outside))
         add("")
         flat = [i for i in items if i["flat"]]
         zero = [i for i in flat if i["p"] == 0.0]

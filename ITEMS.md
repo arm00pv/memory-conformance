@@ -18,6 +18,18 @@ anyone trusts it - difficulty `p` (the share of subjects that got it right) and 
 | adversarial | 16 | 0 | 0.22 | +0.44 |
 | absent | 12 | 0 | 0.60 | +0.00 |
 
+| band | answered by | of which the leader |
+|---|---|---|
+| easy | 6 of 10 | zenbrain 16, control 16, memory-lean 14 |
+
+> Excluded from the score, but they answer too: memory-mcp-1file 16.
+| hard | 3 of 10 | zenbrain 8, memento 4, mcp-duckdb-memory-server 1 |
+
+> Excluded from the score, but they answer too: memory-mcp-1file 12.
+| adversarial | 4 of 10 | zenbrain 16, control 9, memento 7 |
+
+> Excluded from the score, but they answer too: memory-mcp-1file 14.
+
 **5 of 60 questions separate nobody.** 0 are answered correctly by every subject and 5
 by none of them.
 
@@ -53,6 +65,18 @@ warning from being either ignored or obeyed without a number attached.
 | hard | 16 | 9 | 0.06 | +0.10 |
 | adversarial | 16 | 0 | 0.24 | +0.48 |
 | absent | 12 | 0 | 0.71 | -0.22 |
+
+| band | answered by | of which the leader |
+|---|---|---|
+| easy | 4 of 10 | zenbrain 16, control 16, memento 9 |
+
+> Excluded from the score, but they answer too: memory-mcp-1file 16.
+| hard | 4 of 10 | memento 6, zenbrain 2, memdb 1 |
+
+> Excluded from the score, but they answer too: memory-mcp-1file 13.
+| adversarial | 4 of 10 | zenbrain 15, control 15, memento 4 |
+
+> Excluded from the score, but they answer too: memory-mcp-1file 16.
 
 **9 of 60 questions separate nobody.** 0 are answered correctly by every subject and 9
 by none of them.
