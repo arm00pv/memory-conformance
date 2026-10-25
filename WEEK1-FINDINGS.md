@@ -2517,6 +2517,11 @@ old output rather than trusted.
 **24. A blank line.** The new README section was inserted with a single newline after the preceding
 section, so a heading would have rendered flush against the paragraph above it. Markdown tolerates it in
 some renderers and not others, which is a good definition of a bug nobody notices. Fixed before pushing.
+**25. The trap table only existed in the generated file.** The CI step for this phase runs `items.py`
+and greps its output for the two things the phase is about; the trap comparison had been written only
+into `ITEMS.md`, so the job failed on its first push. The check was right and the tool was wrong,
+and the fix belonged in the tool: a number that lives only inside a generated document is a number
+nothing verifies. It prints to the console now, and the console is what CI reads.
 
 ### What this does not say
 
