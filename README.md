@@ -29,7 +29,7 @@ independently written corpora and in two phrasings, and writes the verdicts to `
 
 ```
 $ python claims.py
-**7 of the 16 claims hold in every setting measured.**
+**7 of the 17 claims hold in every setting measured.**
 ```
 
 Five survive everywhere, including the one that matters most: **memory-mcp-1file answers more
@@ -194,6 +194,58 @@ That is the score doing what it says: silence is never punished, and answering i
 the answer is right. It is a defensible metric for a paired test and it is not a ranking, which is why
 the headline claim is stated in hits and not in score. The full table is
 [`CALIBRATION.md`](CALIBRATION.md).
+## Does every question measure something?
+
+A question every subject answers and a question no subject answers carry the same information about
+the differences between subjects: none. `items.py` is the analysis a test gets before anyone trusts it -
+difficulty `p`, the share of subjects that got the question right, and discrimination `D`, the gap
+between the top half of subjects by total score and the bottom half. One subject is excluded from it:
+memory-mcp-1file leaks state, and letting a leak decide which questions work would be the same mistake
+as grading it.
+
+| corpus | band | questions | nobody can tell apart | mean p | mean D |
+|---|---|---|---|---|---|
+| A | easy | 16 | 0 | 0.39 | **+0.64** |
+| A | hard | 16 | **5** | 0.08 | +0.16 |
+| A | adversarial | 16 | 0 | 0.22 | **+0.44** |
+| A | absent | 12 | 0 | 0.60 | **+0.00** |
+| B | easy | 16 | 0 | 0.31 | **+0.62** |
+| B | hard | 16 | **9** | 0.06 | +0.10 |
+| B | adversarial | 16 | 0 | 0.24 | **+0.48** |
+| B | absent | 12 | 0 | 0.71 | **-0.22** |
+
+**The hard band is a wall, not a gradient.** Nine of corpus B hard questions and five of corpus A
+are answered correctly by nobody at all, and the mean is 0.06 and 0.08. They are not separating the
+table; they are a constant that costs every subject the same.
+
+**The unanswerable band measures a habit, and it is worth twelve of the sixty points.** Every subject
+on both corpora either declines all twelve unanswerable questions or declines none of them - there is
+no gradient in between. Its discrimination is +0.00 on corpus A and -0.22 on corpus B; asked as
+keywords, +0.13 and -0.40. On corpus B the better subjects are the ones who speak, so the band that is
+supposed to reward restraint is punishing ability.
+
+**So `compare.py` now runs its paired test twice.** The second run drops the twelve unanswerable
+questions, and a conclusion that depends on them says so:
+
+```
+  as written
+    only zenbrain correct   15
+    only control correct    12
+    exact McNemar p = 0.7011  -> not separated by this corpus
+    without the 12 unanswerable questions: 15-0, p = 0.0001 -> separated
+    THE TWELVE-POINT SWITCH DECIDES THIS ONE
+```
+
+zenbrain wins fifteen answerable questions to none, and the twelve-point switch hands the control back
+exactly twelve of them - a 15-0 result becomes 15-12 and a p of 0.0001 becomes 0.70. Asked as keywords
+the same switch runs the other way. Neither number is the answer; the pair is.
+
+**The one-word-trap warning is directionally right and not established.** Mean `D` is +0.42 across the
+eleven narrow traps in corpus A and +0.48 across the five wider ones; on corpus B, +0.33 across three
+and +0.51 across thirteen. Two groups of that size over ten subjects cannot settle it, and what the
+measurement does is stop the warning from being either ignored or obeyed without a number next to it.
+
+Full tables, including every question that separates nobody, are in [`ITEMS.md`](ITEMS.md).
 ## A second corpus, written blind
 
 Every retrieval number in this file rests on a question set written by the same hand that wrote the

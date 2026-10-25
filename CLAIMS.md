@@ -10,7 +10,7 @@ claim about silence. A subject's SCORE is what the paired test pairs on - the ri
 top three, plus a credit for declining a question with no answer. Its HITS are only the questions
 that have an answer and were answered correctly. "It answers nothing" is a claim about hits.
 
-**7 of the 16 claims hold in every setting measured.** The rest are printed beside the setting
+**7 of the 17 claims hold in every setting measured.** The rest are printed beside the setting
 that breaks them, because that setting is the claim's real scope.
 
 | claim | A written | A keywords | B written | B keywords | status |
@@ -26,6 +26,7 @@ that breaks them, because that setting is the claim's real scope.
 | scale-ceiling | yes | yes | yes | yes | **HOLDS** |
 | floor-not-zero | yes | yes | yes | yes | **HOLDS** |
 | silence-scores-better | yes | yes | yes | no | **MIXED** |
+| absent-band-flat | yes | no | yes | yes | **MIXED** |
 | leaks-state | yes | yes | **HOLDS** |
 | leanest | yes | no | **MIXED** |
 | best-hard | yes | yes | yes | yes | **HOLDS** |
@@ -95,6 +96,12 @@ that breaks them, because that setting is the claim's real scope.
   - A keywords: true (1 subject(s) below the 12 that answering nothing scores (statecore-mcp 0))
   - B written: true (1 subject(s) below the 12 that answering nothing scores (memdb 2))
   - B keywords: false (0 subject(s) below the 12 that answering nothing scores)
+
+**absent-band-flat** - the unanswerable questions give the stronger subjects no advantage. *MIXED*
+  - A written: true (the unanswerable band's discrimination is +0.00, on 12 questions worth 12 of the score's 60 points)
+  - A keywords: false (the unanswerable band's discrimination is +0.13, on 12 questions worth 12 of the score's 60 points)
+  - B written: true (the unanswerable band's discrimination is -0.22, on 12 questions worth 12 of the score's 60 points)
+  - B keywords: true (the unanswerable band's discrimination is -0.40, on 12 questions worth 12 of the score's 60 points)
 
 **leaks-state** - memory-mcp-1file leaks state between stores and is out of scope. *HOLDS*
   - A written: true (isolation FAIL)

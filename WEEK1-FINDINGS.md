@@ -2431,6 +2431,110 @@ One script, one generated table, two controls that already existed, one new one,
 that was already running. The ledger gains three claims - `scale-ceiling` and `floor-not-zero` hold on
 both corpora in both phrasings, `silence-scores-better` is MIXED - and seven of sixteen now hold
 everywhere.
+---
+
+## Addendum 22: does every question measure something
+
+A test is not validated by its score distribution. It is validated by asking, of every item, whether the
+item separates anybody - and that question had never been put to either corpus here. A question every
+subject answers and a question no subject answers carry exactly the same information about the
+differences between subjects, which is none, and a corpus can be made mostly of those while reporting a
+perfectly respectable spread of totals.
+
+`items.py` computes difficulty `p` (share of subjects right) and discrimination `D` (top half by total
+score minus bottom half) for all sixty questions on both corpora, excluding the subject that leaks state
+because letting a leak decide which questions work is the same mistake as grading it.
+
+### What it found
+
+| corpus | band | questions | nobody can tell apart | mean p | mean D |
+|---|---|---|---|---|---|
+| A | easy | 16 | 0 | 0.39 | +0.64 |
+| A | hard | 16 | 5 | 0.08 | +0.16 |
+| A | adversarial | 16 | 0 | 0.22 | +0.44 |
+| A | absent | 12 | 0 | 0.60 | +0.00 |
+| B | easy | 16 | 0 | 0.31 | +0.62 |
+| B | hard | 16 | 9 | 0.06 | +0.10 |
+| B | adversarial | 16 | 0 | 0.24 | +0.48 |
+| B | absent | 12 | 0 | 0.71 | -0.22 |
+
+**The hard band is a wall.** Nine of corpus B hard questions and five of corpus A are answered by
+nobody. A band that nobody can enter measures nothing between subjects; it is a constant that costs
+every subject the same, and the mean of 0.06 says so more plainly than the band name does.
+
+**The easy and adversarial bands work.** Mean discrimination of +0.64, +0.62 on easy and +0.44, +0.48
+on adversarial is a test that separates a strong subject from a weak one, and it is worth saying
+because it had only been assumed.
+
+### The unanswerable band is a switch, not a gradient
+
+This is the find of the phase, and it came from looking at the raw per-subject counts rather than the
+totals. **Every subject either declines all twelve unanswerable questions or declines none of them.**
+There is no subject in the middle. So the band is not twelve questions about anything; it is one binary
+habit, and the score hands whoever has that habit twelve of its sixty points - twenty percent of every
+number in every paired test.
+
+And the habit is not ability. Its discrimination is +0.00 on corpus A and **-0.22** on corpus B; asked
+as keywords, +0.13 and **-0.40**. On corpus B the better subjects are the ones who speak rather than
+decline, so the band that is supposed to reward restraint is punishing skill.
+
+That single fact explains something the ledger had been reporting without being able to say. The pair
+zenbrain against the control, on corpus A as written:
+
+```
+  only zenbrain correct   15
+  only control correct    12
+  exact McNemar p = 0.7011  -> not separated by this corpus
+  without the 12 unanswerable questions: 15-0, p = 0.0001 -> separated
+```
+
+zenbrain wins fifteen answerable questions to none. The switch hands the control back exactly twelve,
+turning 15-0 into 15-12 and a p of 0.0001 into 0.70. Asked as keywords the same switch runs the other
+way and produces the mirror-image flip. `compare.py` now runs both tests and names the switch when it
+decides the outcome, because a tool that publishes a number has to publish what the number rests on.
+
+The claim `absent-band-flat` - the unanswerable questions give the stronger subjects no advantage - is
+**MIXED**: a sign, not a size, because a size would have been chosen after looking. It holds on corpus
+A as written and on corpus B both ways, and fails on corpus A as keywords at +0.13.
+
+### The one-word-trap warning, measured
+
+The validator has been warning that an adversarial question whose competitor shares only one word is
+"the weakest kind". Mean discrimination is +0.42 across the eleven narrow traps in corpus A against
++0.48 across the five wider ones, and +0.33 against +0.51 on corpus B. The warning points the right way
+and two groups that size cannot settle it. What the measurement changes is that the warning can now be
+ignored or obeyed knowingly instead of on the strength of an adjective.
+
+### Mistakes
+
+**23. The trap rule lived inside the validator.** `items.py` needed the same definition of a trap and
+would have grown a second copy of it - the defect this repository has now recorded three times, in the
+README claim count, in the four probe lists and here. `rivals_of()` was pulled out of `check()` and both
+tools call it. The first attempt at the extraction dropped the `want` variable the error message needs,
+which the validator caught immediately by raising, and which is why the refactor was re-run against the
+old output rather than trusted.
+
+**24. A blank line.** The new README section was inserted with a single newline after the preceding
+section, so a heading would have rendered flush against the paragraph above it. Markdown tolerates it in
+some renderers and not others, which is a good definition of a bug nobody notices. Fixed before pushing.
+
+### What this does not say
+
+It does not say the hard band should be deleted: a question nobody answers today may be answered by the
+next subject, and dropping items after seeing them answered is how a corpus gets fitted to its table.
+It does not say the absent band should be removed from the score either - declining correctly is a real
+virtue, and the finding is that it is being counted as if it were the same virtue, worth the same twenty
+percent, as answering. What it says is that the score contains a twelve-point binary term unrelated to
+retrieval quality, that the paired tests now report around it, and that the headline claim was already
+stated in hits for exactly this reason.
+
+### What this costs
+
+One script, one generated table, one extracted function, and roughly thirty lines in `compare.py`. No
+subject verdict and no retrieval number moved; the corpus was not edited, which is why nothing needed
+re-measuring. Seven of seventeen claims hold everywhere, four of the additions in the last two phases
+being MIXED on purpose.
+
 
 
 
