@@ -214,9 +214,30 @@ as grading it.
 | B | adversarial | 16 | 0 | 0.24 | **+0.48** |
 | B | absent | 12 | 0 | 0.71 | **-0.22** |
 
-**The hard band is a wall, not a gradient.** Nine of corpus B hard questions and five of corpus A
-are answered correctly by nobody at all, and the mean is 0.06 and 0.08. They are not separating the
-table; they are a constant that costs every subject the same.
+**The hard band is a steep gradient, not a wall - and my first report of it was wrong.** The analysis
+excludes the subject that leaks state, and that subject answers **twelve of the sixteen hard questions**
+on corpus A. Removing it and then reporting that the band measures nothing let an exclusion do the work
+of a conclusion. Counted properly:
+
+| corpus | band | answered by (in scope) | the excluded leader |
+|---|---|---|---|
+| A | easy | 6 of 10 - zenbrain 16, control 16, memory-lean 14 | 16 |
+| A | hard | 3 of 10 - zenbrain 8, memento 4, duckdb 1 | **12** |
+| A | adversarial | 4 of 10 - zenbrain 16, control 9, memento 7 | 14 |
+| B | easy | 4 of 10 - zenbrain 16, control 16, memento 9 | 16 |
+| B | hard | 4 of 10 - memento 6, zenbrain 2, memdb 1 | **13** |
+| B | adversarial | 4 of 10 - zenbrain 15, control 15, memento 4 | 16 |
+
+**So the table is smaller than it looks.** On corpus A four of the ten in-scope subjects answer no
+question in any band - they score exactly 12, their absent points - and on corpus B five do. The
+ranking is produced by six subjects, and most of it by three.
+
+**And the hard band does not replicate below the leader.** The leader holds 12 then 13 of sixteen. Under
+it, zenbrain goes from 8 to 2 and memento from 4 to 6: the band keeps its top and loses its order. A
+band that ranks its subjects differently on a second corpus is a band whose ranking should not be
+quoted alone, which is the same finding the neighbouring-pair test produced for the table as a whole and
+this one gives a reason for.
+
 
 **The unanswerable band measures a habit, and it is worth twelve of the sixty points.** Every subject
 on both corpora either declines all twelve unanswerable questions or declines none of them - there is

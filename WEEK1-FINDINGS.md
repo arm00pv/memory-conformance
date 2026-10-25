@@ -2539,6 +2539,78 @@ One script, one generated table, one extracted function, and roughly thirty line
 subject verdict and no retrieval number moved; the corpus was not edited, which is why nothing needed
 re-measuring. Seven of seventeen claims hold everywhere, four of the additions in the last two phases
 being MIXED on purpose.
+---
+
+## Addendum 23: the hard band, and an exclusion doing the work of a conclusion
+
+Addendum 22 ended by naming the hard band as the next repair: nine of corpus B hard questions and five
+of corpus A "answered correctly by nobody at all", mean p of 0.06 and 0.08. That was wrong, and it was
+wrong because of a decision made one paragraph earlier for an entirely good reason.
+
+The item analysis excludes the subject that leaks state. It is right to: its per-question answers
+describe leaked state, and letting a leak decide which questions work would be the same mistake as
+grading it. But the excluded subject is memory-mcp-1file, which answers **twelve of the sixteen hard
+questions on corpus A and thirteen of sixteen on corpus B**. Removing the strongest subject and then
+reporting that the band measures nothing is not an analysis of the band; it is an analysis of the field
+with its best member deleted.
+
+### What the band actually looks like
+
+`items.py` now loads the excluded subject as well, tags it, and reports it beside the rest:
+
+| corpus | band | answered by (in scope) | the excluded leader |
+|---|---|---|---|
+| A | easy | 6 of 10 - zenbrain 16, control 16, memory-lean 14 | 16 |
+| A | hard | 3 of 10 - zenbrain 8, memento 4, duckdb 1 | **12** |
+| A | adversarial | 4 of 10 - zenbrain 16, control 9, memento 7 | 14 |
+| B | easy | 4 of 10 - zenbrain 16, control 16, memento 9 | 16 |
+| B | hard | 4 of 10 - memento 6, zenbrain 2, memdb 1 | **13** |
+| B | adversarial | 4 of 10 - zenbrain 15, control 15, memento 4 | 16 |
+
+The hard band is a steep gradient - 12, 8, 4, 1, then six subjects at zero - not a wall. It does not
+need repairing. What it needs is the truth about how few subjects it reaches.
+
+### The number that matters more than the band
+
+Across all three answerable bands, **four of the ten in-scope subjects answer no question at all on
+corpus A, and five of ten on corpus B**. They score exactly twelve, which is their unanswerable-band
+points and nothing else. The table of eleven subjects is produced by six of them, and most of it by
+three. That is the honest size of the field this repository measures, and it has been sitting under
+every claim in the ledger since the table was first built.
+
+### And the band keeps its top while losing its order
+
+The leader holds twelve hard questions on corpus A and thirteen on corpus B - stable. Beneath it,
+zenbrain goes from eight to two and memento from four to six. So the hard band reproduces its leader
+and not its ranking, which is the same instability the neighbouring-pair test found for the table as a
+whole, now with a location: the bands that separate lexical subjects from semantic ones are the bands
+where the order will not hold.
+
+### One more of my own mistakes
+
+**26. The exclusion decided the conclusion.** Addendum 22 said the hard band was answered by nobody. It
+was answered by four subjects, one of which the analysis had removed two paragraphs earlier. The
+failure was not the exclusion - it was reporting a property of the *questions* from a set of subjects
+that had been filtered for an unrelated reason. `items.py` loads every subject now and tags which are
+in scope, so the excluded row is visible beside the rest instead of absent from them.
+
+This is the fourth time in this project that a number was wrong because of what had been left out
+rather than what had been computed: the eight-probe suite that skipped forget, `check.py` that never
+learned the list, the README count nothing derived, and now an analysis whose filter silently became a
+finding.
+
+### What this does not change
+
+No score moves, no verdict moves, and the corpus is untouched. The ledger is unchanged at seven of
+seventeen: the claims were written against scores, and this phase changed only what can be said about
+the questions that produce them.
+
+### What this costs
+
+One function, one table, and a retraction of a paragraph published one phase earlier. The retraction is
+the point - a repository that only ever appends findings accumulates wrong ones, and this one has now
+corrected itself twenty-six times in writing.
+
 
 
 
