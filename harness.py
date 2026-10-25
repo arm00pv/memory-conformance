@@ -700,8 +700,34 @@ class MutantAdapter(ControlAdapter):
     """
 
     MUTANT = ""
+    # where the answer key lives, for the one control that is allowed to cheat
+    CASES = ""
+    _ORACLE = None
+
+    def _answers(self):
+        """question or keyword form -> the record the corpus says answers it."""
+        if MutantAdapter._ORACLE is None:
+            import words
+            index = {}
+            with open(self.CASES, encoding="utf-8") as fh:
+                doc = json.load(fh)
+            for q in doc.get("queries") or []:
+                if not q.get("expect"):
+                    continue
+                index[q["query"].strip().lower()] = q["expect"]
+                index[words.keyword_form(q["query"]).strip().lower()] = q["expect"]
+            MutantAdapter._ORACLE = index
+        return MutantAdapter._ORACLE
 
     def search(self, srv, query, k=3):
+        if self.MUTANT == "oracle-search":
+            # THE CEILING, AND IT CHEATS ON PURPOSE. This is not a subject; it is the answer key wired
+            # to a search tool, so the top of the retrieval scale can be stated rather than assumed.
+            # Without it, "42 out of 60" describes a subject and says nothing about how much of the
+            # scale 42 is - a scale whose maximum nobody has ever measured is a scale that might have
+            # been full at 45.
+            found = self._answers().get(query.strip().lower())
+            return [found] if found else []
         if self.MUTANT == "mute-search":
             # Nothing is ever found. A memory that stores perfectly and answers nothing.
             return []

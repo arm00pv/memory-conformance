@@ -40,11 +40,16 @@ jobs:
           grep -q "THE PHRASING DECIDES THIS ONE" /tmp/cmp.txt
 
   mutants:
-    # DOES THE SUITE HAVE TEETH. The probe job below shows three real subjects passing and failing;
-    # this one shows that each of the nine probes CAN fail, by running the control with exactly one
-    # promise broken and comparing against the verdicts written down before the run. It needs no npm
-    # and no network, takes about a minute, and it is the only job here that would notice a probe
-    # that had quietly stopped being able to fail anything.
+    # DOES THE INSTRUMENT WORK. Two questions, both about the harness rather than about any subject.
+    #
+    # The probe job below shows three real subjects passing and failing. The first step here shows that
+    # every probe CAN fail, by running the control with exactly one promise broken and comparing
+    # against the verdicts written down before the run. The second shows that the retrieval scale has a
+    # reachable ceiling and a floor that is not zero, because "42 out of 60" means nothing until both
+    # ends of the scale have been measured.
+    #
+    # Neither step needs npm or the network, and together they take about a minute. They are the only
+    # checks here that would notice an instrument quietly losing the ability to tell subjects apart.
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -58,6 +63,12 @@ jobs:
           test -s MUTANTS.md
           grep -q "on its own" MUTANTS.md
           grep -q "Every predicted verdict matched" MUTANTS.md
+      - name: the retrieval scale must have a measured ceiling and a non-zero floor
+        run: |
+          python calibration.py --repeat=1 > /tmp/cal.txt
+          cat /tmp/cal.txt
+          grep -q "score 60 and 60" /tmp/cal.txt
+          grep -q "score 12 and 12" /tmp/cal.txt
 
   probe:
     runs-on: ubuntu-latest

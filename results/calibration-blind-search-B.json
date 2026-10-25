@@ -1,0 +1,2165 @@
+{
+  "adapter": "mutant",
+  "summary": {
+    "easy": {
+      "n": 16,
+      "hit1": 0,
+      "hit3": 2,
+      "hit1_keyword": 0,
+      "hit3_keyword": 2,
+      "runs": [
+        2,
+        2,
+        2
+      ]
+    },
+    "hard": {
+      "n": 16,
+      "hit1": 1,
+      "hit3": 1,
+      "hit1_keyword": 1,
+      "hit3_keyword": 1,
+      "runs": [
+        1,
+        1,
+        1
+      ]
+    },
+    "adversarial": {
+      "n": 16,
+      "hit1": 0,
+      "hit3": 0,
+      "hit1_keyword": 0,
+      "hit3_keyword": 0,
+      "runs": [
+        0,
+        0,
+        0
+      ]
+    },
+    "absent": {
+      "n": 12,
+      "answered": 12,
+      "answered_keyword": 12,
+      "runs": [
+        12,
+        12,
+        12
+      ]
+    },
+    "all": {
+      "n": 60,
+      "hit1": 1,
+      "hit3": 3,
+      "hit1_keyword": 1,
+      "hit3_keyword": 3,
+      "runs": [
+        3,
+        3,
+        3
+      ]
+    }
+  },
+  "rows": [
+    {
+      "query": "What is the maximum permitted speed on the Estuary Line?",
+      "expect": "line-estuary-speed",
+      "difficulty": "easy",
+      "returned": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "keyword": "maximum permitted speed estuary line",
+      "returned_keyword": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "At what time does the booking office at Tarnfield Central open?",
+      "expect": "station-tarnfield-office",
+      "difficulty": "easy",
+      "returned": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "keyword": "time booking office tarnfield central open",
+      "returned_keyword": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "When does Saltmarsh depot open each day?",
+      "expect": "depot-saltmarsh-hours",
+      "difficulty": "easy",
+      "returned": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "keyword": "saltmarsh depot open day",
+      "returned_keyword": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "How many seats do Kestrel units have?",
+      "expect": "class-kestrel-seating",
+      "difficulty": "easy",
+      "returned": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "keyword": "seat kestrel unit",
+      "returned_keyword": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "How much is a peak return to Coble Wharf?",
+      "expect": "fare-peak-return",
+      "difficulty": "easy",
+      "returned": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "keyword": "peak return coble wharf",
+      "returned_keyword": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "Is the section at Blackwater Halt worked by absolute block?",
+      "expect": "signal-blackwater-block",
+      "difficulty": "easy",
+      "returned": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "keyword": "section blackwater halt worked absolute block",
+      "returned_keyword": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "What is sold at the kiosk on Tarnfield Central platform 2?",
+      "expect": "cater-tarnfield-kiosk",
+      "difficulty": "easy",
+      "returned": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "keyword": "sold kiosk tarnfield central platform 2",
+      "returned_keyword": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "How long is property handed in at Coble Wharf kept?",
+      "expect": "lostprop-coble-hold",
+      "difficulty": "easy",
+      "returned": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "keyword": "property handed coble wharf kept",
+      "returned_keyword": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "When do Kestrel Line possessions begin?",
+      "expect": "works-kestrel-possession",
+      "difficulty": "easy",
+      "returned": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "keyword": "kestrel line possession begin",
+      "returned_keyword": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "Do staff at Coble Wharf use a portable ramp?",
+      "expect": "access-coble-ramp",
+      "difficulty": "easy",
+      "returned": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1": false,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "staff coble wharf portable ramp",
+      "returned_keyword": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "How many conductors work a train formed of more than four vehicles?",
+      "expect": "roster-conductors",
+      "difficulty": "easy",
+      "returned": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "keyword": "conductor work train formed four vehicle",
+      "returned_keyword": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "How often do exams on the A-service fall due?",
+      "expect": "maintain-a-exam",
+      "difficulty": "easy",
+      "returned": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "keyword": "exam service fall due",
+      "returned_keyword": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "How frequent are Estuary Line trains on weekdays?",
+      "expect": "timetable-estuary-frequency",
+      "difficulty": "easy",
+      "returned": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "keyword": "frequent estuary line train weekday",
+      "returned_keyword": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "What kind of shelter does Ashcombe Cutting halt have?",
+      "expect": "station-ashcombe-shelter",
+      "difficulty": "easy",
+      "returned": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "keyword": "kind shelter ashcombe cutting halt",
+      "returned_keyword": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "Which sets are the oldest working units?",
+      "expect": "class-dunmere-age",
+      "difficulty": "easy",
+      "returned": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "keyword": "oldest working unit",
+      "returned_keyword": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "Where are hearing loops fitted?",
+      "expect": "access-hearing-loop",
+      "difficulty": "easy",
+      "returned": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1": false,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "hearing loop fitted",
+      "returned_keyword": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "How late into the night does the branch keep running?",
+      "expect": "timetable-kestrel-last",
+      "difficulty": "hard",
+      "returned": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "keyword": "late night branch running",
+      "returned_keyword": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "What will a whole month of commuting set me back?",
+      "expect": "fare-monthly-season",
+      "difficulty": "hard",
+      "returned": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "keyword": "whole month commuting back",
+      "returned_keyword": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "Where are the units scrubbed by machine?",
+      "expect": "depot-fenwick-washer",
+      "difficulty": "hard",
+      "returned": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "keyword": "unit scrubbed machine",
+      "returned_keyword": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "If I need assistance, what notice must I give?",
+      "expect": "access-book-notice",
+      "difficulty": "hard",
+      "returned": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "assistance notice",
+      "returned_keyword": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "How much time off must a crew have before going back on duty?",
+      "expect": "roster-rest",
+      "difficulty": "hard",
+      "returned": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "keyword": "time crew going back duty",
+      "returned_keyword": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "When is the roof over the main concourse rebuilt?",
+      "expect": "works-tarnfield-canopy",
+      "difficulty": "hard",
+      "returned": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "keyword": "roof main concourse rebuilt",
+      "returned_keyword": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "Do any trains sell drink and snacks in a vintage vehicle?",
+      "expect": "cater-evening-specials",
+      "difficulty": "hard",
+      "returned": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "keyword": "train sell drink snack vintage vehicle",
+      "returned_keyword": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "During which months is the branch by the reservoir open to the public?",
+      "expect": "timetable-dunmere-season",
+      "difficulty": "hard",
+      "returned": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "keyword": "month branch reservoir open public",
+      "returned_keyword": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "What happens to expensive things nobody comes back for?",
+      "expect": "lostprop-valuables",
+      "difficulty": "hard",
+      "returned": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "keyword": "happen expensive thing come back",
+      "returned_keyword": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "What is stocked at the very front in case of injury?",
+      "expect": "safety-first-aid",
+      "difficulty": "hard",
+      "returned": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "keyword": "stocked front case injury",
+      "returned_keyword": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "Why are some carriages unusually slim?",
+      "expect": "class-estuary-body",
+      "difficulty": "hard",
+      "returned": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "keyword": "carriage unusually slim",
+      "returned_keyword": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "How many tracks does the harbour terminus have for boarding?",
+      "expect": "station-coble-platforms",
+      "difficulty": "hard",
+      "returned": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "keyword": "track harbour terminu boarding",
+      "returned_keyword": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "When is the bodywork inspected for rot?",
+      "expect": "maintain-corrosion",
+      "difficulty": "hard",
+      "returned": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "keyword": "bodywork inspected rot",
+      "returned_keyword": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "When are the underframes stripped and rebuilt?",
+      "expect": "maintain-bogie-overhaul",
+      "difficulty": "hard",
+      "returned": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "keyword": "underframe stripped rebuilt",
+      "returned_keyword": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "What must a conductor know before working a road unsupervised?",
+      "expect": "roster-route-sign",
+      "difficulty": "hard",
+      "returned": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "keyword": "conductor working road unsupervised",
+      "returned_keyword": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "Why does the stop have a different name from the old goods yard?",
+      "expect": "station-blackwater-rename",
+      "difficulty": "hard",
+      "returned": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "keyword": "stop different name old good yard",
+      "returned_keyword": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "What does an off-peak return to Coble Wharf come to?",
+      "expect": "fare-offpeak-return",
+      "difficulty": "adversarial",
+      "returned": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "keyword": "peak return coble wharf come",
+      "returned_keyword": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "What limits trains on the Ridgeway Line to 60 miles per hour?",
+      "expect": "line-ridgeway-speed",
+      "difficulty": "adversarial",
+      "returned": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "keyword": "limit train ridgeway line 60 mile hour",
+      "returned_keyword": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "At what wear level must wheel treads be reprofiled?",
+      "expect": "maintain-wheel-wear",
+      "difficulty": "adversarial",
+      "returned": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "keyword": "wear level wheel tread reprofiled",
+      "returned_keyword": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "When does the Dunmere Line shut for track renewal?",
+      "expect": "works-dunmere-renewal",
+      "difficulty": "adversarial",
+      "returned": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "keyword": "dunmere line shut track renewal",
+      "returned_keyword": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "Which units use a 3+2 seating layout?",
+      "expect": "class-ridgeway-seating",
+      "difficulty": "adversarial",
+      "returned": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "keyword": "unit 3 2 seating layout",
+      "returned_keyword": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "How often do Ridgeway Line trains run on Sundays?",
+      "expect": "timetable-ridgeway-frequency",
+      "difficulty": "adversarial",
+      "returned": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "keyword": "ridgeway line train sunday",
+      "returned_keyword": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "How many steps lead up to Pike Hill's platform?",
+      "expect": "station-pikehill-island",
+      "difficulty": "adversarial",
+      "returned": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "keyword": "step lead pike hill s platform",
+      "returned_keyword": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "How many route miles does the Saltmarsh Junction signal box control?",
+      "expect": "signal-saltmarsh-panel",
+      "difficulty": "adversarial",
+      "returned": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "keyword": "route mile saltmarsh junction signal box control",
+      "returned_keyword": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "What happens to items found on trains at Tarnfield Central?",
+      "expect": "lostprop-tarnfield-hold",
+      "difficulty": "adversarial",
+      "returned": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "keyword": "happen item train tarnfield central",
+      "returned_keyword": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "What refreshment do the Marlbrook Line units carry?",
+      "expect": "cater-marlbrook-vending",
+      "difficulty": "adversarial",
+      "returned": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "keyword": "refreshment marlbrook line unit carry",
+      "returned_keyword": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "Which depot site holds the simulator used to train drivers?",
+      "expect": "depot-tarnfield-sim",
+      "difficulty": "adversarial",
+      "returned": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "keyword": "depot site hold simulator train driver",
+      "returned_keyword": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "How do wheelchair users reach the platforms at Tarnfield Central?",
+      "expect": "access-tarnfield-lifts",
+      "difficulty": "adversarial",
+      "returned": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "keyword": "wheelchair user reach platform tarnfield central",
+      "returned_keyword": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "Which hours rate applies to Sunday shift work?",
+      "expect": "roster-sunday-rate",
+      "difficulty": "adversarial",
+      "returned": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "keyword": "hour rate applie sunday shift work",
+      "returned_keyword": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "Where does the Marlbrook Line take its power from?",
+      "expect": "line-marlbrook-power",
+      "difficulty": "adversarial",
+      "returned": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "keyword": "marlbrook line power",
+      "returned_keyword": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "How long is the Kestrel Line?",
+      "expect": "line-kestrel-length",
+      "difficulty": "adversarial",
+      "returned": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "keyword": "kestrel line",
+      "returned_keyword": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "How much is a day ticket for unlimited rides on the Ridgeway Line?",
+      "expect": "fare-ridgeway-ranger",
+      "difficulty": "adversarial",
+      "returned": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "keyword": "day ticket unlimited ride ridgeway line",
+      "returned_keyword": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "If my trip is cancelled, am I entitled to compensation?",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "keyword": "trip cancelled entitled compensation",
+      "returned_keyword": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "Do you permit dogs on your railway?",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "keyword": "permit dog railway",
+      "returned_keyword": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "Is wireless internet available?",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "keyword": "wireless internet available",
+      "returned_keyword": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "How big a suitcase fits in the racks?",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "keyword": "big suitcase fit rack",
+      "returned_keyword": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "Is there a toilet nearby?",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "keyword": "toilet nearby",
+      "returned_keyword": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "Is a reservation possible?",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "keyword": "reservation possible",
+      "returned_keyword": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "Do you offer a discount for groups?",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "keyword": "offer discount group",
+      "returned_keyword": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "Is smoking allowed anywhere?",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "keyword": "smoking allowed anywhere",
+      "returned_keyword": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "Is charging a phone possible on the move?",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "keyword": "charging phone possible move",
+      "returned_keyword": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "Is parking available overnight?",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "keyword": "parking available overnight",
+      "returned_keyword": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "Might I borrow an umbrella?",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "keyword": "borrow umbrella",
+      "returned_keyword": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "Do you allow bicycles?",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "keyword": "allow bicycle",
+      "returned_keyword": [
+        "access-book-notice",
+        "access-coble-ramp",
+        "access-hearing-loop"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    }
+  ]
+}

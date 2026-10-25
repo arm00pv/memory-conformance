@@ -219,6 +219,7 @@ def summarise(rows, label):
 def main(argv=None):
     argv = list(sys.argv[1:] if argv is None else argv)
     cmd = None
+    mutant_name = ""
     adapter_name = "reference"
     out_path = None
     manifest_path = None
@@ -243,13 +244,24 @@ def main(argv=None):
         elif a == "--shapes":
             # ask every question again as a keyword string, in the same pass
             shapes = True
+        elif a.startswith("--mutant="):
+            # A RETRIEVAL SCORE NEEDS ITS OWN CONTROLS. The probes have a mutation battery; until now
+            # the retrieval axis had no floor, no ceiling and no example of what "not searching" scores,
+            # so a number like 42/60 could not be told from the top of a scale that only ran to 44.
+            # calibration.py runs these, and the harness MutantAdapter is where they live.
+            mutant_name = a.split("=", 1)[1]
+            harness.MutantAdapter.MUTANT = mutant_name
     if not cmd:
         print(__doc__)
         return 2
     adapters = {"control": harness.ControlAdapter, "retained": harness.RetainedAdapter,
                 "basic-memory": harness.BasicMemoryAdapter, "memento": harness.MementoAdapter,
-                "auto": harness.AutoAdapter}
-    label = adapter_name
+                "auto": harness.AutoAdapter, "mutant": harness.MutantAdapter}
+    label = mutant_name or adapter_name
+    # RESOLVED AFTER EVERY OPTION IS READ, because argv order must not decide which corpus the oracle
+    # is given the answers to.
+    harness.MutantAdapter.CASES = os.path.abspath(cases_path or os.path.join(
+        os.path.dirname(os.path.abspath(__file__)), "retrieval_corpus.json"))
     if manifest_path:
         # THE SAME ADAPTER THE PROBES USE, so a retrieval number and a conformance verdict are about
         # the same binding of the same subject.
