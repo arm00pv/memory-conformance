@@ -225,6 +225,14 @@ def c_memento_speaks(ctx, corpus, shape):
     return (v == 12, "%d of 12 unanswerable questions answered" % v) if v is not None else None
 
 
+def item_analysis(corpus, shape):
+    """items.py's per-question table for one corpus in one phrasing."""
+    import items
+    path, suffix = CORPORA[corpus]
+    got = items.analyse(corpus, path, suffix, shape)
+    return got[0] if got else None
+
+
 def _subject_total(label, corpus, shape):
     """One subject's score, the same number the paired tests pair on."""
     rs = rows(label, corpus)
@@ -277,6 +285,27 @@ def c_floor_not_zero(ctx, corpus, shape):
     absent = sum(1 for r in doc.get("rows") or [] if r.get("difficulty") == "absent")
     return got > 0, ("a subject that never answers scored %d of %d, the %d questions with no answer"
                      % (got, n, absent))
+
+
+def c_absent_band_flat(ctx, corpus, shape):
+    """The unanswerable questions give the stronger subjects no advantage.
+
+    A SIGN, NOT A SIZE, because a size would have to be chosen after looking. Every subject here either
+    declines all twelve unanswerable questions or declines none of them - there is no gradient - so
+    the band is worth 12 of the 60 points the score counts, handed to whoever declines. Measured by
+    discrimination rather than guessed at: if the top half of subjects by total score does better on
+    these questions than the bottom half, the band is rewarding ability; if it does not, it is
+    rewarding a habit.
+    """
+    blocks = item_analysis(corpus, shape)
+    if not blocks:
+        return None
+    sel = [i for i in blocks if i["difficulty_band"] == "absent"]
+    if not sel:
+        return None
+    d = sum(i["d"] for i in sel) / len(sel)
+    return d <= 0.0, ("the unanswerable band's discrimination is %+.2f, on %d questions worth %d of"
+                      " the score's %d points" % (d, len(sel), len(sel), len(blocks)))
 
 
 def c_silence_scores_better(ctx, corpus, shape):
@@ -423,6 +452,8 @@ CLAIMS = [
      c_floor_not_zero, True),
     ("silence-scores-better", "at least one subject scores worse than a memory that answers nothing.",
      c_silence_scores_better, True),
+    ("absent-band-flat", "the unanswerable questions give the stronger subjects no advantage.",
+     c_absent_band_flat, True),
     ("leaks-state", "memory-mcp-1file leaks state between stores and is out of scope.",
      c_leaks_state, False),
     ("leanest", "memory-lean returns fewer bytes per question than any subject that answers anything.",

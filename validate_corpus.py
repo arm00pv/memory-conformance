@@ -42,6 +42,42 @@ def jaccard(a, b):
     return len(a & b) / float(len(a | b))
 
 
+def rivals_of(texts, queries):
+    """Which records compete with which adversarial question, and on which words.
+
+    THE TRAP IS BETWEEN TWO RECORDS, NOT BETWEEN A QUESTION AND A RECORD. An earlier version asked
+    for a rival sharing two of the QUESTION's words and failed eleven of sixteen honest items: the
+    question "how long does the refresh token last" competes with a record about access token
+    lifetimes, which shares the word "token" and nothing else, and that single shared word is
+    exactly what makes the item adversarial.
+
+    So the test is: the question picks out some words from its answer (its core), and does any OTHER
+    record also carry one of them? If nothing else competes the item is a hard question wearing the
+    wrong label.
+
+    PULLED OUT OF check() BECAUSE A SECOND TOOL NOW NEEDS IT. items.py asks whether a one-word trap
+    discriminates as well as a three-word one, and it has to be the same definition of a trap or the
+    two tools are measuring different corpora.
+    """
+    out = {}
+    for q in queries:
+        if q.get("difficulty") != "adversarial":
+            continue
+        want = q.get("expect")
+        if want not in texts:
+            continue
+        core = set(tokens(q.get("query"))) & set(tokens(texts[want]))
+        rivals = []
+        for rid, text in texts.items():
+            if rid == want:
+                continue
+            shared = sorted(core & set(tokens(text)))
+            if shared:
+                rivals.append((rid, shared))
+        out[q.get("query")] = (sorted(core), rivals)
+    return out
+
+
 def check(path):
     """Everything that can be checked about one corpus, as three lists."""
     errors, warnings, facts = [], [], {}
@@ -132,31 +168,19 @@ def check(path):
                         " what a keywording subject will match on" % (q, ", ".join(shared), rid))
 
     # --- adversarial means a trap -----------------------------------------
-    # THE TRAP IS BETWEEN TWO RECORDS, NOT BETWEEN A QUESTION AND A RECORD. An earlier version asked
-    # for a rival sharing two of the QUESTION's words and failed eleven of sixteen honest items: the
-    # question "how long does the refresh token last" competes with a record about access token
-    # lifetimes, which shares the word "token" and nothing else, and that single shared word is
-    # exactly what makes the item adversarial.
-    #
-    # So the test is: the question picks out some words from its answer (its core), and does any
-    # OTHER record also carry one of them? If nothing else competes the item is a hard question
-    # wearing the wrong label. How strongly it competes is reported, because a one-word trap is a
-    # weaker test than a three-word one.
+    # How strongly it competes is reported as well, because a one-word trap is a weaker test than a
+    # three-word one. Whether it is weaker in practice is measured in items.py rather than assumed.
+    competitors = rivals_of(texts, queries)
     traps = {}
     for q in queries:
         if q.get("difficulty") != "adversarial":
             continue
-        want = q.get("expect")
-        if want not in texts:
+        got = competitors.get(q.get("query"))
+        if got is None:
+            # the answer record is missing; that is reported by the id check, not here
             continue
-        core = set(tokens(q.get("query"))) & set(tokens(texts[want]))
-        rivals = []
-        for rid, text in texts.items():
-            if rid == want:
-                continue
-            shared = sorted(core & set(tokens(text)))
-            if shared:
-                rivals.append((rid, shared))
+        core, rivals = got
+        want = q.get("expect")
         strength = max([len(s) for _r, s in rivals] or [0])
         traps[q.get("query")] = strength
         if not rivals:

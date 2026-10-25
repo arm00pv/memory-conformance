@@ -31,6 +31,18 @@ jobs:
           python claims.py
           test -s CLAIMS.md
           grep -q "claims hold in every setting measured" CLAIMS.md
+      - name: every question must be analysed for whether it separates anybody
+        run: |
+          python items.py > /tmp/items.txt
+          cat /tmp/items.txt
+          grep -q "separate nobody" /tmp/items.txt
+          grep -q "one-word trap" /tmp/items.txt
+      - name: a paired test must say when the twelve-point switch decides it
+        run: |
+          python compare.py zenbrain control > /tmp/pair.txt
+          cat /tmp/pair.txt
+          grep -q "without the 12 unanswerable questions" /tmp/pair.txt
+          grep -q "THE TWELVE-POINT SWITCH DECIDES THIS ONE" /tmp/pair.txt
       - name: a paired claim must say when the phrasing decides it
         run: |
           python compare.py memory-mcp-1file zenbrain > /tmp/cmp.txt

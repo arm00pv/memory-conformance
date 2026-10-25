@@ -140,6 +140,31 @@ def main(argv):
         print("    exact McNemar p = %.4f  -> %s"
               % (pv, "separated" if separated else
                  ("not separated by this corpus" if only_a or only_b else "identical")))
+        # WHAT THE TWELVE-POINT SWITCH IS DOING TO THIS CONCLUSION. Every subject on both corpora
+        # either declines all twelve unanswerable questions or none of them - items.py found no
+        # gradient at all - so those twelve are one binary habit worth 12 of the 60 points this score
+        # counts, and they count for a subject whatever it can actually answer. A paired test that
+        # includes them is partly comparing two habits. So the same test is run again with them
+        # removed, and a conclusion that depends on them says so.
+        answered = [(x, y) for x, y in pairs if x["difficulty"] != "absent"]
+        key = "hit3" if which == "written" else "hit3_keyword"
+        ha = [bool(x.get(key)) for x, _y in answered]
+        hb = [bool(y.get(key)) for _x, y in answered]
+        ha_only = sum(1 for p, q in zip(ha, hb) if p and not q)
+        hb_only = sum(1 for p, q in zip(hb, ha) if p and not q)
+        pv_hit = exact_mcnemar(ha_only, hb_only)
+        hit_separated = pv_hit < 0.05
+        dropped = len(pairs) - len(answered)
+        print("    without the %d unanswerable questions: %d-%d, p = %.4f -> %s"
+              % (dropped, ha_only, hb_only, pv_hit,
+                 "separated" if hit_separated else "not separated"))
+        if hit_separated != separated:
+            print("    THE TWELVE-POINT SWITCH DECIDES THIS ONE: %s on the score, %s on hits alone."
+                  % ("separated" if separated else "not separated",
+                     "separated" if hit_separated else "not separated"))
+            print("    The %d unanswerable questions are one habit - decline all or answer all - and"
+                  % dropped)
+            print("    they count for every subject regardless of what it can answer.")
         if len(shapes) == 1 and (only_a or only_b):
             print()
             print("    the questions that flipped:")
