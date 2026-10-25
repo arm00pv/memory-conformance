@@ -27,8 +27,7 @@ import sys
 import tempfile
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-PROBES = ["isolation", "ack_readback", "restart", "forget", "findable", "foreign_field",
-          "foreign_record", "concurrent", "large_record"]
+from harness import PROBE_NAMES as PROBES
 PAD = max(len(p) for p in PROBES) + 1
 
 

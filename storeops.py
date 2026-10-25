@@ -46,6 +46,16 @@ class Store:
         """How many characters of the body are still on disk, or None if this backend cannot say."""
         return None
 
+    def content_text(self, store, name):
+        """The body as text, for the probes that need the characters and not just how many there are.
+
+        LENGTH IS NOT CONTENT. A cp1252 round-trip replaces a CJK character with a question mark and
+        changes nothing about how long the column is, so a store that can only count characters
+        cannot answer whether the text survived. A backend that cannot read the column returns None
+        and the probe reports UNKNOWN rather than a verdict it did not measure.
+        """
+        return None
+
 
 class JsonlStore(Store):
     """One JSON object per line, rewritten whole by every write.
@@ -134,6 +144,20 @@ class JsonlStore(Store):
         if isinstance(body, list):
             body = body[0] if body else ""
         return len(body) if isinstance(body, str) else None
+
+    def content_text(self, store, name):
+        rows = self._load()
+        if rows is None:
+            return None
+        hits = self._mine(rows, name)
+        if not hits:
+            return None
+        body = hits[0].get(self.content_key)
+        # ONE LINE PER OBSERVATION. Joining on a newline keeps every string findable as itself, which
+        # is the only thing this text is read for.
+        if isinstance(body, list):
+            body = chr(10).join(str(part) for part in body)
+        return body if isinstance(body, str) else None
 
 
 class SqliteStore(Store):
@@ -266,6 +290,27 @@ class SqliteStore(Store):
             row = con.execute("SELECT MAX(LENGTH(%s)) FROM %s WHERE %s"
                               % (self.content_column, self.table, clause), params).fetchone()
             return int(row[0]) if row and row[0] is not None else None
+        except Exception:
+            return None
+        finally:
+            con.close()
+
+    def content_text(self, store, name):
+        """The longest matching row's content column. memdb keeps name and body in that one column,
+        which is why the longest is taken rather than the first."""
+        if not self.content_column:
+            return None
+        con = self._connect()
+        if con is None:
+            return None
+        try:
+            clause, params = self._where(name)
+            row = con.execute("SELECT %s FROM %s WHERE %s ORDER BY LENGTH(%s) DESC"
+                              % (self.content_column, self.table, clause,
+                                 self.content_column), params).fetchone()
+            if not row or row[0] is None:
+                return None
+            return row[0] if isinstance(row[0], str) else str(row[0])
         except Exception:
             return None
         finally:

@@ -11,6 +11,7 @@ disk and the answers over the wire. A probe that cannot fail is not a probe.
 Probes, each independent and each run against a fresh store:
   isolation        a record written into one store is not visible from another store
   ack_readback     a write that returned success is returned by a fresh read
+  verbatim         the record comes back as the record that was written, character for character
   restart          the same write survives the server being stopped and started
   forget           a record can be made to stop being kept, and the others are still there after
   findable         a record can be found again by the name it was stored under
@@ -602,6 +603,20 @@ class ManifestAdapter(AutoAdapter):
             return len(body)
         return max(0, got - (sent - len(body)))
 
+    def body_text(self, store, name):
+        """The record's body as characters, for the probes that compare text and not lengths.
+
+        This is the surface for a subject that answers a read with the record's name and keeps the
+        body where only the store can see it - six of the eleven measured here do exactly that.
+        """
+        self.store_reason = None
+        try:
+            return self._ops_for(store).content_text(store, name)
+        except LookupError:
+            return None
+        except Exception:
+            return None
+
 
 class ControlAdapter(ReferenceAdapter):
     """control/memory_server.py - the append-only positive control, same probe surface.
@@ -928,6 +943,213 @@ def probe_ack_readback(ad):
         names = [e.get("name") for e in ents]
         ok = "alpha" in names
         return ok, "acknowledged alpha; a fresh read returned %d entities: %s" % (len(ents), names[:5])
+    finally:
+        shutil.rmtree(d, ignore_errors=True)
+
+
+# ONE STRING PER LAYER OF THE ENCODING STACK, because they fail independently and a store that
+# mangles one usually handles another correctly. Escapes rather than literal characters so the source
+# file stays ASCII and the code points being claimed are unambiguous on inspection.
+VERBATIM = [
+    "ascii: the quick brown fox",
+    "latin: caf\u00e9, na\u00efve, \u00e5\u00e4\u00f6",
+    "cjk: \u65e5\u672c\u8a9e\u306e\u30c6\u30ad\u30b9\u30c8",
+    "astral: \U0001f9ea\U0001f52c",
+    "combining: e\u0301 against \u00e9",
+    "rtl: \u0645\u0631\u062d\u0628\u0627 \u0628\u0627\u0644\u0639\u0627\u0644\u0645",
+    "escapes: back\\slash, \"quote\", tab\there",
+    "zero-width: a\u200bb",
+    "newline:\nsecond line",
+]
+# The name carries non-ASCII too: a store can keep the body and lose the handle it was filed under.
+VERBATIM_NAME = "verbatim-caf\u00e9-\u65e5\u672c"
+
+# A CONTROL RECORD INSIDE THE PROBE. A subject that answers a read with the record's name and keeps
+# the body where nothing here can reach it would otherwise be reported as having mangled nine strings
+# it never showed. So a plain ASCII record is written through the same path: if that does not come
+# back either, the probe cannot see this subject's bodies at all and says so instead of inventing a
+# defect. "I cannot see it" and "it is gone" are different answers and only one of them is a verdict.
+VERBATIM_CANARY = "verbatim-canary"
+VERBATIM_CANARY_BODY = "canary-marker-0123456789"
+
+
+def _visible(text):
+    """Escape a string so a difference between two of them is visible in a terminal."""
+    out = []
+    for ch in text:
+        code = ord(ch)
+        if ch == chr(10):
+            out.append("\\n")
+        elif ch == chr(9):
+            out.append("\\t")
+        elif ch == "\\":
+            out.append("\\\\")
+        elif 32 <= code < 127:
+            out.append(ch)
+        elif code > 0xFFFF:
+            out.append("\\U%08x" % code)
+        else:
+            out.append("\\u%04x" % code)
+    return "".join(out)[:150]
+
+
+def _strings_of(obj, out=None):
+    """Every string anywhere inside a returned record, whatever shape the subject uses.
+
+    THE SHAPE IS THE SUBJECT'S BUSINESS, NOT THE PROBE'S. The first version of this probe required a
+    field called observations holding a list, which is the reference server's model; seven of eleven
+    subjects keep the body some other way and every one of them came back UNKNOWN. The promise being
+    tested is that the characters survive, and where the subject puts them is its own choice.
+    """
+    if out is None:
+        out = []
+    if isinstance(obj, str):
+        out.append(obj)
+    elif isinstance(obj, dict):
+        for value in obj.values():
+            _strings_of(value, out)
+    elif isinstance(obj, (list, tuple)):
+        for value in obj:
+            _strings_of(value, out)
+    return out
+
+
+def _closest(want, candidates):
+    """The returned string that agrees with the written one for the longest prefix, and how far.
+
+    A count of shared leading characters is the useful diagnosis: it says where the two part company
+    without asking the reader to diff two escaped strings by eye.
+    """
+    best, score = "", -1
+    for cand in candidates:
+        n = 0
+        for a, b in zip(want, cand):
+            if a != b:
+                break
+            n += 1
+        if n > score:
+            best, score = cand, n
+    return best, max(score, 0)
+
+
+def probe_verbatim(ad):
+    """Does a record come back as the record you stored, character for character?
+
+    THE NARROWEST FORM OF THE ENTIRE PROMISE, and the one most likely to break without anybody
+    noticing. Every other probe checks that the record is THERE; none checks that it is the SAME.
+    A store that re-encodes text into the machine's codepage, normalises composed characters,
+    strips zero-width joiners, escapes an embedded newline or rejoins the lines answers every other
+    probe in this suite and still hands back something the caller never wrote.
+
+    IT IS ALSO THIS SUITE'S OWN HISTORY. The harness once decoded a subject's stdout as cp1252,
+    because Popen(text=True) uses the console codepage on Windows, and an em dash in a tool
+    description killed the reader thread and made every later call time out as if the server had
+    hung. The control server lost a phase to the same family - no O_BINARY, so every byte it wrote
+    was rewritten on the way out. Neither was a memory defect; both were text going through a
+    boundary and not coming back. This asks the subject the same question directly.
+
+    NINE STRINGS, each aimed at a different layer: 2, 3 and 4-byte UTF-8, a combining pair against
+    its precomposed twin, right-to-left text, JSON escapes, a zero-width space, and a newline
+    embedded in the body of a newline-delimited transport. The name is non-ASCII too, because the
+    handle can be lost while the body survives.
+
+    TWO SURFACES, BECAUSE SIX OF ELEVEN SUBJECTS KEEP THE BODY WHERE ONLY THE STORE CAN SEE IT. The
+    first version demanded a field called observations holding a list - the reference server's model -
+    and seven of eleven subjects came back UNKNOWN. The promise is that the characters survive, and
+    where a subject puts them is its own choice: the returned record is searched first, and the
+    adapter's declared store is searched when the answer to a read is the record's name alone.
+
+    A CANARY DECIDES WHETHER THE PROBE CAN SEE AT ALL. Writing nine strings and reporting nine
+    defects when the subject never returns a body would be inventing a result, so a plain ASCII
+    record goes through the same path first. If that does not come back either, there is nothing to
+    compare and the verdict is UNKNOWN with the reason - "I cannot see it" and "it is gone" are
+    different answers and only one of them is a verdict.
+
+    ORDER IS REPORTED, NOT JUDGED. memento returns the observations of a record sorted, so the nine
+    lines come back with every character intact and none of their original sequence. Calling that a
+    verbatim failure would tell a reader the text was mangled, which is false, and passing without a
+    word would hide that a sequence you stored as a sequence comes back alphabetical. So the verdict
+    is about the characters - the one thing this probe does not have to interpret - and the evidence
+    says which order the subject chose.
+    """
+    d, store = _fresh()
+    try:
+        srv = ad.server(store)
+        try:
+            ad.write(srv, VERBATIM_NAME, list(VERBATIM))
+            ad.write(srv, VERBATIM_CANARY, [VERBATIM_CANARY_BODY])
+        finally:
+            srv.stop()
+        # A COLD PROCESS: nothing that formatted this text is still in memory to reformat it back.
+        srv = ad.server(store)
+        try:
+            ents = ad.read(srv) or []
+        finally:
+            srv.stop()
+        hit = [e for e in ents if isinstance(e, dict) and e.get("name") == VERBATIM_NAME]
+        if not hit:
+            near = [e.get("name") for e in ents if isinstance(e, dict) and e.get("name")]
+            looked = [n for n in near if str(n).startswith("verbatim")] or near[:3]
+            return False, ("the record did not come back under the name it was written with, so there"
+                           " is nothing to compare: asked for %s, the store answered with %s"
+                           % (_visible(VERBATIM_NAME), [_visible(str(n)) for n in looked][:3]))
+        # WHEREVER THE SUBJECT PUT THEM, ON WHICHEVER SURFACE IT OFFERS THEM. Every string in the
+        # returned record is a candidate; when the subject answers a read with the name alone, the
+        # store's own copy of the body is asked instead. Six of the eleven measured subjects need the
+        # second surface, and without it this probe reports UNKNOWN for all six.
+        reader = getattr(ad, "body_text", None)
+
+        def strings_of(name):
+            for ent in ents:
+                if isinstance(ent, dict) and ent.get("name") == name:
+                    return _strings_of(ent)
+            return []
+
+        def store_text(name):
+            return reader(store, name) if callable(reader) else None
+
+        body = strings_of(VERBATIM_NAME)
+        stored = store_text(VERBATIM_NAME)
+        canary_store = store_text(VERBATIM_CANARY)
+        canary_seen = (any(VERBATIM_CANARY_BODY in s for s in strings_of(VERBATIM_CANARY))
+                       or (isinstance(canary_store, str)
+                           and VERBATIM_CANARY_BODY in canary_store))
+        if not canary_seen:
+            return None, ("a plain ASCII record written the same way does not come back either - not"
+                          " over the wire, and not from a store this harness can read - so this probe"
+                          " cannot see this subject's record bodies at all. That is a gap in the"
+                          " probe against this subject, not a verdict about its text")
+
+        def survived(text):
+            if any(text in got for got in body):
+                return "wire"
+            if isinstance(stored, str) and text in stored:
+                return "store"
+            return ""
+
+        found = dict((s, survived(s)) for s in VERBATIM)
+        missing = [s for s in VERBATIM if not found[s]]
+        tail = ("2, 3 and 4-byte UTF-8, a combining pair, right-to-left text, JSON escapes, a"
+                " zero-width space and an embedded newline, under a non-ASCII name")
+        if not missing:
+            where = set(found[s] for s in VERBATIM)
+            how = ("over the wire" if where == set(["wire"]) else
+                   "in the store, which this subject does not return over the wire"
+                   if where == set(["store"]) else "over the wire and in the store")
+            order = ""
+            obs = hit[0].get("observations") if isinstance(hit[0], dict) else None
+            if isinstance(obs, list) and list(obs) != list(VERBATIM):
+                if sorted(obs) == sorted(VERBATIM):
+                    order = (" - in an order of the subject's own choosing, so every character"
+                             " survived and the sequence did not")
+            return True, ("all %d strings came back byte for byte, %s: %s%s"
+                          % (len(VERBATIM), how, tail, order))
+        want = missing[0]
+        near, shared = _closest(want, body + ([stored] if isinstance(stored, str) else []))
+        return False, ("%d of %d strings did not come back intact. Wrote %s; the nearest thing found"
+                       " is %s, which agrees with it for its first %d characters"
+                       % (len(missing), len(VERBATIM), _visible(want), _visible(near),
+                          min(shared, len(want))))
     finally:
         shutil.rmtree(d, ignore_errors=True)
 
@@ -1294,8 +1516,13 @@ def probe_isolation(ad):
         shutil.rmtree(store_b, ignore_errors=True)
 
 
+# THE ONE LIST. Four files used to keep their own copy of this - harness, matrix, check and mutants -
+# and every copy was a place to forget. check.py was already one short: it had never heard of forget,
+# added a phase earlier, and had been silently skipping it ever since. The others import PROBE_NAMES
+# from here; a table, a runner and a runner of mutants cannot disagree about what the probes are.
 PROBES = [("isolation", probe_isolation),
           ("ack_readback", probe_ack_readback),
+          ("verbatim", probe_verbatim),
           ("restart", probe_restart),
           ("forget", probe_forget),
           ("findable", probe_findable),
@@ -1303,6 +1530,8 @@ PROBES = [("isolation", probe_isolation),
           ("foreign_record", probe_foreign_record),
           ("concurrent", probe_concurrent),
           ("large_record", probe_large_record)]
+
+PROBE_NAMES = [name for name, _fn in PROBES]
 
 
 # FAIL sorts before UNKNOWN before PASS: a tie is broken toward the worse outcome, so an unstable

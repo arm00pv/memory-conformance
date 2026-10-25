@@ -198,6 +198,13 @@ def tool_write(args):
         if key not in obj:
             obj[key] = value
 
+    if MUTANT == "lossy-locale":
+        # THE CLASSIC ONE. Text is round-tripped through the machine's own codepage on the way to
+        # disk, because that is what "just write it out" does when nobody says otherwise. cp1252 has
+        # an e-acute, does not have a CJK character, and has never held an emoji. Everything here is
+        # returned as a successful write.
+        obj["observations"] = [o.encode("cp1252", "replace").decode("cp1252")
+                               if isinstance(o, str) else o for o in obj["observations"]]
     if MUTANT == "truncate-large":
         obj["observations"] = [o[:1000] if isinstance(o, str) else o
                                for o in obj["observations"]]

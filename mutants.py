@@ -33,12 +33,17 @@ import tempfile
 HERE = os.path.dirname(os.path.abspath(__file__))
 SERVER = os.path.join(HERE, "control", "memory_server.py")
 
-PROBES = ["isolation", "ack_readback", "restart", "forget", "findable",
-          "foreign_field", "foreign_record", "concurrent", "large_record"]
+import harness
 
-SHORT = {"isolation": "iso", "ack_readback": "ack", "restart": "rst", "forget": "fgt",
-         "findable": "fnd", "foreign_field": "ffd", "foreign_record": "frc",
+# THE SAME LIST THE SUITE RUNS, imported rather than copied: a battery that predicts verdicts for a
+# probe list of its own is measuring a suite that may not be the one being shipped.
+PROBES = harness.PROBE_NAMES
+
+SHORT = {"isolation": "iso", "ack_readback": "ack", "verbatim": "vbt", "restart": "rst",
+         "forget": "fgt", "findable": "fnd", "foreign_field": "ffd", "foreign_record": "frc",
          "concurrent": "cnc", "large_record": "lrg"}
+for _p in PROBES:
+    SHORT.setdefault(_p, _p[:3])
 
 
 def expect(**over):
@@ -59,13 +64,18 @@ MUTANTS = [
     dict(name="no-persist", breaks="ack_readback",
          what="A write is acknowledged and never stored. Everything downstream reads a store that "
               "was never written, so the failure propagates by construction.",
-         expect=expect(ack_readback="FAIL", restart="FAIL", forget="UNKNOWN", findable="FAIL",
-                       foreign_field="UNKNOWN", concurrent="FAIL", large_record="FAIL")),
+         expect=expect(ack_readback="FAIL", verbatim="FAIL", restart="FAIL", forget="UNKNOWN",
+                       findable="FAIL", foreign_field="UNKNOWN", concurrent="FAIL",
+                       large_record="FAIL")),
     dict(name="keep-last", breaks="restart",
          what="Each write replaces the store with itself, so one write survives and three do not. "
               "The root probes come apart here: ack_readback still passes it.",
-         expect=expect(restart="FAIL", forget="UNKNOWN", findable="FAIL", foreign_field="FAIL",
-                       foreign_record="FAIL", concurrent="FAIL")),
+         # VERBATIM IS HERE BECAUSE THE PROBE GREW A SECOND RECORD. This prediction said PASS while
+         # the probe wrote one record and the mutation keeps the newest; the probe now writes a canary
+         # as well, so keep-last drops one of the two and the probe fails for the same reason restart
+         # does. The prediction was stale, not the code. Recorded rather than quietly corrected.
+         expect=expect(restart="FAIL", verbatim="FAIL", forget="UNKNOWN", findable="FAIL",
+                       foreign_field="FAIL", foreign_record="FAIL", concurrent="FAIL")),
     dict(name="no-forget", breaks="forget",
          what="memory_forget answers ok and writes nothing. The record is still readable after the "
               "restart, which is the exact failure the caller cannot see.",
@@ -92,6 +102,11 @@ MUTANTS = [
          what="Anything longer than 1000 characters is cut to 1000 and acknowledged as stored. A "
               "silent cap, which is the failure the ladder in the probe exists to see.",
          expect=expect(large_record="FAIL")),
+    dict(name="lossy-locale", breaks="verbatim",
+         what="Text is round-tripped through the machine's own codepage on the way to disk. cp1252 "
+              "has an e-acute and does not have a CJK character, and nothing in it is an emoji. Every "
+              "other probe in this suite uses ASCII names and passes it.",
+         expect=expect(verbatim="FAIL")),
     dict(name="mute-search", breaks="findable",
          what="The store is perfect and nothing is ever found. Retention without retrieval.",
          expect=expect(findable="FAIL")),

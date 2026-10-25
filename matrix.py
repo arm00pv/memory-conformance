@@ -18,11 +18,17 @@ import sys
 import time
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-PROBES = ["isolation", "ack_readback", "restart", "forget", "findable", "foreign_field",
-          "foreign_record", "concurrent", "large_record"]
-SHORT = {"isolation": "isol", "ack_readback": "ack", "restart": "restart", "forget": "forget",
-         "findable": "find", "foreign_field": "field", "foreign_record": "record",
-         "concurrent": "conc", "large_record": "large"}
+# IMPORTED, NOT COPIED. Four files kept their own copy of the probe list and each copy was a place
+# to forget; check.py had been skipping forget for a whole phase without saying so.
+import harness
+PROBES = harness.PROBE_NAMES
+SHORT = {"isolation": "isol", "ack_readback": "ack", "verbatim": "verb", "restart": "restart",
+         "forget": "forget", "findable": "find", "foreign_field": "field",
+         "foreign_record": "record", "concurrent": "conc", "large_record": "large"}
+# A SHORT LABEL FOR EVERY PROBE, generated rather than listed, so a new probe cannot arrive as a
+# KeyError in the middle of a twenty-minute run.
+for _p in PROBES:
+    SHORT.setdefault(_p, _p[:4])
 
 
 def wilson(k, n, z=1.96):
@@ -263,7 +269,11 @@ def load_saved(entry):
 def main(argv):
     report_only = "--report-only" in argv
     cost_only = "--cost-only" in argv
-    argv = [a for a in argv if a not in ("--report-only", "--cost-only")]
+    # ONE AXIS AT A TIME. Adding a probe changes the probe column and nothing else, so re-rolling
+    # retrieval and cost would move numbers that did not change and invite the reader to think they
+    # had. The other two axes are re-read from disk instead.
+    probes_only = "--probes-only" in argv
+    argv = [a for a in argv if a not in ("--report-only", "--cost-only", "--probes-only")]
     want = set(argv)
     with open(os.path.join(HERE, "subjects.json"), encoding="utf-8") as fh:
         subjects = json.load(fh)
@@ -313,6 +323,11 @@ def main(argv):
         got = {r["probe"]: r for r in report["probes"]}
         rows.append((label, entry, {p: got.get(p, {}).get("verdict", "-") for p in PROBES}, secs,
                      int(report.get("ceiling_seconds") or 0)))
+        if probes_only:
+            _saved, summary = load_saved(entry)
+            retr.append((label, summary))
+            cost.append((label, load_cost(entry)))
+            continue
         print("  retrieval ...", flush=True)
         retr.append((label, run_retrieval(entry, int(entry.get("timeout", 60)))))
         print("  cost ...", flush=True)
