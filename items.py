@@ -165,8 +165,18 @@ def main(argv=None):
                   % (band, len(sel), sum(1 for i in sel if i["flat"]),
                      sum(i["p"] for i in sel) / len(sel), sum(i["d"] for i in sel) / len(sel)))
         print("  %d of %d questions separate nobody at all" % (len(flat), len(items)))
-        report.append({"label": label, "items": items, "excluded": excluded,
-                       "traps": trap_table(path, items)})
+        # THE TRAP TABLE HAS TO REACH THE CONSOLE, not only the markdown: CI greps what this prints,
+        # and a number that lives only in a generated file is a number nobody checks.
+        traps = trap_table(path, items)
+        narrow = [t for t in traps if t["trap"] < 2]
+        wide = [t for t in traps if t["trap"] >= 2]
+        if traps:
+            print("  adversarial: %d one-word traps, mean D %s; %d wider, mean D %s"
+                  % (len(narrow),
+                     ("%+.2f" % (sum(t["d"] for t in narrow) / len(narrow))) if narrow else "-",
+                     len(wide),
+                     ("%+.2f" % (sum(t["d"] for t in wide) / len(wide))) if wide else "-"))
+        report.append({"label": label, "items": items, "excluded": excluded, "traps": traps})
     if not report:
         return 1
     write_md(md, report, shape)
