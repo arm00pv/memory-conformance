@@ -10,7 +10,7 @@ claim about silence. A subject's SCORE is what the paired test pairs on - the ri
 top three, plus a credit for declining a question with no answer. Its HITS are only the questions
 that have an answer and were answered correctly. "It answers nothing" is a claim about hits.
 
-**7 of the 19 claims hold in every setting measured.** The rest are printed beside the setting
+**7 of the 22 claims hold in every setting measured.** The rest are printed beside the setting
 that breaks them, because that setting is the claim's real scope.
 
 | claim | A written | A keywords | B written | B keywords | status |
@@ -34,6 +34,9 @@ that breaks them, because that setting is the claim's real scope.
 | best-hard | yes | yes | yes | yes | **HOLDS** |
 | best-adversarial | yes | no | no | no | **MIXED** |
 | phrasing-matters | yes | yes | **HOLDS** |
+| leader-is-steady | no | no | **FAILS** |
+| tie-means-same | no | no | **FAILS** |
+| corpora-agree | no | no | **FAILS** |
 
 ## Each claim, with what it rests on
 
@@ -138,3 +141,15 @@ that breaks them, because that setting is the claim's real scope.
 **phrasing-matters** - one subject's answer count moves by ten or more on phrasing alone. *HOLDS*
   - A written: true (memdb 1.4.0: 6 as written, 19 as keywords)
   - B written: true (memory-lean 1.5.0: 0 as written, 16 as keywords)
+
+**leader-is-steady** - one subject leads the retrieval table, however the table is ordered. *FAILS*
+  - A written: false (2 subjects lead at least one of the 12 rulers, and memory-mcp-1file 0.9.2 leads the most (9 of 12))
+  - B written: false (2 subjects lead at least one of the 12 rulers, and memory-mcp-1file 0.9.2 leads the most (9 of 12))
+
+**tie-means-same** - two subjects a ruler cannot separate answer the questions the same way. *FAILS*
+  - A written: false (the widest pair any ruler cannot separate disagreed on 36 of 60 questions (memory-lean 1.5.0 vs memory-mcp-1file 0.9.2, corpus A keywords score))
+  - B written: false (the widest pair any ruler cannot separate disagreed on 36 of 60 questions (memory-lean 1.5.0 vs memory-mcp-1file 0.9.2, corpus A keywords score))
+
+**corpora-agree** - every pair of corpora here reaches the same verdict on every pair of subjects. *FAILS*
+  - A written: false (verdicts that differ between corpora: A vs B 16 of 55, A vs C 16 of 55, B vs C 0 of 55)
+  - B written: false (verdicts that differ between corpora: A vs B 16 of 55, A vs C 16 of 55, B vs C 0 of 55)

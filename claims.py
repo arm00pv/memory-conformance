@@ -184,6 +184,90 @@ def fmt_lead(r, of="16"):
 
 # --- the claims ------------------------------------------------------------
 
+def _band():
+    """band.py's table of every pair on every ruler, computed once for the three claims that need it."""
+    import band
+    return band.analysis()
+
+
+def c_leader_steady(ctx, corpus, shape):
+    """One subject leads the retrieval table, however the table is ordered.
+
+    TWELVE RULERS, AND THE WINNER IS A PROPERTY OF THE RULER. Three corpora, two phrasings, two metrics:
+    if the subject at the top is not the same on all twelve, then "the best memory server here" is not a
+    sentence until it has a corpus, a phrasing and a metric in front of it. This is a claim about the
+    table rather than about a subject, so it is evaluated once per corpus and returns the same verdict.
+    """
+    got = _band()
+    leaders = got.get("leaders") or {}
+    if not leaders:
+        return None
+    import band
+    total = len([r for r in band.rulers() if band.totals(r[1], r[2], r[3])])
+    best = sorted(leaders.items(), key=lambda kv: (-len(kv[1]), kv[0]))
+    return (len(leaders) == 1,
+            "%d subjects lead at least one of the %d rulers, and %s leads the most (%d of %d)"
+            % (len(leaders), total, best[0][0], len(best[0][1]), total))
+
+
+def c_tie_means_same(ctx, corpus, shape):
+    """Two subjects a ruler cannot separate answer the questions the same way.
+
+    NOT SEPARATED IS NOT THE SAME AS SIMILAR, and the word tie is used for both. One pair here differs on
+    a single question and another differs on most of them, and both are "not separated" - so a reader who
+    takes the second for a tie is being told two servers are interchangeable when the instrument only
+    said it could not rank them.
+    """
+    got = _band()
+    pairs = got.get("pairs") or {}
+    if not pairs:
+        return None
+    worst = None
+    for ruler, cells in pairs.items():
+        for k, s in cells.items():
+            if s["separated"]:
+                continue
+            if worst is None or s["differ"] > worst[2]["differ"]:
+                worst = (ruler, k, s)
+    if worst is None:
+        return None
+    share = worst[2]["differ"] / float(worst[2]["n"])
+    return (share <= 0.10,
+            "the widest pair any ruler cannot separate disagreed on %d of %d questions (%s vs %s,"
+            " corpus %s %s %s)"
+            % (worst[2]["differ"], worst[2]["n"], worst[1][0], worst[1][1],
+               worst[0][0], worst[0][2], worst[0][3]))
+
+
+def c_corpora_agree(ctx, corpus, shape):
+    """Every pair of corpora here reaches the same verdict on every pair of subjects.
+
+    THE QUESTION A SECOND CORPUS IS SUPPOSED TO SETTLE, asked of all three at once. A verdict that flips
+    between two question sets is a verdict about the questions; the count of flips is the honest error bar
+    on the whole table. Reported for every pair of corpora rather than for the one pair that looked best.
+    """
+    import itertools
+    import band
+    import resolution
+    got = _band()
+    pairs = got.get("pairs") or {}
+    if not pairs:
+        return None
+    parts, all_zero = [], True
+    for c1, c2 in itertools.combinations([label for label, _p, _s in resolution.CORPORA], 2):
+        a = band.cell(pairs, c1, "written", "score")
+        b = band.cell(pairs, c2, "written", "score")
+        common = set(a) & set(b)
+        if not common:
+            continue
+        diff = sum(1 for k in common if a[k]["separated"] != b[k]["separated"])
+        all_zero = all_zero and diff == 0
+        parts.append("%s vs %s %d of %d" % (c1, c2, diff, len(common)))
+    if not parts:
+        return None
+    return all_zero, "verdicts that differ between corpora: " + ", ".join(parts)
+
+
 def c_most_hits(ctx, corpus, shape):
     r = leads(LEADER, corpus, lambda n, c, s: hits(n, c, s), shape)
     return (r["strict"], fmt_lead(r, of="48")) if r else None
@@ -539,6 +623,12 @@ CLAIMS = [
      c_best_adversarial, True),
     ("phrasing-matters", "one subject's answer count moves by ten or more on phrasing alone.",
      c_phrasing_matters, False),
+    ("leader-is-steady", "one subject leads the retrieval table, however the table is ordered.",
+     c_leader_steady, False),
+    ("tie-means-same", "two subjects a ruler cannot separate answer the questions the same way.",
+     c_tie_means_same, False),
+    ("corpora-agree", "every pair of corpora here reaches the same verdict on every pair of subjects.",
+     c_corpora_agree, False),
 ]
 
 

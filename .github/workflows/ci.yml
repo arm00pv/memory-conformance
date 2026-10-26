@@ -31,6 +31,9 @@ jobs:
           python claims.py
           test -s CLAIMS.md
           grep -q "claims hold in every setting measured" CLAIMS.md
+          grep -q "leader-is-steady" CLAIMS.md
+          grep -q "tie-means-same" CLAIMS.md
+          grep -q "corpora-agree" CLAIMS.md
       - name: every question must be analysed for whether it separates anybody
         run: |
           python items.py > /tmp/items.txt
@@ -50,6 +53,27 @@ jobs:
           cat /tmp/res.txt
           grep -q "pairs separated" /tmp/res.txt
           grep -q "NOT separated from" /tmp/res.txt
+
+      # A COUNT WITH A ZERO DENOMINATOR IS NOT A ZERO. The between-corpora table here printed "0 of 0"
+      # for three phases because a two-part key was looked up in a dict keyed by three parts, and an
+      # empty comparison formats exactly like a finding. This asserts the denominator is there.
+      - name: a comparison with no pairs in it must not look like a result
+        run: |
+          if grep -q "0 of 0" RESOLUTION.md; then
+            echo "RESOLUTION.md contains an empty comparison presented as a count"; exit 1
+          fi
+          grep -q "Between the corpora" RESOLUTION.md
+          grep -q "A vs B" RESOLUTION.md
+
+      - name: a tie must be reported as one of its three kinds, with a price
+        run: |
+          python band.py > /tmp/band.txt
+          cat /tmp/band.txt
+          test -s BAND.md
+          grep -q "What kinds of tie there are" BAND.md
+          grep -q "SMALL BUT REAL" BAND.md
+          grep -q "would need" BAND.md
+          grep -q "rulers at the top" BAND.md
       - name: a paired test must say when the twelve-point switch decides it
         run: |
           python compare.py zenbrain control > /tmp/pair.txt
