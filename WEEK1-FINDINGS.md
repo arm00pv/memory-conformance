@@ -2522,6 +2522,89 @@ and greps its output for the two things the phase is about; the trap comparison 
 into `ITEMS.md`, so the job failed on its first push. The check was right and the tool was wrong,
 and the fix belonged in the tool: a number that lives only inside a generated document is a number
 nothing verifies. It prints to the console now, and the console is what CI reads.
+---
+
+## Addendum 24: how many of the comparisons this corpus can actually make
+
+Every row of the retrieval table sits next to every other row, and the repository has been inviting
+fifty-five comparisons while testing one at a time on request. Nobody had asked the instrument how many
+of them it can settle.
+
+`resolution.py` runs the exact McNemar test for all 55 pairs, on both corpora, in both phrasings, on both
+metrics:
+
+| corpus | phrasing | on the score | on hits alone |
+|---|---|---|---|
+| A | written | 39 of 55 | 43 of 55 |
+| A | keywords | 41 of 55 | 42 of 55 |
+| B | written | 37 of 55 | 38 of 55 |
+| B | keywords | 31 of 55 | 39 of 55 |
+
+Roughly two thirds, and fourteen pairs change verdict between the two phrasings on each corpus. That is
+the resolution of the instrument, and it is now a number rather than an impression.
+
+### The top of the table is a three-way tie, on the score
+
+The groups the separation relation cannot split, on corpus A as written:
+
+- seven subjects - `server-memory` twice, `memento`, `memdb`, `memory-lean`, `mcp-knowledge-graph` and
+  `mcp-duckdb-memory-server` - of whose 21 internal pairs 8 are separated directly. A staircase.
+- three subjects - `control`, `zenbrain`, `memory-mcp-1file` - of whose 3 internal pairs **none** is.
+  A genuine tie, at the top of the table, between the leader, the runner-up and a toy server with a
+  keyword search bolted on.
+
+### And the two metrics disagree about which of them is ahead
+
+This is the phase's real find. The leader against each of the others, on both metrics:
+
+| against | score, written | score, keywords | hits, written | hits, keywords |
+|---|---|---|---|---|
+| `control` | 0.345 | 1.000 | **0.000** | **0.002** |
+| `zenbrain` | 0.581 | **0.022** | 0.774 | **0.022** |
+| `memory-lean` | **0.009** | 0.065 | **0.000** | **0.000** |
+
+**The leader beats the control never on the score and three times out of four on hits.** The mechanism is
+the one from addendum 22: the leader answers eleven of the twelve unanswerable questions, the control
+declines all twelve, and the score hands eleven points straight back. Remove the switch and the gap is
+there in three of four readings.
+
+And the runner-up behaves the other way round. zenbrain against the control is separated on the score in
+three of four readings and on hits in one of four. So on the score the runner-up looks better than the
+leader relative to the same yardstick, and on hits the leader looks better than the runner-up. **Each
+metric prefers a different subject.**
+
+That is now the ledger's `metrics-agree` claim, and it **FAILS in all four settings**.
+
+### Three of my own mistakes, all caught on screen
+
+**27. Two lists read from two different keys of one dictionary.** Pairs were stored in file order in one
+place and looked up alphabetically sorted in another, so the "separated from" list and the "not separated
+from" list contradicted each other in the same console output - `mcp-duckdb-memory-server` appeared in
+both. One canonical key per pair now.
+
+**28. The tie groups silently collapsed when the metric dimension arrived.** `tie_groups` still read the
+two-key block after every block gained a third key, so it found no pairs, unioned nothing, and reported
+all eleven subjects as singletons - each one helpfully labelled "alone: separated from everybody", which
+is a sentence contradicted by the table three lines above it. A `KeyError` would have been kinder; the
+`.get(...) or {}` that made it silent is the reason it was not.
+
+**29. The first version reported the score only, and the score says the opposite.** Before the metric
+dimension existed, the leader's row said "not separated from the control", full stop. That is true, and
+it is half the story, and it is the half that would have been published. The hits column - 0.000 and
+0.002 - was added because the tie looked too neat for a subject that gets seventeen more questions right.
+
+### What this does not do
+
+It does not resolve the tie. Sixty questions cannot separate a leader from a runner-up on the score, and
+repeating the same sixty cannot fix that; only more questions, or different ones, can. What it does is
+say so in numbers a reader can check, so that "memory-mcp-1file leads" is published with its scope
+attached instead of standing alone.
+
+### What this costs
+
+One script, one generated table, one claim that fails four times, and no re-measurement: it reads the
+rows that were already on disk. Seven of eighteen claims hold everywhere.
+
 
 ### What this does not say
 

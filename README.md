@@ -29,7 +29,7 @@ independently written corpora and in two phrasings, and writes the verdicts to `
 
 ```
 $ python claims.py
-**7 of the 17 claims hold in every setting measured.**
+**7 of the 18 claims hold in every setting measured.**
 ```
 
 Five survive everywhere, including the one that matters most: **memory-mcp-1file answers more
@@ -267,6 +267,51 @@ and +0.51 across thirteen. Two groups of that size over ten subjects cannot sett
 measurement does is stop the warning from being either ignored or obeyed without a number next to it.
 
 Full tables, including every question that separates nobody, are in [`ITEMS.md`](ITEMS.md).
+
+## What the corpus can separate
+
+Every row of the retrieval table sits next to every other, and `compare.py` answers the question for one
+pair at a time. `resolution.py` asks it for all **55 pairs** at once, which is the question the tie block
+makes urgent: six subjects score the same twelve points, and a table that lists them in some order invites
+a reader to read an order into it.
+
+| corpus | phrasing | pairs separated, on the score | on hits alone |
+|---|---|---|---|
+| A | written | **39 of 55** | 43 of 55 |
+| A | keywords | **41 of 55** | 42 of 55 |
+| B | written | **37 of 55** | 38 of 55 |
+| B | keywords | **31 of 55** | 39 of 55 |
+
+So the instrument settles roughly two thirds of the comparisons it invites, and 14 pairs change verdict
+between the two phrasings on each corpus. The groups it cannot split, computed from the separation
+relation rather than from the scores:
+
+- **`server-memory` 1.0.0 and 2.0.0, `memento`, `memdb`, `memory-lean`, `mcp-knowledge-graph`,
+  `mcp-duckdb-memory-server`** - one group, but 8 of its 21 internal pairs are separated directly. A
+  staircase, not a tie.
+- **`control`, `zenbrain`, `memory-mcp-1file`** - one group, and **none** of its three internal pairs is
+  separated on the score. A genuine three-way tie at the top of the table.
+- **`statecore-mcp`** - alone, separated from everybody.
+
+### The leader is not ahead of the control, until you remove the twelve-point switch
+
+| `memory-mcp-1file` against | score, written | score, keywords | hits, written | hits, keywords |
+|---|---|---|---|---|
+| `control` | 0.345 | 1.000 | **0.000** | **0.002** |
+| `zenbrain` | 0.581 | **0.022** | 0.774 | **0.022** |
+| `memory-lean` | **0.009** | 0.065 | **0.000** | **0.000** |
+| everyone else | **separated on all four readings** | | | |
+
+Bold is a pair the corpus separates. The leader beats the positive control **never** on the score and
+**three times out of four** on hits, and the reason is the twelve-point switch: the leader answers eleven
+of the unanswerable questions and the control declines all twelve, which hands eleven points back and
+cancels a gap the hit count can see. Against the runner-up the pattern has the same shape and a different
+cause - phrasing, not the switch.
+
+That is what the ledger's `metrics-agree` claim tests, and it **FAILS in all four settings**: the two
+metrics do not rank the top of this table the same way, and each of them prefers a different subject.
+
+Full tables, including every pair and every flip, are in [`RESOLUTION.md`](RESOLUTION.md).
 ## A second corpus, written blind
 
 Every retrieval number in this file rests on a question set written by the same hand that wrote the
