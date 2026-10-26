@@ -321,6 +321,27 @@ def analysis():
     return _ANALYSIS
 
 
+def grounds(pairs, leaders, name):
+    """The rulers that put a non-leading subject in contention, with the p that kept it there.
+
+    A BAND WIDER THAN ITS LEADERS IS A FACT ABOUT THE DEFINITION, and a reader deserves to see which
+    rulers admitted each member rather than being handed four names and no reason. One of these subjects
+    is in contention on a single ruler, at p = 0.065, which is the "not separated is not similar" case
+    admitted through the front door.
+    """
+    out = []
+    for ruler in rulers():
+        tops = tops_of(ruler)
+        if name in tops:
+            continue
+        for key, s in (pairs.get(ruler) or {}).items():
+            if s["separated"] or name not in key:
+                continue
+            if any(t in key for t in tops):
+                out.append("%s %s %s at p = %.3f" % (ruler[0], ruler[2], ruler[3], s["p"]))
+    return out
+
+
 def main(argv=None):
     got = analysis()
     people = got["people"]
@@ -382,6 +403,14 @@ def write_md(path, people, leaders, contenders, pairs):
     add("")
     add("A subject that leads on some rulers and not others is not the leader of anything. It is the")
     add("answer to a question about which ruler was picked.")
+    wider = [n for n in contenders if n not in leaders]
+    if wider:
+        add("")
+        add("The band is wider than its leaders. These subjects lead nothing and are not separated from")
+        add("someone who does, which is the whole of their claim to be in the tables below:")
+        add("")
+        for name in wider:
+            add("- `%s` - %s" % (name, "; ".join(grounds(pairs, leaders, name)) or "no ground"))
     add("")
     counts = {}
     for ruler in rulers():

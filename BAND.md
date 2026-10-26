@@ -36,6 +36,12 @@ the same on all twelve.
 A subject that leads on some rulers and not others is not the leader of anything. It is the
 answer to a question about which ruler was picked.
 
+The band is wider than its leaders. These subjects lead nothing and are not separated from
+someone who does, which is the whole of their claim to be in the tables below:
+
+- `memory-lean 1.5.0` - A keywords score at p = 0.065
+- `zenbrain 0.3.0` - A written score at p = 0.581; A written hits at p = 0.774; B keywords hits at p = 0.453; C keywords hits at p = 0.267
+
 ## What kinds of tie there are
 
 Every pair on every ruler, classified by what the corpus failed to separate:
