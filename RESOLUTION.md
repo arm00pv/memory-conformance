@@ -42,26 +42,77 @@ cannot see, and a table that lists it in order invites a reader to see one anywa
 - memdb 1.4.0 vs statecore-mcp 1.0.0: p 0.006 as written, 0.125 as keywords
 - mcp-knowledge-graph 1.3.2 vs memory-lean 1.5.0: p 1.000 as written, 0.000 as keywords
 
-## Between the two corpora
+## Corpus C
 
-| phrasing | pairs whose verdict differs between corpus A and corpus B |
-|---|---|
-| written | **0 of 0** |
-| keywords | **0 of 0** |
+| phrasing | on the score | on hits alone |
+|---|---|---|
+| written | **37 of 55** | **38 of 55** |
+| keywords | **38 of 55** | **39 of 55** |
+
+**9 pair(s) change verdict between the two phrasings.**
+
+- memory-lean 1.5.0 vs server-memory 1.0.0: p 1.000 as written, 0.000 as keywords
+- memory-lean 1.5.0 vs server-memory 2.0.0: p 1.000 as written, 0.000 as keywords
+- memento 0.7.0 vs memory-lean 1.5.0: p 0.458 as written, 0.043 as keywords
+- mcp-knowledge-graph 1.3.2 vs memory-lean 1.5.0: p 1.000 as written, 0.000 as keywords
+- memory-lean 1.5.0 vs zenbrain 0.3.0: p 0.005 as written, 0.701 as keywords
+- memory-lean 1.5.0 vs memory-mcp-1file 0.9.2: p 0.000 as written, 0.229 as keywords
+- memory-lean 1.5.0 vs statecore-mcp 1.0.0: p 1.000 as written, 0.000 as keywords
+- mcp-duckdb-memory-server 1.1.10 vs memory-lean 1.5.0: p 0.003 as written, 0.180 as keywords
+
+## Between the corpora
+
+The same pair of subjects, judged on different question sets. A verdict that changes here is a
+verdict about the corpus, not about the two subjects.
+
+**THIS TABLE WAS VACUOUS FOR THREE PHASES AND PRINTED ZERO-OF-ZERO.** The rows below were looked up with a
+two-part key against a dict keyed by three, so `blocks.get` returned `None` every time and the
+comparison ran over an empty set. Printed as a finding, an empty comparison reads exactly like a
+result - the two corpora never disagree - which is the failure mode this whole repository is
+about. A count with a zero denominator is not a zero.
+
+| corpora | phrasing | verdicts that differ, on the score | on hits alone |
+|---|---|---|---|
+| A vs B | written | **16 of 55** | **15 of 55** |
+| A vs B | keywords | **16 of 55** | **9 of 55** |
+| A vs C | written | **16 of 55** | **15 of 55** |
+| A vs C | keywords | **9 of 55** | **9 of 55** |
+| B vs C | written | **0 of 55** | **0 of 55** |
+| B vs C | keywords | **7 of 55** | **0 of 55** |
 
 ## The groups it cannot split
 
-Computed from the separation relation on corpus A as written, not from the scores. A group is a
-connected component of *not separated*: members can be linked by a chain, so not every pair
+Computed from the separation relation, not from the scores, on each corpus as written. A group
+is a connected component of *not separated*: members can be linked by a chain, so not every pair
 inside one is directly indistinguishable. The count says how many of a group's own pairs the
 corpus does separate, which is the number a reader needs to see whether a group is a tie or a
 staircase.
+
+### Corpus A, as written
 
 1. `server-memory 1.0.0`, `server-memory 2.0.0`, `memento 0.7.0`, `memdb 1.4.0`, `memory-lean 1.5.0`, `mcp-knowledge-graph 1.3.2`, `mcp-duckdb-memory-server 1.1.10`
    8 of its 21 internal pairs are separated directly.
 2. `control 1.0.0`, `zenbrain 0.3.0`, `memory-mcp-1file 0.9.2`
    0 of its 3 internal pairs are separated directly.
 3. `statecore-mcp 1.0.0`
+   alone: separated from everybody.
+
+### Corpus B, as written
+
+1. `server-memory 1.0.0`, `server-memory 2.0.0`, `memento 0.7.0`, `memory-lean 1.5.0`, `mcp-knowledge-graph 1.3.2`, `zenbrain 0.3.0`, `statecore-mcp 1.0.0`, `mcp-duckdb-memory-server 1.1.10`
+   11 of its 28 internal pairs are separated directly.
+2. `control 1.0.0`, `memory-mcp-1file 0.9.2`
+   0 of its 1 internal pairs are separated directly.
+3. `memdb 1.4.0`
+   alone: separated from everybody.
+
+### Corpus C, as written
+
+1. `server-memory 1.0.0`, `server-memory 2.0.0`, `memento 0.7.0`, `memory-lean 1.5.0`, `mcp-knowledge-graph 1.3.2`, `zenbrain 0.3.0`, `statecore-mcp 1.0.0`, `mcp-duckdb-memory-server 1.1.10`
+   11 of its 28 internal pairs are separated directly.
+2. `control 1.0.0`, `memory-mcp-1file 0.9.2`
+   0 of its 1 internal pairs are separated directly.
+3. `memdb 1.4.0`
    alone: separated from everybody.
 
 ## The leader's own row

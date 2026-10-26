@@ -31,7 +31,9 @@ import sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 os.chdir(HERE)
 
-CORPORA = [("A", "retrieval_corpus.json", ""), ("B", "retrieval_corpus_b.json", "-b")]
+CORPORA = [("A", "retrieval_corpus.json", ""), ("B", "retrieval_corpus_b.json", "-b"),
+           ("C", "retrieval_corpus_c.json", "-c")]
+SUFFIX = dict((label, suffix) for label, _p, suffix in CORPORA)
 SHAPES = ("written", "keywords")
 
 
@@ -150,7 +152,8 @@ def main(argv=None):
                                       if s["label"] != leader
                                       and (min(leader, s["label"]), max(leader, s["label"])) not in sep))
                      or "nobody"))
-    groups = tie_groups(present, blocks)
+    groups = dict((label, tie_groups(present, blocks, (label, "written", "score")))
+                  for label, _p, _s in CORPORA)
     write_md(os.path.join(HERE, "RESOLUTION.md"), present, blocks, groups, total)
     return 0
 
@@ -161,7 +164,7 @@ def top_subject(present, blocks, key):
     best, score = None, -1
     cells = blocks.get(key) or {}
     for s in present:
-        rows = rows_of(s["slug"], "")
+        rows = rows_of(s["slug"], SUFFIX.get(key[0], ""))
         if not rows:
             continue
         got = sum(1 for r in rows if compare.correct(r))
@@ -170,9 +173,9 @@ def top_subject(present, blocks, key):
     return best
 
 
-def tie_groups(present, blocks):
+def tie_groups(present, blocks, key=("A", "written", "score")):
     """The groups the corpus cannot split, from the separation relation and not from the scores."""
-    cells = blocks.get(("A", "written", "score")) or {}
+    cells = blocks.get(key) or {}
     parent = dict((s["label"], s["label"]) for s in present)
 
     def find(x):
@@ -192,7 +195,7 @@ def tie_groups(present, blocks):
     return sorted(out.values(), key=len, reverse=True)
 
 
-def write_md(path, present, blocks, groups, total):
+def write_md(path, present, blocks, all_groups, total):
     lines = []
     add = lines.append
     add("# What this corpus can separate")
@@ -229,34 +232,51 @@ def write_md(path, present, blocks, groups, total):
                     add("- %s vs %s: p %.3f as written, %.3f as keywords"
                         % (a, b, w.get("p", 0), k["p"]))
                 add("")
-    add("## Between the two corpora")
+    add("## Between the corpora")
     add("")
-    add("| phrasing | pairs whose verdict differs between corpus A and corpus B |")
-    add("|---|---|")
-    for shape in SHAPES:
-        aw = blocks.get(("A", shape)) or {}
-        bw = blocks.get(("B", shape)) or {}
-        common = set(aw) & set(bw)
-        diff = sum(1 for k in common if aw[k]["separated"] != bw[k]["separated"])
-        add("| %s | **%d of %d** |" % (shape, diff, len(common)))
+    add("The same pair of subjects, judged on different question sets. A verdict that changes here is a")
+    add("verdict about the corpus, not about the two subjects.")
+    add("")
+    add("**THIS TABLE WAS VACUOUS FOR THREE PHASES AND PRINTED ZERO-OF-ZERO.** The rows below were looked up with a")
+    add("two-part key against a dict keyed by three, so `blocks.get` returned `None` every time and the")
+    add("comparison ran over an empty set. Printed as a finding, an empty comparison reads exactly like a")
+    add("result - the two corpora never disagree - which is the failure mode this whole repository is")
+    add("about. A count with a zero denominator is not a zero.")
+    add("")
+    add("| corpora | phrasing | verdicts that differ, on the score | on hits alone |")
+    add("|---|---|---|---|")
+    names = [label for label, _p, _s in CORPORA]
+    for c1, c2 in itertools.combinations(names, 2):
+        for shape in SHAPES:
+            row = []
+            for metric in ("score", "hits"):
+                a = blocks.get((c1, shape, metric)) or {}
+                b = blocks.get((c2, shape, metric)) or {}
+                common = set(a) & set(b)
+                diff = sum(1 for k in common if a[k]["separated"] != b[k]["separated"])
+                row.append("**%d of %d**" % (diff, len(common)))
+            add("| %s vs %s | %s | %s | %s |" % (c1, c2, shape, row[0], row[1]))
     add("")
     add("## The groups it cannot split")
     add("")
-    add("Computed from the separation relation on corpus A as written, not from the scores. A group is a")
-    add("connected component of *not separated*: members can be linked by a chain, so not every pair")
+    add("Computed from the separation relation, not from the scores, on each corpus as written. A group")
+    add("is a connected component of *not separated*: members can be linked by a chain, so not every pair")
     add("inside one is directly indistinguishable. The count says how many of a group's own pairs the")
     add("corpus does separate, which is the number a reader needs to see whether a group is a tie or a")
     add("staircase.")
-    add("")
-    cells = blocks.get(("A", "written", "score")) or {}
-    for i, group in enumerate(groups, 1):
-        inside = list(itertools.combinations(group, 2))
-        split = sum(1 for k in inside if (cells.get(tuple(sorted(k))) or {}).get("separated"))
-        add("%d. %s" % (i, ", ".join("`%s`" % g for g in group)))
-        if len(group) > 1:
-            add("   %d of its %d internal pairs are separated directly." % (split, len(inside)))
-        else:
-            add("   alone: separated from everybody.")
+    for label, _p, _s in CORPORA:
+        add("")
+        add("### Corpus %s, as written" % label)
+        add("")
+        cells = blocks.get((label, "written", "score")) or {}
+        for i, group in enumerate(all_groups.get(label) or [], 1):
+            inside = list(itertools.combinations(group, 2))
+            split = sum(1 for k in inside if (cells.get(tuple(sorted(k))) or {}).get("separated"))
+            add("%d. %s" % (i, ", ".join("`%s`" % g for g in group)))
+            if len(group) > 1:
+                add("   %d of its %d internal pairs are separated directly." % (split, len(inside)))
+            else:
+                add("   alone: separated from everybody.")
     add("")
     leader = top_subject(present, blocks, ("A", "written", "score"))
     if leader:
