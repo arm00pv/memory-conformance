@@ -81,6 +81,12 @@ jobs:
           test -s MUTANTS.md
           grep -q "on its own" MUTANTS.md
           grep -q "Every predicted verdict matched" MUTANTS.md
+      - name: the cost of a search must be measured at a depth, not at a corpus
+        run: |
+          python growth.py --max=500 --no-save > /tmp/grow.txt
+          cat /tmp/grow.txt
+          grep -q "cost per write" /tmp/grow.txt
+          test -s GROWTH.md
       - name: the retrieval scale must have a measured ceiling and a non-zero floor
         run: |
           python calibration.py --repeat=1 > /tmp/cal.txt

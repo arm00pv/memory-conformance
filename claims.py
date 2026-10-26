@@ -287,6 +287,12 @@ def c_floor_not_zero(ctx, corpus, shape):
                      % (got, n, absent))
 
 
+def statistics_median(values):
+    import statistics
+    vals = [v for v in values if v]
+    return statistics.median(vals) if vals else None
+
+
 def _separated(corpus, shape, metric, a, b):
     """The paired verdict for two subjects, on one metric, from the saved retrieval rows."""
     import resolution
@@ -298,6 +304,30 @@ def _separated(corpus, shape, metric, a, b):
     if ra is None or rb is None:
         return None
     return resolution.compare_pair(ra, rb, shape, metric)
+
+
+def c_search_flat(ctx, corpus, shape):
+    """A search costs the same whether the store holds ten records or two thousand.
+
+    THE COST TABLE MEASURES SEARCH AT SEVENTY-TWO RECORDS. Every subject is quoted at a search latency
+    taken on a store the size of the retrieval corpus, and used by agents that store thousands. If a
+    search walks the store, that latency is a number about a corpus and not about a memory, and the
+    difference is the one number in this repository an agent runtime would actually budget against.
+    """
+    import growth
+    runs = growth.load_runs()
+    grew = []
+    for label in sorted(runs):
+        rs = runs[label]
+        depths = sorted(set(int(d) for r in rs for d in r["searches"]))
+        if len(depths) < 2:
+            continue
+        first = statistics_median([r["searches"].get(str(depths[0])) for r in rs])
+        last = statistics_median([r["searches"].get(str(depths[-1])) for r in rs])
+        if first and last and last / first >= 1.5:
+            grew.append("%s x%.0f" % (label.split()[0], last / first))
+    return (not grew, ("%d subject(s) cost more to search at %d records than at %d (%s)"
+                       % (len(grew), 3000, 5, ", ".join(grew) or "none")))
 
 
 def c_metrics_agree(ctx, corpus, shape):
@@ -497,6 +527,8 @@ CLAIMS = [
      c_absent_band_flat, True),
     ("metrics-agree", "the score and the answerable-only count rank the top of the table the same way.",
      c_metrics_agree, True),
+    ("search-is-flat", "a search costs the same on a small store and a large one.",
+     c_search_flat, False),
     ("leaks-state", "memory-mcp-1file leaks state between stores and is out of scope.",
      c_leaks_state, False),
     ("leanest", "memory-lean returns fewer bytes per question than any subject that answers anything.",
