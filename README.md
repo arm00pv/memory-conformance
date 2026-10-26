@@ -29,7 +29,7 @@ independently written corpora and in two phrasings, and writes the verdicts to `
 
 ```
 $ python claims.py
-**7 of the 18 claims hold in every setting measured.**
+**7 of the 19 claims hold in every setting measured.**
 ```
 
 Five survive everywhere, including the one that matters most: **memory-mcp-1file answers more
@@ -633,6 +633,40 @@ with 2 unanswerable — `foreign_field` and `foreign_record` have no equivalent 
 markdown notes. `retained` is the answer to the probe that fails: append-only, hash-chained,
 read-back verified before the write is acknowledged.
 
+
+## Cost is a function of depth, and every figure above was taken at the shallow end
+
+The cost table times a write into an empty store and a search over the 72-record retrieval corpus.
+Agents store thousands over months. `growth.py` takes each subject to **3000 records inside one server
+lifetime** and times the writes and the searches as the store fills.
+
+**Every subject costs more to search when the store is large, and memento costs enormously more.**
+
+| subject | search at 100 records | at 2000 | growth |
+|---|---|---|---|
+| `memento` | 43-48 ms | **6.7-8.5 s** | **x140** |
+| `control` | 1.3 ms | 20.1 ms | x61 |
+| `mcp-duckdb-memory-server` | 20.3 ms | 594 ms | x54 |
+| `memdb` | 7.8 ms | 62 ms | x25 |
+| `statecore-mcp` | 2.3 ms | 11.7 ms | x6 |
+| `memory-lean`, `mcp-knowledge-graph`, `zenbrain` | ~3 ms | 9-10 ms | x3 |
+| `server-memory` 1.0.0 and 2.0.0 | 1.8-2.5 ms | 6.5-6.9 ms | x3 |
+
+memento is the one that matters. On a 72-record store a search costs 5 ms and looks free; at 2000
+records it costs **six to eight seconds**, in both runs, roughly doubling for every doubling past 500.
+An agent with a ten-second tool budget loses it somewhere between five hundred and a thousand memories.
+
+**The predictions were wrong in an instructive direction.** The rewrite-on-every-write server - the
+architectural choice that loses fields, and the one predicted to make writes grow - shows no clear write
+growth at all: rewriting a few hundred kilobytes is cheaper than the round trip carrying the write. What
+did grow was the write cost of four subjects that are not rewriting anything wholesale, by 1.7x to 2.9x
+at 2000 records, three of them reproducing in both runs.
+
+So the honest reading of the cost table is that it is **not wrong, it is shallow**. Every figure in it
+describes a memory holding under a hundred records, which is what the conformance and retrieval runs use.
+The ledger's `search-is-flat` claim tests the obvious extrapolation and **FAILS**.
+
+Full tables, both runs, in [`GROWTH.md`](GROWTH.md).
 ## Run it on your own server
 
 One command, no configuration, and it tells you what it could not measure:

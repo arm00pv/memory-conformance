@@ -2604,6 +2604,83 @@ attached instead of standing alone.
 
 One script, one generated table, one claim that fails four times, and no re-measurement: it reads the
 rows that were already on disk. Seven of eighteen claims hold everywhere.
+---
+
+## Addendum 25: cost is a function of how much is stored, and every figure here was shallow
+
+The cost table quotes a write latency taken on an empty store and a search latency taken over the
+72-record retrieval corpus. Agents store thousands over months. If either number depends on depth, the
+table describes the shallow end of a curve and says nothing about what an agent pays.
+
+### The prediction, written first
+
+`growth.py` records, before running anything, what it expects: the control appends one line under a
+lock and should be flat; the reference server parses its store into a model and rewrites the whole file
+on every write - the documented reason it drops unknown fields - and should grow; memento inserts a row
+into SQLite and should be flat.
+
+### What happened
+
+The reference server does not grow. At 3000 records its write cost is the same as at 25, because
+rewriting a few hundred kilobytes is cheaper than the JSON-RPC round trip that carries the write. The
+mechanism I predicted is real and too small to see at any depth an agent reaches - which is the good
+outcome, and the first time in this project that a prediction has failed in the reassuring direction.
+
+What did grow was the write cost of four subjects that rewrite nothing wholesale:
+
+| subject | write at 25 records | at 2000 | growth | runs agreeing |
+|---|---|---|---|---|
+| `statecore-mcp` | 4.9 ms | 13.7 ms | x2.9 | 2 of 2 |
+| `mcp-knowledge-graph` | 6.3 ms | 14.3 ms | x1.9 | 2 of 2 |
+| `memory-lean` | 5.0 ms | 10.5 ms | x1.8 | 2 of 2 |
+| `server-memory 1.0.0` | 6.8 ms | 13.8 ms | x1.7 | 1 of 1 |
+
+### The searches are where it bites
+
+Every subject costs more to search as the store fills. On memento it is not a slope, it is a cliff:
+
+| records | 100 | 250 | 500 | 1000 | 2000 |
+|---|---|---|---|---|---|
+| memento, run 1 | 43 ms | 45 ms | 170 ms | **3408 ms** | **6671 ms** |
+| memento, run 2 | 48 ms | 52 ms | 192 ms | **4394 ms** | **8454 ms** |
+
+Six to eight seconds per search at two thousand records, in both runs, roughly doubling for every
+doubling past five hundred. The published figure is 5 ms, taken over 72 records, and it is not wrong -
+it is a measurement of a different machine from the one anybody would deploy.
+
+The other subjects grow more gently and still grow: the control by 61x (it reads the whole store and
+filters locally), duckdb by 54x to 594 ms, memdb by 25x, and the rest by three to six. Not one of the
+eleven is flat, which is why the ledger claim `search-is-flat` **FAILS**.
+
+### Two things this does not say
+
+It does not say memento is bad. It says that a memory which is fast at seventy records is not
+therefore fast at two thousand, and that a latency quoted without its depth is a number about a
+corpus. The same table that makes memento look expensive at depth is the one that shows it storing a
+million records for free in addendum 9.
+
+It does not establish where each curve ends. Three thousand records is a fortnight for one agent and an
+hour for another; the measurement bounds the curve, it does not close it.
+
+### Mistakes
+
+**30. The tool threw away other subjects when I re-ran one.** The first version of `growth.py` rewrote
+GROWTH.md from the run in hand, so repeating memento to check a 6.7-second number would have deleted ten
+subjects from the table. Runs accumulate in `results/growth.json` and the table is built from all of
+them, which also gives the "runs agreeing" column - the only reason the four write-growth findings can
+be told apart from noise.
+
+**31. The first depth was too shallow to answer the question.** Five hundred records showed every
+subject flat, including the ones that turn out not to be. The per-call transport overhead is ten
+milliseconds; store work at five hundred records is a fraction of a millisecond. A flat line there says
+the work is below the noise floor, not that it is absent, and the checkpoints now go to three thousand
+for exactly that reason.
+
+### What this costs
+
+One script, one generated table, one claim that fails, and about twenty minutes of measuring. No
+retrieval number and no probe verdict moved.
+
 
 
 ### What this does not say
