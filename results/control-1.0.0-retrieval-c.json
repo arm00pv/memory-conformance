@@ -1,0 +1,1831 @@
+{
+  "adapter": "control",
+  "summary": {
+    "easy": {
+      "n": 16,
+      "hit1": 14,
+      "hit3": 16,
+      "hit1_keyword": 15,
+      "hit3_keyword": 16,
+      "runs": [
+        16,
+        16,
+        16
+      ]
+    },
+    "hard": {
+      "n": 16,
+      "hit1": 0,
+      "hit3": 0,
+      "hit1_keyword": 0,
+      "hit3_keyword": 0,
+      "runs": [
+        0,
+        0,
+        0
+      ]
+    },
+    "adversarial": {
+      "n": 15,
+      "hit1": 14,
+      "hit3": 15,
+      "hit1_keyword": 15,
+      "hit3_keyword": 15,
+      "runs": [
+        15,
+        15,
+        15
+      ]
+    },
+    "absent": {
+      "n": 12,
+      "answered": 0,
+      "answered_keyword": 0,
+      "runs": [
+        0,
+        0,
+        0
+      ]
+    },
+    "all": {
+      "n": 59,
+      "hit1": 28,
+      "hit3": 31,
+      "hit1_keyword": 30,
+      "hit3_keyword": 31,
+      "runs": [
+        31,
+        31,
+        31
+      ]
+    }
+  },
+  "rows": [
+    {
+      "query": "What is the principal instrument housed in the east dome?",
+      "expect": "grubb-refractor-aperture",
+      "difficulty": "easy",
+      "returned": [
+        "grubb-refractor-aperture"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "principal instrument housed east dome",
+      "returned_keyword": [
+        "grubb-refractor-aperture"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "Which telescope is used chiefly for public viewing on clear Friday evenings between October and March?",
+      "expect": "west-dome-cassegrain",
+      "difficulty": "easy",
+      "returned": [
+        "west-dome-cassegrain",
+        "public-viewing-evenings"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "telescope chiefly public viewing clear friday evening october march",
+      "returned_keyword": [
+        "west-dome-cassegrain",
+        "public-viewing-evenings"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "How often is the primary mirror of the 0.5-metre Newtonian sent away for re-aluminising?",
+      "expect": "mirror-recoating-cycle",
+      "difficulty": "easy",
+      "returned": [
+        "mirror-recoating-cycle"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "primary mirror 0 5 metre newtonian sent away re aluminising",
+      "returned_keyword": [
+        "mirror-recoating-cycle"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "When was the public archive of night-sky photographs established by council resolution?",
+      "expect": "archive-founding-year",
+      "difficulty": "easy",
+      "returned": [
+        "archive-founding-year",
+        "fifty-seven-archive-sales-rule"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "public archive night sky photograph established council resolution",
+      "returned_keyword": [
+        "archive-founding-year",
+        "fifty-seven-archive-sales-rule",
+        "fifty-two-archivist-handover"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "What is the oldest holding?",
+      "expect": "oldest-holding-plate",
+      "difficulty": "easy",
+      "returned": [
+        "oldest-holding-plate",
+        "archive-founding-year",
+        "grubb-refractor-aperture"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "oldest holding",
+      "returned_keyword": [
+        "oldest-holding-plate",
+        "archive-founding-year",
+        "grubb-refractor-aperture"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "Who has taken the Sunday 09:00 observation since 2011?",
+      "expect": "observer-rota",
+      "difficulty": "easy",
+      "returned": [
+        "observer-rota"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "sunday 09 00 observation 2011",
+      "returned_keyword": [
+        "observer-rota"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "How much do the duplicate print postcards sold in the gift shop cost?",
+      "expect": "gift-shop-postcards",
+      "difficulty": "easy",
+      "returned": [
+        "gift-shop-postcards",
+        "fifty-seven-archive-sales-rule"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "duplicate print postcard sold gift shop cost",
+      "returned_keyword": [
+        "gift-shop-postcards",
+        "fifty-seven-archive-sales-rule"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "What is the highest gust recorded since readings began?",
+      "expect": "anemometer-record-gust",
+      "difficulty": "easy",
+      "returned": [
+        "anemometer-record-gust"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "highest gust recorded reading began",
+      "returned_keyword": [
+        "anemometer-record-gust"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "Who winds the regulator clock in the entrance hall?",
+      "expect": "hall-regulator-clock",
+      "difficulty": "easy",
+      "returned": [
+        "hall-regulator-clock"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "wind regulator clock entrance hall",
+      "returned_keyword": [
+        "hall-regulator-clock"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "On which days does the committee meet quarterly?",
+      "expect": "quarterly-meeting-dates",
+      "difficulty": "easy",
+      "returned": [
+        "committee-weather-log",
+        "minutes-filing-rule",
+        "quarterly-meeting-dates"
+      ],
+      "hit1": false,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "day committee meet quarterly",
+      "returned_keyword": [
+        "quarterly-meeting-dates",
+        "committee-weather-log",
+        "minutes-filing-rule"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "How many full-time paid staff work at the observatory?",
+      "expect": "fifty-four-paid-staff-list",
+      "difficulty": "easy",
+      "returned": [
+        "fifty-four-paid-staff-list"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "full time paid staff work observatory",
+      "returned_keyword": [
+        "fifty-four-paid-staff-list"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "When is the gift shop open?",
+      "expect": "gift-shop-hours",
+      "difficulty": "easy",
+      "returned": [
+        "fifty-three-volunteer-register",
+        "gift-shop-hours",
+        "barograph-gift-shop"
+      ],
+      "hit1": false,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "gift shop open",
+      "returned_keyword": [
+        "fifty-three-volunteer-register",
+        "gift-shop-hours",
+        "barograph-gift-shop"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "How much is admission to public viewing evenings for adults?",
+      "expect": "admission-charges",
+      "difficulty": "easy",
+      "returned": [
+        "admission-charges",
+        "public-viewing-evenings",
+        "west-dome-cassegrain"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "admission public viewing evening adult",
+      "returned_keyword": [
+        "admission-charges",
+        "public-viewing-evenings",
+        "west-dome-cassegrain"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "What is the average annual fall recorded by the rain gauge?",
+      "expect": "rain-gauge-average",
+      "difficulty": "easy",
+      "returned": [
+        "rain-gauge-average",
+        "committee-weather-log"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "average annual fall recorded rain gauge",
+      "returned_keyword": [
+        "rain-gauge-average",
+        "committee-weather-log"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "How often are both domes repainted in aluminium paint?",
+      "expect": "dome-repaint-schedule",
+      "difficulty": "easy",
+      "returned": [
+        "dome-repaint-schedule"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "dome repainted aluminium paint",
+      "returned_keyword": [
+        "dome-repaint-schedule",
+        "shop-takings-figure"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "Who bequeathed 340 lunar photographs to the archive in 1974?",
+      "expect": "weston-bequest",
+      "difficulty": "easy",
+      "returned": [
+        "weston-bequest"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "bequeathed 340 lunar photograph archive 1974",
+      "returned_keyword": [
+        "weston-bequest"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "Can I glance at the sun with ordinary binoculars, or does that special red-light device require its approved safety attachment to be in place first?",
+      "expect": "solar-filter-rule",
+      "difficulty": "hard",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "glance sun ordinary binocular special red light device require approved safety attachment place first",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "Which day of the week do they put the telescope's tracking mechanism through its upkeep and try-out, prior to letting people in?",
+      "expect": "clock-drive-friday-check",
+      "difficulty": "hard",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "day week telescope s tracking mechanism upkeep try prior letting people",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "If an unpaid helper wants to take the lenses you look through out of the secured container, what must be true, and where is the thing that opens it kept?",
+      "expect": "eyepiece-cabinet-rule",
+      "difficulty": "hard",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "unpaid helper lense look secured container true thing open kept",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "On evenings when visitors get to look through the telescope, when are we supposed to confirm that the small sighting device matches the actual view, and correct it on the spot if it's off?",
+      "expect": "finder-alignment-at-dusk",
+      "difficulty": "hard",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "evening visitor look telescope supposed confirm small sighting device matche actual view correct spot s",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "How fast must air steadily blow, per the gauge mounted up top, before the opening of the observatory structure gets shut and the instruments stowed and protected?",
+      "expect": "dome-shutter-wind-limit",
+      "difficulty": "hard",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "fast air steadily blow gauge mounted top opening observatory structure shut instrument stowed protected",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "If a single viewing optic went missing from every magnification type, how many would remain altogether?",
+      "expect": "eyepiece-monthly-count",
+      "difficulty": "hard",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "single viewing optic went missing every magnification type remain altogether",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "Which instrument did the Harringtons give, and what metal dedication marks their contribution?",
+      "expect": "spectrograph-donor-plaque",
+      "difficulty": "hard",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "instrument harrington metal dedication mark contribution",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "If someone takes the viewing instrument off the post it normally rests on, what has to be done to it prior to anyone operating it again, and who writes down that this was carried out?",
+      "expect": "recollimation-after-move",
+      "difficulty": "hard",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "viewing instrument post normally rest prior operating write carried",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "If someone living nearby wants to take one of those compact stargazing instruments home for a fortnight, what do they need to put their signature on?",
+      "expect": "dobsonian-loan-scheme",
+      "difficulty": "hard",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "living nearby compact stargazing instrument home fortnight signature",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "What metal was used to clad the great rounded cupola when it was refurbished in the mid-twentieth century?",
+      "expect": "main-dome-provenance",
+      "difficulty": "hard",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "metal clad great rounded cupola refurbished mid twentieth century",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "Once precipitation begins, whose job is it to shut the big hatch in the observatory roof, no matter what's planned for the night?",
+      "expect": "dome-shutter-closing-rule",
+      "difficulty": "hard",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "precipitation begin job shut big hatch observatory roof matter s planned night",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "If you showed up to one of the club's evening gatherings as a dues-paying participant, which optical instrument would you most likely find yourself peering through?",
+      "expect": "small-dome-purpose",
+      "difficulty": "hard",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "showed club s evening gathering due paying participant optical instrument likely yourself peering",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "By what maximum amount is the clock corrected at a time, and where is the balance noted with each correction?",
+      "expect": "sidereal-clock-correction",
+      "difficulty": "adversarial",
+      "returned": [
+        "sidereal-clock-correction"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "maximum amount clock corrected time balance noted correction",
+      "returned_keyword": [
+        "sidereal-clock-correction"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "Each morning, at what time is the illuminated clock set against the town hall clock?",
+      "expect": "south-gable-clock",
+      "difficulty": "adversarial",
+      "returned": [
+        "south-gable-clock"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "morning time illuminated clock against town hall clock",
+      "returned_keyword": [
+        "south-gable-clock",
+        "hall-regulator-clock",
+        "sidereal-clock-correction"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "By whom may the portable chronometer be borrowed?",
+      "expect": "chronometer-loan-rule",
+      "difficulty": "adversarial",
+      "returned": [
+        "chronometer-loan-rule",
+        "dobsonian-loan-scheme"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "portable chronometer borrowed",
+      "returned_keyword": [
+        "chronometer-loan-rule",
+        "dobsonian-loan-scheme"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "What rule was agreed after the slip of January 2019?",
+      "expect": "roof-gutters-and-ice",
+      "difficulty": "adversarial",
+      "returned": [
+        "roof-gutters-and-ice"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "rule agreed slip january 2019",
+      "returned_keyword": [
+        "roof-gutters-and-ice"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "In what year was the observatory itself founded?",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "year observatory itself founded",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "What is the name of the observatory's current keeper?",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "name observatory s current keeper",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "What are the observatory's latitude and longitude coordinates?",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "observatory s latitude longitude coordinate",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "What was the total rainfall recorded at the roof weather station last year?",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "total rainfall recorded roof weather station last year",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "Who was the architect of the observatory building?",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "architect observatory building",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "How many visitors did the observatory receive over the past year?",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "visitor observatory receive past year",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "Who's the one that goes up top every morning and evening to write down the temperature, humidity, air pressure, and all that sky and breeze stuff?",
+      "expect": "roof-weather-readings",
+      "difficulty": "hard",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "s goe top every morning evening write temperature humidity air pressure sky breeze stuff",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "How do you get up past the big dome, and is my fourteen-year-old nephew old enough to come along?",
+      "expect": "roof-access-rule",
+      "difficulty": "hard",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "past big dome fourteen year old nephew old enough come along",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "What reading did the latest yearly inspection of the strike-protecting rod on top of the big rounded roof show?",
+      "expect": "lightning-conductor-test",
+      "difficulty": "hard",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "reading latest yearly inspection strike protecting rod top big rounded roof show",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "Combining the two smaller categories, how many objects were tallied in the first month's census?",
+      "expect": "archive-holdings-count",
+      "difficulty": "hard",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "combining smaller categorie object tallied first month s censu",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "How many visitors may be admitted at a time while the building is open to the public?",
+      "expect": "reading-room-hours",
+      "difficulty": "adversarial",
+      "returned": [
+        "hall-regulator-clock",
+        "reading-room-hours"
+      ],
+      "hit1": false,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "visitor admitted time building open public",
+      "returned_keyword": [
+        "reading-room-hours",
+        "hall-regulator-clock"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "May a visitor remove an original negative or plate from the reading room?",
+      "expect": "gloves-handling-rule",
+      "difficulty": "adversarial",
+      "returned": [
+        "gloves-handling-rule",
+        "negative-loan-policy"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "visitor remove original negative plate reading room",
+      "returned_keyword": [
+        "gloves-handling-rule",
+        "negative-loan-policy"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "In what medium must the instrument used be recorded on the reverse of a print?",
+      "expect": "reverse-labelling-rule",
+      "difficulty": "adversarial",
+      "returned": [
+        "reverse-labelling-rule"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "medium instrument recorded reverse print",
+      "returned_keyword": [
+        "reverse-labelling-rule"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "Where are the temperature, wind, and cloud cover readings from the roof weather station recorded when a photograph is taken at the observatory?",
+      "expect": "weather-log-cross-reference",
+      "difficulty": "adversarial",
+      "returned": [
+        "weather-log-cross-reference",
+        "roof-weather-readings"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "temperature wind cloud cover reading roof weather station recorded photograph observatory",
+      "returned_keyword": [
+        "weather-log-cross-reference",
+        "fifty-one-weather-log-times",
+        "roof-weather-readings"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "What did the committee approve at its April meeting, with installation due before the July meeting?",
+      "expect": "committee-plate-storage",
+      "difficulty": "adversarial",
+      "returned": [
+        "committee-plate-storage",
+        "committee-weather-log"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "committee approve april meeting installation due july meeting",
+      "returned_keyword": [
+        "committee-plate-storage",
+        "committee-weather-log"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "Can a museum borrow an original negative, and if not, what may it request instead and how long does that take?",
+      "expect": "negative-loan-policy",
+      "difficulty": "adversarial",
+      "returned": [
+        "negative-loan-policy"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "museum borrow original negative request instead",
+      "returned_keyword": [
+        "negative-loan-policy"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "On which Tuesdays of each month does the assistant astronomer catalogue new accessions?",
+      "expect": "cataloguing-staff-rota",
+      "difficulty": "adversarial",
+      "returned": [
+        "cataloguing-staff-rota"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "tuesday month assistant astronomer catalogue new accession",
+      "returned_keyword": [
+        "cataloguing-staff-rota"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "Since when have readings been taken at the roof weather station every day?",
+      "expect": "roof-station-established",
+      "difficulty": "adversarial",
+      "returned": [
+        "roof-station-established",
+        "fifty-one-weather-log-times",
+        "roof-weather-readings"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "reading roof weather station every day",
+      "returned_keyword": [
+        "roof-station-established",
+        "fifty-one-weather-log-times",
+        "roof-weather-readings"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "Where on the roof are the wet- and dry-bulb thermometers kept?",
+      "expect": "stevenson-screen-readings",
+      "difficulty": "adversarial",
+      "returned": [
+        "stevenson-screen-readings",
+        "annual-calibration",
+        "roof-weather-readings"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "roof wet dry bulb thermometer kept",
+      "returned_keyword": [
+        "stevenson-screen-readings",
+        "roof-weather-readings",
+        "annual-calibration"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "Besides 09:00, at what time of day are the corrected barometer readings entered?",
+      "expect": "kew-pattern-barometer",
+      "difficulty": "adversarial",
+      "returned": [
+        "kew-pattern-barometer"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "beside 09 00 time day corrected barometer reading entered",
+      "returned_keyword": [
+        "kew-pattern-barometer"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "Who is permitted to empty the rain gauge?",
+      "expect": "roof-instruments-rule",
+      "difficulty": "adversarial",
+      "returned": [
+        "roof-instruments-rule",
+        "rain-gauge-average"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "permitted empty rain gauge",
+      "returned_keyword": [
+        "roof-instruments-rule",
+        "rain-gauge-average"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          true,
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "Is there anywhere nearby to grab dinner before an evening visit, or should we bring a picnic with us?",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "anywhere nearby grab dinner evening visit bring picnic",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "Is there a good dark spot nearby where I could set up my own gear in the evening?",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "good dark spot nearby gear evening",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "Can wheelchair users get to all the public areas, or are some parts of the building only reachable by stairs?",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "wheelchair user public area part building reachable stair",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "Do you put on anything for children during the school holidays?",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "anything children school holiday",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "Am I allowed to bring my dog inside when I visit?",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "allowed bring dog inside visit",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "Can we bring our own food and sit out on the lawn while we wait for it to get dark enough to see anything?",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "bring food sit lawn wait dark enough see anything",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false,
+          false
+        ]
+      }
+    }
+  ]
+}

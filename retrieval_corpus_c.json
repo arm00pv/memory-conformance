@@ -1,0 +1,592 @@
+{
+  "why": "written by glm-5.3:cloud, which has never seen corpus A, corpus B, any question from either, or any result from this repository; it was given the band rules and a world brief, and nothing else",
+  "authored_by": "glm-5.3:cloud",
+  "authored_at": "2026-10-26T11:15:36",
+  "records": [
+    {
+      "id": "grubb-refractor-aperture",
+      "text": "The principal instrument is the 1897 Grubb 24-inch refractor, housed in the east dome. It remains the oldest telescope in continuous public use in the county."
+    },
+    {
+      "id": "west-dome-cassegrain",
+      "text": "The west dome holds the 12-inch Cassegrain reflector, used chiefly for public viewing on clear Friday evenings between October and March."
+    },
+    {
+      "id": "mirror-recoating-cycle",
+      "text": "The primary mirror of the 0.5-metre Newtonian is sent away for re-aluminising every five years, most recently in March 2023."
+    },
+    {
+      "id": "solar-filter-rule",
+      "text": "The H-alpha solar telescope may only be used with its certified filter fitted. Viewing the sun through any other instrument is strictly prohibited."
+    },
+    {
+      "id": "clock-drive-friday-check",
+      "text": "The clock drive on the Grubb refractor is wound and tested every Friday afternoon before public opening, and the result entered in the dome log."
+    },
+    {
+      "id": "eyepiece-cabinet-rule",
+      "text": "Eyepieces may be removed from the locked cabinet only by trained staff or by a volunteer under supervision. The cabinet key hangs in the duty officer's office."
+    },
+    {
+      "id": "finder-alignment-at-dusk",
+      "text": "Finder scopes must be checked against the main optics at dusk on any night the instrument is in public use, and adjusted if necessary."
+    },
+    {
+      "id": "dome-shutter-wind-limit",
+      "text": "The dome shutter is to be closed if the roof anemometer records a sustained wind above 40 mph, and the telescopes parked and covered."
+    },
+    {
+      "id": "eyepiece-monthly-count",
+      "text": "The eyepiece collection numbers 34 pieces across four focal lengths. A count is taken on the last working day of each month and signed for."
+    },
+    {
+      "id": "spectrograph-donor-plaque",
+      "text": "The fibre-fed spectrograph, donated by the Harrington family in 2011, is reserved for staff use on Thursday evenings and carries a commemorative brass plaque."
+    },
+    {
+      "id": "recollimation-after-move",
+      "text": "Any telescope moved from its pier must be re-collimated before its next use, and the check recorded by the staff member who performed it."
+    },
+    {
+      "id": "dobsonian-loan-scheme",
+      "text": "The two portable 6-inch Dobsonians may be borrowed by residents for up to two weeks under the loan scheme, against a refundable deposit and a signed care agreement."
+    },
+    {
+      "id": "main-dome-provenance",
+      "text": "The main dome is 24 feet in diameter, was built by Cooke of York in 1893, and was re-covered in sheet copper during the 1954 restoration."
+    },
+    {
+      "id": "dome-shutter-closing-rule",
+      "text": "The dome shutter takes two minutes to close and is to be closed by the duty astronomer at the first drop of rain, whatever the evening's programme; every closure is entered in the dome logbook."
+    },
+    {
+      "id": "small-dome-purpose",
+      "text": "The 12-foot dome carries the 6-inch refractor reserved for members' nights and is turned by hand wheel. Its narrow slit means the dome must be re-aimed roughly every twenty minutes when tracking a single object."
+    },
+    {
+      "id": "dome-repaint-schedule",
+      "text": "Both domes are repainted in aluminium paint every five years during the last week of August, when the public programme is suspended; Sandhill & Sons charged £1,940 for the most recent repainting."
+    },
+    {
+      "id": "hall-regulator-clock",
+      "text": "The regulator clock in the entrance hall, by Dent of London, is wound by the caretaker every Monday at 09:00 and keeps time to within four seconds a week; it is not to be moved while the building is open to the public."
+    },
+    {
+      "id": "sidereal-clock-correction",
+      "text": "The sidereal clock in the transit room gains 2.3 seconds a day and is checked against the evening radio time signal. It is corrected by no more than half a second at a time, with the balance noted in the observing ledger."
+    },
+    {
+      "id": "south-gable-clock",
+      "text": "The illuminated clock on the south gable belongs to the borough and is set each morning at 08:55 against the town hall clock. The two are not to differ by more than ten seconds across the market square."
+    },
+    {
+      "id": "chronometer-loan-rule",
+      "text": "The portable chronometer may be borrowed only by staff for off-site field evenings and must be signed out in the ledger kept behind the gift shop counter."
+    },
+    {
+      "id": "roof-weather-readings",
+      "text": "Roof weather-station readings — dry-bulb, wet-bulb, barometer, wind speed and direction, and cloud amount — are taken at 09:00 and 21:00 by the duty officer and posted on the hall noticeboard by noon."
+    },
+    {
+      "id": "roof-access-rule",
+      "text": "Roof access is by the iron stair behind the main dome and only in pairs; no one goes onto the roof after dark or in winds above force six, and visitors under sixteen are not permitted above the dome floor."
+    },
+    {
+      "id": "lightning-conductor-test",
+      "text": "The lightning conductor above the main dome is tested every April by Messrs. Harlow and Finch, whose certificate hangs framed in the entrance hall; the most recent test recorded a resistance of 8 ohms."
+    },
+    {
+      "id": "roof-gutters-and-ice",
+      "text": "Gutters and the dome ring are cleared of leaves in the last week of October and of snow after any fall exceeding two inches; the dome shutter stays shut while ice remains on the roof, a rule agreed after the slip of January 2019."
+    },
+    {
+      "id": "archive-founding-year",
+      "text": "The public archive of night-sky photographs was established by council resolution on 14 March 1938, opening with a holding of 96 prints taken through the main refractor."
+    },
+    {
+      "id": "archive-holdings-count",
+      "text": "The January count recorded 11,240 items: 8,900 prints, 2,180 glass negatives, and 160 dry plates. The count is repeated at the start of each year."
+    },
+    {
+      "id": "oldest-holding-plate",
+      "text": "The oldest holding is a dry plate of the Andromeda nebula exposed over three hours on the night of 9 November 1897 by the observatory's first astronomer, E. H. Marsh."
+    },
+    {
+      "id": "weston-bequest",
+      "text": "The estate of Miss Dorothea Weston, assistant astronomer from 1931 to 1959, bequeathed 340 lunar photographs to the archive in 1974; these are shelved together as Series W."
+    },
+    {
+      "id": "reading-room-hours",
+      "text": "The archive reading room is open to the public on Wednesdays and Saturdays from two until five, free of charge, with no more than four visitors admitted at a time."
+    },
+    {
+      "id": "gloves-handling-rule",
+      "text": "Visitors must wear the cotton gloves provided and may not remove any original print, negative, or plate from the reading room."
+    },
+    {
+      "id": "reverse-labelling-rule",
+      "text": "Every print is labelled on the reverse, in pencil only, with the object, the instrument used, the date, the exposure length, and the observer's initials."
+    },
+    {
+      "id": "weather-log-cross-reference",
+      "text": "Where a photograph was taken at the observatory, its catalogue card also records the temperature, wind, and cloud cover noted by the roof weather station at the hour of exposure."
+    },
+    {
+      "id": "gift-shop-postcards",
+      "text": "Duplicate prints of the twelve most requested images are sold in the gift shop as postcards at sixty pence each; a third of the takings goes towards archive conservation."
+    },
+    {
+      "id": "committee-plate-storage",
+      "text": "At its April meeting the committee approved £400 for steel flat files to rehouse the glass plate collection, with installation due before the July meeting."
+    },
+    {
+      "id": "negative-loan-policy",
+      "text": "Original negatives and plates are not lent to outside bodies; a museum or library may instead request a duplicate print, which the darkroom prepares within four weeks."
+    },
+    {
+      "id": "cataloguing-staff-rota",
+      "text": "Under the staff rota the assistant astronomer catalogues new accessions on the first and third Tuesday of each month. About eight hundred negatives await processing."
+    },
+    {
+      "id": "roof-station-established",
+      "text": "36. The roof weather station was established on 14 October 1961 with instruments supplied by the municipal engineer's department, and readings have been entered in the log book every day since."
+    },
+    {
+      "id": "stevenson-screen-readings",
+      "text": "37. The Stevenson screen stands on the north-east corner of the roof platform and houses the maximum, minimum, and wet- and dry-bulb thermometers. It is opened at 09:00 each day, the readings taken, and the thermometers reset."
+    },
+    {
+      "id": "kew-pattern-barometer",
+      "text": "38. A Kew-pattern mercury barometer is fixed in the stairwell below the dome, away from direct sunlight. Corrected readings are entered at 09:00 and 17:00 and compared each week against the barograph."
+    },
+    {
+      "id": "rain-gauge-average",
+      "text": "39. The rain gauge is a five-inch copper pattern with its rim set 30 cm above the roof garden, and it is emptied and measured at 09:00. The average annual fall over the period 1962 to the present is 682 mm."
+    },
+    {
+      "id": "sunshine-recorder-cards",
+      "text": "40. A Campbell-Stokes sunshine recorder stands on a stone plinth on the south parapet. The cards are changed each morning and the burnt trace measured to the nearest tenth of an hour."
+    },
+    {
+      "id": "anemometer-record-gust",
+      "text": "41. The cup anemometer and wind vane are mounted on a six-metre mast above the dome. The highest gust recorded since readings began is 87 mph, during the gale of 27 October 2002."
+    },
+    {
+      "id": "observer-rota",
+      "text": "42. Daily observations are taken by the duty assistant under the weekly staff rota. Since 2011 the Sunday 09:00 observation has been taken by Dr. Miriam Osei, honorary meteorologist."
+    },
+    {
+      "id": "roof-instruments-rule",
+      "text": "43. Visitors on the roof platform must not touch, lean on, or move any instrument, and only the duty observer may empty the rain gauge. Parties larger than twelve must be accompanied by a member of staff."
+    },
+    {
+      "id": "annual-calibration",
+      "text": "44. The thermometers and barometer are recalibrated each June by the county standards office. The roof gauge is checked against the spare gauge kept in the store room at the start of every quarter."
+    },
+    {
+      "id": "barograph-gift-shop",
+      "text": "45. A barograph stands in the gift shop window, where its continuous trace is a standing attraction. The weekly chart is changed by the shop manager on Monday mornings and the charts are retained for ten years."
+    },
+    {
+      "id": "sunshine-recorder-donor",
+      "text": "46. The sunshine recorder was presented in 1968 by the family of Alderman Arthur Pike, a former mayor and chair of the observatory committee; the original bronze plaque is fixed to the plinth."
+    },
+    {
+      "id": "committee-weather-log",
+      "text": "47. The weather log is laid before the committee at each quarterly meeting. The January meeting approves the annual rainfall, sunshine, and temperature totals before they are sent to the national climate archive."
+    },
+    {
+      "id": "forty-eight-monthly-rota-posting",
+      "text": "The monthly duty rota is drawn up by the deputy keeper and posted on the board outside the tea room at noon on the last Friday of the month; requests for swaps must reach the deputy keeper in writing by the following Tuesday."
+    },
+    {
+      "id": "forty-nine-night-duty-minimums",
+      "text": "Every public viewing night carries a minimum of three on duty: two qualified telescope operators and at least one current first-aider. First-aiders are marked in red on the rota."
+    },
+    {
+      "id": "fifty-volunteer-induction-hours",
+      "text": "Volunteers complete a two-evening induction and twelve hours of supervised dome training before being rostered without a mentor; inductions are held on the first two Wednesdays of each month."
+    },
+    {
+      "id": "fifty-one-weather-log-times",
+      "text": "The duty assistant takes the roof weather station readings at 09:00 and 21:00 each day, entering temperature, wind speed and barometric pressure in the green book kept on the instrument bench."
+    },
+    {
+      "id": "fifty-two-archivist-handover",
+      "text": "Mrs E. Hallsworth stood down as volunteer archivist in March after twenty-two years with the night-sky photograph collection; the archive is now in the care of Mr P. Osei."
+    },
+    {
+      "id": "fifty-three-volunteer-register",
+      "text": "The volunteer register stands at thirty-four active names: nine run the gift shop in rotation, and the remainder cover dome stewarding, school visits and the quarterly open evenings."
+    },
+    {
+      "id": "fifty-four-paid-staff-list",
+      "text": "The paid staff number six full-time — keeper, deputy keeper, night assistant, archivist, shop manager and caretaker — plus two part-time weekend assistants."
+    },
+    {
+      "id": "fifty-five-committee-seats",
+      "text": "One paid officer and one volunteer sit on the quarterly committee, elected each January for one-year terms; the volunteer representative collects agenda items from the book in the tea room."
+    },
+    {
+      "id": "fifty-six-shift-limit",
+      "text": "No assistant may be rostered for more than four evening shifts in a row, and a shift ending after midnight counts as two towards the monthly allowance."
+    },
+    {
+      "id": "fifty-seven-archive-sales-rule",
+      "text": "Dome stewards may show visitors the public archive of night-sky photographs but may not accept money for anything; prints and postcards are sold only at the gift shop till."
+    },
+    {
+      "id": "fifty-eight-festive-rota-draw",
+      "text": "The Christmas and New Year duty rota is drawn by lot at the November volunteers' meeting; anyone drawn may arrange one written swap before 1 December."
+    },
+    {
+      "id": "fifty-nine-keys-and-handover",
+      "text": "The dome keys pass from the closing to the opening assistant at ten o'clock each morning, and both must sign the handover book, whatever the weather."
+    },
+    {
+      "id": "gift-shop-hours",
+      "text": "60. The gift shop is run by volunteers and is open on Friday and Saturday evenings from 19:00 to 22:30, and on Sunday afternoons from 14:00 to 17:00."
+    },
+    {
+      "id": "shop-takings-figure",
+      "text": "61. Shop takings for the last financial year came to £4,187, of which the committee has set aside £1,200 for repainting the main dome."
+    },
+    {
+      "id": "postcard-best-seller",
+      "text": "62. The shop's best-selling line is the postcard series printed from the public photograph archive; the Orion set alone accounts for roughly a third of all sales."
+    },
+    {
+      "id": "monthly-stock-delivery",
+      "text": "63. Deliveries of new stock arrive on the first Tuesday of each month and are checked against the invoice by the shop coordinator, Mrs. Daphne Hollis, before going on display."
+    },
+    {
+      "id": "public-viewing-evenings",
+      "text": "64. Public viewing evenings are held on the first and third Friday of each month from October to March, with sessions at 20:00 and 21:30, weather permitting."
+    },
+    {
+      "id": "admission-charges",
+      "text": "65. Admission to public viewing evenings is £4 for adults, £2.50 for concessions, and free for accompanied children under twelve."
+    },
+    {
+      "id": "group-booking-rule",
+      "text": "66. Parties of ten or more must book at least a week in advance; the main dome holds a maximum of twenty-five visitors per session."
+    },
+    {
+      "id": "marlowe-memorial-lecture",
+      "text": "67. The Edith Marlowe Memorial Lecture takes place each November in the reading room, followed by viewing through the refractor if the sky is clear."
+    },
+    {
+      "id": "quarterly-meeting-dates",
+      "text": "68. The committee meets quarterly, on the second Tuesday of January, April, July and October, at 19:00 in the reading room."
+    },
+    {
+      "id": "committee-elections",
+      "text": "69. Committee members are elected at the annual general meeting in March and serve two-year terms; the current chair is Councillor R. Petherbridge."
+    },
+    {
+      "id": "minutes-filing-rule",
+      "text": "70. Committee minutes are filed in the public archive within fourteen days of each meeting and may be inspected by any member of the public on request."
+    },
+    {
+      "id": "quorum-and-pricing-powers",
+      "text": "71. A quorum is four members, including at least one officer, and all decisions on shop pricing and event admission charges are reserved to the committee."
+    }
+  ],
+  "queries": [
+    {
+      "query": "What is the principal instrument housed in the east dome?",
+      "expect": "grubb-refractor-aperture",
+      "difficulty": "easy"
+    },
+    {
+      "query": "Which telescope is used chiefly for public viewing on clear Friday evenings between October and March?",
+      "expect": "west-dome-cassegrain",
+      "difficulty": "easy"
+    },
+    {
+      "query": "How often is the primary mirror of the 0.5-metre Newtonian sent away for re-aluminising?",
+      "expect": "mirror-recoating-cycle",
+      "difficulty": "easy"
+    },
+    {
+      "query": "When was the public archive of night-sky photographs established by council resolution?",
+      "expect": "archive-founding-year",
+      "difficulty": "easy"
+    },
+    {
+      "query": "What is the oldest holding?",
+      "expect": "oldest-holding-plate",
+      "difficulty": "easy"
+    },
+    {
+      "query": "Who has taken the Sunday 09:00 observation since 2011?",
+      "expect": "observer-rota",
+      "difficulty": "easy"
+    },
+    {
+      "query": "How much do the duplicate print postcards sold in the gift shop cost?",
+      "expect": "gift-shop-postcards",
+      "difficulty": "easy"
+    },
+    {
+      "query": "What is the highest gust recorded since readings began?",
+      "expect": "anemometer-record-gust",
+      "difficulty": "easy"
+    },
+    {
+      "query": "Who winds the regulator clock in the entrance hall?",
+      "expect": "hall-regulator-clock",
+      "difficulty": "easy"
+    },
+    {
+      "query": "On which days does the committee meet quarterly?",
+      "expect": "quarterly-meeting-dates",
+      "difficulty": "easy"
+    },
+    {
+      "query": "How many full-time paid staff work at the observatory?",
+      "expect": "fifty-four-paid-staff-list",
+      "difficulty": "easy"
+    },
+    {
+      "query": "When is the gift shop open?",
+      "expect": "gift-shop-hours",
+      "difficulty": "easy"
+    },
+    {
+      "query": "How much is admission to public viewing evenings for adults?",
+      "expect": "admission-charges",
+      "difficulty": "easy"
+    },
+    {
+      "query": "What is the average annual fall recorded by the rain gauge?",
+      "expect": "rain-gauge-average",
+      "difficulty": "easy"
+    },
+    {
+      "query": "How often are both domes repainted in aluminium paint?",
+      "expect": "dome-repaint-schedule",
+      "difficulty": "easy"
+    },
+    {
+      "query": "Who bequeathed 340 lunar photographs to the archive in 1974?",
+      "expect": "weston-bequest",
+      "difficulty": "easy"
+    },
+    {
+      "query": "Can I glance at the sun with ordinary binoculars, or does that special red-light device require its approved safety attachment to be in place first?",
+      "expect": "solar-filter-rule",
+      "difficulty": "hard"
+    },
+    {
+      "query": "Which day of the week do they put the telescope's tracking mechanism through its upkeep and try-out, prior to letting people in?",
+      "expect": "clock-drive-friday-check",
+      "difficulty": "hard"
+    },
+    {
+      "query": "If an unpaid helper wants to take the lenses you look through out of the secured container, what must be true, and where is the thing that opens it kept?",
+      "expect": "eyepiece-cabinet-rule",
+      "difficulty": "hard"
+    },
+    {
+      "query": "On evenings when visitors get to look through the telescope, when are we supposed to confirm that the small sighting device matches the actual view, and correct it on the spot if it's off?",
+      "expect": "finder-alignment-at-dusk",
+      "difficulty": "hard"
+    },
+    {
+      "query": "How fast must air steadily blow, per the gauge mounted up top, before the opening of the observatory structure gets shut and the instruments stowed and protected?",
+      "expect": "dome-shutter-wind-limit",
+      "difficulty": "hard"
+    },
+    {
+      "query": "If a single viewing optic went missing from every magnification type, how many would remain altogether?",
+      "expect": "eyepiece-monthly-count",
+      "difficulty": "hard"
+    },
+    {
+      "query": "Which instrument did the Harringtons give, and what metal dedication marks their contribution?",
+      "expect": "spectrograph-donor-plaque",
+      "difficulty": "hard"
+    },
+    {
+      "query": "If someone takes the viewing instrument off the post it normally rests on, what has to be done to it prior to anyone operating it again, and who writes down that this was carried out?",
+      "expect": "recollimation-after-move",
+      "difficulty": "hard"
+    },
+    {
+      "query": "If someone living nearby wants to take one of those compact stargazing instruments home for a fortnight, what do they need to put their signature on?",
+      "expect": "dobsonian-loan-scheme",
+      "difficulty": "hard"
+    },
+    {
+      "query": "What metal was used to clad the great rounded cupola when it was refurbished in the mid-twentieth century?",
+      "expect": "main-dome-provenance",
+      "difficulty": "hard"
+    },
+    {
+      "query": "Once precipitation begins, whose job is it to shut the big hatch in the observatory roof, no matter what's planned for the night?",
+      "expect": "dome-shutter-closing-rule",
+      "difficulty": "hard"
+    },
+    {
+      "query": "If you showed up to one of the club's evening gatherings as a dues-paying participant, which optical instrument would you most likely find yourself peering through?",
+      "expect": "small-dome-purpose",
+      "difficulty": "hard"
+    },
+    {
+      "query": "By what maximum amount is the clock corrected at a time, and where is the balance noted with each correction?",
+      "expect": "sidereal-clock-correction",
+      "difficulty": "adversarial"
+    },
+    {
+      "query": "Each morning, at what time is the illuminated clock set against the town hall clock?",
+      "expect": "south-gable-clock",
+      "difficulty": "adversarial"
+    },
+    {
+      "query": "By whom may the portable chronometer be borrowed?",
+      "expect": "chronometer-loan-rule",
+      "difficulty": "adversarial"
+    },
+    {
+      "query": "What rule was agreed after the slip of January 2019?",
+      "expect": "roof-gutters-and-ice",
+      "difficulty": "adversarial"
+    },
+    {
+      "query": "In what year was the observatory itself founded?",
+      "expect": null,
+      "difficulty": "absent"
+    },
+    {
+      "query": "What is the name of the observatory's current keeper?",
+      "expect": null,
+      "difficulty": "absent"
+    },
+    {
+      "query": "What are the observatory's latitude and longitude coordinates?",
+      "expect": null,
+      "difficulty": "absent"
+    },
+    {
+      "query": "What was the total rainfall recorded at the roof weather station last year?",
+      "expect": null,
+      "difficulty": "absent"
+    },
+    {
+      "query": "Who was the architect of the observatory building?",
+      "expect": null,
+      "difficulty": "absent"
+    },
+    {
+      "query": "How many visitors did the observatory receive over the past year?",
+      "expect": null,
+      "difficulty": "absent"
+    },
+    {
+      "query": "Who's the one that goes up top every morning and evening to write down the temperature, humidity, air pressure, and all that sky and breeze stuff?",
+      "expect": "roof-weather-readings",
+      "difficulty": "hard"
+    },
+    {
+      "query": "How do you get up past the big dome, and is my fourteen-year-old nephew old enough to come along?",
+      "expect": "roof-access-rule",
+      "difficulty": "hard"
+    },
+    {
+      "query": "What reading did the latest yearly inspection of the strike-protecting rod on top of the big rounded roof show?",
+      "expect": "lightning-conductor-test",
+      "difficulty": "hard"
+    },
+    {
+      "query": "Combining the two smaller categories, how many objects were tallied in the first month's census?",
+      "expect": "archive-holdings-count",
+      "difficulty": "hard"
+    },
+    {
+      "query": "How many visitors may be admitted at a time while the building is open to the public?",
+      "expect": "reading-room-hours",
+      "difficulty": "adversarial"
+    },
+    {
+      "query": "May a visitor remove an original negative or plate from the reading room?",
+      "expect": "gloves-handling-rule",
+      "difficulty": "adversarial"
+    },
+    {
+      "query": "In what medium must the instrument used be recorded on the reverse of a print?",
+      "expect": "reverse-labelling-rule",
+      "difficulty": "adversarial"
+    },
+    {
+      "query": "Where are the temperature, wind, and cloud cover readings from the roof weather station recorded when a photograph is taken at the observatory?",
+      "expect": "weather-log-cross-reference",
+      "difficulty": "adversarial"
+    },
+    {
+      "query": "What did the committee approve at its April meeting, with installation due before the July meeting?",
+      "expect": "committee-plate-storage",
+      "difficulty": "adversarial"
+    },
+    {
+      "query": "Can a museum borrow an original negative, and if not, what may it request instead and how long does that take?",
+      "expect": "negative-loan-policy",
+      "difficulty": "adversarial"
+    },
+    {
+      "query": "On which Tuesdays of each month does the assistant astronomer catalogue new accessions?",
+      "expect": "cataloguing-staff-rota",
+      "difficulty": "adversarial"
+    },
+    {
+      "query": "Since when have readings been taken at the roof weather station every day?",
+      "expect": "roof-station-established",
+      "difficulty": "adversarial"
+    },
+    {
+      "query": "Where on the roof are the wet- and dry-bulb thermometers kept?",
+      "expect": "stevenson-screen-readings",
+      "difficulty": "adversarial"
+    },
+    {
+      "query": "Besides 09:00, at what time of day are the corrected barometer readings entered?",
+      "expect": "kew-pattern-barometer",
+      "difficulty": "adversarial"
+    },
+    {
+      "query": "Who is permitted to empty the rain gauge?",
+      "expect": "roof-instruments-rule",
+      "difficulty": "adversarial"
+    },
+    {
+      "query": "Is there anywhere nearby to grab dinner before an evening visit, or should we bring a picnic with us?",
+      "expect": null,
+      "difficulty": "absent"
+    },
+    {
+      "query": "Is there a good dark spot nearby where I could set up my own gear in the evening?",
+      "expect": null,
+      "difficulty": "absent"
+    },
+    {
+      "query": "Can wheelchair users get to all the public areas, or are some parts of the building only reachable by stairs?",
+      "expect": null,
+      "difficulty": "absent"
+    },
+    {
+      "query": "Do you put on anything for children during the school holidays?",
+      "expect": null,
+      "difficulty": "absent"
+    },
+    {
+      "query": "Am I allowed to bring my dog inside when I visit?",
+      "expect": null,
+      "difficulty": "absent"
+    },
+    {
+      "query": "Can we bring our own food and sit out on the lawn while we wait for it to get dark enough to see anything?",
+      "expect": null,
+      "difficulty": "absent"
+    }
+  ]
+}
