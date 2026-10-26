@@ -2997,6 +2997,106 @@ One script, one generated table, three claims (one of which fails, and should), 
 reads the rows already on disk. The open item from Addendum 24 is closed, and closed by being replaced
 with a better question.
 
+## Addendum 28: does the retrieval score have teeth, and which ones
+
+The probes earned their credibility the hard way, in Addendum 19: twelve broken copies of the positive
+control, one promise broken each, and a verdict written down before every run. The retrieval score has
+never had that. It has a measured ceiling, a measured floor and a pair of corpora, and all of them answer
+the question *is the scale calibrated*. None of them answers the other one: **which defects move this
+number, and which does it not see at all.**
+
+`retrieval_mutants.py` is four levers on the control's search, and it is the same instrument pointed at
+the instrument.
+
+### The predictions, written first
+
+Against the calibration numbers - 25 hits of 60, a score of 37, every correct answer already in first
+place, no unanswerable question answered:
+
+1. **reverse-rank** (the same records, worst first): hits 25, hit@1 **0**, score 37, speaks 0.
+2. **one-result** (one answer instead of three): hits 25, hit@1 25, score 37, speaks 0 - a k that is
+   already one of one.
+3. **greedy-match** (one shared word is enough): speaks **12**, and eleven or twelve points of score
+   given back.
+4. **strict-match** (every word is required): hits fall, speaks 0.
+
+### What happened
+
+| lever | hits | hit@1 | score | spoke |
+|---|---|---|---|---|
+| *(clean control)* | 25 | 25 | 37 | 0 |
+| `reverse-rank` | 25 | **15** (predicted 0) | 37 | 0 |
+| `one-result` | 25 | 25 | 37 | 0 |
+| `greedy-match` | **36** | 32 | **43** | 5 (predicted 12) |
+| `strict-match` | 15 | 15 | 27 | 0 |
+
+Two right, two wrong, and the wrong ones are the interesting ones.
+
+**The score cannot see the order of the answers it counts.** Reversing the result list leaves the set
+identical, so hit@3 and the score do not move by a single point, and hit@1 falls from 25 to 15. Every
+comparison in this repository is computed from that score. A memory server that puts the right record
+third and one that puts it first are the same subject here, and an agent that reads only the top result is
+not being measured by this table at all.
+
+The prediction of zero was wrong because of the questions with exactly one matching record: reversing a
+list of one changes nothing. Fifteen of the control's twenty-five correct answers come from a search that
+had no ranking to get wrong. I would not have known that number if the prediction had been right.
+
+**The score rewards answering, and cannot tell answering from knowing.** Lower the bar to one shared word
+and hits go from 25 to 36, the score from 37 to **43**, and only five of the twelve unanswerable questions
+are answered - so the careless matcher comes out *ahead of the control it was built to break*, and level
+with the best real server in the table.
+
+That is the finding. The retrieval score is close to monotone in how eagerly a subject answers, and the
+only thing pushing the other way is the twelve questions with no answer. A memory that returns junk and
+never declines outranks a memory that retrieves well and says so when it does not know. The
+`score-prefers-recalcitrance` claim in the ledger now tests exactly this and **FAILS**, as does
+`score-sees-ordering`: both are statements this repository would have made without checking.
+
+My prediction of twelve unanswerable questions answered was wrong at five, and the error is what makes
+the defect pay: one shared word between a question and a record is rarer than I assumed, so the cost of
+answering everything is smaller than the benefit of finding more.
+
+### The real subjects, judged the way an agent reads
+
+The rows have carried hit@1 beside hit@3 since the first matrix and nobody had asked whether the choice
+matters. On corpus A as written, **41 of 55 pairs are separated on hit@1 and 43 on hit@3, and 6 pairs
+reach a different verdict depending on how many results are read**. `memdb` is the reason: it finds six
+records and puts none of them first, so it is separated from three subjects on hit@3 and from none of them
+on hit@1. On corpus B the count is three pairs, including the control against the leader - separated on
+hit@3, p = 0.057 on hit@1.
+
+So a tenth of the conclusions in a table of eleven subjects depend on a property of the *reader*, not of
+the server. That is worth a column and a sentence, and it now has both.
+
+### Two more of my own mistakes
+
+**39. The baseline was saved under a different name.** The two new claims reported *unmeasured* on their
+first run because I looked for the clean control at `results/retrieval-control-A.json` and
+`calibration.py` had saved it as `results/calibration-control-A.json`. The ledger did exactly what it
+should - a missing file is an unmeasured claim and not a passing one - and the numbers had been on disk
+the whole time.
+
+**40. A smoke run overwrote a measurement.** `retrieval_mutants.py --repeat=1` wrote its results to the
+same file names as the repeat-3 run, so the fast check in CI would have quietly replaced the measurement
+the claim ledger reads with a faster answer to the same question. The repeat is in the file name now when
+it is not the committed one.
+
+### What this does not say
+
+It does not say the corpus is bad. It says which defects it detects, with a number attached to each - the
+same thing the probe battery says about the probes, and for the same reason. A set membership question is
+the right question for a memory asked to surface candidates; hit@3 is the honest name for it. What the
+battery establishes is that the table has been read as a ranking, and that the two readings of it are not
+the same answer for a tenth of its pairs.
+
+### What this costs
+
+One script, four levers, two claims that fail, and about two minutes of runtime per corpus. The levers are
+four lines each in the adapter. Everything else - the score, the matrix, every published conclusion -
+stands exactly as it was, and now says what it does not measure.
+
+
 
 
 

@@ -29,7 +29,7 @@ independently written corpora and in two phrasings, and writes the verdicts to `
 
 ```
 $ python claims.py
-**7 of the 22 claims hold in every setting measured.**
+**7 of the 24 claims hold in every setting measured.**
 ```
 
 Five survive everywhere, including the one that matters most: **memory-mcp-1file answers more
@@ -390,6 +390,52 @@ the other end `memory-lean` and the leader differ on **36 of 60** and corpus A a
 separate them either, at p = 0.065 - just over the line, on a difference of twelve points. Both read as
 "tied" in the table above. A reader choosing a memory server needs to know which end of that column their
 pair is on, and the ranking as published does not say.
+
+## Does the retrieval score have teeth
+
+The ten probes have been mutation-tested since Addendum 19: twelve broken copies of the positive control,
+one promise broken each, and a verdict written down before every run. The retrieval score never has been.
+`retrieval_mutants.py` gives it the same treatment - four levers on the control's search, each a plausible
+way to answer a question badly, with the expected numbers written before the first run.
+[`RETRIEVAL-MUTANTS.md`](RETRIEVAL-MUTANTS.md)
+
+| lever | what it does | hits | hit@1 | score |
+|---|---|---|---|---|
+| *(clean control)* | | 25 | 25 | 37 |
+| `reverse-rank` | worst match first, **the same set of records** | 25 | **15** | **37** |
+| `one-result` | the same search cut down to one answer | 25 | 25 | 37 |
+| `greedy-match` | one shared word is enough to be an answer | **36** | 32 | **43** |
+| `strict-match` | every word of the question is required | 15 | 15 | 27 |
+
+### The score cannot see the order of the answers it counts
+
+Reverse the result list and nothing changes: the same records, the same hit@3, the same score of 37 - and
+hit@1 **falls from 25 to 15**. hit@3 is a set membership question, it answers that question honestly, and
+every comparison in this repository is drawn from it. So a memory server that puts the right record third
+and one that puts it first score identically here, and **an agent that reads only the first result is not
+being measured by that table at all.**
+
+This is not theoretical. On corpus A, **6 of the 55 pairs reach a different verdict on hit@1 than on
+hit@3**: `memdb` is separated from three subjects on hit@3 and not on hit@1, because it finds six records
+and puts none of them first. Whether `memdb` is worse than `server-memory` here depends on how many
+results the caller reads, which is not a property of a memory server.
+
+### The score rewards answering, and cannot tell answering from knowing
+
+Lower the bar to one shared word and the score goes **up**, from 37 to **43**, with hits from 25 to 36.
+Raise the bar to every word and it falls to 27. The careless matcher returns records it should not, and
+the twelve unanswerable questions are the only thing pushing back - it only trips five of them, because
+one shared word between a question and a record is rarer than I assumed when I predicted twelve.
+
+So the retrieval score is close to monotone in how eagerly a subject answers. A memory that retrieves
+badly and never stays quiet outranks one that retrieves well and declines what it does not know, and that
+is the ordering this table has been publishing. Two claims in the ledger now say so and both **FAIL**:
+`score-sees-ordering` and `score-prefers-recalcitrance`.
+
+Two of my four predictions missed, and both misses are printed beside their predictions rather than
+edited out. The `reverse-rank` miss is the more interesting one: hit@1 fell to 15 and not to zero because
+15 of the control's 25 correct answers come from a search that found exactly one record - there was no
+ranking there to get wrong.
 
 ## A second corpus, written blind
 
