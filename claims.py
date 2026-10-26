@@ -287,6 +287,47 @@ def c_floor_not_zero(ctx, corpus, shape):
                      % (got, n, absent))
 
 
+def _separated(corpus, shape, metric, a, b):
+    """The paired verdict for two subjects, on one metric, from the saved retrieval rows."""
+    import resolution
+    by = dict((s["label"], s["slug"]) for s in resolution.subjects())
+    if a not in by or b not in by:
+        return None
+    suffix = CORPORA[corpus][1]
+    ra, rb = resolution.rows_of(by[a], suffix), resolution.rows_of(by[b], suffix)
+    if ra is None or rb is None:
+        return None
+    return resolution.compare_pair(ra, rb, shape, metric)
+
+
+def c_metrics_agree(ctx, corpus, shape):
+    """The score and the answerable-only count rank the top of the table the same way.
+
+    THEY DO NOT, AND THE DISAGREEMENT IS THE INTERESTING PART. items.py showed the score carries a
+    twelve-point switch for a habit that is uncorrelated with ability on one corpus and anti-correlated
+    on the other, so a pair whose real difference is in retrieval can be cancelled by it. The test here
+    is whether that changes any conclusion at the top of the table - if the two metrics agreed
+    everywhere, the switch would be a curiosity.
+    """
+    pairs = [("memory-mcp-1file 0.9.2", "control 1.0.0"),
+             ("zenbrain 0.3.0", "control 1.0.0")]
+    disagree = []
+    for a, b in pairs:
+        s = _separated(corpus, shape, "score", a, b)
+        h = _separated(corpus, shape, "hits", a, b)
+        if s is None or h is None:
+            continue
+        if s["separated"] != h["separated"]:
+            disagree.append("%s vs %s (score %s, hits %s)"
+                            % (a.split()[0], b.split()[0],
+                               "separated" if s["separated"] else "tied",
+                               "separated" if h["separated"] else "tied"))
+    return (not disagree,
+            "%d of %d top-of-table pairs get different verdicts from the two metrics%s"
+            % (len(disagree), len(pairs),
+               (": " + "; ".join(disagree)) if disagree else ""))
+
+
 def c_absent_band_flat(ctx, corpus, shape):
     """The unanswerable questions give the stronger subjects no advantage.
 
@@ -454,6 +495,8 @@ CLAIMS = [
      c_silence_scores_better, True),
     ("absent-band-flat", "the unanswerable questions give the stronger subjects no advantage.",
      c_absent_band_flat, True),
+    ("metrics-agree", "the score and the answerable-only count rank the top of the table the same way.",
+     c_metrics_agree, True),
     ("leaks-state", "memory-mcp-1file leaks state between stores and is out of scope.",
      c_leaks_state, False),
     ("leanest", "memory-lean returns fewer bytes per question than any subject that answers anything.",

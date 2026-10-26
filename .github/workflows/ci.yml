@@ -37,6 +37,12 @@ jobs:
           cat /tmp/items.txt
           grep -q "separate nobody" /tmp/items.txt
           grep -q "one-word trap" /tmp/items.txt
+      - name: the corpus must report how many of its own comparisons it can settle
+        run: |
+          python resolution.py > /tmp/res.txt
+          cat /tmp/res.txt
+          grep -q "pairs separated" /tmp/res.txt
+          grep -q "NOT separated from" /tmp/res.txt
       - name: a paired test must say when the twelve-point switch decides it
         run: |
           python compare.py zenbrain control > /tmp/pair.txt
