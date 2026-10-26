@@ -37,6 +37,13 @@ jobs:
           cat /tmp/items.txt
           grep -q "separate nobody" /tmp/items.txt
           grep -q "one-word trap" /tmp/items.txt
+      - name: the third corpus must be one a different author wrote, and must still rank
+        run: |
+          python validate_corpus.py retrieval_corpus_c.json
+          grep -q '"authored_by"' retrieval_corpus_c.json
+          python third_corpus.py
+          test -s THIRD-CORPUS.md
+          grep -q "Spearman" THIRD-CORPUS.md
       - name: the corpus must report how many of its own comparisons it can settle
         run: |
           python resolution.py > /tmp/res.txt

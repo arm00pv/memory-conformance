@@ -2680,6 +2680,88 @@ for exactly that reason.
 
 One script, one generated table, one claim that fails, and about twenty minutes of measuring. No
 retrieval number and no probe verdict moved.
+---
+
+## Addendum 26: a corpus written by a different model, because a free one was already installed
+
+The longest-open limit in this repository is that both retrieval corpora were written by the same hand
+and the same model family as the analysis that grades them. Every claim of the form "corpus B
+replicates corpus A" has carried that asterisk, and no amount of care produces independence from an
+author who is the author.
+
+### The tool was already here
+
+This machine runs Ollama, with model families this repository has never used: qwen3.5 (4B, local),
+ornith (9B), nimble, and cloud-proxied GLM and DeepSeek. The local models cannot load - 7.7 GB of RAM
+with 341 MB free is not enough for a 3.4 GB model, and the attempt fails with an allocation error rather
+than a queue. The cloud-proxied **glm-5.3** answers in about a second, needs no local memory, and is a
+different family from the model writing this. That is the free tool, and it was installed already.
+
+### The corpus
+
+`author.py` gives the model the band rules and a one-paragraph brief for a municipal observatory whose
+operations log is to be the store, and gives it nothing else: no corpus, no question, no result, no
+analysis, no subject name. It asks for records in six themed batches and questions band by band.
+
+`repair.py` then validates what came back and regenerates only what fails. The first draft was rejected
+five ways - thirteen records answering two questions, six unanswerable questions that one record
+actually covered, an adversarial item with nothing competing, and a hard item sharing two words with its
+answer - which is the validator doing exactly what it exists for. After one repair round: **zero errors**,
+all four bands populated, seventy-two records.
+
+### What it found
+
+| subject | corpus A | corpus B | **corpus C** |
+|---|---|---|---|
+| `memory-mcp-1file` | 42 | 45 | **40** |
+| `control` | 25 | 32 | **31** |
+| `zenbrain` | 40 | 33 | **31** |
+| `memento` | 14 | 19 | **17** |
+| `mcp-duckdb-memory-server` | 12 | 13 | **12** |
+| five subjects | 0-14 | 0-1 | **0** |
+
+**Spearman 0.78 against corpus A, 0.91 against corpus B.** The ranking is not an artefact of one author.
+
+And the part worth more than the correlation: **the top of the table behaves exactly as addendum 24
+said it would.** The leader is alone at 40 of 59, and behind it the control and zenbrain tie at 31 - the
+same three-way shape, from a model that has never seen the questions, the analysis, or the fact that a
+benchmark exists. A tie produced by one corpus is a property of the questions; the same tie produced by
+two corpora and then by a third author is a property of the subjects.
+
+### Three mistakes, all in the plumbing
+
+**33. The JSON extractor took the first bracket to the last.** A reasoning model echoes the output
+template back inside its own thinking before answering, so every reply contained a second, fake array.
+Slicing from the first opener to the last closer spanned both and parsed as neither, and every band came
+back "0 of 16" - which I read as the model refusing to write questions. Scanning backwards for the last
+balanced JSON fixed all four bands at once.
+
+**34. Thinking is billed to the same budget as the answer.** One reply spent 1,700 of its 2,200 tokens
+deliberating and had its array cut off mid-object. `done_reason: length` is the difference between "the
+model produced nothing" and "the model was not allowed to finish", and I had not been reading it.
+
+**35. Forcing JSON made it worse.** `format: "json"` on a sixteen-question ask returned zero characters
+after burning the entire budget. Constraining the decoder does not stop the reasoning that precedes it;
+only a smaller question does. The hard and adversarial bands are now asked one question at a time,
+sixteen times, which is slower and works.
+
+### What this does not settle
+
+A different model is not a different method. It is one prompt, one temperature and one brief, and it
+writes the same tidy synthetic world - short declarative records, no contradictions, no noise. Every
+corpus this repository uses is easier than a real memory store, and a third author does not change that.
+What it changes is the specific objection that author and analyst might share a blind spot: they no
+longer share an author.
+
+The corpus also has 59 questions rather than 60, because the model produced fifteen adversarial items
+and the count was left as authored rather than padded to match.
+
+### What this costs
+
+Two scripts, one generated corpus, one generated report, and about forty minutes of model calls on a
+machine already running the model. Nothing about the ten probes, the calibration, the item analysis or
+the growth curves changed.
+
 
 
 

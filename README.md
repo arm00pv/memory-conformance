@@ -334,6 +334,40 @@ Two findings from that replication are worth more than the table:
   28/60 on the same questions put as keywords, because its matching is word-based and corpus B asks
   questions. Which of those numbers is "its score" depends on who is typing.
 
+
+## A third corpus, written by a different model
+
+Every corpus in this file before today was written by the same hand and the same model family as the
+analysis grading it, which makes "corpus B replicates corpus A" weaker than it reads: a shared blind spot
+is indistinguishable from a finding. That limit has been open since the second corpus.
+
+`retrieval_corpus_c.json` was written by **glm-5.3**, a different model family, through `author.py`. It
+was given the band rules and a one-paragraph brief for a municipal observatory, and nothing else - no
+corpus, no question from either, no result, no analysis, not even a subject name. `repair.py` then ran
+the validator over what it wrote and regenerated only the failures, because a model can write a corpus
+and cannot check one: the first draft had thirteen records answering two questions, six unanswerable
+questions a single record actually covered, an adversarial item with nothing to compete against, and a
+paraphrase that was a keyword match in disguise. After repair it passes with zero errors.
+
+| subject | corpus A | corpus B | **corpus C** |
+|---|---|---|---|
+| `memory-mcp-1file` | 42 | 45 | **40** |
+| `control` | 25 | 32 | **31** |
+| `zenbrain` | 40 | 33 | **31** |
+| `memento` | 14 | 19 | **17** |
+| `mcp-duckdb-memory-server` | 12 | 13 | **12** |
+| `memdb`, `memory-lean`, `server-memory` x2, `mcp-knowledge-graph`, `statecore-mcp` | 0-14 | 0-1 | **0** |
+
+**The ranking survives an independent author: Spearman 0.78 against corpus A and 0.91 against corpus B.**
+And the top three behave exactly as the score-based analysis said they would - the leader alone at
+**40 of 59**, then the control and zenbrain tied at **31**. The tie is not an artefact of who wrote the
+questions; it reappeared from a model that had never seen them.
+
+What this does not settle: a different model is not a different method. It is still one prompt, one
+temperature and one brief, and it still writes a synthetic world in tidy sentences. What it buys is that
+no shared blind spot between author and analyst can explain the agreement.
+
+Full table and both correlations in [`THIRD-CORPUS.md`](THIRD-CORPUS.md).
 ## The positive control: the probes can pass
 
 A suite that only ever fails measures nothing. `control/memory_server.py` is the smallest MCP memory
