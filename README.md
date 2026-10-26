@@ -29,7 +29,7 @@ independently written corpora and in two phrasings, and writes the verdicts to `
 
 ```
 $ python claims.py
-**7 of the 19 claims hold in every setting measured.**
+**7 of the 22 claims hold in every setting measured.**
 ```
 
 Five survive everywhere, including the one that matters most: **memory-mcp-1file answers more
@@ -281,6 +281,8 @@ a reader to read an order into it.
 | A | keywords | **41 of 55** | 42 of 55 |
 | B | written | **37 of 55** | 38 of 55 |
 | B | keywords | **31 of 55** | 39 of 55 |
+| C | written | **37 of 55** | 38 of 55 |
+| C | keywords | **38 of 55** | 39 of 55 |
 
 So the instrument settles roughly two thirds of the comparisons it invites, and 14 pairs change verdict
 between the two phrasings on each corpus. The groups it cannot split, computed from the separation
@@ -290,7 +292,9 @@ relation rather than from the scores:
   `mcp-duckdb-memory-server`** - one group, but 8 of its 21 internal pairs are separated directly. A
   staircase, not a tie.
 - **`control`, `zenbrain`, `memory-mcp-1file`** - one group, and **none** of its three internal pairs is
-  separated on the score. A genuine three-way tie at the top of the table.
+  separated on the score. On corpus A as written that is a three-way tie; measured across all twelve
+  rulers it is a contest between two of them, with the third inside the band and never once first. The
+  next section is the difference between those two sentences.
 - **`statecore-mcp`** - alone, separated from everybody.
 
 ### The leader is not ahead of the control, until you remove the twelve-point switch
@@ -312,6 +316,81 @@ That is what the ledger's `metrics-agree` claim tests, and it **FAILS in all fou
 metrics do not rank the top of this table the same way, and each of them prefers a different subject.
 
 Full tables, including every pair and every flip, are in [`RESOLUTION.md`](RESOLUTION.md).
+
+### The 0-of-0 that sat in that file for three phases
+
+The "between the corpora" table in `RESOLUTION.md` looked its rows up with a two-part key against a dict
+keyed by three parts, so it compared an empty set with an empty set and printed **0 of 0** on every row.
+As a finding, an empty comparison reads exactly like a result - *the corpora never disagree* - which is
+the failure mode this repository is about, committed by the tool that reports it. Fixed, and the
+corrected table is the most interesting one in that file:
+
+| corpora | verdicts that differ, on the score, as written | on hits alone |
+|---|---|---|
+| A vs B | **16 of 55** | 15 of 55 |
+| A vs C | **16 of 55** | 15 of 55 |
+| B vs C | **0 of 55** | **0 of 55** |
+
+Two corpora written by different authors about different worlds reach the **same verdict on all 55
+pairs**. The corpus that disagrees with both is corpus A - written before the band rules were written
+down, by the hand that then wrote them down. Replication here is real between B and C, and what changed
+the answer was the specification rather than the author. The ledger's `corpora-agree` claim
+**FAILS**, which is its honest form: *every pair of corpora agrees* is false, while *B and C agree on
+every pair* is a scope rather than a claim.
+
+## What it would take to break a tie
+
+"Not separated" is the instrument saying it cannot rank two subjects. That is not one fact but four, and
+only one of them a longer corpus fixes cheaply. `band.py` sorts every pair on every ruler - three
+corpora, two phrasings, two metrics, twelve rulers - into those kinds, and computes the price of the ones
+that have a price: [`BAND.md`](BAND.md).
+
+| kind | pair-rulers | what it means |
+|---|---|---|
+| identical | 73 | same outcome on every question; nothing to separate |
+| no direction | 4 | they disagree evenly; no corpus separates a coin |
+| small but real | 94 | one side wins the disagreements and the corpus is too short |
+| out of reach | 27 | a real margin, worth more than 1,000 questions to resolve |
+| separated now | 462 | already settled |
+
+**The tie at the top is not zenbrain's, and it is only half the leader's.** Across the twelve rulers
+`memory-mcp-1file` is first on nine and the **positive control is first on four** - the counts overlap
+because corpus A asked as keywords puts them level. No subject leads all twelve, so *the best memory
+server here* is not a sentence until a corpus, a phrasing and a metric are in front of it:
+
+| subject | rulers at the top |
+|---|---|
+| `memory-mcp-1file` 0.9.2 | **9 of 12** |
+| `control` 1.0.0 | **4 of 12** |
+| everything else | none |
+
+And the price. A split favours one side by a margin, across however many questions they answered
+differently; at that margin, this is how long a corpus would have to be for the same exact test to call
+it at 80% power:
+
+| pair, corpus | answered differently | split | p | questions needed |
+|---|---|---|---|---|
+| `control` vs `1file`, A | 28 of 60 | 11-17 | 0.345 | **371** |
+| `1file` vs `zenbrain`, A | 13 of 60 | 8-5 | 0.581 | **679** |
+| `control` vs `1file`, C | 27 of 59 | 15-12 | 0.701 | **1,401** |
+| `control` vs `1file`, B | 25 of 60 | 12-13 | 1.000 | **11,825** |
+
+That last row is the argument. On corpus B the control and the leader disagree on **25 of 60 questions**
+and split them **12 to 13**. A one-question margin across twenty-five disagreements is not a corpus being
+too short - it is two subjects that differ on nearly half the questions and win equally often, and calling
+it at 80% power would take a corpus two hundred times this one. The pair is settled by being unimportant
+rather than by being measured. The first row is the opposite case: corpus A's sixteen-question margin is
+worth about 371 questions, which is a grant application and not an impossibility, and **on hits alone that
+same pair is already separated on all three corpora** - the twelve-point switch is the entire difference
+between a tie worth 371 questions and no tie at all.
+
+**Not separated is not similar.** At one end of that column `mcp-knowledge-graph` and `memdb` differ on
+**one question out of 48** and no ruler separates them, because there is almost nothing to separate. At
+the other end `memory-lean` and the leader differ on **36 of 60** and corpus A asked as keywords does not
+separate them either, at p = 0.065 - just over the line, on a difference of twelve points. Both read as
+"tied" in the table above. A reader choosing a memory server needs to know which end of that column their
+pair is on, and the ranking as published does not say.
+
 ## A second corpus, written blind
 
 Every retrieval number in this file rests on a question set written by the same hand that wrote the

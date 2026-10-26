@@ -2853,6 +2853,151 @@ One function, one table, and a retraction of a paragraph published one phase ear
 the point - a repository that only ever appends findings accumulates wrong ones, and this one has now
 corrected itself twenty-six times in writing.
 
+## Addendum 27: what a tie is, and what it would cost to break one
+
+Addendum 24 ended with an open item: `resolution.py` says *which* pairs this corpus cannot separate and
+never said *why not*. Forty-of-forty and 42-of-60 look the same in a table and are different facts about
+the subjects. The word tie was covering at least three of them at once.
+
+### The predictions, written first
+
+Four, before `band.py` existed:
+
+1. The top three would be a genuine three-way tie, and corpus C would put zenbrain at the top as often as
+   the control.
+2. The price of breaking a top pair would be a few hundred questions - the kind of number that says *ask
+   more* rather than *stop asking*.
+3. A pair that disagrees on almost nothing would always look like a tie, and a pair that disagrees on
+   almost everything would look like a difference.
+4. No corpus would separate a pair that splits its disagreements evenly, because more questions raise
+   both sides at the same rate.
+
+### What happened to them
+
+**One right, one wrong, two half right.** The fourth held exactly and is the reason the tool exists. The
+first was wrong in an interesting direction: zenbrain leads **none** of the twelve rulers. It is not the
+other half of a tie; it sits in the same band as the leader and is never once first. The second was right
+for one pair and badly wrong for another - the same contest costs 371 questions on one corpus and 11,825
+on the next. The third is right about the ends and wrong about the middle, which is where the top of this
+table lives.
+
+### Twelve rulers, and the winner is a property of the ruler
+
+A ruler is one corpus, in one phrasing, on one metric.
+
+| subject | rulers at the top | of |
+|---|---|---|
+| `memory-mcp-1file` 0.9.2 | **9** | 12 |
+| `control` 1.0.0 | **4** | 12 |
+| the other nine subjects | 0 | 12 |
+
+The counts add to thirteen because corpus A asked as keywords puts them level. So *the best memory server
+here* is not a sentence until a corpus, a phrasing and a metric are in front of it - and the positive
+control, two hundred lines of append-only file, is first on four of the twelve. That has been true since
+the first matrix and has never been put in one line: the top of this ranking is contested by the control,
+and which of the two wins depends on how the questions are worded and on whether silence scores.
+
+### The price, which is the useful part
+
+The exact McNemar test is a poor instrument for a question of size and a good one for a question of
+visibility. A split of b against c out of n questions carries two numbers: how surprising it is, and how
+large it would have to be to be called. `band.py` computes the second by finding the number of
+disagreements at which the same test reaches 80% power at the observed win rate, then dividing by the rate
+at which these two subjects disagree at all.
+
+| pair, corpus | answered differently | split | p | questions needed |
+|---|---|---|---|---|
+| `control` vs `1file`, A | 28 of 60 | 11-17 | 0.345 | **371** |
+| `1file` vs `zenbrain`, A | 13 of 60 | 8-5 | 0.581 | **679** |
+| `control` vs `1file`, C | 27 of 59 | 15-12 | 0.701 | **1,401** |
+| `control` vs `zenbrain`, A | 27 of 60 | 12-15 | 0.701 | **1,425** |
+| `control` vs `1file`, B | 25 of 60 | 12-13 | 1.000 | **11,825** |
+
+Read the first and the last together. Both are *not separated*. One needs a corpus six times this one;
+the other needs a corpus two hundred times this one, which is another way of saying that on corpus B the
+control and the leader disagree on twenty-five questions, win twelve and thirteen of them, and no
+reasonable corpus will ever call it. The two are the same row of a table and completely different
+findings.
+
+### A fourth kind I did not predict
+
+The first version put every unseparated pair with a direction in one box, which filed the
+11,825-question pair beside the 371-question one. It needed a fourth: **out of reach**, for a margin that
+exists and would cost more than a thousand questions to resolve. Twenty-seven of the 198 unseparated
+pair-rulers are that, and reporting them as *ask more* would have been the same mistake as the empty
+comparison two sections down - a number formatted as a conclusion it does not support.
+
+| kind | pair-rulers |
+|---|---|
+| identical | 73 |
+| no direction | 4 |
+| small but real | 94 |
+| out of reach | 27 |
+| separated now | 462 |
+
+### Not separated is not similar
+
+The widest divergence behind a non-separation is 36 of 60 questions. `memory-lean` and the leader answer
+thirty-six questions differently and corpus A asked as keywords declines to rank them, at p = 0.065. The
+narrowest is one question in forty-eight. Both were *tied* in the previous table, and a reader choosing a
+memory server needs to know which end of that column their pair is on.
+
+### The 0 of 0 that stood in RESOLUTION.md for three phases
+
+While extending the separation analysis to corpus C I found the between-corpora table had been compared
+with a two-part key against a dict keyed by three parts. Every row of it read **0 of 0**: an empty set
+compared with an empty set, printed under the heading *pairs whose verdict differs between corpus A and
+corpus B*. As a sentence, an empty comparison is indistinguishable from a finding, and this one read as
+*the corpora never disagree* - the strongest possible version of a result nobody had computed.
+
+Corrected, it is the best number in the phase:
+
+| corpora | verdicts that differ, on the score, as written |
+|---|---|
+| A vs B | **16 of 55** |
+| A vs C | **16 of 55** |
+| B vs C | **0 of 55** |
+
+Two corpora written by different authors about different fictional worlds reach the **same verdict on all
+fifty-five pairs**. The corpus that disagrees with both is corpus A - the one written before the band
+rules were written down. So the replication that Addendum 26 could only claim from a rank correlation is
+exact at the level of the verdict, and what it separates is the specification rather than the author.
+
+### Three more of my own mistakes
+
+**36. A comparison with an empty denominator, reported as a result.** `blocks.get((corpus, shape))`
+against keys of `(corpus, shape, metric)`. Three phases, one table, every row zero. CI now fails on the
+string `0 of 0` in RESOLUTION.md - a check written to catch this exact class, which could have been
+written three phases ago.
+
+**37. Then I wrote the same bug twice in one afternoon.** `band.py` looked up a three-part key in a
+four-part dict and printed three empty tables; `claims.py` did it again and returned *unmeasured* for a
+comparison it had already computed. The fix was not another careful lookup, it was a named function -
+`band.cell()` - whose docstring records how many times this has happened. Two of the three occurrences
+were caught by reading the output rather than by anything failing.
+
+**38. A power calculation that could not finish, then could not count.** The first version walked the
+disagreement count upward and called `math.comb(d, k) / 2**d`, which overflows past a few thousand; it ran
+for minutes before I killed it. Rewritten in log space with bisection it then disagreed with brute force
+by five questions: the exact test's power is a **sawtooth**, not a ramp, because its rejection threshold
+rises by one minority vote every two disagreements - 149 disagreements clear 80%, 153 does not, 154
+clears it again. Bisection finds a number that works; *how many* has to walk back to the first that works.
+
+### What this does not say
+
+The price is computed from one observed split, and a split of thirteen has a wide interval on its win
+rate. It is a floor on the effort, not a promise about the outcome. It says nothing about whether a larger
+corpus keeps the same win rate - if the two subjects differ in a way the next hundred questions do not
+touch, the price is infinite and the estimate is meaningless. What it does say is that the ties at the top
+of this table are of two different kinds, and only one of them is a shortage of questions.
+
+### What this costs
+
+One script, one generated table, three claims (one of which fails, and should), and no re-measurement - it
+reads the rows already on disk. The open item from Addendum 24 is closed, and closed by being replaced
+with a better question.
+
+
 
 
 
