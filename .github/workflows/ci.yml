@@ -34,6 +34,8 @@ jobs:
           grep -q "leader-is-steady" CLAIMS.md
           grep -q "tie-means-same" CLAIMS.md
           grep -q "corpora-agree" CLAIMS.md
+          grep -q "score-sees-ordering" CLAIMS.md
+          grep -q "score-prefers-recalcitrance" CLAIMS.md
       - name: every question must be analysed for whether it separates anybody
         run: |
           python items.py > /tmp/items.txt
@@ -64,6 +66,19 @@ jobs:
           fi
           grep -q "Between the corpora" RESOLUTION.md
           grep -q "A vs B" RESOLUTION.md
+
+      # THE RETRIEVAL HALF OF THIS INSTRUMENT HAD NO MUTATION BATTERY. The probes have had one since
+      # Addendum 19; the number the retrieval table publishes has not, so "the score measures retrieval"
+      # was an assumption with a table built on top of it. This runs the four levers fast and checks that
+      # the report says what the levers found, including the two things it cannot see.
+      - name: the retrieval score must be mutation-tested, not assumed
+        run: |
+          python retrieval_mutants.py --repeat=1 --md=/tmp/rm.md > /tmp/rm.txt
+          cat /tmp/rm.txt
+          test -s RETRIEVAL-MUTANTS.md
+          grep -q "What it cannot see" /tmp/rm.md
+          grep -q "What it rewards" /tmp/rm.md
+          grep -q "different verdict depending on how many results are read" /tmp/rm.md
 
       - name: a tie must be reported as one of its three kinds, with a price
         run: |

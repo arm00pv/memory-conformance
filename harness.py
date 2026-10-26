@@ -656,6 +656,15 @@ class ControlAdapter(ReferenceAdapter):
         the wire cost of one question is the entire store. Reported as measured, not excused."""
         return srv.call("memory_read", {})
 
+    def _need(self, terms):
+        """How many of the question's terms a record must match to count as an answer.
+
+        HALF OF THEM, AND THIS NUMBER IS THE WHOLE DIFFERENCE between a memory that declines an
+        unanswerable question and one that answers it with something plausible. It is a method rather
+        than a local so the retrieval mutants can move it without copying the search.
+        """
+        return max(1, (len(terms) + 1) // 2)
+
     def search(self, srv, query, k=3):
         """Term overlap over the observations, which is all this control claims to do."""
         low = query.lower()
@@ -664,7 +673,7 @@ class ControlAdapter(ReferenceAdapter):
         terms = [t for t in low.split() if t and t not in self.STOPWORDS]
         if not terms:
             return []
-        need = max(1, (len(terms) + 1) // 2)
+        need = self._need(terms)
         ents = self.read(srv) or []
         scored = []
         for e in ents:
@@ -719,7 +728,28 @@ class MutantAdapter(ControlAdapter):
             MutantAdapter._ORACLE = index
         return MutantAdapter._ORACLE
 
+    def _need(self, terms):
+        if self.MUTANT == "greedy-match":
+            # ONE TERM IS ENOUGH. Every question gets an answer, including the twelve that have none,
+            # which is what a memory does when it optimises for the caller never going away empty.
+            return 1
+        if self.MUTANT == "strict-match":
+            # EVERY TERM IS REQUIRED. The opposite defect: a correct record that shares one word with
+            # the question's phrasing is no longer an answer, so recall falls and refusals rise.
+            return len(terms)
+        return ControlAdapter._need(self, terms)
+
     def search(self, srv, query, k=3):
+        if self.MUTANT == "one-result":
+            # THE CALLER READS ONE ANSWER. Not a ranking defect - the same search with k lowered - so
+            # this lever moves hit@3 and leaves hit@1 alone, which is the direction the score does
+            # notice.
+            return ControlAdapter.search(self, srv, query, 1)
+        if self.MUTANT == "reverse-rank":
+            # THE WORST MATCH FIRST. The set is unchanged, so hit@3 cannot see this at all and the
+            # score built on it cannot either; hit@1 collapses. It exists to find out whether that is
+            # true, because a benchmark blind to ordering is a benchmark an agent's top hit can fail.
+            return list(reversed(ControlAdapter.search(self, srv, query, k)))
         if self.MUTANT == "oracle-search":
             # THE CEILING, AND IT CHEATS ON PURPOSE. This is not a subject; it is the answer key wired
             # to a search tool, so the top of the retrieval scale can be stated rather than assumed.

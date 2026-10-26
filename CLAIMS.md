@@ -10,7 +10,7 @@ claim about silence. A subject's SCORE is what the paired test pairs on - the ri
 top three, plus a credit for declining a question with no answer. Its HITS are only the questions
 that have an answer and were answered correctly. "It answers nothing" is a claim about hits.
 
-**7 of the 22 claims hold in every setting measured.** The rest are printed beside the setting
+**7 of the 24 claims hold in every setting measured.** The rest are printed beside the setting
 that breaks them, because that setting is the claim's real scope.
 
 | claim | A written | A keywords | B written | B keywords | status |
@@ -37,6 +37,8 @@ that breaks them, because that setting is the claim's real scope.
 | leader-is-steady | no | no | **FAILS** |
 | tie-means-same | no | no | **FAILS** |
 | corpora-agree | no | no | **FAILS** |
+| score-sees-ordering | no | no | **FAILS** |
+| score-prefers-recalcitrance | no | no | **FAILS** |
 
 ## Each claim, with what it rests on
 
@@ -153,3 +155,11 @@ that breaks them, because that setting is the claim's real scope.
 **corpora-agree** - every pair of corpora here reaches the same verdict on every pair of subjects. *FAILS*
   - A written: false (verdicts that differ between corpora: A vs B 16 of 55, A vs C 16 of 55, B vs C 0 of 55)
   - B written: false (verdicts that differ between corpora: A vs B 16 of 55, A vs C 16 of 55, B vs C 0 of 55)
+
+**score-sees-ordering** - the retrieval score changes when a search returns its worst match first. *FAILS*
+  - A written: false (reversing the result list moved the score by 0 and the hit count by 0 (score 37 against 37))
+  - B written: false (reversing the result list moved the score by 0 and the hit count by 0 (score 37 against 37))
+
+**score-prefers-recalcitrance** - a search that accepts one shared word scores no better than one that requires half. *FAILS*
+  - A written: false (accepting one shared word scored 43 against 37, a gain of 6 for answering worse)
+  - B written: false (accepting one shared word scored 43 against 37, a gain of 6 for answering worse)

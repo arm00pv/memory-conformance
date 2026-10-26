@@ -268,6 +268,75 @@ def c_corpora_agree(ctx, corpus, shape):
     return all_zero, "verdicts that differ between corpora: " + ", ".join(parts)
 
 
+MUTANT_RUNS = {}
+
+
+def mutant_run(lever, corpus="A"):
+    """One saved retrieval-mutant run, as a subject report."""
+    key = (lever, corpus)
+    if key in MUTANT_RUNS:
+        return MUTANT_RUNS[key]
+    # THE CLEAN CONTROL IS SAVED BY calibration.py UNDER ANOTHER NAME, and looking for it under the
+    # mutant naming scheme returned None, which the ledger faithfully reported as "no measurement" on
+    # two claims whose numbers were sitting on disk. A baseline is a run like any other; it is only the
+    # file name that is not.
+    if lever == "control":
+        path = os.path.join("results", "calibration-control-%s.json" % corpus)
+    else:
+        path = os.path.join("results", "retrieval-%s-%s.json" % (lever, corpus))
+    doc = None
+    if os.path.isfile(path):
+        with open(path, encoding="utf-8") as fh:
+            doc = json.load(fh)
+    MUTANT_RUNS[key] = doc
+    return doc
+
+
+def mutant_counts(lever, corpus="A"):
+    """(score, hits) for one saved mutant run, on the score the paired tests use."""
+    doc = mutant_run(lever, corpus)
+    if not doc:
+        return None
+    rows = doc.get("rows") or []
+    return (sum(1 for r in rows if compare.correct(r)),
+            sum(1 for r in rows if r.get("hit3")))
+
+
+def c_score_sees_ordering(ctx, corpus, shape):
+    """The retrieval score changes when a search returns its worst match first.
+
+    A SET MEMBERSHIP QUESTION IS NOT A RANKING QUESTION, and the table that publishes hit@3 has been read
+    as if it measured the quality of an ordering. The lever below is the same search with its result list
+    reversed, so the set is identical and only the order changes. If the score moves, it sees ordering.
+    """
+    got = mutant_counts("reverse-rank")
+    base = mutant_counts("control")
+    if got is None or base is None:
+        return None
+    moved = got[0] - base[0]
+    return (moved != 0,
+            "reversing the result list moved the score by %d and the hit count by %d (score %d against %d)"
+            % (moved, got[1] - base[1], got[0], base[0]))
+
+
+def c_score_prefers_recalcitrance(ctx, corpus, shape):
+    """A search that accepts one shared word scores no better than one that requires half.
+
+    THE FAILURE MODE THIS REPO EXISTS FOR, POINTED AT ITSELF. Lowering the bar makes a matcher answer
+    questions it should decline and return records it should not, and it raises the hit count because a
+    lower bar finds more of the right records too. The twelve unanswerable questions are the only
+    counterweight, so the question is arithmetic: does the score go up?
+    """
+    greedy = mutant_counts("greedy-match")
+    base = mutant_counts("control")
+    if greedy is None or base is None:
+        return None
+    gained = greedy[0] - base[0]
+    return (gained <= 0,
+            "accepting one shared word scored %d against %d, a gain of %d for answering worse"
+            % (greedy[0], base[0], gained))
+
+
 def c_most_hits(ctx, corpus, shape):
     r = leads(LEADER, corpus, lambda n, c, s: hits(n, c, s), shape)
     return (r["strict"], fmt_lead(r, of="48")) if r else None
@@ -629,6 +698,10 @@ CLAIMS = [
      c_tie_means_same, False),
     ("corpora-agree", "every pair of corpora here reaches the same verdict on every pair of subjects.",
      c_corpora_agree, False),
+    ("score-sees-ordering", "the retrieval score changes when a search returns its worst match first.",
+     c_score_sees_ordering, False),
+    ("score-prefers-recalcitrance", "a search that accepts one shared word scores no better than one that"
+     " requires half.", c_score_prefers_recalcitrance, False),
 ]
 
 
