@@ -10,7 +10,7 @@ claim about silence. A subject's SCORE is what the paired test pairs on - the ri
 top three, plus a credit for declining a question with no answer. Its HITS are only the questions
 that have an answer and were answered correctly. "It answers nothing" is a claim about hits.
 
-**7 of the 31 claims hold in every setting measured.** The rest are printed beside the setting
+**7 of the 32 claims hold in every setting measured.** The rest are printed beside the setting
 that breaks them, because that setting is the claim's real scope.
 
 | claim | A written | A keywords | B written | B keywords | status |
@@ -43,6 +43,7 @@ that breaks them, because that setting is the claim's real scope.
 | near-end-separates | no | no | **FAILS** |
 | plural-is-free | no | no | **FAILS** |
 | set-answers | no | no | **FAILS** |
+| longer-exam | no | no | **FAILS** |
 | silent-everywhere | no | no | **FAILS** |
 | score-sees-ordering | no | no | **FAILS** |
 | score-prefers-recalcitrance | no | no | **FAILS** |
@@ -186,6 +187,10 @@ that breaks them, because that setting is the claim's real scope.
 **set-answers** - a subject that answers every single-record question answers every set question too. *FAILS*
   - A written: false (6 subject(s) answer every single-record question and still miss clusters (mcp-duckdb-memory-server 0 of 16, mcp-knowledge-graph 0 of 16, memory-lean 0 of 16, memory-mcp-1file 11 of 16, server-memory 0 of 16, server-memory 0 of 16))
   - B written: false (6 subject(s) answer every single-record question and still miss clusters (mcp-duckdb-memory-server 0 of 16, mcp-knowledge-graph 0 of 16, memory-lean 0 of 16, memory-mcp-1file 11 of 16, server-memory 0 of 16, server-memory 0 of 16))
+
+**longer-exam** - asking three hundred questions instead of sixty changes which pairs the corpus can separate. *FAILS*
+  - A written: false (8 pairs separated at 300 questions that were not at 60, and 0 the other way)
+  - B written: false (8 pairs separated at 300 questions that were not at 60, and 0 the other way)
 
 **silent-everywhere** - the subjects that answer nothing on the authored corpora answer nothing on real text either. *FAILS*
   - A written: false (1 of 4 still answer nothing on real text (server-memory 33, server-memory 33, mcp-knowledge-graph 33 of 48 answered))

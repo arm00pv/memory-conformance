@@ -1,0 +1,3158 @@
+{
+  "adapter": "reference",
+  "summary": {
+    "absent": {
+      "n": 100,
+      "answered": 0
+    },
+    "all": {
+      "n": 300,
+      "hit1": 65,
+      "hit3": 68
+    }
+  },
+  "rows": [
+    {
+      "query": "State-of-the-art Machine Learning for the web. Run \ud83e\udd17 Transformers directly in your browser, with no need for a server!",
+      "expect": "@huggingface/transformers",
+      "difficulty": "d0",
+      "returned": [
+        "@huggingface/transformers",
+        "@xenova/transformers"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null
+    },
+    {
+      "query": "State-of-the-art Machine for the web. Run \ud83e\udd17 Transformers directly in browser, with no for a server!",
+      "expect": "@huggingface/transformers",
+      "difficulty": "d3",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "State-of-the-art Learning for the web. Run \ud83e\udd17 directly in browser, no need for a",
+      "expect": "@huggingface/transformers",
+      "difficulty": "d2",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Store information about any JS value in a side channel. Uses WeakMap if available.",
+      "expect": "side-channel-weakmap",
+      "difficulty": "d0",
+      "returned": [
+        "side-channel-weakmap",
+        "side-channel"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null
+    },
+    {
+      "query": "Store information any JS value in a side Uses WeakMap if",
+      "expect": "side-channel-weakmap",
+      "difficulty": "d3",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Store about any JS in a side Uses if available.",
+      "expect": "side-channel-weakmap",
+      "difficulty": "d2",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Auto registering package. Exists to support bundlers without exports support such as webpack 4.",
+      "expect": "chart.js-auto",
+      "difficulty": "d0",
+      "returned": [
+        "chart.js-auto"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null
+    },
+    {
+      "query": "Auto registering Exists to support without exports such as webpack 4.",
+      "expect": "chart.js-auto",
+      "difficulty": "d3",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Auto package. to support without support as webpack 4.",
+      "expect": "chart.js-auto",
+      "difficulty": "d2",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "AWS credential provider that sources credentials from known environment variables",
+      "expect": "@aws-sdk/credential-provider-env",
+      "difficulty": "d0",
+      "returned": [
+        "@aws-sdk/credential-provider-env"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null
+    },
+    {
+      "query": "AWS credential provider sources credentials known environment",
+      "expect": "@aws-sdk/credential-provider-env",
+      "difficulty": "d3",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "AWS credential that credentials known variables",
+      "expect": "@aws-sdk/credential-provider-env",
+      "difficulty": "d2",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "AWS credential provider that sources credentials from ~/.aws/credentials and ~/.aws/config",
+      "expect": "@aws-sdk/credential-provider-ini",
+      "difficulty": "d0",
+      "returned": [
+        "@aws-sdk/credential-provider-ini"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null
+    },
+    {
+      "query": "AWS credential provider sources credentials ~/.aws/credentials and ~/.aws/config",
+      "expect": "@aws-sdk/credential-provider-ini",
+      "difficulty": "d3",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "AWS credential that credentials ~/.aws/credentials and ~/.aws/config",
+      "expect": "@aws-sdk/credential-provider-ini",
+      "difficulty": "d2",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "micromark factory to parse markdown space (found in lots of places)",
+      "expect": "micromark-factory-space",
+      "difficulty": "d0",
+      "returned": [
+        "micromark-factory-space"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null
+    },
+    {
+      "query": "micromark factory to markdown space (found in of places)",
+      "expect": "micromark-factory-space",
+      "difficulty": "d3",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "micromark to parse space (found in of places)",
+      "expect": "micromark-factory-space",
+      "difficulty": "d2",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Store information about any JS value in a side channel, using a linked list",
+      "expect": "side-channel-list",
+      "difficulty": "d0",
+      "returned": [
+        "side-channel-list"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null
+    },
+    {
+      "query": "Store information any JS value in a side using a linked",
+      "expect": "side-channel-list",
+      "difficulty": "d3",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Store about any JS in a side using a list",
+      "expect": "side-channel-list",
+      "difficulty": "d2",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Get the visual width of a string - the number of columns required to display it",
+      "expect": "string-width",
+      "difficulty": "d0",
+      "returned": [
+        "string-width"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null
+    },
+    {
+      "query": "Get the visual width of a - the number of columns to display it",
+      "expect": "string-width",
+      "difficulty": "d3",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Get the visual of a string - the of columns to display it",
+      "expect": "string-width",
+      "difficulty": "d2",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "AWS SDK for JavaScript Ecs Client for Node.js, Browser and React Native",
+      "expect": "@aws-sdk/client-ecs",
+      "difficulty": "d0",
+      "returned": [
+        "@aws-sdk/client-ecs"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null
+    },
+    {
+      "query": "AWS SDK for JavaScript Ecs Client for Browser and React",
+      "expect": "@aws-sdk/client-ecs",
+      "difficulty": "d3",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "AWS SDK for JavaScript Ecs for Node.js, and React",
+      "expect": "@aws-sdk/client-ecs",
+      "difficulty": "d2",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "AWS credential provider that sources credentials from aws login cached tokens",
+      "expect": "@aws-sdk/credential-provider-login",
+      "difficulty": "d0",
+      "returned": [
+        "@aws-sdk/credential-provider-login"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null
+    },
+    {
+      "query": "AWS credential provider sources credentials aws login cached",
+      "expect": "@aws-sdk/credential-provider-login",
+      "difficulty": "d3",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "AWS credential that credentials aws login tokens",
+      "expect": "@aws-sdk/credential-provider-login",
+      "difficulty": "d2",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Model Context Protocol implementation for TypeScript - Client package",
+      "expect": "@modelcontextprotocol/client",
+      "difficulty": "d0",
+      "returned": [
+        "@modelcontextprotocol/client"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null
+    },
+    {
+      "query": "Model Context implementation for TypeScript - package",
+      "expect": "@modelcontextprotocol/client",
+      "difficulty": "d3",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Model Protocol for TypeScript - package",
+      "expect": "@modelcontextprotocol/client",
+      "difficulty": "d2",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "MCP server for enabling memory for Claude through a knowledge graph",
+      "expect": "@modelcontextprotocol/server-memory",
+      "difficulty": "d0",
+      "returned": [
+        "@modelcontextprotocol/server-memory"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null
+    },
+    {
+      "query": "MCP server for enabling for Claude through a graph",
+      "expect": "@modelcontextprotocol/server-memory",
+      "difficulty": "d3",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "MCP server for memory for through a graph",
+      "expect": "@modelcontextprotocol/server-memory",
+      "difficulty": "d2",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "micromark factory to parse destinations (found in resources, definitions)",
+      "expect": "micromark-factory-destination",
+      "difficulty": "d0",
+      "returned": [
+        "micromark-factory-destination"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null
+    },
+    {
+      "query": "micromark factory to destinations (found in resources,",
+      "expect": "micromark-factory-destination",
+      "difficulty": "d3",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "micromark to parse (found in resources,",
+      "expect": "micromark-factory-destination",
+      "difficulty": "d2",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "AWS credential provider that exchanges a resolved SSO login token file for temporary AWS credentials",
+      "expect": "@aws-sdk/credential-provider-sso",
+      "difficulty": "d0",
+      "returned": [
+        "@aws-sdk/credential-provider-sso"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null
+    },
+    {
+      "query": "AWS credential provider exchanges a resolved SSO token file for AWS credentials",
+      "expect": "@aws-sdk/credential-provider-sso",
+      "difficulty": "d3",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "AWS credential that a resolved SSO token for temporary AWS",
+      "expect": "@aws-sdk/credential-provider-sso",
+      "difficulty": "d2",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "fs read and write streams based on minipass",
+      "expect": "@isaacs/fs-minipass",
+      "difficulty": "d0",
+      "returned": [
+        "@isaacs/fs-minipass",
+        "fs-minipass"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null
+    },
+    {
+      "query": "fs read and write based on minipass",
+      "expect": "@isaacs/fs-minipass",
+      "difficulty": "d3",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "fs read and streams on minipass",
+      "expect": "@isaacs/fs-minipass",
+      "difficulty": "d2",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Isomorphic fetch() in Node, Deno and Cloudflare Workers",
+      "expect": "@libsql/isomorphic-fetch",
+      "difficulty": "d0",
+      "returned": [
+        "@libsql/isomorphic-fetch"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null
+    },
+    {
+      "query": "Isomorphic fetch() in Deno and Cloudflare",
+      "expect": "@libsql/isomorphic-fetch",
+      "difficulty": "d3",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Isomorphic in Node, and Cloudflare",
+      "expect": "@libsql/isomorphic-fetch",
+      "difficulty": "d2",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "State-of-the-art Machine Learning for the web. Run \ud83e\udd17 Transformers directly in your browser, with no need for a server!",
+      "expect": "@xenova/transformers",
+      "difficulty": "d0",
+      "returned": [
+        "@huggingface/transformers",
+        "@xenova/transformers"
+      ],
+      "hit1": false,
+      "hit3": true,
+      "answered": true,
+      "error": null
+    },
+    {
+      "query": "State-of-the-art Machine for the web. Run \ud83e\udd17 Transformers directly in browser, with no for a server!",
+      "expect": "@xenova/transformers",
+      "difficulty": "d3",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "State-of-the-art Learning for the web. Run \ud83e\udd17 directly in browser, no need for a",
+      "expect": "@xenova/transformers",
+      "difficulty": "d2",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Store information about any JS value in a side channel. Uses WeakMap if available.",
+      "expect": "side-channel",
+      "difficulty": "d0",
+      "returned": [
+        "side-channel-weakmap",
+        "side-channel"
+      ],
+      "hit1": false,
+      "hit3": true,
+      "answered": true,
+      "error": null
+    },
+    {
+      "query": "Store information any JS value in a side Uses WeakMap if",
+      "expect": "side-channel",
+      "difficulty": "d3",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Store about any JS in a side Uses if available.",
+      "expect": "side-channel",
+      "difficulty": "d2",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Helpers package. Exists to support bundlers without exports support such as webpack 4.",
+      "expect": "chart.js-helpers",
+      "difficulty": "d0",
+      "returned": [
+        "chart.js-helpers"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null
+    },
+    {
+      "query": "Helpers package. to support bundlers exports support as webpack 4.",
+      "expect": "chart.js-helpers",
+      "difficulty": "d3",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Helpers Exists to bundlers exports such as 4.",
+      "expect": "chart.js-helpers",
+      "difficulty": "d2",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "AWS credential provider that sources credentials from a Node.JS environment.",
+      "expect": "@aws-sdk/credential-provider-node",
+      "difficulty": "d0",
+      "returned": [
+        "@aws-sdk/credential-provider-node"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null
+    },
+    {
+      "query": "AWS credential provider sources credentials a Node.JS environment.",
+      "expect": "@aws-sdk/credential-provider-node",
+      "difficulty": "d3",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "AWS credential that credentials a Node.JS",
+      "expect": "@aws-sdk/credential-provider-node",
+      "difficulty": "d2",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "AWS credential provider that sources credential_process from ~/.aws/credentials and ~/.aws/config",
+      "expect": "@aws-sdk/credential-provider-process",
+      "difficulty": "d0",
+      "returned": [
+        "@aws-sdk/credential-provider-process"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null
+    },
+    {
+      "query": "AWS credential provider sources credential_process ~/.aws/credentials and ~/.aws/config",
+      "expect": "@aws-sdk/credential-provider-process",
+      "difficulty": "d3",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "AWS credential that credential_process ~/.aws/credentials and ~/.aws/config",
+      "expect": "@aws-sdk/credential-provider-process",
+      "difficulty": "d2",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "micromark factory to parse markdown whitespace (found in lots of places)",
+      "expect": "micromark-factory-whitespace",
+      "difficulty": "d0",
+      "returned": [
+        "micromark-factory-whitespace"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null
+    },
+    {
+      "query": "micromark factory to markdown whitespace (found in of places)",
+      "expect": "micromark-factory-whitespace",
+      "difficulty": "d3",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "micromark to parse whitespace (found in of places)",
+      "expect": "micromark-factory-whitespace",
+      "difficulty": "d2",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Store information about any JS value in a side channel, using a Map",
+      "expect": "side-channel-map",
+      "difficulty": "d0",
+      "returned": [
+        "side-channel-map"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null
+    },
+    {
+      "query": "Store information any JS value in a side using a Map",
+      "expect": "side-channel-map",
+      "difficulty": "d3",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Store about any JS in a side using a Map",
+      "expect": "side-channel-map",
+      "difficulty": "d2",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Get the visual width of the widest line in a string - the number of columns required to display it",
+      "expect": "widest-line",
+      "difficulty": "d0",
+      "returned": [
+        "widest-line"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null
+    },
+    {
+      "query": "Get the visual width of the line in a string - the of columns required to it",
+      "expect": "widest-line",
+      "difficulty": "d3",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Get the visual of the widest in a string - the of columns to display it",
+      "expect": "widest-line",
+      "difficulty": "d2",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "AWS SDK for JavaScript S3 Client for Node.js, Browser and React Native",
+      "expect": "@aws-sdk/client-s3",
+      "difficulty": "d0",
+      "returned": [
+        "@aws-sdk/client-s3"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null
+    },
+    {
+      "query": "AWS SDK for JavaScript S3 Client for Browser and React",
+      "expect": "@aws-sdk/client-s3",
+      "difficulty": "d3",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "AWS SDK for JavaScript S3 for Node.js, and React",
+      "expect": "@aws-sdk/client-s3",
+      "difficulty": "d2",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "AWS credential provider that sources credentials from the EC2 instance metadata service and ECS container metadata service",
+      "expect": "@smithy/credential-provider-imds",
+      "difficulty": "d0",
+      "returned": [
+        "@smithy/credential-provider-imds"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null
+    },
+    {
+      "query": "AWS credential provider sources credentials the EC2 instance metadata and ECS container metadata",
+      "expect": "@smithy/credential-provider-imds",
+      "difficulty": "d3",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "AWS credential that credentials the EC2 instance service and ECS metadata",
+      "expect": "@smithy/credential-provider-imds",
+      "difficulty": "d2",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Model Context Protocol implementation for TypeScript - Server package",
+      "expect": "@modelcontextprotocol/server",
+      "difficulty": "d0",
+      "returned": [
+        "@modelcontextprotocol/server"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null
+    },
+    {
+      "query": "Model Context implementation for TypeScript - package",
+      "expect": "@modelcontextprotocol/server",
+      "difficulty": "d3",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Model Protocol for TypeScript - package",
+      "expect": "@modelcontextprotocol/server",
+      "difficulty": "d2",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "MCP server enabling persistent memory for AI models through a local knowledge graph",
+      "expect": "mcp-knowledge-graph",
+      "difficulty": "d0",
+      "returned": [
+        "mcp-knowledge-graph"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null
+    },
+    {
+      "query": "MCP server enabling memory for AI models a local knowledge",
+      "expect": "mcp-knowledge-graph",
+      "difficulty": "d3",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "MCP server persistent for AI models a local graph",
+      "expect": "mcp-knowledge-graph",
+      "difficulty": "d2",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "micromark factory to parse markdown titles (found in resources, definitions)",
+      "expect": "micromark-factory-title",
+      "difficulty": "d0",
+      "returned": [
+        "micromark-factory-title"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null
+    },
+    {
+      "query": "micromark factory to markdown titles (found in definitions)",
+      "expect": "micromark-factory-title",
+      "difficulty": "d3",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "micromark to parse titles (found in definitions)",
+      "expect": "micromark-factory-title",
+      "difficulty": "d2",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "AWS credential provider that calls STS assumeRole for temporary AWS credentials",
+      "expect": "@aws-sdk/credential-provider-web-identity",
+      "difficulty": "d0",
+      "returned": [
+        "@aws-sdk/credential-provider-web-identity"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null
+    },
+    {
+      "query": "AWS credential provider calls STS assumeRole for AWS credentials",
+      "expect": "@aws-sdk/credential-provider-web-identity",
+      "difficulty": "d3",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "AWS credential that STS assumeRole for AWS credentials",
+      "expect": "@aws-sdk/credential-provider-web-identity",
+      "difficulty": "d2",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "fs read and write streams based on minipass",
+      "expect": "fs-minipass",
+      "difficulty": "d0",
+      "returned": [
+        "@isaacs/fs-minipass",
+        "fs-minipass"
+      ],
+      "hit1": false,
+      "hit3": true,
+      "answered": true,
+      "error": null
+    },
+    {
+      "query": "fs read and write based on minipass",
+      "expect": "fs-minipass",
+      "difficulty": "d3",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "fs read and streams on minipass",
+      "expect": "fs-minipass",
+      "difficulty": "d2",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Isomorphic WebSockets in Node, Bun, Deno and Cloudflare Workers",
+      "expect": "@libsql/isomorphic-ws",
+      "difficulty": "d0",
+      "returned": [
+        "@libsql/isomorphic-ws"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null
+    },
+    {
+      "query": "Isomorphic WebSockets in Bun, Deno and Cloudflare",
+      "expect": "@libsql/isomorphic-ws",
+      "difficulty": "d3",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Isomorphic in Node, Bun, and Cloudflare",
+      "expect": "@libsql/isomorphic-ws",
+      "difficulty": "d2",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Check if the character represented by a given Unicode code point is fullwidth",
+      "expect": "is-fullwidth-code-point",
+      "difficulty": "d0",
+      "returned": [
+        "is-fullwidth-code-point"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null
+    },
+    {
+      "query": "Check if the character by a given Unicode point is fullwidth",
+      "expect": "is-fullwidth-code-point",
+      "difficulty": "d3",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Check if the represented by a Unicode point is",
+      "expect": "is-fullwidth-code-point",
+      "difficulty": "d2",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "The Windows 64-bit binary for esbuild, a JavaScript bundler.",
+      "expect": "@esbuild/win32-x64",
+      "difficulty": "d0",
+      "returned": [
+        "@esbuild/win32-x64"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null
+    },
+    {
+      "query": "The Windows 64-bit binary for a JavaScript bundler.",
+      "expect": "@esbuild/win32-x64",
+      "difficulty": "d3",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "The Windows 64-bit for esbuild, a bundler.",
+      "expect": "@esbuild/win32-x64",
+      "difficulty": "d2",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "A SQLite-backed MCP memory server with local workspace storage.",
+      "expect": "@j0hanz/memdb",
+      "difficulty": "d0",
+      "returned": [
+        "@j0hanz/memdb"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null
+    },
+    {
+      "query": "A SQLite-backed MCP memory with local storage.",
+      "expect": "@j0hanz/memdb",
+      "difficulty": "d3",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "A SQLite-backed MCP server local storage.",
+      "expect": "@j0hanz/memdb",
+      "difficulty": "d2",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "List files and directories inside the specified directory",
+      "expect": "@nodelib/fs.scandir",
+      "difficulty": "d0",
+      "returned": [
+        "@nodelib/fs.scandir"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null
+    },
+    {
+      "query": "List files and inside the specified",
+      "expect": "@nodelib/fs.scandir",
+      "difficulty": "d3",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "List and directories the specified",
+      "expect": "@nodelib/fs.scandir",
+      "difficulty": "d2",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "A minimal path module to resolve Unix, Windows and URL paths alike.",
+      "expect": "@protobufjs/path",
+      "difficulty": "d0",
+      "returned": [
+        "@protobufjs/path"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null
+    },
+    {
+      "query": "A minimal path to resolve Unix, and URL paths alike.",
+      "expect": "@protobufjs/path",
+      "difficulty": "d3",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "A minimal module to Unix, and URL paths",
+      "expect": "@protobufjs/path",
+      "difficulty": "d2",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "MCP Local Memory Service for coding copilot agents",
+      "expect": "@vheins/local-memory-mcp",
+      "difficulty": "d0",
+      "returned": [
+        "@vheins/local-memory-mcp"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null
+    },
+    {
+      "query": "MCP Local Memory for coding copilot",
+      "expect": "@vheins/local-memory-mcp",
+      "difficulty": "d3",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "MCP Local Service for copilot",
+      "expect": "@vheins/local-memory-mcp",
+      "difficulty": "d2",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "ANSI escape codes for styling strings in the terminal",
+      "expect": "ansi-styles",
+      "difficulty": "d0",
+      "returned": [
+        "ansi-styles"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null
+    },
+    {
+      "query": "ANSI escape for styling strings in the",
+      "expect": "ansi-styles",
+      "difficulty": "d3",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "ANSI codes for strings in the",
+      "expect": "ansi-styles",
+      "difficulty": "d2",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "The fastest and simplest library for SQLite in Node.js.",
+      "expect": "better-sqlite3",
+      "difficulty": "d0",
+      "returned": [
+        "better-sqlite3"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null
+    },
+    {
+      "query": "The fastest and simplest for SQLite in Node.js.",
+      "expect": "better-sqlite3",
+      "difficulty": "d3",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "The fastest and library for in Node.js.",
+      "expect": "better-sqlite3",
+      "difficulty": "d2",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Helper functions around Function call/apply/bind, for use in `call-bind`",
+      "expect": "call-bind-apply-helpers",
+      "difficulty": "d0",
+      "returned": [
+        "call-bind-apply-helpers"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null
+    },
+    {
+      "query": "Helper functions Function call/apply/bind, for use in `call-bind`",
+      "expect": "call-bind-apply-helpers",
+      "difficulty": "d3",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Helper around call/apply/bind, for use in `call-bind`",
+      "expect": "call-bind-apply-helpers",
+      "difficulty": "d2",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "CRBRO \u2014 Persistent neural memory for AI. A biological file-based MCP server that gives your AI long-term memory across sessions.",
+      "expect": "crbro-memory",
+      "difficulty": "d0",
+      "returned": [
+        "crbro-memory"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null
+    },
+    {
+      "query": "CRBRO \u2014 Persistent memory for AI. A biological MCP server that your AI long-term across sessions.",
+      "expect": "crbro-memory",
+      "difficulty": "d3",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "CRBRO \u2014 neural for AI. A biological MCP server gives AI long-term across",
+      "expect": "crbro-memory",
+      "difficulty": "d2",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Detect Node.JS (as opposite to browser environment) (reliable)",
+      "expect": "detect-node",
+      "difficulty": "d0",
+      "returned": [
+        "detect-node"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null
+    },
+    {
+      "query": "Detect Node.JS (as to browser environment) (reliable)",
+      "expect": "detect-node",
+      "difficulty": "d3",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Detect (as opposite to environment) (reliable)",
+      "expect": "detect-node",
+      "difficulty": "d2",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Check which JavaScript environment your code is running in at runtime: browser, Node.js, Bun, etc",
+      "expect": "environment",
+      "difficulty": "d0",
+      "returned": [
+        "environment"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null
+    },
+    {
+      "query": "Check which environment your is running in at runtime: Node.js, Bun, etc",
+      "expect": "environment",
+      "difficulty": "d3",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Check JavaScript your is running in at browser, Bun, etc",
+      "expect": "environment",
+      "difficulty": "d2",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Streaming, source-agnostic EventSource/Server-Sent Events parser",
+      "expect": "eventsource-parser",
+      "difficulty": "d0",
+      "returned": [
+        "eventsource-parser"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null
+    },
+    {
+      "query": "Streaming, source-agnostic Events parser",
+      "expect": "eventsource-parser",
+      "difficulty": "d3",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "A fast function for calculating where a string should be truncated, given an optional width limit and an ellipsis string.",
+      "expect": "fast-string-truncated-width",
+      "difficulty": "d0",
+      "returned": [
+        "fast-string-truncated-width"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null
+    },
+    {
+      "query": "A fast function for where a string be truncated, given an width limit and an string.",
+      "expect": "fast-string-truncated-width",
+      "difficulty": "d3",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "A fast for calculating a string be truncated, an optional limit and an string.",
+      "expect": "fast-string-truncated-width",
+      "difficulty": "d2",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Determine the East Asian Width of a Unicode character",
+      "expect": "get-east-asian-width",
+      "difficulty": "d0",
+      "returned": [
+        "get-east-asian-width"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null
+    },
+    {
+      "query": "Determine the East Width of a Unicode",
+      "expect": "get-east-asian-width",
+      "difficulty": "d3",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Determine the Asian of a Unicode",
+      "expect": "get-east-asian-width",
+      "difficulty": "d2",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Parses Cache-Control and other headers. Helps building correct HTTP caches and proxies",
+      "expect": "http-cache-semantics",
+      "difficulty": "d0",
+      "returned": [
+        "http-cache-semantics"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null
+    },
+    {
+      "query": "Parses Cache-Control and headers. Helps correct HTTP and proxies",
+      "expect": "http-cache-semantics",
+      "difficulty": "d3",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Parses and other Helps correct caches and",
+      "expect": "http-cache-semantics",
+      "difficulty": "d2",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Browser-friendly inheritance fully compatible with standard node.js inherits()",
+      "expect": "inherits",
+      "difficulty": "d0",
+      "returned": [
+        "inherits"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null
+    },
+    {
+      "query": "Browser-friendly inheritance compatible with node.js inherits()",
+      "expect": "inherits",
+      "difficulty": "d3",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Browser-friendly fully with node.js",
+      "expect": "inherits",
+      "difficulty": "d2",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Returns true if a number or string value is a finite number. Useful for regex matches, parsing, user input, etc.",
+      "expect": "is-number",
+      "difficulty": "d0",
+      "returned": [
+        "is-number"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null
+    },
+    {
+      "query": "Returns true if a or string value is a number. Useful for matches, parsing, input, etc.",
+      "expect": "is-number",
+      "difficulty": "d3",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Returns if a number or value is a number. for regex parsing, input, etc.",
+      "expect": "is-number",
+      "difficulty": "d2",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Like JSON.stringify, but doesn't blow up on circular refs.",
+      "expect": "json-stringify-safe",
+      "difficulty": "d0",
+      "returned": [
+        "json-stringify-safe"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null
+    },
+    {
+      "query": "Like JSON.stringify, but blow up on circular",
+      "expect": "json-stringify-safe",
+      "difficulty": "d3",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Like but doesn't up on circular",
+      "expect": "json-stringify-safe",
+      "difficulty": "d2",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "mdast utility to find and replace text in a tree",
+      "expect": "mdast-util-find-and-replace",
+      "difficulty": "d0",
+      "returned": [
+        "mdast-util-find-and-replace"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null
+    },
+    {
+      "query": "mdast utility to and replace text in a",
+      "expect": "mdast-util-find-and-replace",
+      "difficulty": "d3",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "mdast to find and text in a",
+      "expect": "mdast-util-find-and-replace",
+      "difficulty": "d2",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Simple RFC 6838 media type parser and formatter",
+      "expect": "media-typer",
+      "difficulty": "d0",
+      "returned": [
+        "media-typer"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null
+    },
+    {
+      "query": "Simple RFC 6838 media parser and formatter",
+      "expect": "media-typer",
+      "difficulty": "d3",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Simple RFC 6838 type and formatter",
+      "expect": "media-typer",
+      "difficulty": "d2",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "micromark utility to classify whether a character is whitespace or punctuation",
+      "expect": "micromark-util-classify-character",
+      "difficulty": "d0",
+      "returned": [
+        "micromark-util-classify-character"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null
+    },
+    {
+      "query": "micromark utility to whether a character is or punctuation",
+      "expect": "micromark-util-classify-character",
+      "difficulty": "d3",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "micromark to classify a character is or punctuation",
+      "expect": "micromark-util-classify-character",
+      "difficulty": "d2",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "small commonmark compliant markdown parser with positional info and concrete tokens",
+      "expect": "micromark",
+      "difficulty": "d0",
+      "returned": [
+        "micromark"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null
+    },
+    {
+      "query": "small commonmark markdown parser positional info and tokens",
+      "expect": "micromark",
+      "difficulty": "d3",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "small compliant parser positional and concrete",
+      "expect": "micromark",
+      "difficulty": "d2",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Bytes go in, but they don't come out (when muted).",
+      "expect": "mute-stream",
+      "difficulty": "d0",
+      "returned": [
+        "mute-stream"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null
+    },
+    {
+      "query": "Bytes go in, but they don't out (when muted).",
+      "expect": "mute-stream",
+      "difficulty": "d3",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Bytes go in, but don't come out (when",
+      "expect": "mute-stream",
+      "difficulty": "d2",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Higher order iterator library for JavaScript/TypeScript.",
+      "expect": "obliterator",
+      "difficulty": "d0",
+      "returned": [
+        "obliterator"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null
+    },
+    {
+      "query": "Higher order library for JavaScript/TypeScript.",
+      "expect": "obliterator",
+      "difficulty": "d3",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Higher iterator for JavaScript/TypeScript.",
+      "expect": "obliterator",
+      "difficulty": "d2",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "64-bit big-endian signed integer-to-string conversion",
+      "expect": "pg-int8",
+      "difficulty": "d0",
+      "returned": [
+        "pg-int8"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null
+    },
+    {
+      "query": "64-bit big-endian signed integer-to-string",
+      "expect": "pg-int8",
+      "difficulty": "d3",
+      "returned": [
+        "pg-int8"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null
+    },
+    {
+      "query": "64-bit big-endian signed conversion",
+      "expect": "pg-int8",
+      "difficulty": "d2",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "One promise for multiple requests in flight to avoid async duplication",
+      "expect": "promise-inflight",
+      "difficulty": "d0",
+      "returned": [
+        "promise-inflight"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null
+    },
+    {
+      "query": "One promise for multiple in flight to avoid duplication",
+      "expect": "promise-inflight",
+      "difficulty": "d3",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "One promise for requests in to avoid duplication",
+      "expect": "promise-inflight",
+      "difficulty": "d2",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "An Esprima-compatible JavaScript parser built on Acorn",
+      "expect": "espree",
+      "difficulty": "d0",
+      "returned": [
+        "espree"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null
+    },
+    {
+      "query": "An Esprima-compatible JavaScript built on Acorn",
+      "expect": "espree",
+      "difficulty": "d3",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "An Esprima-compatible parser on Acorn",
+      "expect": "espree",
+      "difficulty": "d2",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Swizzle a little something into your require() calls.",
+      "expect": "requizzle",
+      "difficulty": "d0",
+      "returned": [
+        "requizzle"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null
+    },
+    {
+      "query": "Swizzle a little into your calls.",
+      "expect": "requizzle",
+      "difficulty": "d3",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Swizzle a something your calls.",
+      "expect": "requizzle",
+      "difficulty": "d2",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Project-local RAG memory MCP server \u2014 knowledge graph + multilingual vector + FTS5 in a single SQLite file. Per-project isolation, 38 MCP tools, codepoint-safe chunking (Korean/CJK/emoji).",
+      "expect": "rag-memory-epf-mcp",
+      "difficulty": "d0",
+      "returned": [
+        "rag-memory-epf-mcp"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null
+    },
+    {
+      "query": "Project-local RAG memory MCP \u2014 knowledge graph + vector + FTS5 in a single file. Per-project isolation, 38 MCP codepoint-safe chunking (Korean/CJK/emoji).",
+      "expect": "rag-memory-epf-mcp",
+      "difficulty": "d3",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Project-local RAG MCP server \u2014 graph + vector + FTS5 in a SQLite Per-project isolation, 38 MCP codepoint-safe (Korean/CJK/emoji).",
+      "expect": "rag-memory-epf-mcp",
+      "difficulty": "d2",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "remark plugin to add support for serializing markdown",
+      "expect": "remark-stringify",
+      "difficulty": "d0",
+      "returned": [
+        "remark-stringify"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null
+    },
+    {
+      "query": "remark plugin to add for serializing markdown",
+      "expect": "remark-stringify",
+      "difficulty": "d3",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "remark to add support for markdown",
+      "expect": "remark-stringify",
+      "difficulty": "d2",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Better streaming static file server with Range and conditional-GET support",
+      "expect": "send",
+      "difficulty": "d0",
+      "returned": [
+        "send"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null
+    },
+    {
+      "query": "Better streaming file server Range and conditional-GET",
+      "expect": "send",
+      "difficulty": "d3",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Better static server Range and support",
+      "expect": "send",
+      "difficulty": "d2",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "A SOCKS proxy `http.Agent` implementation for HTTP and HTTPS",
+      "expect": "socks-proxy-agent",
+      "difficulty": "d0",
+      "returned": [
+        "socks-proxy-agent"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null
+    },
+    {
+      "query": "A SOCKS proxy `http.Agent` for HTTP and HTTPS",
+      "expect": "socks-proxy-agent",
+      "difficulty": "d3",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "A SOCKS `http.Agent` implementation for and HTTPS",
+      "expect": "socks-proxy-agent",
+      "difficulty": "d2",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Strip a byte order mark (BOM) from a string.",
+      "expect": "strip-bom-string",
+      "difficulty": "d0",
+      "returned": [
+        "strip-bom-string"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null
+    },
+    {
+      "query": "Strip a byte mark (BOM) from a",
+      "expect": "strip-bom-string",
+      "difficulty": "d3",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Strip a order (BOM) from a",
+      "expect": "strip-bom-string",
+      "difficulty": "d2",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "unist utility to serialize a node, position, or point as a human readable location",
+      "expect": "unist-util-stringify-position",
+      "difficulty": "d0",
+      "returned": [
+        "unist-util-stringify-position"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null
+    },
+    {
+      "query": "unist utility to a node, position, or as a human readable",
+      "expect": "unist-util-stringify-position",
+      "difficulty": "d3",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "unist to serialize a position, or as a human location",
+      "expect": "unist-util-stringify-position",
+      "difficulty": "d2",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Invoke scoped data storage for AWS Lambda Node.js Runtime Environment",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "the complete solution for node.js command-line programs",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Shared schemas and validators for Hasna open-source agent infrastructure contracts.",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Universal memory system for AI agents - CLI + MCP server + library API",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "A minimalistic JavaScript implementation of the Jinja templating engine, specifically designed for parsing and rendering ML chat templates.",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "A small fast zlib stream built on [minipass](http://npm.im/minipass) and Node.js's zlib binding.",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Protocol Buffers for JavaScript (& TypeScript).",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "when you want to fire an event no matter how a process exits.",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "css color parsing, manupulation and conversion",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "libSQL driver for TypeScript and JavaScript",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Hrana client for connecting to sqld over HTTP or WebSocket",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Model Context Protocol for TypeScript \u2014 public Zod schemas (spec + OAuth/OpenID)",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Get the status of a file with some features",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "A complete search engine and RAG pipeline in your browser, server, or edge network with support for full-text, vector, and hybrid search in less than 2kb.",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "A minimal base64 implementation for number arrays.",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Reads / writes floats / doubles from / to buffers in both modern and ancient browsers.",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "A minimal UTF8 implementation for number arrays.",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "A family of specs for interoperable TypeScript",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "TypeScript definitions for better-sqlite3",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "TypeScript definitions for trusted-types",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "SQLite storage adapter for ZenBrain memory system. Zero-config, file-based, perfect for development and single-user deployments.",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "7-layer memory system for AI agents. Pluggable storage, embeddings, and LLM providers. Built on @zensation/algorithms.",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Turn a function into an `http.Agent` instance",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "A ridiculously light-weight argument validator (now browser friendly)",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Very powerful CLI arguments parser. Native port of argparse - python's options parsing library",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Bridging the gap between buffers and typed arrays",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Path manipulation library for JavaScript",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Helper module for loading your native module's .node file",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "A pure javascript BMP encoder and decoder",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "boolean converts lots of things to boolean.",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Utility to parse a string bytes to bytes and vice-versa",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Robust call-bound JavaScript intrinsics, using `call-bind` and `get-intrinsic`.",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "List of legacy HTML named character references that don\u2019t need a trailing semicolon",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Simple HTML5 charts using the canvas element.",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Truncate a string to a specific width in the terminal",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "A module which will endeavor to guess your terminal's level of color support.",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "This is a stub package.json for old bundlers",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "This is a stub package.json for old bundlers",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Create and parse Content-Disposition header",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Cross platform child_process#spawn and child_process#spawnSync",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Lightweight debugging utility for Node.js and the browser",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Define multiple non-enumerable properties at once. Uses `Object.defineProperty` when available; falls back to standard assignment in older engines.",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "A tiny (304B to 489B) utility for check for deep equality",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Do things in development and nothing otherwise",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "If available, the `Object.prototype.__proto__` accessor and mutator, call-bound",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Encode a URL to a percent-encoded form, excluding already-encoded sequences",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Call a callback when a readable/writable/duplex stream has completed or failed.",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "`Object.defineProperty`, but not IE 8's broken one.",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "ES Object-related atoms: Object, ToObject, RequireObjectCoercible",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Easily-extendable error for use with ES6 classes",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "ECMAScript parsing infrastructure for multipurpose analysis",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "WhatWG/W3C compliant EventSource client for Node.js and browsers",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Basic IP rate-limiting middleware for Express. Use to limit repeated requests to public APIs and/or endpoints such as password reset.",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Extend an object with the properties of additional objects. node.js/javascript util.",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "A fast fifo implementation similar to the one powering nextTick in Node.js core",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Blob & File implementation in Node.js, originally from node-fetch.",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Fill in a range of numbers or letters, optionally passing an increment or `step` to use, or create a regex-compatible range with `options.toRegex`",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Use node's fs.realpath, but fall back to the JS implementation if the native one fails",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Get and robustly cache all JS language-level intrinsics at first require time",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "return the github url from a package.json file",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Global HTTP/HTTPS proxy configurable using environment variables.",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "`Object.getOwnPropertyDescriptor`, but accounts for IE's broken implementation.",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Miscellaneous graph metrics for graphology.",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Parse front-matter from a string or file. Fast, reliable and easy to use. Parses YAML front matter by default, but also has support for YAML, JSON, TOML or Coffee Front-Matter, with options to set custom delimiters. Used by metalsmith, assemble, verb and many other projects.",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Determine if the JS environment has Symbol support. Supports spec, or shams.",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Lightning fast hash functions for browsers and Node.js using hand-tuned WebAssembly binaries (MD4, MD5, SHA-1, SHA-2, SHA-3, Keccak, BLAKE2, BLAKE3, PBKDF2, Argon2, bcrypt, scrypt, Adler-32, CRC32, CRC32C, RIPEMD-160, HMAC, xxHash, SM3, Whirlpool)",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "A super-simple-small keyval store built on top of IndexedDB",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Ignore is a manager and filter for .gitignore rules, the one used by eslint, gitbook and many others.",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Infer the owner of a path based on the owner of its nearest existing parent",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "A library for parsing IPv4 and IPv6 IP addresses in node and the browser.",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Determines if an object can be used as an array",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Check if the process is running in a Continuous Integration (CI) environment",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Test whether an object looks like a promises-a+ promise",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Minimal module to check if a file is executable.",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Yet another Base64 transcoder in pure-JS",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "JSON Schema TypeScript definitions with complete inline documentation.",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "A better-sqlite3 compatible API for libSQL that supports Bun, Deno, and Node",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Fast (and loose) selective `process.env` replacer using js-tokens instead of an AST",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Opinionated, caching, retrying fetch client",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "A Node.js style checker and lint tool for Markdown/CommonMark files",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "mdast extension to parse and serialize GFM autolink literals",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "mdast extension to parse and serialize GFM strikethrough",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "mdast extension to parse and serialize GFM task list items",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "mdast utility to check if a node is phrasing content",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "A token-lean MCP memory server: a knowledge graph your AI agent can search without reading the whole thing. Drop-in replacement for @modelcontextprotocol/server-memory.",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "A lightweight, structured, token-efficient local-first MCP memory server (Drizzle + libSQL)",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Merge multiple streams into one stream in sequence or parallel.",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "micromark extension to support GFM task list items",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "micromark utility to combine syntax or html extensions",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "micromark utility to decode markdown strings",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "micromark utility to encode dangerous html characters",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "micromark utility normalize identifiers (as found in references, definitions)",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "Glob matching for javascript/node.js. A replacement and faster alternative to minimatch and multimatch.",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "A Minipass stream that collects all the data into a single chunk",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "A Minipass stream that calls a flush function before emitting 'end'",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "A Minipass stream that raises an error if you get a different number of bytes than expected",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "A set of utilities to assist developers of tools that build N-API native add-ons",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "An implementation of the DOMException class from NodeJS",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "A light-weight module that brings Fetch API to node.js",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    },
+    {
+      "query": "string representations of objects in node and the browser",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null
+    }
+  ]
+}

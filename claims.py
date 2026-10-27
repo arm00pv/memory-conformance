@@ -532,6 +532,31 @@ def c_set_answers(ctx, corpus, shape):
             % (len(broke), ", ".join(broke) or "none"))
 
 
+def c_longer_exam(ctx, corpus, shape):
+    """Asking more questions of the same store decides the pairs the short exam could not.
+
+    THE PRICE THE POWER ANALYSIS HAS BEEN QUOTING, PAID. band.py has said for three phases that a near-tie
+    would separate at some hundreds of questions. This is that exam: the same 72 records, three hundred
+    questions instead of sixty. If the near-ties survive it the price was right; if they break, the price
+    was the thing that was wrong.
+    """
+    import exam_size
+    big_rows = exam_size.totals("-large")
+    small_rows = exam_size.totals("-real")
+    if not big_rows or not small_rows:
+        return None
+    sep_big = exam_size.separations("-large")
+    sep_small = exam_size.separations("-real")
+    common = set(sep_big) & set(sep_small)
+    if not common:
+        return None
+    broke = [k for k in common if sep_big[k]["separated"] and not sep_small[k]["separated"]]
+    lost = [k for k in common if sep_small[k]["separated"] and not sep_big[k]["separated"]]
+    return (not broke and not lost,
+            "%d pairs separated at %d questions that were not at %d, and %d the other way"
+            % (len(broke), big_rows[0][1], small_rows[0][1], len(lost)))
+
+
 def c_most_hits(ctx, corpus, shape):
     r = leads(LEADER, corpus, lambda n, c, s: hits(n, c, s), shape)
     return (r["strict"], fmt_lead(r, of="48")) if r else None
@@ -905,6 +930,8 @@ CLAIMS = [
      c_plural_is_free, False),
     ("set-answers", "a subject that answers every single-record question answers every set question too.",
      c_set_answers, False),
+    ("longer-exam", "asking three hundred questions instead of sixty changes which pairs the corpus can"
+     " separate.", c_longer_exam, False),
     ("silent-everywhere", "the subjects that answer nothing on the authored corpora answer nothing on"
      " real text either.", c_silent_everywhere, False),
     ("score-sees-ordering", "the retrieval score changes when a search returns its worst match first.",
