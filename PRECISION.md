@@ -234,9 +234,14 @@ words with the answer**, and not a count of wasted attention. The silence bill i
 report that needs no rule at all, and it is the part to quote when only one number will be.
 
 Nothing was re-run to write this. Every row was on disk already, so no subject was asked twice and
-no new measurement can contradict an old one - but a defect in the corpora is inherited here as
-everywhere else, and the five unanswerable questions at or above the half-coverage line are the
-one such defect this reading found for itself rather than inheriting.
+no new measurement can contradict an old one - but a defect in a corpus is inherited here as
+everywhere else. Two were found by this reading rather than inherited: the exam's eight unanswerable
+questions that share half their words with a single record, and its twelve slots that repeat a
+question because two packages carry the same description. Both are charged above and pinned in
+`corpus-known.json`, and neither is fixed here, because fixing either changes which questions
+the exam asks and that is a re-measurement of eleven subjects rather than a re-reading of their
+rows. A reader who wants the exam's totals to be fair rather than merely disclosed should read that
+sentence as the next phase, not as a footnote.
 
 Finally, no judgement of usefulness is made anywhere and none can be: deciding whether a returned
 record HELPS a caller is not a counting question. It is the one place in this repository where a
