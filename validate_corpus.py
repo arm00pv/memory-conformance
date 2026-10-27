@@ -147,12 +147,28 @@ def check(path, exam=False):
     # "password", and the wifi password is still nowhere in the store. Charging that question as
     # answerable would have made four honest questions look dishonest.
     #
-    # What makes an absent question dishonest is a single record that COVERS most of its words,
-    # because that record is the answer nobody labelled. So the test is coverage of the whole question
-    # by one record, a shared word on its own is printed and not charged, and the threshold is stated
-    # rather than implied.
+    # A SINGLE RECORD THAT COVERS MOST OF A QUESTION IS NOT AUTOMATICALLY ITS ANSWER, and this check
+    # spent six phases pretending otherwise. It charged any record covering half a question's words as
+    # "an unlabelled answer" - a statement about where the answer is, made by a test that can only see
+    # which words are where. On the exam's hundred unanswerable questions that charge fired eight times
+    # and was wrong every time: "Path manipulation library for JavaScript" is half covered by a record
+    # called obliterator, which is not a path library, and no reader of the two would say it was.
+    #
+    # What the test actually knew was that a WORD-OVERLAP MATCHER will answer the question. The
+    # positive control then answered exactly those eight questions, because the control is one. A
+    # checker and a subject that share one idea cannot check each other, so the two readings are now
+    # separate and named, and only the first is charged:
+    #
+    #   a COPY      the question and one record share most of EACH OTHER's words. Both directions at
+    #               once is what makes it a copy rather than a coincidence, and a question that is a
+    #               record in disguise is an answer nobody labelled.
+    #   a NEIGHBOUR one record covers half the question but the question is not what that record says.
+    #               Printed, never charged: the fact it states is about the words, and precision.py
+    #               reports what the subjects do with such a question rather than what it must mean.
     ABSENT_COVER = 0.5
-    leaked = {}
+    ABSENT_COPY = 0.8
+    copies = {}
+    neighbours = {}
     thin = {}
     for q in queries:
         if q.get("difficulty") != "absent":
@@ -161,20 +177,31 @@ def check(path, exam=False):
         if not qt:
             errors.append("absent question %r has no distinctive words at all" % q.get("query"))
             continue
-        best = (None, 0.0, [])
+        best = (None, 0.0, 0.0, [])
         for rid, text in texts.items():
-            shared = qt & set(tokens(text))
-            if len(shared) / float(len(qt)) > best[1]:
-                best = (rid, len(shared) / float(len(qt)), sorted(shared))
-        if best[1] >= ABSENT_COVER:
-            leaked[q.get("query")] = best
-        elif best[2]:
+            rt = set(tokens(text))
+            shared = qt & rt
+            there = len(shared) / float(len(qt))
+            back = len(shared) / float(len(rt) or 1)
+            if there > best[1]:
+                best = (rid, there, back, sorted(shared))
+        rid, there, back, shared = best
+        if there >= ABSENT_COPY and back >= ABSENT_COPY:
+            copies[q.get("query")] = best
+        elif there >= ABSENT_COVER:
+            neighbours[q.get("query")] = best
+        elif shared:
             thin[q.get("query")] = best
-    facts["absent_clean"] = len(leaked) == 0
-    for q, (rid, frac, shared) in leaked.items():
-        errors.append("absent question %r is %.0f%% covered by %r (%s), which is an unlabelled answer"
-                      % (q, frac * 100, rid, ", ".join(shared)))
-    for q, (rid, frac, shared) in thin.items():
+    facts["absent_clean"] = len(copies) == 0
+    facts["absent_neighbours"] = len(neighbours)
+    for q, (rid, there, back, shared) in copies.items():
+        errors.append("absent question %r is %r in disguise: they share %s, %.0f%% of the question and"
+                      " %.0f%% of the record" % (q, rid, ", ".join(shared), there * 100, back * 100))
+    for q, (rid, there, back, shared) in neighbours.items():
+        warnings.append("absent question %r shares %s with %r - %.0f%% of a question that is not what"
+                        " that record says; a word-overlap matcher will answer it and nothing here can"
+                        " decide whether it should" % (q, ", ".join(shared), rid, there * 100))
+    for q, (rid, there, back, shared) in thin.items():
         warnings.append("absent question %r shares %s with %r - still unanswerable, and worth knowing"
                         " what a keywording subject will match on" % (q, ", ".join(shared), rid))
 

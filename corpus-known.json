@@ -1,17 +1,4 @@
 {
- "large_corpus.json": {
-  "note": "ACCEPTED, AND THE OTHER HALF IS FIXED. Two kinds of defect were found here at once. The first - 12 duplicated questions, 300 slots for 288 distinct questions, because two packages can share a description word for word - is fixed: questions.py drops every copy of a question two records answer equally, the exam is 276 questions, and the rows measured against the dropped ones are excluded from every count. The second is the eight charges below, and they are not defects of the corpus: the covering record is plainly not the answer (obliterator is not a path library), and what the rule detects is that a word-overlap matcher will answer the question - which is exactly what the positive control then did. A checker and a subject that share one idea cannot check each other, so these stay charged here rather than being argued away, and precision.py reports both readings side by side.",
-  "errors": [
-   "absent question 'Protocol Buffers for JavaScript (& TypeScript).' is 50% covered by '@modelcontextprotocol/client' (protocol, typescript), which is an unlabelled answer",
-   "absent question 'libSQL driver for TypeScript and JavaScript' is 50% covered by 'obliterator' (javascript, typescript), which is an unlabelled answer",
-   "absent question 'Path manipulation library for JavaScript' is 50% covered by 'obliterator' (javascript, library), which is an unlabelled answer",
-   "absent question 'Lightweight debugging utility for Node.js and the browser' is 50% covered by '@aws-sdk/client-ecs' (browser, js, node), which is an unlabelled answer",
-   "absent question 'WhatWG/W3C compliant EventSource client for Node.js and browsers' is 50% covered by '@aws-sdk/client-ecs' (browser, client, js, node), which is an unlabelled answer",
-   "absent question 'mdast extension to parse and serialize GFM strikethrough' is 50% covered by 'micromark-extension-gfm-strikethrough' (extension, gfm, strikethrough), which is an unlabelled answer",
-   "absent question 'micromark extension to support GFM task list items' is 57% covered by 'micromark-extension-gfm-strikethrough' (extension, gfm, micromark, support), which is an unlabelled answer",
-   "absent question 'micromark utility to encode dangerous html characters' is 50% covered by 'micromark-util-classify-character' (character, micromark, utility), which is an unlabelled answer"
-  ]
- },
  "retrieval_corpus_real.json": {
   "note": "ACCEPTED BY DESIGN. This corpus has no author: its records are real package.json files and its questions are derived from their descriptions by rule. Every defect below is the same one - the hard band thins a real sentence by removing words, which leaves a sentence a substring counter can still answer. A paraphrased band needs somebody to paraphrase, so this corpus cannot have one, and saying so is the finding rather than the excuse. A new defect here still fails the build; a pinned one that stops happening is reported as fixed.",
   "errors": [

@@ -541,27 +541,27 @@ def report(got, panel, checks=None):
     half = [(l, sum(1 for f, _r in corpus(l)["cover"].values() if f >= 0.5)) for l in ABSENT]
     bad = [l for l, k in half if k]
     if bad:
-        add("That is also a charge against the corpora, and worth naming precisely: %d of the exam's %d"
+        add("And this reading changed the instrument that was measuring it. %d of the exam's %d unanswerable"
             % (dict(half).get("large", 0), len(corpus("large")["cover"])))
-        add("unanswerable questions are at or above the validator's half-coverage line, so the rule this")
-        add("repository uses to certify that an unanswerable question is unanswerable calls them unlabelled")
-        add("answers. Nothing validated " + BT + "large_corpus.json" + BT + " before this phase, so the exam's")
-        add("whole unanswerable band - the largest in the suite, and the one the silence bill is mostly")
-        add("made of - has been measured for four phases without a single check on it.")
+        add("questions have half or more of their words inside a single stored record. The rule that")
+        add("certifies a question as unanswerable used to charge exactly that as **an unlabelled answer** -")
+        add("a statement about where the answer is, made by a test that can only see which words are where.")
         add("")
-        add("Reading the charged questions changes what the charge means. In every case the covering record")
-        add("is plainly not the answer: " + BT + "obliterator" + BT + " is not a path library, and")
-        add(BT + "micromark-extension-gfm-strikethrough" + BT + " is not a task-list extension. What the rule actually")
-        add("detects is that **a word-overlap matcher will answer this question** - a fact about the")
-        add("question's words, not about where its answer is. The subjects make the same equation the rule")
-        add("makes, which is why the positive control answered exactly the questions the validator charged.")
-        add("**A checker and a subject that share one idea cannot check each other.**")
+        add("Reading those questions showed the charge was wrong every time: " + BT + "obliterator" + BT + " is not a")
+        add("path library, and " + BT + "micromark-extension-gfm-strikethrough" + BT + " is not a task-list extension.")
+        add("What the rule could see was that **a word-overlap matcher will answer this question**, which is")
+        add("a fact about the question's words. The subjects make the same equation the rule made, which is")
+        add("why the positive control answered exactly the questions it charged. **A checker and a subject")
+        add("that share one idea cannot check each other.**")
         add("")
-        add("Those charges are recorded in " + BT + "corpus-known.json" + BT + " with that reading beside them, and")
-        add(BT + "validate_corpus.py --exam" + BT + " now checks the exam for what a rule can see - a duplicated")
-        add("question, an unanswerable one whose words are all in a record, a question whose expected record")
-        add("is missing - so a new defect fails the build while these do not. It does not pretend to check")
-        add("meaning, and neither does anything else here.")
+        add("So the validator now measures two things instead of confusing them. A question that shares most")
+        add("of **each other's** words with one record is that record in disguise, and is still an error - that")
+        add("is what a question nobody labelled looks like. A question that merely sits half inside a record")
+        add("is a neighbour: printed with the fraction, never charged, because nothing that compares strings")
+        add("can decide whether it should be answered. The exam now passes its own validator with no errors")
+        add("and %d neighbours printed, and the questions the control answered are in that list rather than in"
+            % dict(half).get("large", 0))
+        add("the pin file.")
         add("")
 
     # ---- junk around the answer -------------------------------------------------------------------

@@ -97,26 +97,25 @@ bands and 36 of the 98 in the long exam, because a band drawn from a real pool o
 avoid near neighbours. The points are not a habit and they are not a virtue. They are the price
 of a clean band, and the same subject pays a different price on a different corpus.
 
-That is also a charge against the corpora, and worth naming precisely: 8 of the exam's 98
-unanswerable questions are at or above the validator's half-coverage line, so the rule this
-repository uses to certify that an unanswerable question is unanswerable calls them unlabelled
-answers. Nothing validated `large_corpus.json` before this phase, so the exam's
-whole unanswerable band - the largest in the suite, and the one the silence bill is mostly
-made of - has been measured for four phases without a single check on it.
+And this reading changed the instrument that was measuring it. 8 of the exam's 98 unanswerable
+questions have half or more of their words inside a single stored record. The rule that
+certifies a question as unanswerable used to charge exactly that as **an unlabelled answer** -
+a statement about where the answer is, made by a test that can only see which words are where.
 
-Reading the charged questions changes what the charge means. In every case the covering record
-is plainly not the answer: `obliterator` is not a path library, and
-`micromark-extension-gfm-strikethrough` is not a task-list extension. What the rule actually
-detects is that **a word-overlap matcher will answer this question** - a fact about the
-question's words, not about where its answer is. The subjects make the same equation the rule
-makes, which is why the positive control answered exactly the questions the validator charged.
-**A checker and a subject that share one idea cannot check each other.**
+Reading those questions showed the charge was wrong every time: `obliterator` is not a
+path library, and `micromark-extension-gfm-strikethrough` is not a task-list extension.
+What the rule could see was that **a word-overlap matcher will answer this question**, which is
+a fact about the question's words. The subjects make the same equation the rule made, which is
+why the positive control answered exactly the questions it charged. **A checker and a subject
+that share one idea cannot check each other.**
 
-Those charges are recorded in `corpus-known.json` with that reading beside them, and
-`validate_corpus.py --exam` now checks the exam for what a rule can see - a duplicated
-question, an unanswerable one whose words are all in a record, a question whose expected record
-is missing - so a new defect fails the build while these do not. It does not pretend to check
-meaning, and neither does anything else here.
+So the validator now measures two things instead of confusing them. A question that shares most
+of **each other's** words with one record is that record in disguise, and is still an error - that
+is what a question nobody labelled looks like. A question that merely sits half inside a record
+is a neighbour: printed with the fraction, never charged, because nothing that compares strings
+can decide whether it should be answered. The exam now passes its own validator with no errors
+and 8 neighbours printed, and the questions the control answered are in that list rather than in
+the pin file.
 
 ## Junk around the answer
 

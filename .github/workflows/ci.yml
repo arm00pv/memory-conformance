@@ -200,6 +200,33 @@ jobs:
       # words were asked twice with a different expected record, and a subject returning the other one was
       # graded wrong for being right. The exam alone did that in 24 of its 300 slots. questions.py holds the
       # rule once; validate_corpus.py --exam checks the generated corpora for everything else it can see.
+      # A CHECK THAT CANNOT FAIL IS NOT A CHECK. The absent-band rule now charges only a question that is a
+      # record in disguise, and no corpus here contains one - nine corpora, zero copies - so the rule has
+      # never been seen firing. This plants a record's own text as an absent question and requires it.
+      - name: the unlabelled-answer check must be able to fail
+        run: |
+          python - <<'PY'
+          import io, json, subprocess, sys
+          base = json.load(io.open('retrieval_corpus_b.json', encoding='utf-8'))
+          record = base['records'][0]
+          queries, done = [], False
+          for q in base['queries']:
+              if q.get('difficulty') == 'absent' and not done:
+                  queries.append({'query': record['text'], 'expect': None, 'difficulty': 'absent'})
+                  done = True
+              else:
+                  queries.append(q)
+          doc = dict(base)
+          doc['queries'] = queries
+          io.open('/tmp/planted.json', 'w', encoding='utf-8').write(json.dumps(doc, ensure_ascii=False, indent=1))
+          out = subprocess.run([sys.executable, 'validate_corpus.py', '/tmp/planted.json'],
+                               capture_output=True, text=True).stdout
+          hits = [l for l in out.splitlines() if 'disguise' in l]
+          print(chr(10).join(hits) or 'no charge raised')
+          if len(hits) != 1:
+              sys.exit('the unlabelled-answer rule did not fire on a planted record')
+          PY
+
       - name: every corpus must ask each question once, and a generated corpus must still be sound
         run: |
           python questions.py
@@ -223,8 +250,8 @@ jobs:
           grep -q "A checker and a subject that share one idea" PRECISION.md
           # THE EXAM HAD NEVER BEEN VALIDATED. --exam relaxes the three rules an exam legitimately breaks and
           # nothing else, so a NEW defect in its questions fails here while the pinned ones do not.
-          python validate_corpus.py large_corpus.json --exam --baseline=corpus-known.json | tee /tmp/exam-check.txt
-          grep -q "pinned defect(s)" /tmp/exam-check.txt
+          python validate_corpus.py large_corpus.json --exam | tee /tmp/exam-check.txt
+          grep -q "0 of 1 corpus file(s) failed" /tmp/exam-check.txt
 
       - name: a tie must be reported as one of its three kinds, with a price
         run: |

@@ -101,14 +101,18 @@ finding.
   equally. Those are dropped at build time now: `questions.py` holds the rule, the exam is 276 questions,
   and the four generated corpora lost 54 slots between them. A subject that returned the sibling used to be
   graded wrong for being right, and the exam's totals understated two of the eleven.
-- **The 8 absent charges are word-overlap alarms, not unlabelled answers.** `obliterator` is not a path
-  library. What the rule detects is that a word-overlap matcher will answer the question, and the positive
-  control answered exactly those. **A checker and a subject that share one idea cannot check each other**,
-  which is why the absence of a semantic check is stated in `PRECISION.md` instead of being implied away.
+- **The 8 absent charges were word-overlap alarms, not unlabelled answers** — and this reading changed the
+  rule that made them. `obliterator` is not a path library. What the validator could see was that a
+  word-overlap matcher would answer the question, and the positive control answered exactly those eight,
+  because the control is one. **A checker and a subject that share one idea cannot check each other**, so
+  the charge is gone: the rule now charges only a question that shares most of *each other's* words with one
+  record — that record in disguise — and merely prints a question that sits half inside a record, with the
+  fraction. Nine corpora, zero copies found, and a planted one is charged, in CI, because a check that has
+  never been seen firing is not a check.
 
-The eight absent charges stay pinned in `corpus-known.json` — a new defect fails the build, a pinned one that
-stops happening is reported as drift — and `python questions.py` now runs in CI, so a corpus that asks a
-question twice fails the build instead of quietly becoming the sample size.
+`python questions.py` now runs in CI, so a corpus that asks a question twice fails the build instead of
+quietly becoming the sample size, and the exam passes its own validator with no errors and eight
+neighbours printed.
 
 `silence-is-a-habit`, `exam-questions-distinct` and `noise-is-charged` all **FAIL** in the ledger,
 on all four settings. Three claims added, and none of them survived contact.

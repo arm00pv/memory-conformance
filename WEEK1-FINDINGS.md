@@ -4020,3 +4020,54 @@ verbatim rather than rewritten.
 An afternoon, one new page, one split, one tool made location-independent, and three documented self-bugs -
 two of which would have been silent if the tooling had been slightly more forgiving.
 
+
+## Addendum 40: the instrument changed its mind about what it was measuring
+
+The precision phase ended with a sentence it could not act on: the validator charged eight of the exam's
+unanswerable questions as "an unlabelled answer", and reading them showed the charge was wrong every time.
+`obliterator` is not a path library. This pays that debt by splitting one measurement into two.
+
+### Two things a word overlap can and cannot tell you
+
+| what is shared | what it means | what the validator does |
+|---|---|---|
+| most of **each other's** words, with one record | the question **is** that record in disguise, so its answer is in the store and nobody labelled it | error |
+| half the question's words, but the question is not what the record says | a word-overlap matcher will fire | warning, with the fraction, never charged |
+
+The first test is symmetric on purpose: two documents that share most of each other's vocabulary are the
+same document, and that is a fact about text. The second is one-directional and is a fact about a matcher,
+which is why the warning says "a word-overlap matcher will answer it" and stops there. Nothing that compares
+strings can decide whether it should be answered, and a validator that says it can is measuring itself.
+
+**The eight exam questions moved from the error list to the warning list, and the exam's pin in
+`corpus-known.json` is now empty and gone.** The exam passes its own validator for the first time: no
+errors, eight neighbours printed.
+
+### The rule had never been seen firing, which is the same problem
+
+Nine corpora, zero copies found. A rule that has never fired is a decoration, and this repository has spent
+six phases insisting that anything unfalsifiable is not an instrument. So CI now **plants a record's own text
+as an unanswerable question** in a copy of corpus B and requires exactly one charge - `'line-estuary-speed'
+in disguise: they share 90, coble, estuary...` - then throws the corpus away. A checker that cannot fail is
+not a checker; a checker that has not been shown to fail is one nobody has tried.
+
+### One self-bug, numbered 58
+
+**58. A sentinel that was also a threshold.** The rewritten rule seeded its best-match tuple with a score of
+0.5, which was also the line between "neighbour" and "nothing", so every question whose best overlap was
+below half stayed at the sentinel and was reported as sharing nothing with `None`: 93 warnings naming no
+record at all. Running it once showed it. The seed is 0.0 and the thresholds are named constants, which is
+what they should have been from the start.
+
+### What this does not settle
+
+The copy test has one weakness the neighbour test does not: it needs a *record* to exist. A question copied
+from an external document that nobody ingested is unanswerable and shares nothing, which is correct, and a
+question paraphrased from a record shares little in both directions, so a copy that has been reworded enough
+is invisible to it. The rule catches the case it names and no more.
+
+### What this costs
+
+An afternoon, one validator rule split in two, one pin retired, one CI self-test, and the only instrument in
+the repository that has been changed by a measurement rather than by an argument.
+
