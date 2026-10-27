@@ -29,7 +29,7 @@ independently written corpora and in two phrasings, and writes the verdicts to `
 
 ```
 $ python claims.py
-**7 of the 30 claims hold in every setting measured.**
+**7 of the 31 claims hold in every setting measured.**
 ```
 
 Five survive everywhere, including the one that matters most: **memory-mcp-1file answers more
@@ -668,6 +668,45 @@ and why a benchmark that holds one coordinate fixed measures one failure and cal
 
 `plural-is-free` joins the ledger and **FAILS**: five of eleven subjects lose more than half their answers
 when the question pluralises the record's words.
+
+## Questions with more than one right answer
+
+Every question in this repository has had one answer — a query names a record, the subject returns a list,
+and the scoring asks whether the right id is in the first three. That makes every question a lookup, and a
+memory store is asked joins as often as lookups. `multi_query.py` builds the other kind from real data and
+no author: records whose descriptions share four or more long words are gathered into a **cluster**, and
+each cluster becomes one question whose required answer is the whole cluster.
+[`MULTI-RECORD.md`](MULTI-RECORD.md)
+
+The store is 72 records with 16 cluster questions beside 16 single-record ones, so the two kinds are
+compared within one run. Scored by required-set recall — how much of the required set came back.
+
+| subject | clusters fully answered | required-set recall | single questions, hit@3 |
+|---|---|---|---|
+| `control` | **16 of 16** | 1.00 | 16 of 16 |
+| `zenbrain` | **16 of 16** | 1.00 | 16 of 16 |
+| `memory-mcp-1file` | 11 of 16 | 0.76 | 16 of 16 |
+| `memento` | 9 of 16 | 0.65 | 10 of 16 |
+| `memdb` | 3 of 16 | 0.25 | 0 of 16 |
+| `mcp-duckdb-memory-server` | **0 of 16** | 0.06 | **16 of 16** |
+| `memory-lean` | **0 of 16** | 0.03 | **16 of 16** |
+| `server-memory` 1.0.0 and 2.0.0 | **0 of 16** | 0.00 | **16 of 16** |
+| `mcp-knowledge-graph` | **0 of 16** | 0.00 | **16 of 16** |
+| `statecore-mcp` | **0 of 16** | 0.00 | 0 of 16 |
+
+**Two subjects answer every cluster in full; six answer none of them — and five of those six answer every
+single-record question on the same store.** So the difference is not retrieval quality. It is whether
+returning a set is something the subject does at all: a search that answers with one id and stops cannot
+answer a question whose answer is three. Every metric this repository has published would have described
+those five as competent retrievers on the strength of the single-record column.
+
+Where a subject does return part of a set, the single-record metric overcounts: `memento` is scored 12 of
+16 that way against 9 answered in full. The ledger's `set-answers` claim **FAILS** for six subjects.
+
+One finding arrived before the measurement did: the store had to be **capped at 300 characters per record**
+because `memory-lean` refuses anything longer — "observations over 300 chars or not strings" — and the run
+never starts. A documented limit of that subject, and a real constraint on any corpus a store like it could
+ever ingest.
 
 ## A second corpus, written blind
 

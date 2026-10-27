@@ -3457,6 +3457,81 @@ One generator, one measurement run at two repeats over eleven subjects, one repo
 changed, no existing corpus touched, and the question space this repository can build is now two
 dimensional instead of one.
 
+## Addendum 33: a question with three answers is not three questions
+
+Every question this repository has asked has had one answer. The scoring asks whether the right id is in
+the first three returned, so every question has been a lookup - and a memory store is asked joins as
+often as lookups. "Which services use postgres" has three answers, and a benchmark of single answers
+would call a subject correct for returning one of them.
+
+The corpus is built from real descriptions and no author: records whose descriptions share four or more
+long words become a **cluster**, and each cluster is one question whose required answer is the whole
+cluster. The store is 72 records with 16 cluster questions beside 16 single-record ones, so the two
+kinds are compared in one run. No new measurement machinery was needed - every row has carried its full
+`returned` list since the first matrix.
+
+### The result
+
+| subject | clusters fully answered | required-set recall | single questions, hit`3 |
+|---|---|---|---|
+| `control` | **16 of 16** | 1.00 | 16 of 16 |
+| `zenbrain` | **16 of 16** | 1.00 | 16 of 16 |
+| `memory-mcp-1file` | 11 of 16 | 0.76 | 16 of 16 |
+| `memento` | 9 of 16 | 0.65 | 10 of 16 |
+| `memdb` | 3 of 16 | 0.25 | 0 of 16 |
+| `mcp-duckdb-memory-server` | 0 of 16 | 0.06 | 16 of 16 |
+| `memory-lean` | 0 of 16 | 0.03 | 16 of 16 |
+| `server-memory` and `mcp-knowledge-graph` | 0 of 16 | 0.00 | 16 of 16 |
+| `statecore-mcp` | 0 of 16 | 0.00 | 0 of 16 |
+
+**Two subjects answer every cluster in full and six answer none of them, and five of those six answer
+every single-record question on the same store.** The difference is therefore not retrieval quality. It
+is whether returning a set is a capability the subject has at all: a search that answers with one id and
+stops cannot answer a question whose answer is three, and no amount of accuracy on single questions
+implies it.
+
+That is the cleanest split in this repository and it took a new kind of question to see it. Every metric
+published so far - score, hits, hit`1, what an agent reads - is single-answer, and all of them described
+those five subjects as competent retrievers.
+
+### What the single-answer metric does to a set answer
+
+Where a subject returns part of a set, `hit3` on the arbitrary first member counts the cluster as
+answered. `memento` is scored 12 of 16 that way and answers 9 in full. The overcount is small here and
+it is the right shape of error: the metric asks whether one id came back, and the question asked whether
+the set did.
+
+### A finding that arrived before the measurement
+
+The store had to be capped at 300 characters per record because `memory-lean` refuses anything longer -
+"observations over 300 chars or not strings" - and the run never starts. That is a documented limit of
+the subject rather than a defect, and it is the first time one of them has constrained the corpus instead
+of merely failing it. It is also a fact about deployability: a memory that cannot hold a paragraph
+cannot be the memory of an agent that reads documents.
+
+### One more of my own mistakes
+
+**45. The report asserted a number the table contradicted.** The first draft of the paragraph after the
+table said "16 of 16 cluster questions were counted as hits by the single-record metric", which was the
+maximum of a column rather than the gap it was describing, and the table beside it said those subjects
+scored 0 of 16. The replacement sentence then said "two against nine" when the data said two against
+six. Both were written from memory of what the run had said rather than from the run; the third version
+computes every clause from the scores dict, and it is the only one of the three that matches the table
+it sits under.
+
+### What this does not settle
+
+It does not test a join. Reading one record to discover the names of others - what a real multi-hop
+question needs - is a different capability, and no subject here claims it. It also turns on k: the
+search is asked for three results, so a three-member cluster is answerable only by a subject that ranks
+all three. Raising k would make every subject that finds one member pass, which measures nothing.
+
+### What this costs
+
+One generator, one measurement run of eleven subjects, one report and a claim that fails. The question
+space now has a third dimension - how many records the answer has - and the field splits on it two
+against nine, which is a wider spread than any other axis here.
+
 
 
 
