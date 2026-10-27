@@ -35,7 +35,7 @@ independently written corpora and in two phrasings, and writes the verdicts to `
 
 ```
 $ python claims.py
-**9 of the 36 claims hold in every setting measured.**
+**10 of the 37 claims hold in every setting measured.**
 ```
 
 Nine survive everywhere, including the one that matters most: **memory-mcp-1file answers more
@@ -65,6 +65,7 @@ longer narratives are in `docs/`:
 | [cost.md](docs/cost.md) | what a write and a search cost, at depth, with the growth tables |
 | [precision.md](docs/precision.md) | what comes back besides the answer, and what it costs to read |
 | [subjects.md](docs/subjects.md) | every subject here, with its probe verdicts and retrieval numbers |
+| [JUDGE.md](JUDGE.md) | a model's second opinion on the near-miss and noise labels |
 | [QUICKSTART.md](QUICKSTART.md) | three commands to run any of it on a server of your own |
 
 ## Retrieval: keeping is not finding

@@ -10,7 +10,7 @@ claim about silence. A subject's SCORE is what the paired test pairs on - the ri
 top three, plus a credit for declining a question with no answer. Its HITS are only the questions
 that have an answer and were answered correctly. "It answers nothing" is a claim about hits.
 
-**9 of the 36 claims hold in every setting measured.** The rest are printed beside the setting
+**10 of the 37 claims hold in every setting measured.** The rest are printed beside the setting
 that breaks them, because that setting is the claim's real scope.
 
 | claim | A written | A keywords | B written | B keywords | status |
@@ -49,6 +49,7 @@ that breaks them, because that setting is the claim's real scope.
 | silence-is-a-habit | no | no | **FAILS** |
 | exam-questions-distinct | yes | yes | **HOLDS** |
 | noise-is-charged | no | no | **FAILS** |
+| rule-reads-like-a-reader | yes | yes | **HOLDS** |
 | score-sees-ordering | no | no | **FAILS** |
 | score-prefers-recalcitrance | no | no | **FAILS** |
 
@@ -215,6 +216,10 @@ that breaks them, because that setting is the claim's real scope.
 **noise-is-charged** - a search pays for the unrelated records it hands back. *FAILS*
   - A written: false (the greedy matcher scores 43 and the single-record one 37, at 1.86 and 0.04 noise records per correct answer)
   - B written: false (the greedy matcher scores 44 and the single-record one 41, at 1.62 and 0.03 noise records per correct answer)
+
+**rule-reads-like-a-reader** - the rule's reading of relevance - answer or near against noise - agrees with a reader's judgement. *HOLDS*
+  - A written: true (45 of 54 pairs agree with the reader (kappa 0.67); 9 record(s) this repository calls a near miss the reader calls unrelated)
+  - B written: true (45 of 54 pairs agree with the reader (kappa 0.67); 9 record(s) this repository calls a near miss the reader calls unrelated)
 
 **score-sees-ordering** - the retrieval score changes when a search returns its worst match first. *FAILS*
   - A written: false (reversing the result list moved the score by 0 and the hit count by 0 (score 37 against 37))

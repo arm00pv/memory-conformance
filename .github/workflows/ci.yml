@@ -72,6 +72,7 @@ jobs:
           grep -q "noise-is-charged" CLAIMS.md
           grep -q "silence-is-a-habit" CLAIMS.md
           grep -q "exam-questions-distinct" CLAIMS.md
+          grep -q "rule-reads-like-a-reader" CLAIMS.md
       - name: every question must be analysed for whether it separates anybody
         run: |
           python items.py > /tmp/items.txt
@@ -254,6 +255,17 @@ jobs:
           # out to be word-overlap alarms, so the rule that charged them has been split in two instead.
           python validate_corpus.py large_corpus.json --exam | tee /tmp/exam-check.txt
           grep -q "0 of 1 corpus file(s) failed" /tmp/exam-check.txt
+
+      # ONE JUDGE, ONE READING, AND IT HAPPENS TO BE A MODEL. Every label in the precision reading comes from
+      # a rule about words; judge.py asks a model whether each returned record would help the person who
+      # asked, and compares. The judgments are cached and committed, so this step needs no model, no network
+      # and no key - it re-derives the agreement from the cache the same way every other report here does.
+      - name: the second opinion must be recomputable without the judge
+        run: |
+          python judge.py --report
+          test -s JUDGE.md
+          grep -q "Cohen's kappa" JUDGE.md
+          grep -q "Calibration" JUDGE.md
 
       - name: a tie must be reported as one of its three kinds, with a price
         run: |

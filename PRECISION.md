@@ -247,8 +247,14 @@ a single record. Those are fair questions - the covering record is not the answe
 against them belongs to the validator's word-overlap rule, not to the corpus. A reader who wants the
 validator to stop making it should read that as the next phase rather than a footnote.
 
-Finally, no judgement of usefulness is made anywhere and none can be: deciding whether a returned
-record HELPS a caller is not a counting question. It is the one place in this repository where a
-model reading the record would beat any rule, and it is deliberately left unmeasured rather than
-faked with a longer rule.
+Finally, no judgement of usefulness is made by any rule here, and none can be: deciding whether a
+returned record HELPS a caller is not a counting question. It is the one place in this repository
+where a model reading the record would beat any rule - so one was asked. `judge.py` puts the
+plain question to a model, with no label and no corpus in the prompt, and this reading's labels are
+its score:
+
+- **45 of 54 pairs agree with the reader, kappa 0.67.** 0 record(s) this report calls noise the
+  reader called relevant, and 9 it calls a near miss the reader calls unrelated.
+  `JUDGE.md` prints the disagreements one by one. That is the first time the checker's
+  judgement has been audited by anything other than itself.
 

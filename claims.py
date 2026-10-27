@@ -943,6 +943,29 @@ def c_exam_questions_distinct(ctx, corpus, shape):
             % (amb["slots"], amb["distinct"], len(amb["shared"])))
 
 
+def c_rule_reads_like_a_reader(ctx, corpus, shape):
+    """THE RULES LABEL SURVIVES A SECOND OPINION.
+
+    Every label in the precision reading comes from a rule about words, and PRECISION.md says so and names
+    the limit. judge.py puts the plain question to a model - would this record help the person who asked -
+    with no label and no corpus in the prompt, and this claim is the rule's score on that exam. Nothing here
+    is a subject: the claim is about whether this repository's reading of its own rows survives a reader.
+    """
+    import judge
+    cache = judge.load()
+    judged = [v for v in cache.values() if v.get("verdict") in ("YES", "NO")]
+    if len(judged) < 12:
+        return None
+    rows = [(v.get("kind") != "noise", v["verdict"] == "YES") for v in judged]
+    k = judge.kappa(rows)
+    agree = sum(1 for a, b in rows if a == b)
+    generous = sum(1 for a, b in rows if a and not b)
+    return (k is not None and k >= 0.6,
+            "%d of %d pairs agree with the reader (kappa %.2f); %d record(s) this repository calls a near"
+            " miss the reader calls unrelated"
+            % (agree, len(rows), -1 if k is None else k, generous))
+
+
 def c_noise_is_charged(ctx, corpus, shape):
     """A SEARCH PAYS FOR THE UNRELATED RECORDS IT HANDS BACK.
 
@@ -1033,6 +1056,8 @@ CLAIMS = [    ("most-hits", "memory-mcp-1file answers more answerable questions 
     ("exam-questions-distinct", "the exam's questions are distinct questions with one right answer each.",
      c_exam_questions_distinct, False),
     ("noise-is-charged", "a search pays for the unrelated records it hands back.", c_noise_is_charged, False),
+    ("rule-reads-like-a-reader", "the rule's reading of relevance - answer or near against noise - agrees"
+     " with a reader's judgement.", c_rule_reads_like_a_reader, False),
     ("score-sees-ordering", "the retrieval score changes when a search returns its worst match first.",
      c_score_sees_ordering, False),
     ("score-prefers-recalcitrance", "a search that accepts one shared word scores no better than one that"

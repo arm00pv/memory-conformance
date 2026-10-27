@@ -4071,3 +4071,76 @@ is invisible to it. The rule catches the case it names and no more.
 An afternoon, one validator rule split in two, one pin retired, one CI self-test, and the only instrument in
 the repository that has been changed by a measurement rather than by an argument.
 
+
+## Addendum 41: the second opinion, and what it said about the first
+
+Every number in the precision reading came from a rule about words: same name token, or three shared
+distinguishing words, else noise. The report said so and named the limit in a sentence - deciding whether
+a returned record HELPS a caller is not a counting question, and it is the one place a model reading the
+record would beat any rule. That sentence was the end of the conversation. This makes it a measurement.
+
+`judge.py` takes pairs the rule has already labelled, shows a model the question and the record and
+**nothing else** - no label, no corpus, no hint of which kind the rule thinks it is - and asks whether the
+record would help the person who asked. Sixty pairs, four corpora, three classes, one model at temperature
+zero. Every judgment is cached and committed, so the report re-derives itself with no model and no network,
+which is what the CI runs.
+
+### What the reader said
+
+| the rule says | pairs | the reader says relevant |
+|---|---|---|
+| answer | 20 | **20** |
+| near miss | 14 | **5** |
+| noise | 20 | **0** |
+
+**Calibration: the reader called all twenty expected records relevant**, so it is not a contrarian and the
+numbers beside it mean something. Agreement with the rule's reading - answer or near counts as relevant,
+noise does not - is **45 of 54 pairs, Cohen's kappa 0.67**, which is the substantial band by the usual
+reading and which the ledger now records as a claim that **holds** (10 of 37).
+
+### The disagreements all run one way, which is the finding
+
+**Nine of the fourteen records the rule excuses as near misses are, to a reader, unrelated.** Not one of
+the twenty it calls noise did the reader want. So the rule is conservative about noise and generous about
+near misses, and both of those push the published numbers in the same direction: the noise column is a
+**floor**, exactly as PRECISION.md has been claiming in a caveat for two phases - except that the caveat is
+now a measurement, and it has a size.
+
+The examples are ordinary and checkable by hand, which is the test of whether a judge is doing anything:
+
+- "Does shutting the window log me out?" -> `auth-lockout`. The judge: *record covers failed sign-in
+  lockouts, not logout from closing windows.* A shared word and a shared family, and not the same fact.
+- "Determine the East Width of a Unicode" -> `fast-string-truncated-width`. The judge: *record is about
+  string truncation, not measuring East Asian width.*
+- "Which units use a 3+2 seating layout?" -> `class-dunmere-age`. The judge: *record covers unit age and
+  service date, not seating layout.*
+
+Each of those is a record a caller pays for and cannot use, and each is currently excluded from the noise
+count because it shares a name token or three words with the answer.
+
+### What this does not settle
+
+One model at one temperature is a reader, not a standard. Two readers would disagree with each other, and
+the number here is the distance between this rule and this reader, not between the rule and the truth. A
+second model would make that visible and a third would make it quantifiable; neither is done, and the
+report says so in its own words rather than in this one.
+
+The prompt is a judgement call of its own: it asks whether the record would help, not whether it is the
+answer, because the corpus already says which record is the answer and asking again would test nothing.
+
+### And a self-bug that got worse before it got caught
+
+**59. The read cap truncated a source file and the write put it back short.** `claims.py` had grown past
+the fifty-thousand-character ceiling of the read tool, so the copy I edited was missing its last function -
+including the `if __name__` block. The edit applied, the file was written, and the ledger then ran
+**silently, doing nothing, exiting 0**: exactly the failure class this repository exists to find, in the
+tool that counts its own claims. It was caught by running it, seeing no output, and checking the file
+against `git show HEAD`. Restored from git and re-applied through a script that reads the whole file, which
+is what bug 55 already said to do.
+
+### What this costs
+
+Twenty minutes of model time, sixty cached judgments, one new tool, one new claim, one CI step that needs
+neither model nor network, and no subject measured - because the thing under test this time was the
+checker.
+
