@@ -10,7 +10,7 @@ claim about silence. A subject's SCORE is what the paired test pairs on - the ri
 top three, plus a credit for declining a question with no answer. Its HITS are only the questions
 that have an answer and were answered correctly. "It answers nothing" is a claim about hits.
 
-**7 of the 27 claims hold in every setting measured.** The rest are printed beside the setting
+**7 of the 29 claims hold in every setting measured.** The rest are printed beside the setting
 that breaks them, because that setting is the claim's real scope.
 
 | claim | A written | A keywords | B written | B keywords | status |
@@ -39,6 +39,8 @@ that breaks them, because that setting is the claim's real scope.
 | corpora-agree | no | no | **FAILS** |
 | agent-agrees-with-score | no | no | **FAILS** |
 | real-corpus-agrees | no | no | **FAILS** |
+| ranking-survives-paraphrase | no | no | **FAILS** |
+| near-end-separates | no | no | **FAILS** |
 | silent-everywhere | no | no | **FAILS** |
 | score-sees-ordering | no | no | **FAILS** |
 | score-prefers-recalcitrance | no | no | **FAILS** |
@@ -166,6 +168,14 @@ that breaks them, because that setting is the claim's real scope.
 **real-corpus-agrees** - the leader on a corpus with no author is the leader on the corpora written by hand. *FAILS*
   - A written: false (the leader on real text is control, and 1 of the three authored corpora agree (not A, B))
   - B written: false (the leader on real text is control, and 1 of the three authored corpora agree (not A, B))
+
+**ranking-survives-paraphrase** - the subject that answers the most verbatim questions also answers the most paraphrased ones. *FAILS*
+  - A written: false (8 subject(s) tie at the ceiling on the verbatim questions (24 of 24) and zenbrain is first when two words survive (21 of 24))
+  - B written: false (8 subject(s) tie at the ceiling on the verbatim questions (24 of 24) and zenbrain is first when two words survive (21 of 24))
+
+**near-end-separates** - asking a record its own words back separates the subjects better than paraphrasing it. *FAILS*
+  - A written: false (the verbatim band separates 26 of 55 pairs and the half-paraphrased band 38)
+  - B written: false (the verbatim band separates 26 of 55 pairs and the half-paraphrased band 38)
 
 **silent-everywhere** - the subjects that answer nothing on the authored corpora answer nothing on real text either. *FAILS*
   - A written: false (1 of 4 still answer nothing on real text (server-memory 33, server-memory 33, mcp-knowledge-graph 33 of 48 answered))

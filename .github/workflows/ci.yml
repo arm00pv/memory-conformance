@@ -106,6 +106,18 @@ jobs:
           grep -q "Spearman" REAL-CORPUS.md
           grep -q "validator rejects this corpus" REAL-CORPUS.md
 
+      # FOUR CORPORA WERE ONE AXIS. The distance sweep walks it on committed results, so it runs here:
+      # the curves, the two coordinates that place each corpus, and the fact that the nearest distance
+      # separates fewer pairs than the middle one.
+      - name: the distance between a question and its answer must be measured, not argued about
+        run: |
+          python distance_sweep.py --report > /tmp/dist.txt
+          cat /tmp/dist.txt
+          test -s DISTANCE.md
+          grep -q "How much paraphrase does a memory survive" DISTANCE.md
+          grep -q "Where the four corpora sit on this axis" DISTANCE.md
+          grep -q "no room" DISTANCE.md
+
       - name: a tie must be reported as one of its three kinds, with a price
         run: |
           python band.py > /tmp/band.txt

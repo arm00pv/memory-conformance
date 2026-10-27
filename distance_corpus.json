@@ -1,0 +1,897 @@
+{
+ "why": "The real package descriptions, asked at five graduated distances. Each form keeps a declared fraction of the record's own long words, applied by rule, so the only thing that varies between bands is how much of the answer survives into the question.",
+ "records": [
+  {
+   "id": "@huggingface/transformers",
+   "text": "State-of-the-art Machine Learning for the web. Run 🤗 Transformers directly in your browser, with no need for a server! Version 3.8.1. Licensed Apache-2.0."
+  },
+  {
+   "id": "side-channel-weakmap",
+   "text": "Store information about any JS value in a side channel. Uses WeakMap if available. Version 1.0.2. Licensed MIT."
+  },
+  {
+   "id": "chart.js-auto",
+   "text": "Auto registering package. Exists to support bundlers without exports support such as webpack 4."
+  },
+  {
+   "id": "@aws-sdk/credential-provider-env",
+   "text": "AWS credential provider that sources credentials from known environment variables Version 3.972.76. Licensed Apache-2.0."
+  },
+  {
+   "id": "@aws-sdk/credential-provider-ini",
+   "text": "AWS credential provider that sources credentials from ~/.aws/credentials and ~/.aws/config Version 3.973.21. Licensed Apache-2.0."
+  },
+  {
+   "id": "micromark-factory-space",
+   "text": "micromark factory to parse markdown space (found in lots of places) Version 2.1.0. Licensed MIT."
+  },
+  {
+   "id": "side-channel-list",
+   "text": "Store information about any JS value in a side channel, using a linked list Version 1.0.1. Licensed MIT."
+  },
+  {
+   "id": "string-width",
+   "text": "Get the visual width of a string - the number of columns required to display it Version 7.2.0. Licensed MIT."
+  },
+  {
+   "id": "@aws-sdk/client-ecs",
+   "text": "AWS SDK for JavaScript Ecs Client for Node.js, Browser and React Native Version 3.1156.0. Licensed Apache-2.0."
+  },
+  {
+   "id": "@aws-sdk/credential-provider-login",
+   "text": "AWS credential provider that sources credentials from aws login cached tokens Version 3.972.83. Licensed Apache-2.0."
+  },
+  {
+   "id": "@modelcontextprotocol/client",
+   "text": "Model Context Protocol implementation for TypeScript - Client package Version 2.3.1. Licensed Apache-2.0."
+  },
+  {
+   "id": "@modelcontextprotocol/server-memory",
+   "text": "MCP server for enabling memory for Claude through a knowledge graph Version 1.0.0. Licensed SEE LICENSE IN LICENSE."
+  },
+  {
+   "id": "micromark-factory-destination",
+   "text": "micromark factory to parse destinations (found in resources, definitions) Version 2.0.1. Licensed MIT."
+  },
+  {
+   "id": "@aws-sdk/credential-provider-sso",
+   "text": "AWS credential provider that exchanges a resolved SSO login token file for temporary AWS credentials Version 3.973.20. Licensed Apache-2.0."
+  },
+  {
+   "id": "@isaacs/fs-minipass",
+   "text": "fs read and write streams based on minipass Version 4.0.1. Licensed ISC."
+  },
+  {
+   "id": "@libsql/isomorphic-fetch",
+   "text": "Isomorphic fetch() in Node, Deno and Cloudflare Workers Version 0.3.1. Licensed MIT."
+  },
+  {
+   "id": "@xenova/transformers",
+   "text": "State-of-the-art Machine Learning for the web. Run 🤗 Transformers directly in your browser, with no need for a server! Version 2.17.2. Licensed Apache-2.0."
+  },
+  {
+   "id": "side-channel",
+   "text": "Store information about any JS value in a side channel. Uses WeakMap if available. Version 1.1.1. Licensed MIT."
+  },
+  {
+   "id": "chart.js-helpers",
+   "text": "Helpers package. Exists to support bundlers without exports support such as webpack 4."
+  },
+  {
+   "id": "@aws-sdk/credential-provider-node",
+   "text": "AWS credential provider that sources credentials from a Node.JS environment. Version 3.972.88. Licensed Apache-2.0."
+  },
+  {
+   "id": "@aws-sdk/credential-provider-process",
+   "text": "AWS credential provider that sources credential_process from ~/.aws/credentials and ~/.aws/config Version 3.972.76. Licensed Apache-2.0."
+  },
+  {
+   "id": "micromark-factory-whitespace",
+   "text": "micromark factory to parse markdown whitespace (found in lots of places) Version 2.0.1. Licensed MIT."
+  },
+  {
+   "id": "side-channel-map",
+   "text": "Store information about any JS value in a side channel, using a Map Version 1.0.1. Licensed MIT."
+  },
+  {
+   "id": "widest-line",
+   "text": "Get the visual width of the widest line in a string - the number of columns required to display it Version 5.0.0. Licensed MIT."
+  },
+  {
+   "id": "@aws-sdk/client-s3",
+   "text": "AWS SDK for JavaScript S3 Client for Node.js, Browser and React Native Version 3.1156.0. Licensed Apache-2.0."
+  },
+  {
+   "id": "@smithy/credential-provider-imds",
+   "text": "AWS credential provider that sources credentials from the EC2 instance metadata service and ECS container metadata service Version 4.5.2. Licensed Apache-2.0."
+  },
+  {
+   "id": "@modelcontextprotocol/server",
+   "text": "Model Context Protocol implementation for TypeScript - Server package Version 2.3.1. Licensed Apache-2.0."
+  },
+  {
+   "id": "mcp-knowledge-graph",
+   "text": "MCP server enabling persistent memory for AI models through a local knowledge graph Version 1.3.2. Licensed MIT."
+  },
+  {
+   "id": "micromark-factory-title",
+   "text": "micromark factory to parse markdown titles (found in resources, definitions) Version 2.0.1. Licensed MIT."
+  },
+  {
+   "id": "@aws-sdk/credential-provider-web-identity",
+   "text": "AWS credential provider that calls STS assumeRole for temporary AWS credentials Version 3.972.82. Licensed Apache-2.0."
+  },
+  {
+   "id": "fs-minipass",
+   "text": "fs read and write streams based on minipass Version 2.1.0. Licensed ISC."
+  },
+  {
+   "id": "@libsql/isomorphic-ws",
+   "text": "Isomorphic WebSockets in Node, Bun, Deno and Cloudflare Workers Version 0.1.5. Licensed MIT."
+  },
+  {
+   "id": "is-fullwidth-code-point",
+   "text": "Check if the character represented by a given Unicode code point is fullwidth Version 4.0.0. Licensed MIT."
+  },
+  {
+   "id": "@esbuild/win32-x64",
+   "text": "The Windows 64-bit binary for esbuild, a JavaScript bundler. Version 0.28.2. Licensed MIT."
+  },
+  {
+   "id": "minipass",
+   "text": "minimal implementation of a PassThrough stream Version 7.1.3. Licensed BlueOak-1.0.0."
+  },
+  {
+   "id": "@j0hanz/memdb",
+   "text": "A SQLite-backed MCP memory server with local workspace storage. Version 1.4.0. Licensed MIT."
+  },
+  {
+   "id": "@nodelib/fs.scandir",
+   "text": "List files and directories inside the specified directory Version 2.1.5. Licensed MIT."
+  },
+  {
+   "id": "@protobufjs/path",
+   "text": "A minimal path module to resolve Unix, Windows and URL paths alike. Version 1.1.2. Licensed BSD-3-Clause."
+  },
+  {
+   "id": "@vheins/local-memory-mcp",
+   "text": "MCP Local Memory Service for coding copilot agents Version 0.52.3. Licensed MIT."
+  },
+  {
+   "id": "ansi-styles",
+   "text": "ANSI escape codes for styling strings in the terminal Version 6.2.3. Licensed MIT."
+  },
+  {
+   "id": "better-sqlite3",
+   "text": "The fastest and simplest library for SQLite in Node.js. Version 12.11.1. Licensed MIT."
+  },
+  {
+   "id": "call-bind-apply-helpers",
+   "text": "Helper functions around Function call/apply/bind, for use in `call-bind` Version 1.0.2. Licensed MIT."
+  },
+  {
+   "id": "color-string",
+   "text": "Parser and generator for CSS color strings Version 1.9.1. Licensed MIT."
+  },
+  {
+   "id": "crbro-memory",
+   "text": "CRBRO — Persistent neural memory for AI. A biological file-based MCP server that gives your AI long-term memory across sessions. Version 2.10.0. Licensed MIT."
+  },
+  {
+   "id": "detect-node",
+   "text": "Detect Node.JS (as opposite to browser environment) (reliable) Version 2.1.0. Licensed MIT."
+  },
+  {
+   "id": "environment",
+   "text": "Check which JavaScript environment your code is running in at runtime: browser, Node.js, Bun, etc Version 1.1.0. Licensed MIT."
+  },
+  {
+   "id": "eventsource-parser",
+   "text": "Streaming, source-agnostic EventSource/Server-Sent Events parser Version 3.1.1. Licensed MIT."
+  },
+  {
+   "id": "fast-string-truncated-width",
+   "text": "A fast function for calculating where a string should be truncated, given an optional width limit and an ellipsis string. Version 3.0.3. Licensed MIT."
+  },
+  {
+   "id": "get-east-asian-width",
+   "text": "Determine the East Asian Width of a Unicode character Version 1.7.0. Licensed MIT."
+  },
+  {
+   "id": "graphology-communities-louvain",
+   "text": "Louvain community detection for graphology. Version 2.0.2. Licensed MIT."
+  },
+  {
+   "id": "http-cache-semantics",
+   "text": "Parses Cache-Control and other headers. Helps building correct HTTP caches and proxies Version 4.3.0. Licensed BSD-2-Clause."
+  },
+  {
+   "id": "inherits",
+   "text": "Browser-friendly inheritance fully compatible with standard node.js inherits() Version 2.0.4. Licensed ISC."
+  },
+  {
+   "id": "is-number",
+   "text": "Returns true if a number or string value is a finite number. Useful for regex matches, parsing, user input, etc. Version 7.0.0. Licensed MIT."
+  },
+  {
+   "id": "json-stringify-safe",
+   "text": "Like JSON.stringify, but doesn't blow up on circular refs. Version 5.0.1. Licensed ISC."
+  },
+  {
+   "id": "mdast-util-find-and-replace",
+   "text": "mdast utility to find and replace text in a tree Version 3.0.3. Licensed MIT."
+  },
+  {
+   "id": "media-typer",
+   "text": "Simple RFC 6838 media type parser and formatter Version 1.1.1. Licensed MIT."
+  },
+  {
+   "id": "micromark-extension-gfm-strikethrough",
+   "text": "micromark extension to support GFM strikethrough Version 2.1.0. Licensed MIT."
+  },
+  {
+   "id": "micromark-util-classify-character",
+   "text": "micromark utility to classify whether a character is whitespace or punctuation Version 2.0.1. Licensed MIT."
+  },
+  {
+   "id": "micromark",
+   "text": "small commonmark compliant markdown parser with positional info and concrete tokens Version 4.0.3. Licensed MIT."
+  },
+  {
+   "id": "mute-stream",
+   "text": "Bytes go in, but they don't come out (when muted). Version 3.0.0. Licensed ISC."
+  },
+  {
+   "id": "obliterator",
+   "text": "Higher order iterator library for JavaScript/TypeScript. Version 2.0.5. Licensed MIT."
+  },
+  {
+   "id": "pg-int8",
+   "text": "64-bit big-endian signed integer-to-string conversion Version 1.0.1. Licensed ISC."
+  },
+  {
+   "id": "promise-inflight",
+   "text": "One promise for multiple requests in flight to avoid async duplication Version 1.0.1. Licensed ISC."
+  },
+  {
+   "id": "espree",
+   "text": "An Esprima-compatible JavaScript parser built on Acorn Version 7.3.1. Licensed BSD-2-Clause."
+  },
+  {
+   "id": "requizzle",
+   "text": "Swizzle a little something into your require() calls. Version 0.2.3. Licensed MIT."
+  },
+  {
+   "id": "rag-memory-epf-mcp",
+   "text": "Project-local RAG memory MCP server — knowledge graph + multilingual vector + FTS5 in a single SQLite file. Per-project isolation, 38 MCP tools, codepoint-safe chunking (Korean/CJK/emoji). Version 6.4.1. Licensed MIT."
+  },
+  {
+   "id": "remark-stringify",
+   "text": "remark plugin to add support for serializing markdown Version 11.0.0. Licensed MIT."
+  },
+  {
+   "id": "send",
+   "text": "Better streaming static file server with Range and conditional-GET support Version 1.2.1. Licensed MIT."
+  },
+  {
+   "id": "socks-proxy-agent",
+   "text": "A SOCKS proxy `http.Agent` implementation for HTTP and HTTPS Version 6.2.1. Licensed MIT."
+  },
+  {
+   "id": "strip-bom-string",
+   "text": "Strip a byte order mark (BOM) from a string. Version 1.0.0. Licensed MIT."
+  },
+  {
+   "id": "tr46",
+   "text": "An implementation of the Unicode TR46 spec Version 0.0.3. Licensed MIT."
+  },
+  {
+   "id": "unist-util-stringify-position",
+   "text": "unist utility to serialize a node, position, or point as a human readable location Version 4.0.0. Licensed MIT."
+  }
+ ],
+ "queries": [
+  {
+   "query": "State-of-the-art Machine Learning for the web. Run 🤗 Transformers directly in your browser, with no need for a server!",
+   "expect": "@huggingface/transformers",
+   "difficulty": "d0"
+  },
+  {
+   "query": "State-of-the-art Machine for the web. Run 🤗 Transformers directly in browser, with no for a server!",
+   "expect": "@huggingface/transformers",
+   "difficulty": "d1"
+  },
+  {
+   "query": "State-of-the-art Learning for the web. Run 🤗 directly in browser, no need for a",
+   "expect": "@huggingface/transformers",
+   "difficulty": "d2"
+  },
+  {
+   "query": "Learning for the web. Run 🤗 in your no need for a",
+   "expect": "@huggingface/transformers",
+   "difficulty": "d3"
+  },
+  {
+   "query": "tell me about State-of-the-art Machine",
+   "expect": "@huggingface/transformers",
+   "difficulty": "d4"
+  },
+  {
+   "query": "Auto registering package. Exists to support bundlers without exports support such as webpack 4.",
+   "expect": "chart.js-auto",
+   "difficulty": "d0"
+  },
+  {
+   "query": "Auto registering Exists to support without exports such as webpack 4.",
+   "expect": "chart.js-auto",
+   "difficulty": "d1"
+  },
+  {
+   "query": "Auto package. to support without support as webpack 4.",
+   "expect": "chart.js-auto",
+   "difficulty": "d2"
+  },
+  {
+   "query": "package. to bundlers support as 4.",
+   "expect": "chart.js-auto",
+   "difficulty": "d3"
+  },
+  {
+   "query": "tell me about Auto registering",
+   "expect": "chart.js-auto",
+   "difficulty": "d4"
+  },
+  {
+   "query": "AWS credential provider that sources credentials from ~/.aws/credentials and ~/.aws/config",
+   "expect": "@aws-sdk/credential-provider-ini",
+   "difficulty": "d0"
+  },
+  {
+   "query": "AWS credential provider sources credentials ~/.aws/credentials and ~/.aws/config",
+   "expect": "@aws-sdk/credential-provider-ini",
+   "difficulty": "d1"
+  },
+  {
+   "query": "AWS credential that credentials ~/.aws/credentials and ~/.aws/config",
+   "expect": "@aws-sdk/credential-provider-ini",
+   "difficulty": "d2"
+  },
+  {
+   "query": "AWS that from ~/.aws/credentials and ~/.aws/config",
+   "expect": "@aws-sdk/credential-provider-ini",
+   "difficulty": "d3"
+  },
+  {
+   "query": "tell me about AWS credential provider",
+   "expect": "@aws-sdk/credential-provider-ini",
+   "difficulty": "d4"
+  },
+  {
+   "query": "Store information about any JS value in a side channel, using a linked list",
+   "expect": "side-channel-list",
+   "difficulty": "d0"
+  },
+  {
+   "query": "Store information any JS value in a side using a linked",
+   "expect": "side-channel-list",
+   "difficulty": "d1"
+  },
+  {
+   "query": "Store about any JS in a side using a list",
+   "expect": "side-channel-list",
+   "difficulty": "d2"
+  },
+  {
+   "query": "about any JS in a channel, a list",
+   "expect": "side-channel-list",
+   "difficulty": "d3"
+  },
+  {
+   "query": "tell me about Store information",
+   "expect": "side-channel-list",
+   "difficulty": "d4"
+  },
+  {
+   "query": "AWS SDK for JavaScript Ecs Client for Node.js, Browser and React Native",
+   "expect": "@aws-sdk/client-ecs",
+   "difficulty": "d0"
+  },
+  {
+   "query": "AWS SDK for JavaScript Ecs Client for Browser and React",
+   "expect": "@aws-sdk/client-ecs",
+   "difficulty": "d1"
+  },
+  {
+   "query": "AWS SDK for JavaScript Ecs for Node.js, and React",
+   "expect": "@aws-sdk/client-ecs",
+   "difficulty": "d2"
+  },
+  {
+   "query": "AWS SDK for Ecs for Node.js, and Native",
+   "expect": "@aws-sdk/client-ecs",
+   "difficulty": "d3"
+  },
+  {
+   "query": "tell me about AWS SDK for JavaScript Ecs Client for",
+   "expect": "@aws-sdk/client-ecs",
+   "difficulty": "d4"
+  },
+  {
+   "query": "Model Context Protocol implementation for TypeScript - Client package",
+   "expect": "@modelcontextprotocol/client",
+   "difficulty": "d0"
+  },
+  {
+   "query": "Model Context implementation for TypeScript - package",
+   "expect": "@modelcontextprotocol/client",
+   "difficulty": "d1"
+  },
+  {
+   "query": "Model Protocol for TypeScript - package",
+   "expect": "@modelcontextprotocol/client",
+   "difficulty": "d2"
+  },
+  {
+   "query": "Protocol for - Client",
+   "expect": "@modelcontextprotocol/client",
+   "difficulty": "d3"
+  },
+  {
+   "query": "tell me about Model Context",
+   "expect": "@modelcontextprotocol/client",
+   "difficulty": "d4"
+  },
+  {
+   "query": "micromark factory to parse destinations (found in resources, definitions)",
+   "expect": "micromark-factory-destination",
+   "difficulty": "d0"
+  },
+  {
+   "query": "micromark factory to destinations (found in resources,",
+   "expect": "micromark-factory-destination",
+   "difficulty": "d1"
+  },
+  {
+   "query": "micromark to parse (found in resources,",
+   "expect": "micromark-factory-destination",
+   "difficulty": "d2"
+  },
+  {
+   "query": "to parse (found in definitions)",
+   "expect": "micromark-factory-destination",
+   "difficulty": "d3"
+  },
+  {
+   "query": "tell me about micromark factory to",
+   "expect": "micromark-factory-destination",
+   "difficulty": "d4"
+  },
+  {
+   "query": "Isomorphic fetch() in Node, Deno and Cloudflare Workers",
+   "expect": "@libsql/isomorphic-fetch",
+   "difficulty": "d0"
+  },
+  {
+   "query": "Isomorphic fetch() in Deno and Cloudflare",
+   "expect": "@libsql/isomorphic-fetch",
+   "difficulty": "d1"
+  },
+  {
+   "query": "Isomorphic in Node, and Cloudflare",
+   "expect": "@libsql/isomorphic-fetch",
+   "difficulty": "d2"
+  },
+  {
+   "query": "in Node, and Workers",
+   "expect": "@libsql/isomorphic-fetch",
+   "difficulty": "d3"
+  },
+  {
+   "query": "tell me about Isomorphic fetch() in",
+   "expect": "@libsql/isomorphic-fetch",
+   "difficulty": "d4"
+  },
+  {
+   "query": "Store information about any JS value in a side channel. Uses WeakMap if available.",
+   "expect": "side-channel",
+   "difficulty": "d0"
+  },
+  {
+   "query": "Store information any JS value in a side Uses WeakMap if",
+   "expect": "side-channel",
+   "difficulty": "d1"
+  },
+  {
+   "query": "Store about any JS in a side Uses if available.",
+   "expect": "side-channel",
+   "difficulty": "d2"
+  },
+  {
+   "query": "about any JS in a channel. if available.",
+   "expect": "side-channel",
+   "difficulty": "d3"
+  },
+  {
+   "query": "tell me about Store information",
+   "expect": "side-channel",
+   "difficulty": "d4"
+  },
+  {
+   "query": "AWS credential provider that sources credentials from a Node.JS environment.",
+   "expect": "@aws-sdk/credential-provider-node",
+   "difficulty": "d0"
+  },
+  {
+   "query": "AWS credential provider sources credentials a Node.JS environment.",
+   "expect": "@aws-sdk/credential-provider-node",
+   "difficulty": "d1"
+  },
+  {
+   "query": "AWS credential that credentials a Node.JS",
+   "expect": "@aws-sdk/credential-provider-node",
+   "difficulty": "d2"
+  },
+  {
+   "query": "AWS that from a",
+   "expect": "@aws-sdk/credential-provider-node",
+   "difficulty": "d3"
+  },
+  {
+   "query": "tell me about AWS credential provider",
+   "expect": "@aws-sdk/credential-provider-node",
+   "difficulty": "d4"
+  },
+  {
+   "query": "micromark factory to parse markdown whitespace (found in lots of places)",
+   "expect": "micromark-factory-whitespace",
+   "difficulty": "d0"
+  },
+  {
+   "query": "micromark factory to markdown whitespace (found in of places)",
+   "expect": "micromark-factory-whitespace",
+   "difficulty": "d1"
+  },
+  {
+   "query": "micromark to parse whitespace (found in of places)",
+   "expect": "micromark-factory-whitespace",
+   "difficulty": "d2"
+  },
+  {
+   "query": "to parse (found in lots of",
+   "expect": "micromark-factory-whitespace",
+   "difficulty": "d3"
+  },
+  {
+   "query": "tell me about micromark factory to",
+   "expect": "micromark-factory-whitespace",
+   "difficulty": "d4"
+  },
+  {
+   "query": "Get the visual width of the widest line in a string - the number of columns required to display it",
+   "expect": "widest-line",
+   "difficulty": "d0"
+  },
+  {
+   "query": "Get the visual width of the line in a string - the of columns required to it",
+   "expect": "widest-line",
+   "difficulty": "d1"
+  },
+  {
+   "query": "Get the visual of the widest in a string - the of columns to display it",
+   "expect": "widest-line",
+   "difficulty": "d2"
+  },
+  {
+   "query": "Get the of the widest in a - the number of to display it",
+   "expect": "widest-line",
+   "difficulty": "d3"
+  },
+  {
+   "query": "tell me about Get the visual width of the",
+   "expect": "widest-line",
+   "difficulty": "d4"
+  },
+  {
+   "query": "AWS credential provider that sources credentials from the EC2 instance metadata service and ECS container metadata service",
+   "expect": "@smithy/credential-provider-imds",
+   "difficulty": "d0"
+  },
+  {
+   "query": "AWS credential provider sources credentials the EC2 instance metadata and ECS container metadata",
+   "expect": "@smithy/credential-provider-imds",
+   "difficulty": "d1"
+  },
+  {
+   "query": "AWS credential that credentials the EC2 instance service and ECS metadata",
+   "expect": "@smithy/credential-provider-imds",
+   "difficulty": "d2"
+  },
+  {
+   "query": "AWS that from the EC2 service and ECS service",
+   "expect": "@smithy/credential-provider-imds",
+   "difficulty": "d3"
+  },
+  {
+   "query": "tell me about AWS credential provider",
+   "expect": "@smithy/credential-provider-imds",
+   "difficulty": "d4"
+  },
+  {
+   "query": "MCP server enabling persistent memory for AI models through a local knowledge graph",
+   "expect": "mcp-knowledge-graph",
+   "difficulty": "d0"
+  },
+  {
+   "query": "MCP server enabling memory for AI models a local knowledge",
+   "expect": "mcp-knowledge-graph",
+   "difficulty": "d1"
+  },
+  {
+   "query": "MCP server persistent for AI models a local graph",
+   "expect": "mcp-knowledge-graph",
+   "difficulty": "d2"
+  },
+  {
+   "query": "MCP persistent for AI through a graph",
+   "expect": "mcp-knowledge-graph",
+   "difficulty": "d3"
+  },
+  {
+   "query": "tell me about MCP server enabling",
+   "expect": "mcp-knowledge-graph",
+   "difficulty": "d4"
+  },
+  {
+   "query": "AWS credential provider that calls STS assumeRole for temporary AWS credentials",
+   "expect": "@aws-sdk/credential-provider-web-identity",
+   "difficulty": "d0"
+  },
+  {
+   "query": "AWS credential provider calls STS assumeRole for AWS credentials",
+   "expect": "@aws-sdk/credential-provider-web-identity",
+   "difficulty": "d1"
+  },
+  {
+   "query": "AWS credential that STS assumeRole for AWS credentials",
+   "expect": "@aws-sdk/credential-provider-web-identity",
+   "difficulty": "d2"
+  },
+  {
+   "query": "AWS that STS for temporary AWS",
+   "expect": "@aws-sdk/credential-provider-web-identity",
+   "difficulty": "d3"
+  },
+  {
+   "query": "tell me about AWS credential provider",
+   "expect": "@aws-sdk/credential-provider-web-identity",
+   "difficulty": "d4"
+  },
+  {
+   "query": "Check if the character represented by a given Unicode code point is fullwidth",
+   "expect": "is-fullwidth-code-point",
+   "difficulty": "d0"
+  },
+  {
+   "query": "Check if the character by a given Unicode point is fullwidth",
+   "expect": "is-fullwidth-code-point",
+   "difficulty": "d1"
+  },
+  {
+   "query": "Check if the represented by a Unicode point is",
+   "expect": "is-fullwidth-code-point",
+   "difficulty": "d2"
+  },
+  {
+   "query": "if the represented by a code is",
+   "expect": "is-fullwidth-code-point",
+   "difficulty": "d3"
+  },
+  {
+   "query": "tell me about Check if the character",
+   "expect": "is-fullwidth-code-point",
+   "difficulty": "d4"
+  },
+  {
+   "query": "List files and directories inside the specified directory",
+   "expect": "@nodelib/fs.scandir",
+   "difficulty": "d0"
+  },
+  {
+   "query": "List files and inside the specified",
+   "expect": "@nodelib/fs.scandir",
+   "difficulty": "d1"
+  },
+  {
+   "query": "List and directories the specified",
+   "expect": "@nodelib/fs.scandir",
+   "difficulty": "d2"
+  },
+  {
+   "query": "and directories the directory",
+   "expect": "@nodelib/fs.scandir",
+   "difficulty": "d3"
+  },
+  {
+   "query": "tell me about List files and",
+   "expect": "@nodelib/fs.scandir",
+   "difficulty": "d4"
+  },
+  {
+   "query": "MCP Local Memory Service for coding copilot agents",
+   "expect": "@vheins/local-memory-mcp",
+   "difficulty": "d0"
+  },
+  {
+   "query": "MCP Local Memory for coding copilot",
+   "expect": "@vheins/local-memory-mcp",
+   "difficulty": "d1"
+  },
+  {
+   "query": "MCP Local Service for copilot",
+   "expect": "@vheins/local-memory-mcp",
+   "difficulty": "d2"
+  },
+  {
+   "query": "MCP Service for agents",
+   "expect": "@vheins/local-memory-mcp",
+   "difficulty": "d3"
+  },
+  {
+   "query": "tell me about MCP Local Memory",
+   "expect": "@vheins/local-memory-mcp",
+   "difficulty": "d4"
+  },
+  {
+   "query": "Helper functions around Function call/apply/bind, for use in `call-bind`",
+   "expect": "call-bind-apply-helpers",
+   "difficulty": "d0"
+  },
+  {
+   "query": "Helper functions Function call/apply/bind, for use in `call-bind`",
+   "expect": "call-bind-apply-helpers",
+   "difficulty": "d1"
+  },
+  {
+   "query": "Helper around call/apply/bind, for use in `call-bind`",
+   "expect": "call-bind-apply-helpers",
+   "difficulty": "d2"
+  },
+  {
+   "query": "around for use in `call-bind`",
+   "expect": "call-bind-apply-helpers",
+   "difficulty": "d3"
+  },
+  {
+   "query": "tell me about Helper functions",
+   "expect": "call-bind-apply-helpers",
+   "difficulty": "d4"
+  },
+  {
+   "query": "Detect Node.JS (as opposite to browser environment) (reliable)",
+   "expect": "detect-node",
+   "difficulty": "d0"
+  },
+  {
+   "query": "Detect Node.JS (as to browser environment) (reliable)",
+   "expect": "detect-node",
+   "difficulty": "d1"
+  },
+  {
+   "query": "Detect (as opposite to environment) (reliable)",
+   "expect": "detect-node",
+   "difficulty": "d2"
+  },
+  {
+   "query": "(as opposite to (reliable)",
+   "expect": "detect-node",
+   "difficulty": "d3"
+  },
+  {
+   "query": "tell me about Detect Node.JS (as",
+   "expect": "detect-node",
+   "difficulty": "d4"
+  },
+  {
+   "query": "Streaming, source-agnostic EventSource/Server-Sent Events parser",
+   "expect": "eventsource-parser",
+   "difficulty": "d0"
+  },
+  {
+   "query": "Streaming, source-agnostic Events parser",
+   "expect": "eventsource-parser",
+   "difficulty": "d1"
+  },
+  {
+   "query": "Streaming, EventSource/Server-Sent parser",
+   "expect": "eventsource-parser",
+   "difficulty": "d2"
+  },
+  {
+   "query": "EventSource/Server-Sent",
+   "expect": "eventsource-parser",
+   "difficulty": "d3"
+  },
+  {
+   "query": "tell me about Streaming, source-agnostic",
+   "expect": "eventsource-parser",
+   "difficulty": "d4"
+  },
+  {
+   "query": "Determine the East Asian Width of a Unicode character",
+   "expect": "get-east-asian-width",
+   "difficulty": "d0"
+  },
+  {
+   "query": "Determine the East Width of a Unicode",
+   "expect": "get-east-asian-width",
+   "difficulty": "d1"
+  },
+  {
+   "query": "Determine the Asian of a Unicode",
+   "expect": "get-east-asian-width",
+   "difficulty": "d2"
+  },
+  {
+   "query": "the Asian of a character",
+   "expect": "get-east-asian-width",
+   "difficulty": "d3"
+  },
+  {
+   "query": "tell me about Determine the East",
+   "expect": "get-east-asian-width",
+   "difficulty": "d4"
+  },
+  {
+   "query": "Browser-friendly inheritance fully compatible with standard node.js inherits()",
+   "expect": "inherits",
+   "difficulty": "d0"
+  },
+  {
+   "query": "Browser-friendly inheritance compatible with node.js inherits()",
+   "expect": "inherits",
+   "difficulty": "d1"
+  },
+  {
+   "query": "Browser-friendly fully with node.js",
+   "expect": "inherits",
+   "difficulty": "d2"
+  },
+  {
+   "query": "fully standard",
+   "expect": "inherits",
+   "difficulty": "d3"
+  },
+  {
+   "query": "tell me about Browser-friendly inheritance",
+   "expect": "inherits",
+   "difficulty": "d4"
+  },
+  {
+   "query": "Like JSON.stringify, but doesn't blow up on circular refs.",
+   "expect": "json-stringify-safe",
+   "difficulty": "d0"
+  },
+  {
+   "query": "Like JSON.stringify, but blow up on circular",
+   "expect": "json-stringify-safe",
+   "difficulty": "d1"
+  },
+  {
+   "query": "Like but doesn't up on circular",
+   "expect": "json-stringify-safe",
+   "difficulty": "d2"
+  },
+  {
+   "query": "but doesn't up on refs.",
+   "expect": "json-stringify-safe",
+   "difficulty": "d3"
+  },
+  {
+   "query": "tell me about Like JSON.stringify, but",
+   "expect": "json-stringify-safe",
+   "difficulty": "d4"
+  }
+ ],
+ "authored_by": "node_modules",
+ "authored_at": "not applicable - no author"
+}

@@ -431,6 +431,56 @@ def c_silent_everywhere(ctx, corpus, shape):
                ("" if not spoke else " (" + ", ".join(spoke) + " of 48 answered)")))
 
 
+def c_ranking_survives_paraphrase(ctx, corpus, shape):
+    """The subject that answers the most verbatim questions also answers the most paraphrased ones.
+
+    THE RANKING IS A FUNCTION OF HOW THE QUESTION IS ASKED, and the distance sweep walks that axis on one
+    set of records: the same 24 questions, with a third, a half, two thirds and then all but two of their
+    words taken away. If first place moves between the two ends, then a single ranking of memory servers is
+    a ranking at one distance and not a property of the servers.
+    """
+    import distance_sweep as ds
+    import resolution
+    curves = {}
+    for s in resolution.subjects():
+        rows = ds.rows_of(s["slug"])
+        if rows:
+            curves[s["label"]] = ds.curve(rows)
+    if len(curves) < 4:
+        return None
+
+    def top(band):
+        got = dict((k, (c.get(band) or {}).get("hit3", 0)) for k, c in curves.items())
+        best = max(got.values())
+        return set(k for k, v in got.items() if v == best), best
+
+    near, nbest = top("d0")
+    far, fbest = top("d4")
+    same = near == far
+    return (same,
+            "%d subject(s) tie at the ceiling on the verbatim questions (%d of 24) and %s is first when"
+            " two words survive (%d of 24)"
+            % (len(near), nbest, "/".join(sorted(n.split()[0] for n in far)), fbest))
+
+
+def c_near_end_separates(ctx, corpus, shape):
+    """Asking a record its own words back separates the subjects better than paraphrasing it.
+
+    THE INTUITION IS THAT AN EASIER QUESTION IS A WEAKER TEST, and the measurement says the opposite of
+    what that predicts: the verbatim band separates 26 of 55 pairs and the half-paraphrased band separates
+    38, because at the near end four subjects tie at the ceiling and a tie separates nobody.
+    """
+    import distance_sweep as ds
+    got = ds.separations()
+    if not got or "d0" not in got or "d2" not in got:
+        return None
+    near, total = got["d0"]
+    middle, _t = got["d2"]
+    return (near >= middle,
+            "the verbatim band separates %d of %d pairs and the half-paraphrased band %d"
+            % (near, total, middle))
+
+
 def c_most_hits(ctx, corpus, shape):
     r = leads(LEADER, corpus, lambda n, c, s: hits(n, c, s), shape)
     return (r["strict"], fmt_lead(r, of="48")) if r else None
@@ -796,6 +846,10 @@ CLAIMS = [
      " repository publishes.", c_agent_agrees, False),
     ("real-corpus-agrees", "the leader on a corpus with no author is the leader on the corpora written"
      " by hand.", c_real_corpus, False),
+    ("ranking-survives-paraphrase", "the subject that answers the most verbatim questions also answers the"
+     " most paraphrased ones.", c_ranking_survives_paraphrase, False),
+    ("near-end-separates", "asking a record its own words back separates the subjects better than"
+     " paraphrasing it.", c_near_end_separates, False),
     ("silent-everywhere", "the subjects that answer nothing on the authored corpora answer nothing on"
      " real text either.", c_silent_everywhere, False),
     ("score-sees-ordering", "the retrieval score changes when a search returns its worst match first.",
