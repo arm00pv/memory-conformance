@@ -321,7 +321,7 @@ of them gone, plus a drawn absent band.
 | `memory-lean` | **264 of 276** | 59 of 60 |
 | `mcp-duckdb-memory-server` | **231 of 276** | 59 of 60 |
 | `zenbrain` | **178 of 276** | 48 of 60 |
-| `memory-mcp-1file` | **178 of 276** | 47 of 60 |
+| `memory-mcp-1file` | **178 of 276** | 48 of 60 |
 | `mcp-knowledge-graph`, `server-memory` ×2 | **160 of 276** | 45 of 60 |
 | `statecore-mcp` | **98 of 276** | 12 of 60 |
 | `memento` | **72 of 276** | 23 of 60 |

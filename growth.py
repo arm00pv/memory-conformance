@@ -126,7 +126,13 @@ def main(argv=None):
     global CHECKPOINTS
     CHECKPOINTS = CHECKPOINTS + [c for c in DEEP if c <= depth]
     if report_only:
-        write_md(depth)
+        # THE DEPTH IN THE TITLE COMES FROM THE RUNS, NOT FROM THE FLAG. --report-only reprints a table
+        # built from saved runs, and the first version printed the DEFAULT depth beside five-thousand-record
+        # data - a report whose header contradicted every number under it. The flag says "do not sweep";
+        # it is not a source of facts about what was swept.
+        saved = load_runs()
+        deepest = max([r.get("depth") or 0 for rs in saved.values() for r in rs] or [0])
+        write_md(deepest or depth)
         return 0
     with open("subjects.json", encoding="utf-8") as fh:
         subjects = json.load(fh)

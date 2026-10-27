@@ -27,8 +27,8 @@ with the same command and the same repeat count.
 | `server-memory 1.0.0` | 45 | 33 | 33 | 45 |
 | `server-memory 2.0.0` | 45 | 33 | 33 | 45 |
 | `mcp-knowledge-graph 1.3.2` | 45 | 33 | 28 | 40 |
+| `memory-mcp-1file 0.9.2` | 48 | 47 | 38 | 39 |
 | `zenbrain 0.3.0` | 48 | 48 | 39 | 39 |
-| `memory-mcp-1file 0.9.2` | 47 | 47 | 38 | 38 |
 | `statecore-mcp 1.0.0` | 12 | 0 | 0 | 12 |
 | `memento 0.7.0` | 23 | 23 | 11 | 11 |
 | `memdb 1.4.0` | 0 | 0 | 0 | 0 |
@@ -48,10 +48,10 @@ Rank correlation with corpus A, over the subjects both corpora measured, on each
 
 | metric | Spearman, real vs A | real vs B | real vs C |
 |---|---|---|---|
-| score | 0.798 | 0.639 | 0.675 |
+| score | 0.777 | 0.632 | 0.664 |
 | hits | 0.600 | 0.407 | 0.477 |
 | hit1 | 0.602 | 0.366 | 0.380 |
-| top | 0.505 | 0.425 | 0.425 |
+| top | 0.470 | 0.386 | 0.386 |
 
 ## The validator rejects this corpus, and it is right
 
