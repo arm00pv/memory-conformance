@@ -7,18 +7,24 @@ nobody tests it: the write is accepted, the record is gone, and the failure is d
 by someone who trusted it. These are conformance probes for that promise, run against a server's own
 public tools over its own transport - no internals, no mocks, no source reading.
 
+**New here? [QUICKSTART.md](QUICKSTART.md)** runs the probes, then the retrieval half, in three commands, and
+says what PASS, FAIL and UNKNOWN each mean. This page is the argument; that page is the handle.
+
 ```
 $ python harness.py --cmd="node node_modules/@modelcontextprotocol/server-memory/dist/index.js"
-isolation        PASS              3.6s  store A's record was not visible from store B
-ack_readback     PASS              4.6s  acknowledged alpha; a fresh read returned 1 entities: ['alpha']
-verbatim         PASS              7.9s  all 9 strings came back byte for byte, over the wire: 2, 3 and 4-byte UTF-8, ...
-restart          PASS             15.7s  three writes across three server lifetimes; read back [restart-0, ...]
-forget           PASS              3.0s  asked to forget one record; the other two came back and it did not
-findable         PASS              2.3s  all 8 acknowledged records came back in the top 3 for a search on their own name
-foreign_field    FAIL              7.8s  the extra field was silently dropped by the next write
-foreign_record   PASS              5.0s  the unmodelled record survived
-concurrent       PASS              3.6s  20 of 20 acknowledged writes survived two servers on one store
-large_record     PASS              1.9s  wrote 100000 characters, read back 100000
+
+probe            verdict                  time  evidence
+---------------- ---------------------- ------  ----------------------------------------
+isolation        PASS                     0.7s  store A's record was not visible from store B
+ack_readback     PASS                     0.7s  acknowledged alpha; a fresh read returned 1 entities: ['alpha']
+verbatim         PASS                     0.7s  all 9 strings came back byte for byte, over the wire: 2, 3 and 4-byte UTF-8, a combining pair, right-to-left text, JSON escapes, a zero-width space and an embedded newline, under a non-ASCII name
+restart          PASS                     1.4s  three writes across three server lifetimes; read back ['restart-0', 'restart-1', 'restart-2']
+forget           PASS                     0.7s  asked to forget plinth-obsidian and the subject answered 'Entities deleted successfully'; after a restart the other two came back and it did not
+findable         PASS                     0.7s  all 8 acknowledged records came back in the top 3 for a search on their own name
+foreign_field    FAIL                     1.0s  the extra field was silently dropped by the next write
+foreign_record   PASS                     1.0s  the unmodelled record survived
+concurrent       PASS                     1.7s  20 of 20 acknowledged writes survived two servers on one store
+large_record     PASS                     0.9s  wrote 100000 characters, read back 100000
 1 probe(s) failed
 ```
 
@@ -32,7 +38,7 @@ $ python claims.py
 **9 of the 36 claims hold in every setting measured.**
 ```
 
-Five survive everywhere, including the one that matters most: **memory-mcp-1file answers more
+Nine survive everywhere, including the one that matters most: **memory-mcp-1file answers more
 answerable questions than anything else here**, on both corpora and in both phrasings, alone at the top.
 The rest are printed beside the setting that breaks them, because that setting is their real scope.
 Three of them:

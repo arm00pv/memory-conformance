@@ -1720,6 +1720,11 @@ def main(argv=None):
     fails = 0
     no_ack = []
     other_kinds = []
+    # A TABLE WITH NO HEADER IS A WALL OF WORDS ON THE FIRST READ. This is the output most people see
+    # exactly once, so it names its own columns: what was tested, what the answer was, how long it took,
+    # and the evidence the verdict rests on.
+    print("%-16s %-22s %6s  %s" % ("probe", "verdict", "time", "evidence"))
+    print("%-16s %-22s %6s  %s" % ("-" * 16, "-" * 22, "-" * 6, "-" * 40))
     for name, fn in PROBES:
         if only and name != only:
             continue

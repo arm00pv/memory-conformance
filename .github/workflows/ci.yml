@@ -297,6 +297,27 @@ jobs:
           python harness.py --adapter=retained --cmd="python /tmp/retained/retained.py" \
             --expect=expected-retained.json --per-writer=25
 
+      # THE FRONT DOOR IS --adapter=auto AND NOTHING HERE EXERCISED IT. A user points this at a server they
+      # have not written an adapter for: the binding is discovered from the tools the server publishes, built
+      # from their own JSON schemas, and PROVEN by round-trip before a probe runs. If that path rots, this
+      # repository still works for its own eleven subjects and for nobody else's.
+      - name: the auto-detecting adapter must work, since it is how anybody else runs this
+        run: |
+          python harness.py --adapter=auto \
+            --cmd="node node_modules/@modelcontextprotocol/server-memory/dist/index.js" \
+            --json=/tmp/auto.json
+          python - <<'PY'
+          import json, sys
+          rows = {r['probe']: r['verdict'] for r in json.load(open('/tmp/auto.json'))['probes']}
+          print(rows)
+          bad = sorted(k for k, v in rows.items() if v == 'FAIL')
+          if bad:
+              sys.exit('the auto adapter reached a FAIL: %s' % bad)
+          for probe in ('ack_readback', 'restart', 'findable'):
+              if rows.get(probe) != 'PASS':
+                  sys.exit('the binding the auto adapter proved does not hold: %s' % rows)
+          PY
+
       - name: verdicts must match the pinned expectation
         run: |
           python - <<'PY'
