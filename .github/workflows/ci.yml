@@ -118,6 +118,17 @@ jobs:
           grep -q "Where the four corpora sit on this axis" DISTANCE.md
           grep -q "no room" DISTANCE.md
 
+      # THE OTHER HALF OF THE QUESTION SPACE. The distance ladder is pinned at 1.00 on the share of a
+      # question the record contains; this sweep moves that second coordinate and must keep reporting the
+      # subjects it separates, including the four that fall to nothing on a plural.
+      - name: the vocabulary a question brings must be measured too
+        run: |
+          python morph_sweep.py --report > /tmp/morph.txt
+          cat /tmp/morph.txt
+          test -s MORPHOLOGY.md
+          grep -q "Does a memory survive a plural" MORPHOLOGY.md
+          grep -q "The two coordinates together" MORPHOLOGY.md
+
       - name: a tie must be reported as one of its three kinds, with a price
         run: |
           python band.py > /tmp/band.txt

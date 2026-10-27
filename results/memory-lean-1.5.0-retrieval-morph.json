@@ -1,0 +1,2681 @@
+{
+  "adapter": "reference",
+  "summary": {
+    "all": {
+      "n": 96,
+      "hit1": 17,
+      "hit3": 25,
+      "hit1_keyword": 41,
+      "hit3_keyword": 61,
+      "runs": [
+        25,
+        25
+      ]
+    }
+  },
+  "rows": [
+    {
+      "query": "State-of-the-art Machine Learning for the web. Run \ud83e\udd17 Transformers directly in your browser, with no need for a server!",
+      "expect": "@huggingface/transformers",
+      "difficulty": "m0",
+      "returned": [
+        "@huggingface/transformers",
+        "@xenova/transformers"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "state art machine learning web transformer directly browser server",
+      "returned_keyword": [
+        "@huggingface/transformers",
+        "@xenova/transformers"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "State-of-the-art Machine Learning for the web. Run \ud83e\udd17 Transformerses directly in your browser, withs no need for a server!",
+      "expect": "@huggingface/transformers",
+      "difficulty": "m1",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "state art machine learning web transformerse directly browser with server",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
+      "per_run": {
+        "hit3": [
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "State-of-the-art Machines Learning for the web. Run \ud83e\udd17 Transformerses directly in yours browser, withs no need for a server!s",
+      "expect": "@huggingface/transformers",
+      "difficulty": "m2",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "state art machine learning web transformerse directly your browser with server s",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
+      "per_run": {
+        "hit3": [
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "State-of-the-arts Machines Learnings for the web. Run \ud83e\udd17 Transformerses directlies in yours browser,s withs no needs for a server!s",
+      "expect": "@huggingface/transformers",
+      "difficulty": "m3",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "state art machine learning web transformerse directlie your browser s with server s",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
+      "per_run": {
+        "hit3": [
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "Auto registering package. Exists to support bundlers without exports support such as webpack 4.",
+      "expect": "chart.js-auto",
+      "difficulty": "m0",
+      "returned": [
+        "chart.js-auto"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "auto registering package exist support bundler export support webpack 4",
+      "returned_keyword": [
+        "chart.js-auto"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "Auto registering package. Existses to support bundlers without exportses support such as webpack 4.",
+      "expect": "chart.js-auto",
+      "difficulty": "m1",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "auto registering package existse support bundler exportse support webpack 4",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
+      "per_run": {
+        "hit3": [
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "Auto registerings package. Existses to support bundlerses without exportses support suches as webpack 4.",
+      "expect": "chart.js-auto",
+      "difficulty": "m2",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "auto registering package existse support bundlerse exportse support suche webpack 4",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
+      "per_run": {
+        "hit3": [
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "Autos registerings package.s Existses to supports bundlerses withouts exportses supports suches as webpacks 4.",
+      "expect": "chart.js-auto",
+      "difficulty": "m3",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "auto registering package s existse support bundlerse without exportse support suche webpack 4",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
+      "per_run": {
+        "hit3": [
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "AWS credential provider that sources credentials from ~/.aws/credentials and ~/.aws/config",
+      "expect": "@aws-sdk/credential-provider-ini",
+      "difficulty": "m0",
+      "returned": [
+        "@aws-sdk/credential-provider-ini",
+        "@aws-sdk/credential-provider-process"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "aws credential provider source credential aws credential aws config",
+      "returned_keyword": [
+        "@aws-sdk/credential-provider-ini",
+        "@aws-sdk/credential-provider-process"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "AWS credential provider that sourceses credentials from ~/.aws/credentials and ~/.aws/config",
+      "expect": "@aws-sdk/credential-provider-ini",
+      "difficulty": "m1",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "aws credential provider sourcese credential aws credential aws config",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
+      "per_run": {
+        "hit3": [
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "AWS credential providers that sourceses credentials froms ~/.aws/credentials and ~/.aws/config",
+      "expect": "@aws-sdk/credential-provider-ini",
+      "difficulty": "m2",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "aws credential provider sourcese credential from aws credential aws config",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
+      "per_run": {
+        "hit3": [
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "AWS credentials providers thats sourceses credentialses froms ~/.aws/credentials and ~/.aws/config",
+      "expect": "@aws-sdk/credential-provider-ini",
+      "difficulty": "m3",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "aws credential provider that sourcese credentialse from aws credential aws config",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
+      "per_run": {
+        "hit3": [
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "Store information about any JS value in a side channel, using a linked list",
+      "expect": "side-channel-list",
+      "difficulty": "m0",
+      "returned": [
+        "side-channel",
+        "side-channel-list"
+      ],
+      "hit1": false,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "store information js value side channel linked list",
+      "returned_keyword": [
+        "side-channel",
+        "side-channel-list"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "Store information about any JS values in a side channel, using a linkeds list",
+      "expect": "side-channel-list",
+      "difficulty": "m1",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "store information js value side channel linked list",
+      "returned_keyword": [
+        "side-channel",
+        "side-channel-list"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "Store informations about any JS values in a side channel,s using a linkeds list",
+      "expect": "side-channel-list",
+      "difficulty": "m2",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "store information js value side channel s linked list",
+      "returned_keyword": [
+        "side-channel",
+        "side-channel-list"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "Stores informations abouts any JS values in a sides channel,s usings a linkeds lists",
+      "expect": "side-channel-list",
+      "difficulty": "m3",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "store information about js value side channel s using linked list",
+      "returned_keyword": [
+        "side-channel",
+        "side-channel-list"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "AWS SDK for JavaScript Ecs Client for Node.js, Browser and React Native",
+      "expect": "@aws-sdk/client-ecs",
+      "difficulty": "m0",
+      "returned": [
+        "@aws-sdk/client-ecs"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "aws sdk javascript ecs client node js browser react native",
+      "returned_keyword": [
+        "@aws-sdk/client-ecs"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "AWS SDK for JavaScript Ecs Client for Node.js, Browsers and React Native",
+      "expect": "@aws-sdk/client-ecs",
+      "difficulty": "m1",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "aws sdk javascript ecs client node js browser react native",
+      "returned_keyword": [
+        "@aws-sdk/client-ecs"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "AWS SDK for JavaScript Ecs Clients for Node.js, Browsers and React Natives",
+      "expect": "@aws-sdk/client-ecs",
+      "difficulty": "m2",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "aws sdk javascript ecs client node js browser react native",
+      "returned_keyword": [
+        "@aws-sdk/client-ecs"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "AWS SDK for JavaScripts Ecs Clients for Node.js,s Browsers and Reacts Natives",
+      "expect": "@aws-sdk/client-ecs",
+      "difficulty": "m3",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "aws sdk javascript ecs client node js s browser react native",
+      "returned_keyword": [
+        "@aws-sdk/client-ecs"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "Model Context Protocol implementation for TypeScript - Client package",
+      "expect": "@modelcontextprotocol/client",
+      "difficulty": "m0",
+      "returned": [
+        "@modelcontextprotocol/client"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "model context protocol implementation typescript client package",
+      "returned_keyword": [
+        "@modelcontextprotocol/client"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "Model Context Protocol implementations for TypeScript - Client package",
+      "expect": "@modelcontextprotocol/client",
+      "difficulty": "m1",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "model context protocol implementation typescript client package",
+      "returned_keyword": [
+        "@modelcontextprotocol/client"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "Model Contexts Protocol implementations for TypeScript - Clients package",
+      "expect": "@modelcontextprotocol/client",
+      "difficulty": "m2",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "model context protocol implementation typescript client package",
+      "returned_keyword": [
+        "@modelcontextprotocol/client"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "Models Contexts Protocols implementations for TypeScripts - Clients packages",
+      "expect": "@modelcontextprotocol/client",
+      "difficulty": "m3",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "model context protocol implementation typescript client package",
+      "returned_keyword": [
+        "@modelcontextprotocol/client"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "micromark factory to parse destinations (found in resources, definitions)",
+      "expect": "micromark-factory-destination",
+      "difficulty": "m0",
+      "returned": [
+        "micromark",
+        "micromark-factory-destination"
+      ],
+      "hit1": false,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "micromark factory parse destination resource definition",
+      "returned_keyword": [
+        "micromark",
+        "micromark-factory-destination"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "micromark factory to parse destinationses (found in resources, definitions)",
+      "expect": "micromark-factory-destination",
+      "difficulty": "m1",
+      "returned": [
+        "micromark"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "keyword": "micromark factory parse destinationse resource definition",
+      "returned_keyword": [
+        "micromark"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "micromark factories to parse destinationses (found in resources, definitions)s",
+      "expect": "micromark-factory-destination",
+      "difficulty": "m2",
+      "returned": [
+        "micromark"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "keyword": "micromark factorie parse destinationse resource definition s",
+      "returned_keyword": [
+        "micromark"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "micromarks factories to parses destinationses (found in resources,s definitions)s",
+      "expect": "micromark-factory-destination",
+      "difficulty": "m3",
+      "returned": [
+        "micromark"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "keyword": "micromark factorie parse destinationse resource s definition s",
+      "returned_keyword": [
+        "micromark"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "fs read and write streams based on minipass",
+      "expect": "@isaacs/fs-minipass",
+      "difficulty": "m0",
+      "returned": [
+        "minipass",
+        "@isaacs/fs-minipass",
+        "fs-minipass"
+      ],
+      "hit1": false,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "fs read write stream based minipass",
+      "returned_keyword": [
+        "minipass",
+        "@isaacs/fs-minipass",
+        "fs-minipass"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "fs read and write streams baseds on minipass",
+      "expect": "@isaacs/fs-minipass",
+      "difficulty": "m1",
+      "returned": [
+        "minipass"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "keyword": "fs read write stream based minipass",
+      "returned_keyword": [
+        "minipass",
+        "@isaacs/fs-minipass",
+        "fs-minipass"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "fs read and writes streams baseds on minipass",
+      "expect": "@isaacs/fs-minipass",
+      "difficulty": "m2",
+      "returned": [
+        "minipass"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "keyword": "fs read write stream based minipass",
+      "returned_keyword": [
+        "minipass",
+        "@isaacs/fs-minipass",
+        "fs-minipass"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "fs reads and writes streamses baseds on minipasses",
+      "expect": "@isaacs/fs-minipass",
+      "difficulty": "m3",
+      "returned": [
+        "minipass"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "keyword": "fs read write streamse based minipasse",
+      "returned_keyword": [
+        "minipass"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "State-of-the-art Machine Learning for the web. Run \ud83e\udd17 Transformers directly in your browser, with no need for a server!",
+      "expect": "@xenova/transformers",
+      "difficulty": "m0",
+      "returned": [
+        "@huggingface/transformers",
+        "@xenova/transformers"
+      ],
+      "hit1": false,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "state art machine learning web transformer directly browser server",
+      "returned_keyword": [
+        "@huggingface/transformers",
+        "@xenova/transformers"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "State-of-the-art Machine Learning for the web. Run \ud83e\udd17 Transformerses directly in your browser, withs no need for a server!",
+      "expect": "@xenova/transformers",
+      "difficulty": "m1",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "state art machine learning web transformerse directly browser with server",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
+      "per_run": {
+        "hit3": [
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "State-of-the-art Machines Learning for the web. Run \ud83e\udd17 Transformerses directly in yours browser, withs no need for a server!s",
+      "expect": "@xenova/transformers",
+      "difficulty": "m2",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "state art machine learning web transformerse directly your browser with server s",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
+      "per_run": {
+        "hit3": [
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "State-of-the-arts Machines Learnings for the web. Run \ud83e\udd17 Transformerses directlies in yours browser,s withs no needs for a server!s",
+      "expect": "@xenova/transformers",
+      "difficulty": "m3",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "state art machine learning web transformerse directlie your browser s with server s",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
+      "per_run": {
+        "hit3": [
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "Helpers package. Exists to support bundlers without exports support such as webpack 4.",
+      "expect": "chart.js-helpers",
+      "difficulty": "m0",
+      "returned": [
+        "chart.js-helpers"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "helper package exist support bundler export support webpack 4",
+      "returned_keyword": [
+        "chart.js-helpers"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "Helpers package. Exists to supports bundlers without exports supports such as webpack 4.",
+      "expect": "chart.js-helpers",
+      "difficulty": "m1",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "helper package exist support bundler export support webpack 4",
+      "returned_keyword": [
+        "chart.js-helpers"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "Helpers package.s Exists to supports bundlers withouts exports supports such as webpacks 4.",
+      "expect": "chart.js-helpers",
+      "difficulty": "m2",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "helper package s exist support bundler without export support webpack 4",
+      "returned_keyword": [
+        "chart.js-helpers"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "Helperses package.s Existses to supports bundlerses withouts exportses supports suches as webpacks 4.",
+      "expect": "chart.js-helpers",
+      "difficulty": "m3",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "helperse package s existse support bundlerse without exportse support suche webpack 4",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
+      "per_run": {
+        "hit3": [
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "AWS credential provider that sources credential_process from ~/.aws/credentials and ~/.aws/config",
+      "expect": "@aws-sdk/credential-provider-process",
+      "difficulty": "m0",
+      "returned": [
+        "@aws-sdk/credential-provider-process"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "aws credential provider source credential process aws credential aws config",
+      "returned_keyword": [
+        "@aws-sdk/credential-provider-process"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "AWS credential provider that sourceses credential_process from ~/.aws/credentials and ~/.aws/config",
+      "expect": "@aws-sdk/credential-provider-process",
+      "difficulty": "m1",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "aws credential provider sourcese credential process aws credential aws config",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
+      "per_run": {
+        "hit3": [
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "AWS credential providers that sourceses credential_process froms ~/.aws/credentials and ~/.aws/config",
+      "expect": "@aws-sdk/credential-provider-process",
+      "difficulty": "m2",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "aws credential provider sourcese credential process from aws credential aws config",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
+      "per_run": {
+        "hit3": [
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "AWS credentials providers thats sourceses credential_processes froms ~/.aws/credentials and ~/.aws/config",
+      "expect": "@aws-sdk/credential-provider-process",
+      "difficulty": "m3",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "aws credential provider that sourcese credential processe from aws credential aws config",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
+      "per_run": {
+        "hit3": [
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "Store information about any JS value in a side channel, using a Map",
+      "expect": "side-channel-map",
+      "difficulty": "m0",
+      "returned": [
+        "side-channel",
+        "side-channel-map"
+      ],
+      "hit1": false,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "store information js value side channel map",
+      "returned_keyword": [
+        "side-channel",
+        "side-channel-map",
+        "side-channel-weakmap"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "Store information about any JS values in a side channel, using a Map",
+      "expect": "side-channel-map",
+      "difficulty": "m1",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "store information js value side channel map",
+      "returned_keyword": [
+        "side-channel",
+        "side-channel-map",
+        "side-channel-weakmap"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "Store informations about any JS values in a side channel,s using a Map",
+      "expect": "side-channel-map",
+      "difficulty": "m2",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "store information js value side channel s map",
+      "returned_keyword": [
+        "side-channel",
+        "side-channel-map",
+        "side-channel-weakmap"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "Stores informations abouts any JS values in a sides channel,s usings a Map",
+      "expect": "side-channel-map",
+      "difficulty": "m3",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "store information about js value side channel s using map",
+      "returned_keyword": [
+        "side-channel",
+        "side-channel-map"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "AWS SDK for JavaScript S3 Client for Node.js, Browser and React Native",
+      "expect": "@aws-sdk/client-s3",
+      "difficulty": "m0",
+      "returned": [
+        "@aws-sdk/client-s3"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "aws sdk javascript s3 client node js browser react native",
+      "returned_keyword": [
+        "@aws-sdk/client-s3"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "AWS SDK for JavaScript S3 Client for Node.js, Browsers and React Native",
+      "expect": "@aws-sdk/client-s3",
+      "difficulty": "m1",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "aws sdk javascript s3 client node js browser react native",
+      "returned_keyword": [
+        "@aws-sdk/client-s3"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "AWS SDK for JavaScript S3 Clients for Node.js, Browsers and React Natives",
+      "expect": "@aws-sdk/client-s3",
+      "difficulty": "m2",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "aws sdk javascript s3 client node js browser react native",
+      "returned_keyword": [
+        "@aws-sdk/client-s3"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "AWS SDK for JavaScripts S3 Clients for Node.js,s Browsers and Reacts Natives",
+      "expect": "@aws-sdk/client-s3",
+      "difficulty": "m3",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "aws sdk javascript s3 client node js s browser react native",
+      "returned_keyword": [
+        "@aws-sdk/client-s3"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "Model Context Protocol implementation for TypeScript - Server package",
+      "expect": "@modelcontextprotocol/server",
+      "difficulty": "m0",
+      "returned": [
+        "@modelcontextprotocol/server"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "model context protocol implementation typescript server package",
+      "returned_keyword": [
+        "@modelcontextprotocol/server"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "Model Context Protocol implementations for TypeScript - Server package",
+      "expect": "@modelcontextprotocol/server",
+      "difficulty": "m1",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "model context protocol implementation typescript server package",
+      "returned_keyword": [
+        "@modelcontextprotocol/server"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "Model Contexts Protocol implementations for TypeScript - Servers package",
+      "expect": "@modelcontextprotocol/server",
+      "difficulty": "m2",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "model context protocol implementation typescript server package",
+      "returned_keyword": [
+        "@modelcontextprotocol/server"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "Models Contexts Protocols implementations for TypeScripts - Servers packages",
+      "expect": "@modelcontextprotocol/server",
+      "difficulty": "m3",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "model context protocol implementation typescript server package",
+      "returned_keyword": [
+        "@modelcontextprotocol/server"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "micromark factory to parse markdown titles (found in resources, definitions)",
+      "expect": "micromark-factory-title",
+      "difficulty": "m0",
+      "returned": [
+        "micromark",
+        "micromark-factory-title"
+      ],
+      "hit1": false,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "micromark factory parse markdown title resource definition",
+      "returned_keyword": [
+        "micromark",
+        "micromark-factory-title"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "micromark factory to parse markdowns titles (found in resources, definitions)",
+      "expect": "micromark-factory-title",
+      "difficulty": "m1",
+      "returned": [
+        "micromark"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "keyword": "micromark factory parse markdown title resource definition",
+      "returned_keyword": [
+        "micromark",
+        "micromark-factory-title"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "micromark factories to parse markdowns titles (found in resources,s definitions)",
+      "expect": "micromark-factory-title",
+      "difficulty": "m2",
+      "returned": [
+        "micromark"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "keyword": "micromark factorie parse markdown title resource s definition",
+      "returned_keyword": [
+        "micromark"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "micromarks factories to parses markdowns titleses (found in resources,s definitions)s",
+      "expect": "micromark-factory-title",
+      "difficulty": "m3",
+      "returned": [
+        "micromark"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "keyword": "micromark factorie parse markdown titlese resource s definition s",
+      "returned_keyword": [
+        "micromark"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "fs read and write streams based on minipass",
+      "expect": "fs-minipass",
+      "difficulty": "m0",
+      "returned": [
+        "minipass",
+        "@isaacs/fs-minipass",
+        "fs-minipass"
+      ],
+      "hit1": false,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "fs read write stream based minipass",
+      "returned_keyword": [
+        "minipass",
+        "@isaacs/fs-minipass",
+        "fs-minipass"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "fs read and write streams baseds on minipass",
+      "expect": "fs-minipass",
+      "difficulty": "m1",
+      "returned": [
+        "minipass"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "keyword": "fs read write stream based minipass",
+      "returned_keyword": [
+        "minipass",
+        "@isaacs/fs-minipass",
+        "fs-minipass"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "fs read and writes streams baseds on minipass",
+      "expect": "fs-minipass",
+      "difficulty": "m2",
+      "returned": [
+        "minipass"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "keyword": "fs read write stream based minipass",
+      "returned_keyword": [
+        "minipass",
+        "@isaacs/fs-minipass",
+        "fs-minipass"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "fs reads and writes streamses baseds on minipasses",
+      "expect": "fs-minipass",
+      "difficulty": "m3",
+      "returned": [
+        "minipass"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "keyword": "fs read write streamse based minipasse",
+      "returned_keyword": [
+        "minipass"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "Check if the character represented by a given Unicode code point is fullwidth",
+      "expect": "is-fullwidth-code-point",
+      "difficulty": "m0",
+      "returned": [
+        "is-fullwidth-code-point"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "check character represented given unicode code point fullwidth",
+      "returned_keyword": [
+        "is-fullwidth-code-point"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "Check if the character represented by a givens Unicode code point is fullwidths",
+      "expect": "is-fullwidth-code-point",
+      "difficulty": "m1",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "check character represented given unicode code point fullwidth",
+      "returned_keyword": [
+        "is-fullwidth-code-point"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "Check if the characters represented by a givens Unicode codes point is fullwidths",
+      "expect": "is-fullwidth-code-point",
+      "difficulty": "m2",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "check character represented given unicode code point fullwidth",
+      "returned_keyword": [
+        "is-fullwidth-code-point"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "Checks if the characters representeds by a givens Unicodes codes points is fullwidths",
+      "expect": "is-fullwidth-code-point",
+      "difficulty": "m3",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "check character represented given unicode code point fullwidth",
+      "returned_keyword": [
+        "is-fullwidth-code-point"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "A SQLite-backed MCP memory server with local workspace storage.",
+      "expect": "@j0hanz/memdb",
+      "difficulty": "m0",
+      "returned": [
+        "@j0hanz/memdb"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "sqlite backed mcp memory server local workspace storage",
+      "returned_keyword": [
+        "@j0hanz/memdb"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "A SQLite-backed MCP memory server withs local workspace storage.",
+      "expect": "@j0hanz/memdb",
+      "difficulty": "m1",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "sqlite backed mcp memory server with local workspace storage",
+      "returned_keyword": [
+        "@j0hanz/memdb"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "A SQLite-backed MCP memories server withs local workspaces storage.",
+      "expect": "@j0hanz/memdb",
+      "difficulty": "m2",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "sqlite backed mcp memorie server with local workspace storage",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
+      "per_run": {
+        "hit3": [
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "A SQLite-backeds MCP memories servers withs locals workspaces storage.s",
+      "expect": "@j0hanz/memdb",
+      "difficulty": "m3",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "sqlite backed mcp memorie server with local workspace storage s",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
+      "per_run": {
+        "hit3": [
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "A minimal path module to resolve Unix, Windows and URL paths alike.",
+      "expect": "@protobufjs/path",
+      "difficulty": "m0",
+      "returned": [
+        "@protobufjs/path"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "minimal path module resolve unix window url path alike",
+      "returned_keyword": [
+        "@protobufjs/path"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "A minimal path module to resolves Unix, Windows and URL paths alike.s",
+      "expect": "@protobufjs/path",
+      "difficulty": "m1",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "minimal path module resolve unix window url path alike s",
+      "returned_keyword": [
+        "@protobufjs/path"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "A minimal paths module to resolves Unix, Windowses and URL paths alike.s",
+      "expect": "@protobufjs/path",
+      "difficulty": "m2",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "minimal path module resolve unix windowse url path alike s",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
+      "per_run": {
+        "hit3": [
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "A minimals paths modules to resolves Unix,s Windowses and URL pathses alike.s",
+      "expect": "@protobufjs/path",
+      "difficulty": "m3",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "minimal path module resolve unix s windowse url pathse alike s",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
+      "per_run": {
+        "hit3": [
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "ANSI escape codes for styling strings in the terminal",
+      "expect": "ansi-styles",
+      "difficulty": "m0",
+      "returned": [
+        "ansi-styles"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "ansi escape code styling string terminal",
+      "returned_keyword": [
+        "ansi-styles"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "ANSI escape codes for stylings strings in the terminal",
+      "expect": "ansi-styles",
+      "difficulty": "m1",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "ansi escape code styling string terminal",
+      "returned_keyword": [
+        "ansi-styles"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "ANSI escapes codes for stylings strings in the terminals",
+      "expect": "ansi-styles",
+      "difficulty": "m2",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "ansi escape code styling string terminal",
+      "returned_keyword": [
+        "ansi-styles"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "ANSIs escapes codeses for stylings stringses in the terminals",
+      "expect": "ansi-styles",
+      "difficulty": "m3",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "ansi escape codese styling stringse terminal",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
+      "per_run": {
+        "hit3": [
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "Helper functions around Function call/apply/bind, for use in `call-bind`",
+      "expect": "call-bind-apply-helpers",
+      "difficulty": "m0",
+      "returned": [
+        "call-bind-apply-helpers"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "helper function around function call apply bind call bind",
+      "returned_keyword": [
+        "call-bind-apply-helpers"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "Helper functions around Functions call/apply/bind, for use in `call-bind`",
+      "expect": "call-bind-apply-helpers",
+      "difficulty": "m1",
+      "returned": [
+        "call-bind-apply-helpers"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "helper function around function call apply bind call bind",
+      "returned_keyword": [
+        "call-bind-apply-helpers"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "Helper functionses around Functions call/apply/bind, for use in `call-bind`",
+      "expect": "call-bind-apply-helpers",
+      "difficulty": "m2",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "helper functionse around function call apply bind call bind",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
+      "per_run": {
+        "hit3": [
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "Helpers functionses arounds Functions call/apply/bind,s for use in `call-bind`",
+      "expect": "call-bind-apply-helpers",
+      "difficulty": "m3",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "helper functionse around function call apply bind s call bind",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
+      "per_run": {
+        "hit3": [
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "Detect Node.JS (as opposite to browser environment) (reliable)",
+      "expect": "detect-node",
+      "difficulty": "m0",
+      "returned": [
+        "environment",
+        "detect-node"
+      ],
+      "hit1": false,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "detect node js opposite browser environment reliable",
+      "returned_keyword": [
+        "environment",
+        "detect-node"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "Detect Node.JS (as opposite to browsers environment) (reliable)",
+      "expect": "detect-node",
+      "difficulty": "m1",
+      "returned": [
+        "environment"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "keyword": "detect node js opposite browser environment reliable",
+      "returned_keyword": [
+        "environment",
+        "detect-node"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "Detect Node.JSes (as opposite to browsers environment) (reliable)",
+      "expect": "detect-node",
+      "difficulty": "m2",
+      "returned": [
+        "environment"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "keyword": "detect node jse opposite browser environment reliable",
+      "returned_keyword": [
+        "environment"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "Detects Node.JSes (as opposites to browsers environment)s (reliable)",
+      "expect": "detect-node",
+      "difficulty": "m3",
+      "returned": [
+        "environment"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "keyword": "detect node jse opposite browser environment s reliable",
+      "returned_keyword": [
+        "environment"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "Streaming, source-agnostic EventSource/Server-Sent Events parser",
+      "expect": "eventsource-parser",
+      "difficulty": "m0",
+      "returned": [
+        "eventsource-parser"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "streaming source agnostic eventsource server sent event parser",
+      "returned_keyword": [
+        "eventsource-parser"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "Streaming, source-agnostic EventSource/Server-Sent Eventses parser",
+      "expect": "eventsource-parser",
+      "difficulty": "m1",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "streaming source agnostic eventsource server sent eventse parser",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
+      "per_run": {
+        "hit3": [
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "Streaming, source-agnostics EventSource/Server-Sent Eventses parser",
+      "expect": "eventsource-parser",
+      "difficulty": "m2",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "streaming source agnostic eventsource server sent eventse parser",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
+      "per_run": {
+        "hit3": [
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "Streaming,s source-agnostics EventSource/Server-Sents Eventses parsers",
+      "expect": "eventsource-parser",
+      "difficulty": "m3",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "streaming s source agnostic eventsource server sent eventse parser",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
+      "per_run": {
+        "hit3": [
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "Determine the East Asian Width of a Unicode character",
+      "expect": "get-east-asian-width",
+      "difficulty": "m0",
+      "returned": [
+        "get-east-asian-width"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "determine east asian width unicode character",
+      "returned_keyword": [
+        "get-east-asian-width"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          true,
+          true
+        ],
+        "answered": [
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "Determine the East Asian Widths of a Unicode character",
+      "expect": "get-east-asian-width",
+      "difficulty": "m1",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "determine east asian width unicode character",
+      "returned_keyword": [
+        "get-east-asian-width"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "Determine the Easts Asian Widths of a Unicode characters",
+      "expect": "get-east-asian-width",
+      "difficulty": "m2",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "determine east asian width unicode character",
+      "returned_keyword": [
+        "get-east-asian-width"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "Determines the Easts Asians Widths of a Unicodes characters",
+      "expect": "get-east-asian-width",
+      "difficulty": "m3",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "determine east asian width unicode character",
+      "returned_keyword": [
+        "get-east-asian-width"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false
+        ]
+      }
+    }
+  ]
+}

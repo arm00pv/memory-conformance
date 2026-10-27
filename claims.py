@@ -481,6 +481,29 @@ def c_near_end_separates(ctx, corpus, shape):
             % (near, total, middle))
 
 
+def c_plural_is_free(ctx, corpus, shape):
+    """A memory that answers a record's own words answers the plural of them too.
+
+    THE CHEAPEST CASE OF NEW VOCABULARY. A person asking about a "parser" a record calls "parsers" has
+    changed two letters and the stem is intact; a subject that indexes meaning, or stems, does not notice,
+    and a subject that matches substrings cannot answer at all. Every question set in this repository
+    before this phase used only the record's own words, so this could not be asked of any of them.
+    """
+    import morph_sweep
+    curves = morph_sweep.curves()
+    if len(curves) < 4:
+        return None
+    fell = []
+    for label, c in sorted(curves.items()):
+        base = (c.get("m0") or {}).get("hit3") or 0
+        far = (c.get("m3") or {}).get("hit3") or 0
+        if base and far * 2 < base:
+            fell.append("%s %d to %d" % (label.split()[0], base, far))
+    return (not fell,
+            "%d of %d subjects lose more than half of their answers when the question pluralises the"
+            " record's words (%s)" % (len(fell), len(curves), ", ".join(fell) or "none"))
+
+
 def c_most_hits(ctx, corpus, shape):
     r = leads(LEADER, corpus, lambda n, c, s: hits(n, c, s), shape)
     return (r["strict"], fmt_lead(r, of="48")) if r else None
@@ -850,6 +873,8 @@ CLAIMS = [
      " most paraphrased ones.", c_ranking_survives_paraphrase, False),
     ("near-end-separates", "asking a record its own words back separates the subjects better than"
      " paraphrasing it.", c_near_end_separates, False),
+    ("plural-is-free", "a memory that answers a record's own words answers the plural of them too.",
+     c_plural_is_free, False),
     ("silent-everywhere", "the subjects that answer nothing on the authored corpora answer nothing on"
      " real text either.", c_silent_everywhere, False),
     ("score-sees-ordering", "the retrieval score changes when a search returns its worst match first.",
