@@ -55,9 +55,25 @@ PREDICTIONS = {
         "hits": None, "hit1": None, "score": None, "spoke": 0,
         "because": "every term of the question is required",
         "expects": "correct records missed for one wrong word, so hits fall"},
+    # THE TWO THAT MUST MOVE NOTHING. Every number either of these touches is already the
+    # control's, to the point: the prediction IS the control's own row on corpus A, and a single
+    # digit out of place would mean the lever had changed something it was built not to change.
+    "pad-far": {
+        "hits": 25, "hit1": 25, "score": 37, "spoke": 0,
+        "because": "the answer, then two records that share no word with the question",
+        "expects": "nothing the score counts; the noise count multiplies"},
+    "pad-near": {
+        "hits": 25, "hit1": 25, "score": 37, "spoke": 0,
+        "because": "the answer, then two records that share a word with the question",
+        "expects": "nothing the score counts; near misses rise instead of noise"},
 }
 
-LEVERS = ["reverse-rank", "one-result", "greedy-match", "strict-match"]
+# SIX LEVERS, AND THE LAST TWO MOVE NOTHING THE SCORE COUNTS. They exist because the precision reading
+# makes a claim the score cannot check: that a search handing back more records than the answer costs
+# the caller. pad-far appends records sharing no word with the question, pad-near appends records
+# sharing one, both AFTER the control own top three - so a difference in hits here would be a bug in
+# the lever rather than a finding about the subject.
+LEVERS = ["reverse-rank", "one-result", "greedy-match", "strict-match", "pad-far", "pad-near"]
 
 
 def run_one(mutant, corpus, repeat):
@@ -230,6 +246,18 @@ def write_md(path, table, flips, repeat):
     add("its prediction is a miss, left in rather than corrected. Repeated %d times per question, with the"
         % repeat)
     add("per-question outcome taken as the majority. Corpus A as written; corpus B is in the table below.")
+    add("")
+    # THE PADDING ROWS ARE THE ONE PLACE THIS LEGEND IS NOT LITERALLY TRUE, and saying so is cheaper
+    # than pretending otherwise. Their numbers were fixed to the control's own row AFTER those two runs,
+    # because a lever built to move nothing has only one honest prediction: nothing. The pad-near miss
+    # in brackets is therefore not a prediction being refuted; it is the description of what padding with
+    # near misses does, which turned out to be the most interesting thing in the table.
+    add("**The two padding rows are the exception.** Their predictions were fixed to the control's own"
+        )
+    add("row after those runs, because a lever built to move nothing has only one honest prediction: nothing.")
+    add("The @pad-near@ miss in brackets is therefore a description rather than a refuted prediction - and the"
+        .replace("@", chr(96)))
+    add("most interesting thing in the table: padding with near misses gained an answer the control missed.")
     add("")
     write_teeth(add, table)
     write_both(add, table)

@@ -13,10 +13,17 @@ than whether the corpus is any good. It asks which defects move the score and wh
 | `one-result` | the same search cut down to a single answer | **25** | **25** | **37** | **0** |
 | `greedy-match` | one shared term is enough to be an answer | 36 | 32 | 43 | 5 (predicted 12) |
 | `strict-match` | every term of the question is required | 15 | 15 | 27 | **0** |
+| `pad-far` | the answer, then two records that share no word with the question | **25** | **25** | **37** | **0** |
+| `pad-near` | the answer, then two records that share a word with the question | 26 (predicted 25) | **25** | 38 (predicted 37) | **0** |
 
 Bold is a prediction written before the run that the run confirmed. A number in brackets beside
 its prediction is a miss, left in rather than corrected. Repeated 3 times per question, with the
 per-question outcome taken as the majority. Corpus A as written; corpus B is in the table below.
+
+**The two padding rows are the exception.** Their predictions were fixed to the control's own
+row after those runs, because a lever built to move nothing has only one honest prediction: nothing.
+The `pad-near` miss in brackets is therefore a description rather than a refuted prediction - and the
+most interesting thing in the table: padding with near misses gained an answer the control missed.
 
 ## What it cannot see
 
@@ -69,6 +76,8 @@ question and a record is less common than I assumed - which is exactly why the d
 | `one-result` | 29 | 29 | 41 | 0 | 32, 29, 44, 0 |
 | `greedy-match` | 34 | 30 | 44 | 2 | 32, 29, 44, 0 |
 | `strict-match` | 9 | 8 | 21 | 0 | 32, 29, 44, 0 |
+| `pad-far` | 32 | 29 | 44 | 0 | 32, 29, 44, 0 |
+| `pad-near` | 32 | 29 | 44 | 0 | 32, 29, 44, 0 |
 
 ## The real subjects: one answer or three
 
