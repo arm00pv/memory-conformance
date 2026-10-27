@@ -1,0 +1,5640 @@
+{
+  "adapter": "mutant",
+  "summary": {
+    "absent": {
+      "n": 98,
+      "answered": 8,
+      "answered_keyword": 11
+    },
+    "all": {
+      "n": 276,
+      "hit1": 178,
+      "hit3": 178,
+      "hit1_keyword": 175,
+      "hit3_keyword": 178
+    }
+  },
+  "rows": [
+    {
+      "query": "Auto registering package. Exists to support bundlers without exports support such as webpack 4.",
+      "expect": "chart.js-auto",
+      "difficulty": "d0",
+      "returned": [
+        "chart.js-auto",
+        "chart.js-helpers",
+        "@aws-sdk/credential-provider-env"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "auto registering package exist support bundler export support webpack 4",
+      "returned_keyword": [
+        "chart.js-auto",
+        "chart.js-helpers",
+        "@aws-sdk/client-ecs"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "Auto registering Exists to support without exports such as webpack 4.",
+      "expect": "chart.js-auto",
+      "difficulty": "d3",
+      "returned": [
+        "chart.js-auto",
+        "chart.js-helpers",
+        "@aws-sdk/credential-provider-env"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "auto registering exist support export webpack 4",
+      "returned_keyword": [
+        "chart.js-auto",
+        "chart.js-helpers",
+        "@aws-sdk/client-ecs"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "Auto package. to support without support as webpack 4.",
+      "expect": "chart.js-auto",
+      "difficulty": "d2",
+      "returned": [
+        "chart.js-auto",
+        "chart.js-helpers",
+        "@aws-sdk/credential-provider-env"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "auto package support support webpack 4",
+      "returned_keyword": [
+        "chart.js-auto",
+        "chart.js-helpers",
+        "@aws-sdk/client-ecs"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "AWS credential provider that sources credentials from known environment variables",
+      "expect": "@aws-sdk/credential-provider-env",
+      "difficulty": "d0",
+      "returned": [
+        "@aws-sdk/credential-provider-env",
+        "@aws-sdk/credential-provider-node",
+        "@aws-sdk/credential-provider-ini"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "aws credential provider source credential known environment variable",
+      "returned_keyword": [
+        "@aws-sdk/credential-provider-env",
+        "@aws-sdk/credential-provider-node",
+        "@aws-sdk/credential-provider-ini"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "AWS credential provider sources credentials known environment",
+      "expect": "@aws-sdk/credential-provider-env",
+      "difficulty": "d3",
+      "returned": [
+        "@aws-sdk/credential-provider-env",
+        "@aws-sdk/credential-provider-node",
+        "@aws-sdk/credential-provider-ini"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "aws credential provider source credential known environment",
+      "returned_keyword": [
+        "@aws-sdk/credential-provider-env",
+        "@aws-sdk/credential-provider-node",
+        "@aws-sdk/credential-provider-ini"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "AWS credential that credentials known variables",
+      "expect": "@aws-sdk/credential-provider-env",
+      "difficulty": "d2",
+      "returned": [
+        "@aws-sdk/credential-provider-env",
+        "@aws-sdk/credential-provider-ini",
+        "@aws-sdk/credential-provider-login"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "aws credential credential known variable",
+      "returned_keyword": [
+        "@aws-sdk/credential-provider-env",
+        "@aws-sdk/credential-provider-ini",
+        "@aws-sdk/credential-provider-login"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "AWS credential provider that sources credentials from ~/.aws/credentials and ~/.aws/config",
+      "expect": "@aws-sdk/credential-provider-ini",
+      "difficulty": "d0",
+      "returned": [
+        "@aws-sdk/credential-provider-ini",
+        "@aws-sdk/credential-provider-process",
+        "@aws-sdk/credential-provider-env"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "aws credential provider source credential aws credential aws config",
+      "returned_keyword": [
+        "@aws-sdk/credential-provider-ini",
+        "@aws-sdk/credential-provider-process",
+        "@aws-sdk/credential-provider-env"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "AWS credential provider sources credentials ~/.aws/credentials and ~/.aws/config",
+      "expect": "@aws-sdk/credential-provider-ini",
+      "difficulty": "d3",
+      "returned": [
+        "@aws-sdk/credential-provider-ini",
+        "@aws-sdk/credential-provider-process",
+        "@aws-sdk/credential-provider-env"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "aws credential provider source credential aws credential aws config",
+      "returned_keyword": [
+        "@aws-sdk/credential-provider-ini",
+        "@aws-sdk/credential-provider-process",
+        "@aws-sdk/credential-provider-env"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "AWS credential that credentials ~/.aws/credentials and ~/.aws/config",
+      "expect": "@aws-sdk/credential-provider-ini",
+      "difficulty": "d2",
+      "returned": [
+        "@aws-sdk/credential-provider-ini",
+        "@aws-sdk/credential-provider-process",
+        "@esbuild/win32-x64"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "aws credential credential aws credential aws config",
+      "returned_keyword": [
+        "@aws-sdk/credential-provider-ini",
+        "@aws-sdk/credential-provider-process",
+        "@aws-sdk/credential-provider-env"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "micromark factory to parse markdown space (found in lots of places)",
+      "expect": "micromark-factory-space",
+      "difficulty": "d0",
+      "returned": [
+        "micromark-factory-space",
+        "micromark-factory-whitespace",
+        "micromark-factory-title"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "micromark factory parse markdown space lot place",
+      "returned_keyword": [
+        "micromark-factory-space",
+        "micromark-factory-whitespace",
+        "micromark-factory-title"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "micromark factory to markdown space (found in of places)",
+      "expect": "micromark-factory-space",
+      "difficulty": "d3",
+      "returned": [
+        "micromark-factory-space",
+        "micromark-factory-whitespace",
+        "micromark-factory-title"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "micromark factory markdown space place",
+      "returned_keyword": [
+        "micromark-factory-space",
+        "micromark-factory-whitespace",
+        "micromark-factory-title"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "micromark to parse space (found in of places)",
+      "expect": "micromark-factory-space",
+      "difficulty": "d2",
+      "returned": [
+        "micromark-factory-space",
+        "micromark-factory-whitespace",
+        "micromark-factory-destination"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "micromark parse space place",
+      "returned_keyword": [
+        "micromark-factory-space",
+        "micromark-factory-whitespace",
+        "micromark-factory-destination"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "Store information about any JS value in a side channel, using a linked list",
+      "expect": "side-channel-list",
+      "difficulty": "d0",
+      "returned": [
+        "side-channel-list",
+        "side-channel-map",
+        "side-channel"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "store information js value side channel linked list",
+      "returned_keyword": [
+        "side-channel-list",
+        "side-channel",
+        "side-channel-map"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "Store information any JS value in a side using a linked",
+      "expect": "side-channel-list",
+      "difficulty": "d3",
+      "returned": [
+        "side-channel-list",
+        "side-channel-map",
+        "side-channel"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "store information js value side linked",
+      "returned_keyword": [
+        "side-channel-list",
+        "side-channel",
+        "side-channel-map"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "Store about any JS in a side using a list",
+      "expect": "side-channel-list",
+      "difficulty": "d2",
+      "returned": [
+        "side-channel-list",
+        "side-channel-map",
+        "side-channel"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "store js side list",
+      "returned_keyword": [
+        "side-channel-list",
+        "side-channel",
+        "side-channel-map"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "Get the visual width of a string - the number of columns required to display it",
+      "expect": "string-width",
+      "difficulty": "d0",
+      "returned": [
+        "string-width",
+        "widest-line",
+        "@isaacs/fs-minipass"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "visual width string number column required display",
+      "returned_keyword": [
+        "string-width",
+        "widest-line",
+        "@aws-sdk/client-ecs"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "Get the visual width of a - the number of columns to display it",
+      "expect": "string-width",
+      "difficulty": "d3",
+      "returned": [
+        "string-width",
+        "widest-line",
+        "@isaacs/fs-minipass"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "visual width number column display",
+      "returned_keyword": [
+        "string-width",
+        "widest-line",
+        "@aws-sdk/client-ecs"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "Get the visual of a string - the of columns to display it",
+      "expect": "string-width",
+      "difficulty": "d2",
+      "returned": [
+        "string-width",
+        "widest-line",
+        "@isaacs/fs-minipass"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "visual string column display",
+      "returned_keyword": [
+        "string-width",
+        "widest-line",
+        "@aws-sdk/client-ecs"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "AWS SDK for JavaScript Ecs Client for Node.js, Browser and React Native",
+      "expect": "@aws-sdk/client-ecs",
+      "difficulty": "d0",
+      "returned": [
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3",
+        "@isaacs/fs-minipass"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "aws sdk javascript ecs client node js browser react native",
+      "returned_keyword": [
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3",
+        "@isaacs/fs-minipass"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "AWS SDK for JavaScript Ecs Client for Browser and React",
+      "expect": "@aws-sdk/client-ecs",
+      "difficulty": "d3",
+      "returned": [
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3",
+        "@isaacs/fs-minipass"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "aws sdk javascript ecs client browser react",
+      "returned_keyword": [
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3",
+        "@isaacs/fs-minipass"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "AWS SDK for JavaScript Ecs for Node.js, and React",
+      "expect": "@aws-sdk/client-ecs",
+      "difficulty": "d2",
+      "returned": [
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3",
+        "@huggingface/transformers"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "aws sdk javascript ecs node js react",
+      "returned_keyword": [
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3",
+        "@huggingface/transformers"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "AWS credential provider that sources credentials from aws login cached tokens",
+      "expect": "@aws-sdk/credential-provider-login",
+      "difficulty": "d0",
+      "returned": [
+        "@aws-sdk/credential-provider-login",
+        "@aws-sdk/credential-provider-env",
+        "@aws-sdk/credential-provider-ini"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "aws credential provider source credential aws login cached token",
+      "returned_keyword": [
+        "@aws-sdk/credential-provider-login",
+        "@aws-sdk/credential-provider-sso",
+        "@aws-sdk/credential-provider-env"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "AWS credential provider sources credentials aws login cached",
+      "expect": "@aws-sdk/credential-provider-login",
+      "difficulty": "d3",
+      "returned": [
+        "@aws-sdk/credential-provider-login",
+        "@aws-sdk/credential-provider-env",
+        "@aws-sdk/credential-provider-ini"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "aws credential provider source credential aws login cached",
+      "returned_keyword": [
+        "@aws-sdk/credential-provider-login",
+        "@aws-sdk/credential-provider-env",
+        "@aws-sdk/credential-provider-ini"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "AWS credential that credentials aws login tokens",
+      "expect": "@aws-sdk/credential-provider-login",
+      "difficulty": "d2",
+      "returned": [
+        "@aws-sdk/credential-provider-login",
+        "@aws-sdk/credential-provider-sso",
+        "@aws-sdk/credential-provider-env"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "aws credential credential aws login token",
+      "returned_keyword": [
+        "@aws-sdk/credential-provider-login",
+        "@aws-sdk/credential-provider-sso",
+        "@aws-sdk/credential-provider-env"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "Model Context Protocol implementation for TypeScript - Client package",
+      "expect": "@modelcontextprotocol/client",
+      "difficulty": "d0",
+      "returned": [
+        "@modelcontextprotocol/client",
+        "@modelcontextprotocol/server",
+        "@isaacs/fs-minipass"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "model context protocol implementation typescript client package",
+      "returned_keyword": [
+        "@modelcontextprotocol/client",
+        "@modelcontextprotocol/server",
+        "@aws-sdk/credential-provider-env"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "MCP server for enabling memory for Claude through a knowledge graph",
+      "expect": "@modelcontextprotocol/server-memory",
+      "difficulty": "d0",
+      "returned": [
+        "@modelcontextprotocol/server-memory",
+        "mcp-knowledge-graph",
+        "rag-memory-epf-mcp"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "mcp server enabling memory claude knowledge graph",
+      "returned_keyword": [
+        "@modelcontextprotocol/server-memory",
+        "mcp-knowledge-graph",
+        "rag-memory-epf-mcp"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "MCP server for enabling for Claude through a graph",
+      "expect": "@modelcontextprotocol/server-memory",
+      "difficulty": "d3",
+      "returned": [
+        "@modelcontextprotocol/server-memory",
+        "mcp-knowledge-graph",
+        "rag-memory-epf-mcp"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "mcp server enabling claude graph",
+      "returned_keyword": [
+        "@modelcontextprotocol/server-memory",
+        "mcp-knowledge-graph",
+        "rag-memory-epf-mcp"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "MCP server for memory for through a graph",
+      "expect": "@modelcontextprotocol/server-memory",
+      "difficulty": "d2",
+      "returned": [
+        "@modelcontextprotocol/server-memory",
+        "mcp-knowledge-graph",
+        "rag-memory-epf-mcp"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "mcp server memory graph",
+      "returned_keyword": [
+        "@modelcontextprotocol/server-memory",
+        "mcp-knowledge-graph",
+        "rag-memory-epf-mcp"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "micromark factory to parse destinations (found in resources, definitions)",
+      "expect": "micromark-factory-destination",
+      "difficulty": "d0",
+      "returned": [
+        "micromark-factory-destination",
+        "micromark-factory-title",
+        "micromark-factory-space"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "micromark factory parse destination resource definition",
+      "returned_keyword": [
+        "micromark-factory-destination",
+        "micromark-factory-title",
+        "micromark-factory-space"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "micromark factory to destinations (found in resources,",
+      "expect": "micromark-factory-destination",
+      "difficulty": "d3",
+      "returned": [
+        "micromark-factory-destination",
+        "micromark-factory-title",
+        "micromark-factory-space"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "micromark factory destination resource",
+      "returned_keyword": [
+        "micromark-factory-destination",
+        "micromark-factory-title",
+        "micromark-factory-space"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "micromark to parse (found in resources,",
+      "expect": "micromark-factory-destination",
+      "difficulty": "d2",
+      "returned": [
+        "micromark-factory-destination",
+        "micromark-factory-title",
+        "micromark-factory-space"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "micromark parse resource",
+      "returned_keyword": [
+        "micromark-factory-destination",
+        "micromark-factory-title",
+        "micromark-factory-space"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "AWS credential provider that exchanges a resolved SSO login token file for temporary AWS credentials",
+      "expect": "@aws-sdk/credential-provider-sso",
+      "difficulty": "d0",
+      "returned": [
+        "@aws-sdk/credential-provider-sso",
+        "@aws-sdk/credential-provider-login",
+        "@aws-sdk/credential-provider-web-identity"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "aws credential provider exchange resolved sso login token file temporary aws credential",
+      "returned_keyword": [
+        "@aws-sdk/credential-provider-sso",
+        "@aws-sdk/credential-provider-login",
+        "@aws-sdk/credential-provider-web-identity"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "AWS credential provider exchanges a resolved SSO token file for AWS credentials",
+      "expect": "@aws-sdk/credential-provider-sso",
+      "difficulty": "d3",
+      "returned": [
+        "@aws-sdk/credential-provider-sso",
+        "@aws-sdk/credential-provider-login",
+        "@aws-sdk/credential-provider-env"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "aws credential provider exchange resolved sso token file aws credential",
+      "returned_keyword": [
+        "@aws-sdk/credential-provider-sso",
+        "@aws-sdk/credential-provider-login",
+        "@aws-sdk/credential-provider-env"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "AWS credential that a resolved SSO token for temporary AWS",
+      "expect": "@aws-sdk/credential-provider-sso",
+      "difficulty": "d2",
+      "returned": [
+        "@aws-sdk/credential-provider-sso",
+        "@aws-sdk/credential-provider-login",
+        "@aws-sdk/credential-provider-web-identity"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "aws credential resolved sso token temporary aws",
+      "returned_keyword": [
+        "@aws-sdk/credential-provider-sso",
+        "@aws-sdk/credential-provider-login",
+        "@aws-sdk/credential-provider-web-identity"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "Isomorphic fetch() in Node, Deno and Cloudflare Workers",
+      "expect": "@libsql/isomorphic-fetch",
+      "difficulty": "d0",
+      "returned": [
+        "@libsql/isomorphic-fetch",
+        "@libsql/isomorphic-ws",
+        "@aws-sdk/credential-provider-env"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "isomorphic fetch node deno cloudflare worker",
+      "returned_keyword": [
+        "@libsql/isomorphic-fetch",
+        "@libsql/isomorphic-ws",
+        "@aws-sdk/credential-provider-env"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "Isomorphic fetch() in Deno and Cloudflare",
+      "expect": "@libsql/isomorphic-fetch",
+      "difficulty": "d3",
+      "returned": [
+        "@libsql/isomorphic-fetch",
+        "@libsql/isomorphic-ws",
+        "@aws-sdk/client-ecs"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "isomorphic fetch deno cloudflare",
+      "returned_keyword": [
+        "@libsql/isomorphic-fetch",
+        "@libsql/isomorphic-ws",
+        "@aws-sdk/client-ecs"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "Isomorphic in Node, and Cloudflare",
+      "expect": "@libsql/isomorphic-fetch",
+      "difficulty": "d2",
+      "returned": [
+        "@libsql/isomorphic-fetch",
+        "@libsql/isomorphic-ws",
+        "@aws-sdk/credential-provider-env"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "isomorphic node cloudflare",
+      "returned_keyword": [
+        "@libsql/isomorphic-fetch",
+        "@libsql/isomorphic-ws",
+        "@aws-sdk/credential-provider-env"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "Helpers package. Exists to support bundlers without exports support such as webpack 4.",
+      "expect": "chart.js-helpers",
+      "difficulty": "d0",
+      "returned": [
+        "chart.js-helpers",
+        "chart.js-auto",
+        "@aws-sdk/credential-provider-env"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "helper package exist support bundler export support webpack 4",
+      "returned_keyword": [
+        "chart.js-helpers",
+        "chart.js-auto",
+        "@aws-sdk/client-ecs"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "Helpers package. to support bundlers exports support as webpack 4.",
+      "expect": "chart.js-helpers",
+      "difficulty": "d3",
+      "returned": [
+        "chart.js-helpers",
+        "chart.js-auto",
+        "@aws-sdk/credential-provider-env"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "helper package support bundler export support webpack 4",
+      "returned_keyword": [
+        "chart.js-helpers",
+        "chart.js-auto",
+        "@aws-sdk/client-ecs"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "Helpers Exists to bundlers exports such as 4.",
+      "expect": "chart.js-helpers",
+      "difficulty": "d2",
+      "returned": [
+        "chart.js-helpers",
+        "chart.js-auto",
+        "@aws-sdk/credential-provider-env"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "helper exist bundler export 4",
+      "returned_keyword": [
+        "chart.js-helpers",
+        "chart.js-auto",
+        "@aws-sdk/client-ecs"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "AWS credential provider that sources credentials from a Node.JS environment.",
+      "expect": "@aws-sdk/credential-provider-node",
+      "difficulty": "d0",
+      "returned": [
+        "@aws-sdk/credential-provider-node",
+        "@aws-sdk/credential-provider-env",
+        "@aws-sdk/credential-provider-ini"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "aws credential provider source credential node js environment",
+      "returned_keyword": [
+        "@aws-sdk/credential-provider-node",
+        "@aws-sdk/credential-provider-env",
+        "@aws-sdk/credential-provider-ini"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "AWS credential provider sources credentials a Node.JS environment.",
+      "expect": "@aws-sdk/credential-provider-node",
+      "difficulty": "d3",
+      "returned": [
+        "@aws-sdk/credential-provider-node",
+        "@aws-sdk/credential-provider-env",
+        "@aws-sdk/credential-provider-ini"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "aws credential provider source credential node js environment",
+      "returned_keyword": [
+        "@aws-sdk/credential-provider-node",
+        "@aws-sdk/credential-provider-env",
+        "@aws-sdk/credential-provider-ini"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "AWS credential that credentials a Node.JS",
+      "expect": "@aws-sdk/credential-provider-node",
+      "difficulty": "d2",
+      "returned": [
+        "@aws-sdk/credential-provider-node",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "aws credential credential node js",
+      "returned_keyword": [
+        "@aws-sdk/credential-provider-node",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "AWS credential provider that sources credential_process from ~/.aws/credentials and ~/.aws/config",
+      "expect": "@aws-sdk/credential-provider-process",
+      "difficulty": "d0",
+      "returned": [
+        "@aws-sdk/credential-provider-process",
+        "@aws-sdk/credential-provider-ini",
+        "@esbuild/win32-x64"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "aws credential provider source credential process aws credential aws config",
+      "returned_keyword": [
+        "@aws-sdk/credential-provider-process",
+        "@aws-sdk/credential-provider-ini",
+        "@aws-sdk/credential-provider-env"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "AWS credential provider sources credential_process ~/.aws/credentials and ~/.aws/config",
+      "expect": "@aws-sdk/credential-provider-process",
+      "difficulty": "d3",
+      "returned": [
+        "@aws-sdk/credential-provider-process",
+        "@aws-sdk/credential-provider-ini",
+        "@esbuild/win32-x64"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "aws credential provider source credential process aws credential aws config",
+      "returned_keyword": [
+        "@aws-sdk/credential-provider-process",
+        "@aws-sdk/credential-provider-ini",
+        "@aws-sdk/credential-provider-env"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "AWS credential that credential_process ~/.aws/credentials and ~/.aws/config",
+      "expect": "@aws-sdk/credential-provider-process",
+      "difficulty": "d2",
+      "returned": [
+        "@aws-sdk/credential-provider-process",
+        "@aws-sdk/credential-provider-ini",
+        "@esbuild/win32-x64"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "aws credential credential process aws credential aws config",
+      "returned_keyword": [
+        "@aws-sdk/credential-provider-process",
+        "@aws-sdk/credential-provider-ini",
+        "@aws-sdk/credential-provider-env"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "micromark factory to parse markdown whitespace (found in lots of places)",
+      "expect": "micromark-factory-whitespace",
+      "difficulty": "d0",
+      "returned": [
+        "micromark-factory-whitespace",
+        "micromark-factory-space",
+        "micromark-factory-title"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "micromark factory parse markdown whitespace lot place",
+      "returned_keyword": [
+        "micromark-factory-whitespace",
+        "micromark-factory-space",
+        "micromark-factory-title"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "micromark factory to markdown whitespace (found in of places)",
+      "expect": "micromark-factory-whitespace",
+      "difficulty": "d3",
+      "returned": [
+        "micromark-factory-whitespace",
+        "micromark-factory-space",
+        "micromark-factory-title"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "micromark factory markdown whitespace place",
+      "returned_keyword": [
+        "micromark-factory-whitespace",
+        "micromark-factory-space",
+        "micromark-factory-title"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "micromark to parse whitespace (found in of places)",
+      "expect": "micromark-factory-whitespace",
+      "difficulty": "d2",
+      "returned": [
+        "micromark-factory-whitespace",
+        "micromark-factory-space",
+        "micromark-factory-destination"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "micromark parse whitespace place",
+      "returned_keyword": [
+        "micromark-factory-whitespace",
+        "micromark-factory-space",
+        "micromark-factory-destination"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "Store information about any JS value in a side channel, using a Map",
+      "expect": "side-channel-map",
+      "difficulty": "d0",
+      "returned": [
+        "side-channel-map",
+        "side-channel",
+        "side-channel-list"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "store information js value side channel map",
+      "returned_keyword": [
+        "side-channel",
+        "side-channel-map",
+        "side-channel-weakmap"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "Store information any JS value in a side using a Map",
+      "expect": "side-channel-map",
+      "difficulty": "d3",
+      "returned": [
+        "side-channel-map",
+        "side-channel",
+        "side-channel-list"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "store information js value side map",
+      "returned_keyword": [
+        "side-channel",
+        "side-channel-map",
+        "side-channel-weakmap"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "Store about any JS in a side using a Map",
+      "expect": "side-channel-map",
+      "difficulty": "d2",
+      "returned": [
+        "side-channel-map",
+        "side-channel",
+        "side-channel-list"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "store js side map",
+      "returned_keyword": [
+        "side-channel",
+        "side-channel-map",
+        "side-channel-weakmap"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "Get the visual width of the widest line in a string - the number of columns required to display it",
+      "expect": "widest-line",
+      "difficulty": "d0",
+      "returned": [
+        "widest-line",
+        "string-width",
+        "@isaacs/fs-minipass"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "visual width widest line string number column required display",
+      "returned_keyword": [
+        "widest-line",
+        "string-width",
+        "@aws-sdk/client-ecs"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "Get the visual width of the line in a string - the of columns required to it",
+      "expect": "widest-line",
+      "difficulty": "d3",
+      "returned": [
+        "widest-line",
+        "string-width",
+        "@isaacs/fs-minipass"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "visual width line string column required",
+      "returned_keyword": [
+        "widest-line",
+        "string-width",
+        "@aws-sdk/client-ecs"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "Get the visual of the widest in a string - the of columns to display it",
+      "expect": "widest-line",
+      "difficulty": "d2",
+      "returned": [
+        "widest-line",
+        "string-width",
+        "@isaacs/fs-minipass"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "visual widest string column display",
+      "returned_keyword": [
+        "widest-line",
+        "string-width",
+        "@aws-sdk/client-ecs"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "AWS SDK for JavaScript S3 Client for Node.js, Browser and React Native",
+      "expect": "@aws-sdk/client-s3",
+      "difficulty": "d0",
+      "returned": [
+        "@aws-sdk/client-s3",
+        "@aws-sdk/client-ecs",
+        "@isaacs/fs-minipass"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "aws sdk javascript s3 client node js browser react native",
+      "returned_keyword": [
+        "@aws-sdk/client-s3",
+        "@aws-sdk/client-ecs",
+        "@isaacs/fs-minipass"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "AWS SDK for JavaScript S3 Client for Browser and React",
+      "expect": "@aws-sdk/client-s3",
+      "difficulty": "d3",
+      "returned": [
+        "@aws-sdk/client-s3",
+        "@aws-sdk/client-ecs",
+        "@isaacs/fs-minipass"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "aws sdk javascript s3 client browser react",
+      "returned_keyword": [
+        "@aws-sdk/client-s3",
+        "@aws-sdk/client-ecs",
+        "@isaacs/fs-minipass"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "AWS SDK for JavaScript S3 for Node.js, and React",
+      "expect": "@aws-sdk/client-s3",
+      "difficulty": "d2",
+      "returned": [
+        "@aws-sdk/client-s3",
+        "@aws-sdk/client-ecs",
+        "@huggingface/transformers"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "aws sdk javascript s3 node js react",
+      "returned_keyword": [
+        "@aws-sdk/client-s3",
+        "@aws-sdk/client-ecs",
+        "@huggingface/transformers"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "AWS credential provider that sources credentials from the EC2 instance metadata service and ECS container metadata service",
+      "expect": "@smithy/credential-provider-imds",
+      "difficulty": "d0",
+      "returned": [
+        "@smithy/credential-provider-imds",
+        "@esbuild/win32-x64",
+        "@huggingface/transformers"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "aws credential provider source credential ec2 instance metadata service ecs container metadata service",
+      "returned_keyword": [
+        "@smithy/credential-provider-imds",
+        "@esbuild/win32-x64",
+        "@huggingface/transformers"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "AWS credential provider sources credentials the EC2 instance metadata and ECS container metadata",
+      "expect": "@smithy/credential-provider-imds",
+      "difficulty": "d3",
+      "returned": [
+        "@smithy/credential-provider-imds",
+        "@esbuild/win32-x64",
+        "@huggingface/transformers"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "aws credential provider source credential ec2 instance metadata ecs container metadata",
+      "returned_keyword": [
+        "@smithy/credential-provider-imds",
+        "@esbuild/win32-x64",
+        "@huggingface/transformers"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "AWS credential that credentials the EC2 instance service and ECS metadata",
+      "expect": "@smithy/credential-provider-imds",
+      "difficulty": "d2",
+      "returned": [
+        "@smithy/credential-provider-imds",
+        "@esbuild/win32-x64",
+        "@huggingface/transformers"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "aws credential credential ec2 instance service ecs metadata",
+      "returned_keyword": [
+        "@smithy/credential-provider-imds",
+        "@esbuild/win32-x64",
+        "@huggingface/transformers"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "Model Context Protocol implementation for TypeScript - Server package",
+      "expect": "@modelcontextprotocol/server",
+      "difficulty": "d0",
+      "returned": [
+        "@modelcontextprotocol/server",
+        "@modelcontextprotocol/client",
+        "@isaacs/fs-minipass"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "model context protocol implementation typescript server package",
+      "returned_keyword": [
+        "@modelcontextprotocol/server",
+        "@modelcontextprotocol/client",
+        "@aws-sdk/client-ecs"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "MCP server enabling persistent memory for AI models through a local knowledge graph",
+      "expect": "mcp-knowledge-graph",
+      "difficulty": "d0",
+      "returned": [
+        "mcp-knowledge-graph",
+        "@modelcontextprotocol/server-memory",
+        "rag-memory-epf-mcp"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "mcp server enabling persistent memory ai model local knowledge graph",
+      "returned_keyword": [
+        "mcp-knowledge-graph",
+        "@modelcontextprotocol/server-memory",
+        "rag-memory-epf-mcp"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "MCP server enabling memory for AI models a local knowledge",
+      "expect": "mcp-knowledge-graph",
+      "difficulty": "d3",
+      "returned": [
+        "mcp-knowledge-graph",
+        "@modelcontextprotocol/server-memory",
+        "rag-memory-epf-mcp"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "mcp server enabling memory ai model local knowledge",
+      "returned_keyword": [
+        "mcp-knowledge-graph",
+        "@modelcontextprotocol/server-memory",
+        "rag-memory-epf-mcp"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "MCP server persistent for AI models a local graph",
+      "expect": "mcp-knowledge-graph",
+      "difficulty": "d2",
+      "returned": [
+        "mcp-knowledge-graph",
+        "crbro-memory",
+        "rag-memory-epf-mcp"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "mcp server persistent ai model local graph",
+      "returned_keyword": [
+        "mcp-knowledge-graph",
+        "crbro-memory",
+        "rag-memory-epf-mcp"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "micromark factory to parse markdown titles (found in resources, definitions)",
+      "expect": "micromark-factory-title",
+      "difficulty": "d0",
+      "returned": [
+        "micromark-factory-title",
+        "micromark-factory-destination",
+        "micromark-factory-space"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "micromark factory parse markdown title resource definition",
+      "returned_keyword": [
+        "micromark-factory-title",
+        "micromark-factory-destination",
+        "micromark-factory-space"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "micromark factory to markdown titles (found in definitions)",
+      "expect": "micromark-factory-title",
+      "difficulty": "d3",
+      "returned": [
+        "micromark-factory-title",
+        "micromark-factory-destination",
+        "micromark-factory-space"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "micromark factory markdown title definition",
+      "returned_keyword": [
+        "micromark-factory-title",
+        "micromark-factory-destination",
+        "micromark-factory-space"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "micromark to parse titles (found in definitions)",
+      "expect": "micromark-factory-title",
+      "difficulty": "d2",
+      "returned": [
+        "micromark-factory-title",
+        "micromark-factory-destination",
+        "micromark-factory-space"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "micromark parse title definition",
+      "returned_keyword": [
+        "micromark-factory-title",
+        "micromark-factory-destination",
+        "micromark-factory-space"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "AWS credential provider that calls STS assumeRole for temporary AWS credentials",
+      "expect": "@aws-sdk/credential-provider-web-identity",
+      "difficulty": "d0",
+      "returned": [
+        "@aws-sdk/credential-provider-web-identity",
+        "@aws-sdk/credential-provider-sso",
+        "@aws-sdk/credential-provider-env"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "aws credential provider call sts assumerole temporary aws credential",
+      "returned_keyword": [
+        "@aws-sdk/credential-provider-web-identity",
+        "@aws-sdk/credential-provider-sso",
+        "@aws-sdk/credential-provider-env"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "AWS credential provider calls STS assumeRole for AWS credentials",
+      "expect": "@aws-sdk/credential-provider-web-identity",
+      "difficulty": "d3",
+      "returned": [
+        "@aws-sdk/credential-provider-web-identity",
+        "@aws-sdk/credential-provider-env",
+        "@aws-sdk/credential-provider-ini"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "aws credential provider call sts assumerole aws credential",
+      "returned_keyword": [
+        "@aws-sdk/credential-provider-web-identity",
+        "@aws-sdk/credential-provider-env",
+        "@aws-sdk/credential-provider-ini"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "AWS credential that STS assumeRole for AWS credentials",
+      "expect": "@aws-sdk/credential-provider-web-identity",
+      "difficulty": "d2",
+      "returned": [
+        "@aws-sdk/credential-provider-web-identity",
+        "@aws-sdk/credential-provider-env",
+        "@aws-sdk/credential-provider-ini"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "aws credential sts assumerole aws credential",
+      "returned_keyword": [
+        "@aws-sdk/credential-provider-web-identity",
+        "@aws-sdk/credential-provider-env",
+        "@aws-sdk/credential-provider-ini"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "Isomorphic WebSockets in Node, Bun, Deno and Cloudflare Workers",
+      "expect": "@libsql/isomorphic-ws",
+      "difficulty": "d0",
+      "returned": [
+        "@libsql/isomorphic-ws",
+        "@libsql/isomorphic-fetch",
+        "@aws-sdk/credential-provider-env"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "isomorphic websocket node bun deno cloudflare worker",
+      "returned_keyword": [
+        "@libsql/isomorphic-ws",
+        "@libsql/isomorphic-fetch",
+        "@aws-sdk/credential-provider-env"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "Isomorphic WebSockets in Bun, Deno and Cloudflare",
+      "expect": "@libsql/isomorphic-ws",
+      "difficulty": "d3",
+      "returned": [
+        "@libsql/isomorphic-ws",
+        "@libsql/isomorphic-fetch",
+        "@aws-sdk/client-ecs"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "isomorphic websocket bun deno cloudflare",
+      "returned_keyword": [
+        "@libsql/isomorphic-ws",
+        "@libsql/isomorphic-fetch",
+        "@aws-sdk/client-ecs"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "Isomorphic in Node, Bun, and Cloudflare",
+      "expect": "@libsql/isomorphic-ws",
+      "difficulty": "d2",
+      "returned": [
+        "@libsql/isomorphic-ws",
+        "@libsql/isomorphic-fetch",
+        "environment"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "isomorphic node bun cloudflare",
+      "returned_keyword": [
+        "@libsql/isomorphic-ws",
+        "@libsql/isomorphic-fetch",
+        "environment"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "Check if the character represented by a given Unicode code point is fullwidth",
+      "expect": "is-fullwidth-code-point",
+      "difficulty": "d0",
+      "returned": [
+        "is-fullwidth-code-point",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "check character represented given unicode code point fullwidth",
+      "returned_keyword": [
+        "is-fullwidth-code-point",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "Check if the character by a given Unicode point is fullwidth",
+      "expect": "is-fullwidth-code-point",
+      "difficulty": "d3",
+      "returned": [
+        "is-fullwidth-code-point",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "check character given unicode point fullwidth",
+      "returned_keyword": [
+        "is-fullwidth-code-point",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "Check if the represented by a Unicode point is",
+      "expect": "is-fullwidth-code-point",
+      "difficulty": "d2",
+      "returned": [
+        "is-fullwidth-code-point",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "check represented unicode point",
+      "returned_keyword": [
+        "is-fullwidth-code-point",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "The Windows 64-bit binary for esbuild, a JavaScript bundler.",
+      "expect": "@esbuild/win32-x64",
+      "difficulty": "d0",
+      "returned": [
+        "@esbuild/win32-x64",
+        "@aws-sdk/credential-provider-env",
+        "@aws-sdk/credential-provider-ini"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "window 64 bit binary esbuild javascript bundler",
+      "returned_keyword": [
+        "@esbuild/win32-x64",
+        "@aws-sdk/credential-provider-env",
+        "@aws-sdk/credential-provider-ini"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "The Windows 64-bit binary for a JavaScript bundler.",
+      "expect": "@esbuild/win32-x64",
+      "difficulty": "d3",
+      "returned": [
+        "@esbuild/win32-x64",
+        "@aws-sdk/credential-provider-env",
+        "@aws-sdk/credential-provider-ini"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "window 64 bit binary javascript bundler",
+      "returned_keyword": [
+        "@esbuild/win32-x64",
+        "@aws-sdk/credential-provider-env",
+        "@aws-sdk/credential-provider-ini"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "The Windows 64-bit for esbuild, a bundler.",
+      "expect": "@esbuild/win32-x64",
+      "difficulty": "d2",
+      "returned": [
+        "@esbuild/win32-x64",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "window 64 bit esbuild bundler",
+      "returned_keyword": [
+        "@esbuild/win32-x64",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "A SQLite-backed MCP memory server with local workspace storage.",
+      "expect": "@j0hanz/memdb",
+      "difficulty": "d0",
+      "returned": [
+        "@j0hanz/memdb",
+        "mcp-knowledge-graph",
+        "rag-memory-epf-mcp"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "sqlite backed mcp memory server local workspace storage",
+      "returned_keyword": [
+        "@j0hanz/memdb",
+        "rag-memory-epf-mcp",
+        "mcp-knowledge-graph"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "A SQLite-backed MCP memory with local storage.",
+      "expect": "@j0hanz/memdb",
+      "difficulty": "d3",
+      "returned": [
+        "@j0hanz/memdb",
+        "@vheins/local-memory-mcp",
+        "mcp-knowledge-graph"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "sqlite backed mcp memory local storage",
+      "returned_keyword": [
+        "@j0hanz/memdb",
+        "rag-memory-epf-mcp",
+        "@vheins/local-memory-mcp"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "A SQLite-backed MCP server local storage.",
+      "expect": "@j0hanz/memdb",
+      "difficulty": "d2",
+      "returned": [
+        "@j0hanz/memdb",
+        "mcp-knowledge-graph",
+        "rag-memory-epf-mcp"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "sqlite backed mcp server local storage",
+      "returned_keyword": [
+        "@j0hanz/memdb",
+        "rag-memory-epf-mcp",
+        "mcp-knowledge-graph"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "List files and directories inside the specified directory",
+      "expect": "@nodelib/fs.scandir",
+      "difficulty": "d0",
+      "returned": [
+        "@nodelib/fs.scandir",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "list file directorie inside specified directory",
+      "returned_keyword": [
+        "@nodelib/fs.scandir",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "List files and inside the specified",
+      "expect": "@nodelib/fs.scandir",
+      "difficulty": "d3",
+      "returned": [
+        "@nodelib/fs.scandir",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "list file inside specified",
+      "returned_keyword": [
+        "@nodelib/fs.scandir",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "List and directories the specified",
+      "expect": "@nodelib/fs.scandir",
+      "difficulty": "d2",
+      "returned": [
+        "@nodelib/fs.scandir",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "list directorie specified",
+      "returned_keyword": [
+        "@nodelib/fs.scandir",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "A minimal path module to resolve Unix, Windows and URL paths alike.",
+      "expect": "@protobufjs/path",
+      "difficulty": "d0",
+      "returned": [
+        "@protobufjs/path",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "minimal path module resolve unix window url path alike",
+      "returned_keyword": [
+        "@protobufjs/path",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "A minimal path to resolve Unix, and URL paths alike.",
+      "expect": "@protobufjs/path",
+      "difficulty": "d3",
+      "returned": [
+        "@protobufjs/path",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "minimal path resolve unix url path alike",
+      "returned_keyword": [
+        "@protobufjs/path",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "A minimal module to Unix, and URL paths",
+      "expect": "@protobufjs/path",
+      "difficulty": "d2",
+      "returned": [
+        "@protobufjs/path",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "minimal module unix url path",
+      "returned_keyword": [
+        "@protobufjs/path",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "MCP Local Memory Service for coding copilot agents",
+      "expect": "@vheins/local-memory-mcp",
+      "difficulty": "d0",
+      "returned": [
+        "@vheins/local-memory-mcp",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "mcp local memory service coding copilot agent",
+      "returned_keyword": [
+        "@vheins/local-memory-mcp",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "MCP Local Memory for coding copilot",
+      "expect": "@vheins/local-memory-mcp",
+      "difficulty": "d3",
+      "returned": [
+        "@vheins/local-memory-mcp",
+        "@j0hanz/memdb",
+        "mcp-knowledge-graph"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "mcp local memory coding copilot",
+      "returned_keyword": [
+        "@vheins/local-memory-mcp",
+        "@j0hanz/memdb",
+        "mcp-knowledge-graph"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "MCP Local Service for copilot",
+      "expect": "@vheins/local-memory-mcp",
+      "difficulty": "d2",
+      "returned": [
+        "@vheins/local-memory-mcp",
+        "@j0hanz/memdb",
+        "mcp-knowledge-graph"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "mcp local service copilot",
+      "returned_keyword": [
+        "@vheins/local-memory-mcp",
+        "@j0hanz/memdb",
+        "mcp-knowledge-graph"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "ANSI escape codes for styling strings in the terminal",
+      "expect": "ansi-styles",
+      "difficulty": "d0",
+      "returned": [
+        "ansi-styles",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "ansi escape code styling string terminal",
+      "returned_keyword": [
+        "ansi-styles",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "ANSI escape for styling strings in the",
+      "expect": "ansi-styles",
+      "difficulty": "d3",
+      "returned": [
+        "ansi-styles",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "ansi escape styling string",
+      "returned_keyword": [
+        "ansi-styles",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "ANSI codes for strings in the",
+      "expect": "ansi-styles",
+      "difficulty": "d2",
+      "returned": [
+        "ansi-styles",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "ansi code string",
+      "returned_keyword": [
+        "ansi-styles",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "The fastest and simplest library for SQLite in Node.js.",
+      "expect": "better-sqlite3",
+      "difficulty": "d0",
+      "returned": [
+        "better-sqlite3",
+        "@aws-sdk/credential-provider-env",
+        "@aws-sdk/credential-provider-ini"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "fastest simplest library sqlite node js",
+      "returned_keyword": [
+        "better-sqlite3",
+        "@aws-sdk/credential-provider-env",
+        "@aws-sdk/credential-provider-ini"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "The fastest and simplest for SQLite in Node.js.",
+      "expect": "better-sqlite3",
+      "difficulty": "d3",
+      "returned": [
+        "better-sqlite3",
+        "@aws-sdk/credential-provider-env",
+        "@aws-sdk/credential-provider-ini"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "fastest simplest sqlite node js",
+      "returned_keyword": [
+        "better-sqlite3",
+        "@aws-sdk/credential-provider-env",
+        "@aws-sdk/credential-provider-ini"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "The fastest and library for in Node.js.",
+      "expect": "better-sqlite3",
+      "difficulty": "d2",
+      "returned": [
+        "better-sqlite3",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "fastest library node js",
+      "returned_keyword": [
+        "better-sqlite3",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "Helper functions around Function call/apply/bind, for use in `call-bind`",
+      "expect": "call-bind-apply-helpers",
+      "difficulty": "d0",
+      "returned": [
+        "call-bind-apply-helpers",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "helper function around function call apply bind call bind",
+      "returned_keyword": [
+        "call-bind-apply-helpers",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "Helper functions Function call/apply/bind, for use in `call-bind`",
+      "expect": "call-bind-apply-helpers",
+      "difficulty": "d3",
+      "returned": [
+        "call-bind-apply-helpers",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "helper function function call apply bind call bind",
+      "returned_keyword": [
+        "call-bind-apply-helpers",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "Helper around call/apply/bind, for use in `call-bind`",
+      "expect": "call-bind-apply-helpers",
+      "difficulty": "d2",
+      "returned": [
+        "call-bind-apply-helpers",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "helper around call apply bind call bind",
+      "returned_keyword": [
+        "call-bind-apply-helpers",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "CRBRO \u2014 Persistent neural memory for AI. A biological file-based MCP server that gives your AI long-term memory across sessions.",
+      "expect": "crbro-memory",
+      "difficulty": "d0",
+      "returned": [
+        "crbro-memory",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "crbro persistent neural memory ai biological file based mcp server ai term memory across session",
+      "returned_keyword": [
+        "crbro-memory",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "CRBRO \u2014 Persistent memory for AI. A biological MCP server that your AI long-term across sessions.",
+      "expect": "crbro-memory",
+      "difficulty": "d3",
+      "returned": [
+        "crbro-memory",
+        "mcp-knowledge-graph",
+        "@aws-sdk/client-ecs"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "crbro persistent memory ai biological mcp server ai term across session",
+      "returned_keyword": [
+        "crbro-memory",
+        "mcp-knowledge-graph",
+        "@aws-sdk/client-ecs"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "CRBRO \u2014 neural for AI. A biological MCP server gives AI long-term across",
+      "expect": "crbro-memory",
+      "difficulty": "d2",
+      "returned": [
+        "crbro-memory",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "crbro neural ai biological mcp server ai term across",
+      "returned_keyword": [
+        "crbro-memory",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "Detect Node.JS (as opposite to browser environment) (reliable)",
+      "expect": "detect-node",
+      "difficulty": "d0",
+      "returned": [
+        "detect-node",
+        "environment",
+        "@aws-sdk/client-ecs"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "detect node js opposite browser environment reliable",
+      "returned_keyword": [
+        "detect-node",
+        "environment",
+        "@aws-sdk/credential-provider-ini"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "Detect Node.JS (as to browser environment) (reliable)",
+      "expect": "detect-node",
+      "difficulty": "d3",
+      "returned": [
+        "detect-node",
+        "environment",
+        "@aws-sdk/client-ecs"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "detect node js browser environment reliable",
+      "returned_keyword": [
+        "detect-node",
+        "environment",
+        "@aws-sdk/client-ecs"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "Detect (as opposite to environment) (reliable)",
+      "expect": "detect-node",
+      "difficulty": "d2",
+      "returned": [
+        "detect-node",
+        "@aws-sdk/credential-provider-ini",
+        "@aws-sdk/credential-provider-login"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "detect opposite environment reliable",
+      "returned_keyword": [
+        "detect-node",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "Check which JavaScript environment your code is running in at runtime: browser, Node.js, Bun, etc",
+      "expect": "environment",
+      "difficulty": "d0",
+      "returned": [
+        "environment",
+        "@aws-sdk/credential-provider-ini",
+        "@aws-sdk/credential-provider-login"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "check javascript environment code running runtime browser node js bun etc",
+      "returned_keyword": [
+        "environment",
+        "@aws-sdk/credential-provider-ini",
+        "@aws-sdk/credential-provider-login"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "Check which environment your is running in at runtime: Node.js, Bun, etc",
+      "expect": "environment",
+      "difficulty": "d3",
+      "returned": [
+        "environment",
+        "@aws-sdk/credential-provider-ini",
+        "@aws-sdk/credential-provider-login"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "check environment running runtime node js bun etc",
+      "returned_keyword": [
+        "environment",
+        "@aws-sdk/credential-provider-ini",
+        "@aws-sdk/credential-provider-login"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "Check JavaScript your is running in at browser, Bun, etc",
+      "expect": "environment",
+      "difficulty": "d2",
+      "returned": [
+        "environment",
+        "@aws-sdk/credential-provider-env",
+        "@aws-sdk/credential-provider-ini"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "check javascript running browser bun etc",
+      "returned_keyword": [
+        "environment",
+        "@aws-sdk/credential-provider-env",
+        "@aws-sdk/credential-provider-ini"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "Streaming, source-agnostic EventSource/Server-Sent Events parser",
+      "expect": "eventsource-parser",
+      "difficulty": "d0",
+      "returned": [
+        "eventsource-parser",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "streaming source agnostic eventsource server sent event parser",
+      "returned_keyword": [
+        "eventsource-parser",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "Streaming, source-agnostic Events parser",
+      "expect": "eventsource-parser",
+      "difficulty": "d3",
+      "returned": [
+        "eventsource-parser",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "streaming source agnostic event parser",
+      "returned_keyword": [
+        "eventsource-parser",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "A fast function for calculating where a string should be truncated, given an optional width limit and an ellipsis string.",
+      "expect": "fast-string-truncated-width",
+      "difficulty": "d0",
+      "returned": [
+        "fast-string-truncated-width",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "fast function calculating string truncated given optional width limit ellipsi string",
+      "returned_keyword": [
+        "fast-string-truncated-width",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "A fast function for where a string be truncated, given an width limit and an string.",
+      "expect": "fast-string-truncated-width",
+      "difficulty": "d3",
+      "returned": [
+        "fast-string-truncated-width",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "fast function string truncated given width limit string",
+      "returned_keyword": [
+        "fast-string-truncated-width",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "A fast for calculating a string be truncated, an optional limit and an string.",
+      "expect": "fast-string-truncated-width",
+      "difficulty": "d2",
+      "returned": [
+        "fast-string-truncated-width",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "fast calculating string truncated optional limit string",
+      "returned_keyword": [
+        "fast-string-truncated-width",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "Determine the East Asian Width of a Unicode character",
+      "expect": "get-east-asian-width",
+      "difficulty": "d0",
+      "returned": [
+        "get-east-asian-width",
+        "is-fullwidth-code-point",
+        "@aws-sdk/client-ecs"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "determine east asian width unicode character",
+      "returned_keyword": [
+        "get-east-asian-width",
+        "is-fullwidth-code-point",
+        "@aws-sdk/client-ecs"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "Determine the East Width of a Unicode",
+      "expect": "get-east-asian-width",
+      "difficulty": "d3",
+      "returned": [
+        "get-east-asian-width",
+        "is-fullwidth-code-point",
+        "@aws-sdk/client-ecs"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "determine east width unicode",
+      "returned_keyword": [
+        "get-east-asian-width",
+        "is-fullwidth-code-point",
+        "@aws-sdk/client-ecs"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "Determine the Asian of a Unicode",
+      "expect": "get-east-asian-width",
+      "difficulty": "d2",
+      "returned": [
+        "get-east-asian-width",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "determine asian unicode",
+      "returned_keyword": [
+        "get-east-asian-width",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "Parses Cache-Control and other headers. Helps building correct HTTP caches and proxies",
+      "expect": "http-cache-semantics",
+      "difficulty": "d0",
+      "returned": [
+        "http-cache-semantics",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "parse cache control header help building correct http cache proxie",
+      "returned_keyword": [
+        "http-cache-semantics",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "Parses Cache-Control and headers. Helps correct HTTP and proxies",
+      "expect": "http-cache-semantics",
+      "difficulty": "d3",
+      "returned": [
+        "http-cache-semantics",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "parse cache control header help correct http proxie",
+      "returned_keyword": [
+        "http-cache-semantics",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "Parses and other Helps correct caches and",
+      "expect": "http-cache-semantics",
+      "difficulty": "d2",
+      "returned": [
+        "http-cache-semantics",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "parse help correct cache",
+      "returned_keyword": [
+        "http-cache-semantics",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "Browser-friendly inheritance fully compatible with standard node.js inherits()",
+      "expect": "inherits",
+      "difficulty": "d0",
+      "returned": [
+        "inherits",
+        "@aws-sdk/credential-provider-env",
+        "@aws-sdk/credential-provider-ini"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "browser friendly inheritance fully compatible standard node js inherit",
+      "returned_keyword": [
+        "inherits",
+        "@aws-sdk/credential-provider-env",
+        "@aws-sdk/credential-provider-ini"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "Browser-friendly inheritance compatible with node.js inherits()",
+      "expect": "inherits",
+      "difficulty": "d3",
+      "returned": [
+        "inherits",
+        "@aws-sdk/credential-provider-env",
+        "@aws-sdk/credential-provider-ini"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "browser friendly inheritance compatible node js inherit",
+      "returned_keyword": [
+        "inherits",
+        "@aws-sdk/credential-provider-env",
+        "@aws-sdk/credential-provider-ini"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "Browser-friendly fully with node.js",
+      "expect": "inherits",
+      "difficulty": "d2",
+      "returned": [
+        "inherits",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "browser friendly fully node js",
+      "returned_keyword": [
+        "inherits",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "Returns true if a number or string value is a finite number. Useful for regex matches, parsing, user input, etc.",
+      "expect": "is-number",
+      "difficulty": "d0",
+      "returned": [
+        "is-number",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "return true number string value finite number useful regex matche parsing user input etc",
+      "returned_keyword": [
+        "is-number",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "Returns true if a or string value is a number. Useful for matches, parsing, input, etc.",
+      "expect": "is-number",
+      "difficulty": "d3",
+      "returned": [
+        "is-number",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "return true string value number useful matche parsing input etc",
+      "returned_keyword": [
+        "is-number",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "Returns if a number or value is a number. for regex parsing, input, etc.",
+      "expect": "is-number",
+      "difficulty": "d2",
+      "returned": [
+        "is-number",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "return number value number regex parsing input etc",
+      "returned_keyword": [
+        "is-number",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "Like JSON.stringify, but doesn't blow up on circular refs.",
+      "expect": "json-stringify-safe",
+      "difficulty": "d0",
+      "returned": [
+        "json-stringify-safe"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "like json stringify t blow circular ref",
+      "returned_keyword": [
+        "json-stringify-safe"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "Like JSON.stringify, but blow up on circular",
+      "expect": "json-stringify-safe",
+      "difficulty": "d3",
+      "returned": [
+        "json-stringify-safe",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "like json stringify blow circular",
+      "returned_keyword": [
+        "json-stringify-safe",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "Like but doesn't up on circular",
+      "expect": "json-stringify-safe",
+      "difficulty": "d2",
+      "returned": [
+        "json-stringify-safe"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "like t circular",
+      "returned_keyword": [
+        "json-stringify-safe",
+        "@protobufjs/path"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "mdast utility to find and replace text in a tree",
+      "expect": "mdast-util-find-and-replace",
+      "difficulty": "d0",
+      "returned": [
+        "mdast-util-find-and-replace",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "mdast utility replace text tree",
+      "returned_keyword": [
+        "mdast-util-find-and-replace",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "mdast utility to and replace text in a",
+      "expect": "mdast-util-find-and-replace",
+      "difficulty": "d3",
+      "returned": [
+        "mdast-util-find-and-replace",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "mdast utility replace text",
+      "returned_keyword": [
+        "mdast-util-find-and-replace",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "mdast to find and text in a",
+      "expect": "mdast-util-find-and-replace",
+      "difficulty": "d2",
+      "returned": [
+        "mdast-util-find-and-replace",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "mdast text",
+      "returned_keyword": [
+        "mdast-util-find-and-replace",
+        "@modelcontextprotocol/client",
+        "@modelcontextprotocol/server"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "Simple RFC 6838 media type parser and formatter",
+      "expect": "media-typer",
+      "difficulty": "d0",
+      "returned": [
+        "media-typer",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "simple rfc 6838 media type parser formatter",
+      "returned_keyword": [
+        "media-typer",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "Simple RFC 6838 media parser and formatter",
+      "expect": "media-typer",
+      "difficulty": "d3",
+      "returned": [
+        "media-typer",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "simple rfc 6838 media parser formatter",
+      "returned_keyword": [
+        "media-typer",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "Simple RFC 6838 type and formatter",
+      "expect": "media-typer",
+      "difficulty": "d2",
+      "returned": [
+        "media-typer",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "simple rfc 6838 type formatter",
+      "returned_keyword": [
+        "media-typer",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "micromark utility to classify whether a character is whitespace or punctuation",
+      "expect": "micromark-util-classify-character",
+      "difficulty": "d0",
+      "returned": [
+        "micromark-util-classify-character",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "micromark utility classify character whitespace punctuation",
+      "returned_keyword": [
+        "micromark-util-classify-character",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "micromark utility to whether a character is or punctuation",
+      "expect": "micromark-util-classify-character",
+      "difficulty": "d3",
+      "returned": [
+        "micromark-util-classify-character",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "micromark utility character punctuation",
+      "returned_keyword": [
+        "micromark-util-classify-character",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "micromark to classify a character is or punctuation",
+      "expect": "micromark-util-classify-character",
+      "difficulty": "d2",
+      "returned": [
+        "micromark-util-classify-character",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "micromark classify character punctuation",
+      "returned_keyword": [
+        "micromark-util-classify-character",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "small commonmark compliant markdown parser with positional info and concrete tokens",
+      "expect": "micromark",
+      "difficulty": "d0",
+      "returned": [
+        "micromark",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "small commonmark compliant markdown parser positional info concrete token",
+      "returned_keyword": [
+        "micromark",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "small commonmark markdown parser positional info and tokens",
+      "expect": "micromark",
+      "difficulty": "d3",
+      "returned": [
+        "micromark",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "small commonmark markdown parser positional info token",
+      "returned_keyword": [
+        "micromark",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "small compliant parser positional and concrete",
+      "expect": "micromark",
+      "difficulty": "d2",
+      "returned": [
+        "micromark",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "small compliant parser positional concrete",
+      "returned_keyword": [
+        "micromark",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "Bytes go in, but they don't come out (when muted).",
+      "expect": "mute-stream",
+      "difficulty": "d0",
+      "returned": [
+        "mute-stream"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "byte go don t come muted",
+      "returned_keyword": [
+        "mute-stream"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "Bytes go in, but they don't out (when muted).",
+      "expect": "mute-stream",
+      "difficulty": "d3",
+      "returned": [
+        "mute-stream"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "byte go don t muted",
+      "returned_keyword": [
+        "mute-stream"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "Bytes go in, but don't come out (when",
+      "expect": "mute-stream",
+      "difficulty": "d2",
+      "returned": [
+        "mute-stream"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "byte go don t come",
+      "returned_keyword": [
+        "mute-stream"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "Higher order iterator library for JavaScript/TypeScript.",
+      "expect": "obliterator",
+      "difficulty": "d0",
+      "returned": [
+        "obliterator",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "higher order iterator library javascript typescript",
+      "returned_keyword": [
+        "obliterator",
+        "@aws-sdk/credential-provider-env",
+        "@aws-sdk/credential-provider-ini"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "Higher order library for JavaScript/TypeScript.",
+      "expect": "obliterator",
+      "difficulty": "d3",
+      "returned": [
+        "obliterator",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "higher order library javascript typescript",
+      "returned_keyword": [
+        "obliterator",
+        "@aws-sdk/credential-provider-env",
+        "@aws-sdk/credential-provider-ini"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "Higher iterator for JavaScript/TypeScript.",
+      "expect": "obliterator",
+      "difficulty": "d2",
+      "returned": [
+        "obliterator",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "higher iterator javascript typescript",
+      "returned_keyword": [
+        "obliterator",
+        "@aws-sdk/credential-provider-env",
+        "@aws-sdk/credential-provider-ini"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "64-bit big-endian signed integer-to-string conversion",
+      "expect": "pg-int8",
+      "difficulty": "d0",
+      "returned": [
+        "pg-int8",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "64 bit big endian signed integer string conversion",
+      "returned_keyword": [
+        "pg-int8",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "64-bit big-endian signed integer-to-string",
+      "expect": "pg-int8",
+      "difficulty": "d3",
+      "returned": [
+        "pg-int8",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "64 bit big endian signed integer string",
+      "returned_keyword": [
+        "pg-int8",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "64-bit big-endian signed conversion",
+      "expect": "pg-int8",
+      "difficulty": "d2",
+      "returned": [
+        "pg-int8",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "64 bit big endian signed conversion",
+      "returned_keyword": [
+        "pg-int8",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "One promise for multiple requests in flight to avoid async duplication",
+      "expect": "promise-inflight",
+      "difficulty": "d0",
+      "returned": [
+        "promise-inflight",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "promise multiple request flight avoid async duplication",
+      "returned_keyword": [
+        "promise-inflight",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "One promise for multiple in flight to avoid duplication",
+      "expect": "promise-inflight",
+      "difficulty": "d3",
+      "returned": [
+        "promise-inflight",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "promise multiple flight avoid duplication",
+      "returned_keyword": [
+        "promise-inflight",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "One promise for requests in to avoid duplication",
+      "expect": "promise-inflight",
+      "difficulty": "d2",
+      "returned": [
+        "promise-inflight",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "promise request avoid duplication",
+      "returned_keyword": [
+        "promise-inflight",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "An Esprima-compatible JavaScript parser built on Acorn",
+      "expect": "espree",
+      "difficulty": "d0",
+      "returned": [
+        "espree",
+        "@aws-sdk/credential-provider-env",
+        "@aws-sdk/credential-provider-ini"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "esprima compatible javascript parser built acorn",
+      "returned_keyword": [
+        "espree",
+        "@aws-sdk/credential-provider-env",
+        "@aws-sdk/credential-provider-ini"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "An Esprima-compatible JavaScript built on Acorn",
+      "expect": "espree",
+      "difficulty": "d3",
+      "returned": [
+        "espree",
+        "@aws-sdk/credential-provider-env",
+        "@aws-sdk/credential-provider-ini"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "esprima compatible javascript built acorn",
+      "returned_keyword": [
+        "espree",
+        "@aws-sdk/credential-provider-env",
+        "@aws-sdk/credential-provider-ini"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "An Esprima-compatible parser on Acorn",
+      "expect": "espree",
+      "difficulty": "d2",
+      "returned": [
+        "espree",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "esprima compatible parser acorn",
+      "returned_keyword": [
+        "espree",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "Swizzle a little something into your require() calls.",
+      "expect": "requizzle",
+      "difficulty": "d0",
+      "returned": [
+        "requizzle",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "swizzle little something require call",
+      "returned_keyword": [
+        "requizzle",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "Swizzle a little into your calls.",
+      "expect": "requizzle",
+      "difficulty": "d3",
+      "returned": [
+        "requizzle",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "swizzle little call",
+      "returned_keyword": [
+        "requizzle",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "Swizzle a something your calls.",
+      "expect": "requizzle",
+      "difficulty": "d2",
+      "returned": [
+        "requizzle",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "swizzle something call",
+      "returned_keyword": [
+        "requizzle",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "Project-local RAG memory MCP server \u2014 knowledge graph + multilingual vector + FTS5 in a single SQLite file. Per-project isolation, 38 MCP tools, codepoint-safe chunking (Korean/CJK/emoji).",
+      "expect": "rag-memory-epf-mcp",
+      "difficulty": "d0",
+      "returned": [
+        "rag-memory-epf-mcp",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "project local rag memory mcp server knowledge graph multilingual vector fts5 single sqlite file project isolation 38 mcp tool codepoint safe chunking korean cjk emoji",
+      "returned_keyword": [
+        "rag-memory-epf-mcp",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "Project-local RAG memory MCP \u2014 knowledge graph + vector + FTS5 in a single file. Per-project isolation, 38 MCP codepoint-safe chunking (Korean/CJK/emoji).",
+      "expect": "rag-memory-epf-mcp",
+      "difficulty": "d3",
+      "returned": [
+        "rag-memory-epf-mcp",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "project local rag memory mcp knowledge graph vector fts5 single file project isolation 38 mcp codepoint safe chunking korean cjk emoji",
+      "returned_keyword": [
+        "rag-memory-epf-mcp",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "Project-local RAG MCP server \u2014 graph + vector + FTS5 in a SQLite Per-project isolation, 38 MCP codepoint-safe (Korean/CJK/emoji).",
+      "expect": "rag-memory-epf-mcp",
+      "difficulty": "d2",
+      "returned": [
+        "rag-memory-epf-mcp",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "project local rag mcp server graph vector fts5 sqlite project isolation 38 mcp codepoint safe korean cjk emoji",
+      "returned_keyword": [
+        "rag-memory-epf-mcp",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "remark plugin to add support for serializing markdown",
+      "expect": "remark-stringify",
+      "difficulty": "d0",
+      "returned": [
+        "remark-stringify",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "remark plugin add support serializing markdown",
+      "returned_keyword": [
+        "remark-stringify",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "remark plugin to add for serializing markdown",
+      "expect": "remark-stringify",
+      "difficulty": "d3",
+      "returned": [
+        "remark-stringify",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "remark plugin add serializing markdown",
+      "returned_keyword": [
+        "remark-stringify",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "remark to add support for markdown",
+      "expect": "remark-stringify",
+      "difficulty": "d2",
+      "returned": [
+        "remark-stringify",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "remark add support markdown",
+      "returned_keyword": [
+        "remark-stringify",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "Better streaming static file server with Range and conditional-GET support",
+      "expect": "send",
+      "difficulty": "d0",
+      "returned": [
+        "send",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "better streaming static file server range conditional support",
+      "returned_keyword": [
+        "send",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "Better streaming file server Range and conditional-GET",
+      "expect": "send",
+      "difficulty": "d3",
+      "returned": [
+        "send",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "better streaming file server range conditional",
+      "returned_keyword": [
+        "send",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "Better static server Range and support",
+      "expect": "send",
+      "difficulty": "d2",
+      "returned": [
+        "send",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "better static server range support",
+      "returned_keyword": [
+        "send",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "A SOCKS proxy `http.Agent` implementation for HTTP and HTTPS",
+      "expect": "socks-proxy-agent",
+      "difficulty": "d0",
+      "returned": [
+        "socks-proxy-agent",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "sock proxy http agent implementation http http",
+      "returned_keyword": [
+        "socks-proxy-agent",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "A SOCKS proxy `http.Agent` for HTTP and HTTPS",
+      "expect": "socks-proxy-agent",
+      "difficulty": "d3",
+      "returned": [
+        "socks-proxy-agent",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "sock proxy http agent http http",
+      "returned_keyword": [
+        "socks-proxy-agent",
+        "http-cache-semantics",
+        "@aws-sdk/client-ecs"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "A SOCKS `http.Agent` implementation for and HTTPS",
+      "expect": "socks-proxy-agent",
+      "difficulty": "d2",
+      "returned": [
+        "socks-proxy-agent",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "sock http agent implementation http",
+      "returned_keyword": [
+        "socks-proxy-agent",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "Strip a byte order mark (BOM) from a string.",
+      "expect": "strip-bom-string",
+      "difficulty": "d0",
+      "returned": [
+        "strip-bom-string",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "strip byte order mark bom string",
+      "returned_keyword": [
+        "strip-bom-string",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "Strip a byte mark (BOM) from a",
+      "expect": "strip-bom-string",
+      "difficulty": "d3",
+      "returned": [
+        "strip-bom-string",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "strip byte mark bom",
+      "returned_keyword": [
+        "strip-bom-string",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "Strip a order (BOM) from a",
+      "expect": "strip-bom-string",
+      "difficulty": "d2",
+      "returned": [
+        "strip-bom-string",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "strip order bom",
+      "returned_keyword": [
+        "strip-bom-string",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "unist utility to serialize a node, position, or point as a human readable location",
+      "expect": "unist-util-stringify-position",
+      "difficulty": "d0",
+      "returned": [
+        "unist-util-stringify-position",
+        "@aws-sdk/credential-provider-env",
+        "@aws-sdk/credential-provider-ini"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "unist utility serialize node position point human readable location",
+      "returned_keyword": [
+        "unist-util-stringify-position",
+        "@aws-sdk/credential-provider-env",
+        "@aws-sdk/credential-provider-ini"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "unist utility to a node, position, or as a human readable",
+      "expect": "unist-util-stringify-position",
+      "difficulty": "d3",
+      "returned": [
+        "unist-util-stringify-position",
+        "@aws-sdk/credential-provider-env",
+        "@aws-sdk/credential-provider-ini"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "unist utility node position human readable",
+      "returned_keyword": [
+        "unist-util-stringify-position",
+        "@aws-sdk/credential-provider-env",
+        "@aws-sdk/credential-provider-ini"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "unist to serialize a position, or as a human location",
+      "expect": "unist-util-stringify-position",
+      "difficulty": "d2",
+      "returned": [
+        "unist-util-stringify-position",
+        "@aws-sdk/credential-provider-env",
+        "@aws-sdk/credential-provider-ini"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "unist serialize position human location",
+      "returned_keyword": [
+        "unist-util-stringify-position",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "Invoke scoped data storage for AWS Lambda Node.js Runtime Environment",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "invoke scoped data storage aws lambda node js runtime environment",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false
+    },
+    {
+      "query": "the complete solution for node.js command-line programs",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "complete solution node js command line program",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false
+    },
+    {
+      "query": "Shared schemas and validators for Hasna open-source agent infrastructure contracts.",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "shared schema validator hasna open source agent infrastructure contract",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false
+    },
+    {
+      "query": "Universal memory system for AI agents - CLI + MCP server + library API",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "universal memory system ai agent cli mcp server library api",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false
+    },
+    {
+      "query": "A minimalistic JavaScript implementation of the Jinja templating engine, specifically designed for parsing and rendering ML chat templates.",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "minimalistic javascript implementation jinja templating engine specifically designed parsing rendering ml chat template",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false
+    },
+    {
+      "query": "A small fast zlib stream built on [minipass](http://npm.im/minipass) and Node.js's zlib binding.",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "small fast zlib stream built minipass http npm im minipass node js s zlib binding",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false
+    },
+    {
+      "query": "Protocol Buffers for JavaScript (& TypeScript).",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "protocol buffer javascript typescript",
+      "returned_keyword": [
+        "@modelcontextprotocol/client",
+        "@modelcontextprotocol/server",
+        "obliterator"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true
+    },
+    {
+      "query": "when you want to fire an event no matter how a process exits.",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "fire event matter process exit",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false
+    },
+    {
+      "query": "css color parsing, manupulation and conversion",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "css color parsing manupulation conversion",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false
+    },
+    {
+      "query": "libSQL driver for TypeScript and JavaScript",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [
+        "obliterator",
+        "@aws-sdk/credential-provider-env",
+        "@aws-sdk/credential-provider-ini"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "keyword": "libsql driver typescript javascript",
+      "returned_keyword": [
+        "obliterator",
+        "@aws-sdk/credential-provider-env",
+        "@aws-sdk/credential-provider-ini"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true
+    },
+    {
+      "query": "Hrana client for connecting to sqld over HTTP or WebSocket",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "hrana client connecting sqld http websocket",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false
+    },
+    {
+      "query": "Model Context Protocol for TypeScript \u2014 public Zod schemas (spec + OAuth/OpenID)",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "model context protocol typescript public zod schema spec oauth openid",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false
+    },
+    {
+      "query": "Get the status of a file with some features",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "statu file feature",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false
+    },
+    {
+      "query": "A complete search engine and RAG pipeline in your browser, server, or edge network with support for full-text, vector, and hybrid search in less than 2kb.",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "complete search engine rag pipeline browser server edge network support full text vector hybrid search less 2kb",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false
+    },
+    {
+      "query": "A minimal base64 implementation for number arrays.",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "minimal base64 implementation number array",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false
+    },
+    {
+      "query": "Reads / writes floats / doubles from / to buffers in both modern and ancient browsers.",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "read write float double buffer modern ancient browser",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false
+    },
+    {
+      "query": "A minimal UTF8 implementation for number arrays.",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "minimal utf8 implementation number array",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false
+    },
+    {
+      "query": "A family of specs for interoperable TypeScript",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "family spec interoperable typescript",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false
+    },
+    {
+      "query": "TypeScript definitions for better-sqlite3",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "typescript definition better sqlite3",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false
+    },
+    {
+      "query": "TypeScript definitions for trusted-types",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "typescript definition trusted type",
+      "returned_keyword": [
+        "@modelcontextprotocol/client",
+        "@modelcontextprotocol/server",
+        "obliterator"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true
+    },
+    {
+      "query": "SQLite storage adapter for ZenBrain memory system. Zero-config, file-based, perfect for development and single-user deployments.",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "sqlite storage adapter zenbrain memory system zero config file based perfect development single user deployment",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false
+    },
+    {
+      "query": "7-layer memory system for AI agents. Pluggable storage, embeddings, and LLM providers. Built on @zensation/algorithms.",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "7 layer memory system ai agent pluggable storage embedding llm provider built zensation algorithm",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false
+    },
+    {
+      "query": "Turn a function into an `http.Agent` instance",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "turn function http agent instance",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false
+    },
+    {
+      "query": "A ridiculously light-weight argument validator (now browser friendly)",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "ridiculously light weight argument validator now browser friendly",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false
+    },
+    {
+      "query": "Very powerful CLI arguments parser. Native port of argparse - python's options parsing library",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "powerful cli argument parser native port argparse python s option parsing library",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false
+    },
+    {
+      "query": "Bridging the gap between buffers and typed arrays",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "bridging gap buffer typed array",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false
+    },
+    {
+      "query": "Path manipulation library for JavaScript",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [
+        "obliterator",
+        "@aws-sdk/credential-provider-env",
+        "@aws-sdk/credential-provider-ini"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "keyword": "path manipulation library javascript",
+      "returned_keyword": [
+        "obliterator",
+        "@aws-sdk/credential-provider-env",
+        "@aws-sdk/credential-provider-ini"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true
+    },
+    {
+      "query": "Helper module for loading your native module's .node file",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "helper module loading native module s node file",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false
+    },
+    {
+      "query": "A pure javascript BMP encoder and decoder",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "pure javascript bmp encoder decoder",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false
+    },
+    {
+      "query": "boolean converts lots of things to boolean.",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "boolean convert lot thing boolean",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false
+    },
+    {
+      "query": "Utility to parse a string bytes to bytes and vice-versa",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "utility parse string byte byte vice versa",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false
+    },
+    {
+      "query": "Robust call-bound JavaScript intrinsics, using `call-bind` and `get-intrinsic`.",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "robust call bound javascript intrinsic call bind intrinsic",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false
+    },
+    {
+      "query": "List of legacy HTML named character references that don\u2019t need a trailing semicolon",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "list legacy html named character reference don t trailing semicolon",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false
+    },
+    {
+      "query": "Simple HTML5 charts using the canvas element.",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "simple html5 chart canva element",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false
+    },
+    {
+      "query": "Truncate a string to a specific width in the terminal",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [
+        "fast-string-truncated-width",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "keyword": "truncate string specific width terminal",
+      "returned_keyword": [
+        "fast-string-truncated-width",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true
+    },
+    {
+      "query": "A module which will endeavor to guess your terminal's level of color support.",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "module endeavor guess terminal s level color support",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false
+    },
+    {
+      "query": "Create and parse Content-Disposition header",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [
+        "http-cache-semantics",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "keyword": "create parse content disposition header",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false
+    },
+    {
+      "query": "Cross platform child_process#spawn and child_process#spawnSync",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "cross platform child process spawn child process spawnsync",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false
+    },
+    {
+      "query": "Lightweight debugging utility for Node.js and the browser",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3",
+        "detect-node"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "keyword": "lightweight debugging utility node js browser",
+      "returned_keyword": [
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3",
+        "detect-node"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true
+    },
+    {
+      "query": "Define multiple non-enumerable properties at once. Uses `Object.defineProperty` when available; falls back to standard assignment in older engines.",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "define multiple non enumerable propertie use object defineproperty available fall back standard assignment older engine",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false
+    },
+    {
+      "query": "A tiny (304B to 489B) utility for check for deep equality",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "tiny 304b 489b utility check deep equality",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false
+    },
+    {
+      "query": "Do things in development and nothing otherwise",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "thing development nothing otherwise",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false
+    },
+    {
+      "query": "If available, the `Object.prototype.__proto__` accessor and mutator, call-bound",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "available object prototype proto accessor mutator call bound",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false
+    },
+    {
+      "query": "Encode a URL to a percent-encoded form, excluding already-encoded sequences",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "encode url percent encoded form excluding encoded sequence",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false
+    },
+    {
+      "query": "Call a callback when a readable/writable/duplex stream has completed or failed.",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "call callback readable writable duplex stream completed failed",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false
+    },
+    {
+      "query": "`Object.defineProperty`, but not IE 8's broken one.",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "object defineproperty ie 8 s broken",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false
+    },
+    {
+      "query": "ES Object-related atoms: Object, ToObject, RequireObjectCoercible",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "es object related atom object toobject requireobjectcoercible",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false
+    },
+    {
+      "query": "Easily-extendable error for use with ES6 classes",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "easily extendable error es6 classe",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false
+    },
+    {
+      "query": "ECMAScript parsing infrastructure for multipurpose analysis",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "ecmascript parsing infrastructure multipurpose analysi",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false
+    },
+    {
+      "query": "WhatWG/W3C compliant EventSource client for Node.js and browsers",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "whatwg w3c compliant eventsource client node js browser",
+      "returned_keyword": [
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3",
+        "@aws-sdk/credential-provider-env"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true
+    },
+    {
+      "query": "Basic IP rate-limiting middleware for Express. Use to limit repeated requests to public APIs and/or endpoints such as password reset.",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "basic ip rate limiting middleware express limit repeated request public api endpoint password reset",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false
+    },
+    {
+      "query": "Extend an object with the properties of additional objects. node.js/javascript util.",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "extend object propertie additional object node js javascript util",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false
+    },
+    {
+      "query": "A fast fifo implementation similar to the one powering nextTick in Node.js core",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "fast fifo implementation similar powering nexttick node js core",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false
+    },
+    {
+      "query": "Blob & File implementation in Node.js, originally from node-fetch.",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "blob file implementation node js originally node fetch",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false
+    },
+    {
+      "query": "Fill in a range of numbers or letters, optionally passing an increment or `step` to use, or create a regex-compatible range with `options.toRegex`",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "fill range number letter optionally passing increment step create regex compatible range option toregex",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false
+    },
+    {
+      "query": "Use node's fs.realpath, but fall back to the JS implementation if the native one fails",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "node s fs realpath fall back js implementation native fail",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false
+    },
+    {
+      "query": "Get and robustly cache all JS language-level intrinsics at first require time",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "robustly cache js language level intrinsic first require time",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false
+    },
+    {
+      "query": "return the github url from a package.json file",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "return github url package json file",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false
+    },
+    {
+      "query": "Global HTTP/HTTPS proxy configurable using environment variables.",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "global http http proxy configurable environment variable",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false
+    },
+    {
+      "query": "`Object.getOwnPropertyDescriptor`, but accounts for IE's broken implementation.",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "object getownpropertydescriptor account ie s broken implementation",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false
+    },
+    {
+      "query": "Miscellaneous graph metrics for graphology.",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [
+        "graphology-communities-louvain",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "keyword": "miscellaneou graph metric graphology",
+      "returned_keyword": [
+        "graphology-communities-louvain",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true
+    },
+    {
+      "query": "Parse front-matter from a string or file. Fast, reliable and easy to use. Parses YAML front matter by default, but also has support for YAML, JSON, TOML or Coffee Front-Matter, with options to set custom delimiters. Used by metalsmith, assemble, verb and many other projects.",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "parse front matter string file fast reliable easy parse yaml front matter default support yaml json toml coffee front matter option custom delimiter metalsmith assemble verb project",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false
+    },
+    {
+      "query": "Determine if the JS environment has Symbol support. Supports spec, or shams.",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "determine js environment symbol support support spec sham",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false
+    },
+    {
+      "query": "Lightning fast hash functions for browsers and Node.js using hand-tuned WebAssembly binaries (MD4, MD5, SHA-1, SHA-2, SHA-3, Keccak, BLAKE2, BLAKE3, PBKDF2, Argon2, bcrypt, scrypt, Adler-32, CRC32, CRC32C, RIPEMD-160, HMAC, xxHash, SM3, Whirlpool)",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "lightning fast hash function browser node js hand tuned webassembly binarie md4 md5 sha 1 sha 2 sha 3 keccak blake2 blake3 pbkdf2 argon2 bcrypt scrypt adler 32 crc32 crc32c ripemd 160 hmac xxhash sm3 whirlpool",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false
+    },
+    {
+      "query": "A super-simple-small keyval store built on top of IndexedDB",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "super simple small keyval store built top indexeddb",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false
+    },
+    {
+      "query": "Ignore is a manager and filter for .gitignore rules, the one used by eslint, gitbook and many others.",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "ignore manager filter gitignore rule eslint gitbook other",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false
+    },
+    {
+      "query": "Infer the owner of a path based on the owner of its nearest existing parent",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "infer owner path based owner nearest existing parent",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false
+    },
+    {
+      "query": "A library for parsing IPv4 and IPv6 IP addresses in node and the browser.",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "library parsing ipv4 ipv6 ip addresse node browser",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false
+    },
+    {
+      "query": "Determines if an object can be used as an array",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "determine object array",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false
+    },
+    {
+      "query": "Check if the process is running in a Continuous Integration (CI) environment",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "check process running continuou integration ci environment",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false
+    },
+    {
+      "query": "Test whether an object looks like a promises-a+ promise",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "test object look like promise promise",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false
+    },
+    {
+      "query": "Minimal module to check if a file is executable.",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "minimal module check file executable",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false
+    },
+    {
+      "query": "Yet another Base64 transcoder in pure-JS",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "another base64 transcoder pure js",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false
+    },
+    {
+      "query": "JSON Schema TypeScript definitions with complete inline documentation.",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "json schema typescript definition complete inline documentation",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false
+    },
+    {
+      "query": "A better-sqlite3 compatible API for libSQL that supports Bun, Deno, and Node",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "better sqlite3 compatible api libsql support bun deno node",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false
+    },
+    {
+      "query": "Fast (and loose) selective `process.env` replacer using js-tokens instead of an AST",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "fast loose selective process env replacer js token instead ast",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false
+    },
+    {
+      "query": "Opinionated, caching, retrying fetch client",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "opinionated caching retrying fetch client",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false
+    },
+    {
+      "query": "A Node.js style checker and lint tool for Markdown/CommonMark files",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "node js style checker lint tool markdown commonmark file",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false
+    },
+    {
+      "query": "mdast extension to parse and serialize GFM autolink literals",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "mdast extension parse serialize gfm autolink literal",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false
+    },
+    {
+      "query": "mdast extension to parse and serialize GFM strikethrough",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [
+        "micromark-extension-gfm-strikethrough",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "keyword": "mdast extension parse serialize gfm strikethrough",
+      "returned_keyword": [
+        "micromark-extension-gfm-strikethrough",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true
+    },
+    {
+      "query": "mdast extension to parse and serialize GFM task list items",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "mdast extension parse serialize gfm task list item",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false
+    },
+    {
+      "query": "mdast utility to check if a node is phrasing content",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "mdast utility check node phrasing content",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false
+    },
+    {
+      "query": "A token-lean MCP memory server: a knowledge graph your AI agent can search without reading the whole thing. Drop-in replacement for @modelcontextprotocol/server-memory.",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "token lean mcp memory server knowledge graph ai agent search reading whole thing drop replacement modelcontextprotocol server memory",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false
+    },
+    {
+      "query": "A lightweight, structured, token-efficient local-first MCP memory server (Drizzle + libSQL)",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "lightweight structured token efficient local first mcp memory server drizzle libsql",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false
+    },
+    {
+      "query": "Merge multiple streams into one stream in sequence or parallel.",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "merge multiple stream stream sequence parallel",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false
+    },
+    {
+      "query": "micromark extension to support GFM task list items",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [
+        "micromark-extension-gfm-strikethrough",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "keyword": "micromark extension support gfm task list item",
+      "returned_keyword": [
+        "micromark-extension-gfm-strikethrough",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true
+    },
+    {
+      "query": "micromark utility to combine syntax or html extensions",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "micromark utility combine syntax html extension",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false
+    },
+    {
+      "query": "micromark utility to decode markdown strings",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "micromark utility decode markdown string",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false
+    },
+    {
+      "query": "micromark utility to encode dangerous html characters",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "micromark utility encode dangerou html character",
+      "returned_keyword": [
+        "micromark-util-classify-character",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true
+    },
+    {
+      "query": "micromark utility normalize identifiers (as found in references, definitions)",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "micromark utility normalize identifier reference definition",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false
+    },
+    {
+      "query": "Glob matching for javascript/node.js. A replacement and faster alternative to minimatch and multimatch.",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "glob matching javascript node js replacement faster alternative minimatch multimatch",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false
+    },
+    {
+      "query": "A Minipass stream that collects all the data into a single chunk",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "minipass stream collect data single chunk",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false
+    },
+    {
+      "query": "A Minipass stream that calls a flush function before emitting 'end'",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "minipass stream call flush function emitting end",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false
+    },
+    {
+      "query": "A Minipass stream that raises an error if you get a different number of bytes than expected",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "minipass stream raise error different number byte expected",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false
+    },
+    {
+      "query": "A set of utilities to assist developers of tools that build N-API native add-ons",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "utilitie assist developer tool build n api native add ons",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false
+    },
+    {
+      "query": "An implementation of the DOMException class from NodeJS",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "implementation domexception class nodej",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false
+    },
+    {
+      "query": "A light-weight module that brings Fetch API to node.js",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "light weight module bring fetch api node js",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false
+    },
+    {
+      "query": "string representations of objects in node and the browser",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "string representation object node browser",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false
+    }
+  ]
+}

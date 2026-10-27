@@ -52,6 +52,8 @@ import os
 import re
 import sys
 
+import questions
+
 HERE = os.path.dirname(os.path.abspath(__file__))
 os.chdir(HERE)
 BT = chr(96)
@@ -446,12 +448,22 @@ PAD_LEVERS = ("pad-far", "pad-near")
 
 
 def padding_runs(label):
-    """The control and the two padding mutants on one corpus, or whatever of them is on disk."""
+    """The control and the two padding mutants on one corpus, or whatever of them is on disk.
+
+    TWO BASELINES, BECAUSE THE CORPORA ARE MEASURED TWO WAYS. The calibration controls were run against A and
+    B only; the authorless corpus and the exam were measured as ordinary subjects, so their baseline is the
+    control's own retrieval run. Looking for one file name everywhere would have left half the table blank
+    and read as "the lever does nothing there".
+    """
     out = []
-    base = os.path.join("results", "calibration-control-%s.json" % label)
-    if os.path.isfile(base):
-        with open(base, encoding="utf-8") as fh:
-            out.append(("control", label, json.load(fh).get("rows") or []))
+    suffix = dict((l, sfx) for l, _p, sfx in CORPORA).get(label, "")
+    candidates = [os.path.join("results", "calibration-control-%s.json" % label),
+                  os.path.join("results", "control-1.0.0-retrieval%s.json" % suffix)]
+    for base in candidates:
+        if os.path.isfile(base):
+            with open(base, encoding="utf-8") as fh:
+                out.append(("control", label, json.load(fh).get("rows") or []))
+            break
     for lever in PAD_LEVERS:
         path = os.path.join("results", "retrieval-%s-%s.json" % (lever, label))
         if os.path.isfile(path):
@@ -460,16 +472,29 @@ def padding_runs(label):
     return out
 
 
+def _corpus_path(label):
+    for l, path, _suffix in CORPORA:
+        if l == label:
+            return path
+    raise KeyError(label)
+
+
 def padding_panel():
     """One row per run: what the score says, and what the reading of the same rows says."""
     rows = []
     for label, _path, _suffix in CORPORA:
-        if label not in ("A", "B"):
-            continue
         for name, lab, rs in padding_runs(label):
             if not rs:
                 continue
+            live = questions.live(_corpus_path(lab))
+            rs = [r for r in rs if r["query"] in live]
             d = derive(read(lab, rs, "written"))
+            # ONE DENOMINATOR PER ROW. The score and hit@3 were summed over every row in the file while the
+            # noise figures beside them were summed over the live questions only, so the exam's control row
+            # reported 200 hits from a 300-row file against a padded 178 from a 276-row one and the table
+            # read as though padding had cost 22 answers. It had not; the two columns were counting
+            # different questions. The rows are filtered once, at the top, and every number below is over
+            # the same questions.
             score = sum(1 for r in rs
                         if (r["difficulty"] == "absent" and not r["answered"])
                         or (r["difficulty"] != "absent" and r.get("hit3")))
@@ -768,12 +793,15 @@ def report(got, panel, checks=None):
         add("")
         by = dict(((r["run"], r["corpus"]), r) for r in pad)
         preds = []
-        for lab in ("A", "B"):
+        # EVERY CORPUS THE LEVERS WERE RUN ON, not just the two the calibration controls cover: the
+        # examination and the authorless corpus are where most of the published numbers come from.
+        labels = sorted(set(c for (_run, c) in by))
+        for lab in labels:
             c, far = by.get(("control", lab)), by.get(("pad-far", lab))
             if c and far:
                 preds.append((far["hit3"] == c["hit3"] and far["score"] == c["score"],
                               "%s: the score and hit@3 do not move (%d and %d)" % (lab, c["score"], far["score"])))
-        for lab in ("A", "B"):
+        for lab in labels:
             c, far, near = by.get(("control", lab)), by.get(("pad-far", lab)), by.get(("pad-near", lab))
             if c and far and near:
                 preds.append((far["noise"] > c["noise"] * 3,
@@ -787,7 +815,7 @@ def report(got, panel, checks=None):
                               "%s: and raises noise per correct answer less than unrelated padding does (%s against %s)"
                               % (lab, ratio(near["noise_per_hit"]), ratio(far["noise_per_hit"]))))
         held = sum(1 for ok, _t in preds if ok)
-        add("**%d of %d checks hold.** Two predictions were written before the first run - that hit@1 and hit@3"
+        add("**%d of %d checks hold,** over every corpus the levers were run on.** Two predictions were written before the first run - that hit@1 and hit@3"
             % (held, len(preds)))
         add("could not see this lever at all, and that the unrelated padding would move the noise count while")
         add("the near-miss padding moved the near-miss count - and both of those held. The numeric thresholds")

@@ -239,8 +239,19 @@ and hit@3 cannot see them by construction, and everything that moves here moved 
 | `control` | B | 44 | 32 | 5 | 0.16 | 58% | 18 |
 | `pad-far` | B | 44 | 32 | 44 | 1.38 | 33% | 23 |
 | `pad-near` | B | 44 | 32 | 35 | 1.09 | 33% | 30 |
+| `control` | C | 43 | 31 | 9 | 0.29 | 57% | 13 |
+| `control` | real | 60 | 48 | 3 | 0.06 | 58% | 27 |
+| `pad-far` | real | 60 | 48 | 67 | 1.40 | 31% | 27 |
+| `pad-near` | real | 60 | 48 | 54 | 1.12 | 34% | 34 |
+| `control` | dist | 104 | 104 | 24 | 0.23 | 46% | 89 |
+| `control` | morph | 69 | 69 | 4 | 0.06 | 51% | 56 |
+| `control` | multi | 32 | 32 | 2 | 0.06 | 90% | 1 |
+| `control` | large | 268 | 178 | 18 | 0.10 | 55% | 116 |
+| `pad-far` | large | 268 | 178 | 230 | 1.29 | 32% | 116 |
+| `pad-near` | large | 268 | 178 | 203 | 1.14 | 34% | 126 |
+| `control` | super | 66 | 66 | 2 | 0.03 | 41% | 92 |
 
-**8 of 8 checks hold.** Two predictions were written before the first run - that hit@1 and hit@3
+**16 of 16 checks hold,** over every corpus the levers were run on.** Two predictions were written before the first run - that hit@1 and hit@3
 could not see this lever at all, and that the unrelated padding would move the noise count while
 the near-miss padding moved the near-miss count - and both of those held. The numeric thresholds
 below were set when this section was written, after the corrected runs, so they are checks rather
@@ -248,12 +259,20 @@ than predictions, and the difference is the point rather than a technicality.
 
 - held: A: the score and hit@3 do not move (37 and 37).
 - held: B: the score and hit@3 do not move (44 and 44).
+- held: large: the score and hit@3 do not move (268 and 268).
+- held: real: the score and hit@3 do not move (60 and 60).
 - held: A: padding with unrelated records multiplies the noise count (8 to 48, a factor of 6.0).
 - held: A: padding with near misses raises the near-miss count (7 to 15).
 - held: A: and raises noise per correct answer less than unrelated padding does (1.23 against 1.92).
 - held: B: padding with unrelated records multiplies the noise count (5 to 44, a factor of 8.8).
 - held: B: padding with near misses raises the near-miss count (18 to 30).
 - held: B: and raises noise per correct answer less than unrelated padding does (1.09 against 1.38).
+- held: large: padding with unrelated records multiplies the noise count (18 to 230, a factor of 12.8).
+- held: large: padding with near misses raises the near-miss count (116 to 126).
+- held: large: and raises noise per correct answer less than unrelated padding does (1.14 against 1.29).
+- held: real: padding with unrelated records multiplies the noise count (3 to 67, a factor of 22.3).
+- held: real: padding with near misses raises the near-miss count (27 to 34).
+- held: real: and raises noise per correct answer less than unrelated padding does (1.12 against 1.40).
 
 **And one result worth stating on its own: padding with near misses RAISED the score.** On
 corpus A, `pad-near` scores 38 where the control scores 37, because a padder that

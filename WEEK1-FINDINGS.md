@@ -4424,3 +4424,35 @@ Two levers, one corpus pair, one padding width of two records. A padder that app
 records from the same family as the answer, is not tested. What is established is narrower and enough to
 act on: the score is blind to the quantity the precision reading prices, and padding can even pay.
 
+
+## Addendum 48: four corpora, and a denominator bug in my own table
+
+Addendum 47 published the padding mutants on two corpora. The levers were then run on the authorless
+corpus and on the 276-question exam as well, because those are where most of this repository's numbers
+come from, and the section now covers all four.
+
+| corpus | control score | padded score | control noise per correct | padded |
+|---|---|---|---|---|
+| A | 37 | **37** | 0.32 | **1.92** |
+| B | 44 | **44** | 0.16 | **1.38** |
+| real | 60 | **60** | 0.06 | **1.40** |
+| the exam | 268 | **268** | 0.10 | **1.29** |
+
+**Sixteen checks, all holding**, and the exam is the sharpest: padding with unrelated records multiplies
+the noise count by **12.8** while the score does not move by one point.
+
+### And the first version of that table was wrong, in the way this repository keeps catching
+
+The exam's control row first read **292 against a padded 268**, which looked like a finding - padding costs
+you 24 points. It was not a finding. The score and hit@3 columns were summed over *every* row in each result
+file while the columns beside them were summed over the live questions only, so the control row counted 300
+rows against the padded row's 276: **the same defect as the "0 of 0" that sat in RESOLUTION.md for three
+phases, and the same one as counting a question twice.** The rows are now filtered once, at the top, and
+every number in the table is over the same questions.
+
+Two things follow, and only one of them is about the code. The first is that a comparison table is the
+easiest place in the world to compare two different things, and this one did it inside a section whose
+subject is *not being able to see what came back*. The second is that the fix made the result stronger
+rather than weaker: with one denominator, the score is identical on all four corpora, which is a cleaner
+statement of the blindness than the two-corpora version.
+
