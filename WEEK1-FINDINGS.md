@@ -4333,3 +4333,42 @@ invisible to a check that compares a report to the results under it. That is the
 regeneration can prove, and it is the same boundary this repository has been drawing all along: a report
 can only be as true as the rows it reads.
 
+
+## Addendum 46: the work is prepared, the person is not
+
+Addendum 43 ended at the rung this repository cannot climb: the judge's six pairs are a **probe** - chosen
+for disagreement - and a rate needs a random draw put in front of a person. Asking for that is one thing;
+asking for it *unprepared* is another. So the preparation now exists.
+
+`judge.py --export-human=60` draws sixty pairs **at random** from the 5,336 the repository holds, writes a
+questionnaire - question, record, one line each, nothing else - and a file beside it whose only empty field
+is `verdict`. `--import-human` takes the answers back, refuses anything that is not YES or NO, and the report
+renders a section that did not exist before: agreement with the rule on a **random** sample, with a kappa,
+and a sentence saying how wide that interval is while the count is small.
+
+**Two sampling frames, and confusing them would flatter the first.** The readers were asked twenty of each
+kind because the question there is *where does the rule disagree with a reader*; a person is asked a random
+draw because the question there is *how often is the rule wrong*. The report keeps them apart, in separate
+sections, with the frame of each written at the top of it.
+
+### A bug that only a real key name would have found
+
+The new section read `human["sample"]` for its labels - and the probe file already used `sample` for a
+sentence describing how those six pairs were chosen, so the report tried to read a **string** as a dictionary
+and died with `'str' object has no attribute 'get'`. Renaming the new key to `random` fixed it. Two things had
+the same name because they were two things with the same name; this repository has made that mistake often
+enough that it is worth naming the class rather than the instance.
+
+### What is now guarded
+
+The CI draws the sixty pairs again on every push and asserts the draw is **reproducible**, that no pair is
+repeated, that the questionnaire is not pre-answered, and that the committed files are byte-identical to
+what the draw produces. A questionnaire that quietly contained the answers would measure the person's
+patience rather than their reading.
+
+### What is still missing, and it is one thing
+
+Somebody to read sixty pairs and type YES or NO sixty times. The report says so in its own words now, at the
+end, with the path to the file that is waiting. Everything else on this ladder is measured, guarded, or
+written down as a limit with a number beside it.
+

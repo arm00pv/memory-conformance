@@ -82,11 +82,44 @@ def load():
     return out
 
 
-def pairs():
-    """Every (corpus, question, returned record) this repository has an opinion about.
+def population():
+    """Every (corpus, question, returned record) this repository has an opinion about, unsampled.
 
-    Sampled deterministically: sorted, then a stride, so the sample is the same on every machine and the
-    cache always describes the same pairs.
+    The readers are asked an ENRICHED sample - twenty of each kind - because the question is where the rule
+    and a reader disagree, and a random draw would be almost entirely pairs where they agree. A PERSON is
+    asked a RANDOM draw from this population instead, because the question there is different: what is the
+    agreement rate, not can a disagreement be found. Two questions, two sampling frames, and confusing them
+    would flatter the first.
+    """
+    import precision
+    import resolution
+    out = []
+    for label, path, suffix in CORPORA:
+        if not os.path.isfile(path):
+            continue
+        c = precision.corpus(label)
+        for s in resolution.subjects():
+            rows = precision.rows_of(s["slug"], suffix)
+            if not rows:
+                continue
+            for row in rows:
+                q = c["want"].get(row["query"])
+                if q is None or q["difficulty"] == "absent":
+                    continue
+                for cid in [str(x) for x in (row.get("returned") or [])]:
+                    kind = precision.classify(cid, q["ids"], c)
+                    out.append({"corpus": label, "query": row["query"], "id": cid,
+                                "text": c["text"].get(cid, ""), "kind": kind,
+                                "subject": s["label"]})
+    out.sort(key=lambda p: (p["corpus"], p["query"], p["id"], p["subject"]))
+    return out
+
+
+def pairs():
+    """The enriched sample the READERS are asked: twenty of each kind, by stride.
+
+    Deterministic: sorted, then a stride, so the sample is the same on every machine and the cache always
+    describes the same pairs.
     """
     import precision
     import resolution
@@ -206,6 +239,82 @@ def load_human():
         return json.load(fh)
 
 
+HUMAN_SKELETON = """# Sixty pairs about what a memory returns
+
+For each pair, decide whether the record would help the person who asked. Write YES or NO in the answers
+file beside this one - `results/human-sample.json` - under the "verdict" field of the matching number.
+Six is enough to start; sixty is an hour and makes it a measurement.
+
+Do not read the answers of anything else first. There is no right answer being looked for, only yours.
+
+"""
+
+
+def export_human(count, seed, json_path, md_path):
+    """A random draw, written out for a person: one file to fill, one to read.
+
+    THE ONLY PART OF THE LADDER THAT NEEDS SOMEBODY WHO IS NOT A MODEL, so the least this repository can do is
+    hand them the work prepared: the pairs already drawn, at random rather than for disagreement, with the
+    question and the record in front of them and nothing else.
+    """
+    import random
+    pop = population()
+    if len(pop) < count:
+        raise SystemExit("only %d pairs in the population" % len(pop))
+    draw = random.Random(seed).sample(pop, count)
+    draw.sort(key=lambda p: (p["corpus"], p["query"], p["id"]))
+    labels = []
+    for n, p in enumerate(draw, 1):
+        labels.append({"n": n, "corpus": p["corpus"], "query": p["query"], "id": p["id"],
+                       "kind": p["kind"], "shown": p["text"], "verdict": ""})
+    doc = {"why": "a random draw from every (question, returned record) pair this repository holds; the "
+                  "reads are the person's own and nothing else is shown to them",
+           "labeller": "", "asked_at": "", "sample": "random, seed %d, %d of %d" % (seed, count, len(pop)),
+           "labels": labels}
+    with open(json_path, "w", encoding="utf-8", newline=chr(10)) as fh:
+        fh.write(json.dumps(doc, indent=1, ensure_ascii=False) + chr(10))
+    lines = [HUMAN_SKELETON]
+    for l in labels:
+        lines.append("---")
+        lines.append("")
+        lines.append("**%d.** Question asked: %s%s%s" % (l["n"], BT, l["query"], BT))
+        lines.append("")
+        lines.append("Record returned: %s%s%s" % (BT, l["shown"], BT))
+        lines.append("")
+    with open(md_path, "w", encoding="utf-8", newline=chr(10)) as fh:
+        fh.write(chr(10).join(lines))
+    print("wrote %s (%d pairs to read) and %s (to fill)" % (md_path, len(labels), json_path))
+    return 0
+
+
+def import_human(path):
+    """Take a filled answers file, check it, and store it as the sampled labeller."""
+    with open(path, encoding="utf-8") as fh:
+        doc = json.load(fh)
+    labels = doc.get("labels") or []
+    kept, skipped = [], []
+    for l in labels:
+        verdict = (l.get("verdict") or "").strip().upper()
+        if verdict in ("YES", "Y"):
+            l["verdict"] = "YES"
+        elif verdict in ("NO", "N"):
+            l["verdict"] = "NO"
+        else:
+            skipped.append(l.get("n"))
+            continue
+        kept.append(l)
+    if not kept:
+        raise SystemExit("no verdicts in %s - fill the \"verdict\" field of the file you exported" % path)
+    human = load_human() or {}
+    human["random"] = {"labels": kept, "sample": doc.get("sample"), "labeller": doc.get("labeller"),
+                       "asked_at": doc.get("asked_at"), "why": doc.get("why")}
+    with open(HUMAN, "w", encoding="utf-8", newline=chr(10)) as fh:
+        fh.write(json.dumps(human, indent=1, ensure_ascii=False) + chr(10))
+    print("%d verdict(s) imported; %d left blank (numbers %s)"
+          % (len(kept), len(skipped), ", ".join(str(n) for n in skipped[:10]) or "none"))
+    return 0
+
+
 def by_model(cache):
     """{model: {(corpus, query, id): entry}} for the settled judgments."""
     out = {}
@@ -214,6 +323,26 @@ def by_model(cache):
             continue
         out.setdefault(v.get("model") or "?", {})[(v["corpus"], v["query"], v["id"])] = v
     return out
+
+
+def population_size():
+    import precision
+    import resolution
+    n = 0
+    for label, path, suffix in CORPORA:
+        if not os.path.isfile(path):
+            continue
+        c = precision.corpus(label)
+        for s in resolution.subjects():
+            rows = precision.rows_of(s["slug"], suffix)
+            if not rows:
+                continue
+            for row in rows:
+                q = c["want"].get(row["query"])
+                if q is None or q["difficulty"] == "absent":
+                    continue
+                n += len(row.get("returned") or [])
+    return n
 
 
 def report():
@@ -383,12 +512,50 @@ def report():
                 % (sum(1 for l in ctrl if l["verdict"] == "YES"), len(ctrl)))
             add("")
 
+    # "random", NOT "sample": the probe file already uses "sample" for a sentence describing how those six
+    # pairs were chosen, and reading a string as a dict of labels crashed the report on the first run.
+    sample = (human or {}).get("random") or {}
+    if sample.get("labels"):
+        labs = sample["labels"]
+        rows = [((l["kind"] != "noise"), l["verdict"] == "YES") for l in labs]
+        k = kappa(rows)
+        agree = sum(1 for a, b in rows if a == b)
+        add("## A person, on a random draw")
+        add("")
+        add("The six pairs above were chosen for disagreement, which is the right frame for asking whether a")
+        add("rule is wrong and the wrong one for asking how wrong it is. This is the other frame: **%d pairs"
+            % len(labs))
+        add("drawn at random** from the %d the repository holds, so the agreement here is a rate rather than a"
+            % population_size())
+        add("search for disagreements. %s" % (sample.get("sample") or ""))
+        add("")
+        add("| the rule says | pairs | the person says relevant |")
+        add("|---|---|---|")
+        for kind in ("answer", "near", "noise"):
+            here = [l for l in labs if l.get("kind") == kind]
+            if not here:
+                continue
+            add("| " + kind + " | %d | %d |"
+                % (len(here), sum(1 for l in here if l["verdict"] == "YES")))
+        add("")
+        add("Agreement with the rule's reading of relevance: **%d of %d (%d%%), kappa %s**."
+            % (agree, len(rows), round(100 * agree / float(len(rows))),
+               "n/a" if k is None else "%.2f" % k))
+        if len(rows) < 30:
+            add("")
+            add("At %d pairs that kappa is an estimate with a wide interval, and it is printed as an estimate" % len(rows))
+            add("rather than as a result. Sixty pairs is an hour of somebody's reading and would settle it.")
+        add("")
+
     add("## What this does not settle")
     add("")
     add("Two readers at one temperature are two opinions, not a standard. Where they agree the rule has")
     add("something to be wrong about; where they split, the question has no agreed answer and the rule's")
     add("verdict there is a coin toss with a justification. Neither reader is calibrated against a person,")
-    add("and that is the next rung - an expensive one, which is why it is named rather than done.")
+    add("and the pairs to calibrate them are already drawn: " + BT + "results/human-sample.md" + BT + " is sixty of")
+    add("them, at random, with a file beside it for the answers. " + BT + "judge.py --export-human=60" + BT + " draws")
+    add("another sixty; " + BT + "--import-human" + BT + " takes the answers and this report renders them. An hour of")
+    add("somebody's reading is the only thing standing between this and a rate instead of a search.")
     add("")
     add("The prompt is a judgement call of its own. It asks whether the record would help, not whether it")
     add("is the answer, because the corpus already says which record is the answer and asking again would")
@@ -414,6 +581,18 @@ def report():
 def main(argv):
     if "--report" in argv:
         return report()
+    for a in argv:
+        if a.startswith("--export-human="):
+            count = int(a.split("=", 1)[1])
+            seed = 20261027
+            for b in argv:
+                if b.startswith("--seed="):
+                    seed = int(b.split("=", 1)[1])
+            return export_human(count, seed,
+                                os.path.join("results", "human-sample.json"),
+                                os.path.join("results", "human-sample.md"))
+        if a.startswith("--import-human="):
+            return import_human(a.split("=", 1)[1])
     code = collect(argv)
     if "--no-report" not in argv:
         report()

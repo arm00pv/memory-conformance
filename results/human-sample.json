@@ -1,0 +1,548 @@
+{
+ "why": "a random draw from every (question, returned record) pair this repository holds; the reads are the person's own and nothing else is shown to them",
+ "labeller": "",
+ "asked_at": "",
+ "sample": "random, seed 20261027, 60 of 5336",
+ "labels": [
+  {
+   "n": 1,
+   "corpus": "A",
+   "query": "In which currency are invoices issued to a customer in another country?",
+   "id": "bill-currency",
+   "kind": "answer",
+   "shown": "All invoices are issued in euros regardless of the customer's country.",
+   "verdict": ""
+  },
+  {
+   "n": 2,
+   "corpus": "A",
+   "query": "deployment key rotation",
+   "id": "key-deploy-old",
+   "kind": "near",
+   "shown": "The previous deployment key is retained for thirty days so old builds can still be verified.",
+   "verdict": ""
+  },
+  {
+   "n": 3,
+   "corpus": "A",
+   "query": "dns ttl five minute",
+   "id": "bill-refund",
+   "kind": "noise",
+   "shown": "Refunds are processed within five working days of approval.",
+   "verdict": ""
+  },
+  {
+   "n": 4,
+   "corpus": "A",
+   "query": "how many sessions can the database open at once",
+   "id": "budget",
+   "kind": "noise",
+   "shown": "The hosting budget is reviewed at the start of each quarter.",
+   "verdict": ""
+  },
+  {
+   "n": 5,
+   "corpus": "A",
+   "query": "nightly report worker",
+   "id": "maint-notice",
+   "kind": "noise",
+   "shown": "Customers are told about planned maintenance seven days in advance.",
+   "verdict": ""
+  },
+  {
+   "n": 6,
+   "corpus": "A",
+   "query": "which git behaviour hides the carriage returns",
+   "id": "rel-rollback",
+   "kind": "noise",
+   "shown": "A rollback is a redeploy of the previous image and takes ninety seconds.",
+   "verdict": ""
+  },
+  {
+   "n": 7,
+   "corpus": "A",
+   "query": "wireguard tunnel staging network",
+   "id": "net-vpn",
+   "kind": "answer",
+   "shown": "Engineers reach the staging network through a WireGuard tunnel.",
+   "verdict": ""
+  },
+  {
+   "n": 8,
+   "corpus": "B",
+   "query": "Do any trains sell drink and snacks in a vintage vehicle?",
+   "id": "cater-marlbrook-vending",
+   "kind": "near",
+   "shown": "Marlbrook Line units have vending machines only, restocked at Fenwick Road.",
+   "verdict": ""
+  },
+  {
+   "n": 9,
+   "corpus": "B",
+   "query": "How late into the night does the branch keep running?",
+   "id": "depot-saltmarsh-hours",
+   "kind": "noise",
+   "shown": "Saltmarsh depot opens for unit preparation at 04:30 and closes at 23:00 every day of the week.",
+   "verdict": ""
+  },
+  {
+   "n": 10,
+   "corpus": "B",
+   "query": "How many conductors work a train formed of more than four vehicles?",
+   "id": "class-estuary-body",
+   "kind": "noise",
+   "shown": "Estuary units are three-car diesels with a narrow body, built to clear the estuary bridges.",
+   "verdict": ""
+  },
+  {
+   "n": 11,
+   "corpus": "B",
+   "query": "How often do exams on the A-service fall due?",
+   "id": "maintain-brake-test",
+   "kind": "near",
+   "shown": "A brake continuity test is made at the start of every daily diagram.",
+   "verdict": ""
+  },
+  {
+   "n": 12,
+   "corpus": "B",
+   "query": "What is the maximum permitted speed on the Estuary Line?",
+   "id": "cater-coble-trolley",
+   "kind": "noise",
+   "shown": "A trolley runs on Estuary Line trains between 07:00 and 19:00 on weekdays.",
+   "verdict": ""
+  },
+  {
+   "n": 13,
+   "corpus": "B",
+   "query": "What is the maximum permitted speed on the Estuary Line?",
+   "id": "depot-saltmarsh-hours",
+   "kind": "noise",
+   "shown": "Saltmarsh depot opens for unit preparation at 04:30 and closes at 23:00 every day of the week.",
+   "verdict": ""
+  },
+  {
+   "n": 14,
+   "corpus": "B",
+   "query": "Where are hearing loops fitted?",
+   "id": "access-hearing-loop",
+   "kind": "answer",
+   "shown": "Hearing loops are fitted at every booking window and at the Coble Wharf desk.",
+   "verdict": ""
+  },
+  {
+   "n": 15,
+   "corpus": "B",
+   "query": "Where does the Marlbrook Line take its power from?",
+   "id": "depot-saltmarsh-hours",
+   "kind": "noise",
+   "shown": "Saltmarsh depot opens for unit preparation at 04:30 and closes at 23:00 every day of the week.",
+   "verdict": ""
+  },
+  {
+   "n": 16,
+   "corpus": "large",
+   "query": "A SOCKS proxy `http.Agent` for HTTP and HTTPS",
+   "id": "socks-proxy-agent",
+   "kind": "answer",
+   "shown": "A SOCKS proxy `http.Agent` implementation for HTTP and HTTPS Version 6.2.1. Licensed MIT.",
+   "verdict": ""
+  },
+  {
+   "n": 17,
+   "corpus": "large",
+   "query": "A fast function for where a string be truncated, given an width limit and an string.",
+   "id": "promise-inflight",
+   "kind": "noise",
+   "shown": "One promise for multiple requests in flight to avoid async duplication Version 1.0.1. Licensed ISC.",
+   "verdict": ""
+  },
+  {
+   "n": 18,
+   "corpus": "large",
+   "query": "A minimal module to Unix, and URL paths",
+   "id": "@protobufjs/path",
+   "kind": "answer",
+   "shown": "A minimal path module to resolve Unix, Windows and URL paths alike. Version 1.1.2. Licensed BSD-3-Clause.",
+   "verdict": ""
+  },
+  {
+   "n": 19,
+   "corpus": "large",
+   "query": "A minimal path module to resolve Unix, Windows and URL paths alike.",
+   "id": "@protobufjs/path",
+   "kind": "answer",
+   "shown": "A minimal path module to resolve Unix, Windows and URL paths alike. Version 1.1.2. Licensed BSD-3-Clause.",
+   "verdict": ""
+  },
+  {
+   "n": 20,
+   "corpus": "large",
+   "query": "AWS SDK for JavaScript Ecs Client for Browser and React",
+   "id": "@aws-sdk/client-s3",
+   "kind": "near",
+   "shown": "AWS SDK for JavaScript S3 Client for Node.js, Browser and React Native Version 3.1156.0. Licensed Apache-2.0.",
+   "verdict": ""
+  },
+  {
+   "n": 21,
+   "corpus": "large",
+   "query": "AWS SDK for JavaScript S3 Client for Browser and React",
+   "id": "@aws-sdk/client-s3",
+   "kind": "answer",
+   "shown": "AWS SDK for JavaScript S3 Client for Node.js, Browser and React Native Version 3.1156.0. Licensed Apache-2.0.",
+   "verdict": ""
+  },
+  {
+   "n": 22,
+   "corpus": "large",
+   "query": "AWS credential provider calls STS assumeRole for AWS credentials",
+   "id": "crbro-memory",
+   "kind": "noise",
+   "shown": "CRBRO — Persistent neural memory for AI. A biological file-based MCP server that gives your AI long-term memory across sessions. Version 2.10.0. Licensed MIT.",
+   "verdict": ""
+  },
+  {
+   "n": 23,
+   "corpus": "large",
+   "query": "AWS credential provider sources credentials the EC2 instance metadata and ECS container metadata",
+   "id": "@aws-sdk/credential-provider-ini",
+   "kind": "near",
+   "shown": "AWS credential provider that sources credentials from ~/.aws/credentials and ~/.aws/config Version 3.973.21. Licensed Apache-2.0.",
+   "verdict": ""
+  },
+  {
+   "n": 24,
+   "corpus": "large",
+   "query": "AWS credential provider that calls STS assumeRole for temporary AWS credentials",
+   "id": "@aws-sdk/credential-provider-web-identity",
+   "kind": "answer",
+   "shown": "AWS credential provider that calls STS assumeRole for temporary AWS credentials Version 3.972.82. Licensed Apache-2.0.",
+   "verdict": ""
+  },
+  {
+   "n": 25,
+   "corpus": "large",
+   "query": "AWS credential that a resolved SSO token for temporary AWS",
+   "id": "@aws-sdk/credential-provider-sso",
+   "kind": "answer",
+   "shown": "AWS credential provider that exchanges a resolved SSO login token file for temporary AWS credentials Version 3.973.20. Licensed Apache-2.0.",
+   "verdict": ""
+  },
+  {
+   "n": 26,
+   "corpus": "large",
+   "query": "AWS credential that credentials a Node.JS",
+   "id": "@aws-sdk/credential-provider-ini",
+   "kind": "near",
+   "shown": "AWS credential provider that sources credentials from ~/.aws/credentials and ~/.aws/config Version 3.973.21. Licensed Apache-2.0.",
+   "verdict": ""
+  },
+  {
+   "n": 27,
+   "corpus": "large",
+   "query": "AWS credential that credentials the EC2 instance service and ECS metadata",
+   "id": "@smithy/credential-provider-imds",
+   "kind": "answer",
+   "shown": "AWS credential provider that sources credentials from the EC2 instance metadata service and ECS container metadata service Version 4.5.2. Licensed Apache-2.0.",
+   "verdict": ""
+  },
+  {
+   "n": 28,
+   "corpus": "large",
+   "query": "An Esprima-compatible JavaScript built on Acorn",
+   "id": "environment",
+   "kind": "noise",
+   "shown": "Check which JavaScript environment your code is running in at runtime: browser, Node.js, Bun, etc Version 1.1.0. Licensed MIT.",
+   "verdict": ""
+  },
+  {
+   "n": 29,
+   "corpus": "large",
+   "query": "Check JavaScript your is running in at browser, Bun, etc",
+   "id": "@aws-sdk/client-ecs",
+   "kind": "noise",
+   "shown": "AWS SDK for JavaScript Ecs Client for Node.js, Browser and React Native Version 3.1156.0. Licensed Apache-2.0.",
+   "verdict": ""
+  },
+  {
+   "n": 30,
+   "corpus": "large",
+   "query": "Check if the character by a given Unicode point is fullwidth",
+   "id": "@aws-sdk/credential-provider-sso",
+   "kind": "noise",
+   "shown": "AWS credential provider that exchanges a resolved SSO login token file for temporary AWS credentials Version 3.973.20. Licensed Apache-2.0.",
+   "verdict": ""
+  },
+  {
+   "n": 31,
+   "corpus": "large",
+   "query": "Detect Node.JS (as opposite to browser environment) (reliable)",
+   "id": "@protobufjs/path",
+   "kind": "noise",
+   "shown": "A minimal path module to resolve Unix, Windows and URL paths alike. Version 1.1.2. Licensed BSD-3-Clause.",
+   "verdict": ""
+  },
+  {
+   "n": 32,
+   "corpus": "large",
+   "query": "Detect Node.JS (as to browser environment) (reliable)",
+   "id": "environment",
+   "kind": "noise",
+   "shown": "Check which JavaScript environment your code is running in at runtime: browser, Node.js, Bun, etc Version 1.1.0. Licensed MIT.",
+   "verdict": ""
+  },
+  {
+   "n": 33,
+   "corpus": "large",
+   "query": "Determine the East Asian Width of a Unicode character",
+   "id": "get-east-asian-width",
+   "kind": "answer",
+   "shown": "Determine the East Asian Width of a Unicode character Version 1.7.0. Licensed MIT.",
+   "verdict": ""
+  },
+  {
+   "n": 34,
+   "corpus": "large",
+   "query": "Isomorphic fetch() in Deno and Cloudflare",
+   "id": "@libsql/isomorphic-fetch",
+   "kind": "answer",
+   "shown": "Isomorphic fetch() in Node, Deno and Cloudflare Workers Version 0.3.1. Licensed MIT.",
+   "verdict": ""
+  },
+  {
+   "n": 35,
+   "corpus": "large",
+   "query": "Isomorphic fetch() in Node, Deno and Cloudflare Workers",
+   "id": "@libsql/isomorphic-fetch",
+   "kind": "answer",
+   "shown": "Isomorphic fetch() in Node, Deno and Cloudflare Workers Version 0.3.1. Licensed MIT.",
+   "verdict": ""
+  },
+  {
+   "n": 36,
+   "corpus": "large",
+   "query": "List files and inside the specified",
+   "id": "chart.js-auto",
+   "kind": "noise",
+   "shown": "Auto registering package. Exists to support bundlers without exports support such as webpack 4.",
+   "verdict": ""
+  },
+  {
+   "n": 37,
+   "corpus": "large",
+   "query": "List files and inside the specified",
+   "id": "side-channel",
+   "kind": "noise",
+   "shown": "Store information about any JS value in a side channel. Uses WeakMap if available. Version 1.1.1. Licensed MIT.",
+   "verdict": ""
+  },
+  {
+   "n": 38,
+   "corpus": "large",
+   "query": "List files and inside the specified",
+   "id": "side-channel-list",
+   "kind": "noise",
+   "shown": "Store information about any JS value in a side channel, using a linked list Version 1.0.1. Licensed MIT.",
+   "verdict": ""
+  },
+  {
+   "n": 39,
+   "corpus": "large",
+   "query": "MCP Local Service for copilot",
+   "id": "@vheins/local-memory-mcp",
+   "kind": "answer",
+   "shown": "MCP Local Memory Service for coding copilot agents Version 0.52.3. Licensed MIT.",
+   "verdict": ""
+  },
+  {
+   "n": 40,
+   "corpus": "large",
+   "query": "Model Context Protocol implementation for TypeScript - Client package",
+   "id": "@modelcontextprotocol/server-memory",
+   "kind": "near",
+   "shown": "MCP server for enabling memory for Claude through a knowledge graph Version 1.0.0. Licensed SEE LICENSE IN LICENSE.",
+   "verdict": ""
+  },
+  {
+   "n": 41,
+   "corpus": "large",
+   "query": "Model Context Protocol implementation for TypeScript - Server package",
+   "id": "@aws-sdk/credential-provider-sso",
+   "kind": "noise",
+   "shown": "AWS credential provider that exchanges a resolved SSO login token file for temporary AWS credentials Version 3.973.20. Licensed Apache-2.0.",
+   "verdict": ""
+  },
+  {
+   "n": 42,
+   "corpus": "large",
+   "query": "Parses Cache-Control and other headers. Helps building correct HTTP caches and proxies",
+   "id": "socks-proxy-agent",
+   "kind": "noise",
+   "shown": "A SOCKS proxy `http.Agent` implementation for HTTP and HTTPS Version 6.2.1. Licensed MIT.",
+   "verdict": ""
+  },
+  {
+   "n": 43,
+   "corpus": "large",
+   "query": "Parses and other Helps correct caches and",
+   "id": "is-number",
+   "kind": "noise",
+   "shown": "Returns true if a number or string value is a finite number. Useful for regex matches, parsing, user input, etc. Version 7.0.0. Licensed MIT.",
+   "verdict": ""
+  },
+  {
+   "n": 44,
+   "corpus": "large",
+   "query": "Returns true if a or string value is a number. Useful for matches, parsing, input, etc.",
+   "id": "is-number",
+   "kind": "answer",
+   "shown": "Returns true if a number or string value is a finite number. Useful for regex matches, parsing, user input, etc. Version 7.0.0. Licensed MIT.",
+   "verdict": ""
+  },
+  {
+   "n": 45,
+   "corpus": "large",
+   "query": "mdast utility to find and replace text in a tree",
+   "id": "mdast-util-find-and-replace",
+   "kind": "answer",
+   "shown": "mdast utility to find and replace text in a tree Version 3.0.3. Licensed MIT.",
+   "verdict": ""
+  },
+  {
+   "n": 46,
+   "corpus": "large",
+   "query": "micromark factory to markdown titles (found in definitions)",
+   "id": "micromark-factory-destination",
+   "kind": "near",
+   "shown": "micromark factory to parse destinations (found in resources, definitions) Version 2.0.1. Licensed MIT.",
+   "verdict": ""
+  },
+  {
+   "n": 47,
+   "corpus": "large",
+   "query": "micromark factory to markdown whitespace (found in of places)",
+   "id": "micromark",
+   "kind": "near",
+   "shown": "small commonmark compliant markdown parser with positional info and concrete tokens Version 4.0.3. Licensed MIT.",
+   "verdict": ""
+  },
+  {
+   "n": 48,
+   "corpus": "large",
+   "query": "remark plugin to add for serializing markdown",
+   "id": "crbro-memory",
+   "kind": "noise",
+   "shown": "CRBRO — Persistent neural memory for AI. A biological file-based MCP server that gives your AI long-term memory across sessions. Version 2.10.0. Licensed MIT.",
+   "verdict": ""
+  },
+  {
+   "n": 49,
+   "corpus": "real",
+   "query": "64-bit big-endian signed integer-to-string",
+   "id": "@esbuild/win32-x64",
+   "kind": "noise",
+   "shown": "The Windows 64-bit binary for esbuild, a JavaScript bundler. Version 0.28.2. Licensed MIT.",
+   "verdict": ""
+  },
+  {
+   "n": 50,
+   "corpus": "real",
+   "query": "AWS SDK for JavaScript Ecs Client for Node.js, Browser and React Native",
+   "id": "@protobufjs/path",
+   "kind": "noise",
+   "shown": "A minimal path module to resolve Unix, Windows and URL paths alike. Version 1.1.2. Licensed BSD-3-Clause.",
+   "verdict": ""
+  },
+  {
+   "n": 51,
+   "corpus": "real",
+   "query": "AWS credential provider that sources credentials from ~/.aws/credentials and ~/.aws/config",
+   "id": "@aws-sdk/credential-provider-ini",
+   "kind": "answer",
+   "shown": "AWS credential provider that sources credentials from ~/.aws/credentials and ~/.aws/config Version 3.973.21. Licensed Apache-2.0.",
+   "verdict": ""
+  },
+  {
+   "n": 52,
+   "corpus": "real",
+   "query": "Auto registering package. Exists to support bundlers without exports support such as webpack 4.",
+   "id": "chart.js-auto",
+   "kind": "answer",
+   "shown": "Auto registering package. Exists to support bundlers without exports support such as webpack 4.",
+   "verdict": ""
+  },
+  {
+   "n": 53,
+   "corpus": "real",
+   "query": "Get the visual width of a string - the number of columns required to display it",
+   "id": "crbro-memory",
+   "kind": "noise",
+   "shown": "CRBRO — Persistent neural memory for AI. A biological file-based MCP server that gives your AI long-term memory across sessions. Version 2.10.0. Licensed MIT.",
+   "verdict": ""
+  },
+  {
+   "n": 54,
+   "corpus": "real",
+   "query": "Get the visual width of a string - the number of columns required to display it",
+   "id": "get-east-asian-width",
+   "kind": "near",
+   "shown": "Determine the East Asian Width of a Unicode character Version 1.7.0. Licensed MIT.",
+   "verdict": ""
+  },
+  {
+   "n": 55,
+   "corpus": "real",
+   "query": "List files and directories inside the specified directory",
+   "id": "@nodelib/fs.scandir",
+   "kind": "answer",
+   "shown": "List files and directories inside the specified directory Version 2.1.5. Licensed MIT.",
+   "verdict": ""
+  },
+  {
+   "n": 56,
+   "corpus": "real",
+   "query": "Louvain community for graphology.",
+   "id": "fast-string-truncated-width",
+   "kind": "noise",
+   "shown": "A fast function for calculating where a string should be truncated, given an optional width limit and an ellipsis string. Version 3.0.3. Licensed MIT.",
+   "verdict": ""
+  },
+  {
+   "n": 57,
+   "corpus": "real",
+   "query": "Streaming, source-agnostic EventSource/Server-Sent Events parser",
+   "id": "eventsource-parser",
+   "kind": "answer",
+   "shown": "Streaming, source-agnostic EventSource/Server-Sent Events parser Version 3.1.1. Licensed MIT.",
+   "verdict": ""
+  },
+  {
+   "n": 58,
+   "corpus": "real",
+   "query": "mdast utility to and replace text in a",
+   "id": "mdast-util-find-and-replace",
+   "kind": "answer",
+   "shown": "mdast utility to find and replace text in a tree Version 3.0.3. Licensed MIT.",
+   "verdict": ""
+  },
+  {
+   "n": 59,
+   "corpus": "real",
+   "query": "micromark utility to whether a character is or punctuation",
+   "id": "@huggingface/transformers",
+   "kind": "noise",
+   "shown": "State-of-the-art Machine Learning for the web. Run 🤗 Transformers directly in your browser, with no need for a server! Version 3.8.1. Licensed Apache-2.0.",
+   "verdict": ""
+  },
+  {
+   "n": 60,
+   "corpus": "real",
+   "query": "micromark utility to whether a character is or punctuation",
+   "id": "micromark-util-classify-character",
+   "kind": "answer",
+   "shown": "micromark utility to classify whether a character is whitespace or punctuation Version 2.0.1. Licensed MIT.",
+   "verdict": ""
+  }
+ ]
+}
