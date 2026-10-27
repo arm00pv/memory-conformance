@@ -29,7 +29,7 @@ independently written corpora and in two phrasings, and writes the verdicts to `
 
 ```
 $ python claims.py
-**7 of the 25 claims hold in every setting measured.**
+**7 of the 27 claims hold in every setting measured.**
 ```
 
 Five survive everywhere, including the one that matters most: **memory-mcp-1file answers more
@@ -491,6 +491,60 @@ p = 0.175.
 
 The ledger's `agent-agrees-with-score` claim tests the top of the table and **FAILS**: on corpus B the
 subject on top changes when the metric becomes the one a caller sees.
+
+## A corpus with no author
+
+Every question set above was written by somebody: by the analyst, by a different model, by hand to a
+specification. The limit that has been open since the second corpus is that agreement between corpora
+written by the same hand proves less than it looks. `retrieval_corpus_real.json` answers it by removing
+the author instead of replacing him. [`REAL-CORPUS.md`](REAL-CORPUS.md)
+
+The records are the **real `package.json` files installed under `node_modules`** - 397 packages with a
+usable description, 72 kept by a fixed stride, 325 left out. The questions are derived from those
+descriptions by a rule applied without judgement: sixteen verbatim, sixteen with every third long word
+removed, sixteen about packages that share three or more long words with another record in the store, and
+twelve about **real packages that were left out**. Nobody chose a question, and nothing in the corpus was
+written by anyone who knew the answer.
+
+### The five subjects that answered nothing, answered
+
+| subject | corpus A | corpus B | corpus C | **real text** |
+|---|---|---|---|---|
+| `control` | 37 | 44 | 43 | **60** |
+| `memory-lean` | 26 | 12 | 12 | **59** |
+| `mcp-duckdb-memory-server` | 24 | 25 | 23 | **59** |
+| `zenbrain` | 40 | 33 | 31 | 48 |
+| `memory-mcp-1file` | 43 | 45 | 40 | 47 |
+| `mcp-knowledge-graph` | 12 | 12 | 12 | **45** |
+| `server-memory` 1.0.0 and 2.0.0 | 12 | 12 | 12 | **45** |
+| `memento` | 14 | 19 | 17 | 23 |
+| `statecore-mcp` | 0 | 12 | 12 | 12 |
+| `memdb` | 6 | 2 | 0 | 0 |
+
+On the three authored corpora, five subjects answer no answerable question at all and score exactly the
+twelve points for declining. On real text they answer **33 of 48**; `memory-lean`, near the floor
+everywhere else at 12 to 26, scores **59 of 60**; and **the positive control scores 60 of 60**, which is
+the ceiling this repository measured against the answer key, reached by a file that appends lines.
+
+Nothing about those subjects changed. What changed is the question: the authored corpora paraphrase
+("how many retries…"), and the real corpus asks with the record's own words. A word matcher is worthless
+against a paraphrase and excellent against a near-quote, and the previous table was measuring the first
+while being read as a measure of memory.
+
+The rank correlation with corpus A is 0.80 on the score, which sounds reassuring until it is put beside
+**B vs C, which is 0.909**: two corpora written by different authors about different worlds agree more
+than either agrees with real text. Against B it is 0.64 and against C 0.68.
+
+### The corpus cannot test paraphrase, and it says so
+
+`validate_corpus.py` **fails** this corpus, and the right thing to do with that is publish it. All
+sixteen hard questions still share more than half their long words with the record that answers them,
+because removing every third word from a real sentence leaves a sentence a substring counter can answer.
+
+That is the limit of a corpus with no author, stated precisely: **real records are free and real questions
+are nearly free, but a paraphrased band needs somebody to paraphrase.** The easy, adversarial and absent
+bands are real tests; the hard band is a keyword band wearing the name, and the one finding above is what
+that distinction costs.
 
 ## A second corpus, written blind
 

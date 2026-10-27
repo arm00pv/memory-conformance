@@ -3187,6 +3187,111 @@ measurement: every number here comes from rows that were already on disk. The re
 analysis and the mutation battery all stand exactly as they were, and now the choice inside them is
 visible.
 
+## Addendum 30: a corpus with no author, and what it did to the table
+
+The limit has been open since the second corpus: the analyst writes the questions and then grades them,
+so agreement between corpora proves less than it looks. A third corpus answered it once by using a
+different model. This phase answered it by removing the author instead of replacing him.
+
+The records are the real `package.json` files of 397 installed packages - real names, real descriptions,
+real version strings, in whatever state their authors left them. The questions are derived by rule:
+sixteen verbatim, sixteen with every third long word removed, sixteen about packages whose authors
+happened to use three or more of the same long words, and twelve about **real packages that were left out
+of the store**. No sentence was written for this corpus, and no question was chosen by anyone who knew an
+answer.
+
+### What it did to the table
+
+| subject | corpus A | corpus B | corpus C | real text |
+|---|---|---|---|---|
+| `control` | 37 | 44 | 43 | **60** |
+| `memory-lean` | 26 | 12 | 12 | **59** |
+| `mcp-duckdb-memory-server` | 24 | 25 | 23 | **59** |
+| `zenbrain` | 40 | 33 | 31 | 48 |
+| `memory-mcp-1file` | 43 | 45 | 40 | 47 |
+| `mcp-knowledge-graph` | 12 | 12 | 12 | **45** |
+| `server-memory` 1.0.0 and 2.0.0 | 12 | 12 | 12 | **45** |
+| `memento` | 14 | 19 | 17 | 23 |
+| `statecore-mcp` | 0 | 12 | 12 | 12 |
+| `memdb` | 6 | 2 | 0 | 0 |
+
+**The five subjects that answered nothing answered.** On the authored corpora `server-memory`,
+`mcp-knowledge-graph` and `statecore-mcp` score exactly twelve - the points for declining - and the finding
+was published in Addendum 23 as "four of ten answers no question at all". On real text the first two
+answer **33 of 48**. Nothing about either subject changed. The questions did.
+
+That is the correction this phase has to make, and it is mine. "The smallest servers here find nothing at
+all" was true of three corpora and false of a fourth, and the difference is not the author - it is that
+the authored corpora paraphrase and the real corpus asks with the record's own words. A word matcher is
+useless against a paraphrase and excellent against a near-quote. The table was measuring the first while
+being read as a measure of memory, and the ledger's `small-servers-silent` claim has carried that
+overclaim since it was written.
+
+The claim is left standing with its scope - it holds on the corpora it was written against - and a second
+one now states the version that travels. `silent-everywhere` asks whether those subjects are silent on
+real text too, and it **FAILS**: `server-memory` answers 33 of 48, `mcp-knowledge-graph` answers 33 of
+48, and only `statecore-mcp` is still silent everywhere.
+
+**The leader changes entirely.** The positive control scores **60 of 60** on real text - the ceiling this
+repository measured against the answer key, reached by a file that appends lines and counts words.
+`memory-lean`, at the floor of every authored corpus, scores 59. `memory-mcp-1file`, first on fifteen of
+twenty-four authored rulers, is fifth at 47. On the metric a caller reads the control still wins (59 of
+60), so that part of the previous phase survives contact with real text and the top of the table does
+not.
+
+**The rank correlation is the honest error bar.** Real against corpus A is 0.80 on the score, against B
+0.64, against C 0.68. Put that beside B vs C at **0.909** and the picture inverts: two corpora written by
+different authors about different worlds agree with each other better than either agrees with real text.
+
+### The corpus cannot test paraphrase, and the validator says so
+
+`validate_corpus.py` fails the corpus on the hard band: all sixteen hard questions still share more than
+half their long words with the record that answers them, median share 1.00. Removing every third word from
+a real sentence leaves a sentence a substring counter can answer.
+
+I could have tuned the rule until the validator passed - thin until the share dropped below half. I did
+not, because that is fitting the corpus to a threshold that was written for a different kind of corpus,
+and the failure is the more useful result: **real records are free, real questions are nearly free, and a
+paraphrased band needs somebody to paraphrase.** An authorless corpus can test recognition, discrimination
+and refusal. It cannot test understanding, and that is a limit no sampling rule removes.
+
+### One more of my own mistakes
+
+**42. The rule produced two bands that were not the bands they claimed.** The first build generated 3 adversarial
+questions instead of 16, because a stride sample of 72 packages almost never contains the confusable pairs
+the band needs. Fixed by choosing the pairs first and filling the store around them - but the lesson is
+the same one the validator caught: a mechanical rule has to be checked against the property it claims, and
+neither the rule nor the author notices on their own.
+
+**43. The label was not the suffix.** The claim that compares the leaders across corpora keyed its results
+by file suffix ("-c") and looked corpora up by name ("C"), so corpus C was read as absent and reported as
+disagreeing with a leader it matched exactly. It is the fourth occurrence of one mistake in this
+repository - the zero-of-zero table, the four-part dict keyed by three, the calibration file under another
+name, and now a suffix used as a name - and it is why `band.cell()` exists. The corrected claim says one
+of the three authored corpora agrees with real text, not none.
+
+The second band was repairable and I repaired it. Four of the twelve unanswerable questions were more
+than half covered by a stored record, which the validator called an unlabelled answer and was right
+about - so the rule now rejects any candidate whose words are half present in the store, and the band
+enforces its own definition. The hard band cannot be repaired the same way, because its definition is a
+paraphrase and no sampling rule produces one.
+
+### What this does not settle
+
+It is real text and it is not real memory. Package descriptions are short, written to sell a library, and
+share vocabulary because the vocabulary belongs to a domain rather than to a person. A question a colleague
+asks a memory store is longer, more ambiguous, and often answerable only from several records at once. What
+the corpus does buy is the property every other corpus here lacks: not one sentence in it was written by
+anyone who knew what the answer would be.
+
+### What this costs
+
+One generator, one measurement run of eleven subjects, one report and a claim that fails. The subjects,
+the probes, the tie analysis and the mutation battery are untouched. What moved is the answer to a
+question this repository has been asking since its second corpus, and it moved against the answer it had
+been giving.
+
+
 
 
 
