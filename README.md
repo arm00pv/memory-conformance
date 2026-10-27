@@ -780,6 +780,38 @@ Across the whole table 55 answers came from the superseded record alone and 549 
 is the only subject with a recency preference worth the name, and it gets it right about three times in
 four. The ledger's `recency-visible` claim **FAILS** for nine of eleven.
 
+## Cost is a function of depth, and the table now runs to five thousand
+
+Every cost figure published here was once taken at a depth where the growth does not bite. The sweep now
+reaches **5,000 records** for nine of the eleven subjects and 2,000 for the other two, with two to three
+runs each. [`GROWTH.md`](GROWTH.md)
+
+| subject | write at 5 | at 2,000 | at 5,000 | **search at 5** | at 5,000 |
+|---|---|---|---|---|---|
+| `statecore-mcp` | 4.4 ms | 12.9 | **35.9** (×3.3 write) | 2.1 ms | **27.7 ms** |
+| `mcp-duckdb-memory-server` | 14.5 ms | 21.5 | 44.0 | 8.3 ms | **2,187 ms** |
+| `control` | 15.5 ms | 17.3 | 30.3 | 0.4 ms | **44.1 ms** |
+| `memory-lean` | 5.6 ms | 10.4 | 14.1 | 2.1 ms | 13.8 ms |
+| `mcp-knowledge-graph` | 7.2 ms | 12.9 | 15.9 | 3.7 ms | 14.1 ms |
+| `memdb` / `zenbrain` | 1.5 ms | 1.0 / 0.9 | **0.5 / 0.7** | 1.8 / 1.5 ms | 70.6 / 9.9 ms |
+| `memento` (to 2,000) | 157 ms | 81.6 | — | 105 ms | **8,454 ms** |
+| `memory-mcp-1file` (to 2,000) | 57 ms | 44.9 | — | 113 ms | 98.8 ms |
+
+**A search is not priced by the write table.** `duckdb` costs 8 ms at depth 5 and **2.2 seconds** at
+5,000 — a factor of **264** — and five of eleven subjects grow their search by more than ten times in this
+range. The write axis is the gentler one: the worst grower is `statecore-mcp` at ×3.3, and two subjects
+get *cheaper* as the store fills.
+
+**And the control is in the growing list, which it should not be.** Its write appends one line under a
+lock — flat by construction — but it counts the records after every write to return a sequence number, and
+counting means reading the whole store. At 500 records that read sat below the noise floor and the
+prediction of flatness looked right; at 5,000 it is a fifth of the write cost. **The mechanism is mine, and
+it is exactly the mistake every subject in this table is being measured for.**
+
+Two subjects stop at 2,000 and both published why: `memento`'s search costs **8.5 seconds** at two thousand
+records, and `1file` reads its whole store on every write. A curve that stops is more honest than one that
+is extrapolated.
+
 ## A second corpus, written blind
 
 Every retrieval number in this file rests on a question set written by the same hand that wrote the

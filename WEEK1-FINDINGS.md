@@ -3664,6 +3664,70 @@ One generator, one measurement run of eleven subjects, one report, one claim tha
 question space now has a fourth dimension - whether a fact can change - and on it the field scores close to
 zero.
 
+## Addendum 36: the cost table runs to five thousand, and the read path is the expensive half
+
+Addendum 25 measured the cost axis to three thousand records and said so. Half the subjects had one run.
+This pays for the rest: **5,000 records for nine subjects, 2,000 for two, with two or three runs each**,
+and a report-only mode in growth.py so rebuilding the table no longer costs the deepest sweep in the
+repository.
+
+### The write axis was the gentler one
+
+The worst grower is `statecore-mcp` at **x3.3** - 4.4 ms at depth 5, 35.9 ms at 5,000. `mcp-knowledge-graph`
+x2.2, `memory-lean` x1.9, `server-memory` x1.8 and x1.6, and `memdb` and `zenbrain` get **cheaper** (x0.7)
+because their cost is dominated by a constant the store does not touch.
+
+### The read path is where depth bites
+
+| subject | search at depth 5 | at 5,000 | factor |
+|---|---|---|---|
+| `mcp-duckdb-memory-server` | 8.3 ms | **2,187 ms** | **264** |
+| `control` | 0.4 ms | 44.1 ms | 119 |
+| `memdb` | 1.8 ms | 70.6 ms | 38 |
+| `statecore-mcp` | 2.1 ms | 27.7 ms | 13 |
+| `zenbrain` | 1.5 ms | 9.9 ms | 7 |
+| `mcp-knowledge-graph` | 3.7 ms | 14.1 ms | 4 |
+
+Five of eleven subjects grow their search by more than ten times across the range, and there is no subject
+whose search cost is a constant in the size of what it is searching. Every retrieval number this repository
+publishes is a search cost taken over seventy-two records.
+
+### The prediction that was wrong, about my own subject
+
+Addendum 25 predicted the control would be flat: it appends one line under a lock. It is in the growing list
+at x1.5, and the mechanism is mine - after each append it counts the records to return a sequence number,
+and counting reads the whole store. At 500 records that read sits below the noise floor, which is why the
+line looked flat for two phases; at 5,000 it is a fifth of the write cost.
+
+That is the same defect the whole addendum exists to find, committed by the control the repository uses to
+prove its probes work. It is written into the generated report rather than a footnote, because a control
+with an unmeasured cost curve certifies something it has not checked.
+
+### Two subjects stop at two thousand, and both say why
+
+`memento`'s search costs **8.5 seconds** at two thousand records - the curve climbs from 105 ms at depth 5
+through 4.4 s at a thousand to 8.5 s at two thousand. `memory-mcp-1file` reads its whole store on every
+write, so a second run at the existing depth was bought instead of a deeper first one. A cost curve that
+stops, with the reason, is worth more than one that is extrapolated.
+
+### What repeated runs bought
+
+Every subject now has two or three runs and the agreement column is no longer empty for most of them. Where
+the runs disagree the table says so: `memory-mcp-1file`'s search ratio is x0.9 across its own two runs,
+which is noise and labelled as such.
+
+### What this does not settle
+
+5,000 records is not ten thousand, and the quadratic end of these curves has not been reached. What the
+range does establish is the shape: every subject that is not flat at 500 is measurably worse at 5,000, and
+the factor is computable from the table.
+
+### What this costs
+
+About fifteen minutes of sweeping for nine deep runs and two repeat runs, one flag added to growth.py, and
+one prediction retracted in the generated prose.
+
+
 
 
 
