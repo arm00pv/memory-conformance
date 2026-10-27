@@ -251,7 +251,7 @@ and hit@3 cannot see them by construction, and everything that moves here moved 
 | `pad-near` | large | 268 | 178 | 203 | 1.14 | 34% | 126 |
 | `control` | super | 66 | 66 | 2 | 0.03 | 41% | 92 |
 
-**16 of 16 checks hold,** over every corpus the levers were run on.** Two predictions were written before the first run - that hit@1 and hit@3
+**16 of 16 checks hold,** over every corpus the levers were run on. Two predictions were written before the first run - that hit@1 and hit@3
 could not see this lever at all, and that the unrelated padding would move the noise count while
 the near-miss padding moved the near-miss count - and both of those held. The numeric thresholds
 below were set when this section was written, after the corrected runs, so they are checks rather

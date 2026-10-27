@@ -815,7 +815,7 @@ def report(got, panel, checks=None):
                               "%s: and raises noise per correct answer less than unrelated padding does (%s against %s)"
                               % (lab, ratio(near["noise_per_hit"]), ratio(far["noise_per_hit"]))))
         held = sum(1 for ok, _t in preds if ok)
-        add("**%d of %d checks hold,** over every corpus the levers were run on.** Two predictions were written before the first run - that hit@1 and hit@3"
+        add("**%d of %d checks hold,** over every corpus the levers were run on. Two predictions were written before the first run - that hit@1 and hit@3"
             % (held, len(preds)))
         add("could not see this lever at all, and that the unrelated padding would move the noise count while")
         add("the near-miss padding moved the near-miss count - and both of those held. The numeric thresholds")
