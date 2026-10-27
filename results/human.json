@@ -1,0 +1,58 @@
+{
+ "why": "Six pairs put to the person who asked for this work, on 2026-10-27, with the question and the record and no label, no rule verdict and no reader verdict in front of them. Four of the six were chosen BECAUSE the rule and both readers disagree about them, so this is not a random sample and no kappa should be computed over it: it answers one question - where the rule excuses a near miss and both readers call it unrelated, is a person on the readers' side? - and carries one control, whether the person was paying attention.",
+ "labeller": "the person who requested the work",
+ "asked_at": "2026-10-27",
+ "sample": "enriched for disagreement, deliberately not random",
+ "labels": [
+  {
+   "corpus": "A",
+   "query": "Does shutting the window log me out?",
+   "id": "auth-lockout",
+   "kind": "near",
+   "verdict": "NO",
+   "shown": "An account locks for fifteen minutes after five failed sign-in attempts."
+  },
+  {
+   "corpus": "B",
+   "query": "Do staff at Coble Wharf use a portable ramp?",
+   "id": "station-coble-platforms",
+   "kind": "near",
+   "verdict": "NO",
+   "shown": "Coble Wharf has four platforms, two of them bay platforms used only in the morning peak."
+  },
+  {
+   "corpus": "B",
+   "query": "Which units use a 3+2 seating layout?",
+   "id": "class-dunmere-age",
+   "kind": "near",
+   "verdict": "NO",
+   "shown": "The Dunmere sets are the oldest working units, having entered service in 1984."
+  },
+  {
+   "corpus": "real",
+   "query": "Determine the East Width of a Unicode",
+   "id": "fast-string-truncated-width",
+   "kind": "near",
+   "verdict": "NO",
+   "shown": "A fast function for calculating where a string should be truncated, given an optional width limit and an ellipsis string."
+  },
+  {
+   "corpus": "A",
+   "query": "maintenance first sunday of each month",
+   "id": "maint-window",
+   "kind": "answer",
+   "verdict": "YES",
+   "shown": "Maintenance happens on the first Sunday of each month between 02:00 and 04:00 UTC.",
+   "note": "the control: everything agrees here, so a NO would have meant the labeller was not reading"
+  },
+  {
+   "corpus": "large",
+   "query": "MCP server enabling persistent memory for AI models through a local knowledge graph",
+   "id": "@modelcontextprotocol/server",
+   "kind": "noise",
+   "verdict": "NO",
+   "shown": "Model Context Protocol implementation for TypeScript - Server package. Version 2.3.1. Licensed Apache-2.0.",
+   "note": "the one pair where the readers split; the person sided with the rule that called it noise"
+  }
+ ]
+}

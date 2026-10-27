@@ -1006,6 +1006,39 @@ def c_readers_agree_with_each_other(ctx, corpus, shape):
             " measured against" % (agree, len(rows), k))
 
 
+def c_readers_match_a_person(ctx, corpus, shape):
+    """WHERE THE RULE EXCUSES A NEAR MISS, THE READERS AND A PERSON AGREE IT IS UNRELATED.
+
+    The ladder so far: the rule, against a reader (0.67), against a second reader (0.53), with the readers
+    0.81 against each other. Every rung is a model. This is the bottom rung - six pairs put to the person who
+    asked for the work, four of them chosen because the rule and both readers disagree - and the narrow
+    question it can answer: on those four, is a person on the readers' side?
+    """
+    import judge
+    human = judge.load_human()
+    if not human or not human.get("labels"):
+        return None
+    per = judge.by_model(judge.load())
+    models = sorted(per)
+    if not models:
+        return None
+    held, said = True, []
+    for kind in ("near", "answer"):
+        here = [l for l in human["labels"] if l.get("kind") == kind]
+        if not here:
+            continue
+        agreed = 0
+        for l in here:
+            p = (l["corpus"], l["query"], l["id"])
+            seen = [per[m][p]["verdict"] for m in models if p in per[m]]
+            if seen and all(v == l["verdict"] for v in seen):
+                agreed += 1
+        held = held and agreed == len(here)
+        said.append("%d of %d %s pair(s) where the readers and the person agree"
+                    % (agreed, len(here), kind))
+    return (held, "; ".join(said))
+
+
 def c_noise_is_charged(ctx, corpus, shape):
     """A SEARCH PAYS FOR THE UNRELATED RECORDS IT HANDS BACK.
 
@@ -1100,6 +1133,8 @@ CLAIMS = [    ("most-hits", "memory-mcp-1file answers more answerable questions 
      " with a reader's judgement.", c_rule_reads_like_a_reader, False),
     ("readers-agree-with-each-other", "two readers of the same pairs agree closely enough that a rule can"
      " be measured against them.", c_readers_agree_with_each_other, False),
+    ("readers-match-a-person", "where the rule excuses a near miss, the readers and a person agree it is"
+     " unrelated.", c_readers_match_a_person, False),
     ("score-sees-ordering", "the retrieval score changes when a search returns its worst match first.",
      c_score_sees_ordering, False),
     ("score-prefers-recalcitrance", "a search that accepts one shared word scores no better than one that"

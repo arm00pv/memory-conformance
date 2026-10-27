@@ -10,7 +10,7 @@ claim about silence. A subject's SCORE is what the paired test pairs on - the ri
 top three, plus a credit for declining a question with no answer. Its HITS are only the questions
 that have an answer and were answered correctly. "It answers nothing" is a claim about hits.
 
-**10 of the 38 claims hold in every setting measured.** The rest are printed beside the setting
+**11 of the 39 claims hold in every setting measured.** The rest are printed beside the setting
 that breaks them, because that setting is the claim's real scope.
 
 | claim | A written | A keywords | B written | B keywords | status |
@@ -51,6 +51,7 @@ that breaks them, because that setting is the claim's real scope.
 | noise-is-charged | no | no | **FAILS** |
 | rule-reads-like-a-reader | no | no | **FAILS** |
 | readers-agree-with-each-other | yes | yes | **HOLDS** |
+| readers-match-a-person | yes | yes | **HOLDS** |
 | score-sees-ordering | no | no | **FAILS** |
 | score-prefers-recalcitrance | no | no | **FAILS** |
 
@@ -225,6 +226,10 @@ that breaks them, because that setting is the claim's real scope.
 **readers-agree-with-each-other** - two readers of the same pairs agree closely enough that a rule can be measured against them. *HOLDS*
   - A written: true (the two readers agree on 49 of 54 pairs (kappa 0.81), so that is the ceiling any rule is measured against)
   - B written: true (the two readers agree on 49 of 54 pairs (kappa 0.81), so that is the ceiling any rule is measured against)
+
+**readers-match-a-person** - where the rule excuses a near miss, the readers and a person agree it is unrelated. *HOLDS*
+  - A written: true (4 of 4 near pair(s) where the readers and the person agree; 1 of 1 answer pair(s) where the readers and the person agree)
+  - B written: true (4 of 4 near pair(s) where the readers and the person agree; 1 of 1 answer pair(s) where the readers and the person agree)
 
 **score-sees-ordering** - the retrieval score changes when a search returns its worst match first. *FAILS*
   - A written: false (reversing the result list moved the score by 0 and the hit count by 0 (score 37 against 37))

@@ -66,6 +66,26 @@ agreeing makes it a floor rather than one model's opinion:
 **5 pair(s) the readers split on**, by what the rule said: answer 2, near 1, noise 2. A rule that happens to
 agree with one of them there is not thereby right.
 
+## A person, as the third labeller
+
+Six pairs were put to the person who asked for this work - question and record, with no label, no
+rule verdict and no reader verdict in front of them. Four were chosen BECAUSE the rule and both
+readers disagree about them, so this is a probe and not a sample, and no kappa is computed over it.
+
+| the rule says | pairs asked | the readers | the person |
+|---|---|---|---|
+| answer | 1 | agrees with the person on 1 of 1 | 1 said relevant |
+| near | 4 | agrees with the person on 4 of 4 | 0 said relevant |
+| noise | 1 | agrees with the person on 0 of 1 | 0 said relevant |
+
+**On the 4 record(s) this rule excuses as near misses, the person called 4 unrelated.**
+The readers called all 4 unrelated. The floor under the noise column is therefore no longer
+two models' opinion of a rule: on the pairs where that judgement is questionable, a person
+read the record and said the same thing.
+
+The control held: on the record the corpus says answers the question, the person said relevant
+(1 of 1), which is what a labeller paying attention says and what a contrarian does not.
+
 ## What this does not settle
 
 Two readers at one temperature are two opinions, not a standard. Where they agree the rule has

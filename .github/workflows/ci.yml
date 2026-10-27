@@ -267,6 +267,8 @@ jobs:
           test -s JUDGE.md
           grep -q "Cohen's kappa" JUDGE.md
           grep -q "Calibration" JUDGE.md
+          grep -q "A person, as the third labeller" JUDGE.md
+          grep -q "readers-match-a-person" CLAIMS.md
 
       - name: a tie must be reported as one of its three kinds, with a price
         run: |

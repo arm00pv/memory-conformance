@@ -190,6 +190,22 @@ def kappa(rows):
     return None if pe == 1 else (pa - pe) / (1 - pe)
 
 
+HUMAN = os.path.join("results", "human.json")
+
+
+def load_human():
+    """A person's labels, if anybody has given any.
+
+    THE ONLY LABELLER HERE THAT IS NOT A MODEL. It is a handful of pairs put to a person, chosen from where the
+    rule and the readers disagree, so it is a probe rather than a sample - and the report says so instead of
+    computing a kappa that would flatter it.
+    """
+    if not os.path.isfile(HUMAN):
+        return None
+    with open(HUMAN, encoding="utf-8") as fh:
+        return json.load(fh)
+
+
 def by_model(cache):
     """{model: {(corpus, query, id): entry}} for the settled judgments."""
     out = {}
@@ -323,6 +339,48 @@ def report():
                                                               if per[models[0]][p]["kind"] == kind))
                                          for kind in ("answer", "near", "noise"))))
             add("agree with one of them there is not thereby right.")
+            add("")
+
+    human = load_human()
+    if human and human.get("labels"):
+        labs = human["labels"]
+        add("## A person, as the third labeller")
+        add("")
+        add("Six pairs were put to the person who asked for this work - question and record, with no label, no")
+        add("rule verdict and no reader verdict in front of them. Four were chosen BECAUSE the rule and both")
+        add("readers disagree about them, so this is a probe and not a sample, and no kappa is computed over it.")
+        add("")
+        add("| the rule says | pairs asked | the readers | the person |")
+        add("|---|---|---|---|")
+        for kind in ("answer", "near", "noise"):
+            here = [l for l in labs if l.get("kind") == kind]
+            if not here:
+                continue
+            agreed = 0
+            for l in here:
+                p = (l["corpus"], l["query"], l["id"])
+                seen = [per[m][p]["verdict"] for m in models if p in per[m]]
+                if seen and all(v == l["verdict"] for v in seen):
+                    agreed += 1
+            yes = sum(1 for l in here if l["verdict"] == "YES")
+            add("| " + kind + " | %d | agrees with the person on %d of %d | %d said relevant |"
+                % (len(here), agreed, len(here), yes))
+        add("")
+        near = [l for l in labs if l.get("kind") == "near"]
+        if near:
+            no = sum(1 for l in near if l["verdict"] == "NO")
+            add("**On the %d record(s) this rule excuses as near misses, the person called %d unrelated.**"
+                % (len(near), no))
+            add("The readers called all %d unrelated. The floor under the noise column is therefore no longer"
+                % len(near))
+            add("two models' opinion of a rule: on the pairs where that judgement is questionable, a person")
+            add("read the record and said the same thing.")
+            add("")
+        ctrl = [l for l in labs if l.get("kind") == "answer"]
+        if ctrl:
+            add("The control held: on the record the corpus says answers the question, the person said relevant")
+            add("(%d of %d), which is what a labeller paying attention says and what a contrarian does not."
+                % (sum(1 for l in ctrl if l["verdict"] == "YES"), len(ctrl)))
             add("")
 
     add("## What this does not settle")

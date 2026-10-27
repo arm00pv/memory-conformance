@@ -35,7 +35,7 @@ independently written corpora and in two phrasings, and writes the verdicts to `
 
 ```
 $ python claims.py
-**10 of the 38 claims hold in every setting measured.**
+**11 of the 39 claims hold in every setting measured.**
 ```
 
 Nine survive everywhere, including the one that matters most: **memory-mcp-1file answers more

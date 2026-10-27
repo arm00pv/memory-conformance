@@ -4205,3 +4205,52 @@ that is not a model's opinion, and naming it is all this phase does about it.
 Sixty more model calls, one cache migration, one claim split in two, one claim that stopped holding, and no
 subject measured - because the thing under test was still the checker.
 
+
+## Addendum 43: the third labeller was a person, and it said the readers were right
+
+The last phase ended at the only rung it could not climb: two readers are two models, and neither is
+calibrated against a human. So six pairs went to the person who asked for this work - the question and the
+record, no label, no rule verdict and no reader verdict in front of them.
+
+**Four of the six were chosen BECAUSE the rule and both readers disagree about them.** That is a probe, not
+a sample, and no kappa is computed over it: it answers one narrow question, and it carries one control.
+
+| the rule says | pairs asked | the readers | the person |
+|---|---|---|---|
+| answer (control) | 1 | agree on 1 of 1 | said relevant |
+| **near miss** | **4** | agree on 4 of 4 | **called all 4 unrelated** |
+| noise | 1 | agree on 0 of 1 | said unrelated |
+
+**On all four records the rule excuses as near misses, the person said unrelated** - the same answer both
+readers gave. The floor under the noise column is no longer two models' opinion of a rule: on exactly the
+pairs where that judgement is questionable, a person read the record and agreed. And the control held, so
+the labeller was reading rather than clicking.
+
+**The noise row is the interesting one.** That pair is where the readers disagreed with each other - one
+called it relevant, one did not - and the person sided with the rule that called it noise. A human being
+settled a split between two models in favour of the string rule, which is worth remembering the next time
+somebody suggests a model's judgement is simply better than a rule's: on this evidence it is sometimes
+better and sometimes not, and the rule was right when they disagreed.
+
+### What this changes in the published numbers
+
+Nothing moves, and that is the result. The near-miss count stays a floor with the same size - eight of
+fourteen in the two-reader sample, four of four in the person's - and the direction is confirmed by a third,
+non-model labeller. The ledger gains `readers-match-a-person`, which **holds** at 4 of 4 and 1 of 1, and is now
+11 of 39.
+
+### What this does not settle, and now it is a real limit rather than an excuse
+
+Six pairs is a probe. It says the readers and a person agree where the rule is questionable; it does not
+say by how much, and it cannot, because the pairs were picked for disagreement rather than at random. A
+random sixty pairs put to a person would give a kappa - and that is an hour of somebody's time, which is
+the honest price of turning this from a probe into a measurement.
+
+The control is one pair, which is too few to establish that a labeller is reliable; it establishes only
+that this one was not clicking through.
+
+### What this costs
+
+Six questions, one file of labels, one claim, and the end of the ladder this repository could climb on its
+own. Everything above it needs somebody who is not a model.
+
