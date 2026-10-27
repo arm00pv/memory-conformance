@@ -4372,3 +4372,55 @@ Somebody to read sixty pairs and type YES or NO sixty times. The report says so 
 end, with the path to the file that is waiting. Everything else on this ladder is measured, guarded, or
 written down as a limit with a number beside it.
 
+
+## Addendum 47: the noise reading gets a mutation battery, and the score fails it
+
+The probes have had twelve deliberately broken servers since Addendum 19. The retrieval score has had four
+levers since the phase before this one. **The noise reading had none** - it was validated by a rule, a
+judge and a person, which is three opinions about a scale nobody had tried to break.
+
+So: two levers of its own, against the positive control. Same search, same store, with two records appended
+that are not the answer - `pad-far` appending records that share no word with the question, `pad-near`
+appending records that share one. They are appended **after** the control's own top three, so hit@1 and
+hit@3 cannot see them by construction, and anything that moved moved for exactly one reason.
+
+| run | corpus | score | hit@3 | noise records | noise per correct | answer share | near misses |
+|---|---|---|---|---|---|---|---|
+| control | A | 37 | 25 | 8 | 0.32 | 63% | 7 |
+| `pad-far` | A | **37** | 25 | **48** | **1.92** | **31%** | 8 |
+| `pad-near` | A | **38** | 26 | 32 | 1.23 | 35% | 15 |
+| control | B | 44 | 32 | 5 | 0.16 | 58% | 18 |
+| `pad-far` | B | **44** | 32 | **44** | **1.38** | **33%** | 23 |
+| `pad-near` | B | **44** | 32 | 35 | 1.09 | 33% | 30 |
+
+**The score cannot see any of it.** On both corpora the padded subject scores exactly what the control
+scores, while the noise count multiplies by six and nine and the share of characters that are an answer
+halves. The ledger's @padding-is-free@ claim **HOLDS**, and it is in the ledger because it is a defect: a
+number that does not move when a subject triples its output is not measuring output.
+
+**And the near-miss padding RAISED the score.** On corpus A, `pad-near` scores 38 where the control scores
+37 - because a padder choosing records in the question's own vocabulary can stumble onto the answer the
+control missed, and a score that counts a set of three cannot distinguish finding a fact from surrounding
+it. Volume is not always noise; sometimes it is recall, and this repository's headline number has no way to
+say which one it is looking at.
+
+### What the levers say about the reading
+
+The two paddings land where the reading says they should: unrelated padding moves the noise count and
+leaves the near-miss count almost untouched (7 to 8), near-miss padding moves the near-miss count and
+raises noise per correct answer less than the other does (1.23 against 1.92). A reading that could not tell
+those two apart would not be a reading of what it claims. This one can.
+
+**And one process finding: the first version of the lever measured nothing.** It called the control's search
+with k=1 and appended two records, which changed two things at once - the returned list lost whatever the
+control had found at ranks two and three, and gained padding - so the difference from the control could be
+attributed to neither. It was caught by looking at the numbers and finding that hit@3 had *fallen* on
+corpus B, which is impossible for a lever that only appends. A lever that moves two things measures
+nothing; this repository has now made that mistake once in the probes and once here.
+
+### What this does not settle
+
+Two levers, one corpus pair, one padding width of two records. A padder that appends ten, or that pads with
+records from the same family as the answer, is not tested. What is established is narrower and enough to
+act on: the score is blind to the quantity the precision reading prices, and padding can even pay.
+

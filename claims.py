@@ -1039,6 +1039,45 @@ def c_readers_match_a_person(ctx, corpus, shape):
     return (held, "; ".join(said))
 
 
+def c_padding_is_free(ctx, corpus, shape):
+    """PADDING AN ANSWER WITH UNRELATED RECORDS COSTS NOTHING IN THE SCORE.
+
+    The precision reading says padding is expensive; the score says nothing at all. Two mutants that append
+    records after the control's own top three make the point from both ends: the score is identical to the
+    control's on both corpora, and the noise count is six to nine times larger. A claim that HOLDS here is a
+    defect, not a finding, and that is why it is in the ledger.
+    """
+    import json
+    import os
+    held, said = True, []
+    for label in ("A", "B"):
+        runs = {}
+        base = os.path.join("results", "calibration-control-%s.json" % label)
+        if os.path.isfile(base):
+            with open(base, encoding="utf-8") as fh:
+                runs["control"] = json.load(fh).get("rows") or []
+        for lever in ("pad-far", "pad-near"):
+            path = os.path.join("results", "retrieval-%s-%s.json" % (lever, label))
+            if os.path.isfile(path):
+                with open(path, encoding="utf-8") as fh:
+                    runs[lever] = json.load(fh).get("rows") or []
+        if "control" not in runs or "pad-far" not in runs:
+            continue
+
+        def score(rows):
+            return sum(1 for r in rows
+                       if (r["difficulty"] == "absent" and not r["answered"])
+                       or (r["difficulty"] != "absent" and r.get("hit3")))
+
+        here = score(runs["control"])
+        there = score(runs["pad-far"])
+        held = held and here == there
+        said.append("%s: control %d, padded %d" % (label, here, there))
+    if not said:
+        return None
+    return (held, "; ".join(said))
+
+
 def c_noise_is_charged(ctx, corpus, shape):
     """A SEARCH PAYS FOR THE UNRELATED RECORDS IT HANDS BACK.
 
@@ -1129,6 +1168,8 @@ CLAIMS = [    ("most-hits", "memory-mcp-1file answers more answerable questions 
     ("exam-questions-distinct", "the exam's questions are distinct questions with one right answer each.",
      c_exam_questions_distinct, False),
     ("noise-is-charged", "a search pays for the unrelated records it hands back.", c_noise_is_charged, False),
+    ("padding-is-free", "padding an answer with unrelated records costs nothing in the score.",
+     c_padding_is_free, False),
     ("rule-reads-like-a-reader", "the rule's reading of relevance - answer or near against noise - agrees"
      " with a reader's judgement.", c_rule_reads_like_a_reader, False),
     ("readers-agree-with-each-other", "two readers of the same pairs agree closely enough that a rule can"

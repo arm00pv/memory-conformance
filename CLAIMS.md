@@ -10,7 +10,7 @@ claim about silence. A subject's SCORE is what the paired test pairs on - the ri
 top three, plus a credit for declining a question with no answer. Its HITS are only the questions
 that have an answer and were answered correctly. "It answers nothing" is a claim about hits.
 
-**11 of the 39 claims hold in every setting measured.** The rest are printed beside the setting
+**12 of the 40 claims hold in every setting measured.** The rest are printed beside the setting
 that breaks them, because that setting is the claim's real scope.
 
 | claim | A written | A keywords | B written | B keywords | status |
@@ -49,6 +49,7 @@ that breaks them, because that setting is the claim's real scope.
 | silence-is-a-habit | no | no | **FAILS** |
 | exam-questions-distinct | yes | yes | **HOLDS** |
 | noise-is-charged | no | no | **FAILS** |
+| padding-is-free | yes | yes | **HOLDS** |
 | rule-reads-like-a-reader | no | no | **FAILS** |
 | readers-agree-with-each-other | yes | yes | **HOLDS** |
 | readers-match-a-person | yes | yes | **HOLDS** |
@@ -218,6 +219,10 @@ that breaks them, because that setting is the claim's real scope.
 **noise-is-charged** - a search pays for the unrelated records it hands back. *FAILS*
   - A written: false (the greedy matcher scores 43 and the single-record one 37, at 1.86 and 0.04 noise records per correct answer)
   - B written: false (the greedy matcher scores 44 and the single-record one 41, at 1.62 and 0.03 noise records per correct answer)
+
+**padding-is-free** - padding an answer with unrelated records costs nothing in the score. *HOLDS*
+  - A written: true (A: control 37, padded 37; B: control 44, padded 44)
+  - B written: true (A: control 37, padded 37; B: control 44, padded 44)
 
 **rule-reads-like-a-reader** - the rule's reading of relevance - answer or near against noise - agrees with a reader's judgement. *FAILS*
   - A written: false (deepseek-v4.1-flash kappa 0.53 with 12 near miss(es) it calls unrelated; glm-5.3 kappa 0.67 with 9 near miss(es) it calls unrelated)

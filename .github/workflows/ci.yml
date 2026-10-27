@@ -70,6 +70,7 @@ jobs:
           grep -q "agent-agrees-with-score" CLAIMS.md
           grep -q "score-prefers-recalcitrance" CLAIMS.md
           grep -q "noise-is-charged" CLAIMS.md
+          grep -q "padding-is-free" CLAIMS.md
           grep -q "silence-is-a-habit" CLAIMS.md
           grep -q "exam-questions-distinct" CLAIMS.md
           grep -q "rule-reads-like-a-reader" CLAIMS.md
@@ -301,6 +302,7 @@ jobs:
           test -s PRECISION.md
           grep -q "The silence bill" PRECISION.md
           grep -q "Does the score charge for this" PRECISION.md
+          grep -q "Does the reading move when a subject pads" PRECISION.md
           grep -q "share one idea cannot check each other" PRECISION.md
           # THE EXAM HAD NEVER BEEN VALIDATED. --exam relaxes the three rules an exam legitimately breaks and
           # nothing else, so a new defect in its questions fails here. It has no pinned defects left: the

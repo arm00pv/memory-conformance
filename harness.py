@@ -210,6 +210,32 @@ class ReferenceAdapter:
         """
         return srv.call("search_nodes", {"query": query})
 
+    def _padding(self, srv, query, want, taken, near):
+        """Records that are not the answer: sharing a word with the question, or sharing none.
+
+        Deterministic - sorted by name - so a repeat of the same run says the same thing about the same
+        store, and a difference between two runs is the subject rather than the tie-break.
+        """
+        low = query.lower()
+        for ch in "?!.,;:()[]'\"":
+            low = low.replace(ch, " ")
+        terms = [t for t in low.split() if t and t not in self.STOPWORDS]
+        out = []
+        for e in sorted(self.read(srv) or [], key=lambda x: str(x.get("name"))):
+            name = e.get("name")
+            if not name or name in taken:
+                continue
+            body = " ".join(e.get("observations") or []).lower()
+            shared = sum(1 for t in terms if t in body)
+            if near and shared == 0:
+                continue
+            if not near and shared > 0:
+                continue
+            out.append(name)
+            if len(out) >= want:
+                break
+        return out
+
     def search(self, srv, query, k=3):
         text = self.search_text(srv, query, k)
         try:
@@ -740,6 +766,21 @@ class MutantAdapter(ControlAdapter):
         return ControlAdapter._need(self, terms)
 
     def search(self, srv, query, k=3):
+        if self.MUTANT in ("pad-far", "pad-near"):
+            # PADDING: THE ANSWER, AND THEN COMPANY. The honest top result is unchanged, so hit@1 and hit@3
+            # cannot see this lever at all - which is the point. Two kinds, because they are different
+            # mistakes: pad-far appends records that share no word with the question, and pad-near appends
+            # records that share one and are not the answer. The first should move the noise count and the
+            # second should move the near-miss count, and if a reading cannot tell them apart it is not a
+            # reading of what it claims.
+            # PAD ON TOP OF THE CONTROL'S OWN RESULT, NOT INSTEAD OF IT. The first version called the search
+            # with k=1 and appended two records, which changed TWO things at once - the answer list lost
+            # whatever the control had found at ranks 2 and 3, and gained padding - so its difference from the
+            # control could not be attributed to either. A lever that moves two things measures nothing.
+            honest = ControlAdapter.search(self, srv, query, k)
+            if not honest:
+                return honest
+            return honest + self._padding(srv, query, k - 1, honest, self.MUTANT == "pad-near")
         if self.MUTANT == "one-result":
             # THE CALLER READS ONE ANSWER. Not a ranking defect - the same search with k lowered - so
             # this lever moves hit@3 and leaves hit@1 alone, which is the direction the score does

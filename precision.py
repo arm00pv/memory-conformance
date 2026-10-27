@@ -442,6 +442,44 @@ def judge_agreement():
     return {"readers": said, "ceiling": ceiling}
 
 
+PAD_LEVERS = ("pad-far", "pad-near")
+
+
+def padding_runs(label):
+    """The control and the two padding mutants on one corpus, or whatever of them is on disk."""
+    out = []
+    base = os.path.join("results", "calibration-control-%s.json" % label)
+    if os.path.isfile(base):
+        with open(base, encoding="utf-8") as fh:
+            out.append(("control", label, json.load(fh).get("rows") or []))
+    for lever in PAD_LEVERS:
+        path = os.path.join("results", "retrieval-%s-%s.json" % (lever, label))
+        if os.path.isfile(path):
+            with open(path, encoding="utf-8") as fh:
+                out.append((lever, label, json.load(fh).get("rows") or []))
+    return out
+
+
+def padding_panel():
+    """One row per run: what the score says, and what the reading of the same rows says."""
+    rows = []
+    for label, _path, _suffix in CORPORA:
+        if label not in ("A", "B"):
+            continue
+        for name, lab, rs in padding_runs(label):
+            if not rs:
+                continue
+            d = derive(read(lab, rs, "written"))
+            score = sum(1 for r in rs
+                        if (r["difficulty"] == "absent" and not r["answered"])
+                        or (r["difficulty"] != "absent" and r.get("hit3")))
+            rows.append({"run": name, "corpus": lab, "score": score,
+                         "hit3": sum(1 for r in rs if r.get("hit3")),
+                         "noise": d["noise_records"], "near": d["near_records"],
+                         "noise_per_hit": d["noise_per_hit"], "share": d["signal_share"]})
+    return rows
+
+
 def report(got, panel, checks=None):
     lines = []
     add = lines.append
@@ -708,6 +746,73 @@ def report(got, panel, checks=None):
         add("handed back %d records, got %d right, and %d of the rest share neither a name nor three words"
             % (b["written"]["records"], b["written"]["hits"], b["written"]["noise_records"]))
         add("with what was asked for.")
+        add("")
+
+    # ---- does the reading move when a subject pads ------------------------------------------------
+    pad = padding_panel()
+    if pad:
+        add("## Does the reading move when a subject pads")
+        add("")
+        add("The probes have had twelve broken servers and the retrieval score four levers. **The noise")
+        add("reading has had none**, so this runs two levers of its own against the positive control - the")
+        add("same search, with two records")
+        add("appended that are not the answer. They are appended AFTER the control's own top three, so hit@1")
+        add("and hit@3 cannot see them by construction, and everything that moves here moved for one reason.")
+        add("")
+        add("| run | corpus | score | hit@3 | noise records | noise per correct | answer share | near misses |")
+        add("|---|---|---|---|---|---|---|---|")
+        for r in pad:
+            add("| " + BT + r["run"] + BT + " | %s | %d | %d | %d | %s | %s | %d |"
+                % (r["corpus"], r["score"], r["hit3"], r["noise"],
+                   ratio(r["noise_per_hit"]), share(r["share"]), r["near"]))
+        add("")
+        by = dict(((r["run"], r["corpus"]), r) for r in pad)
+        preds = []
+        for lab in ("A", "B"):
+            c, far = by.get(("control", lab)), by.get(("pad-far", lab))
+            if c and far:
+                preds.append((far["hit3"] == c["hit3"] and far["score"] == c["score"],
+                              "%s: the score and hit@3 do not move (%d and %d)" % (lab, c["score"], far["score"])))
+        for lab in ("A", "B"):
+            c, far, near = by.get(("control", lab)), by.get(("pad-far", lab)), by.get(("pad-near", lab))
+            if c and far and near:
+                preds.append((far["noise"] > c["noise"] * 3,
+                              "%s: padding with unrelated records multiplies the noise count (%d to %d, a factor of %.1f)"
+                              % (lab, c["noise"], far["noise"], far["noise"] / float(c["noise"] or 1))))
+                preds.append((near["near"] > c["near"],
+                              "%s: padding with near misses raises the near-miss count (%d to %d)"
+                              % (lab, c["near"], near["near"])))
+                preds.append((near["noise_per_hit"] is not None and far["noise_per_hit"] is not None
+                              and near["noise_per_hit"] < far["noise_per_hit"],
+                              "%s: and raises noise per correct answer less than unrelated padding does (%s against %s)"
+                              % (lab, ratio(near["noise_per_hit"]), ratio(far["noise_per_hit"]))))
+        held = sum(1 for ok, _t in preds if ok)
+        add("**%d of %d checks hold.** Two predictions were written before the first run - that hit@1 and hit@3"
+            % (held, len(preds)))
+        add("could not see this lever at all, and that the unrelated padding would move the noise count while")
+        add("the near-miss padding moved the near-miss count - and both of those held. The numeric thresholds")
+        add("below were set when this section was written, after the corrected runs, so they are checks rather")
+        add("than predictions, and the difference is the point rather than a technicality.")
+        add("")
+        for ok, text in preds:
+            add("- " + ("held: " if ok else "**did not hold**: ") + text + ".")
+        add("")
+        a = by.get(("control", "A"))
+        b = by.get(("pad-near", "A"))
+        if a and b and b["score"] > a["score"]:
+            add("**And one result worth stating on its own: padding with near misses RAISED the score.** On")
+            add("corpus A, " + BT + "pad-near" + BT + " scores %d where the control scores %d, because a padder that"
+                % (b["score"], a["score"]))
+            add("chooses records in the question's own vocabulary can stumble onto the answer the control")
+            add("missed, and a score that counts a set of three cannot tell the difference between finding a")
+            add("fact and surrounding it. Volume is not always noise; sometimes it is recall, and the number")
+            add("this repository publishes has no way to say which.")
+            add("")
+        add("The levers live in " + BT + "harness.py" + BT + " with the other retrieval mutants, and the runs are")
+        add("committed under " + BT + "results/retrieval-pad-*.json" + BT + ". The first version of them called the search")
+        add("with k=1 and appended two records, which changed two things at once - the list lost whatever")
+        add("the control had found at ranks two and three, and gained padding - so its difference from the")
+        add("control could be attributed to neither. A lever that moves two things measures nothing.")
         add("")
 
     # ---- close ------------------------------------------------------------------------------------

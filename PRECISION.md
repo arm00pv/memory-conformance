@@ -223,6 +223,51 @@ answered every question it was asked - all 48 answerable ones and all 12 with no
 handed back 144 records, got 2 right, and 138 of the rest share neither a name nor three words
 with what was asked for.
 
+## Does the reading move when a subject pads
+
+The probes have had twelve broken servers and the retrieval score four levers. **The noise
+reading has had none**, so this runs two levers of its own against the positive control - the
+same search, with two records
+appended that are not the answer. They are appended AFTER the control's own top three, so hit@1
+and hit@3 cannot see them by construction, and everything that moves here moved for one reason.
+
+| run | corpus | score | hit@3 | noise records | noise per correct | answer share | near misses |
+|---|---|---|---|---|---|---|---|
+| `control` | A | 37 | 25 | 8 | 0.32 | 63% | 7 |
+| `pad-far` | A | 37 | 25 | 48 | 1.92 | 31% | 8 |
+| `pad-near` | A | 38 | 26 | 32 | 1.23 | 35% | 15 |
+| `control` | B | 44 | 32 | 5 | 0.16 | 58% | 18 |
+| `pad-far` | B | 44 | 32 | 44 | 1.38 | 33% | 23 |
+| `pad-near` | B | 44 | 32 | 35 | 1.09 | 33% | 30 |
+
+**8 of 8 checks hold.** Two predictions were written before the first run - that hit@1 and hit@3
+could not see this lever at all, and that the unrelated padding would move the noise count while
+the near-miss padding moved the near-miss count - and both of those held. The numeric thresholds
+below were set when this section was written, after the corrected runs, so they are checks rather
+than predictions, and the difference is the point rather than a technicality.
+
+- held: A: the score and hit@3 do not move (37 and 37).
+- held: B: the score and hit@3 do not move (44 and 44).
+- held: A: padding with unrelated records multiplies the noise count (8 to 48, a factor of 6.0).
+- held: A: padding with near misses raises the near-miss count (7 to 15).
+- held: A: and raises noise per correct answer less than unrelated padding does (1.23 against 1.92).
+- held: B: padding with unrelated records multiplies the noise count (5 to 44, a factor of 8.8).
+- held: B: padding with near misses raises the near-miss count (18 to 30).
+- held: B: and raises noise per correct answer less than unrelated padding does (1.09 against 1.38).
+
+**And one result worth stating on its own: padding with near misses RAISED the score.** On
+corpus A, `pad-near` scores 38 where the control scores 37, because a padder that
+chooses records in the question's own vocabulary can stumble onto the answer the control
+missed, and a score that counts a set of three cannot tell the difference between finding a
+fact and surrounding it. Volume is not always noise; sometimes it is recall, and the number
+this repository publishes has no way to say which.
+
+The levers live in `harness.py` with the other retrieval mutants, and the runs are
+committed under `results/retrieval-pad-*.json`. The first version of them called the search
+with k=1 and appended two records, which changed two things at once - the list lost whatever
+the control had found at ranks two and three, and gained padding - so its difference from the
+control could be attributed to neither. A lever that moves two things measures nothing.
+
 ## What this does not settle
 
 The near rule is a rule, and the split it draws is a definition rather than a discovery. It is
