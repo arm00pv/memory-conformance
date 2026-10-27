@@ -29,7 +29,7 @@ independently written corpora and in two phrasings, and writes the verdicts to `
 
 ```
 $ python claims.py
-**7 of the 27 claims hold in every setting measured.**
+**7 of the 29 claims hold in every setting measured.**
 ```
 
 Five survive everywhere, including the one that matters most: **memory-mcp-1file answers more
@@ -545,6 +545,77 @@ That is the limit of a corpus with no author, stated precisely: **real records a
 are nearly free, but a paraphrased band needs somebody to paraphrase.** The easy, adversarial and absent
 bands are real tests; the hard band is a keyword band wearing the name, and the one finding above is what
 that distinction costs.
+
+## How much paraphrase does a memory survive
+
+The four corpora disagree, and the disagreement turned out to be one axis rather than four question sets:
+how far a question sits from the text that answers it. `distance_sweep.py` walks that axis on one fixed
+set of real records - the same 24 questions, with a third, then a half, then two thirds of their words
+taken away, down to two words and a question frame. [`DISTANCE.md`](DISTANCE.md)
+
+| band | the question keeps | of the record's long words, **measured** |
+|---|---|---|
+| d0 | every word | 1.00 |
+| d1 | two of every three | 0.71 |
+| d2 | every second | 0.56 |
+| d3 | one in three | 0.33 |
+| d4 | the first two, in a question | 0.29 |
+
+hit@3 out of 24 questions per band:
+
+| subject | d0 | d1 | d2 | d3 | d4 | half at |
+|---|---|---|---|---|---|---|
+| `control` | 24 | 24 | 24 | 23 | 13 | d4 |
+| `zenbrain` | 24 | 24 | 24 | 23 | **21** | d4 |
+| `memory-mcp-1file` | 24 | 24 | 22 | 20 | 18 | d4 |
+| `memory-lean` | 24 | 24 | 24 | 23 | **0** | d3 |
+| `mcp-duckdb-memory-server` | 24 | 24 | **13** | **3** | 10 | d2 |
+| `server-memory` 1.0.0 and 2.0.0 | 24 | **0** | 0 | 1 | 0 | d0 |
+| `mcp-knowledge-graph` | 24 | **0** | 0 | 1 | 0 | d0 |
+| `memento` | 11 | 12 | 14 | 12 | 13 | - |
+| `memdb` | 0 | 0 | 0 | 1 | 2 | - |
+| `statecore-mcp` | 0 | 0 | 0 | 0 | 0 | - |
+
+**The subjects do not differ in quality; they differ in shape.** Three of them drop from a perfect 24 to
+**zero** when a third of the words are removed - they are exact-match engines, and their total failure on
+the authored corpora and their strong showing on real text are the same fact seen from two distances.
+Three hold most of the way and then fall. `memento` is flat and low at every distance, which is not a
+paraphrase problem at all. And `duckdb` is **not monotone** - 24, 24, 13, 3, then back up to 10 - because a
+two-word query is a keyword query and it does better with less text than with the middle of a sentence.
+
+### Where each corpus actually sat
+
+Two coordinates, measured the same way on every question set here: how much of the answering record
+survives into the question, and how much of the question is drawn from the record.
+
+| corpus | of the record, in the question | of the question, in the record |
+|---|---|---|
+| A | 0.29 | 0.50 |
+| B | 0.33 | 0.57 |
+| C | 0.22 | 0.60 |
+| real | 0.71 | **1.00** |
+
+Every authored corpus sits at the far end on **both** coordinates and the real one sits at the near end on
+both. That is the entire disagreement of the last phase, and it also means the sweep is the easy half of
+the space: every band in it is still a question made from the record's own words, which is a thing no
+person has ever asked.
+
+### An easier question is not a weaker instrument, it is one with no room at the top
+
+| band | pairs separated |
+|---|---|
+| d0 | **26 of 55** |
+| d1 | 35 of 55 |
+| d2 | **38 of 55** |
+| d3 | 34 of 55 |
+| d4 | 34 of 55 |
+
+The verbatim band separates **fewer** pairs than the middle of the ladder, because eight subjects tie at
+24 of 24 and a tie separates nobody. That is exactly what happened to the real corpus, where four subjects
+tied at 48 hits and the leader had to be decided by a single point.
+
+The ledger tests both readings and both **FAIL**: `ranking-survives-paraphrase` (eight subjects tie
+verbatim, `zenbrain` is first when two words survive) and `near-end-separates` (26 against 38).
 
 ## A second corpus, written blind
 

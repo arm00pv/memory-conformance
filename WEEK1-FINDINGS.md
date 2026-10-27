@@ -3291,6 +3291,101 @@ the probes, the tie analysis and the mutation battery are untouched. What moved 
 question this repository has been asking since its second corpus, and it moved against the answer it had
 been giving.
 
+## Addendum 31: four corpora were one axis, and the axis can be walked
+
+Addendum 30 ended with a contradiction: three corpora said the small servers find nothing, and a fourth
+said they find a third of everything. The explanation offered was that the authored corpora paraphrase and
+the real one does not. That was a sentence, not a measurement, and it implied something nobody had
+checked - that the difference between them is a single quantity that could be varied on purpose.
+
+It can. `distance_sweep.py` takes 24 real records, derives five question forms from each by rule, and asks
+all of them of every subject: the same records, the same facts, only the fraction of the record that
+survives into the question changed.
+
+| band | kept | of the record's long words, measured | pairs separated |
+|---|---|---|---|
+| d0 | every word | 1.00 | **26 of 55** |
+| d1 | two of three | 0.71 | 35 of 55 |
+| d2 | every second | 0.56 | **38 of 55** |
+| d3 | one in three | 0.33 | 34 of 55 |
+| d4 | two words, in a question | 0.29 | 34 of 55 |
+
+### The subjects have shapes, not scores
+
+| subject | d0 | d2 | d4 |
+|---|---|---|---|
+| `zenbrain` | 24 | 24 | **21** |
+| `memory-mcp-1file` | 24 | 22 | 18 |
+| `control` | 24 | 24 | 13 |
+| `memory-lean` | 24 | 24 | **0** |
+| `mcp-duckdb-memory-server` | 24 | **13** | 10 |
+| `server-memory`, `mcp-knowledge-graph` | 24 | **0** | 0 |
+| `memento` | 11 | 14 | 13 |
+| `memdb`, `statecore-mcp` | 0 | 0 | 0 |
+
+Three subjects go from perfect to zero when a third of the words are removed. Their total failure on the
+authored corpora and their strong showing on real text are the same property measured at two distances,
+and neither number is wrong. `memento` is flat and poor at every distance, so nothing about it was ever a
+paraphrase question. `duckdb` is **non-monotone** - 24, 24, 13, 3, 10 - and the rise at the far end says
+its behaviour is a function of query length rather than of meaning; a two-word query is a keyword query.
+
+That last one is worth keeping. A benchmark that reported a single number for `duckdb` would have been
+describing one point on a curve that turns twice.
+
+### Where each corpus sat
+
+Two coordinates place a question, not one. How much of the answering record survives into the question is
+the distance this sweep walks. How much of the question is drawn from the record is a second, and the
+sweep cannot move it - every band in it is made of the record's own words, so the second coordinate is
+1.00 by construction.
+
+| corpus | of the record, in the question | of the question, in the record |
+|---|---|---|
+| A | 0.29 | 0.50 |
+| B | 0.33 | 0.57 |
+| C | 0.22 | 0.60 |
+| real | 0.71 | 1.00 |
+
+Every authored corpus sits low on both and the real one sits high on both. The disagreement of the last
+phase is entirely accounted for by a position, and the sweep is the easy half of the space: nobody asks a
+question made only of the answer's words.
+
+### An easier question is an instrument with no room at the top
+
+The verbatim band separates 26 of the 55 pairs and the half-paraphrased band separates 38. Eight subjects
+tie at 24 of 24 when the question quotes the record, and a tie separates nobody - which is precisely what
+happened to the real corpus, where four subjects tied at 48 hits and first place came down to one point.
+
+So "too easy" is not a complaint about difficulty. It is a statement about the top of the table: an
+instrument whose easy band is the main band has nothing to say about who is best, and it will say it with
+a small margin and a large p value.
+
+### One more of my own mistakes
+
+**44. The share was measured from the wrong end.** The first build reported that every band kept "1.00 of
+the question's long words", which is true by construction - a question made by deleting words from a
+record uses only that record's words. The number described the wrong quantity and was correct, which is
+the kind of error that survives review; measuring the other way round, the ladder came out at 1.00, 0.71,
+0.56, 0.33, 0.29 and the axis existed.
+
+### What this does not settle
+
+Removing words is not paraphrasing. A question that says the same thing in different words shares few of
+the record's words *and* introduces words the record does not contain, and this ladder only moves the
+first. So the curves are a lower bound on the difficulty of the authored corpora and an upper bound on
+what a keyword matcher can do: `server-memory` scoring zero at every distance from d1 out is a fact about
+substring matching, not a claim that it cannot help somebody who asks carefully.
+
+What the sweep does buy is a number per subject instead of a contradiction between corpora. Each of the
+four question sets is a position, and the disagreement between them is the slope between those positions.
+
+### What this costs
+
+One generator, one measurement run over eleven subjects at two repeats, one report, two claims that fail.
+No subject was changed, no corpus was rewritten, and the five question sets now have a coordinate system
+instead of an argument.
+
+
 
 
 
