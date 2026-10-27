@@ -247,9 +247,11 @@ jobs:
           test -s PRECISION.md
           grep -q "The silence bill" PRECISION.md
           grep -q "Does the score charge for this" PRECISION.md
-          grep -q "A checker and a subject that share one idea" PRECISION.md
+          grep -q "share one idea cannot check each other" PRECISION.md
           # THE EXAM HAD NEVER BEEN VALIDATED. --exam relaxes the three rules an exam legitimately breaks and
-          # nothing else, so a NEW defect in its questions fails here while the pinned ones do not.
+          # nothing else, so a new defect in its questions fails here. It has no pinned defects left: the
+          # twelve duplicated questions were dropped at build time and the eight "unlabelled answers" turned
+          # out to be word-overlap alarms, so the rule that charged them has been split in two instead.
           python validate_corpus.py large_corpus.json --exam | tee /tmp/exam-check.txt
           grep -q "0 of 1 corpus file(s) failed" /tmp/exam-check.txt
 
