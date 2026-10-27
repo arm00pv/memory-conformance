@@ -375,6 +375,62 @@ def c_agent_agrees(ctx, corpus, shape):
             % (len(differ), total, (": " + "; ".join(differ)) if differ else ""))
 
 
+def c_real_corpus(ctx, corpus, shape):
+    """The leader on a corpus with no author is the leader on the corpora written by hand.
+
+    THE LIMIT THIS REPOSITORY HAS CARRIED SINCE THE SECOND CORPUS is that the analyst wrote the questions
+    and the analysis, so agreement between the two proves less than it looks. A different model answered
+    that once. The real corpus answers it differently: its records are the package.json files installed
+    under node_modules and its questions are derived from their descriptions by rule, so nobody chose a
+    question or knew an answer in advance.
+    """
+    import real_corpus
+    # THE SUFFIX IS NOT THE LABEL. The first version keyed the heads by "-c" and then looked the corpora
+    # up by "C", so corpus C was read as missing and reported as disagreeing with a leader set it
+    # matched exactly. Fourth time this repository has confused an identifier with a display name.
+    LABEL = {"": "A", "-b": "B", "-c": "C"}
+    heads = {}
+    for suffix in ("", "-b", "-c", "-real"):
+        got = real_corpus.totals(suffix, "score")
+        if not got:
+            return None
+        best = got[0][0]
+        heads[LABEL.get(suffix, "real")] = set(t[2] for t in got if t[0] == best)
+    real = heads.get("real") or set()
+    differ = [k for k in ("A", "B", "C") if heads.get(k) != real]
+    return (not differ,
+            "the leader on real text is %s, and %d of the three authored corpora agree%s"
+            % ("/".join(sorted(n.split()[0] for n in real)), 3 - len(differ),
+               ("" if not differ else " (not " + ", ".join(differ) + ")")))
+
+
+def c_silent_everywhere(ctx, corpus, shape):
+    """The subjects that answer nothing on the authored corpora answer nothing anywhere.
+
+    THE OVERCLAIM THIS PHASE HAD TO CORRECT. "The smallest servers here find nothing at all" was published
+    against three corpora and it holds on all three. On a corpus built from real package descriptions the
+    same three subjects answer a third of the answerable questions, because the authored corpora paraphrase
+    and the real one asks with the record's own words. The claim below is the version that travels, and it
+    fails - which is the honest form of a result that was two corpora wide and read as universal.
+    """
+    import real_corpus
+    names = [n for n in CONTEXT["labels"]
+             if n.split()[0] in ("server-memory", "mcp-knowledge-graph", "statecore-mcp")]
+    here = dict((n, hits(n, corpus, shape)) for n in names)
+    if any(v is None for v in here.values()):
+        return None
+    if not all(v == 0 for v in here.values()):
+        return None  # nothing to refute: they are not silent on this corpus either
+    real = dict((t[2], t[0]) for t in real_corpus.totals("-real", "hits"))
+    if not real:
+        return None
+    spoke = ["%s %d" % (n.split()[0], real[n]) for n in names if real.get(n)]
+    return (not spoke,
+            "%d of %d still answer nothing on real text%s"
+            % (len(names) - len(spoke), len(names),
+               ("" if not spoke else " (" + ", ".join(spoke) + " of 48 answered)")))
+
+
 def c_most_hits(ctx, corpus, shape):
     r = leads(LEADER, corpus, lambda n, c, s: hits(n, c, s), shape)
     return (r["strict"], fmt_lead(r, of="48")) if r else None
@@ -738,6 +794,10 @@ CLAIMS = [
      c_corpora_agree, False),
     ("agent-agrees-with-score", "the ranking a caller with a token budget sees is the one this"
      " repository publishes.", c_agent_agrees, False),
+    ("real-corpus-agrees", "the leader on a corpus with no author is the leader on the corpora written"
+     " by hand.", c_real_corpus, False),
+    ("silent-everywhere", "the subjects that answer nothing on the authored corpora answer nothing on"
+     " real text either.", c_silent_everywhere, False),
     ("score-sees-ordering", "the retrieval score changes when a search returns its worst match first.",
      c_score_sees_ordering, False),
     ("score-prefers-recalcitrance", "a search that accepts one shared word scores no better than one that"

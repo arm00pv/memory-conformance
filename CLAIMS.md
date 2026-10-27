@@ -10,7 +10,7 @@ claim about silence. A subject's SCORE is what the paired test pairs on - the ri
 top three, plus a credit for declining a question with no answer. Its HITS are only the questions
 that have an answer and were answered correctly. "It answers nothing" is a claim about hits.
 
-**7 of the 25 claims hold in every setting measured.** The rest are printed beside the setting
+**7 of the 27 claims hold in every setting measured.** The rest are printed beside the setting
 that breaks them, because that setting is the claim's real scope.
 
 | claim | A written | A keywords | B written | B keywords | status |
@@ -38,6 +38,8 @@ that breaks them, because that setting is the claim's real scope.
 | tie-means-same | no | no | **FAILS** |
 | corpora-agree | no | no | **FAILS** |
 | agent-agrees-with-score | no | no | **FAILS** |
+| real-corpus-agrees | no | no | **FAILS** |
+| silent-everywhere | no | no | **FAILS** |
 | score-sees-ordering | no | no | **FAILS** |
 | score-prefers-recalcitrance | no | no | **FAILS** |
 
@@ -160,6 +162,14 @@ that breaks them, because that setting is the claim's real scope.
 **agent-agrees-with-score** - the ranking a caller with a token budget sees is the one this repository publishes. *FAILS*
   - A written: false (1 of 3 corpora put a different subject on top when the metric is what a caller reads: B (score memory-mcp-1file, agent control))
   - B written: false (1 of 3 corpora put a different subject on top when the metric is what a caller reads: B (score memory-mcp-1file, agent control))
+
+**real-corpus-agrees** - the leader on a corpus with no author is the leader on the corpora written by hand. *FAILS*
+  - A written: false (the leader on real text is control, and 1 of the three authored corpora agree (not A, B))
+  - B written: false (the leader on real text is control, and 1 of the three authored corpora agree (not A, B))
+
+**silent-everywhere** - the subjects that answer nothing on the authored corpora answer nothing on real text either. *FAILS*
+  - A written: false (1 of 4 still answer nothing on real text (server-memory 33, server-memory 33, mcp-knowledge-graph 33 of 48 answered))
+  - B written: false (1 of 4 still answer nothing on real text (server-memory 33, server-memory 33, mcp-knowledge-graph 33 of 48 answered))
 
 **score-sees-ordering** - the retrieval score changes when a search returns its worst match first. *FAILS*
   - A written: false (reversing the result list moved the score by 0 and the hit count by 0 (score 37 against 37))

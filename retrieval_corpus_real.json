@@ -1,0 +1,597 @@
+{
+ "why": "Records are the real package.json files installed under node_modules, sampled by a fixed stride in path order. Questions are derived from their descriptions by rule: verbatim, every third long word removed, near duplicates that share three or more long words, and descriptions of real packages left out of the store. No sentence here was written for this corpus.",
+ "records": [
+  {
+   "id": "@huggingface/transformers",
+   "text": "State-of-the-art Machine Learning for the web. Run 🤗 Transformers directly in your browser, with no need for a server! Version 3.8.1. Licensed Apache-2.0."
+  },
+  {
+   "id": "side-channel-weakmap",
+   "text": "Store information about any JS value in a side channel. Uses WeakMap if available. Version 1.0.2. Licensed MIT."
+  },
+  {
+   "id": "chart.js-auto",
+   "text": "Auto registering package. Exists to support bundlers without exports support such as webpack 4."
+  },
+  {
+   "id": "@aws-sdk/credential-provider-env",
+   "text": "AWS credential provider that sources credentials from known environment variables Version 3.972.76. Licensed Apache-2.0."
+  },
+  {
+   "id": "@aws-sdk/credential-provider-ini",
+   "text": "AWS credential provider that sources credentials from ~/.aws/credentials and ~/.aws/config Version 3.973.21. Licensed Apache-2.0."
+  },
+  {
+   "id": "micromark-factory-space",
+   "text": "micromark factory to parse markdown space (found in lots of places) Version 2.1.0. Licensed MIT."
+  },
+  {
+   "id": "side-channel-list",
+   "text": "Store information about any JS value in a side channel, using a linked list Version 1.0.1. Licensed MIT."
+  },
+  {
+   "id": "string-width",
+   "text": "Get the visual width of a string - the number of columns required to display it Version 7.2.0. Licensed MIT."
+  },
+  {
+   "id": "@aws-sdk/client-ecs",
+   "text": "AWS SDK for JavaScript Ecs Client for Node.js, Browser and React Native Version 3.1156.0. Licensed Apache-2.0."
+  },
+  {
+   "id": "@aws-sdk/credential-provider-login",
+   "text": "AWS credential provider that sources credentials from aws login cached tokens Version 3.972.83. Licensed Apache-2.0."
+  },
+  {
+   "id": "@modelcontextprotocol/client",
+   "text": "Model Context Protocol implementation for TypeScript - Client package Version 2.3.1. Licensed Apache-2.0."
+  },
+  {
+   "id": "@modelcontextprotocol/server-memory",
+   "text": "MCP server for enabling memory for Claude through a knowledge graph Version 1.0.0. Licensed SEE LICENSE IN LICENSE."
+  },
+  {
+   "id": "micromark-factory-destination",
+   "text": "micromark factory to parse destinations (found in resources, definitions) Version 2.0.1. Licensed MIT."
+  },
+  {
+   "id": "@aws-sdk/credential-provider-sso",
+   "text": "AWS credential provider that exchanges a resolved SSO login token file for temporary AWS credentials Version 3.973.20. Licensed Apache-2.0."
+  },
+  {
+   "id": "@isaacs/fs-minipass",
+   "text": "fs read and write streams based on minipass Version 4.0.1. Licensed ISC."
+  },
+  {
+   "id": "@libsql/isomorphic-fetch",
+   "text": "Isomorphic fetch() in Node, Deno and Cloudflare Workers Version 0.3.1. Licensed MIT."
+  },
+  {
+   "id": "@xenova/transformers",
+   "text": "State-of-the-art Machine Learning for the web. Run 🤗 Transformers directly in your browser, with no need for a server! Version 2.17.2. Licensed Apache-2.0."
+  },
+  {
+   "id": "side-channel",
+   "text": "Store information about any JS value in a side channel. Uses WeakMap if available. Version 1.1.1. Licensed MIT."
+  },
+  {
+   "id": "chart.js-helpers",
+   "text": "Helpers package. Exists to support bundlers without exports support such as webpack 4."
+  },
+  {
+   "id": "@aws-sdk/credential-provider-node",
+   "text": "AWS credential provider that sources credentials from a Node.JS environment. Version 3.972.88. Licensed Apache-2.0."
+  },
+  {
+   "id": "@aws-sdk/credential-provider-process",
+   "text": "AWS credential provider that sources credential_process from ~/.aws/credentials and ~/.aws/config Version 3.972.76. Licensed Apache-2.0."
+  },
+  {
+   "id": "micromark-factory-whitespace",
+   "text": "micromark factory to parse markdown whitespace (found in lots of places) Version 2.0.1. Licensed MIT."
+  },
+  {
+   "id": "side-channel-map",
+   "text": "Store information about any JS value in a side channel, using a Map Version 1.0.1. Licensed MIT."
+  },
+  {
+   "id": "widest-line",
+   "text": "Get the visual width of the widest line in a string - the number of columns required to display it Version 5.0.0. Licensed MIT."
+  },
+  {
+   "id": "@aws-sdk/client-s3",
+   "text": "AWS SDK for JavaScript S3 Client for Node.js, Browser and React Native Version 3.1156.0. Licensed Apache-2.0."
+  },
+  {
+   "id": "@smithy/credential-provider-imds",
+   "text": "AWS credential provider that sources credentials from the EC2 instance metadata service and ECS container metadata service Version 4.5.2. Licensed Apache-2.0."
+  },
+  {
+   "id": "@modelcontextprotocol/server",
+   "text": "Model Context Protocol implementation for TypeScript - Server package Version 2.3.1. Licensed Apache-2.0."
+  },
+  {
+   "id": "mcp-knowledge-graph",
+   "text": "MCP server enabling persistent memory for AI models through a local knowledge graph Version 1.3.2. Licensed MIT."
+  },
+  {
+   "id": "micromark-factory-title",
+   "text": "micromark factory to parse markdown titles (found in resources, definitions) Version 2.0.1. Licensed MIT."
+  },
+  {
+   "id": "@aws-sdk/credential-provider-web-identity",
+   "text": "AWS credential provider that calls STS assumeRole for temporary AWS credentials Version 3.972.82. Licensed Apache-2.0."
+  },
+  {
+   "id": "fs-minipass",
+   "text": "fs read and write streams based on minipass Version 2.1.0. Licensed ISC."
+  },
+  {
+   "id": "@libsql/isomorphic-ws",
+   "text": "Isomorphic WebSockets in Node, Bun, Deno and Cloudflare Workers Version 0.1.5. Licensed MIT."
+  },
+  {
+   "id": "is-fullwidth-code-point",
+   "text": "Check if the character represented by a given Unicode code point is fullwidth Version 4.0.0. Licensed MIT."
+  },
+  {
+   "id": "@esbuild/win32-x64",
+   "text": "The Windows 64-bit binary for esbuild, a JavaScript bundler. Version 0.28.2. Licensed MIT."
+  },
+  {
+   "id": "minipass",
+   "text": "minimal implementation of a PassThrough stream Version 7.1.3. Licensed BlueOak-1.0.0."
+  },
+  {
+   "id": "@j0hanz/memdb",
+   "text": "A SQLite-backed MCP memory server with local workspace storage. Version 1.4.0. Licensed MIT."
+  },
+  {
+   "id": "@nodelib/fs.scandir",
+   "text": "List files and directories inside the specified directory Version 2.1.5. Licensed MIT."
+  },
+  {
+   "id": "@protobufjs/path",
+   "text": "A minimal path module to resolve Unix, Windows and URL paths alike. Version 1.1.2. Licensed BSD-3-Clause."
+  },
+  {
+   "id": "@vheins/local-memory-mcp",
+   "text": "MCP Local Memory Service for coding copilot agents Version 0.52.3. Licensed MIT."
+  },
+  {
+   "id": "ansi-styles",
+   "text": "ANSI escape codes for styling strings in the terminal Version 6.2.3. Licensed MIT."
+  },
+  {
+   "id": "better-sqlite3",
+   "text": "The fastest and simplest library for SQLite in Node.js. Version 12.11.1. Licensed MIT."
+  },
+  {
+   "id": "call-bind-apply-helpers",
+   "text": "Helper functions around Function call/apply/bind, for use in `call-bind` Version 1.0.2. Licensed MIT."
+  },
+  {
+   "id": "color-string",
+   "text": "Parser and generator for CSS color strings Version 1.9.1. Licensed MIT."
+  },
+  {
+   "id": "crbro-memory",
+   "text": "CRBRO — Persistent neural memory for AI. A biological file-based MCP server that gives your AI long-term memory across sessions. Version 2.10.0. Licensed MIT."
+  },
+  {
+   "id": "detect-node",
+   "text": "Detect Node.JS (as opposite to browser environment) (reliable) Version 2.1.0. Licensed MIT."
+  },
+  {
+   "id": "environment",
+   "text": "Check which JavaScript environment your code is running in at runtime: browser, Node.js, Bun, etc Version 1.1.0. Licensed MIT."
+  },
+  {
+   "id": "eventsource-parser",
+   "text": "Streaming, source-agnostic EventSource/Server-Sent Events parser Version 3.1.1. Licensed MIT."
+  },
+  {
+   "id": "fast-string-truncated-width",
+   "text": "A fast function for calculating where a string should be truncated, given an optional width limit and an ellipsis string. Version 3.0.3. Licensed MIT."
+  },
+  {
+   "id": "get-east-asian-width",
+   "text": "Determine the East Asian Width of a Unicode character Version 1.7.0. Licensed MIT."
+  },
+  {
+   "id": "graphology-communities-louvain",
+   "text": "Louvain community detection for graphology. Version 2.0.2. Licensed MIT."
+  },
+  {
+   "id": "http-cache-semantics",
+   "text": "Parses Cache-Control and other headers. Helps building correct HTTP caches and proxies Version 4.3.0. Licensed BSD-2-Clause."
+  },
+  {
+   "id": "inherits",
+   "text": "Browser-friendly inheritance fully compatible with standard node.js inherits() Version 2.0.4. Licensed ISC."
+  },
+  {
+   "id": "is-number",
+   "text": "Returns true if a number or string value is a finite number. Useful for regex matches, parsing, user input, etc. Version 7.0.0. Licensed MIT."
+  },
+  {
+   "id": "json-stringify-safe",
+   "text": "Like JSON.stringify, but doesn't blow up on circular refs. Version 5.0.1. Licensed ISC."
+  },
+  {
+   "id": "mdast-util-find-and-replace",
+   "text": "mdast utility to find and replace text in a tree Version 3.0.3. Licensed MIT."
+  },
+  {
+   "id": "media-typer",
+   "text": "Simple RFC 6838 media type parser and formatter Version 1.1.1. Licensed MIT."
+  },
+  {
+   "id": "micromark-extension-gfm-strikethrough",
+   "text": "micromark extension to support GFM strikethrough Version 2.1.0. Licensed MIT."
+  },
+  {
+   "id": "micromark-util-classify-character",
+   "text": "micromark utility to classify whether a character is whitespace or punctuation Version 2.0.1. Licensed MIT."
+  },
+  {
+   "id": "micromark",
+   "text": "small commonmark compliant markdown parser with positional info and concrete tokens Version 4.0.3. Licensed MIT."
+  },
+  {
+   "id": "mute-stream",
+   "text": "Bytes go in, but they don't come out (when muted). Version 3.0.0. Licensed ISC."
+  },
+  {
+   "id": "obliterator",
+   "text": "Higher order iterator library for JavaScript/TypeScript. Version 2.0.5. Licensed MIT."
+  },
+  {
+   "id": "pg-int8",
+   "text": "64-bit big-endian signed integer-to-string conversion Version 1.0.1. Licensed ISC."
+  },
+  {
+   "id": "promise-inflight",
+   "text": "One promise for multiple requests in flight to avoid async duplication Version 1.0.1. Licensed ISC."
+  },
+  {
+   "id": "espree",
+   "text": "An Esprima-compatible JavaScript parser built on Acorn Version 7.3.1. Licensed BSD-2-Clause."
+  },
+  {
+   "id": "requizzle",
+   "text": "Swizzle a little something into your require() calls. Version 0.2.3. Licensed MIT."
+  },
+  {
+   "id": "rag-memory-epf-mcp",
+   "text": "Project-local RAG memory MCP server — knowledge graph + multilingual vector + FTS5 in a single SQLite file. Per-project isolation, 38 MCP tools, codepoint-safe chunking (Korean/CJK/emoji). Version 6.4.1. Licensed MIT."
+  },
+  {
+   "id": "remark-stringify",
+   "text": "remark plugin to add support for serializing markdown Version 11.0.0. Licensed MIT."
+  },
+  {
+   "id": "send",
+   "text": "Better streaming static file server with Range and conditional-GET support Version 1.2.1. Licensed MIT."
+  },
+  {
+   "id": "socks-proxy-agent",
+   "text": "A SOCKS proxy `http.Agent` implementation for HTTP and HTTPS Version 6.2.1. Licensed MIT."
+  },
+  {
+   "id": "strip-bom-string",
+   "text": "Strip a byte order mark (BOM) from a string. Version 1.0.0. Licensed MIT."
+  },
+  {
+   "id": "tr46",
+   "text": "An implementation of the Unicode TR46 spec Version 0.0.3. Licensed MIT."
+  },
+  {
+   "id": "unist-util-stringify-position",
+   "text": "unist utility to serialize a node, position, or point as a human readable location Version 4.0.0. Licensed MIT."
+  }
+ ],
+ "queries": [
+  {
+   "query": "Check if the character represented by a given Unicode code point is fullwidth",
+   "expect": "is-fullwidth-code-point",
+   "difficulty": "easy"
+  },
+  {
+   "query": "The Windows 64-bit binary for esbuild, a JavaScript bundler.",
+   "expect": "@esbuild/win32-x64",
+   "difficulty": "easy"
+  },
+  {
+   "query": "minimal implementation of a PassThrough stream",
+   "expect": "minipass",
+   "difficulty": "easy"
+  },
+  {
+   "query": "A SQLite-backed MCP memory server with local workspace storage.",
+   "expect": "@j0hanz/memdb",
+   "difficulty": "easy"
+  },
+  {
+   "query": "List files and directories inside the specified directory",
+   "expect": "@nodelib/fs.scandir",
+   "difficulty": "easy"
+  },
+  {
+   "query": "A minimal path module to resolve Unix, Windows and URL paths alike.",
+   "expect": "@protobufjs/path",
+   "difficulty": "easy"
+  },
+  {
+   "query": "MCP Local Memory Service for coding copilot agents",
+   "expect": "@vheins/local-memory-mcp",
+   "difficulty": "easy"
+  },
+  {
+   "query": "ANSI escape codes for styling strings in the terminal",
+   "expect": "ansi-styles",
+   "difficulty": "easy"
+  },
+  {
+   "query": "The fastest and simplest library for SQLite in Node.js.",
+   "expect": "better-sqlite3",
+   "difficulty": "easy"
+  },
+  {
+   "query": "Helper functions around Function call/apply/bind, for use in `call-bind`",
+   "expect": "call-bind-apply-helpers",
+   "difficulty": "easy"
+  },
+  {
+   "query": "Parser and generator for CSS color strings",
+   "expect": "color-string",
+   "difficulty": "easy"
+  },
+  {
+   "query": "CRBRO — Persistent neural memory for AI. A biological file-based MCP server that gives your AI long-term memory across sessions.",
+   "expect": "crbro-memory",
+   "difficulty": "easy"
+  },
+  {
+   "query": "Detect Node.JS (as opposite to browser environment) (reliable)",
+   "expect": "detect-node",
+   "difficulty": "easy"
+  },
+  {
+   "query": "Check which JavaScript environment your code is running in at runtime: browser, Node.js, Bun, etc",
+   "expect": "environment",
+   "difficulty": "easy"
+  },
+  {
+   "query": "Streaming, source-agnostic EventSource/Server-Sent Events parser",
+   "expect": "eventsource-parser",
+   "difficulty": "easy"
+  },
+  {
+   "query": "A fast function for calculating where a string should be truncated, given an optional width limit and an ellipsis string.",
+   "expect": "fast-string-truncated-width",
+   "difficulty": "easy"
+  },
+  {
+   "query": "Determine the East Width of a Unicode",
+   "expect": "get-east-asian-width",
+   "difficulty": "hard"
+  },
+  {
+   "query": "Louvain community for graphology.",
+   "expect": "graphology-communities-louvain",
+   "difficulty": "hard"
+  },
+  {
+   "query": "Parses Cache-Control and headers. Helps correct HTTP and proxies",
+   "expect": "http-cache-semantics",
+   "difficulty": "hard"
+  },
+  {
+   "query": "Browser-friendly inheritance compatible with node.js inherits()",
+   "expect": "inherits",
+   "difficulty": "hard"
+  },
+  {
+   "query": "Returns true if a or string value is a number. Useful for matches, parsing, input, etc.",
+   "expect": "is-number",
+   "difficulty": "hard"
+  },
+  {
+   "query": "Like JSON.stringify, but blow up on circular",
+   "expect": "json-stringify-safe",
+   "difficulty": "hard"
+  },
+  {
+   "query": "mdast utility to and replace text in a",
+   "expect": "mdast-util-find-and-replace",
+   "difficulty": "hard"
+  },
+  {
+   "query": "Simple RFC 6838 media parser and formatter",
+   "expect": "media-typer",
+   "difficulty": "hard"
+  },
+  {
+   "query": "micromark extension to GFM strikethrough",
+   "expect": "micromark-extension-gfm-strikethrough",
+   "difficulty": "hard"
+  },
+  {
+   "query": "micromark utility to whether a character is or punctuation",
+   "expect": "micromark-util-classify-character",
+   "difficulty": "hard"
+  },
+  {
+   "query": "small commonmark markdown parser positional info and tokens",
+   "expect": "micromark",
+   "difficulty": "hard"
+  },
+  {
+   "query": "Bytes go in, but they don't out (when muted).",
+   "expect": "mute-stream",
+   "difficulty": "hard"
+  },
+  {
+   "query": "Higher order library for JavaScript/TypeScript.",
+   "expect": "obliterator",
+   "difficulty": "hard"
+  },
+  {
+   "query": "64-bit big-endian signed integer-to-string",
+   "expect": "pg-int8",
+   "difficulty": "hard"
+  },
+  {
+   "query": "One promise for multiple in flight to avoid duplication",
+   "expect": "promise-inflight",
+   "difficulty": "hard"
+  },
+  {
+   "query": "An Esprima-compatible JavaScript built on Acorn",
+   "expect": "espree",
+   "difficulty": "hard"
+  },
+  {
+   "query": "State-of-the-art Machine Learning for the web. Run 🤗 Transformers directly in your browser, with no need for a server!",
+   "expect": "@huggingface/transformers",
+   "difficulty": "adversarial"
+  },
+  {
+   "query": "Store information about any JS value in a side channel. Uses WeakMap if available.",
+   "expect": "side-channel-weakmap",
+   "difficulty": "adversarial"
+  },
+  {
+   "query": "Auto registering package. Exists to support bundlers without exports support such as webpack 4.",
+   "expect": "chart.js-auto",
+   "difficulty": "adversarial"
+  },
+  {
+   "query": "AWS credential provider that sources credentials from known environment variables",
+   "expect": "@aws-sdk/credential-provider-env",
+   "difficulty": "adversarial"
+  },
+  {
+   "query": "AWS credential provider that sources credentials from ~/.aws/credentials and ~/.aws/config",
+   "expect": "@aws-sdk/credential-provider-ini",
+   "difficulty": "adversarial"
+  },
+  {
+   "query": "micromark factory to parse markdown space (found in lots of places)",
+   "expect": "micromark-factory-space",
+   "difficulty": "adversarial"
+  },
+  {
+   "query": "Store information about any JS value in a side channel, using a linked list",
+   "expect": "side-channel-list",
+   "difficulty": "adversarial"
+  },
+  {
+   "query": "Get the visual width of a string - the number of columns required to display it",
+   "expect": "string-width",
+   "difficulty": "adversarial"
+  },
+  {
+   "query": "AWS SDK for JavaScript Ecs Client for Node.js, Browser and React Native",
+   "expect": "@aws-sdk/client-ecs",
+   "difficulty": "adversarial"
+  },
+  {
+   "query": "AWS credential provider that sources credentials from aws login cached tokens",
+   "expect": "@aws-sdk/credential-provider-login",
+   "difficulty": "adversarial"
+  },
+  {
+   "query": "Model Context Protocol implementation for TypeScript - Client package",
+   "expect": "@modelcontextprotocol/client",
+   "difficulty": "adversarial"
+  },
+  {
+   "query": "MCP server for enabling memory for Claude through a knowledge graph",
+   "expect": "@modelcontextprotocol/server-memory",
+   "difficulty": "adversarial"
+  },
+  {
+   "query": "micromark factory to parse destinations (found in resources, definitions)",
+   "expect": "micromark-factory-destination",
+   "difficulty": "adversarial"
+  },
+  {
+   "query": "AWS credential provider that exchanges a resolved SSO login token file for temporary AWS credentials",
+   "expect": "@aws-sdk/credential-provider-sso",
+   "difficulty": "adversarial"
+  },
+  {
+   "query": "fs read and write streams based on minipass",
+   "expect": "@isaacs/fs-minipass",
+   "difficulty": "adversarial"
+  },
+  {
+   "query": "Isomorphic fetch() in Node, Deno and Cloudflare Workers",
+   "expect": "@libsql/isomorphic-fetch",
+   "difficulty": "adversarial"
+  },
+  {
+   "query": "the complete solution for node.js command-line programs",
+   "expect": null,
+   "difficulty": "absent"
+  },
+  {
+   "query": "A small fast zlib stream built on [minipass](http://npm.im/minipass) and Node.js's zlib binding.",
+   "expect": null,
+   "difficulty": "absent"
+  },
+  {
+   "query": "css color parsing, manupulation and conversion",
+   "expect": null,
+   "difficulty": "absent"
+  },
+  {
+   "query": "Get the status of a file with some features",
+   "expect": null,
+   "difficulty": "absent"
+  },
+  {
+   "query": "A minimal UTF8 implementation for number arrays.",
+   "expect": null,
+   "difficulty": "absent"
+  },
+  {
+   "query": "SQLite storage adapter for ZenBrain memory system. Zero-config, file-based, perfect for development and single-user deployments.",
+   "expect": null,
+   "difficulty": "absent"
+  },
+  {
+   "query": "A ridiculously light-weight argument validator (now browser friendly)",
+   "expect": null,
+   "difficulty": "absent"
+  },
+  {
+   "query": "Helper module for loading your native module's .node file",
+   "expect": null,
+   "difficulty": "absent"
+  },
+  {
+   "query": "Robust call-bound JavaScript intrinsics, using `call-bind` and `get-intrinsic`.",
+   "expect": null,
+   "difficulty": "absent"
+  },
+  {
+   "query": "A module which will endeavor to guess your terminal's level of color support.",
+   "expect": null,
+   "difficulty": "absent"
+  },
+  {
+   "query": "Cross platform child_process#spawn and child_process#spawnSync",
+   "expect": null,
+   "difficulty": "absent"
+  },
+  {
+   "query": "Do things in development and nothing otherwise",
+   "expect": null,
+   "difficulty": "absent"
+  }
+ ],
+ "authored_by": "node_modules",
+ "authored_at": "not applicable - no author"
+}

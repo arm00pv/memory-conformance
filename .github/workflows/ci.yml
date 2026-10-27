@@ -94,6 +94,18 @@ jobs:
           grep -q "what an agent reads" AGENT.md
           grep -q "pairs reach a different verdict" AGENT.md
 
+      # A CORPUS WITH NO AUTHOR. The records are real package.json files and the questions are derived
+      # from them by rule; the build needs node_modules and therefore runs locally, but the report reads
+      # committed results and must keep running here, including its own indictment of the hard band.
+      - name: the corpus with no author must still rank, and must still say what it cannot test
+        run: |
+          python real_corpus.py --report > /tmp/real.txt
+          cat /tmp/real.txt
+          test -s REAL-CORPUS.md
+          grep -q "corpus with no author" REAL-CORPUS.md
+          grep -q "Spearman" REAL-CORPUS.md
+          grep -q "validator rejects this corpus" REAL-CORPUS.md
+
       - name: a tie must be reported as one of its three kinds, with a price
         run: |
           python band.py > /tmp/band.txt

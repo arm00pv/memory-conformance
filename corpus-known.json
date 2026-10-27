@@ -1,1 +1,23 @@
-{}
+{
+ "retrieval_corpus_real.json": {
+  "note": "ACCEPTED BY DESIGN. This corpus has no author: its records are real package.json files and its questions are derived from their descriptions by rule. Every defect below is the same one - the hard band thins a real sentence by removing words, which leaves a sentence a substring counter can still answer. A paraphrased band needs somebody to paraphrase, so this corpus cannot have one, and saying so is the finding rather than the excuse. A new defect here still fails the build; a pinned one that stops happening is reported as fixed.",
+  "errors": [
+   "hard question 'Determine the East Width of a Unicode' shares 4 words with 'get-east-asian-width' (determine, east, unicode, width) - a keyword match, not a paraphrase",
+   "hard question 'Louvain community for graphology.' shares 3 words with 'graphology-communities-louvain' (community, graphology, louvain) - a keyword match, not a paraphrase",
+   "hard question 'Parses Cache-Control and headers. Helps correct HTTP and proxies' shares 8 words with 'http-cache-semantics' (cache, control, correct, header, help, http, parse, proxie) - a keyword match, not a paraphrase",
+   "hard question 'Browser-friendly inheritance compatible with node.js inherits()' shares 7 words with 'inherits' (browser, compatible, friendly, inherit, inheritance, js, node) - a keyword match, not a paraphrase",
+   "hard question 'Returns true if a or string value is a number. Useful for matches, parsing, input, etc.' shares 10 words with 'is-number' (etc, input, matche, number, parsing, return, string, true, useful, value) - a keyword match, not a paraphrase",
+   "hard question 'Like JSON.stringify, but blow up on circular' shares 5 words with 'json-stringify-safe' (blow, circular, json, like, stringify) - a keyword match, not a paraphrase",
+   "hard question 'mdast utility to and replace text in a' shares 4 words with 'mdast-util-find-and-replace' (mdast, replace, text, utility) - a keyword match, not a paraphrase",
+   "hard question 'Simple RFC 6838 media parser and formatter' shares 6 words with 'media-typer' (6838, formatter, media, parser, rfc, simple) - a keyword match, not a paraphrase",
+   "hard question 'micromark extension to GFM strikethrough' shares 4 words with 'micromark-extension-gfm-strikethrough' (extension, gfm, micromark, strikethrough) - a keyword match, not a paraphrase",
+   "hard question 'micromark utility to whether a character is or punctuation' shares 4 words with 'micromark-util-classify-character' (character, micromark, punctuation, utility) - a keyword match, not a paraphrase",
+   "hard question 'small commonmark markdown parser positional info and tokens' shares 7 words with 'micromark' (commonmark, info, markdown, parser, positional, small, token) - a keyword match, not a paraphrase",
+   "hard question \"Bytes go in, but they don't out (when muted).\" shares 5 words with 'mute-stream' (byte, don, go, muted, t) - a keyword match, not a paraphrase",
+   "hard question 'Higher order library for JavaScript/TypeScript.' shares 5 words with 'obliterator' (higher, javascript, library, order, typescript) - a keyword match, not a paraphrase",
+   "hard question '64-bit big-endian signed integer-to-string' shares 7 words with 'pg-int8' (64, big, bit, endian, integer, signed, string) - a keyword match, not a paraphrase",
+   "hard question 'One promise for multiple in flight to avoid duplication' shares 5 words with 'promise-inflight' (avoid, duplication, flight, multiple, promise) - a keyword match, not a paraphrase",
+   "hard question 'An Esprima-compatible JavaScript built on Acorn' shares 5 words with 'espree' (acorn, built, compatible, esprima, javascript) - a keyword match, not a paraphrase"
+  ]
+ }
+}
