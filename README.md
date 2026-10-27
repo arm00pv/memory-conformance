@@ -29,7 +29,7 @@ independently written corpora and in two phrasings, and writes the verdicts to `
 
 ```
 $ python claims.py
-**7 of the 29 claims hold in every setting measured.**
+**7 of the 30 claims hold in every setting measured.**
 ```
 
 Five survive everywhere, including the one that matters most: **memory-mcp-1file answers more
@@ -616,6 +616,58 @@ tied at 48 hits and the leader had to be decided by a single point.
 
 The ledger tests both readings and both **FAIL**: `ranking-survives-paraphrase` (eight subjects tie
 verbatim, `zenbrain` is first when two words survive) and `near-end-separates` (26 against 38).
+
+## Does a memory survive a plural
+
+The distance ladder moves one coordinate — how much of a record survives into a question — and it is
+pinned at 1.00 on the other, because a question built by deleting words uses only the record's own words.
+**A person does not ask that way.** `morph_sweep.py` moves the other coordinate: every description asked
+four times with a growing share of its long words pluralised, so the question contains vocabulary the
+record does not. [`MORPHOLOGY.md`](MORPHOLOGY.md)
+
+| band | the question | vocabulary the record lacks, **measured** |
+|---|---|---|
+| m0 | the record's own words | 0.00 |
+| m1 | every fourth long word pluralised | 0.17 |
+| m2 | every second long word pluralised | 0.40 |
+| m3 | every long word pluralised | 0.83 |
+
+hit@3 out of 24 per band:
+
+| subject | m0 | m1 | m2 | m3 |
+|---|---|---|---|---|
+| `mcp-duckdb-memory-server` | 24 | 24 | 24 | **24** |
+| `memory-mcp-1file` | 23 | 23 | 23 | **23** |
+| `zenbrain` | 24 | 24 | 24 | **18** |
+| `memento` | 16 | 16 | 18 | 18 |
+| `control` | 24 | 24 | 24 | **9** |
+| `server-memory` 1.0.0 and 2.0.0 | 24 | **0** | 0 | 0 |
+| `mcp-knowledge-graph` | 24 | **0** | 0 | 0 |
+| `memory-lean` | 24 | **1** | 0 | 0 |
+
+**Changing two letters on one word in four is enough to erase four subjects completely.** `server-memory`,
+`mcp-knowledge-graph` and `memory-lean` go from a perfect 24 at m0 to zero at m1 — they match substrings and
+nothing else. `duckdb` and the leader hold all the way, `zenbrain` loses a quarter, and the positive
+control — which is also a substring matcher — survives m2 and falls to nine at m3.
+
+That is the same family split the distance sweep found, arrived at from the other direction: the subjects
+that fail a paraphrase at *d1* are the subjects that fail a plural at *m1*, and they are the ones whose
+retrieval is a string comparison.
+
+### The two coordinates
+
+| sweep | of the record, in the question | of the question, in the record |
+|---|---|---|
+| distance, d0 to d4 | 1.00 down to 0.29 | **1.00 at every band** |
+| morphology, m0 to m3 | **1.00 at every band** | 1.00 down to 0.17 |
+
+Neither sweep alone is what a person writes, and the two failure modes they isolate are different: losing
+the record's words is a recall problem, using only the record's own words is a normalisation problem. A
+real question changes both at once, which is why a field of this many servers produces this much spread —
+and why a benchmark that holds one coordinate fixed measures one failure and calls it quality.
+
+`plural-is-free` joins the ledger and **FAILS**: five of eleven subjects lose more than half their answers
+when the question pluralises the record's words.
 
 ## A second corpus, written blind
 

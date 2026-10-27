@@ -3385,6 +3385,79 @@ One generator, one measurement run over eleven subjects at two repeats, one repo
 No subject was changed, no corpus was rewritten, and the five question sets now have a coordinate system
 instead of an argument.
 
+## Addendum 32: two letters on one word in four
+
+Addendum 31 closed half a space and said so. The distance ladder moves how much of a record survives into
+a question, and it cannot move the other coordinate: every band it builds uses only the record's own words.
+A person does not ask that way. They ask about "parsers" when the record says "a parser", and the word they
+typed is not in the record.
+
+That is measurable without a thesaurus, a writer or a network. `morph_sweep.py` asks every real
+description four times with a growing share of its long words pluralised - one rule for words ending in s,
+x, z, ch or sh, one for a consonant before y, and `+s` otherwise - so the question brings vocabulary the
+record does not contain.
+
+| band | vocabulary the record lacks, measured |
+|---|---|
+| m0 | 0.00 |
+| m1 | 0.17 |
+| m2 | 0.40 |
+| m3 | 0.83 |
+
+### What two letters do
+
+| subject | m0 | m1 | m2 | m3 |
+|---|---|---|---|---|
+| `mcp-duckdb-memory-server` | 24 | 24 | 24 | 24 |
+| `memory-mcp-1file` | 23 | 23 | 23 | 23 |
+| `zenbrain` | 24 | 24 | 24 | 18 |
+| `memento` | 16 | 16 | 18 | 18 |
+| `control` | 24 | 24 | 24 | 9 |
+| `server-memory` 1.0.0 and 2.0.0 | 24 | **0** | 0 | 0 |
+| `mcp-knowledge-graph` | 24 | **0** | 0 | 0 |
+| `memory-lean` | 24 | **1** | 0 | 0 |
+
+Four subjects go from perfect to nothing at the first step, where one word in four has two letters added.
+They match substrings; nothing else in their retrieval normalises anything. The positive control, which is
+also a substring matcher, holds two more bands because its threshold needs half the question's terms to
+match and the plural still matches in a substring sense for common words - and then falls to nine.
+
+**The family split is the same one the distance sweep found, arrived at from the other direction.** The
+subjects that fail a paraphrase at d1 are the subjects that fail a plural at m1, and they are the ones
+whose retrieval is a string comparison. Two independent sweeps naming the same five subjects is the
+strongest evidence in this repository that the distinction is a property of the systems rather than of a
+question set.
+
+### The two coordinates, now both measured
+
+| sweep | of the record, in the question | of the question, in the record |
+|---|---|---|
+| distance, d0 to d4 | 1.00 down to 0.29 | 1.00 at every band |
+| morphology, m0 to m3 | 1.00 at every band | 1.00 down to 0.17 |
+
+Neither sweep alone is what a person writes. Losing the record's words is a recall problem; using only the
+record's own words is a normalisation problem; a real question does both, and a benchmark that pins one
+coordinate measures one failure mode and reports it as quality.
+
+### What this is not
+
+Pluralisation is the cheapest case of new vocabulary: the stem is intact and two letters changed. A subject
+that fails here fails the easiest version of the problem, which makes this a floor and not a measure of
+understanding - the same role the real corpus's hard band plays. The honest claim is narrow: the second
+coordinate can be moved at all without an author, and moving it separates the field.
+
+### And the ledger
+
+`plural-is-free` - the sentence a vendor would write, that answering a record's own words implies answering
+the plural of them - **FAILS** for five of eleven subjects.
+
+### What this costs
+
+One generator, one measurement run at two repeats over eleven subjects, one report, one claim. No subject
+changed, no existing corpus touched, and the question space this repository can build is now two
+dimensional instead of one.
+
+
 
 
 
