@@ -29,7 +29,7 @@ independently written corpora and in two phrasings, and writes the verdicts to `
 
 ```
 $ python claims.py
-**7 of the 24 claims hold in every setting measured.**
+**7 of the 25 claims hold in every setting measured.**
 ```
 
 Five survive everywhere, including the one that matters most: **memory-mcp-1file answers more
@@ -436,6 +436,61 @@ Two of my four predictions missed, and both misses are printed beside their pred
 edited out. The `reverse-rank` miss is the more interesting one: hit@1 fell to 15 and not to zero because
 15 of the control's 25 correct answers come from a search that found exactly one record - there was no
 ranking there to get wrong.
+
+## What an agent actually reads
+
+The mutation battery left a question open: the score credits the right record anywhere in the top three,
+an agent reads the first one, and the score does not move when the answer moves from first to third. So
+the table has one number in it and four questions behind it. `agent.py` asks all four of the same saved
+rows: [`AGENT.md`](AGENT.md)
+
+| question | right record in the top three | right record first | credits a correct silence |
+|---|---|---|---|
+| `score` | yes | no | yes |
+| `hits` | yes | no | no |
+| `hit1` | no | yes | no |
+| `top` | no | yes | yes |
+
+Twenty-four rulers - three corpora, two phrasings, four metrics - and the subject at the top is not the
+same on all of them. First place, per ruler:
+
+| metric | A written | A keywords | B written | B keywords | C written | C keywords |
+|---|---|---|---|---|---|---|
+| `score` | 1file | **level** | 1file | control | control | control |
+| `hits` | 1file | 1file | 1file | 1file | 1file | 1file |
+| `hit1` | 1file | 1file | 1file | **level** | 1file | **zenbrain** |
+| `top` | 1file | **control** | **control** | **control** | **control** | **control** |
+
+| subject | rulers at the top |
+|---|---|
+| `memory-mcp-1file` | **15 of 24** |
+| `control` | **10 of 24** |
+| `zenbrain` | **1 of 24** |
+
+**On the only one of the four questions a caller experiences directly, the positive control wins five of
+six.** The leader wins every hit@3 ruler and five of six hit@1 rulers; the score splits three to two to
+one tie; and when the metric becomes *the first record back, or nothing when there is nothing*, a two
+hundred line append-only file with term overlap is first on five of the six corpora and phrasings, by a
+margin of four to twelve points.
+
+That is the answer to the question this table was built to ask. A field of memory servers, eleven of them
+measured, and the best of them is not better than a file.
+
+### The score has never flattered anybody, and it has flattered everyone
+
+Reading the rows as an agent instead of as a scorer moves every subject down or leaves it level. Nothing
+gains - not one subject in three corpora - which says the score is a generous reading and never a harsh
+one: `memento` loses thirteen points on corpus B, the leader ten on corpus C, `memdb` six on corpus A. A
+memory that answers the question third is being given credit it does not collect from any caller.
+
+And it is not only the totals. On corpus A as written, **9 of the 55 pairs reach a different verdict**
+depending on which reading is used, and the disagreements run in both directions: `memdb` is separated
+from `server-memory` on the agent reading at p = 0.000 and not on the score at p = 0.238, while
+`duckdb` against `zenbrain` is separated on the score at p = 0.017 and not on the agent reading at
+p = 0.175.
+
+The ledger's `agent-agrees-with-score` claim tests the top of the table and **FAILS**: on corpus B the
+subject on top changes when the metric becomes the one a caller sees.
 
 ## A second corpus, written blind
 

@@ -3096,6 +3096,98 @@ One script, four levers, two claims that fail, and about two minutes of runtime 
 four lines each in the adapter. Everything else - the score, the matrix, every published conclusion -
 stands exactly as it was, and now says what it does not measure.
 
+## Addendum 29: four questions, and the answer a caller actually gets
+
+Addendum 28 ended with a fact and no consequence. The score does not move when an answer moves from first
+to third, so every paired test in this repository is computed from a number that an agent does not
+experience. The consequence is a metric that was never computed: **the first record back, plus a correct
+silence** - what you get if you ask a question, read the first line, and stop.
+
+That is one line in `compare.py` and a second metric in `resolution.py`. What it cost was re-reading
+every number in the table under a different question.
+
+### The expectation I had, and what happened to it
+
+I expected the leader to change under the agent metric in most of the six corpus and phrasing
+combinations. It changed in **two** - corpus A as keywords and corpus B as written - because most of the
+disagreement between the two questions is in the middle of the table and not at the top. The top of the
+table is where the numbers are furthest apart and therefore where a change of a few records is least
+likely to reorder anything. My expectation was a belief about where a metric bites, and it was wrong
+about the place.
+
+What did survive is bigger and was not what I was looking for.
+
+### First place, on each of the four questions
+
+Twenty-four rulers: three corpora, two phrasings, four metrics.
+
+| subject | rulers at the top |
+|---|---|
+| `memory-mcp-1file` | **15 of 24** |
+| `control` | **10 of 24** |
+| `zenbrain` | **1 of 24** |
+
+The ten belong to the positive control, and eight of them are the two questions that are not the score:
+
+| metric | who is first | of six corpus-phrasings |
+|---|---|---|
+| `hits` - right record in the top three | `memory-mcp-1file` | **6** |
+| `hit1` - right record first | `memory-mcp-1file` | **5** (one level with the control) |
+| `score` - top three, plus silence | `control` 3, `1file` 2, level once | split |
+| `top` - first record, plus silence | `control` | **5** |
+
+**On the only one of the four that a caller experiences directly, a two-hundred-line append-only file with
+term overlap is first on five of six corpora and phrasings**, by four to twelve points, ahead of every real
+memory server in the table. It is not a tie and it is not a near thing: on corpus C as keywords it is 42
+against 32.
+
+That is the finding this repository was built to be able to make and had not made. It is not that the
+servers are bad; five of the eleven answer nothing at all on these corpora, and the ones that answer do
+real work. It is that the quantity being sold - the right thing, first, or silence - is delivered better
+by a text file and a substring count than by any of the systems built for it.
+
+### Every gap is zero or negative
+
+Reading the same rows as an agent instead of as a scorer moves every subject down or leaves it level. Not
+one subject in three corpora gains. `memento` loses thirteen on corpus B, the leader ten on corpus C,
+`memdb` six on corpus A.
+
+So the score is a generous reading and never a harsh one. Every subject's published number is the best
+case of what its own rows support, and the case is optimistic by an amount that varies from zero to
+thirteen points depending on how far down the ranking the subject puts its correct answers.
+
+### Nine of fifty-five pairs change verdict
+
+On corpus A as written, the two readings separate a different set of pairs: **9 of 55**, in both
+directions. `memdb` against `server-memory` is separated on the agent reading at p = 0.000 and not on the
+score at p = 0.238; `duckdb` against `zenbrain` is separated on the score at p = 0.017 and not at
+p = 0.175 on the agent reading. A sixth of the conclusions in the table depend on which of the two a
+reader picks, and one of them is the one the table publishes.
+
+### One more of my own mistakes
+
+**41. The report had its writer block in the wrong function.** `agent.py` raised `NameError: path` on its
+first run because the paragraphs after the pair table were indented into `write_switch` instead of
+`write_md`. Caught immediately, and worth writing down only because it is the third time this phase that
+a generated file was wrong in a way the generator could not see: the tool ran, printed its summary and
+wrote nothing.
+
+### What this does not say
+
+It does not say the score is the wrong metric or that the table should be rebuilt on `top`. A memory
+asked to surface candidates is doing its job when the right candidate is among them, and a caller that
+reads all three gets what it paid for. It says the table has one number in it and four questions behind
+it, that the one published is the only one of the four no caller experiences directly, and that the
+answer to the question a caller does experience is not the answer the table gives.
+
+### What this costs
+
+One function in `compare.py`, one metric in two tools, one report, and a claim that fails. No new
+measurement: every number here comes from rows that were already on disk. The retrieval table, the tie
+analysis and the mutation battery all stand exactly as they were, and now the choice inside them is
+visible.
+
+
 
 
 
