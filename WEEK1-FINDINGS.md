@@ -3532,6 +3532,80 @@ One generator, one measurement run of eleven subjects, one report and a claim th
 space now has a third dimension - how many records the answer has - and the field splits on it two
 against nine, which is a wider spread than any other axis here.
 
+## Addendum 34: the price was right, and one tie was worth keeping
+
+The power analysis has been the most quoted and least tested number in this repository. `band.py` puts a
+price on a near-tie - 371 questions for the leader against the control, 679 against zenbrain, 11,825 on
+corpus B - and all three prices were published without ever being paid.
+
+This pays one of them at a fifth of the size: the same 72 real records, three hundred questions instead of
+sixty, each record asked verbatim and at two graduated reductions. A larger store was tried first - 282
+records - and abandoned inside ten minutes, because the control reads the whole store on every search and
+needed about nine minutes for the first subject alone. Holding the store fixed means the only thing that
+changes between the two exams is how many questions are asked.
+
+### The three predictions, written before the run
+
+1. The leader is the control. **Held.** 292 of 300, ahead of memory-lean at 288.
+2. Control against memory-lean does not separate. **Held.** 1-0 in sixty, and 11-7 in three hundred,
+   exact p = 0.48.
+3. The separated-pair count rises and stays below all 55. **Held.** 41 of 55 becomes 49 of 55.
+
+Three out of three, which is worth less than it sounds: the first restates the previous phase and the third
+is nearly arithmetic. The second is the one with content, and it is the only one that could have refuted
+the price calculation.
+
+### What a longer exam actually buys
+
+| exam | questions | pairs separated |
+|---|---|---|
+| small | 60 | 41 of 55 |
+| large | 300 | 49 of 55 |
+
+Eight pairs that were ties became separations, five of them at p = 0.000: control against duckdb, control
+against the leader, duckdb against memory-lean, memory-lean against the leader, duckdb against the leader.
+Those pairs had a real difference and the sixty-question exam could not see it - which is what a price of a
+few hundred questions means.
+
+And one pair did not move. Control against memory-lean went from one question in sixty to four in three
+hundred, and four discordant questions cannot be called. The tie that four phases have described as
+unreachable is unreachable for a reason that is now measured rather than assumed.
+
+### The honest cost of the design
+
+**Three questions about one record are not three independent draws.** The exam is five times longer but
+carries less than five times the information, and the direction of that bias is the one that matters:
+correlation makes separation harder. So the eight separations are real evidence and the surviving tie is
+weaker evidence than three hundred questions suggests. A larger store with independent questions was the
+design that would have avoided this, and it was unaffordable - which is itself a fact about whole-store
+readers: the control, memory-lean and the leader all read the entire store to answer one question, so a
+benchmark that grows its store to grow its exam grows the cost per question with it.
+
+### Two more of my own mistakes
+
+**46. The command was quoted and every subject silently failed.** `exam_size.py` built `--cmd="node ..."`
+instead of the bare command matrix.py passes, so retrieval.py tried to exec a single token containing
+spaces. Every subject reported "no result", the tool printed eleven lines of it, and the first I noticed was
+that no result file had been written.
+
+**47. The verdict was looked for in a tuple and never found.** The prediction test searched for the string
+"memory-lean" among the elements of the pair key, which are "memory-lean 1.5.0", so it found nothing and
+printed an empty section under a heading that promised a verdict. Regenerated with the substring test
+applied to each element, and the verdict appeared: the prediction held.
+
+### What this does not settle
+
+It settles one price out of four. The 1,401 and 11,825 question pairs are still unpayable, and a corpus
+where the exam can grow without the store growing - many questions per record, independent in the sense
+that matters - is the design this phase did not have budget for.
+
+### What this costs
+
+One generator, one measurement run of eleven subjects at 300 questions, one report, one claim that fails.
+The store, the subjects and every earlier table are untouched, and the repository can now say what a longer
+exam buys with a measurement instead of an estimate.
+
+
 
 
 

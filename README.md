@@ -29,7 +29,7 @@ independently written corpora and in two phrasings, and writes the verdicts to `
 
 ```
 $ python claims.py
-**7 of the 31 claims hold in every setting measured.**
+**7 of the 32 claims hold in every setting measured.**
 ```
 
 Five survive everywhere, including the one that matters most: **memory-mcp-1file answers more
@@ -707,6 +707,51 @@ One finding arrived before the measurement did: the store had to be **capped at 
 because `memory-lean` refuses anything longer — "observations over 300 chars or not strings" — and the run
 never starts. A documented limit of that subject, and a real constraint on any corpus a store like it could
 ever ingest.
+
+## The price of a longer exam, paid once
+
+`band.py` has been quoting prices for three phases — 371 questions for the leader against the control, 679
+against zenbrain, 11,825 on corpus B — and none of them had ever been paid, so the arithmetic had never
+been checked against an experiment. `exam_size.py` pays one of them at a fifth of the size.
+[`EXAM-SIZE.md`](EXAM-SIZE.md)
+
+**The store is identical to the sixty-question authorless corpus.** Same 72 real records, already ingested;
+only the question count changes — each record asked verbatim, with a third of its words gone, and with half
+of them gone, plus a drawn absent band.
+
+| subject | 300 questions | 60 questions |
+|---|---|---|
+| `control` | **292 of 300** | 60 of 60 |
+| `memory-lean` | **288 of 300** | 59 of 60 |
+| `mcp-duckdb-memory-server` | **251 of 300** | 59 of 60 |
+| `zenbrain` | **200 of 300** | 48 of 60 |
+| `memory-mcp-1file` | **199 of 300** | 47 of 60 |
+| `mcp-knowledge-graph`, `server-memory` ×2 | **168 of 300** | 45 of 60 |
+| `statecore-mcp` | **100 of 300** | 12 of 60 |
+| `memento` | **88 of 300** | 23 of 60 |
+| `memdb` | **2 of 300** | 0 of 60 |
+
+| exam | pairs separated |
+|---|---|
+| 60 questions | **41 of 55** |
+| 300 questions | **49 of 55** |
+
+**Eight pairs that were ties became separations**, five of them at p = 0.000: `control` against `duckdb` and
+against the leader, `duckdb` against `memory-lean`, `memory-lean` against the leader. That is the power
+analysis working exactly as advertised — those pairs had a real difference and the short exam could not see
+it.
+
+**And the prediction that mattered was that one tie would survive.** `control` against `memory-lean` was
+1-0 in sixty and is **11-7 in three hundred** — exact p = 0.48. Five times the questions did not break it,
+which is what a price of a few hundred questions predicts: the exam grew, the margin did not. All three
+predictions written before the run held.
+
+Honesty about what this costs: **three questions about one record are not three independent draws**, so the
+exam carries less than three hundred questions' worth of information. A larger store was tried first and
+abandoned — at 282 records the control alone needed nine minutes for 300 questions, because it reads the
+whole store on every search. Correlated questions make separation *harder*, so a tie broken here is real
+evidence and a tie that survives here is weaker evidence than 300 suggests. The ledger's `longer-exam`
+claim **FAILS** on the eight separations.
 
 ## A second corpus, written blind
 
