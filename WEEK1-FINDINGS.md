@@ -4456,3 +4456,50 @@ subject is *not being able to see what came back*. The second is that the fix ma
 rather than weaker: with one denominator, the score is identical on all four corpora, which is a cleaner
 statement of the blindness than the two-corpora version.
 
+## Addendum 49: nine corpora, and a lever that did not know where it was aiming
+
+The padding battery now runs on all nine corpora rather than four, and the count is **35 of 36**.
+The score does not move by a point anywhere - A 37/37, B 44/44, C 43/43, real 60/60, distance
+104/104, morph 69/69, multi 32/32, the exam 268/268, supersession 66/66 - while the noise count
+multiplies by between 4.8 and 22.3 times. `padding-is-free` in the ledger now reads from the same
+panel the report prints instead of rescoring raw rows, so it is checked on every corpus here and
+not only on the two the calibration controls cover.
+
+### The new number turned out to be about my own lever
+
+A lever is evidence only if it moves the thing it is named after. The appended records are the
+difference between a lever's row and the control's row for the same question, so asking what the
+classifier made of them needs no new run:
+
+| lever | appended records | called near | called noise | called the answer |
+|---|---|---|---|---|
+| `pad-far` | 629 | 7 | 622 | 0 |
+| `pad-near` | 607 | 66 | 540 | 1 |
+
+`pad-far` earns its name - 99% noise. `pad-near` does not. It appends the first records in name
+order whose body contains **one** non-stopword from the question, and the classifier calls a record
+near only when it shares a name token with the answer or **three** distinguishing words with it.
+One word against three, and the gap is 89% of everything that lever touches.
+
+Closing it would mean handing the lever the corpus-wide word frequencies that make a word
+distinguishing. An adapter talking to a server over a tool call does not have them, and the other
+way out - tuning the lever until it agrees with the rule that judges it - would make the two
+sections agree by construction and measure nothing. The lever stays weak, and the weakness is
+printed beside its numbers instead of being left for a reader to discover.
+
+### Which is also why one check fails for the first time
+
+On `morph` the near lever leaves a higher bill than the unrelated one, 1.01 against 0.93, so the
+check that near padding costs less than unrelated padding fails. The landing table says why: 9 of
+the 75 records it appended there were called near and 66 were called noise. On a corpus built out
+of morphological variants of one word each, the two levers are one lever by the only rule that
+tells them apart, so the difference between their bills is a difference in degree between two
+things that rule cannot separate. The check stays in the report as a failure rather than being
+redefined as not checkable, because the first thing a weaker result tempts you to do is change the
+test.
+
+And the one answer in that table is the mechanism behind the score that rose on corpus A: a padder
+picking records in the question's own vocabulary appended the answer the control had missed, and a
+score that counts a set of three cannot tell that from the padding beside it.
+
+

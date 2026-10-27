@@ -221,8 +221,8 @@ that breaks them, because that setting is the claim's real scope.
   - B written: false (the greedy matcher scores 44 and the single-record one 41, at 1.62 and 0.03 noise records per correct answer)
 
 **padding-is-free** - padding an answer with unrelated records costs nothing in the score. *HOLDS*
-  - A written: true (A: control 37, padded 37; B: control 44, padded 44)
-  - B written: true (A: control 37, padded 37; B: control 44, padded 44)
+  - A written: true (A: control 37, padded 37; B: control 44, padded 44; C: control 43, padded 43; dist: control 104, padded 104; large: control 268, padded 268; morph: control 69, padded 69; multi: control 32, padded 32; real: control 60, padded 60; super: control 66, padded 66)
+  - B written: true (A: control 37, padded 37; B: control 44, padded 44; C: control 43, padded 43; dist: control 104, padded 104; large: control 268, padded 268; morph: control 69, padded 69; multi: control 32, padded 32; real: control 60, padded 60; super: control 66, padded 66)
 
 **rule-reads-like-a-reader** - the rule's reading of relevance - answer or near against noise - agrees with a reader's judgement. *FAILS*
   - A written: false (deepseek-v4.1-flash kappa 0.53 with 12 near miss(es) it calls unrelated; glm-5.3 kappa 0.67 with 9 near miss(es) it calls unrelated)

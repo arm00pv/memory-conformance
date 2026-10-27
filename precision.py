@@ -472,6 +472,39 @@ def padding_runs(label):
     return out
 
 
+def padding_landing(label):
+    """What the classifier made of the records a padding lever appended, per corpus.
+
+    A LEVER IS EVIDENCE ONLY IF IT MOVES THE THING IT IS NAMED AFTER. "pad-near" is meant to append
+    near misses and "pad-far" to append unrelated records; if the near lever's records land in the noise
+    class, then two runs that differ tell us about the classifier and not about the lever. The appended
+    records are the difference between a lever row and the control row for the same question, so they
+    can be named without re-running anything. On corpus A one of them turns out to be the answer the
+    control missed, which is the other half of why that score rose.
+    """
+    base = dict((name, rows) for name, _lab, rows in padding_runs(label))
+    control = dict((r["query"], [str(x) for x in (r.get("returned") or [])])
+                   for r in base.get("control") or [])
+    want = corpus(label)["want"]
+    c = corpus(label)
+    out = {}
+    for lever in PAD_LEVERS:
+        seen = {"near": 0, "noise": 0, "answer": 0, "records": 0}
+        for row in base.get(lever) or []:
+            q = want.get(row["query"])
+            if q is None or row["query"] not in control or q["difficulty"] == "absent":
+                continue
+            for cid in (row.get("returned") or []):
+                cid = str(cid)
+                if cid in control[row["query"]]:
+                    continue
+                seen["records"] += 1
+                seen[classify(cid, q["ids"], c)] += 1
+        if seen["records"]:
+            out[lever] = seen
+    return out
+
+
 def _corpus_path(label):
     for l, path, _suffix in CORPORA:
         if l == label:
@@ -825,6 +858,76 @@ def report(got, panel, checks=None):
         for ok, text in preds:
             add("- " + ("held: " if ok else "**did not hold**: ") + text + ".")
         add("")
+        landing = {}
+        for lab in labels:
+            land = padding_landing(lab)
+            if land:
+                landing[lab] = land
+        if landing:
+            add("## Does the padding do what its name says")
+            add("")
+            add("A lever is evidence only if it moves the thing it is named after. Both levers keep the")
+            add("control's own top three and append two records taken from the same corpus; this is what the")
+            add("classifier called the records a lever appended, counted over every question the control and")
+            add("that lever both answered.")
+            add("")
+            add("| corpus | " + BT + "pad-far" + BT + " near / noise / answer | " + BT + "pad-near" + BT
+                + " near / noise / answer |")
+            add("|---|---|---|")
+            for lab in labels:
+                if lab not in landing:
+                    continue
+                cells = []
+                for lever in PAD_LEVERS:
+                    s = landing[lab].get(lever)
+                    cells.append("-" if not s else "%d / %d / %d of %d"
+                                 % (s["near"], s["noise"], s["answer"], s["records"]))
+                add("| %s | %s | %s |" % (lab, cells[0], cells[1]))
+            add("")
+            far_z = sum(landing[l]["pad-far"]["noise"] for l in landing if "pad-far" in landing[l])
+            far_t = sum(landing[l]["pad-far"]["records"] for l in landing if "pad-far" in landing[l])
+            near_n = sum(landing[l]["pad-near"]["near"] for l in landing if "pad-near" in landing[l])
+            near_t = sum(landing[l]["pad-near"]["records"] for l in landing if "pad-near" in landing[l])
+            near_a = sum(landing[l]["pad-near"]["answer"] for l in landing if "pad-near" in landing[l])
+            if far_t and near_t:
+                add("The unrelated padding is noise %d times out of %d appended records (%s), which is what"
+                    % (far_z, far_t, share(far_z / float(far_t))))
+                add("that lever is for. The near-miss padding lands in the near class %d times out of %d (%s),"
+                    % (near_n, near_t, share(near_n / float(near_t))))
+                add("and %d of the rest are judged noise. **That gap is about the lever, not about the"
+                    % (near_t - near_n - near_a))
+                add("subjects.** The lever appends the first records in name order whose body contains one")
+                add("non-stopword from the question; the classifier calls a record near only when it shares a")
+                add("name token with the answer or three distinguishing words with it. One word against three,")
+                add("and this table is the size of the gap. Closing the gap would mean handing the lever the")
+                add("corpus-wide word frequencies that make a word distinguishing - which an adapter talking to")
+                add("a server over a tool call does not have, so the lever is left weak and stated weak rather")
+                add("than tuned until it agrees with the rule that judges it.")
+                add("")
+                conv = []
+                for lab in labels:
+                    c2, f2 = by.get(("control", lab)), by.get(("pad-far", lab))
+                    n2 = by.get(("pad-near", lab))
+                    if not (c2 and f2 and n2):
+                        continue
+                    if n2["noise_per_hit"] is None or f2["noise_per_hit"] is None:
+                        continue
+                    if n2["noise_per_hit"] >= f2["noise_per_hit"]:
+                        conv.append((lab, n2["noise_per_hit"], f2["noise_per_hit"]))
+                if conv:
+                    lab, np, fp = conv[0]
+                    w = landing[lab].get("pad-near") or {"near": 0, "noise": 0, "records": 0}
+                    add("The check above that does not hold is on " + BT + lab + BT + ", and this is why: %d of the %d"
+                        % (w["near"], w["records"]))
+                    add("records that lever appended there are called near and %d are called noise, so on that"
+                        % w["noise"])
+                    add("that corpus the two levers are one lever by the only rule this report uses to tell them")
+                    add("apart, and the bills they leave sit at %s and %s - a difference in degree between two"
+                        % (ratio(np), ratio(fp)))
+                    add("measurements the same rule cannot separate. Read the failure that way: not as padding")
+                    add("failing to be near, but as the near lever landing where it was aimed and finding")
+                    add("nothing there to be near to.")
+                    add("")
         a = by.get(("control", "A"))
         b = by.get(("pad-near", "A"))
         if a and b and b["score"] > a["score"]:
@@ -835,6 +938,13 @@ def report(got, panel, checks=None):
             add("missed, and a score that counts a set of three cannot tell the difference between finding a")
             add("fact and surrounding it. Volume is not always noise; sometimes it is recall, and the number")
             add("this repository publishes has no way to say which.")
+            if (landing.get("A") or {}).get("pad-near", {}).get("answer"):
+                add("")
+                answer_back = landing["A"]["pad-near"]["answer"]
+                add("The landing table above counts the mechanism: %s of the records that lever appended on"
+                    % ("one" if answer_back == 1 else answer_back))
+                add("corpus A was the answer the control had missed, and nothing in the score could tell it")
+                add("from the padding beside it.")
             add("")
         add("The levers live in " + BT + "harness.py" + BT + " with the other retrieval mutants, and the runs are")
         add("committed under " + BT + "results/retrieval-pad-*.json" + BT + ". The first version of them called the search")

@@ -1044,33 +1044,21 @@ def c_padding_is_free(ctx, corpus, shape):
 
     The precision reading says padding is expensive; the score says nothing at all. Two mutants that append
     records after the control's own top three make the point from both ends: the score is identical to the
-    control's on both corpora, and the noise count is six to nine times larger. A claim that HOLDS here is a
-    defect, not a finding, and that is why it is in the ledger.
+    control's on every corpus measured, and the noise count is between five and twenty-two times larger. A
+    claim that HOLDS here is a defect, not a finding, and that is why it is in the ledger.
+
+    READ FROM THE SAME PANEL THE REPORT PRINTS. This used to score the raw rows of the two calibration
+    corpora, which would have counted the exam's twelve duplicate slots as twelve more questions; the panel
+    filters each run to the questions the corpus still asks, so the number here is the number a reader of
+    PRECISION.md is looking at.
     """
-    import json
-    import os
+    import precision
+    by = dict(((r["run"], r["corpus"]), r["score"]) for r in precision.padding_panel())
     held, said = True, []
-    for label in ("A", "B"):
-        runs = {}
-        base = os.path.join("results", "calibration-control-%s.json" % label)
-        if os.path.isfile(base):
-            with open(base, encoding="utf-8") as fh:
-                runs["control"] = json.load(fh).get("rows") or []
-        for lever in ("pad-far", "pad-near"):
-            path = os.path.join("results", "retrieval-%s-%s.json" % (lever, label))
-            if os.path.isfile(path):
-                with open(path, encoding="utf-8") as fh:
-                    runs[lever] = json.load(fh).get("rows") or []
-        if "control" not in runs or "pad-far" not in runs:
+    for label in sorted(set(c for (_run, c) in by)):
+        here, there = by.get(("control", label)), by.get(("pad-far", label))
+        if here is None or there is None:
             continue
-
-        def score(rows):
-            return sum(1 for r in rows
-                       if (r["difficulty"] == "absent" and not r["answered"])
-                       or (r["difficulty"] != "absent" and r.get("hit3")))
-
-        here = score(runs["control"])
-        there = score(runs["pad-far"])
         held = held and here == there
         said.append("%s: control %d, padded %d" % (label, here, there))
     if not said:

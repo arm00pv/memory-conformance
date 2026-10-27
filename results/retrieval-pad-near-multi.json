@@ -1,0 +1,747 @@
+{
+  "adapter": "mutant",
+  "summary": {
+    "all": {
+      "n": 32,
+      "hit1": 32,
+      "hit3": 32,
+      "hit1_keyword": 32,
+      "hit3_keyword": 32
+    }
+  },
+  "rows": [
+    {
+      "query": "which records mention browser directly learning machine need server state transformers with your",
+      "expect": "@huggingface/transformers",
+      "difficulty": "multi",
+      "returned": [
+        "@huggingface/transformers",
+        "@xenova/transformers",
+        "@aws-sdk/client-ecs"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "record mention browser directly learning machine server state transformer",
+      "returned_keyword": [
+        "@huggingface/transformers",
+        "@xenova/transformers",
+        "@aws-sdk/client-ecs"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "which records mention about channel information side store value",
+      "expect": "side-channel",
+      "difficulty": "multi",
+      "returned": [
+        "side-channel",
+        "side-channel-list",
+        "side-channel-weakmap"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "record mention channel information side store value",
+      "returned_keyword": [
+        "side-channel",
+        "side-channel-list",
+        "side-channel-weakmap"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "which records mention bundlers exists exports package such support webpack without",
+      "expect": "chart.js-auto",
+      "difficulty": "multi",
+      "returned": [
+        "chart.js-auto",
+        "chart.js-helpers",
+        "braces"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "record mention bundler exist export package support webpack",
+      "returned_keyword": [
+        "chart.js-auto",
+        "chart.js-helpers",
+        "braces"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "which records mention columns display number required string visual width",
+      "expect": "string-width",
+      "difficulty": "multi",
+      "returned": [
+        "string-width",
+        "widest-line",
+        "@protobufjs/base64"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "record mention column display number required string visual width",
+      "returned_keyword": [
+        "string-width",
+        "widest-line",
+        "@protobufjs/base64"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "which records mention browser client javascript native node react",
+      "expect": "@aws-sdk/client-ecs",
+      "difficulty": "multi",
+      "returned": [
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3",
+        "@aws-sdk/client-secrets-manager"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "record mention browser client javascript native node react",
+      "returned_keyword": [
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3",
+        "@aws-sdk/client-secrets-manager"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "which records mention based minipass read streams write",
+      "expect": "@isaacs/fs-minipass",
+      "difficulty": "multi",
+      "returned": [
+        "@isaacs/fs-minipass",
+        "fs-minipass",
+        "crbro-memory"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "record mention based minipass read stream write",
+      "returned_keyword": [
+        "@isaacs/fs-minipass",
+        "fs-minipass",
+        "crbro-memory"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "which records mention cloudflare deno isomorphic node workers",
+      "expect": "@libsql/isomorphic-fetch",
+      "difficulty": "multi",
+      "returned": [
+        "@libsql/isomorphic-fetch",
+        "@libsql/isomorphic-ws",
+        "@aws-sdk/client-ecs"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "record mention cloudflare deno isomorphic node worker",
+      "returned_keyword": [
+        "@libsql/isomorphic-fetch",
+        "@libsql/isomorphic-ws",
+        "@aws-sdk/client-ecs"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "which records mention bash braces javascript support with",
+      "expect": "braces",
+      "difficulty": "multi",
+      "returned": [
+        "braces",
+        "picomatch",
+        "@aws-sdk/client-ecs"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "record mention bash brace javascript support",
+      "returned_keyword": [
+        "braces",
+        "picomatch",
+        "@aws-sdk/client-ecs"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "which records mention bundlers json package stub this",
+      "expect": "compromise-one",
+      "difficulty": "multi",
+      "returned": [
+        "compromise-one",
+        "compromise-three",
+        "compromise-two"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "record mention bundler json package stub",
+      "returned_keyword": [
+        "compromise-one",
+        "compromise-three",
+        "compromise-two"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "which records mention across memory server sessions that",
+      "expect": "crbro-memory",
+      "difficulty": "multi",
+      "returned": [
+        "crbro-memory",
+        "toon-memory",
+        "@hasna/mementos"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "record mention across memory server session",
+      "returned_keyword": [
+        "crbro-memory",
+        "toon-memory",
+        "@hasna/mementos"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "which records mention calculating fast function string width",
+      "expect": "fast-string-truncated-width",
+      "difficulty": "multi",
+      "returned": [
+        "fast-string-truncated-width",
+        "fast-string-width",
+        "is-fullwidth-code-point"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "record mention calculating fast function string width",
+      "returned_keyword": [
+        "fast-string-truncated-width",
+        "fast-string-width",
+        "is-fullwidth-code-point"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "which records mention async avoid duplication flight requests",
+      "expect": "inflight",
+      "difficulty": "multi",
+      "returned": [
+        "inflight",
+        "promise-inflight",
+        "express-rate-limit"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "record mention async avoid duplication flight request",
+      "returned_keyword": [
+        "inflight",
+        "promise-inflight",
+        "express-rate-limit"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "which records mention hasna open shared source",
+      "expect": "@hasna/contracts",
+      "difficulty": "multi",
+      "returned": [
+        "@hasna/contracts",
+        "@hasna/events",
+        "@aws-sdk/credential-provider-process"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "record mention hasna open shared source",
+      "returned_keyword": [
+        "@hasna/contracts",
+        "@hasna/events",
+        "@aws-sdk/credential-provider-process"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "which records mention arrays implementation minimal number",
+      "expect": "@protobufjs/base64",
+      "difficulty": "multi",
+      "returned": [
+        "@protobufjs/base64",
+        "@protobufjs/utf8",
+        "fill-range"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "record mention array implementation minimal number",
+      "returned_keyword": [
+        "@protobufjs/base64",
+        "@protobufjs/utf8",
+        "fill-range"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "which records mention content create header parse",
+      "expect": "content-disposition",
+      "difficulty": "multi",
+      "returned": [
+        "content-disposition",
+        "content-type",
+        "argparse"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "record mention content create header parse",
+      "returned_keyword": [
+        "content-disposition",
+        "content-type",
+        "argparse"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "which records mention assignment back define object",
+      "expect": "define-data-property",
+      "difficulty": "multi",
+      "returned": [
+        "define-data-property",
+        "define-properties",
+        "dunder-proto"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "record mention assignment back define object",
+      "returned_keyword": [
+        "define-data-property",
+        "define-properties",
+        "dunder-proto"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "Check if the character represented by a given Unicode code point is fullwidth",
+      "expect": "is-fullwidth-code-point",
+      "difficulty": "single",
+      "returned": [
+        "is-fullwidth-code-point",
+        "bmp-js",
+        "braces"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "check character represented given unicode code point fullwidth",
+      "returned_keyword": [
+        "is-fullwidth-code-point",
+        "bmp-js",
+        "express-rate-limit"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "AWS credential provider that sources credential_process from ~/.aws/credentials and ~/.aws/config",
+      "expect": "@aws-sdk/credential-provider-process",
+      "difficulty": "single",
+      "returned": [
+        "@aws-sdk/credential-provider-process",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "aws credential provider source credential process aws credential aws config",
+      "returned_keyword": [
+        "@aws-sdk/credential-provider-process",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "Universal memory system for AI agents - CLI + MCP server + library API",
+      "expect": "@hasna/mementos",
+      "difficulty": "single",
+      "returned": [
+        "@hasna/mementos",
+        "toon-memory",
+        "@aws-sdk/client-ecs"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "universal memory system ai agent cli mcp server library api",
+      "returned_keyword": [
+        "@hasna/mementos",
+        "toon-memory",
+        "@aws-sdk/client-ecs"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "MCP memory server using SQLite + FTS5 + sqlite-vec",
+      "expect": "@iachilles/memento",
+      "difficulty": "single",
+      "returned": [
+        "@iachilles/memento",
+        "@hasna/mementos",
+        "toon-memory"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "mcp memory server sqlite fts5 sqlite vec",
+      "returned_keyword": [
+        "@iachilles/memento",
+        "@hasna/mementos",
+        "@huggingface/transformers"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "Hrana client for connecting to sqld over HTTP or WebSocket",
+      "expect": "@libsql/hrana-client",
+      "difficulty": "single",
+      "returned": [
+        "@libsql/hrana-client",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "hrana client connecting sqld http websocket",
+      "returned_keyword": [
+        "@libsql/hrana-client",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "A library for efficiently walking a directory recursively",
+      "expect": "@nodelib/fs.walk",
+      "difficulty": "single",
+      "returned": [
+        "@nodelib/fs.walk",
+        "@hasna/mementos",
+        "argparse"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "library efficiently walking directory recursively",
+      "returned_keyword": [
+        "@nodelib/fs.walk",
+        "@hasna/mementos",
+        "argparse"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "A family of specs for interoperable TypeScript",
+      "expect": "@standard-schema/spec",
+      "difficulty": "single",
+      "returned": [
+        "@standard-schema/spec",
+        "pg-protocol"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "family spec interoperable typescript",
+      "returned_keyword": [
+        "@standard-schema/spec",
+        "braces",
+        "has-symbols"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "7-layer memory system for AI agents. Pluggable storage, embeddings, and LLM providers. Built on @zensation/algorithms.",
+      "expect": "@zensation/core",
+      "difficulty": "single",
+      "returned": [
+        "@zensation/core",
+        "@hasna/mementos",
+        "@iachilles/memento"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "7 layer memory system ai agent pluggable storage embedding llm provider built zensation algorithm",
+      "returned_keyword": [
+        "@zensation/core",
+        "@aws-sdk/credential-provider-process",
+        "@hasna/contracts"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "Very powerful CLI arguments parser. Native port of argparse - python's options parsing library",
+      "expect": "argparse",
+      "difficulty": "single",
+      "returned": [
+        "argparse",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "powerful cli argument parser native port argparse python s option parsing library",
+      "returned_keyword": [
+        "argparse",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "A pure javascript BMP encoder and decoder",
+      "expect": "bmp-js",
+      "difficulty": "single",
+      "returned": [
+        "bmp-js",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "pure javascript bmp encoder decoder",
+      "returned_keyword": [
+        "bmp-js",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "Simple HTML5 charts using the canvas element.",
+      "expect": "chart.js",
+      "difficulty": "single",
+      "returned": [
+        "chart.js",
+        "@iachilles/memento",
+        "global-agent"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "simple html5 chart canva element",
+      "returned_keyword": [
+        "chart.js"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "Cross platform child_process#spawn and child_process#spawnSync",
+      "expect": "cross-spawn",
+      "difficulty": "single",
+      "returned": [
+        "cross-spawn",
+        "crbro-memory",
+        "toon-memory"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "cross platform child process spawn child process spawnsync",
+      "returned_keyword": [
+        "cross-spawn",
+        "@aws-sdk/credential-provider-process",
+        "crbro-memory"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "If available, the `Object.prototype.__proto__` accessor and mutator, call-bound",
+      "expect": "dunder-proto",
+      "difficulty": "single",
+      "returned": [
+        "dunder-proto",
+        "braces",
+        "define-properties"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "available object prototype proto accessor mutator call bound",
+      "returned_keyword": [
+        "dunder-proto",
+        "define-data-property",
+        "define-properties"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "ES Object-related atoms: Object, ToObject, RequireObjectCoercible",
+      "expect": "es-object-atoms",
+      "difficulty": "single",
+      "returned": [
+        "es-object-atoms",
+        "@aws-sdk/credential-provider-process",
+        "@hasna/events"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "es object related atom object toobject requireobjectcoercible",
+      "returned_keyword": [
+        "es-object-atoms",
+        "@aws-sdk/credential-provider-process",
+        "@hasna/events"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "Basic IP rate-limiting middleware for Express. Use to limit repeated requests to public APIs and/or endpoints such as password reset.",
+      "expect": "express-rate-limit",
+      "difficulty": "single",
+      "returned": [
+        "express-rate-limit",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "basic ip rate limiting middleware express limit repeated request public api endpoint password reset",
+      "returned_keyword": [
+        "express-rate-limit",
+        "@aws-sdk/client-ecs",
+        "@aws-sdk/client-s3"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    },
+    {
+      "query": "Fill in a range of numbers or letters, optionally passing an increment or `step` to use, or create a regex-compatible range with `options.toRegex`",
+      "expect": "fill-range",
+      "difficulty": "single",
+      "returned": [
+        "fill-range",
+        "@protobufjs/base64",
+        "@protobufjs/utf8"
+      ],
+      "hit1": true,
+      "hit3": true,
+      "answered": true,
+      "error": null,
+      "keyword": "fill range number letter optionally passing increment step create regex compatible range option toregex",
+      "returned_keyword": [
+        "fill-range",
+        "@protobufjs/base64",
+        "@protobufjs/utf8"
+      ],
+      "hit1_keyword": true,
+      "hit3_keyword": true,
+      "answered_keyword": true
+    }
+  ]
+}
