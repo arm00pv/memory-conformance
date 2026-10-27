@@ -20,6 +20,38 @@ jobs:
       # A NUMBER WITHOUT ITS PHRASING IS THE DEFECT THIS REPOSITORY EXISTS TO CATCH, so the two tools
       # that publish one are checked here. These read the committed results, so they cost nothing and
       # they fail the moment a table goes back to reporting a single phrasing.
+      # A TABLE SYNCED BY A TOOL IS ONLY SYNCED WHERE THE TOOL LOOKS. Splitting the README into pages moved
+      # the live matrix block to docs/subjects.md and this script, which searched only README.md, stopped
+      # finding it - the split proved that a sync tool hard-coding one location guarantees the others drift.
+      - name: the live matrix block must be found and refilled, wherever it lives
+        run: python sync_readme.py
+
+      # A LINK TO A PAGE THAT DOES NOT EXIST IS THE CHEAPEST BROKEN DOCUMENT THERE IS, and the README was
+      # split into five pages at once. Fenced code is stripped first: a link inside an example is an example.
+      - name: a page must not link to a page that does not exist
+        run: |
+          python - <<'PY'
+          import io, os, re, sys
+          FENCE = chr(96) * 3
+          files = ['README.md', 'QUICKSTART.md'] + ['docs/' + f for f in sorted(os.listdir('docs'))]
+          bad = []
+          for name in files:
+              base = os.path.dirname(name) or '.'
+              with io.open(name, encoding='utf-8') as fh:
+                  text = fh.read()
+              text = re.sub(re.escape(FENCE) + r'.*?' + re.escape(FENCE), '', text, flags=re.S)
+              for m in re.finditer(r'\[[^\]\n]+\]\(([^)\n]+)\)', text):
+                  target = m.group(1).split('#')[0].strip()
+                  if target and not target.startswith(('http', 'mailto')):
+                      path = os.path.normpath(os.path.join(base, target))
+                      if not os.path.exists(path):
+                          bad.append('%s -> %s' % (name, target))
+          print('%d pages checked' % len(files))
+          if bad:
+              print(chr(10).join(bad))
+              sys.exit(1)
+          PY
+
       - name: every retrieval table must carry both phrasings
         run: |
           python matrix.py --report-only > /tmp/matrix.txt
