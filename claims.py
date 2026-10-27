@@ -557,6 +557,30 @@ def c_longer_exam(ctx, corpus, shape):
             % (len(broke), big_rows[0][1], small_rows[0][1], len(lost)))
 
 
+def c_recency_visible(ctx, corpus, shape):
+    """A memory that can find a record puts its current version first.
+
+    THE QUERY A MEMORY STORE EXISTS FOR. A fact is written, then rewritten, and the caller needs the value
+    that replaced the old one. Every subject here stores the two as separate records whose bodies differ
+    only in a version string; nine of the eleven never once rank the later one first, and the caller
+    reading one result reads the fact that was superseded.
+    """
+    import supersede
+    import resolution
+    got = {}
+    for s in resolution.subjects():
+        rows = supersede.rows_of(s["slug"])
+        if rows:
+            got[s["label"]] = supersede.score(rows)
+    if len(got) < 4:
+        return None
+    never = sorted(n for n, s in got.items() if s["n"] and not s["first"])
+    best = max(got.values(), key=lambda s: s["first"])
+    return (not never,
+            "%d of %d subjects never put the current record first (best: %d of %d)"
+            % (len(never), len(got), best["first"], best["n"] or 0))
+
+
 def c_most_hits(ctx, corpus, shape):
     r = leads(LEADER, corpus, lambda n, c, s: hits(n, c, s), shape)
     return (r["strict"], fmt_lead(r, of="48")) if r else None
@@ -932,6 +956,8 @@ CLAIMS = [
      c_set_answers, False),
     ("longer-exam", "asking three hundred questions instead of sixty changes which pairs the corpus can"
      " separate.", c_longer_exam, False),
+    ("recency-visible", "a memory that can find a record puts its current version first.",
+     c_recency_visible, False),
     ("silent-everywhere", "the subjects that answer nothing on the authored corpora answer nothing on"
      " real text either.", c_silent_everywhere, False),
     ("score-sees-ordering", "the retrieval score changes when a search returns its worst match first.",

@@ -150,6 +150,16 @@ jobs:
           grep -q "The prediction" EXAM-SIZE.md
           grep -q "not three independent draws" EXAM-SIZE.md
 
+      # A FACT THAT CHANGED IS THE ORDINARY CASE and nothing here tested it: restart and forget cover
+      # deletion, not supersession.
+      - name: a superseded fact must be scored, not assumed
+        run: |
+          python supersede.py --report > /tmp/super.txt
+          cat /tmp/super.txt
+          test -s SUPERSESSION.md
+          grep -q "which version of a fact is current" SUPERSESSION.md
+          grep -q "current first" SUPERSESSION.md
+
       - name: a tie must be reported as one of its three kinds, with a price
         run: |
           python band.py > /tmp/band.txt
