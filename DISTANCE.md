@@ -42,8 +42,7 @@ record's own words, which is a thing no person has ever asked.
 ## The curves
 
 hit@3 out of the questions in each band, and the band at which each subject stops answering half of
-what it
-it answered verbatim.
+what it answered verbatim.
 
 | subject | d0 | d1 | d2 | d3 | d4 | half at |
 |---|---|---|---|---|---|---|

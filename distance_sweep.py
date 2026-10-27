@@ -352,8 +352,7 @@ def report():
     add("## The curves")
     add("")
     add("hit@3 out of the questions in each band, and the band at which each subject stops answering half of")
-    add("what it")
-    add("it answered verbatim.")
+    add("what it answered verbatim.")
     add("")
     head = "| subject | " + " | ".join("%s" % b for b in BANDS) + " | half at |"
     add(head)

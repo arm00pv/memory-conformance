@@ -149,7 +149,7 @@ jobs:
           python exam_size.py --report > /tmp/exam.txt
           cat /tmp/exam.txt
           test -s EXAM-SIZE.md
-          grep -q "five times as many questions" EXAM-SIZE.md
+          grep -q "several times as many questions" EXAM-SIZE.md
           grep -q "The prediction" EXAM-SIZE.md
           grep -q "not three independent draws" EXAM-SIZE.md
 
