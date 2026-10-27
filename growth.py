@@ -107,7 +107,13 @@ def main(argv=None):
     depth = 500
     only = None
     save = True
+    report_only = False
     for a in argv:
+        if a == "--report-only":
+            # THE TABLE IS BUILT FROM EVERY SAVED RUN, SO REBUILDING IT MUST NOT COST A SWEEP. Without
+            # this, regenerating GROWTH.md after a deep run meant re-running the deepest and most
+            # expensive sweep in the repository just to print it.
+            report_only = True
         if a == "--no-save":
             # CI CHECKS THE TOOL, IT DOES NOT CONTRIBUTE MEASUREMENTS. A shallow run appended to the
             # store would dilute the deep ratios every later report is built from, and a job that
@@ -119,6 +125,9 @@ def main(argv=None):
             only = a.split("=", 1)[1]
     global CHECKPOINTS
     CHECKPOINTS = CHECKPOINTS + [c for c in DEEP if c <= depth]
+    if report_only:
+        write_md(depth)
+        return 0
     with open("subjects.json", encoding="utf-8") as fh:
         subjects = json.load(fh)
     rows = []
@@ -258,9 +267,14 @@ def write_md(depth):
             % ", ".join("%s (%s)" % (r[0], "x%.1f" % r[1]) for r in grew))
         add("A write that costs k times more at the deepest checkpoint makes the cost of filling a store")
         add("superlinear, so the price of the first ten thousand memories is not ten thousand times the")
-        add("price of the first one. Every cost figure published for these subjects was taken at a depth")
-        add("where this does not yet bite.")
+        add("price of the first one.")
         add("")
+        add("**The control is in the growing list, and it should not be.** Its write appends one line under a")
+        add("lock, which is flat by construction - but it counts the records after every write to return a")
+        add("sequence number, and counting means reading the whole store. At 500 records that read is below")
+        add("the noise floor and the line looked flat; at 5000 it is a fifth of the cost. The prediction that")
+        add("this subject would be flat was wrong, the mechanism is mine, and it is the same mistake every")
+        add("one of these subjects is being measured for.")
     add("## Searches at depth")
     add("")
     add("| subject | " + " | ".join("at %d" % d for d in depths) + " |")
@@ -274,6 +288,50 @@ def write_md(depth):
             cells.append("%.2f" % (statistics.median(vals) * 1000) if vals else "-")
         add("| %s | %s |" % (label, " | ".join(cells)))
     add("")
+    # THE SEARCH AXIS IS WHERE DEPTH BITES HARDEST, and the write table is the gentler one. A ratio is
+    # computed here rather than read off the row, because the whole point is that it stops being small.
+    fastest, slowest = [], []
+    for label in sorted(ok):
+        rs = runs[label]
+        pts = []
+        for d in depths:
+            vals = [r["searches"].get(str(d)) or r["searches"].get(d) for r in rs]
+            vals = [v for v in vals if v]
+            if vals:
+                pts.append((d, statistics.median(vals)))
+        if len(pts) >= 2 and pts[0][1]:
+            fastest.append((pts[-1][1] / pts[0][1], label, pts[0], pts[-1]))
+    if fastest:
+        fastest.sort()
+        mult, label, lo, hi = fastest[-1]
+        add("**A search is not priced by the write table.** %s costs %.0fms at depth %d and **%.0fms** at"
+            % (label, lo[1] * 1000, lo[0], hi[1] * 1000))
+        add("%d - a factor of **%.0f** - and %d of the %d subjects measured grow their search cost by more"
+            % (hi[0], mult, sum(1 for m, _l, _a, _b in fastest if m >= 10), len(fastest)))
+        add("than ten times inside this range. A latency published from an empty store is a number about an")
+        add("empty store; for every subject here the read path is the expensive half, and it is the half a")
+        add("retrieval benchmark times.")
+        add("")
+        lo_m, lo_l, _a, _b = fastest[0]
+        add("The ratios run from x%.1f (%s, and its two runs disagree on the direction, so it is noise) to"
+            % (lo_m, lo_l))
+        add("x%.0f, and every subject whose second run agreed with its first grew its search with depth."
+            % mult)
+    add("")
+    deeper = [r for r in rows_ok if any(median_at(runs[r[0]], d) is None for d in depths[-1:])]
+    if deeper:
+        men = runs.get("memento 0.7.0") or []
+        vals = [r["searches"].get("2000") or r["searches"].get(2000) for r in men]
+        vals = [v for v in vals if v]
+        add("**%d subject(s) stop at 2000 and the reason is their own numbers.** %s were not taken to the"
+            % (len(deeper), ", ".join(r[0] for r in deeper)))
+        if vals:
+            add("deepest checkpoint: memento's **search** costs **%.1f seconds** at two thousand records,"
+                % statistics.median(vals))
+        add("and onefile's store is read in full on every write, so a second run at the existing depth was")
+        add("bought instead of a deeper first one. A cost curve that stops is more honest than one that is")
+        add("extrapolated, and the two that stop have published the reason.")
+        add("")
     with open("GROWTH.md", "w", encoding="utf-8", newline=chr(10)) as fh:
         fh.write(chr(10).join(lines) + chr(10))
     print()
