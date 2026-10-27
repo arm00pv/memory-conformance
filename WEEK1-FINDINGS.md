@@ -3728,15 +3728,124 @@ About fifteen minutes of sweeping for nine deep runs and two repeat runs, one fl
 one prediction retracted in the generated prose.
 
 
+## Addendum 37: what comes back besides the answer
 
+Every metric in this repository asked whether the right record arrived. None asked what arrived with it. A
+top-three list carrying the answer and two unrelated records scores exactly what a list carrying the answer
+alone scores, so a subject that answers more questions by handing back more records is paid for the hit and
+never charged for the volume. `retrieval_mutants.py` named that hole two phases ago and could not fill it.
 
+This fills it from the rows already on disk: nine corpora, eleven subjects, eight panel adapters, both
+phrasings, **no subject run again**. Three readings, and the first needs no classifier at all.
 
+### The silence bill
 
+On a question whose answer is nothing, every record handed back is junk by construction. 147 such questions
+across five corpora. **Eight of the eleven subjects hand records back on at least one of them**, four of them
+on nearly all: `memento` and `zenbrain` answer every one, `memdb` 145, `1file` 141, and
+`memento` alone hands back **47,985 characters on questions that have no answer.**
 
+The first prediction held and the second did not, and the second is the finding. `items.py` reported that
+every subject either declines all twelve unanswerable questions or none of them - which made the twelve
+points a habit, and the ledger says so. At ten times the sample the habit becomes a **threshold**: the seven
+subjects that decide per question answer 15 of 336 unanswerable questions on the four short bands and **36 of
+99 on the long exam**.
 
+The mechanism is in the corpus, not in the subjects. Every one of those 36 answers landed on a question that
+shares a word with a stored record, and no subject that decides per question ever answered a question whose
+words appear nowhere in the store - one exception, `statecore-mcp`, which hands back a record for all sixty
+questions on corpus A and so has no threshold there to fail. **The twelve points are the price of a clean
+band.** A subject does not collect them for judgement; it collects them because the band had no neighbours,
+and a band built from a real pool of packages always does.
 
+### Junk around the answer
 
+Near miss or noise, mechanically: same name token of four characters or more, or three or more shared words
+that are not common to half the corpus. Words in half the corpus are dropped because they cannot distinguish
+anything - `Version` and `Licensed` sit in every package description here.
 
+| subject | correct | records back | noise | noise per correct |
+|---|---|---|---|---|
+| `memdb` | 14 | 2,128 | **2,075** | 148.21 |
+| `memento` | 326 | 2,133 | **1,169** | 3.59 |
+| `zenbrain` | 666 | 2,125 | **765** | 1.15 |
+| `memory-mcp-1file` | 664 | 2,069 | **674** | 1.02 |
+| `control` | 625 | 1,208 | **75** | 0.12 |
+| `server-memory` | 232 | 331 | **0** | 0.00 |
 
+`memento` answers 326 questions correctly and hands back 1,169 records nobody asked for; the control
+answers 625 and hands back 75. No published table separates the two, and they are not the same thing.
 
+### The panel, where the axis moves a verdict
 
+| adapter | score, written | noise per correct | answer share |
+|---|---|---|---|
+| `greedy-match` (answers anything) | **43 of 60** | **1.86** | 28% |
+| `control` | 37 of 60 | 0.32 | 63% |
+| `one-result` (one record only) | 37 of 60 | 0.04 | 93% |
+| `strict-match` (exact words only) | 27 of 60 | **0.00** | 100% |
+| `blind-search` (one shared word) | 2 of 60 | **69.00** | 1% |
+
+The tidiest adapter here is the second worst, and the one that answers anything beats the positive control by
+six points while carrying eighteen times the noise. `blind-search` is where the reading earns its keep: it
+answered all 48 answerable questions, handed back 144 records, got 2 right, and **138 of the rest share
+neither a name nor three words with what was asked for.** That is the number the mutation battery could not
+produce.
+
+### The exam had never been validated
+
+Pointing `validate_corpus.py` at `large_corpus.json` for the first time needed an `--exam` mode,
+because three of its rules - every known band populated, only the four known labels, one record answers one
+question - are consequences of what an exam is. Under that mode the exam is charged with two things:
+
+**12 duplicated questions: 300 slots for 288 distinct questions.** Two packages can share a description word
+for word, so the same words are asked twice with a different expected record and a subject that returns the
+other one is graded wrong for being right. The published 300-question totals understate two subjects.
+
+**8 unanswerable questions half covered by one record.** Reading them changes the charge: `obliterator` is
+not a path library. What the rule detects is that a word-overlap matcher will answer the question - and the
+positive control answered exactly those eight. **A checker and a subject that share one idea cannot check each
+other.** The charges are pinned in `corpus-known.json` with that reading beside them; that the exam is 300
+slots for 288 questions is now written down instead of assumed.
+
+### Five more self-bugs, numbered 48 to 52
+
+**48. The tool grew its own tokenizer.** The first `precision.py` measured question coverage with a second
+tokenizer and reported 12 of 12 corpus-A questions as sharing a word with a record, where the validator's own
+tokenizer says 4. Two tokenizers in one repository is how a corpus gets certified by one and measured by the
+other; `words.py` exists to prevent it, and the tool now imports it.
+
+**49. A question asked twice was counted as two draws.** The exam's 12 duplicated slots were counted twice in
+every per-question ratio. A question asked twice is one question; the reader now keeps a set of what it has
+seen, and the exam's absent band dropped from 100 to 99.
+
+**50. One subject's report answered questions the corpus no longer asks.** `memory-mcp-1file`'s real-corpus
+report carried 12 absent rows measured against a version of the corpus that was rebuilt afterwards, so the
+report said 0 of 0 unanswerable questions - a band that does not exist. Re-measured (47 of 60), and the tool
+now counts orphan rows out loud instead of dropping them.
+
+**51. A prediction named the wrong adapter.** Prediction 4 was framed on "the matcher that scores 43 against
+the control's 37" and named `blind-search`. That number belongs to `greedy-match`; `blind-search`
+scores 2. The prediction is left as it was written and the report says which adapter is which, because a
+prediction that can be edited after the run is not a prediction.
+
+**52. A prediction assumed a record size.** Prediction 6 said the largest reading bill would exceed 25,000
+characters on corpus A. It does not: corpus A's records are one sentence each, so the top bill is 10,474
+(`memdb`). The prediction was about record length while pretending to be about behaviour.
+
+### What this does not settle
+
+The near rule is a rule. It is checked in one direction only - the supersession band contains near pairs by
+construction, and the rule finds all 578 that came back - and nothing checks the other direction: a record
+called near may still be useless. So the noise column is a count of records that share neither a name nor
+three distinguishing words with the answer, and not a count of wasted attention. The silence bill is the part
+that needs no rule.
+
+Deciding whether a returned record **helps** a caller is not a counting question, and it is the one place in
+this repository where a model reading the record would beat any rule. It is left unmeasured rather than faked
+with a longer rule.
+
+### What this costs
+
+Two hours, no subject runs, one new tool, one validator mode, two pinned defects, and three claims - all three
+of which fail.

@@ -25,7 +25,7 @@ of its words gone, and with half of them gone, plus a drawn absent band.
 | `memory-lean 1.5.0` | **288 of 300** | 59 of 60 |
 | `mcp-duckdb-memory-server 1.1.10` | **251 of 300** | 59 of 60 |
 | `zenbrain 0.3.0` | **200 of 300** | 48 of 60 |
-| `memory-mcp-1file 0.9.2` | **199 of 300** | 47 of 60 |
+| `memory-mcp-1file 0.9.2` | **199 of 300** | 48 of 60 |
 | `mcp-knowledge-graph 1.3.2` | **168 of 300** | 45 of 60 |
 | `server-memory 1.0.0` | **168 of 300** | 45 of 60 |
 | `server-memory 2.0.0` | **168 of 300** | 45 of 60 |
@@ -43,11 +43,11 @@ of its words gone, and with half of them gone, plus a drawn absent band.
 8 pair(s) reach a different verdict on the larger exam:
 
 - `control 1.0.0` vs `mcp-duckdb-memory-server 1.1.10`: p 1.000 at 60 questions, 0.000 at 300
-- `control 1.0.0` vs `memory-mcp-1file 0.9.2`: p 1.000 at 60 questions, 0.000 at 300
 - `mcp-duckdb-memory-server 1.1.10` vs `memory-lean 1.5.0`: p 1.000 at 60 questions, 0.000 at 300
-- `mcp-duckdb-memory-server 1.1.10` vs `memory-mcp-1file 0.9.2`: p 1.000 at 60 questions, 0.000 at 300
+- `mcp-knowledge-graph 1.3.2` vs `memory-mcp-1file 0.9.2`: p 0.690 at 60 questions, 0.039 at 300
 - `mcp-knowledge-graph 1.3.2` vs `zenbrain 0.3.0`: p 0.701 at 60 questions, 0.042 at 300
-- `memory-lean 1.5.0` vs `memory-mcp-1file 0.9.2`: p 1.000 at 60 questions, 0.000 at 300
+- `memory-mcp-1file 0.9.2` vs `server-memory 1.0.0`: p 0.690 at 60 questions, 0.045 at 300
+- `memory-mcp-1file 0.9.2` vs `server-memory 2.0.0`: p 0.690 at 60 questions, 0.045 at 300
 - `server-memory 1.0.0` vs `zenbrain 0.3.0`: p 0.701 at 60 questions, 0.042 at 300
 - `server-memory 2.0.0` vs `zenbrain 0.3.0`: p 0.701 at 60 questions, 0.042 at 300
 
@@ -61,6 +61,25 @@ of its words gone, and with half of them gone, plus a drawn absent band.
 | 300 questions | 11-7 | 0.4807 | no |
 
 **The prediction held.** Five times the questions did not break the tie, which is what a price of a few hundred questions predicts: the exam grew and the margin did not.
+
+## What the three hundred slots actually ask
+
+**The exam is 300 slots for 288 distinct questions.** Two packages can share a description word
+for word - a fork and its original, a client and a server built from one template - so the same
+words are asked twice with a different expected record. 11 question texts are of that kind and
+they occupy 12 slots: a subject that returns the other one of the two records is graded wrong for
+being right. The totals above use the corpus's own expected record, so they understate any subject
+that answers one of those questions with its sibling:
+
+- `State-of-the-art Machine Learning for the web. Run 🤗 Transformers dire` is answered by `@huggingface/transformers` and `@xenova/transformers`
+- `State-of-the-art Machine for the web. Run 🤗 Transformers directly in b` is answered by `@huggingface/transformers` and `@xenova/transformers`
+- `State-of-the-art Learning for the web. Run 🤗 directly in browser, no n` is answered by `@huggingface/transformers` and `@xenova/transformers`
+- `Store information about any JS value in a side channel. Uses WeakMap i` is answered by `side-channel` and `side-channel-weakmap`
+
+Precision is the phase that found this, in the same reading that counts what comes back: `precision.py` credits either record, and the difference between the two readings is
+an estimate of how much of this exam is a coin toss. Both charges are pinned in
+`corpus-known.json`, so the next corpus that repeats a question fails the build instead of
+quietly becoming the sample size.
 
 ## What this does not settle
 

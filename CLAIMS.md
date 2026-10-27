@@ -10,7 +10,7 @@ claim about silence. A subject's SCORE is what the paired test pairs on - the ri
 top three, plus a credit for declining a question with no answer. Its HITS are only the questions
 that have an answer and were answered correctly. "It answers nothing" is a claim about hits.
 
-**7 of the 33 claims hold in every setting measured.** The rest are printed beside the setting
+**7 of the 36 claims hold in every setting measured.** The rest are printed beside the setting
 that breaks them, because that setting is the claim's real scope.
 
 | claim | A written | A keywords | B written | B keywords | status |
@@ -46,6 +46,9 @@ that breaks them, because that setting is the claim's real scope.
 | longer-exam | no | no | **FAILS** |
 | recency-visible | no | no | **FAILS** |
 | silent-everywhere | no | no | **FAILS** |
+| silence-is-a-habit | no | no | **FAILS** |
+| exam-questions-distinct | no | no | **FAILS** |
+| noise-is-charged | no | no | **FAILS** |
 | score-sees-ordering | no | no | **FAILS** |
 | score-prefers-recalcitrance | no | no | **FAILS** |
 
@@ -126,8 +129,8 @@ that breaks them, because that setting is the claim's real scope.
   - B keywords: false (1 of 2 top-of-table pairs get different verdicts from the two metrics: zenbrain vs control (score separated, hits tied))
 
 **search-is-flat** - a search costs the same on a small store and a large one. *FAILS*
-  - A written: false (10 subject(s) cost more to search at 3000 records than at 5 (control x60, mcp-duckdb-memory-server x54, mcp-knowledge-graph x3, memdb x25, memento x87, memory-lean x4, server-memory x3, server-memory x3, statecore-mcp x6, zenbrain x5))
-  - B written: false (10 subject(s) cost more to search at 3000 records than at 5 (control x60, mcp-duckdb-memory-server x54, mcp-knowledge-graph x3, memdb x25, memento x87, memory-lean x4, server-memory x3, server-memory x3, statecore-mcp x6, zenbrain x5))
+  - A written: false (10 subject(s) cost more to search at 3000 records than at 5 (control x119, mcp-duckdb-memory-server x264, mcp-knowledge-graph x4, memdb x38, memento x80, memory-lean x6, server-memory x4, server-memory x4, statecore-mcp x13, zenbrain x7))
+  - B written: false (10 subject(s) cost more to search at 3000 records than at 5 (control x119, mcp-duckdb-memory-server x264, mcp-knowledge-graph x4, memdb x38, memento x80, memory-lean x6, server-memory x4, server-memory x4, statecore-mcp x13, zenbrain x7))
 
 **leaks-state** - memory-mcp-1file leaks state between stores and is out of scope. *HOLDS*
   - A written: true (isolation FAIL)
@@ -200,6 +203,18 @@ that breaks them, because that setting is the claim's real scope.
 **silent-everywhere** - the subjects that answer nothing on the authored corpora answer nothing on real text either. *FAILS*
   - A written: false (1 of 4 still answer nothing on real text (server-memory 33, server-memory 33, mcp-knowledge-graph 33 of 48 answered))
   - B written: false (1 of 4 still answer nothing on real text (server-memory 33, server-memory 33, mcp-knowledge-graph 33 of 48 answered))
+
+**silence-is-a-habit** - a subject that answers some of the unanswerable questions answers all of them. *FAILS*
+  - A written: false (5 of 11 subjects answer part of the exam's unanswerable band (control 8 of 99, mcp-duckdb-memory-server 16 of 99, memdb 98 of 99, memory-lean 12 of 99))
+  - B written: false (5 of 11 subjects answer part of the exam's unanswerable band (control 8 of 99, mcp-duckdb-memory-server 16 of 99, memdb 98 of 99, memory-lean 12 of 99))
+
+**exam-questions-distinct** - the exam's questions are distinct questions with one right answer each. *FAILS*
+  - A written: false (300 slots for 288 distinct questions, and 11 question text(s) two records answer equally)
+  - B written: false (300 slots for 288 distinct questions, and 11 question text(s) two records answer equally)
+
+**noise-is-charged** - a search pays for the unrelated records it hands back. *FAILS*
+  - A written: false (the greedy matcher scores 43 and the single-record one 37, at 1.86 and 0.04 noise records per correct answer)
+  - B written: false (the greedy matcher scores 44 and the single-record one 41, at 1.62 and 0.03 noise records per correct answer)
 
 **score-sees-ordering** - the retrieval score changes when a search returns its worst match first. *FAILS*
   - A written: false (reversing the result list moved the score by 0 and the hit count by 0 (score 37 against 37))

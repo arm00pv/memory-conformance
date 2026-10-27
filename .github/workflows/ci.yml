@@ -37,6 +37,9 @@ jobs:
           grep -q "score-sees-ordering" CLAIMS.md
           grep -q "agent-agrees-with-score" CLAIMS.md
           grep -q "score-prefers-recalcitrance" CLAIMS.md
+          grep -q "noise-is-charged" CLAIMS.md
+          grep -q "silence-is-a-habit" CLAIMS.md
+          grep -q "exam-questions-distinct" CLAIMS.md
       - name: every question must be analysed for whether it separates anybody
         run: |
           python items.py > /tmp/items.txt
@@ -159,6 +162,24 @@ jobs:
           test -s SUPERSESSION.md
           grep -q "which version of a fact is current" SUPERSESSION.md
           grep -q "current first" SUPERSESSION.md
+
+      # WHAT COMES BACK BESIDES THE ANSWER. Every table in this repository counts whether the right record
+      # arrived and none counts what arrived with it, so a subject that answers more questions by handing back
+      # more records has been paid for the hit and never charged for the volume. The silence bill needs no
+      # classifier at all - nothing can be right on a question with no answer - and the panel is where the new
+      # axis has to move a verdict that already existed, or it is decoration.
+      - name: what comes back besides the answer must be priced, and the exam must be checked
+        run: |
+          python precision.py > /tmp/precision.txt
+          cat /tmp/precision.txt
+          test -s PRECISION.md
+          grep -q "The silence bill" PRECISION.md
+          grep -q "Does the score charge for this" PRECISION.md
+          grep -q "A checker and a subject that share one idea" PRECISION.md
+          # THE EXAM HAD NEVER BEEN VALIDATED. --exam relaxes the three rules an exam legitimately breaks and
+          # nothing else, so a NEW defect in its questions fails here while the pinned ones do not.
+          python validate_corpus.py large_corpus.json --exam --baseline=corpus-known.json | tee /tmp/exam-check.txt
+          grep -q "pinned defect(s)" /tmp/exam-check.txt
 
       - name: a tie must be reported as one of its three kinds, with a price
         run: |

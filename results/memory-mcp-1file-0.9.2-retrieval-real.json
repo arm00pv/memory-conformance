@@ -17,8 +17,8 @@
       "n": 16,
       "hit1": 13,
       "hit3": 15,
-      "hit1_keyword": 12,
-      "hit3_keyword": 14,
+      "hit1_keyword": 13,
+      "hit3_keyword": 15,
       "runs": [
         15,
         15,
@@ -39,20 +39,20 @@
     },
     "absent": {
       "n": 12,
-      "answered": 12,
-      "answered_keyword": 12,
+      "answered": 11,
+      "answered_keyword": 11,
       "runs": [
-        12,
-        12,
-        12
+        11,
+        11,
+        11
       ]
     },
     "all": {
       "n": 60,
       "hit1": 38,
       "hit3": 47,
-      "hit1_keyword": 37,
-      "hit3_keyword": 46,
+      "hit1_keyword": 38,
+      "hit3_keyword": 47,
       "runs": [
         47,
         47,
@@ -68,7 +68,7 @@
       "returned": [
         "is-fullwidth-code-point",
         "get-east-asian-width",
-        "fast-string-truncated-width"
+        "string-width"
       ],
       "hit1": true,
       "hit3": true,
@@ -112,8 +112,8 @@
       "keyword": "window 64 bit binary esbuild javascript bundler",
       "returned_keyword": [
         "@esbuild/win32-x64",
-        "@protobufjs/path",
-        "environment"
+        "environment",
+        "espree"
       ],
       "hit1_keyword": true,
       "hit3_keyword": true,
@@ -138,7 +138,7 @@
       "returned": [
         "minipass",
         "@protobufjs/path",
-        "@isaacs/fs-minipass"
+        "fs-minipass"
       ],
       "hit1": true,
       "hit3": true,
@@ -147,8 +147,8 @@
       "keyword": "minimal implementation passthrough stream",
       "returned_keyword": [
         "minipass",
-        "@protobufjs/path",
-        "@isaacs/fs-minipass"
+        "@isaacs/fs-minipass",
+        "fs-minipass"
       ],
       "hit1_keyword": true,
       "hit3_keyword": true,
@@ -183,7 +183,7 @@
       "returned_keyword": [
         "@j0hanz/memdb",
         "rag-memory-epf-mcp",
-        "better-sqlite3"
+        "mcp-knowledge-graph"
       ],
       "hit1_keyword": true,
       "hit3_keyword": true,
@@ -207,8 +207,8 @@
       "difficulty": "easy",
       "returned": [
         "@nodelib/fs.scandir",
-        "side-channel",
-        "side-channel-list"
+        "environment",
+        "mdast-util-find-and-replace"
       ],
       "hit1": true,
       "hit3": true,
@@ -243,7 +243,7 @@
       "returned": [
         "@protobufjs/path",
         "minipass",
-        "micromark"
+        "requizzle"
       ],
       "hit1": true,
       "hit3": true,
@@ -252,7 +252,7 @@
       "keyword": "minimal path module resolve unix window url path alike",
       "returned_keyword": [
         "@protobufjs/path",
-        "minipass",
+        "requizzle",
         "environment"
       ],
       "hit1_keyword": true,
@@ -288,7 +288,7 @@
       "returned_keyword": [
         "@vheins/local-memory-mcp",
         "mcp-knowledge-graph",
-        "@j0hanz/memdb"
+        "rag-memory-epf-mcp"
       ],
       "hit1_keyword": true,
       "hit3_keyword": true,
@@ -313,7 +313,7 @@
       "returned": [
         "ansi-styles",
         "color-string",
-        "tr46"
+        "string-width"
       ],
       "hit1": true,
       "hit3": true,
@@ -393,7 +393,7 @@
       "returned_keyword": [
         "call-bind-apply-helpers",
         "requizzle",
-        "side-channel"
+        "chart.js-helpers"
       ],
       "hit1_keyword": true,
       "hit3_keyword": true,
@@ -428,7 +428,7 @@
       "returned_keyword": [
         "color-string",
         "media-typer",
-        "espree"
+        "string-width"
       ],
       "hit1_keyword": true,
       "hit3_keyword": true,
@@ -488,7 +488,7 @@
       "returned": [
         "detect-node",
         "environment",
-        "graphology-communities-louvain"
+        "inherits"
       ],
       "hit1": true,
       "hit3": true,
@@ -498,7 +498,7 @@
       "returned_keyword": [
         "detect-node",
         "environment",
-        "graphology-communities-louvain"
+        "inherits"
       ],
       "hit1_keyword": true,
       "hit3_keyword": true,
@@ -558,7 +558,7 @@
       "returned": [
         "eventsource-parser",
         "espree",
-        "@isaacs/fs-minipass"
+        "send"
       ],
       "hit1": true,
       "hit3": true,
@@ -593,7 +593,7 @@
       "returned": [
         "fast-string-truncated-width",
         "string-width",
-        "get-east-asian-width"
+        "widest-line"
       ],
       "hit1": true,
       "hit3": true,
@@ -603,7 +603,7 @@
       "returned_keyword": [
         "fast-string-truncated-width",
         "string-width",
-        "get-east-asian-width"
+        "widest-line"
       ],
       "hit1_keyword": true,
       "hit3_keyword": true,
@@ -628,7 +628,7 @@
       "returned": [
         "get-east-asian-width",
         "is-fullwidth-code-point",
-        "fast-string-truncated-width"
+        "string-width"
       ],
       "hit1": true,
       "hit3": true,
@@ -636,12 +636,12 @@
       "error": null,
       "keyword": "determine east width unicode",
       "returned_keyword": [
-        "tr46",
-        "unist-util-stringify-position",
-        "strip-bom-string"
+        "get-east-asian-width",
+        "is-fullwidth-code-point",
+        "string-width"
       ],
-      "hit1_keyword": false,
-      "hit3_keyword": false,
+      "hit1_keyword": true,
+      "hit3_keyword": true,
       "answered_keyword": true,
       "per_run": {
         "hit3": [
@@ -689,8 +689,8 @@
       "difficulty": "hard",
       "returned": [
         "http-cache-semantics",
-        "socks-proxy-agent",
-        "@libsql/isomorphic-fetch"
+        "environment",
+        "socks-proxy-agent"
       ],
       "hit1": true,
       "hit3": true,
@@ -699,8 +699,8 @@
       "keyword": "parse cache control header help correct http proxie",
       "returned_keyword": [
         "http-cache-semantics",
-        "socks-proxy-agent",
-        "@protobufjs/path"
+        "environment",
+        "socks-proxy-agent"
       ],
       "hit1_keyword": true,
       "hit3_keyword": true,
@@ -724,8 +724,8 @@
       "difficulty": "hard",
       "returned": [
         "inherits",
-        "obliterator",
-        "detect-node"
+        "detect-node",
+        "environment"
       ],
       "hit1": true,
       "hit3": true,
@@ -760,7 +760,7 @@
       "returned": [
         "is-number",
         "is-fullwidth-code-point",
-        "micromark"
+        "environment"
       ],
       "hit1": true,
       "hit3": true,
@@ -794,7 +794,6 @@
       "difficulty": "hard",
       "returned": [
         "json-stringify-safe",
-        "side-channel",
         "remark-stringify"
       ],
       "hit1": true,
@@ -804,8 +803,7 @@
       "keyword": "like json stringify blow circular",
       "returned_keyword": [
         "json-stringify-safe",
-        "remark-stringify",
-        "fast-string-truncated-width"
+        "remark-stringify"
       ],
       "hit1_keyword": true,
       "hit3_keyword": true,
@@ -899,8 +897,8 @@
       "difficulty": "hard",
       "returned": [
         "micromark",
-        "micromark-factory-space",
-        "micromark-extension-gfm-strikethrough"
+        "micromark-extension-gfm-strikethrough",
+        "micromark-factory-space"
       ],
       "hit1": false,
       "hit3": true,
@@ -909,8 +907,8 @@
       "keyword": "micromark extension gfm strikethrough",
       "returned_keyword": [
         "micromark",
-        "micromark-factory-space",
-        "micromark-extension-gfm-strikethrough"
+        "micromark-extension-gfm-strikethrough",
+        "micromark-factory-space"
       ],
       "hit1_keyword": false,
       "hit3_keyword": true,
@@ -1013,8 +1011,7 @@
       "keyword": "byte go don t muted",
       "returned_keyword": [
         "mute-stream",
-        "media-typer",
-        "strip-bom-string"
+        "media-typer"
       ],
       "hit1_keyword": true,
       "hit3_keyword": true,
@@ -1245,7 +1242,7 @@
       "returned": [
         "chart.js-auto",
         "chart.js-helpers",
-        "requizzle"
+        "@esbuild/win32-x64"
       ],
       "hit1": true,
       "hit3": true,
@@ -1255,7 +1252,7 @@
       "returned_keyword": [
         "chart.js-auto",
         "chart.js-helpers",
-        "requizzle"
+        "environment"
       ],
       "hit1_keyword": true,
       "hit3_keyword": true,
@@ -1499,8 +1496,8 @@
       "keyword": "aws credential provider source credential aws login cached token",
       "returned_keyword": [
         "@aws-sdk/credential-provider-login",
-        "@aws-sdk/credential-provider-ini",
-        "@aws-sdk/credential-provider-sso"
+        "@aws-sdk/credential-provider-sso",
+        "@aws-sdk/credential-provider-ini"
       ],
       "hit1_keyword": true,
       "hit3_keyword": true,
@@ -1525,7 +1522,7 @@
       "returned": [
         "@modelcontextprotocol/client",
         "@modelcontextprotocol/server",
-        "mcp-knowledge-graph"
+        "@modelcontextprotocol/server-memory"
       ],
       "hit1": true,
       "hit3": true,
@@ -1535,7 +1532,7 @@
       "returned_keyword": [
         "@modelcontextprotocol/client",
         "@modelcontextprotocol/server",
-        "mcp-knowledge-graph"
+        "@modelcontextprotocol/server-memory"
       ],
       "hit1_keyword": true,
       "hit3_keyword": true,
@@ -1630,7 +1627,7 @@
       "returned": [
         "@aws-sdk/credential-provider-sso",
         "@aws-sdk/credential-provider-login",
-        "@aws-sdk/credential-provider-ini"
+        "@aws-sdk/credential-provider-web-identity"
       ],
       "hit1": true,
       "hit3": true,
@@ -1640,7 +1637,7 @@
       "returned_keyword": [
         "@aws-sdk/credential-provider-sso",
         "@aws-sdk/credential-provider-login",
-        "@aws-sdk/credential-provider-ini"
+        "@aws-sdk/credential-provider-web-identity"
       ],
       "hit1_keyword": true,
       "hit3_keyword": true,
@@ -1729,163 +1726,23 @@
       }
     },
     {
-      "query": "Efficiently modify strings containing ANSI escape codes",
+      "query": "the complete solution for node.js command-line programs",
       "expect": null,
       "difficulty": "absent",
       "returned": [
-        "ansi-styles",
-        "fast-string-truncated-width",
-        "micromark"
-      ],
-      "hit1": false,
-      "hit3": false,
-      "answered": true,
-      "error": null,
-      "keyword": "efficiently modify string containing ansi escape code",
-      "returned_keyword": [
-        "ansi-styles",
-        "fast-string-truncated-width",
-        "string-width"
-      ],
-      "hit1_keyword": false,
-      "hit3_keyword": false,
-      "answered_keyword": true,
-      "per_run": {
-        "hit3": [
-          false,
-          false,
-          false
-        ],
-        "answered": [
-          true,
-          true,
-          true
-        ]
-      }
-    },
-    {
-      "query": "libSQL driver for TypeScript and JavaScript",
-      "expect": null,
-      "difficulty": "absent",
-      "returned": [
-        "better-sqlite3",
+        "detect-node",
         "environment",
-        "obliterator"
-      ],
-      "hit1": false,
-      "hit3": false,
-      "answered": true,
-      "error": null,
-      "keyword": "libsql driver typescript javascript",
-      "returned_keyword": [
-        "@libsql/isomorphic-ws",
-        "@libsql/isomorphic-fetch",
-        "better-sqlite3"
-      ],
-      "hit1_keyword": false,
-      "hit3_keyword": false,
-      "answered_keyword": true,
-      "per_run": {
-        "hit3": [
-          false,
-          false,
-          false
-        ],
-        "answered": [
-          true,
-          true,
-          true
-        ]
-      }
-    },
-    {
-      "query": "ANSI escape codes for manipulating the terminal",
-      "expect": null,
-      "difficulty": "absent",
-      "returned": [
-        "ansi-styles",
-        "tr46",
-        "micromark"
-      ],
-      "hit1": false,
-      "hit3": false,
-      "answered": true,
-      "error": null,
-      "keyword": "ansi escape code manipulating terminal",
-      "returned_keyword": [
-        "ansi-styles",
-        "espree",
-        "micromark"
-      ],
-      "hit1_keyword": false,
-      "hit3_keyword": false,
-      "answered_keyword": true,
-      "per_run": {
-        "hit3": [
-          false,
-          false,
-          false
-        ],
-        "answered": [
-          true,
-          true,
-          true
-        ]
-      }
-    },
-    {
-      "query": "Color conversion and manipulation with CSS string support",
-      "expect": null,
-      "difficulty": "absent",
-      "returned": [
-        "color-string",
-        "ansi-styles",
-        "string-width"
-      ],
-      "hit1": false,
-      "hit3": false,
-      "answered": true,
-      "error": null,
-      "keyword": "color conversion manipulation css string support",
-      "returned_keyword": [
-        "color-string",
-        "ansi-styles",
-        "string-width"
-      ],
-      "hit1_keyword": false,
-      "hit3_keyword": false,
-      "answered_keyword": true,
-      "per_run": {
-        "hit3": [
-          false,
-          false,
-          false
-        ],
-        "answered": [
-          true,
-          true,
-          true
-        ]
-      }
-    },
-    {
-      "query": "Easily-extendable error for use with ES6 classes",
-      "expect": null,
-      "difficulty": "absent",
-      "returned": [
-        "espree",
-        "inherits",
         "requizzle"
       ],
       "hit1": false,
       "hit3": false,
       "answered": true,
       "error": null,
-      "keyword": "easily extendable error es6 classe",
+      "keyword": "complete solution node js command line program",
       "returned_keyword": [
-        "espree",
-        "tr46",
-        "inherits"
+        "detect-node",
+        "environment",
+        "requizzle"
       ],
       "hit1_keyword": false,
       "hit3_keyword": false,
@@ -1904,58 +1761,93 @@
       }
     },
     {
-      "query": "A drop-in replacement for fs, making various improvements.",
+      "query": "A small fast zlib stream built on [minipass](http://npm.im/minipass) and Node.js's zlib binding.",
       "expect": null,
       "difficulty": "absent",
       "returned": [
+        "@isaacs/fs-minipass",
+        "fs-minipass",
+        "minipass"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "keyword": "small fast zlib stream built minipass http npm im minipass node js s zlib binding",
+      "returned_keyword": [
         "fs-minipass",
         "minipass",
         "@isaacs/fs-minipass"
       ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "css color parsing, manupulation and conversion",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [
+        "color-string",
+        "media-typer",
+        "ansi-styles"
+      ],
       "hit1": false,
       "hit3": false,
       "answered": true,
       "error": null,
-      "keyword": "drop replacement fs making variou improvement",
+      "keyword": "css color parsing manupulation conversion",
       "returned_keyword": [
+        "color-string",
+        "media-typer",
+        "ansi-styles"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "Get the status of a file with some features",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [
+        "send",
         "fs-minipass",
-        "minipass",
-        "requizzle"
-      ],
-      "hit1_keyword": false,
-      "hit3_keyword": false,
-      "answered_keyword": true,
-      "per_run": {
-        "hit3": [
-          false,
-          false,
-          false
-        ],
-        "answered": [
-          true,
-          true,
-          true
-        ]
-      }
-    },
-    {
-      "query": "Minimal module to check if a file is executable.",
-      "expect": null,
-      "difficulty": "absent",
-      "returned": [
-        "@protobufjs/path",
-        "minipass",
-        "requizzle"
+        "minipass"
       ],
       "hit1": false,
       "hit3": false,
       "answered": true,
       "error": null,
-      "keyword": "minimal module check file executable",
+      "keyword": "statu file feature",
       "returned_keyword": [
-        "@protobufjs/path",
-        "minipass",
-        "requizzle"
+        "send",
+        "media-typer",
+        "tr46"
       ],
       "hit1_keyword": false,
       "hit3_keyword": false,
@@ -1974,23 +1866,23 @@
       }
     },
     {
-      "query": "micromark extension to support generic directives (`:cite[smith04]`)",
+      "query": "A minimal UTF8 implementation for number arrays.",
       "expect": null,
       "difficulty": "absent",
       "returned": [
-        "micromark",
-        "micromark-extension-gfm-strikethrough",
-        "micromark-factory-space"
+        "is-number",
+        "pg-int8",
+        "tr46"
       ],
       "hit1": false,
       "hit3": false,
       "answered": true,
       "error": null,
-      "keyword": "micromark extension support generic directive cite smith04",
+      "keyword": "minimal utf8 implementation number array",
       "returned_keyword": [
-        "micromark",
-        "micromark-extension-gfm-strikethrough",
-        "micromark-factory-title"
+        "minipass",
+        "espree",
+        "pg-int8"
       ],
       "hit1_keyword": false,
       "hit3_keyword": false,
@@ -2009,23 +1901,128 @@
       }
     },
     {
-      "query": "A set of utilities to assist developers of tools that build N-API native add-ons",
+      "query": "SQLite storage adapter for ZenBrain memory system. Zero-config, file-based, perfect for development and single-user deployments.",
       "expect": null,
       "difficulty": "absent",
       "returned": [
+        "@j0hanz/memdb",
         "better-sqlite3",
-        "obliterator",
-        "@esbuild/win32-x64"
+        "rag-memory-epf-mcp"
       ],
       "hit1": false,
       "hit3": false,
       "answered": true,
       "error": null,
-      "keyword": "utilitie assist developer tool build n api native add ons",
+      "keyword": "sqlite storage adapter zenbrain memory system zero config file based perfect development single user deployment",
+      "returned_keyword": [
+        "@j0hanz/memdb",
+        "better-sqlite3",
+        "crbro-memory"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "A ridiculously light-weight argument validator (now browser friendly)",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [
+        "inherits",
+        "color-string",
+        "string-width"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "keyword": "ridiculously light weight argument validator now browser friendly",
+      "returned_keyword": [
+        "inherits",
+        "color-string",
+        "espree"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "Helper module for loading your native module's .node file",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [
+        "chart.js-helpers",
+        "requizzle",
+        "@libsql/isomorphic-fetch"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "keyword": "helper module loading native module s node file",
+      "returned_keyword": [
+        "@libsql/isomorphic-fetch",
+        "requizzle",
+        "@libsql/isomorphic-ws"
+      ],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": true,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "query": "Robust call-bound JavaScript intrinsics, using `call-bind` and `get-intrinsic`.",
+      "expect": null,
+      "difficulty": "absent",
+      "returned": [
+        "call-bind-apply-helpers",
+        "side-channel",
+        "side-channel-weakmap"
+      ],
+      "hit1": false,
+      "hit3": false,
+      "answered": true,
+      "error": null,
+      "keyword": "robust call bound javascript intrinsic call bind intrinsic",
       "returned_keyword": [
         "call-bind-apply-helpers",
-        "@aws-sdk/client-ecs",
-        "chart.js-helpers"
+        "side-channel",
+        "side-channel-list"
       ],
       "hit1_keyword": false,
       "hit3_keyword": false,
@@ -2044,22 +2041,23 @@
       }
     },
     {
-      "query": "Full featured Promises/A+ implementation with exceptionally good performance",
+      "query": "A module which will endeavor to guess your terminal's level of color support.",
       "expect": null,
       "difficulty": "absent",
       "returned": [
-        "promise-inflight",
-        "socks-proxy-agent"
+        "ansi-styles",
+        "color-string",
+        "tr46"
       ],
       "hit1": false,
       "hit3": false,
       "answered": true,
       "error": null,
-      "keyword": "full featured promise implementation exceptionally good performance",
+      "keyword": "module endeavor guess terminal s level color support",
       "returned_keyword": [
-        "promise-inflight",
-        "requizzle",
-        "@modelcontextprotocol/client"
+        "ansi-styles",
+        "color-string",
+        "environment"
       ],
       "hit1_keyword": false,
       "hit3_keyword": false,
@@ -2078,23 +2076,23 @@
       }
     },
     {
-      "query": "remark plugin to support GFM (autolink literals, footnotes, strikethrough, tables, tasklists)",
+      "query": "Cross platform child_process#spawn and child_process#spawnSync",
       "expect": null,
       "difficulty": "absent",
       "returned": [
-        "remark-stringify",
-        "micromark",
-        "micromark-extension-gfm-strikethrough"
+        "@libsql/isomorphic-ws",
+        "@libsql/isomorphic-fetch",
+        "environment"
       ],
       "hit1": false,
       "hit3": false,
       "answered": true,
       "error": null,
-      "keyword": "remark plugin support gfm autolink literal footnote strikethrough table tasklist",
+      "keyword": "cross platform child process spawn child process spawnsync",
       "returned_keyword": [
-        "remark-stringify",
-        "micromark",
-        "micromark-extension-gfm-strikethrough"
+        "@libsql/isomorphic-ws",
+        "@libsql/isomorphic-fetch",
+        "environment"
       ],
       "hit1_keyword": false,
       "hit3_keyword": false,
@@ -2113,27 +2111,19 @@
       }
     },
     {
-      "query": "A beautiful, responsive, customizable and accessible (WAI-ARIA) replacement for JavaScript's popup boxes, supported fork of sweetalert",
+      "query": "Do things in development and nothing otherwise",
       "expect": null,
       "difficulty": "absent",
-      "returned": [
-        "espree",
-        "@aws-sdk/client-ecs",
-        "side-channel"
-      ],
+      "returned": [],
       "hit1": false,
       "hit3": false,
-      "answered": true,
+      "answered": false,
       "error": null,
-      "keyword": "beautiful responsive customizable accessible wai aria replacement javascript s popup boxe supported fork sweetalert",
-      "returned_keyword": [
-        "@aws-sdk/client-ecs",
-        "espree",
-        "side-channel"
-      ],
+      "keyword": "thing development nothing otherwise",
+      "returned_keyword": [],
       "hit1_keyword": false,
       "hit3_keyword": false,
-      "answered_keyword": true,
+      "answered_keyword": false,
       "per_run": {
         "hit3": [
           false,
@@ -2141,9 +2131,9 @@
           false
         ],
         "answered": [
-          true,
-          true,
-          true
+          false,
+          false,
+          false
         ]
       }
     }

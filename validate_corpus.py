@@ -78,9 +78,18 @@ def rivals_of(texts, queries):
     return out
 
 
-def check(path):
-    """Everything that can be checked about one corpus, as three lists."""
+def check(path, exam=False):
+    """Everything that can be checked about one corpus, as three lists.
+
+    AN EXAM IS NOT A FOUR-BAND CORPUS, and for four phases this file pretended otherwise by never being
+    pointed at one. An exam asks the same record at several distances and draws its own band names, so
+    three of the rules below - every band populated, only the four known labels, one record answers one
+    question - are consequences of what an exam is rather than defects. Every other rule applies, and
+    those are the rules that would have caught the exam's twelve duplicated questions several phases
+    earlier. So the exemption is narrow, it is opt-in, and it is printed.
+    """
     errors, warnings, facts = [], [], {}
+    facts["exam"] = bool(exam)
     with open(path, encoding="utf-8") as fh:
         doc = json.load(fh)
     records = doc.get("records") or []
@@ -103,12 +112,14 @@ def check(path):
     for q in queries:
         band[q.get("difficulty")] = band.get(q.get("difficulty"), 0) + 1
     facts["bands"] = {b: band.get(b, 0) for b in BANDS}
-    for b, n in facts["bands"].items():
-        if not n:
-            errors.append("band %r is empty - the corpus does not exercise it" % b)
-    for q in queries:
-        if q.get("difficulty") not in BANDS:
-            errors.append("query %r has difficulty %r" % (q.get("query"), q.get("difficulty")))
+    if not exam:
+        for b, n in facts["bands"].items():
+            if not n:
+                errors.append("band %r is empty - the corpus does not exercise it" % b)
+        for q in queries:
+            if q.get("difficulty") not in BANDS:
+                errors.append("query %r has difficulty %r" % (q.get("query"), q.get("difficulty")))
+    facts["labels"] = dict(sorted(band.items()))
 
     qs = [q.get("query") for q in queries]
     if len(set(qs)) != len(qs):
@@ -125,7 +136,7 @@ def check(path):
             errors.append("question %r expects %r, which is not a record" % (q.get("query"), want))
     wants = [q.get("expect") for q in answered if q.get("expect") in texts]
     facts["distinct_answers"] = len(set(wants))
-    if len(set(wants)) != len(wants):
+    if len(set(wants)) != len(wants) and not exam:
         shared = sorted({w for w in wants if wants.count(w) > 1})
         errors.append("%d record(s) answer more than one question: %s"
                       % (len(shared), ", ".join(shared)))
@@ -290,6 +301,8 @@ def main(argv):
             baseline_path = a.split("=", 1)[1]
         elif a.startswith("--write-baseline="):
             write_baseline = a.split("=", 1)[1]
+    exam = "--exam" in argv
+    argv = [a for a in argv if a != "--exam"]
     argv = [a for a in argv if not a.startswith(("--json=", "--baseline=", "--write-baseline="))]
     paths = argv or sorted(glob.glob(os.path.join(HERE, "corpus_*.json")) +
                            glob.glob(os.path.join(HERE, "retrieval_corpus*.json")))
@@ -301,14 +314,16 @@ def main(argv):
     for path in paths:
         name = os.path.basename(path)
         try:
-            errors, warnings, facts = check(path)
+            errors, warnings, facts = check(path, exam)
         except Exception as exc:
             errors, warnings, facts = ["could not read: %s" % exc], [], {}
         report[name] = {"errors": errors, "warnings": warnings, "facts": facts}
         bands = facts.get("bands") or {}
-        print("%s: %d records, %d questions (%s)" % (
+        labels = facts.get("labels") or {}
+        print("%s: %d records, %d questions (%s)%s" % (
             name, facts.get("records", 0), facts.get("queries", 0),
-            ", ".join("%s %d" % (b, bands.get(b, 0)) for b in BANDS)))
+            ", ".join("%s %d" % (b, v) for b, v in (labels or bands).items()),
+            " - an exam: band names and repeated records are allowed, nothing else" if exam else ""))
         print("  %d distinct answers, %d distractor records, adversarial rival shares %s word(s)"
               % (facts.get("distinct_answers", 0), facts.get("distractor_records", 0),
                  "/".join(map(str, facts.get("adversarial_traps") or [])) or "-"))

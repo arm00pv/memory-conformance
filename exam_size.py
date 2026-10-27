@@ -182,6 +182,29 @@ def separations(suffix):
     return out
 
 
+def ambiguity():
+    """How many of the exam's slots are not distinct questions, and how many have two right answers.
+
+    TWO PACKAGES CAN SHARE A DESCRIPTION WORD FOR WORD - a fork and its original, a client and a server
+    built from one template - and a corpus built from real data inherits that collision silently. The
+    same words then appear twice with different expected records, so a subject that returns the other
+    of the two is graded wrong for being right.
+    """
+    with open(OUT, encoding="utf-8") as fh:
+        doc = json.load(fh)
+    groups = {}
+    for q in doc["queries"]:
+        groups.setdefault(q["query"], []).append(q)
+    repeats = sum(len(v) - 1 for v in groups.values())
+    shared = {}
+    for k, v in groups.items():
+        expects = [x.get("expect") for x in v if x.get("expect")]
+        if len(v) > 1 and len(set(expects)) > 1:
+            shared[k] = sorted(set(expects))
+    return {"slots": len(doc["queries"]), "distinct": len(groups), "repeats": repeats,
+            "shared": shared}
+
+
 def report():
     big_rows, small_rows = totals(SUFFIX), totals("-real")
     if not big_rows:
@@ -265,6 +288,28 @@ def report():
                "The pair separated once the exam was longer, so the deficit was not a fixed handicap and"
                " the price calculation was the thing that was wrong."))
         add("")
+    add("## What the three hundred slots actually ask")
+    add("")
+    amb = ambiguity()
+    add("**The exam is %d slots for %d distinct questions.** Two packages can share a description word"
+        % (amb["slots"], amb["distinct"]))
+    add("for word - a fork and its original, a client and a server built from one template - so the same")
+    add("words are asked twice with a different expected record. %d question texts are of that kind and"
+        % len(amb["shared"]))
+    add("they occupy %d slots: a subject that returns the other one of the two records is graded wrong for"
+        % (amb["repeats"]))
+    add("being right. The totals above use the corpus's own expected record, so they understate any subject")
+    add("that answers one of those questions with its sibling:")
+    add("")
+    for q, expects in list(amb["shared"].items())[:4]:
+        add("- " + BT + q[:70] + BT + " is answered by " + " and ".join(BT + e + BT for e in expects))
+    add("")
+    add("Precision is the phase that found this, in the same reading that counts what comes back: "
+        + BT + "precision.py" + BT + " credits either record, and the difference between the two readings is")
+    add("an estimate of how much of this exam is a coin toss. Both charges are pinned in")
+    add(BT + "corpus-known.json" + BT + ", so the next corpus that repeats a question fails the build instead of")
+    add("quietly becoming the sample size.")
+    add("")
     add("## What this does not settle")
     add("")
     add("**Three questions about one record are not three independent draws.** The store stayed at 72")

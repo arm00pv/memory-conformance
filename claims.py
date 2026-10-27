@@ -897,8 +897,74 @@ def c_phrasing_matters(ctx, corpus, shape):
                                                                                 worst[1])
 
 
-CLAIMS = [
-    ("most-hits", "memory-mcp-1file answers more answerable questions than any other subject here.",
+def c_silence_is_a_habit(ctx, corpus, shape):
+    """A SUBJECT THAT ANSWERS SOME OF THE UNANSWERABLE QUESTIONS ANSWERS ALL OF THEM.
+
+    items.py found no gradient in the twelve points the score hands out for declining a question with no
+    answer: every subject either took all twelve or none. precision.py read the same rows at a larger
+    sample and found the gradient, because twelve questions cannot resolve it. The claim below is the
+    version that travels to an exam, and it fails.
+    """
+    import precision
+    import resolution
+    here = {}
+    for s in resolution.subjects():
+        got = precision.rows_of(s["slug"], "-large")
+        if got:
+            here[s["label"]] = precision.derive(precision.read("large", got, "written"))
+    if len(here) < 4:
+        return None
+    part = []
+    for n in sorted(here):
+        b = here[n]
+        if 0 < b["absent_answered"] < b["absent_questions"]:
+            part.append("%s %d of %d" % (n.split()[0], b["absent_answered"], b["absent_questions"]))
+    return (not part,
+            "%d of %d subjects answer part of the exam's unanswerable band%s"
+            % (len(part), len(here), ("" if not part else " (" + ", ".join(part[:4]) + ")")))
+
+
+def c_exam_questions_distinct(ctx, corpus, shape):
+    """THREE HUNDRED QUESTIONS, THREE HUNDRED DIFFERENT QUESTIONS, ONE RIGHT ANSWER EACH.
+
+    Two packages can share a description word for word, and a corpus built from real data inherits the
+    collision: the same words are asked twice with a different expected record, so a subject that
+    returns the other one is graded wrong for being right. Nothing checked this until the precision axis
+    read the exam's own slots.
+    """
+    import exam_size
+    amb = exam_size.ambiguity()
+    if not amb.get("slots"):
+        return None
+    return (amb["distinct"] == amb["slots"] and not amb["shared"],
+            "%d slots for %d distinct questions, and %d question text(s) two records answer equally"
+            % (amb["slots"], amb["distinct"], len(amb["shared"])))
+
+
+def c_noise_is_charged(ctx, corpus, shape):
+    """A SEARCH PAYS FOR THE UNRELATED RECORDS IT HANDS BACK.
+
+    The panel of adapters is where this is decidable: greedy-match accepts a single shared word and
+    answers anything, one-result hands back exactly one record. If the score charged for volume, the
+    tidy one would not lose to the greedy one.
+    """
+    import precision
+    noisy, tidy = mutant_run("greedy-match", corpus), mutant_run("one-result", corpus)
+    if not noisy or not tidy:
+        return None
+    a, b = noisy.get("rows") or [], tidy.get("rows") or []
+    if not a or not b:
+        return None
+    ga = precision.derive(precision.read(corpus, a, shape))
+    tb = precision.derive(precision.read(corpus, b, shape))
+    sa = sum(1 for r in a if ok(r, shape))
+    sb = sum(1 for r in b if ok(r, shape))
+    return (sa <= sb,
+            "the greedy matcher scores %d and the single-record one %d, at %.2f and %.2f noise records"
+            " per correct answer" % (sa, sb, ga["noise_per_hit"] or 0, tb["noise_per_hit"] or 0))
+
+
+CLAIMS = [    ("most-hits", "memory-mcp-1file answers more answerable questions than any other subject here.",
      c_most_hits, True),
     ("leads-runner", "memory-mcp-1file is better than zenbrain by the paired test.",
      c_leads_runner, True),
@@ -960,6 +1026,11 @@ CLAIMS = [
      c_recency_visible, False),
     ("silent-everywhere", "the subjects that answer nothing on the authored corpora answer nothing on"
      " real text either.", c_silent_everywhere, False),
+    ("silence-is-a-habit", "a subject that answers some of the unanswerable questions answers all of them.",
+     c_silence_is_a_habit, False),
+    ("exam-questions-distinct", "the exam's questions are distinct questions with one right answer each.",
+     c_exam_questions_distinct, False),
+    ("noise-is-charged", "a search pays for the unrelated records it hands back.", c_noise_is_charged, False),
     ("score-sees-ordering", "the retrieval score changes when a search returns its worst match first.",
      c_score_sees_ordering, False),
     ("score-prefers-recalcitrance", "a search that accepts one shared word scores no better than one that"
