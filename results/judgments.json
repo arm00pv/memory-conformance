@@ -1,145 +1,5 @@
 {
- "0173278245729a96": {
-  "corpus": "large",
-  "id": "@modelcontextprotocol/server-memory",
-  "kind": "near",
-  "model": "glm-5.3:cloud",
-  "query": "MCP server enabling persistent memory for AI models through a local knowledge graph",
-  "raw": "The question is about an \"MCP server enabling persistent memory for AI models through a local knowledge graph.\"\n\nThe record returned is: \"MCP server for enabling memory for Claude through a knowledge graph Version 1.0.0. Licensed SEE LICENSE IN LICENSE.\"\n\nThis seems highly relevant. The question asks about an MCP server for persistent memory via a local knowledge graph for AI models. The record de",
-  "verdict": "YES",
-  "why": "Matches request: MCP server giving AI memory via knowledge graph"
- },
- "01c5648570248ce9": {
-  "corpus": "large",
-  "id": "micromark",
-  "kind": "noise",
-  "model": "glm-5.3:cloud",
-  "query": "An Esprima-compatible parser on Acorn",
-  "raw": "The question is about \"An Esprima-compatible parser on Acorn\". This is about esprima-style AST parsers built on top of Acorn. There's a known project \"espree\" (ESLint's parser) which is an Esprima-compatible parser built on Acorn.\n\nThe record returned is about a \"small commonmark compliant markdown parser with positional info and concrete tokens\" \u2014 that's marked, a markdown parser. That's not rela",
-  "verdict": "NO",
-  "why": "Record is a markdown parser, unrelated to Esprima or Acorn."
- },
- "02077a479e590c4b": {
-  "corpus": "large",
-  "id": "widest-line",
-  "kind": "noise",
-  "model": "glm-5.3:cloud",
-  "query": "A fast for calculating a string be truncated, an optional limit and an string.",
-  "raw": "The question is garbled but seems to be about: \"A fast [something] for calculating a string [to] be truncated, an optional limit and an string.\" This sounds like a function that truncates a string with an optional limit parameter.\n\nThe record returned is about \"Get the visual width of the widest line in a string - the number of columns required to display it\" - this is about visual width calculati",
-  "verdict": "NO",
-  "why": "Record measures visual width, not truncating strings with a limit"
- },
- "050eafff42590085": {
-  "corpus": "A",
-  "id": "auth-lockout",
-  "kind": "near",
-  "model": "glm-5.3:cloud",
-  "query": "Does shutting the window log me out?",
-  "raw": "Let me analyze this carefully.\n\nThe question: \"Does shutting the window log me out?\"\n\nThis is asking about whether closing a window (likely a browser window or app window) logs the person out of their account/session.\n\nThe record returned: \"An account locks for fifteen minutes after five failed sign-in attempts.\"\n\nThis record is about account lockout after failed sign-in attempts. It has nothing t",
-  "verdict": "NO",
-  "why": "Record covers failed sign-in lockouts, not logout from closing windows."
- },
- "0bf16aa11f4d1d42": {
-  "corpus": "B",
-  "id": "station-coble-platforms",
-  "kind": "near",
-  "model": "glm-5.3:cloud",
-  "query": "Do staff at Coble Wharf use a portable ramp?",
-  "raw": "The question: \"Do staff at Coble Wharf use a portable ramp?\"\n\nThe record: \"Coble Wharf has four platforms, two of them bay platforms used only in the morning peak.\"\n\nDoes this help answer whether staff use a portable ramp? The record describes platform configuration, not ramp usage. It doesn't mention ramps, staff, or accessibility equipment. So it's not relevant.\n\nWhy: \"Describes platform count/t",
-  "verdict": "NO",
-  "why": "Describes platform layout only; no mention of ramps or staff."
- },
- "10641d30e206e967": {
-  "corpus": "real",
-  "id": "fast-string-truncated-width",
-  "kind": "near",
-  "model": "glm-5.3:cloud",
-  "query": "Determine the East Width of a Unicode",
-  "raw": "The question is \"Determine the East Width of a Unicode\" \u2014 this likely refers to East Asian Width (Unicode property, e.g., wcwidth, string width calculation for terminal display). The record is about a fast function for calculating where a string should be truncated, given an optional width limit and an ellipsis string. This sounds like a string truncation library (e.g., \"slice-ansi\" or \"cli-trunca",
-  "verdict": "NO",
-  "why": "Record is about string truncation, not measuring East Asian width."
- },
- "11460c46db16edd2": {
-  "corpus": "A",
-  "id": "alert-silence",
-  "kind": "noise",
-  "model": "glm-5.3:cloud",
-  "query": "Does shutting the window log me out?",
-  "raw": "The question is: \"Does shutting the window log me out?\"\n\nThe record returned: \"Alerts can be silenced for one hour by an operator during maintenance.\"\n\nThe question seems to be about whether closing a window (perhaps a browser window or application window) logs the user out. The record is about silencing alerts during maintenance - completely unrelated to window closing or logging out.\n\nSo the rec",
-  "verdict": "NO",
-  "why": "Record concerns silencing alerts, unrelated to window closing or logout."
- },
- "124b60e1474ad90f": {
-  "corpus": "large",
-  "id": "@protobufjs/path",
-  "kind": "noise",
-  "model": "glm-5.3:cloud",
-  "query": "unist utility to a node, position, or as a human readable",
-  "raw": "Let me analyze this.\n\nThe question is: \"unist utility to a node, position, or as a human readable\"\n\nThis appears to be a truncated question, likely about a unist utility (unist is the syntax tree format used by remark/retext/rehype ecosystem). The question seems to be about something like \"unist-util-to-string\" or more likely \"unist-util-source\" or... Actually, it sounds like it could be about a u",
-  "verdict": "NO",
-  "why": "Record describes a path resolution module, not a unist utility"
- },
- "12c305fda5b1cfca": {
-  "corpus": "real",
-  "id": "@huggingface/transformers",
-  "kind": "answer",
-  "model": "glm-5.3:cloud",
-  "query": "State-of-the-art Machine Learning for the web. Run \ud83e\udd17 Transformers directly in your browser, with no need for a server!",
-  "raw": "The question is: \"State-of-the-art Machine Learning for the web. Run \ud83e\udd17 Transformers directly in your browser, with no need for a server!\"\n\nThe record returned: \"State-of-the-art Machine Learning for the web. Run \ud83e\udd17 Transformers directly in your browser, with no need for a server! Version 3.8.1. Licensed Apache-2.0.\"\n\nThe record matches the question exactly, plus additional version and license info.",
-  "verdict": "YES",
-  "why": "Record matches query exactly, adding version and license details"
- },
- "1403758ac3a66e8f": {
-  "corpus": "real",
-  "id": "rag-memory-epf-mcp",
-  "kind": "near",
-  "model": "glm-5.3:cloud",
-  "query": "A SQLite-backed MCP memory server with local workspace storage.",
-  "raw": "The question is: \"A SQLite-backed MCP memory server with local workspace storage.\"\n\nThe record returned: \"Project-local RAG memory MCP server \u2014 knowledge graph + multilingual vector + FTS5 in a single SQLite file. Per-project isolation, 38 MCP tools, codepoint-safe chunking (Korean/CJK/emoji). Version 6.4.1. Licensed MIT.\"\n\nLet me analyze the match:\n\nQuestion components:\n1. SQLite-backed \u2014 Record:",
-  "verdict": "YES",
-  "why": "Exact match: SQLite-backed MCP memory server with project-local storage."
- },
- "142b63ee3d518734": {
-  "corpus": "large",
-  "id": "crbro-memory",
-  "kind": "answer",
-  "model": "glm-5.3:cloud",
-  "query": "CRBRO \u2014 Persistent neural memory for AI. A biological file-based MCP server that gives your AI long-term memory across sessions.",
-  "raw": "The question is: \"CRBRO \u2014 Persistent neural memory for AI. A biological file-based MCP server that gives your AI long-term memory across sessions.\"\n\nThe record returned: \"CRBRO \u2014 Persistent neural memory for AI. A biological file-based MCP server that gives your AI long-term memory across sessions. Version 2.10.0. Licensed MIT.\"\n\nThe record matches the question exactly, plus adds version and licen",
-  "verdict": "YES",
-  "why": "Record matches query and adds version and license details."
- },
- "14f1c1f8c9798a17": {
-  "corpus": "large",
-  "id": "side-channel",
-  "kind": "near",
-  "model": "glm-5.3:cloud",
-  "query": "Store information any JS value in a side using a linked",
-  "raw": "The question is: \"Store information any JS value in a side using a linked\"\n\nThis looks like a garbled/typo-ridden version of: \"Store information about any JS value in a side channel\" \u2014 likely searching for a package like \"side-channel\" (the npm package `side-channel` by Jordan Harband, which stores information about any JS value in a side channel, uses WeakMap if available).\n\nThe record returned: ",
-  "verdict": "YES",
-  "why": "Matches the query: stores JS value info in a side channel via WeakMap."
- },
- "1ae4b2c1c4772a02": {
-  "corpus": "A",
-  "id": "maint-patching",
-  "kind": "noise",
-  "model": "glm-5.3:cloud",
-  "query": "what share of users sees a new release first",
-  "raw": "The question is: \"what share of users sees a new release first\" \u2014 this is asking about what proportion/fraction of users get access to a new release first (like a rollout percentage, feature flag percentage, canary deployment share).\n\nThe record returned: \"Operating system patches are applied within fourteen days of release.\" \u2014 this is about OS patching timelines, not about the share of users seei",
-  "verdict": "NO",
-  "why": "Covers patch timing, not share of users seeing releases first."
- },
- "1ea496a4140e5d11": {
-  "corpus": "B",
-  "id": "depot-saltmarsh-hours",
-  "kind": "answer",
-  "model": "glm-5.3:cloud",
-  "query": "When does Saltmarsh depot open each day?",
-  "raw": "The question asks: \"When does Saltmarsh depot open each day?\"\n\nThe record says: \"Saltmarsh depot opens for unit preparation at 04:30 and closes at 23:00 every day of the week.\"\n\nThe record directly answers when the depot opens (04:30) and also mentions it's every day of the week. This directly addresses the question about opening time each day.\n\nSo the answer is {\"relevant\": true} with a why of at",
-  "verdict": "YES",
-  "why": "States the depot opens at 04:30 every day."
- },
- "202de3c820e0b0da": {
+ "03f6ac3c61f1232f": {
   "corpus": "A",
   "id": "maint-window",
   "kind": "answer",
@@ -149,177 +9,27 @@
   "verdict": "YES",
   "why": "Record directly confirms the maintenance schedule asked about, with times."
  },
- "23626f1fc55e2636": {
+ "04196340ff92ded1": {
   "corpus": "large",
-  "id": "rag-memory-epf-mcp",
-  "kind": "near",
-  "model": "glm-5.3:cloud",
-  "query": "CRBRO \u2014 neural for AI. A biological MCP server gives AI long-term across",
-  "raw": "Let me analyze this carefully.\n\nThe question asks: \"CRBRO \u2014 neural for AI. A biological MCP server gives AI long-term across\"\n\nThis is a garbled/fragmented question, but I can extract the key concepts:\n- \"neural for AI\" \u2014 something neural for AI\n- \"A biological MCP server gives AI long-term across\" \u2014 an MCP server that gives AI long-term memory\n\nSo the person seems to be asking about an MCP server",
-  "verdict": "UNPARSED",
-  "why": ""
- },
- "2527322d9693424d": {
-  "corpus": "large",
-  "id": "@aws-sdk/credential-provider-env",
-  "kind": "near",
-  "model": "glm-5.3:cloud",
-  "query": "AWS credential that credentials a Node.JS",
-  "raw": "The question is: \"AWS credential that credentials a Node.JS\"\n\nThis is a garbled question, but it seems to be asking about AWS credentials for Node.js \u2014 likely about AWS credential providers in Node.js (the AWS SDK for JavaScript).\n\nThe record returned: \"AWS credential provider that sources credentials from known environment variables Version 3.972.76. Licensed Apache-2.0.\"\n\nThis sounds like the `@",
-  "verdict": "YES",
-  "why": "It's the Node.js AWS SDK environment-variable credential provider package."
- },
- "3127dae75b33427a": {
-  "corpus": "large",
-  "id": "@aws-sdk/credential-provider-env",
-  "kind": "near",
-  "model": "glm-5.3:cloud",
-  "query": "AWS credential provider sources credentials the EC2 instance metadata and ECS container metadata",
-  "raw": "The question asks about AWS credential provider that sources credentials from EC2 instance metadata and ECS container metadata.\n\nThe record returned is about an AWS credential provider that sources credentials from known environment variables.\n\nThese are different credential providers:\n- Environment variables provider (e.g., AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY)\n- EC2 instance metadata provide",
-  "verdict": "NO",
-  "why": "Record covers environment variables, not EC2/ECS metadata sources"
- },
- "35f73cbecb4543cf": {
-  "corpus": "large",
-  "id": "call-bind-apply-helpers",
-  "kind": "noise",
-  "model": "glm-5.3:cloud",
-  "query": "Returns true if a or string value is a number. Useful for matches, parsing, input, etc.",
-  "raw": "The question asks about a helper function that returns true if a value (or string value) is a number. Useful for matches, parsing, input, etc.\n\nThe record returned is about \"Helper functions around Function call/apply/bind, for use in `call-bind` Version 1.2. Licensed MIT.\"\n\nThe question is about a number-checking utility (like `is-number` package). The record is about function call/apply/bind hel",
-  "verdict": "NO",
-  "why": "Record covers function call/apply/bind helpers, not number validation."
- },
- "3a02d1bbf430a8e4": {
-  "corpus": "large",
-  "id": "tr46",
-  "kind": "noise",
-  "model": "glm-5.3:cloud",
-  "query": "Determine the East Asian Width of a Unicode character",
-  "raw": "The question is about determining the East Asian Width of a Unicode character. East Asian Width is a Unicode property (UAX #11) used to determine whether characters are wide, narrow, ambiguous, etc., often used for terminal width calculations.\n\nThe record returned is about Unicode TR46 spec Version 0.0.3. TR46 is \"Unicode IDNA Compatibility Processing\" - it's about internationalized domain names (",
-  "verdict": "NO",
-  "why": "TR46 covers IDNA domain name processing, not East Asian Width."
- },
- "3a5180fd25de9593": {
-  "corpus": "B",
-  "id": "cater-marlbrook-vending",
-  "kind": "noise",
-  "model": "glm-5.3:cloud",
-  "query": "Which sets are the oldest working units?",
-  "raw": "The question asks: \"Which sets are the oldest working units?\" \u2014 this seems to be about trains/rolling stock (units, sets). The record returned is about Marlbrook Line units having vending machines restocked at Fenwick Road. This is about vending machines/restocking, not about age of units. So it's not relevant.\n\nAnswer: {\"relevant\": false, \"why\": \"...\"} \u2014 why: record discusses vending machines, no",
-  "verdict": "NO",
-  "why": "Record covers vending machines, not unit age."
- },
- "449dd82a2911ab11": {
-  "corpus": "large",
-  "id": "@huggingface/transformers",
-  "kind": "noise",
-  "model": "glm-5.3:cloud",
-  "query": "micromark factory to markdown titles (found in definitions)",
-  "raw": "The question is: \"micromark factory to markdown titles (found in definitions)\"\n\nThis appears to be a technical question about micromark (a markdown parser library) and its \"factory\" functions, possibly related to parsing markdown titles/ATX headings, and something about \"found in definitions\" \u2014 perhaps looking for where title-related factories are defined in micromark's source code.\n\nThe record re",
-  "verdict": "NO",
-  "why": "Record describes Transformers.js ML library, unrelated to micromark markdown parsing."
- },
- "4785cb25822474a4": {
-  "corpus": "B",
-  "id": "class-dunmere-age",
-  "kind": "near",
-  "model": "glm-5.3:cloud",
-  "query": "Which units use a 3+2 seating layout?",
-  "raw": "The question asks: \"Which units use a 3+2 seating layout?\"\n\nThe record returned: \"The Dunmere sets are the oldest working units, having entered service in 1984.\"\n\nDoes this record help answer the question about seating layout? The record talks about the age of the Dunmere sets and when they entered service (1984). It says nothing about seating layout (3+2 or otherwise).\n\nSo the record is not relev",
-  "verdict": "NO",
-  "why": "Record covers unit age and service date, not seating layout"
- },
- "4a6cfdc003ad5d59": {
-  "corpus": "A",
-  "id": "auth-session",
+  "id": "better-sqlite3",
   "kind": "answer",
-  "model": "glm-5.3:cloud",
-  "query": "Does shutting the window log me out?",
-  "raw": "The question: \"Does shutting the window log me out?\"\n\nThe record: \"A session ends when the browser tab closes unless it was marked persistent.\"\n\nDoes this help? The question is about closing the window and whether it logs them out. The record says a session ends when the browser tab closes unless marked persistent. That directly addresses the question \u2014 closing the tab/window ends the session (log",
+  "model": "deepseek-v4.1-flash:cloud",
+  "query": "The fastest and library for in Node.js.",
+  "raw": "{\"relevant\": true, \"why\": \"Answers fastest SQLite library question, though question wording is garbled\"}",
   "verdict": "YES",
-  "why": "It explains closing the tab ends the session unless persistent"
+  "why": "Answers fastest SQLite library question, though question wording is garbled"
  },
- "55d7e810b12597a2": {
+ "05afbe86a0f1a111": {
   "corpus": "large",
-  "id": "string-width",
-  "kind": "answer",
-  "model": "glm-5.3:cloud",
-  "query": "Get the visual of a string - the of columns to display it",
-  "raw": "The question asks: \"Get the visual of a string - the of columns to display it\"\n\nThe record returned: \"Get the visual width of a string - the number of columns required to display it Version 7.2.0. Licensed MIT.\"\n\nThe question appears to be a garbled/truncated version of the record. The question is asking about getting the visual width of a string - the number of columns to display it. The record m",
+  "id": "@modelcontextprotocol/server-memory",
+  "kind": "near",
+  "model": "deepseek-v4.1-flash:cloud",
+  "query": "MCP server enabling persistent memory for AI models through a local knowledge graph",
+  "raw": "{\"relevant\": true, \"why\": \"Directly matches: MCP server, memory, knowledge graph for Claude\"}",
   "verdict": "YES",
-  "why": "Record directly matches question about string's visual width in columns."
+  "why": "Directly matches: MCP server, memory, knowledge graph for Claude"
  },
- "565fe41f60a3d70d": {
-  "corpus": "B",
-  "id": "cater-evening-specials",
-  "kind": "near",
-  "model": "glm-5.3:cloud",
-  "query": "What refreshment do the Marlbrook Line units carry?",
-  "raw": "The question asks: \"What refreshment do the Marlbrook Line units carry?\"\n\nThe record returned: \"Two evening specials each week serve local cider and pies in a converted carriage.\"\n\nThe question is about \"Marlbrook Line units\" - this seems to be about train units on the Marlbrook Line and what refreshment they carry. The record talks about evening specials serving cider and pies in a converted carr",
-  "verdict": "NO",
-  "why": "Describes evening specials, not Marlbrook Line units' refreshments."
- },
- "6d0e092fd301854e": {
-  "corpus": "large",
-  "id": "strip-bom-string",
-  "kind": "noise",
-  "model": "glm-5.3:cloud",
-  "query": "Higher order library for JavaScript/TypeScript.",
-  "raw": "The question is about a \"Higher order library for JavaScript/TypeScript.\" The record returned is about stripping a byte order mark (BOM) from a string \u2014 a small utility package, version 1.0.0, MIT licensed.\n\nA \"higher order library\" likely refers to libraries for higher-order functions, functional programming utilities (like lodash, ramda), or higher-order components. Stripping a BOM from a string",
-  "verdict": "NO",
-  "why": "BOM stripping utility is not a higher-order function library."
- },
- "7387c4d453ce4ae4": {
-  "corpus": "B",
-  "id": "fare-monthly-season",
-  "kind": "near",
-  "model": "glm-5.3:cloud",
-  "query": "How much is a day ticket for unlimited rides on the Ridgeway Line?",
-  "raw": "The question asks about a day ticket for unlimited rides on the Ridgeway Line.\n\nThe record returned is about a monthly season ticket from Pike Hill to Saltmarsh Junction costing 96 pounds.\n\nDoes this help? The question is about:\n1. A day ticket (not monthly)\n2. Unlimited rides (not a season between specific stations)\n3. The Ridgeway Line (not Pike Hill to Saltmarsh Junction)\n\nThe record is about a",
-  "verdict": "NO",
-  "why": "Monthly season between two stations, not a day ticket"
- },
- "7435c2926a935eff": {
-  "corpus": "large",
-  "id": "unist-util-stringify-position",
-  "kind": "answer",
-  "model": "glm-5.3:cloud",
-  "query": "unist utility to serialize a node, position, or point as a human readable location",
-  "raw": "The question is: \"unist utility to serialize a node, position, or point as a human readable location\"\n\nThe record returned: \"unist utility to serialize a node, position, or point as a human readable location Version 4.0.0. Licensed MIT.\"\n\nThe record matches the question almost exactly - it's the same description plus version and license info. This is clearly the same package (unist-util-stringify-",
-  "verdict": "YES",
-  "why": "Record matches query exactly, confirming package version and license."
- },
- "746f72d106ced9f9": {
-  "corpus": "large",
-  "id": "micromark-factory-whitespace",
-  "kind": "near",
-  "model": "glm-5.3:cloud",
-  "query": "micromark to parse (found in resources,",
-  "raw": "The question is: \"micromark to parse (found in resources,\"\n\nThe record returned: \"micromark factory to parse markdown whitespace (found in lots of places) Version 2.0.1. Licensed MIT.\"\n\nThe question seems to be about \"micromark to parse\" - someone looking for micromark, a markdown parser. The record is about a micromark factory to parse markdown whitespace, which is a sub-package of micromark (mic",
-  "verdict": "UNPARSED",
-  "why": ""
- },
- "792ee691ae53df58": {
-  "corpus": "large",
-  "id": "mcp-knowledge-graph",
-  "kind": "near",
-  "model": "glm-5.3:cloud",
-  "query": "Project-local RAG MCP server \u2014 graph + vector + FTS5 in a SQLite Per-project isolation, 38 MCP codepoint-safe (Korean/CJK/emoji).",
-  "raw": "Let me analyze this carefully.\n\nThe question asks about: \"Project-local RAG MCP server \u2014 graph + vector + FTS5 in a SQLite Per-project isolation, 38 MCP codepoint-safe (Korean/CJK/emoji).\"\n\nSo the person is asking about a specific MCP server that:\n- Is project-local RAG\n- Has graph + vector + FTS5 (full-text search) in SQLite\n- Per-project isolation\n- 38 MCP codepoint-safe (Korean/CJK/emoji handli",
-  "verdict": "UNPARSED",
-  "why": ""
- },
- "7a51799a36ede831": {
-  "corpus": "A",
-  "id": "key-signing",
-  "kind": "noise",
-  "model": "glm-5.3:cloud",
-  "query": "deployment key rotation",
-  "raw": "The question is \"deployment key rotation\". The record says \"The signing key lives in the hardware module and never leaves it.\"\n\nKey rotation is about changing/rotating keys periodically or after compromise. The record talks about where the signing key lives (in a hardware module) and that it never leaves it. This is about key storage/security, not about rotation procedures.\n\nDoes this help with de",
-  "verdict": "NO",
-  "why": "Covers key storage in hardware, not rotation procedures or deployment."
- },
- "8326df1dcc3f76b8": {
+ "07d67598152f7bac": {
   "corpus": "large",
   "id": "obliterator",
   "kind": "answer",
@@ -329,197 +39,17 @@
   "verdict": "YES",
   "why": "Record is a higher-order library for JavaScript/TypeScript, matching query."
  },
- "8905f8b224674a11": {
+ "09eac0a4687a9fbf": {
   "corpus": "real",
-  "id": "side-channel",
-  "kind": "near",
-  "model": "glm-5.3:cloud",
-  "query": "Store information about any JS value in a side channel. Uses WeakMap if available.",
-  "raw": "The question is: \"Store information about any JS value in a side channel. Uses WeakMap if available.\"\n\nThe record returned: \"Store information about any JS value in a side channel. Uses WeakMap if available. Version 1.1.1. Licensed MIT.\"\n\nThe record matches the question exactly \u2014 it's the same description plus version and license info. This looks like a package description (probably the npm packag",
-  "verdict": "YES",
-  "why": "Record matches query exactly; adds package version and license details."
- },
- "8cae64a88843e915": {
-  "corpus": "B",
-  "id": "access-book-notice",
+  "id": "string-width",
   "kind": "noise",
-  "model": "glm-5.3:cloud",
-  "query": "How late into the night does the branch keep running?",
-  "raw": "The question asks: \"How late into the night does the branch keep running?\" - this is asking about operating hours/late night service of a branch (perhaps a train branch line, or a branch of something).\n\nThe record says: \"Help should be requested two hours ahead by ringing the control centre.\" - this is about requesting help in advance by calling a control centre. It doesn't mention anything about ",
+  "model": "deepseek-v4.1-flash:cloud",
+  "query": "CRBRO \u2014 Persistent neural memory for AI. A biological file-based MCP server that gives your AI long-term memory across sessions.",
+  "raw": "{\"relevant\": false, \"why\": \"Record describes string width utility, unrelated to CRBRO neural memory server.\"}",
   "verdict": "NO",
-  "why": "Record explains advance help requests, not branch operating hours."
+  "why": "Record describes string width utility, unrelated to CRBRO neural memory server."
  },
- "8cf03f4b1c5ff2a1": {
-  "corpus": "real",
-  "id": "@aws-sdk/credential-provider-sso",
-  "kind": "noise",
-  "model": "glm-5.3:cloud",
-  "query": "Parser and generator for CSS color strings",
-  "raw": "The question is about a parser and generator for CSS color strings. The record returned is about an AWS credential provider that exchanges SSO login tokens for temporary AWS credentials. These are completely unrelated topics. The record would not help the person asking about CSS color string parsing/generation.\n\nI need to reply with one JSON object and nothing else, with a \"relevant\" field and a \"",
-  "verdict": "NO",
-  "why": "Record concerns AWS SSO credentials, unrelated to CSS colors"
- },
- "8fb5a657822cba2b": {
-  "corpus": "large",
-  "id": "micromark",
-  "kind": "near",
-  "model": "glm-5.3:cloud",
-  "query": "micromark factory to parse destinations (found in resources, definitions)",
-  "raw": "The question is about \"micromark factory to parse destinations (found in resources, definitions)\". This is asking about micromark, which is a markdown parser. The record returned is \"small commonmark compliant markdown parser with positional info and concrete tokens Version 4.0.3. Licensed MIT.\"\n\nThis record appears to be the package description of micromark itself (micromark's package.json descri",
-  "verdict": "UNPARSED",
-  "why": ""
- },
- "9161974ff37e258b": {
-  "corpus": "large",
-  "id": "widest-line",
-  "kind": "noise",
-  "model": "glm-5.3:cloud",
-  "query": "CRBRO \u2014 Persistent memory for AI. A biological MCP server that your AI long-term across sessions.",
-  "raw": "The question is about \"CRBRO \u2014 Persistent memory for AI. A biological MCP server that your AI long-term across sessions.\"\n\nThe record returned is about \"Get the visual width of the widest line in a string - the number of columns required to display it Version 5.0.0. Licensed MIT.\"\n\nThis record is about a string-width utility (like the `widest-line` npm package or similar), which measures visual wi",
-  "verdict": "NO",
-  "why": "Record describes a string width utility, unrelated to AI memory storage."
- },
- "969544158b47a301": {
-  "corpus": "large",
-  "id": "chart.js-auto",
-  "kind": "near",
-  "model": "glm-5.3:cloud",
-  "query": "Helpers package. Exists to support bundlers without exports support such as webpack 4.",
-  "raw": "Let me analyze this. The question is about a \"Helpers package\" that exists to support bundlers without exports support such as webpack 4. The record returned is about an \"Auto registering package\" that exists to support bundlers without exports support such as webpack 4.\n\nThe descriptions are nearly identical except for the package name: \"Helpers package\" vs \"Auto registering package\". \n\nThis soun",
-  "verdict": "UNPARSED",
-  "why": ""
- },
- "9c2c7c5d69367053": {
-  "corpus": "large",
-  "id": "better-sqlite3",
-  "kind": "answer",
-  "model": "glm-5.3:cloud",
-  "query": "The fastest and library for in Node.js.",
-  "raw": "The question is: \"The fastest and library for in Node.js.\" \u2014 this appears to be a corrupted/incomplete question, but it seems to be asking about \"The fastest and [simplest?] library for [SQLite?] in Node.js.\"\n\nThe record returned: \"The fastest and simplest library for SQLite in Node.js. Version 12.11.1. Licensed MIT.\"\n\nThe question seems to match the record almost exactly. The question appears to ",
-  "verdict": "YES",
-  "why": "Record directly answers the question about fastest SQLite library in Node.js"
- },
- "9efe04230118f47a": {
-  "corpus": "large",
-  "id": "environment",
-  "kind": "noise",
-  "model": "glm-5.3:cloud",
-  "query": "AWS credential provider sources credentials a Node.JS environment.",
-  "raw": "The question is about AWS credential provider sourcing credentials from a Node.js environment. The record returned is about checking which JavaScript environment code is running in at runtime (browser, Node.js, Bun, etc.), version 1.1.0, MIT licensed.\n\nThe question is about AWS credential providers for Node.js. The record is about detecting the JavaScript runtime environment. These are different t",
-  "verdict": "NO",
-  "why": "Record covers runtime environment detection, not AWS credential sourcing."
- },
- "a0781b7141ea889e": {
-  "corpus": "large",
-  "id": "@vheins/local-memory-mcp",
-  "kind": "answer",
-  "model": "glm-5.3:cloud",
-  "query": "MCP Local Memory Service for coding copilot agents",
-  "raw": "Let me analyze this. The question is \"MCP Local Memory Service for coding copilot agents\" \u2014 someone is looking for information about this service.\n\nThe record returned is: \"MCP Local Memory Service for coding copilot agents Version 0.52.3. Licensed MIT.\"\n\nThe record matches the query exactly by name. It provides version and license information. Would this help? The question is just the name of the",
-  "verdict": "YES",
-  "why": "Exact topic match; confirms version and license details"
- },
- "b2da34a2afc52725": {
-  "corpus": "large",
-  "id": "@aws-sdk/credential-provider-sso",
-  "kind": "noise",
-  "model": "glm-5.3:cloud",
-  "query": "Swizzle a little into your calls.",
-  "raw": "Let me analyze this. The question is \"Swizzle a little into your calls.\" This is a vague, cryptic phrase. \"Swizzle\" is a term used in programming \u2014 swizzling refers to method swizzling (exchanging method implementations), common in Objective-C, or in graphics (swizzling texture data), or in some contexts like swizzling pointers.\n\nThe record returned is about an AWS credential provider that exchang",
-  "verdict": "NO",
-  "why": "Question about swizzling calls; record concerns AWS SSO credential exchange."
- },
- "b3a6060bd0a9d0c0": {
-  "corpus": "A",
-  "id": "backup-retention",
-  "kind": "near",
-  "model": "glm-5.3:cloud",
-  "query": "how long is personal data kept once someone leaves",
-  "raw": "Let me analyze this carefully.\n\nThe question is: \"how long is personal data kept once someone leaves\"\n\nThe record returned: \"Backups are retained for ninety days, and monthly snapshots for three years.\"\n\nThe question is about retention of personal data after someone leaves (likely leaves a company, or leaves a service, or perhaps after account deletion). The person wants to know how long their per",
-  "verdict": "UNPARSED",
-  "why": ""
- },
- "b65a526f238c1d8e": {
-  "corpus": "large",
-  "id": "@aws-sdk/client-s3",
-  "kind": "answer",
-  "model": "glm-5.3:cloud",
-  "query": "AWS SDK for JavaScript S3 Client for Browser and React",
-  "raw": "The question is about \"AWS SDK for JavaScript S3 Client for Browser and React\". The record returned is about \"AWS SDK for JavaScript S3 Client for Node.js, Browser and React Native Version 3.1156.0\".\n\nThe person is asking about the S3 client for Browser and React. The record mentions the S3 client for Node.js, Browser, and React Native. React (web) vs React Native (mobile) are different, but the p",
-  "verdict": "YES",
-  "why": "Same S3 client package works in browsers and React"
- },
- "bc616f99bb47a03d": {
-  "corpus": "large",
-  "id": "espree",
-  "kind": "answer",
-  "model": "glm-5.3:cloud",
-  "query": "An Esprima-compatible JavaScript parser built on Acorn",
-  "raw": "The question is \"An Esprima-compatible JavaScript parser built on Acorn\" \u2014 this looks like a description of the esprima-acorn or more likely \"acorn\" wrapper... Actually, this is the description of the npm package \"esprima\" alternative... The package \"acorn\" itself? No \u2014 \"An Esprima-compatible JavaScript parser built on Acorn\" is the description of the npm package \"esprima-acorn\"? Hmm, actually I r",
-  "verdict": "YES",
-  "why": "Matches the described package exactly, including version and license details."
- },
- "c010f56db0fac96d": {
-  "corpus": "real",
-  "id": "@aws-sdk/credential-provider-ini",
-  "kind": "answer",
-  "model": "glm-5.3:cloud",
-  "query": "AWS credential provider that sources credentials from ~/.aws/credentials and ~/.aws/config",
-  "raw": "The question asks about an AWS credential provider that sources credentials from ~/.aws/credentials and ~/.aws/config. The record returned appears to be a package description \u2014 \"AWS credential provider that sources credentials from ~/.aws/credentials and ~/.aws/config Version 3.973.21. Licensed Apache-2.0.\"\n\nThis looks like the description of the npm package `@aws-sdk/credential-provider-ini` (par",
-  "verdict": "YES",
-  "why": "Matches the query exactly; identifies the package, version, and license."
- },
- "c3f9127ad36ed9b4": {
-  "corpus": "large",
-  "id": "micromark-factory-whitespace",
-  "kind": "answer",
-  "model": "glm-5.3:cloud",
-  "query": "micromark factory to parse markdown whitespace (found in lots of places)",
-  "raw": "The question is: \"micromark factory to parse markdown whitespace (found in lots of places)\"\n\nThe record returned: \"micromark factory to parse markdown whitespace (found in lots of places) Version 2.0.1. Licensed MIT.\"\n\nThe record matches the question exactly \u2014 it's the same title. This appears to be a package like \"micromark-factory-whitespace\" which is indeed a micromark factory to parse markdown",
-  "verdict": "YES",
-  "why": "Exact match; identifies the package and version."
- },
- "c7f09d71862dc979": {
-  "corpus": "large",
-  "id": "@aws-sdk/client-ecs",
-  "kind": "near",
-  "model": "glm-5.3:cloud",
-  "query": "AWS SDK for JavaScript S3 for Node.js, and React",
-  "raw": "The question is about AWS SDK for JavaScript S3 for Node.js, and React. The record returned is about AWS SDK for JavaScript ECS Client (Elastic Container Service), not S3. ECS is a different service from S3. So the record is not relevant to the question about S3.\n\nThe \"why\" should be at most twelve words. Something like: \"Record covers ECS client, not S3; different AWS service.\"</think>{\"relevant\"",
-  "verdict": "NO",
-  "why": "Record is ECS client, question asks about S3; different AWS service."
- },
- "cc030e3191c765cb": {
-  "corpus": "B",
-  "id": "lostprop-coble-hold",
-  "kind": "answer",
-  "model": "glm-5.3:cloud",
-  "query": "How long is property handed in at Coble Wharf kept?",
-  "raw": "The question asks: \"How long is property handed in at Coble Wharf kept?\"\n\nThe record says: \"Property handed in at Coble Wharf is kept 28 days in the wharf office.\"\n\nThis directly answers the question - the property is kept for 28 days. The record is relevant.\n\nI need to reply with one JSON object and nothing else, with a \"relevant\" field and a \"why\" field of at most twelve words.</think>{\"relevant",
-  "verdict": "YES",
-  "why": "Directly states property is kept 28 days."
- },
- "dbd6daa1e4c9e975": {
-  "corpus": "real",
-  "id": "@libsql/isomorphic-fetch",
-  "kind": "answer",
-  "model": "glm-5.3:cloud",
-  "query": "Isomorphic fetch() in Node, Deno and Cloudflare Workers",
-  "raw": "The question is \"Isomorphic fetch() in Node, Deno and Cloudflare Workers\" and the record returned is \"Isomorphic fetch() in Node, Deno and Cloudflare Workers Version 0.3.1. Licensed MIT.\"\n\nThe record title exactly matches the question. It appears to be a package/library documentation record about isomorphic fetch. The question asks about isomorphic fetch() in Node, Deno and Cloudflare Workers \u2014 th",
-  "verdict": "YES",
-  "why": "Record directly matches the question's exact topic and title."
- },
- "de777444955c8fa2": {
-  "corpus": "large",
-  "id": "@modelcontextprotocol/server",
-  "kind": "noise",
-  "model": "glm-5.3:cloud",
-  "query": "MCP server enabling persistent memory for AI models through a local knowledge graph",
-  "raw": "The question is about \"MCP server enabling persistent memory for AI models through a local knowledge graph\" \u2014 this sounds like the official Memory MCP server (memory server) which uses a local knowledge graph for persistent memory.\n\nThe record returned is: \"Model Context Protocol implementation for TypeScript - Server package Version 2.3.1. Licensed Apache-2.0.\"\n\nThis is the generic TypeScript SDK",
-  "verdict": "NO",
-  "why": "Generic MCP TypeScript SDK package, not the memory knowledge-graph server."
- },
- "e0dbe795f2d9fa8a": {
+ "0c62f5fe5a6e3812": {
   "corpus": "A",
   "id": "bill-cycle",
   "kind": "noise",
@@ -529,47 +59,107 @@
   "verdict": "NO",
   "why": "Record covers billing schedule, not maintenance timing or Sundays."
  },
- "e960a0e421fa72ae": {
+ "0d2ef52bc06d4293": {
   "corpus": "large",
-  "id": "@j0hanz/memdb",
+  "id": "string-width",
   "kind": "answer",
-  "model": "glm-5.3:cloud",
-  "query": "A SQLite-backed MCP server local storage.",
-  "raw": "The question is: \"A SQLite-backed MCP server local storage.\"\n\nThe record returned: \"A SQLite-backed MCP memory server with local workspace storage. Version 1.4.0. Licensed MIT.\"\n\nThe question seems to be asking about a SQLite-backed MCP server with local storage. The record describes exactly that: a SQLite-backed MCP memory server with local workspace storage.\n\nThe question is a bit fragmentary \u2014 ",
+  "model": "deepseek-v4.1-flash:cloud",
+  "query": "Get the visual of a string - the of columns to display it",
+  "raw": "{\"relevant\": true, \"why\": \"Explains function returning string's visual column width\"}",
   "verdict": "YES",
-  "why": "Record directly matches the SQLite-backed MCP server with local storage."
+  "why": "Explains function returning string's visual column width"
  },
- "ea091d464c0b702d": {
+ "0fd9f40cc837c254": {
+  "corpus": "B",
+  "id": "line-kestrel-length",
+  "kind": "noise",
+  "model": "deepseek-v4.1-flash:cloud",
+  "query": "What happens to items found on trains at Tarnfield Central?",
+  "raw": "{\"relevant\": false, \"why\": \"Record describes route length, not lost property handling.\"}",
+  "verdict": "NO",
+  "why": "Record describes route length, not lost property handling."
+ },
+ "13184243472d11ca": {
+  "corpus": "real",
+  "id": "fast-string-truncated-width",
+  "kind": "near",
+  "model": "deepseek-v4.1-flash:cloud",
+  "query": "Determine the East Width of a Unicode",
+  "raw": "{\"relevant\": false, \"why\": \"Record describes string truncation library, not Unicode East Width calculation.\"}",
+  "verdict": "NO",
+  "why": "Record describes string truncation library, not Unicode East Width calculation."
+ },
+ "162093a66d4d9cfe": {
   "corpus": "large",
-  "id": "http-cache-semantics",
-  "kind": "answer",
-  "model": "glm-5.3:cloud",
-  "query": "Parses Cache-Control and headers. Helps correct HTTP and proxies",
-  "raw": "The question is: \"Parses Cache-Control and headers. Helps correct HTTP and proxies\"\n\nThe record returned: \"Parses Cache-Control and other headers. Helps building correct HTTP caches and proxies Version 4.3.0. Licensed BSD-2-Clause.\"\n\nThis is clearly the same content \u2014 the question appears to be a slightly garbled/corrupted version of the record description. The record matches the question almost e",
+  "id": "chart.js-auto",
+  "kind": "near",
+  "model": "deepseek-v4.1-flash:cloud",
+  "query": "Helpers package. Exists to support bundlers without exports support such as webpack 4.",
+  "raw": "{\"relevant\": true, \"why\": \"Record directly answers question about helpers package purpose.\"}",
   "verdict": "YES",
-  "why": "Record matches query: parses Cache-Control headers for HTTP caches and proxies."
+  "why": "Record directly answers question about helpers package purpose."
  },
- "eb0064574e847157": {
+ "178286a496d2c168": {
   "corpus": "large",
-  "id": "@aws-sdk/credential-provider-node",
-  "kind": "answer",
+  "id": "mcp-knowledge-graph",
+  "kind": "near",
   "model": "glm-5.3:cloud",
-  "query": "AWS credential provider that sources credentials from a Node.JS environment.",
-  "raw": "The question is: \"AWS credential provider that sources credentials from a Node.JS environment.\"\n\nThe record returned: \"AWS credential provider that sources credentials from a Node.JS environment. Version 3.972.88. Licensed Apache-2.0.\"\n\nThis is essentially an exact match. The record describes exactly what the person asked for \u2014 an AWS credential provider that sources credentials from a Node.JS env",
-  "verdict": "YES",
-  "why": "Record exactly matches the requested Node.JS AWS credential provider."
+  "query": "Project-local RAG MCP server \u2014 graph + vector + FTS5 in a SQLite Per-project isolation, 38 MCP codepoint-safe (Korean/CJK/emoji).",
+  "raw": "Let me analyze this carefully.\n\nThe question asks about: \"Project-local RAG MCP server \u2014 graph + vector + FTS5 in a SQLite Per-project isolation, 38 MCP codepoint-safe (Korean/CJK/emoji).\"\n\nSo the person is asking about a specific MCP server that:\n- Is project-local RAG\n- Has graph + vector + FTS5 (full-text search) in SQLite\n- Per-project isolation\n- 38 MCP codepoint-safe (Korean/CJK/emoji handli",
+  "verdict": "UNPARSED",
+  "why": ""
  },
- "eb3626b320b89746": {
+ "1aa21aacd26bfb64": {
+  "corpus": "large",
+  "id": "mcp-knowledge-graph",
+  "kind": "near",
+  "model": "deepseek-v4.1-flash:cloud",
+  "query": "Project-local RAG MCP server \u2014 graph + vector + FTS5 in a SQLite Per-project isolation, 38 MCP codepoint-safe (Korean/CJK/emoji).",
+  "raw": "{\"relevant\": true, \"why\": \"Describes MCP server with local knowledge graph memory\"}",
+  "verdict": "YES",
+  "why": "Describes MCP server with local knowledge graph memory"
+ },
+ "1c375abd0ee4fb89": {
+  "corpus": "B",
+  "id": "lostprop-coble-hold",
+  "kind": "answer",
+  "model": "deepseek-v4.1-flash:cloud",
+  "query": "How long is property handed in at Coble Wharf kept?",
+  "raw": "{\"relevant\": true, \"why\": \"Directly answers how long property is kept at Coble Wharf.\"}",
+  "verdict": "YES",
+  "why": "Directly answers how long property is kept at Coble Wharf."
+ },
+ "21bdea43dec429d8": {
   "corpus": "large",
   "id": "@aws-sdk/credential-provider-env",
   "kind": "near",
-  "model": "glm-5.3:cloud",
-  "query": "AWS credential provider that sources credentials from aws login cached tokens",
-  "raw": "The question asks about an AWS credential provider that sources credentials from \"aws login cached tokens\" - this refers to a specific tool, likely \"aws-login\" or similar that caches tokens (like Okta/aws-login tool that caches SSO tokens).\n\nThe record returned is about an AWS credential provider that sources credentials from \"known environment variables\" - this is the EnvironmentCredentialsProvid",
+  "model": "deepseek-v4.1-flash:cloud",
+  "query": "AWS credential provider sources credentials the EC2 instance metadata and ECS container metadata",
+  "raw": "{\"relevant\": false, \"why\": \"Record describes environment variables, not EC2/ECS metadata sources\"}",
   "verdict": "NO",
-  "why": "Record describes environment variable provider, not cached login tokens"
+  "why": "Record describes environment variables, not EC2/ECS metadata sources"
  },
- "f5364cb0c9bda1f2": {
+ "239448039e5fcbdc": {
+  "corpus": "large",
+  "id": "@aws-sdk/credential-provider-sso",
+  "kind": "noise",
+  "model": "glm-5.3:cloud",
+  "query": "Swizzle a little into your calls.",
+  "raw": "Let me analyze this. The question is \"Swizzle a little into your calls.\" This is a vague, cryptic phrase. \"Swizzle\" is a term used in programming \u2014 swizzling refers to method swizzling (exchanging method implementations), common in Objective-C, or in graphics (swizzling texture data), or in some contexts like swizzling pointers.\n\nThe record returned is about an AWS credential provider that exchang",
+  "verdict": "NO",
+  "why": "Question about swizzling calls; record concerns AWS SSO credential exchange."
+ },
+ "2a77cfe2a5207823": {
+  "corpus": "large",
+  "id": "micromark-factory-whitespace",
+  "kind": "answer",
+  "model": "deepseek-v4.1-flash:cloud",
+  "query": "micromark factory to parse markdown whitespace (found in lots of places)",
+  "raw": "{\"relevant\": true, \"why\": \"Identifies micromark package version 2.0.1 for parsing markdown whitespace\"}",
+  "verdict": "YES",
+  "why": "Identifies micromark package version 2.0.1 for parsing markdown whitespace"
+ },
+ "2ccec60a449c15a7": {
   "corpus": "large",
   "id": "side-channel-map",
   "kind": "answer",
@@ -579,7 +169,647 @@
   "verdict": "YES",
   "why": "Record matches query; identifies side-channel package version and license."
  },
- "f7669585eb81b3fe": {
+ "2d4820bb4d78628d": {
+  "corpus": "B",
+  "id": "station-coble-platforms",
+  "kind": "near",
+  "model": "deepseek-v4.1-flash:cloud",
+  "query": "Do staff at Coble Wharf use a portable ramp?",
+  "raw": "{\"relevant\": false, \"why\": \"Record discusses platforms, not staff portable ramp usage.\"}",
+  "verdict": "NO",
+  "why": "Record discusses platforms, not staff portable ramp usage."
+ },
+ "2d687ccb9d2462b1": {
+  "corpus": "large",
+  "id": "widest-line",
+  "kind": "noise",
+  "model": "deepseek-v4.1-flash:cloud",
+  "query": "CRBRO \u2014 Persistent memory for AI. A biological MCP server that your AI long-term across sessions.",
+  "raw": "{\"relevant\": false, \"why\": \"Record is unrelated string-width library info, not CRBRO memory server.\"}",
+  "verdict": "NO",
+  "why": "Record is unrelated string-width library info, not CRBRO memory server."
+ },
+ "2f9c9117ec6dd7a6": {
+  "corpus": "large",
+  "id": "@aws-sdk/client-s3",
+  "kind": "answer",
+  "model": "glm-5.3:cloud",
+  "query": "AWS SDK for JavaScript S3 Client for Browser and React",
+  "raw": "The question is about \"AWS SDK for JavaScript S3 Client for Browser and React\". The record returned is about \"AWS SDK for JavaScript S3 Client for Node.js, Browser and React Native Version 3.1156.0\".\n\nThe person is asking about the S3 client for Browser and React. The record mentions the S3 client for Node.js, Browser, and React Native. React (web) vs React Native (mobile) are different, but the p",
+  "verdict": "YES",
+  "why": "Same S3 client package works in browsers and React"
+ },
+ "31e49f3aa1d77bc4": {
+  "corpus": "large",
+  "id": "@aws-sdk/credential-provider-env",
+  "kind": "near",
+  "model": "deepseek-v4.1-flash:cloud",
+  "query": "AWS credential provider that sources credentials from aws login cached tokens",
+  "raw": "{\"relevant\": false, \"why\": \"Record describes environment variable provider, not aws login cached tokens.\"}",
+  "verdict": "NO",
+  "why": "Record describes environment variable provider, not aws login cached tokens."
+ },
+ "326ce0b10d9e316c": {
+  "corpus": "large",
+  "id": "@huggingface/transformers",
+  "kind": "noise",
+  "model": "deepseek-v4.1-flash:cloud",
+  "query": "micromark factory to markdown titles (found in definitions)",
+  "raw": "{\"relevant\": false, \"why\": \"Record describes Transformers.js, unrelated to micromark markdown titles\"}",
+  "verdict": "NO",
+  "why": "Record describes Transformers.js, unrelated to micromark markdown titles"
+ },
+ "32a7f4fb240f3fd8": {
+  "corpus": "large",
+  "id": "call-bind-apply-helpers",
+  "kind": "noise",
+  "model": "glm-5.3:cloud",
+  "query": "Returns true if a or string value is a number. Useful for matches, parsing, input, etc.",
+  "raw": "The question asks about a helper function that returns true if a value (or string value) is a number. Useful for matches, parsing, input, etc.\n\nThe record returned is about \"Helper functions around Function call/apply/bind, for use in `call-bind` Version 1.2. Licensed MIT.\"\n\nThe question is about a number-checking utility (like `is-number` package). The record is about function call/apply/bind hel",
+  "verdict": "NO",
+  "why": "Record covers function call/apply/bind helpers, not number validation."
+ },
+ "35dc59625cd5c684": {
+  "corpus": "real",
+  "id": "@libsql/isomorphic-fetch",
+  "kind": "answer",
+  "model": "glm-5.3:cloud",
+  "query": "Isomorphic fetch() in Node, Deno and Cloudflare Workers",
+  "raw": "The question is \"Isomorphic fetch() in Node, Deno and Cloudflare Workers\" and the record returned is \"Isomorphic fetch() in Node, Deno and Cloudflare Workers Version 0.3.1. Licensed MIT.\"\n\nThe record title exactly matches the question. It appears to be a package/library documentation record about isomorphic fetch. The question asks about isomorphic fetch() in Node, Deno and Cloudflare Workers \u2014 th",
+  "verdict": "YES",
+  "why": "Record directly matches the question's exact topic and title."
+ },
+ "362022def8d8b906": {
+  "corpus": "large",
+  "id": "crbro-memory",
+  "kind": "answer",
+  "model": "deepseek-v4.1-flash:cloud",
+  "query": "CRBRO \u2014 Persistent neural memory for AI. A biological file-based MCP server that gives your AI long-term memory across sessions.",
+  "raw": "{\"relevant\": true, \"why\": \"Directly describes CRBRO, matching the question's subject exactly.\"}",
+  "verdict": "YES",
+  "why": "Directly describes CRBRO, matching the question's subject exactly."
+ },
+ "372afe2e90c9c9aa": {
+  "corpus": "real",
+  "id": "@aws-sdk/credential-provider-sso",
+  "kind": "noise",
+  "model": "deepseek-v4.1-flash:cloud",
+  "query": "Parser and generator for CSS color strings",
+  "raw": "{\"relevant\": false, \"why\": \"Record is about AWS SSO credentials, not CSS color parsing.\"}",
+  "verdict": "NO",
+  "why": "Record is about AWS SSO credentials, not CSS color parsing."
+ },
+ "39b64f684bf576fa": {
+  "corpus": "large",
+  "id": "rag-memory-epf-mcp",
+  "kind": "near",
+  "model": "glm-5.3:cloud",
+  "query": "CRBRO \u2014 neural for AI. A biological MCP server gives AI long-term across",
+  "raw": "Let me analyze this carefully.\n\nThe question asks: \"CRBRO \u2014 neural for AI. A biological MCP server gives AI long-term across\"\n\nThis is a garbled/fragmented question, but I can extract the key concepts:\n- \"neural for AI\" \u2014 something neural for AI\n- \"A biological MCP server gives AI long-term across\" \u2014 an MCP server that gives AI long-term memory\n\nSo the person seems to be asking about an MCP server",
+  "verdict": "UNPARSED",
+  "why": ""
+ },
+ "3fffd38cecef9f76": {
+  "corpus": "real",
+  "id": "@aws-sdk/credential-provider-sso",
+  "kind": "noise",
+  "model": "glm-5.3:cloud",
+  "query": "Parser and generator for CSS color strings",
+  "raw": "The question is about a parser and generator for CSS color strings. The record returned is about an AWS credential provider that exchanges SSO login tokens for temporary AWS credentials. These are completely unrelated topics. The record would not help the person asking about CSS color string parsing/generation.\n\nI need to reply with one JSON object and nothing else, with a \"relevant\" field and a \"",
+  "verdict": "NO",
+  "why": "Record concerns AWS SSO credentials, unrelated to CSS colors"
+ },
+ "413024733ca63dd7": {
+  "corpus": "A",
+  "id": "auth-lockout",
+  "kind": "near",
+  "model": "glm-5.3:cloud",
+  "query": "Does shutting the window log me out?",
+  "raw": "Let me analyze this carefully.\n\nThe question: \"Does shutting the window log me out?\"\n\nThis is asking about whether closing a window (likely a browser window or app window) logs the person out of their account/session.\n\nThe record returned: \"An account locks for fifteen minutes after five failed sign-in attempts.\"\n\nThis record is about account lockout after failed sign-in attempts. It has nothing t",
+  "verdict": "NO",
+  "why": "Record covers failed sign-in lockouts, not logout from closing windows."
+ },
+ "4691939728423009": {
+  "corpus": "large",
+  "id": "@aws-sdk/credential-provider-env",
+  "kind": "near",
+  "model": "deepseek-v4.1-flash:cloud",
+  "query": "AWS credential that credentials a Node.JS",
+  "raw": "{\"relevant\": true, \"why\": \"Describes AWS credential provider for Node.js environment variables\"}",
+  "verdict": "YES",
+  "why": "Describes AWS credential provider for Node.js environment variables"
+ },
+ "46cb7b8b92abd5c9": {
+  "corpus": "A",
+  "id": "maint-patching",
+  "kind": "noise",
+  "model": "deepseek-v4.1-flash:cloud",
+  "query": "what share of users sees a new release first",
+  "raw": "{\"relevant\": false, \"why\": \"Record discusses patch timing, not share of users seeing releases first.\"}",
+  "verdict": "NO",
+  "why": "Record discusses patch timing, not share of users seeing releases first."
+ },
+ "4818edc33ef1c7bb": {
+  "corpus": "B",
+  "id": "cater-marlbrook-vending",
+  "kind": "noise",
+  "model": "deepseek-v4.1-flash:cloud",
+  "query": "Which sets are the oldest working units?",
+  "raw": "{\"relevant\": false, \"why\": \"Record discusses vending machines, not oldest working units.\"}",
+  "verdict": "NO",
+  "why": "Record discusses vending machines, not oldest working units."
+ },
+ "48a6826de6fda42b": {
+  "corpus": "large",
+  "id": "@aws-sdk/credential-provider-node",
+  "kind": "answer",
+  "model": "glm-5.3:cloud",
+  "query": "AWS credential provider that sources credentials from a Node.JS environment.",
+  "raw": "The question is: \"AWS credential provider that sources credentials from a Node.JS environment.\"\n\nThe record returned: \"AWS credential provider that sources credentials from a Node.JS environment. Version 3.972.88. Licensed Apache-2.0.\"\n\nThis is essentially an exact match. The record describes exactly what the person asked for \u2014 an AWS credential provider that sources credentials from a Node.JS env",
+  "verdict": "YES",
+  "why": "Record exactly matches the requested Node.JS AWS credential provider."
+ },
+ "4f2e55b7b1bf9743": {
+  "corpus": "B",
+  "id": "lostprop-coble-hold",
+  "kind": "answer",
+  "model": "glm-5.3:cloud",
+  "query": "How long is property handed in at Coble Wharf kept?",
+  "raw": "The question asks: \"How long is property handed in at Coble Wharf kept?\"\n\nThe record says: \"Property handed in at Coble Wharf is kept 28 days in the wharf office.\"\n\nThis directly answers the question - the property is kept for 28 days. The record is relevant.\n\nI need to reply with one JSON object and nothing else, with a \"relevant\" field and a \"why\" field of at most twelve words.</think>{\"relevant",
+  "verdict": "YES",
+  "why": "Directly states property is kept 28 days."
+ },
+ "4f786221ed33773b": {
+  "corpus": "A",
+  "id": "alert-silence",
+  "kind": "noise",
+  "model": "glm-5.3:cloud",
+  "query": "Does shutting the window log me out?",
+  "raw": "The question is: \"Does shutting the window log me out?\"\n\nThe record returned: \"Alerts can be silenced for one hour by an operator during maintenance.\"\n\nThe question seems to be about whether closing a window (perhaps a browser window or application window) logs the user out. The record is about silencing alerts during maintenance - completely unrelated to window closing or logging out.\n\nSo the rec",
+  "verdict": "NO",
+  "why": "Record concerns silencing alerts, unrelated to window closing or logout."
+ },
+ "537359a81acf833e": {
+  "corpus": "large",
+  "id": "@protobufjs/path",
+  "kind": "noise",
+  "model": "glm-5.3:cloud",
+  "query": "unist utility to a node, position, or as a human readable",
+  "raw": "Let me analyze this.\n\nThe question is: \"unist utility to a node, position, or as a human readable\"\n\nThis appears to be a truncated question, likely about a unist utility (unist is the syntax tree format used by remark/retext/rehype ecosystem). The question seems to be about something like \"unist-util-to-string\" or more likely \"unist-util-source\" or... Actually, it sounds like it could be about a u",
+  "verdict": "NO",
+  "why": "Record describes a path resolution module, not a unist utility"
+ },
+ "56216a1b79b7d055": {
+  "corpus": "large",
+  "id": "@aws-sdk/credential-provider-node",
+  "kind": "answer",
+  "model": "deepseek-v4.1-flash:cloud",
+  "query": "AWS credential provider that sources credentials from a Node.JS environment.",
+  "raw": "{\"relevant\": true, \"why\": \"Matches query exactly, identifies package and version\"}",
+  "verdict": "YES",
+  "why": "Matches query exactly, identifies package and version"
+ },
+ "5793f74fae7713a1": {
+  "corpus": "A",
+  "id": "bill-cycle",
+  "kind": "noise",
+  "model": "deepseek-v4.1-flash:cloud",
+  "query": "maintenance first sunday of each month",
+  "raw": "{\"relevant\": false, \"why\": \"Billing anniversary, not maintenance schedule; unrelated topics.\"}",
+  "verdict": "NO",
+  "why": "Billing anniversary, not maintenance schedule; unrelated topics."
+ },
+ "589c044b722b65fb": {
+  "corpus": "large",
+  "id": "widest-line",
+  "kind": "noise",
+  "model": "deepseek-v4.1-flash:cloud",
+  "query": "A fast for calculating a string be truncated, an optional limit and an string.",
+  "raw": "{\"relevant\": false, \"why\": \"Record describes visual width calculation, not string truncation with limit\"}",
+  "verdict": "NO",
+  "why": "Record describes visual width calculation, not string truncation with limit"
+ },
+ "5a23a5d7fa77ba01": {
+  "corpus": "B",
+  "id": "fare-monthly-season",
+  "kind": "near",
+  "model": "glm-5.3:cloud",
+  "query": "How much is a day ticket for unlimited rides on the Ridgeway Line?",
+  "raw": "The question asks about a day ticket for unlimited rides on the Ridgeway Line.\n\nThe record returned is about a monthly season ticket from Pike Hill to Saltmarsh Junction costing 96 pounds.\n\nDoes this help? The question is about:\n1. A day ticket (not monthly)\n2. Unlimited rides (not a season between specific stations)\n3. The Ridgeway Line (not Pike Hill to Saltmarsh Junction)\n\nThe record is about a",
+  "verdict": "NO",
+  "why": "Monthly season between two stations, not a day ticket"
+ },
+ "5a51cb46e659b702": {
+  "corpus": "large",
+  "id": "micromark",
+  "kind": "noise",
+  "model": "deepseek-v4.1-flash:cloud",
+  "query": "An Esprima-compatible parser on Acorn",
+  "raw": "{\"relevant\": false, \"why\": \"Record describes markdown parser, not Esprima-compatible Acorn parser.\"}",
+  "verdict": "NO",
+  "why": "Record describes markdown parser, not Esprima-compatible Acorn parser."
+ },
+ "618f72fcab8464c1": {
+  "corpus": "large",
+  "id": "environment",
+  "kind": "noise",
+  "model": "glm-5.3:cloud",
+  "query": "AWS credential provider sources credentials a Node.JS environment.",
+  "raw": "The question is about AWS credential provider sourcing credentials from a Node.js environment. The record returned is about checking which JavaScript environment code is running in at runtime (browser, Node.js, Bun, etc.), version 1.1.0, MIT licensed.\n\nThe question is about AWS credential providers for Node.js. The record is about detecting the JavaScript runtime environment. These are different t",
+  "verdict": "NO",
+  "why": "Record covers runtime environment detection, not AWS credential sourcing."
+ },
+ "6221bcefbc3dd00d": {
+  "corpus": "real",
+  "id": "rag-memory-epf-mcp",
+  "kind": "near",
+  "model": "deepseek-v4.1-flash:cloud",
+  "query": "A SQLite-backed MCP memory server with local workspace storage.",
+  "raw": "{\"relevant\": true, \"why\": \"Directly describes the SQLite MCP memory server they asked about\"}",
+  "verdict": "YES",
+  "why": "Directly describes the SQLite MCP memory server they asked about"
+ },
+ "6233bc77a78f929a": {
+  "corpus": "A",
+  "id": "maint-window",
+  "kind": "answer",
+  "model": "deepseek-v4.1-flash:cloud",
+  "query": "maintenance first sunday of each month",
+  "raw": "{\"relevant\": true, \"why\": \"Directly answers when monthly maintenance occurs, including time window.\"}",
+  "verdict": "YES",
+  "why": "Directly answers when monthly maintenance occurs, including time window."
+ },
+ "629206d70b9c0c9a": {
+  "corpus": "B",
+  "id": "station-coble-platforms",
+  "kind": "near",
+  "model": "glm-5.3:cloud",
+  "query": "Do staff at Coble Wharf use a portable ramp?",
+  "raw": "The question: \"Do staff at Coble Wharf use a portable ramp?\"\n\nThe record: \"Coble Wharf has four platforms, two of them bay platforms used only in the morning peak.\"\n\nDoes this help answer whether staff use a portable ramp? The record describes platform configuration, not ramp usage. It doesn't mention ramps, staff, or accessibility equipment. So it's not relevant.\n\nWhy: \"Describes platform count/t",
+  "verdict": "NO",
+  "why": "Describes platform layout only; no mention of ramps or staff."
+ },
+ "6303b0ebbae7a971": {
+  "corpus": "large",
+  "id": "micromark",
+  "kind": "noise",
+  "model": "glm-5.3:cloud",
+  "query": "An Esprima-compatible parser on Acorn",
+  "raw": "The question is about \"An Esprima-compatible parser on Acorn\". This is about esprima-style AST parsers built on top of Acorn. There's a known project \"espree\" (ESLint's parser) which is an Esprima-compatible parser built on Acorn.\n\nThe record returned is about a \"small commonmark compliant markdown parser with positional info and concrete tokens\" \u2014 that's marked, a markdown parser. That's not rela",
+  "verdict": "NO",
+  "why": "Record is a markdown parser, unrelated to Esprima or Acorn."
+ },
+ "6312b5eedb286f12": {
+  "corpus": "large",
+  "id": "chart.js-auto",
+  "kind": "near",
+  "model": "glm-5.3:cloud",
+  "query": "Helpers package. Exists to support bundlers without exports support such as webpack 4.",
+  "raw": "Let me analyze this. The question is about a \"Helpers package\" that exists to support bundlers without exports support such as webpack 4. The record returned is about an \"Auto registering package\" that exists to support bundlers without exports support such as webpack 4.\n\nThe descriptions are nearly identical except for the package name: \"Helpers package\" vs \"Auto registering package\". \n\nThis soun",
+  "verdict": "UNPARSED",
+  "why": ""
+ },
+ "6536c3d34307af56": {
+  "corpus": "large",
+  "id": "side-channel",
+  "kind": "near",
+  "model": "glm-5.3:cloud",
+  "query": "Store information any JS value in a side using a linked",
+  "raw": "The question is: \"Store information any JS value in a side using a linked\"\n\nThis looks like a garbled/typo-ridden version of: \"Store information about any JS value in a side channel\" \u2014 likely searching for a package like \"side-channel\" (the npm package `side-channel` by Jordan Harband, which stores information about any JS value in a side channel, uses WeakMap if available).\n\nThe record returned: ",
+  "verdict": "YES",
+  "why": "Matches the query: stores JS value info in a side channel via WeakMap."
+ },
+ "66eb57739a15f1a1": {
+  "corpus": "large",
+  "id": "@aws-sdk/credential-provider-env",
+  "kind": "near",
+  "model": "glm-5.3:cloud",
+  "query": "AWS credential that credentials a Node.JS",
+  "raw": "The question is: \"AWS credential that credentials a Node.JS\"\n\nThis is a garbled question, but it seems to be asking about AWS credentials for Node.js \u2014 likely about AWS credential providers in Node.js (the AWS SDK for JavaScript).\n\nThe record returned: \"AWS credential provider that sources credentials from known environment variables Version 3.972.76. Licensed Apache-2.0.\"\n\nThis sounds like the `@",
+  "verdict": "YES",
+  "why": "It's the Node.js AWS SDK environment-variable credential provider package."
+ },
+ "7034845f3e9fb93b": {
+  "corpus": "large",
+  "id": "crbro-memory",
+  "kind": "answer",
+  "model": "glm-5.3:cloud",
+  "query": "CRBRO \u2014 Persistent neural memory for AI. A biological file-based MCP server that gives your AI long-term memory across sessions.",
+  "raw": "The question is: \"CRBRO \u2014 Persistent neural memory for AI. A biological file-based MCP server that gives your AI long-term memory across sessions.\"\n\nThe record returned: \"CRBRO \u2014 Persistent neural memory for AI. A biological file-based MCP server that gives your AI long-term memory across sessions. Version 2.10.0. Licensed MIT.\"\n\nThe record matches the question exactly, plus adds version and licen",
+  "verdict": "YES",
+  "why": "Record matches query and adds version and license details."
+ },
+ "709cb29a6e19d7ad": {
+  "corpus": "large",
+  "id": "unist-util-stringify-position",
+  "kind": "answer",
+  "model": "deepseek-v4.1-flash:cloud",
+  "query": "unist utility to serialize a node, position, or point as a human readable location",
+  "raw": "{\"relevant\": true, \"why\": \"Identifies the exact unist utility package and version requested.\"}",
+  "verdict": "YES",
+  "why": "Identifies the exact unist utility package and version requested."
+ },
+ "72d4692fa261e05e": {
+  "corpus": "large",
+  "id": "@modelcontextprotocol/server",
+  "kind": "noise",
+  "model": "glm-5.3:cloud",
+  "query": "MCP server enabling persistent memory for AI models through a local knowledge graph",
+  "raw": "The question is about \"MCP server enabling persistent memory for AI models through a local knowledge graph\" \u2014 this sounds like the official Memory MCP server (memory server) which uses a local knowledge graph for persistent memory.\n\nThe record returned is: \"Model Context Protocol implementation for TypeScript - Server package Version 2.3.1. Licensed Apache-2.0.\"\n\nThis is the generic TypeScript SDK",
+  "verdict": "NO",
+  "why": "Generic MCP TypeScript SDK package, not the memory knowledge-graph server."
+ },
+ "7382f0f58c10f770": {
+  "corpus": "large",
+  "id": "@huggingface/transformers",
+  "kind": "noise",
+  "model": "glm-5.3:cloud",
+  "query": "micromark factory to markdown titles (found in definitions)",
+  "raw": "The question is: \"micromark factory to markdown titles (found in definitions)\"\n\nThis appears to be a technical question about micromark (a markdown parser library) and its \"factory\" functions, possibly related to parsing markdown titles/ATX headings, and something about \"found in definitions\" \u2014 perhaps looking for where title-related factories are defined in micromark's source code.\n\nThe record re",
+  "verdict": "NO",
+  "why": "Record describes Transformers.js ML library, unrelated to micromark markdown parsing."
+ },
+ "75a42bbce5308cdb": {
+  "corpus": "B",
+  "id": "access-book-notice",
+  "kind": "noise",
+  "model": "glm-5.3:cloud",
+  "query": "How late into the night does the branch keep running?",
+  "raw": "The question asks: \"How late into the night does the branch keep running?\" - this is asking about operating hours/late night service of a branch (perhaps a train branch line, or a branch of something).\n\nThe record says: \"Help should be requested two hours ahead by ringing the control centre.\" - this is about requesting help in advance by calling a control centre. It doesn't mention anything about ",
+  "verdict": "NO",
+  "why": "Record explains advance help requests, not branch operating hours."
+ },
+ "79718e7e7223542c": {
+  "corpus": "large",
+  "id": "@aws-sdk/credential-provider-sso",
+  "kind": "noise",
+  "model": "deepseek-v4.1-flash:cloud",
+  "query": "Swizzle a little into your calls.",
+  "raw": "{\"relevant\": false, \"why\": \"Record describes AWS SSO credentials, unrelated to swizzling calls.\"}",
+  "verdict": "NO",
+  "why": "Record describes AWS SSO credentials, unrelated to swizzling calls."
+ },
+ "7ed1377264cf18eb": {
+  "corpus": "large",
+  "id": "@j0hanz/memdb",
+  "kind": "answer",
+  "model": "deepseek-v4.1-flash:cloud",
+  "query": "A SQLite-backed MCP server local storage.",
+  "raw": "{\"relevant\": true, \"why\": \"It identifies the exact SQLite MCP memory server version and license.\"}",
+  "verdict": "YES",
+  "why": "It identifies the exact SQLite MCP memory server version and license."
+ },
+ "7f87941d6c52ed42": {
+  "corpus": "large",
+  "id": "micromark",
+  "kind": "near",
+  "model": "deepseek-v4.1-flash:cloud",
+  "query": "micromark factory to parse destinations (found in resources, definitions)",
+  "raw": "{\"relevant\": false, \"why\": \"It's a generic package description, not about parsing destinations.\"}",
+  "verdict": "NO",
+  "why": "It's a generic package description, not about parsing destinations."
+ },
+ "81a36c5151ae00da": {
+  "corpus": "large",
+  "id": "micromark-factory-whitespace",
+  "kind": "near",
+  "model": "deepseek-v4.1-flash:cloud",
+  "query": "micromark to parse (found in resources,",
+  "raw": "{\"relevant\": false, \"why\": \"Record describes micromark version/license, not parsing markdown whitespace.\"}",
+  "verdict": "NO",
+  "why": "Record describes micromark version/license, not parsing markdown whitespace."
+ },
+ "879690695a5c109c": {
+  "corpus": "large",
+  "id": "tr46",
+  "kind": "noise",
+  "model": "deepseek-v4.1-flash:cloud",
+  "query": "Determine the East Asian Width of a Unicode character",
+  "raw": "{\"relevant\": false, \"why\": \"TR46 is IDNA processing, not East Asian Width property.\"}",
+  "verdict": "NO",
+  "why": "TR46 is IDNA processing, not East Asian Width property."
+ },
+ "891ef8831e09b8c3": {
+  "corpus": "A",
+  "id": "auth-session",
+  "kind": "answer",
+  "model": "deepseek-v4.1-flash:cloud",
+  "query": "Does shutting the window log me out?",
+  "raw": "{\"relevant\": false, \"why\": \"It addresses tab closing, not window shutting or logout.\"}",
+  "verdict": "NO",
+  "why": "It addresses tab closing, not window shutting or logout."
+ },
+ "8ae10ef1cb93fb3f": {
+  "corpus": "large",
+  "id": "tr46",
+  "kind": "noise",
+  "model": "glm-5.3:cloud",
+  "query": "Determine the East Asian Width of a Unicode character",
+  "raw": "The question is about determining the East Asian Width of a Unicode character. East Asian Width is a Unicode property (UAX #11) used to determine whether characters are wide, narrow, ambiguous, etc., often used for terminal width calculations.\n\nThe record returned is about Unicode TR46 spec Version 0.0.3. TR46 is \"Unicode IDNA Compatibility Processing\" - it's about internationalized domain names (",
+  "verdict": "NO",
+  "why": "TR46 covers IDNA domain name processing, not East Asian Width."
+ },
+ "8b21b725285d5e63": {
+  "corpus": "large",
+  "id": "widest-line",
+  "kind": "noise",
+  "model": "glm-5.3:cloud",
+  "query": "CRBRO \u2014 Persistent memory for AI. A biological MCP server that your AI long-term across sessions.",
+  "raw": "The question is about \"CRBRO \u2014 Persistent memory for AI. A biological MCP server that your AI long-term across sessions.\"\n\nThe record returned is about \"Get the visual width of the widest line in a string - the number of columns required to display it Version 5.0.0. Licensed MIT.\"\n\nThis record is about a string-width utility (like the `widest-line` npm package or similar), which measures visual wi",
+  "verdict": "NO",
+  "why": "Record describes a string width utility, unrelated to AI memory storage."
+ },
+ "8b2f4562dfa03222": {
+  "corpus": "large",
+  "id": "espree",
+  "kind": "answer",
+  "model": "glm-5.3:cloud",
+  "query": "An Esprima-compatible JavaScript parser built on Acorn",
+  "raw": "The question is \"An Esprima-compatible JavaScript parser built on Acorn\" \u2014 this looks like a description of the esprima-acorn or more likely \"acorn\" wrapper... Actually, this is the description of the npm package \"esprima\" alternative... The package \"acorn\" itself? No \u2014 \"An Esprima-compatible JavaScript parser built on Acorn\" is the description of the npm package \"esprima-acorn\"? Hmm, actually I r",
+  "verdict": "YES",
+  "why": "Matches the described package exactly, including version and license details."
+ },
+ "8e7db6041461e3e9": {
+  "corpus": "large",
+  "id": "call-bind-apply-helpers",
+  "kind": "noise",
+  "model": "deepseek-v4.1-flash:cloud",
+  "query": "Returns true if a or string value is a number. Useful for matches, parsing, input, etc.",
+  "raw": "{\"relevant\": false, \"why\": \"Record covers call/apply/bind helpers, not number detection.\"}",
+  "verdict": "NO",
+  "why": "Record covers call/apply/bind helpers, not number detection."
+ },
+ "8eebec644127abbb": {
+  "corpus": "large",
+  "id": "@vheins/local-memory-mcp",
+  "kind": "answer",
+  "model": "glm-5.3:cloud",
+  "query": "MCP Local Memory Service for coding copilot agents",
+  "raw": "Let me analyze this. The question is \"MCP Local Memory Service for coding copilot agents\" \u2014 someone is looking for information about this service.\n\nThe record returned is: \"MCP Local Memory Service for coding copilot agents Version 0.52.3. Licensed MIT.\"\n\nThe record matches the query exactly by name. It provides version and license information. Would this help? The question is just the name of the",
+  "verdict": "YES",
+  "why": "Exact topic match; confirms version and license details"
+ },
+ "916537e459cdec3f": {
+  "corpus": "A",
+  "id": "key-signing",
+  "kind": "noise",
+  "model": "deepseek-v4.1-flash:cloud",
+  "query": "deployment key rotation",
+  "raw": "{\"relevant\": true, \"why\": \"Answers where signing key resides during rotation.\"}",
+  "verdict": "YES",
+  "why": "Answers where signing key resides during rotation."
+ },
+ "92e0417553208171": {
+  "corpus": "large",
+  "id": "@j0hanz/memdb",
+  "kind": "answer",
+  "model": "glm-5.3:cloud",
+  "query": "A SQLite-backed MCP server local storage.",
+  "raw": "The question is: \"A SQLite-backed MCP server local storage.\"\n\nThe record returned: \"A SQLite-backed MCP memory server with local workspace storage. Version 1.4.0. Licensed MIT.\"\n\nThe question seems to be asking about a SQLite-backed MCP server with local storage. The record describes exactly that: a SQLite-backed MCP memory server with local workspace storage.\n\nThe question is a bit fragmentary \u2014 ",
+  "verdict": "YES",
+  "why": "Record directly matches the SQLite-backed MCP server with local storage."
+ },
+ "962738e9fc1ec3ba": {
+  "corpus": "large",
+  "id": "strip-bom-string",
+  "kind": "noise",
+  "model": "glm-5.3:cloud",
+  "query": "Higher order library for JavaScript/TypeScript.",
+  "raw": "The question is about a \"Higher order library for JavaScript/TypeScript.\" The record returned is about stripping a byte order mark (BOM) from a string \u2014 a small utility package, version 1.0.0, MIT licensed.\n\nA \"higher order library\" likely refers to libraries for higher-order functions, functional programming utilities (like lodash, ramda), or higher-order components. Stripping a BOM from a string",
+  "verdict": "NO",
+  "why": "BOM stripping utility is not a higher-order function library."
+ },
+ "96636bda7699adaa": {
+  "corpus": "large",
+  "id": "@aws-sdk/client-s3",
+  "kind": "answer",
+  "model": "deepseek-v4.1-flash:cloud",
+  "query": "AWS SDK for JavaScript S3 Client for Browser and React",
+  "raw": "{\"relevant\": true, \"why\": \"Covers AWS SDK S3 client for browser and React usage\"}",
+  "verdict": "YES",
+  "why": "Covers AWS SDK S3 client for browser and React usage"
+ },
+ "9c6828c21b9a49b1": {
+  "corpus": "large",
+  "id": "@aws-sdk/credential-provider-env",
+  "kind": "near",
+  "model": "glm-5.3:cloud",
+  "query": "AWS credential provider that sources credentials from aws login cached tokens",
+  "raw": "The question asks about an AWS credential provider that sources credentials from \"aws login cached tokens\" - this refers to a specific tool, likely \"aws-login\" or similar that caches tokens (like Okta/aws-login tool that caches SSO tokens).\n\nThe record returned is about an AWS credential provider that sources credentials from \"known environment variables\" - this is the EnvironmentCredentialsProvid",
+  "verdict": "NO",
+  "why": "Record describes environment variable provider, not cached login tokens"
+ },
+ "9d13f72c4527e029": {
+  "corpus": "A",
+  "id": "auth-lockout",
+  "kind": "near",
+  "model": "deepseek-v4.1-flash:cloud",
+  "query": "Does shutting the window log me out?",
+  "raw": "{\"relevant\": false, \"why\": \"It discusses failed sign-in lockouts, not window closing or logout.\"}",
+  "verdict": "NO",
+  "why": "It discusses failed sign-in lockouts, not window closing or logout."
+ },
+ "9d2dd2c13c204d11": {
+  "corpus": "A",
+  "id": "auth-session",
+  "kind": "answer",
+  "model": "glm-5.3:cloud",
+  "query": "Does shutting the window log me out?",
+  "raw": "The question: \"Does shutting the window log me out?\"\n\nThe record: \"A session ends when the browser tab closes unless it was marked persistent.\"\n\nDoes this help? The question is about closing the window and whether it logs them out. The record says a session ends when the browser tab closes unless marked persistent. That directly addresses the question \u2014 closing the tab/window ends the session (log",
+  "verdict": "YES",
+  "why": "It explains closing the tab ends the session unless persistent"
+ },
+ "9edcad736c0f6d73": {
+  "corpus": "B",
+  "id": "depot-saltmarsh-hours",
+  "kind": "answer",
+  "model": "glm-5.3:cloud",
+  "query": "When does Saltmarsh depot open each day?",
+  "raw": "The question asks: \"When does Saltmarsh depot open each day?\"\n\nThe record says: \"Saltmarsh depot opens for unit preparation at 04:30 and closes at 23:00 every day of the week.\"\n\nThe record directly answers when the depot opens (04:30) and also mentions it's every day of the week. This directly addresses the question about opening time each day.\n\nSo the answer is {\"relevant\": true} with a why of at",
+  "verdict": "YES",
+  "why": "States the depot opens at 04:30 every day."
+ },
+ "a3692215c8c3510d": {
+  "corpus": "large",
+  "id": "obliterator",
+  "kind": "answer",
+  "model": "deepseek-v4.1-flash:cloud",
+  "query": "Higher order library for JavaScript/TypeScript.",
+  "raw": "{\"relevant\": true, \"why\": \"It identifies a matching higher-order iterator library for JavaScript/TypeScript.\"}",
+  "verdict": "YES",
+  "why": "It identifies a matching higher-order iterator library for JavaScript/TypeScript."
+ },
+ "a3e8268072970d75": {
+  "corpus": "real",
+  "id": "rag-memory-epf-mcp",
+  "kind": "near",
+  "model": "glm-5.3:cloud",
+  "query": "A SQLite-backed MCP memory server with local workspace storage.",
+  "raw": "The question is: \"A SQLite-backed MCP memory server with local workspace storage.\"\n\nThe record returned: \"Project-local RAG memory MCP server \u2014 knowledge graph + multilingual vector + FTS5 in a single SQLite file. Per-project isolation, 38 MCP tools, codepoint-safe chunking (Korean/CJK/emoji). Version 6.4.1. Licensed MIT.\"\n\nLet me analyze the match:\n\nQuestion components:\n1. SQLite-backed \u2014 Record:",
+  "verdict": "YES",
+  "why": "Exact match: SQLite-backed MCP memory server with project-local storage."
+ },
+ "abce7c4156caae10": {
+  "corpus": "B",
+  "id": "class-dunmere-age",
+  "kind": "near",
+  "model": "deepseek-v4.1-flash:cloud",
+  "query": "Which units use a 3+2 seating layout?",
+  "raw": "{\"relevant\": false, \"why\": \"Record discusses age, not seating layout.\"}",
+  "verdict": "NO",
+  "why": "Record discusses age, not seating layout."
+ },
+ "ac183196d5500136": {
+  "corpus": "large",
+  "id": "side-channel-map",
+  "kind": "answer",
+  "model": "deepseek-v4.1-flash:cloud",
+  "query": "Store information about any JS value in a side channel, using a Map",
+  "raw": "{\"relevant\": true, \"why\": \"It identifies the exact package implementing this side-channel Map technique.\"}",
+  "verdict": "YES",
+  "why": "It identifies the exact package implementing this side-channel Map technique."
+ },
+ "af0a2e1d37e32832": {
+  "corpus": "large",
+  "id": "@aws-sdk/credential-provider-env",
+  "kind": "near",
+  "model": "glm-5.3:cloud",
+  "query": "AWS credential provider sources credentials the EC2 instance metadata and ECS container metadata",
+  "raw": "The question asks about AWS credential provider that sources credentials from EC2 instance metadata and ECS container metadata.\n\nThe record returned is about an AWS credential provider that sources credentials from known environment variables.\n\nThese are different credential providers:\n- Environment variables provider (e.g., AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY)\n- EC2 instance metadata provide",
+  "verdict": "NO",
+  "why": "Record covers environment variables, not EC2/ECS metadata sources"
+ },
+ "af7eb4c18cfea463": {
+  "corpus": "large",
+  "id": "micromark-factory-whitespace",
+  "kind": "near",
+  "model": "glm-5.3:cloud",
+  "query": "micromark to parse (found in resources,",
+  "raw": "The question is: \"micromark to parse (found in resources,\"\n\nThe record returned: \"micromark factory to parse markdown whitespace (found in lots of places) Version 2.0.1. Licensed MIT.\"\n\nThe question seems to be about \"micromark to parse\" - someone looking for micromark, a markdown parser. The record is about a micromark factory to parse markdown whitespace, which is a sub-package of micromark (mic",
+  "verdict": "UNPARSED",
+  "why": ""
+ },
+ "b0ba5c9d1d8ae29d": {
+  "corpus": "large",
+  "id": "side-channel",
+  "kind": "near",
+  "model": "deepseek-v4.1-flash:cloud",
+  "query": "Store information any JS value in a side using a linked",
+  "raw": "{\"relevant\": true, \"why\": \"Describes side-channel storage of JS values, matching the question.\"}",
+  "verdict": "YES",
+  "why": "Describes side-channel storage of JS values, matching the question."
+ },
+ "b56a1907daf02d13": {
+  "corpus": "large",
+  "id": "@aws-sdk/client-ecs",
+  "kind": "near",
+  "model": "deepseek-v4.1-flash:cloud",
+  "query": "AWS SDK for JavaScript S3 for Node.js, and React",
+  "raw": "{\"relevant\": false, \"why\": \"Record covers ECS client, not S3; question asks about S3.\"}",
+  "verdict": "NO",
+  "why": "Record covers ECS client, not S3; question asks about S3."
+ },
+ "b5bb3cddc202f0ac": {
   "corpus": "real",
   "id": "string-width",
   "kind": "noise",
@@ -589,7 +819,117 @@
   "verdict": "NO",
   "why": "Record describes a string-width utility, unrelated to AI memory."
  },
- "fad907fa1aad25f9": {
+ "b6eba7c839bf8f6c": {
+  "corpus": "large",
+  "id": "environment",
+  "kind": "noise",
+  "model": "deepseek-v4.1-flash:cloud",
+  "query": "AWS credential provider sources credentials a Node.JS environment.",
+  "raw": "{\"relevant\": false, \"why\": \"Record discusses runtime detection, not AWS credential provider sources.\"}",
+  "verdict": "NO",
+  "why": "Record discusses runtime detection, not AWS credential provider sources."
+ },
+ "b9acbaf97ef39fe4": {
+  "corpus": "real",
+  "id": "@huggingface/transformers",
+  "kind": "answer",
+  "model": "deepseek-v4.1-flash:cloud",
+  "query": "State-of-the-art Machine Learning for the web. Run \ud83e\udd17 Transformers directly in your browser, with no need for a server!",
+  "raw": "{\"relevant\": true, \"why\": \"Directly answers question, adds version and license details\"}",
+  "verdict": "YES",
+  "why": "Directly answers question, adds version and license details"
+ },
+ "ba284a2a43d6f201": {
+  "corpus": "A",
+  "id": "maint-patching",
+  "kind": "noise",
+  "model": "glm-5.3:cloud",
+  "query": "what share of users sees a new release first",
+  "raw": "The question is: \"what share of users sees a new release first\" \u2014 this is asking about what proportion/fraction of users get access to a new release first (like a rollout percentage, feature flag percentage, canary deployment share).\n\nThe record returned: \"Operating system patches are applied within fourteen days of release.\" \u2014 this is about OS patching timelines, not about the share of users seei",
+  "verdict": "NO",
+  "why": "Covers patch timing, not share of users seeing releases first."
+ },
+ "bbd2ff68de823323": {
+  "corpus": "large",
+  "id": "string-width",
+  "kind": "answer",
+  "model": "glm-5.3:cloud",
+  "query": "Get the visual of a string - the of columns to display it",
+  "raw": "The question asks: \"Get the visual of a string - the of columns to display it\"\n\nThe record returned: \"Get the visual width of a string - the number of columns required to display it Version 7.2.0. Licensed MIT.\"\n\nThe question appears to be a garbled/truncated version of the record. The question is asking about getting the visual width of a string - the number of columns to display it. The record m",
+  "verdict": "YES",
+  "why": "Record directly matches question about string's visual width in columns."
+ },
+ "bf53b112ea266a75": {
+  "corpus": "real",
+  "id": "@aws-sdk/credential-provider-ini",
+  "kind": "answer",
+  "model": "deepseek-v4.1-flash:cloud",
+  "query": "AWS credential provider that sources credentials from ~/.aws/credentials and ~/.aws/config",
+  "raw": "{\"relevant\": true, \"why\": \"It identifies the AWS credential provider and its version.\"}",
+  "verdict": "YES",
+  "why": "It identifies the AWS credential provider and its version."
+ },
+ "c01f5ead564283be": {
+  "corpus": "large",
+  "id": "strip-bom-string",
+  "kind": "noise",
+  "model": "deepseek-v4.1-flash:cloud",
+  "query": "Higher order library for JavaScript/TypeScript.",
+  "raw": "{\"relevant\": false, \"why\": \"Record describes BOM stripping utility, not higher-order library.\"}",
+  "verdict": "NO",
+  "why": "Record describes BOM stripping utility, not higher-order library."
+ },
+ "c20771c56fde1fde": {
+  "corpus": "large",
+  "id": "widest-line",
+  "kind": "noise",
+  "model": "glm-5.3:cloud",
+  "query": "A fast for calculating a string be truncated, an optional limit and an string.",
+  "raw": "The question is garbled but seems to be about: \"A fast [something] for calculating a string [to] be truncated, an optional limit and an string.\" This sounds like a function that truncates a string with an optional limit parameter.\n\nThe record returned is about \"Get the visual width of the widest line in a string - the number of columns required to display it\" - this is about visual width calculati",
+  "verdict": "NO",
+  "why": "Record measures visual width, not truncating strings with a limit"
+ },
+ "c3e9c4d3ffd8e619": {
+  "corpus": "large",
+  "id": "@aws-sdk/client-ecs",
+  "kind": "near",
+  "model": "glm-5.3:cloud",
+  "query": "AWS SDK for JavaScript S3 for Node.js, and React",
+  "raw": "The question is about AWS SDK for JavaScript S3 for Node.js, and React. The record returned is about AWS SDK for JavaScript ECS Client (Elastic Container Service), not S3. ECS is a different service from S3. So the record is not relevant to the question about S3.\n\nThe \"why\" should be at most twelve words. Something like: \"Record covers ECS client, not S3; different AWS service.\"</think>{\"relevant\"",
+  "verdict": "NO",
+  "why": "Record is ECS client, question asks about S3; different AWS service."
+ },
+ "c474d8ec20d4d287": {
+  "corpus": "B",
+  "id": "depot-saltmarsh-hours",
+  "kind": "answer",
+  "model": "deepseek-v4.1-flash:cloud",
+  "query": "When does Saltmarsh depot open each day?",
+  "raw": "{\"relevant\": true, \"why\": \"It directly answers the daily opening time question.\"}",
+  "verdict": "YES",
+  "why": "It directly answers the daily opening time question."
+ },
+ "c4e081b5ff2c9973": {
+  "corpus": "large",
+  "id": "espree",
+  "kind": "answer",
+  "model": "deepseek-v4.1-flash:cloud",
+  "query": "An Esprima-compatible JavaScript parser built on Acorn",
+  "raw": "{\"relevant\": true, \"why\": \"Identifies the package and its version, answering the question directly.\"}",
+  "verdict": "YES",
+  "why": "Identifies the package and its version, answering the question directly."
+ },
+ "c70ac517d712dc18": {
+  "corpus": "real",
+  "id": "fast-string-truncated-width",
+  "kind": "near",
+  "model": "glm-5.3:cloud",
+  "query": "Determine the East Width of a Unicode",
+  "raw": "The question is \"Determine the East Width of a Unicode\" \u2014 this likely refers to East Asian Width (Unicode property, e.g., wcwidth, string width calculation for terminal display). The record is about a fast function for calculating where a string should be truncated, given an optional width limit and an ellipsis string. This sounds like a string truncation library (e.g., \"slice-ansi\" or \"cli-trunca",
+  "verdict": "NO",
+  "why": "Record is about string truncation, not measuring East Asian width."
+ },
+ "c81f8a80be108576": {
   "corpus": "B",
   "id": "line-kestrel-length",
   "kind": "noise",
@@ -598,5 +938,265 @@
   "raw": "The question asks about what happens to items found on trains at Tarnfield Central \u2014 i.e., lost property procedures.\n\nThe record returned is about the Kestrel Line running 22 miles from Tarnfield Central to Pike Hill, being the shortest route in the network.\n\nThis record mentions Tarnfield Central but only as a station on a route. It says nothing about lost property or items found on trains. So it",
   "verdict": "NO",
   "why": "Describes route length only; no lost property information."
+ },
+ "c872bba57ed44e7c": {
+  "corpus": "large",
+  "id": "@vheins/local-memory-mcp",
+  "kind": "answer",
+  "model": "deepseek-v4.1-flash:cloud",
+  "query": "MCP Local Memory Service for coding copilot agents",
+  "raw": "{\"relevant\": false, \"why\": \"Only version and license metadata, no substantive information about the service.\"}",
+  "verdict": "NO",
+  "why": "Only version and license metadata, no substantive information about the service."
+ },
+ "d23acb69356f9c9f": {
+  "corpus": "large",
+  "id": "rag-memory-epf-mcp",
+  "kind": "near",
+  "model": "deepseek-v4.1-flash:cloud",
+  "query": "CRBRO \u2014 neural for AI. A biological MCP server gives AI long-term across",
+  "raw": "{\"relevant\": true, \"why\": \"Describes neural memory MCP server matching their query\"}",
+  "verdict": "YES",
+  "why": "Describes neural memory MCP server matching their query"
+ },
+ "d3abe528c55593e4": {
+  "corpus": "large",
+  "id": "micromark-factory-whitespace",
+  "kind": "answer",
+  "model": "glm-5.3:cloud",
+  "query": "micromark factory to parse markdown whitespace (found in lots of places)",
+  "raw": "The question is: \"micromark factory to parse markdown whitespace (found in lots of places)\"\n\nThe record returned: \"micromark factory to parse markdown whitespace (found in lots of places) Version 2.0.1. Licensed MIT.\"\n\nThe record matches the question exactly \u2014 it's the same title. This appears to be a package like \"micromark-factory-whitespace\" which is indeed a micromark factory to parse markdown",
+  "verdict": "YES",
+  "why": "Exact match; identifies the package and version."
+ },
+ "db45a1e7b0602678": {
+  "corpus": "real",
+  "id": "side-channel",
+  "kind": "near",
+  "model": "glm-5.3:cloud",
+  "query": "Store information about any JS value in a side channel. Uses WeakMap if available.",
+  "raw": "The question is: \"Store information about any JS value in a side channel. Uses WeakMap if available.\"\n\nThe record returned: \"Store information about any JS value in a side channel. Uses WeakMap if available. Version 1.1.1. Licensed MIT.\"\n\nThe record matches the question exactly \u2014 it's the same description plus version and license info. This looks like a package description (probably the npm packag",
+  "verdict": "YES",
+  "why": "Record matches query exactly; adds package version and license details."
+ },
+ "dd138b6311c01139": {
+  "corpus": "large",
+  "id": "unist-util-stringify-position",
+  "kind": "answer",
+  "model": "glm-5.3:cloud",
+  "query": "unist utility to serialize a node, position, or point as a human readable location",
+  "raw": "The question is: \"unist utility to serialize a node, position, or point as a human readable location\"\n\nThe record returned: \"unist utility to serialize a node, position, or point as a human readable location Version 4.0.0. Licensed MIT.\"\n\nThe record matches the question almost exactly - it's the same description plus version and license info. This is clearly the same package (unist-util-stringify-",
+  "verdict": "YES",
+  "why": "Record matches query exactly, confirming package version and license."
+ },
+ "deffdb6510e21190": {
+  "corpus": "large",
+  "id": "@modelcontextprotocol/server-memory",
+  "kind": "near",
+  "model": "glm-5.3:cloud",
+  "query": "MCP server enabling persistent memory for AI models through a local knowledge graph",
+  "raw": "The question is about an \"MCP server enabling persistent memory for AI models through a local knowledge graph.\"\n\nThe record returned is: \"MCP server for enabling memory for Claude through a knowledge graph Version 1.0.0. Licensed SEE LICENSE IN LICENSE.\"\n\nThis seems highly relevant. The question asks about an MCP server for persistent memory via a local knowledge graph for AI models. The record de",
+  "verdict": "YES",
+  "why": "Matches request: MCP server giving AI memory via knowledge graph"
+ },
+ "e03c844d1a45b1f5": {
+  "corpus": "B",
+  "id": "access-book-notice",
+  "kind": "noise",
+  "model": "deepseek-v4.1-flash:cloud",
+  "query": "How late into the night does the branch keep running?",
+  "raw": "{\"relevant\": false, \"why\": \"Record discusses requesting help, not branch operating hours.\"}",
+  "verdict": "NO",
+  "why": "Record discusses requesting help, not branch operating hours."
+ },
+ "e2f2cd7ccaf4680b": {
+  "corpus": "A",
+  "id": "alert-silence",
+  "kind": "noise",
+  "model": "deepseek-v4.1-flash:cloud",
+  "query": "Does shutting the window log me out?",
+  "raw": "{\"relevant\": false, \"why\": \"Record discusses silencing alerts, not window shutdown or logout.\"}",
+  "verdict": "NO",
+  "why": "Record discusses silencing alerts, not window shutdown or logout."
+ },
+ "e5e0558da5579db8": {
+  "corpus": "large",
+  "id": "better-sqlite3",
+  "kind": "answer",
+  "model": "glm-5.3:cloud",
+  "query": "The fastest and library for in Node.js.",
+  "raw": "The question is: \"The fastest and library for in Node.js.\" \u2014 this appears to be a corrupted/incomplete question, but it seems to be asking about \"The fastest and [simplest?] library for [SQLite?] in Node.js.\"\n\nThe record returned: \"The fastest and simplest library for SQLite in Node.js. Version 12.11.1. Licensed MIT.\"\n\nThe question seems to match the record almost exactly. The question appears to ",
+  "verdict": "YES",
+  "why": "Record directly answers the question about fastest SQLite library in Node.js"
+ },
+ "e754b1e2622098ee": {
+  "corpus": "B",
+  "id": "cater-marlbrook-vending",
+  "kind": "noise",
+  "model": "glm-5.3:cloud",
+  "query": "Which sets are the oldest working units?",
+  "raw": "The question asks: \"Which sets are the oldest working units?\" \u2014 this seems to be about trains/rolling stock (units, sets). The record returned is about Marlbrook Line units having vending machines restocked at Fenwick Road. This is about vending machines/restocking, not about age of units. So it's not relevant.\n\nAnswer: {\"relevant\": false, \"why\": \"...\"} \u2014 why: record discusses vending machines, no",
+  "verdict": "NO",
+  "why": "Record covers vending machines, not unit age."
+ },
+ "eac9cec7b7d2b1ae": {
+  "corpus": "A",
+  "id": "key-signing",
+  "kind": "noise",
+  "model": "glm-5.3:cloud",
+  "query": "deployment key rotation",
+  "raw": "The question is \"deployment key rotation\". The record says \"The signing key lives in the hardware module and never leaves it.\"\n\nKey rotation is about changing/rotating keys periodically or after compromise. The record talks about where the signing key lives (in a hardware module) and that it never leaves it. This is about key storage/security, not about rotation procedures.\n\nDoes this help with de",
+  "verdict": "NO",
+  "why": "Covers key storage in hardware, not rotation procedures or deployment."
+ },
+ "ebddf663c14b407f": {
+  "corpus": "real",
+  "id": "@libsql/isomorphic-fetch",
+  "kind": "answer",
+  "model": "deepseek-v4.1-flash:cloud",
+  "query": "Isomorphic fetch() in Node, Deno and Cloudflare Workers",
+  "raw": "{\"relevant\": true, \"why\": \"Title matches question exactly; likely relevant documentation.\"}",
+  "verdict": "YES",
+  "why": "Title matches question exactly; likely relevant documentation."
+ },
+ "ecbfff44f8c9dfb6": {
+  "corpus": "real",
+  "id": "side-channel",
+  "kind": "near",
+  "model": "deepseek-v4.1-flash:cloud",
+  "query": "Store information about any JS value in a side channel. Uses WeakMap if available.",
+  "raw": "{\"relevant\": true, \"why\": \"It identifies the package and its version and license.\"}",
+  "verdict": "YES",
+  "why": "It identifies the package and its version and license."
+ },
+ "edc582d7a151d22e": {
+  "corpus": "real",
+  "id": "@huggingface/transformers",
+  "kind": "answer",
+  "model": "glm-5.3:cloud",
+  "query": "State-of-the-art Machine Learning for the web. Run \ud83e\udd17 Transformers directly in your browser, with no need for a server!",
+  "raw": "The question is: \"State-of-the-art Machine Learning for the web. Run \ud83e\udd17 Transformers directly in your browser, with no need for a server!\"\n\nThe record returned: \"State-of-the-art Machine Learning for the web. Run \ud83e\udd17 Transformers directly in your browser, with no need for a server! Version 3.8.1. Licensed Apache-2.0.\"\n\nThe record matches the question exactly, plus additional version and license info.",
+  "verdict": "YES",
+  "why": "Record matches query exactly, adding version and license details"
+ },
+ "f07ac2e7503cd276": {
+  "corpus": "B",
+  "id": "class-dunmere-age",
+  "kind": "near",
+  "model": "glm-5.3:cloud",
+  "query": "Which units use a 3+2 seating layout?",
+  "raw": "The question asks: \"Which units use a 3+2 seating layout?\"\n\nThe record returned: \"The Dunmere sets are the oldest working units, having entered service in 1984.\"\n\nDoes this record help answer the question about seating layout? The record talks about the age of the Dunmere sets and when they entered service (1984). It says nothing about seating layout (3+2 or otherwise).\n\nSo the record is not relev",
+  "verdict": "NO",
+  "why": "Record covers unit age and service date, not seating layout"
+ },
+ "f1d86623a84e007c": {
+  "corpus": "large",
+  "id": "micromark",
+  "kind": "near",
+  "model": "glm-5.3:cloud",
+  "query": "micromark factory to parse destinations (found in resources, definitions)",
+  "raw": "The question is about \"micromark factory to parse destinations (found in resources, definitions)\". This is asking about micromark, which is a markdown parser. The record returned is \"small commonmark compliant markdown parser with positional info and concrete tokens Version 4.0.3. Licensed MIT.\"\n\nThis record appears to be the package description of micromark itself (micromark's package.json descri",
+  "verdict": "UNPARSED",
+  "why": ""
+ },
+ "f1f9074e1e0864ff": {
+  "corpus": "A",
+  "id": "backup-retention",
+  "kind": "near",
+  "model": "glm-5.3:cloud",
+  "query": "how long is personal data kept once someone leaves",
+  "raw": "Let me analyze this carefully.\n\nThe question is: \"how long is personal data kept once someone leaves\"\n\nThe record returned: \"Backups are retained for ninety days, and monthly snapshots for three years.\"\n\nThe question is about retention of personal data after someone leaves (likely leaves a company, or leaves a service, or perhaps after account deletion). The person wants to know how long their per",
+  "verdict": "UNPARSED",
+  "why": ""
+ },
+ "f31cc2567d051a2b": {
+  "corpus": "A",
+  "id": "backup-retention",
+  "kind": "near",
+  "model": "deepseek-v4.1-flash:cloud",
+  "query": "how long is personal data kept once someone leaves",
+  "raw": "{\"relevant\": true, \"why\": \"Answers retention period after leaving: backups and snapshots.\"}",
+  "verdict": "YES",
+  "why": "Answers retention period after leaving: backups and snapshots."
+ },
+ "f45504d62c1b6c7d": {
+  "corpus": "B",
+  "id": "cater-evening-specials",
+  "kind": "near",
+  "model": "glm-5.3:cloud",
+  "query": "What refreshment do the Marlbrook Line units carry?",
+  "raw": "The question asks: \"What refreshment do the Marlbrook Line units carry?\"\n\nThe record returned: \"Two evening specials each week serve local cider and pies in a converted carriage.\"\n\nThe question is about \"Marlbrook Line units\" - this seems to be about train units on the Marlbrook Line and what refreshment they carry. The record talks about evening specials serving cider and pies in a converted carr",
+  "verdict": "NO",
+  "why": "Describes evening specials, not Marlbrook Line units' refreshments."
+ },
+ "f5758d91dedd7db0": {
+  "corpus": "large",
+  "id": "http-cache-semantics",
+  "kind": "answer",
+  "model": "glm-5.3:cloud",
+  "query": "Parses Cache-Control and headers. Helps correct HTTP and proxies",
+  "raw": "The question is: \"Parses Cache-Control and headers. Helps correct HTTP and proxies\"\n\nThe record returned: \"Parses Cache-Control and other headers. Helps building correct HTTP caches and proxies Version 4.3.0. Licensed BSD-2-Clause.\"\n\nThis is clearly the same content \u2014 the question appears to be a slightly garbled/corrupted version of the record description. The record matches the question almost e",
+  "verdict": "YES",
+  "why": "Record matches query: parses Cache-Control headers for HTTP caches and proxies."
+ },
+ "f70a19db1442f39e": {
+  "corpus": "real",
+  "id": "@aws-sdk/credential-provider-ini",
+  "kind": "answer",
+  "model": "glm-5.3:cloud",
+  "query": "AWS credential provider that sources credentials from ~/.aws/credentials and ~/.aws/config",
+  "raw": "The question asks about an AWS credential provider that sources credentials from ~/.aws/credentials and ~/.aws/config. The record returned appears to be a package description \u2014 \"AWS credential provider that sources credentials from ~/.aws/credentials and ~/.aws/config Version 3.973.21. Licensed Apache-2.0.\"\n\nThis looks like the description of the npm package `@aws-sdk/credential-provider-ini` (par",
+  "verdict": "YES",
+  "why": "Matches the query exactly; identifies the package, version, and license."
+ },
+ "f8368e6d15d11328": {
+  "corpus": "large",
+  "id": "http-cache-semantics",
+  "kind": "answer",
+  "model": "deepseek-v4.1-flash:cloud",
+  "query": "Parses Cache-Control and headers. Helps correct HTTP and proxies",
+  "raw": "{\"relevant\": true, \"why\": \"Matches Cache-Control header parsing for HTTP caches and proxies\"}",
+  "verdict": "YES",
+  "why": "Matches Cache-Control header parsing for HTTP caches and proxies"
+ },
+ "fa1a4ceb0dba6af9": {
+  "corpus": "B",
+  "id": "cater-evening-specials",
+  "kind": "near",
+  "model": "deepseek-v4.1-flash:cloud",
+  "query": "What refreshment do the Marlbrook Line units carry?",
+  "raw": "{\"relevant\": true, \"why\": \"It directly answers what refreshments the units carry.\"}",
+  "verdict": "YES",
+  "why": "It directly answers what refreshments the units carry."
+ },
+ "fb7192179ee91756": {
+  "corpus": "large",
+  "id": "@modelcontextprotocol/server",
+  "kind": "noise",
+  "model": "deepseek-v4.1-flash:cloud",
+  "query": "MCP server enabling persistent memory for AI models through a local knowledge graph",
+  "raw": "{\"relevant\": true, \"why\": \"It's an MCP server implementation, matching the query's core topic.\"}",
+  "verdict": "YES",
+  "why": "It's an MCP server implementation, matching the query's core topic."
+ },
+ "fe17aa7e47515eac": {
+  "corpus": "B",
+  "id": "fare-monthly-season",
+  "kind": "near",
+  "model": "deepseek-v4.1-flash:cloud",
+  "query": "How much is a day ticket for unlimited rides on the Ridgeway Line?",
+  "raw": "{\"relevant\": false, \"why\": \"Record gives monthly season cost, not day ticket price.\"}",
+  "verdict": "NO",
+  "why": "Record gives monthly season cost, not day ticket price."
+ },
+ "feadf08865439641": {
+  "corpus": "large",
+  "id": "@protobufjs/path",
+  "kind": "noise",
+  "model": "deepseek-v4.1-flash:cloud",
+  "query": "unist utility to a node, position, or as a human readable",
+  "raw": "{\"relevant\": false, \"why\": \"Describes a path module, not a unist utility.\"}",
+  "verdict": "NO",
+  "why": "Describes a path module, not a unist utility."
  }
 }

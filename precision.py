@@ -411,21 +411,35 @@ def fence(rows, header, align):
 
 
 def judge_agreement():
-    """What a reader made of the same pairs, read from the cache judge.py writes - or None."""
+    """What two readers made of the same pairs, read from the cache judge.py writes - or None."""
     import judge
-    cache = judge.load()
-    judged = [v for v in cache.values() if v.get("verdict") in ("YES", "NO")]
-    if len(judged) < 12:
+    per = judge.by_model(judge.load())
+    if sum(len(v) for v in per.values()) < 12:
         return None
-    rows = [(v.get("kind") != "noise", v["verdict"] == "YES") for v in judged]
-    k = judge.kappa(rows)
-    if k is None:
+    said = []
+    for model in sorted(per):
+        rows = [((v["kind"] != "noise"), v["verdict"] == "YES") for v in per[model].values()]
+        k = judge.kappa(rows)
+        if k is None:
+            continue
+        said.append({"model": model, "n": len(rows), "kappa": k,
+                     "agree": sum(1 for a, b in rows if a == b),
+                     "generous": sum(1 for a, b in rows if a and not b),
+                     "stingy": sum(1 for a, b in rows if not a and b)})
+    if not said:
         return None
-    return {"n": len(rows),
-            "agree": sum(1 for a, b in rows if a == b),
-            "kappa": k,
-            "wrong_way": sum(1 for a, b in rows if not a and b),
-            "worst_way": sum(1 for a, b in rows if a and not b)}
+    models = sorted(per)
+    ceiling = None
+    if len(models) > 1:
+        both = [p for p in per[models[0]] if all(p in per[m] for m in models)]
+        if len(both) >= 12:
+            rows = [(per[models[0]][p]["verdict"] == "YES", per[models[1]][p]["verdict"] == "YES")
+                    for p in both]
+            k = judge.kappa(rows)
+            if k is not None:
+                ceiling = {"n": len(rows), "kappa": k,
+                           "agree": sum(1 for a, b in rows if a == b)}
+    return {"readers": said, "ceiling": ceiling}
 
 
 def report(got, panel, checks=None):
@@ -723,22 +737,32 @@ def report(got, panel, checks=None):
     add("")
     add("Finally, no judgement of usefulness is made by any rule here, and none can be: deciding whether a")
     add("returned record HELPS a caller is not a counting question. It is the one place in this repository")
-    add("where a model reading the record would beat any rule - so one was asked. " + BT + "judge.py" + BT + " puts the")
-    add("plain question to a model, with no label and no corpus in the prompt, and this reading's labels are")
-    add("its score:")
+    add("where a model reading the record would beat any rule - so two were asked. " + BT + "judge.py" + BT + " puts the")
+    add("plain question to each, with no label and no corpus in the prompt, and this reading's labels are")
+    add("their score:")
     add("")
     said = judge_agreement()
     if said:
-        add("- **%d of %d pairs agree with the reader, kappa %.2f.** %d record(s) this report calls noise the"
-            % (said["agree"], said["n"], said["kappa"], said["wrong_way"]))
-        add("  reader called relevant, and %d it calls a near miss the reader calls unrelated."
-            % said["worst_way"])
-        add("  " + BT + "JUDGE.md" + BT + " prints the disagreements one by one. That is the first time the checker's")
-        add("  judgement has been audited by anything other than itself.")
+        for r in said["readers"]:
+            add("- **" + BT + r["model"] + BT + ": %d of %d pairs agree with the rule, kappa %.2f.** It calls"
+                % (r["agree"], r["n"], r["kappa"]))
+            add("  %d record(s) this report excuses as near misses unrelated, and %d it calls noise worth"
+                % (r["generous"], r["stingy"]))
+            add("  reading.")
+        add("")
+        if said.get("ceiling"):
+            c = said["ceiling"]
+            add("The two readers agree with **each other** on %d of %d of the same pairs, kappa %.2f. That is"
+                % (c["agree"], c["n"], c["kappa"]))
+            add("the ceiling: a rule cannot be closer to what a reader thinks than two readers are to each")
+            add("other, and the gap between that number and the two above is how much of the disagreement is")
+            add("this reading rather than the rule.")
+        add("")
+        add(BT + "JUDGE.md" + BT + " prints the disagreements one by one, with each reader's reason. That is the")
+        add("first time this checker's judgement has been audited by anything other than itself.")
     else:
-        add("- no judgments are on disk yet; " + BT + "python judge.py --sample=60" + BT + " asks the question and caches")
-        add("  the answers, and this paragraph is regenerated from them.")
-    add("")
+        add("- no judgments are on disk yet; " + BT + "python judge.py --sample=60" + BT + " asks the question of")
+        add("  every reader, caches the answers, and this paragraph is regenerated from them.")
     path = os.path.join(HERE, "PRECISION.md")
     with open(path, "w", encoding="utf-8", newline=chr(10)) as fh:
         fh.write(chr(10).join(lines) + chr(10))

@@ -4144,3 +4144,64 @@ Twenty minutes of model time, sixty cached judgments, one new tool, one new clai
 neither model nor network, and no subject measured - because the thing under test this time was the
 checker.
 
+
+## Addendum 42: two readers, and a claim that stopped holding
+
+The last phase's number was one model's distance from one rule. A single kappa cannot say whether the
+disagreement belongs to the rule or to the reader, so this asks a second model the same sixty questions -
+same pairs, same prompt, no label and no corpus in it - and reports the **ceiling**: how far the two readers
+are from each other on the pairs both judged.
+
+| reader | pairs | agreement with the rule | kappa | rule says near, reader says no | reader wants what the rule calls noise |
+|---|---|---|---|---|---|
+| `glm-5.3:cloud` | 54 | 45 | **0.67** | 9 | 0 |
+| `deepseek-v4.1-flash:cloud` | 60 | 46 | **0.53** | 12 | 2 |
+| the two readers, against each other | 54 | 49 | **0.81** | - | - |
+
+**The ceiling is high, which makes the rule's distance real.** Two readers agree with each other at kappa
+0.81 on the same pairs and split on only 5 of 54, so the rule's 0.53 to 0.67 is not the noise of an
+unstable question - it is a rule disagreeing with a fairly stable reading.
+
+**And the claim flipped.** `rule-reads-like-a-reader` held last phase at 0.67 against one reader. It now
+requires **every** reader to clear 0.6, and one of them does not: it **FAILS**, and the ledger is 10 of 38.
+That is the whole point of asking twice, and it is worth stating plainly that the previous phase's verdict
+was a verdict about one model.
+
+### The readers, where both agreed, against the rule
+
+| the rule says | both readers say relevant | both say not | they split |
+|---|---|---|---|
+| answer | 18 of 20 | 0 of 20 | 2 |
+| near miss | 5 of 14 | **8 of 14** | 1 |
+| noise | 0 of 20 | 18 of 20 | 2 |
+
+**Eight of the fourteen records the rule excuses as near misses are, to both readers, unrelated** - and
+two of the twenty it calls noise are records both readers would use. The first number is the one that
+matters: it means the noise column in PRECISION.md is a floor, which that report has now claimed for three
+phases on the strength of an argument. It has a size now, in two directions, agreed by two readers.
+
+The pairs they split on are instructive in the other direction: two of them are records the corpus says
+**answer** the question, and the readers disagree about whether the record helps. `deepseek-v4.1-flash`
+refused two of the twenty expected answers, which is why its other numbers are printed beside its
+calibration rather than on their own.
+
+### One self-bug, numbered 60, caught before it could lie
+
+**60. The cache key did not include the reader.** The first version of `judge.py` keyed a judgment by the
+pair alone, which was right while there was one model and silently wrong the moment a second was added:
+the second model's verdict would have overwritten the first's, and the tool would have reported two
+opinions that were one opinion counted twice. The keys carry the model now, old entries are re-keyed by the
+model they recorded, and the migration printed how many it moved.
+
+### What this does not settle
+
+Two readers at one temperature are two opinions, not a standard. Neither is calibrated against a person,
+and that is the next rung: the same sixty pairs, put to somebody who actually asked these questions, would
+say whether the readers are right about what helps. It is expensive, it is the only way to get a number
+that is not a model's opinion, and naming it is all this phase does about it.
+
+### What this costs
+
+Sixty more model calls, one cache migration, one claim split in two, one claim that stopped holding, and no
+subject measured - because the thing under test was still the checker.
+

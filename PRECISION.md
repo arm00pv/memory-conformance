@@ -249,12 +249,21 @@ validator to stop making it should read that as the next phase rather than a foo
 
 Finally, no judgement of usefulness is made by any rule here, and none can be: deciding whether a
 returned record HELPS a caller is not a counting question. It is the one place in this repository
-where a model reading the record would beat any rule - so one was asked. `judge.py` puts the
-plain question to a model, with no label and no corpus in the prompt, and this reading's labels are
-its score:
+where a model reading the record would beat any rule - so two were asked. `judge.py` puts the
+plain question to each, with no label and no corpus in the prompt, and this reading's labels are
+their score:
 
-- **45 of 54 pairs agree with the reader, kappa 0.67.** 0 record(s) this report calls noise the
-  reader called relevant, and 9 it calls a near miss the reader calls unrelated.
-  `JUDGE.md` prints the disagreements one by one. That is the first time the checker's
-  judgement has been audited by anything other than itself.
+- **`deepseek-v4.1-flash:cloud`: 46 of 60 pairs agree with the rule, kappa 0.53.** It calls
+  12 record(s) this report excuses as near misses unrelated, and 2 it calls noise worth
+  reading.
+- **`glm-5.3:cloud`: 45 of 54 pairs agree with the rule, kappa 0.67.** It calls
+  9 record(s) this report excuses as near misses unrelated, and 0 it calls noise worth
+  reading.
 
+The two readers agree with **each other** on 49 of 54 of the same pairs, kappa 0.81. That is
+the ceiling: a rule cannot be closer to what a reader thinks than two readers are to each
+other, and the gap between that number and the two above is how much of the disagreement is
+this reading rather than the rule.
+
+`JUDGE.md` prints the disagreements one by one, with each reader's reason. That is the
+first time this checker's judgement has been audited by anything other than itself.

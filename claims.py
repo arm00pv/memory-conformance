@@ -943,27 +943,67 @@ def c_exam_questions_distinct(ctx, corpus, shape):
             % (amb["slots"], amb["distinct"], len(amb["shared"])))
 
 
+def judge_kappa(rows):
+    import judge
+    return judge.kappa(rows)
+
+
+def _judged():
+    """Every settled judgment, grouped by the reader that made it."""
+    import judge
+    return judge.by_model(judge.load())
+
+
 def c_rule_reads_like_a_reader(ctx, corpus, shape):
-    """THE RULES LABEL SURVIVES A SECOND OPINION.
+    """THE LABELS SURVIVE A SECOND OPINION - AND A THIRD.
 
     Every label in the precision reading comes from a rule about words, and PRECISION.md says so and names
     the limit. judge.py puts the plain question to a model - would this record help the person who asked -
-    with no label and no corpus in the prompt, and this claim is the rule's score on that exam. Nothing here
-    is a subject: the claim is about whether this repository's reading of its own rows survives a reader.
+    with no label and no corpus in the prompt, and this claim is the rule's score on that exam. It holds
+    only if it clears the bar against EVERY reader, because a rule that agrees with one model and not
+    another is a rule with a favourite.
     """
-    import judge
-    cache = judge.load()
-    judged = [v for v in cache.values() if v.get("verdict") in ("YES", "NO")]
-    if len(judged) < 12:
+    per = _judged()
+    if sum(len(v) for v in per.values()) < 12:
         return None
-    rows = [(v.get("kind") != "noise", v["verdict"] == "YES") for v in judged]
-    k = judge.kappa(rows)
+    held, said = True, []
+    for model in sorted(per):
+        rows = [((v["kind"] != "noise"), v["verdict"] == "YES") for v in per[model].values()]
+        k = judge_kappa(rows)
+        if k is None:
+            continue
+        held = held and k >= 0.6
+        generous = sum(1 for a, b in rows if a and not b)
+        said.append("%s kappa %.2f with %d near miss(es) it calls unrelated"
+                    % (model.split(":")[0], k, generous))
+    if not said:
+        return None
+    return (held, "; ".join(said))
+
+
+def c_readers_agree_with_each_other(ctx, corpus, shape):
+    """THE CEILING: how close two readers are to each other on the same pairs.
+
+    A rule cannot be closer to what a reader thinks than two readers are to each other. Where they agree
+    the rule has something to be wrong about; where they split, the question has no agreed answer and the
+    rule's verdict there is a coin toss with a justification.
+    """
+    per = _judged()
+    models = sorted(per)
+    if len(models) < 2:
+        return None
+    import judge
+    both = [p for p in per[models[0]] if all(p in per[m] for m in models)]
+    if len(both) < 12:
+        return None
+    rows = [(per[models[0]][p]["verdict"] == "YES", per[models[1]][p]["verdict"] == "YES") for p in both]
+    k = judge_kappa(rows)
+    if k is None:
+        return None
     agree = sum(1 for a, b in rows if a == b)
-    generous = sum(1 for a, b in rows if a and not b)
-    return (k is not None and k >= 0.6,
-            "%d of %d pairs agree with the reader (kappa %.2f); %d record(s) this repository calls a near"
-            " miss the reader calls unrelated"
-            % (agree, len(rows), -1 if k is None else k, generous))
+    return (k >= 0.6,
+            "the two readers agree on %d of %d pairs (kappa %.2f), so that is the ceiling any rule is"
+            " measured against" % (agree, len(rows), k))
 
 
 def c_noise_is_charged(ctx, corpus, shape):
@@ -1058,6 +1098,8 @@ CLAIMS = [    ("most-hits", "memory-mcp-1file answers more answerable questions 
     ("noise-is-charged", "a search pays for the unrelated records it hands back.", c_noise_is_charged, False),
     ("rule-reads-like-a-reader", "the rule's reading of relevance - answer or near against noise - agrees"
      " with a reader's judgement.", c_rule_reads_like_a_reader, False),
+    ("readers-agree-with-each-other", "two readers of the same pairs agree closely enough that a rule can"
+     " be measured against them.", c_readers_agree_with_each_other, False),
     ("score-sees-ordering", "the retrieval score changes when a search returns its worst match first.",
      c_score_sees_ordering, False),
     ("score-prefers-recalcitrance", "a search that accepts one shared word scores no better than one that"

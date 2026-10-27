@@ -10,7 +10,7 @@ claim about silence. A subject's SCORE is what the paired test pairs on - the ri
 top three, plus a credit for declining a question with no answer. Its HITS are only the questions
 that have an answer and were answered correctly. "It answers nothing" is a claim about hits.
 
-**10 of the 37 claims hold in every setting measured.** The rest are printed beside the setting
+**10 of the 38 claims hold in every setting measured.** The rest are printed beside the setting
 that breaks them, because that setting is the claim's real scope.
 
 | claim | A written | A keywords | B written | B keywords | status |
@@ -49,7 +49,8 @@ that breaks them, because that setting is the claim's real scope.
 | silence-is-a-habit | no | no | **FAILS** |
 | exam-questions-distinct | yes | yes | **HOLDS** |
 | noise-is-charged | no | no | **FAILS** |
-| rule-reads-like-a-reader | yes | yes | **HOLDS** |
+| rule-reads-like-a-reader | no | no | **FAILS** |
+| readers-agree-with-each-other | yes | yes | **HOLDS** |
 | score-sees-ordering | no | no | **FAILS** |
 | score-prefers-recalcitrance | no | no | **FAILS** |
 
@@ -217,9 +218,13 @@ that breaks them, because that setting is the claim's real scope.
   - A written: false (the greedy matcher scores 43 and the single-record one 37, at 1.86 and 0.04 noise records per correct answer)
   - B written: false (the greedy matcher scores 44 and the single-record one 41, at 1.62 and 0.03 noise records per correct answer)
 
-**rule-reads-like-a-reader** - the rule's reading of relevance - answer or near against noise - agrees with a reader's judgement. *HOLDS*
-  - A written: true (45 of 54 pairs agree with the reader (kappa 0.67); 9 record(s) this repository calls a near miss the reader calls unrelated)
-  - B written: true (45 of 54 pairs agree with the reader (kappa 0.67); 9 record(s) this repository calls a near miss the reader calls unrelated)
+**rule-reads-like-a-reader** - the rule's reading of relevance - answer or near against noise - agrees with a reader's judgement. *FAILS*
+  - A written: false (deepseek-v4.1-flash kappa 0.53 with 12 near miss(es) it calls unrelated; glm-5.3 kappa 0.67 with 9 near miss(es) it calls unrelated)
+  - B written: false (deepseek-v4.1-flash kappa 0.53 with 12 near miss(es) it calls unrelated; glm-5.3 kappa 0.67 with 9 near miss(es) it calls unrelated)
+
+**readers-agree-with-each-other** - two readers of the same pairs agree closely enough that a rule can be measured against them. *HOLDS*
+  - A written: true (the two readers agree on 49 of 54 pairs (kappa 0.81), so that is the ceiling any rule is measured against)
+  - B written: true (the two readers agree on 49 of 54 pairs (kappa 0.81), so that is the ceiling any rule is measured against)
 
 **score-sees-ordering** - the retrieval score changes when a search returns its worst match first. *FAILS*
   - A written: false (reversing the result list moved the score by 0 and the hit count by 0 (score 37 against 37))

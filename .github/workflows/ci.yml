@@ -73,6 +73,7 @@ jobs:
           grep -q "silence-is-a-habit" CLAIMS.md
           grep -q "exam-questions-distinct" CLAIMS.md
           grep -q "rule-reads-like-a-reader" CLAIMS.md
+          grep -q "readers-agree-with-each-other" CLAIMS.md
       - name: every question must be analysed for whether it separates anybody
         run: |
           python items.py > /tmp/items.txt
