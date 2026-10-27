@@ -220,8 +220,9 @@ Prediction 4 named the wrong adapter, and the error is kept rather than edited o
 ledger number it referred to - a matcher scoring 43 against the control's 37 - belongs to
 `greedy-match`, not to `blind-search`, which scores 2. Checked on the
 adapter the prediction named, it holds by a wider margin than it asked for: `blind-search`
-answered all 48 questions, handed back 144 records, got 2 right, and 138 of the rest share
-neither a name nor three words with what was asked for.
+answered every question it was asked - all 48 answerable ones and all 12 with no answer -
+handed back 144 records, got 2 right, and 138 of the rest share neither a name nor three words
+with what was asked for.
 
 ## What this does not settle
 

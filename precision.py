@@ -671,10 +671,11 @@ def report(got, panel, checks=None):
         add("ledger number it referred to - a matcher scoring 43 against the control's 37 - belongs to")
         add(BT + "greedy-match" + BT + ", not to " + BT + "blind-search" + BT + ", which scores 2. Checked on the")
         add("adapter the prediction named, it holds by a wider margin than it asked for: " + BT + "blind-search" + BT)
-        add("answered all %d questions, handed back %d records, got %d right, and %d of the rest share"
-            % (b["written"]["answered"], b["written"]["records"], b["written"]["hits"],
-               b["written"]["noise_records"]))
-        add("neither a name nor three words with what was asked for.")
+        add("answered every question it was asked - all %d answerable ones and all %d with no answer -"
+            % (b["written"]["questions"], b["written"]["absent_questions"]))
+        add("handed back %d records, got %d right, and %d of the rest share neither a name nor three words"
+            % (b["written"]["records"], b["written"]["hits"], b["written"]["noise_records"]))
+        add("with what was asked for.")
         add("")
 
     # ---- close ------------------------------------------------------------------------------------

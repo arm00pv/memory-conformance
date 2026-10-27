@@ -892,9 +892,9 @@ points above the positive control, while carrying 1.86 noise records per correct
 tell those two apart as different kinds of thing. This column can. The ledger's `noise-is-charged` claim
 **FAILS**.
 
-`blind-search` is the extreme, and it shows what the axis measures: it answered all 48 answerable
-questions, handed back 144 records, got 2 right, and **138 of the rest share neither a name nor three words
-with what was asked for.** Its score is 2.
+`blind-search` is the extreme, and it shows what the axis measures: it answered every question it was
+given - the answerable ones and the twelve with no answer - handed back 144 records, got 2 right, and
+**138 of the rest share neither a name nor three words with what was asked for.** Its score is 2.
 
 ### What the exam's three hundred questions actually ask
 
