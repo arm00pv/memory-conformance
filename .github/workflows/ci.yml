@@ -304,6 +304,12 @@ jobs:
           grep -q "Does the score charge for this" PRECISION.md
           grep -q "Does the reading move when a subject pads" PRECISION.md
           grep -q "share one idea cannot check each other" PRECISION.md
+          # A LEVER HAS TO MOVE THE THING IT IS NAMED AFTER. Both padding levers keep the control's top three
+          # and append two records; the section says what the classifier made of those appended records. On
+          # the near lever it is 66 of 607, which is the defect that explains the one failing check - and it
+          # is the sort of number that quietly disappears when a report is rewritten, so it is pinned here.
+          grep -q "Does the padding do what its name says" PRECISION.md
+          grep -q "lands in the near class" PRECISION.md
           # THE EXAM HAD NEVER BEEN VALIDATED. --exam relaxes the three rules an exam legitimately breaks and
           # nothing else, so a new defect in its questions fails here. It has no pinned defects left: the
           # twelve duplicated questions were dropped at build time and the eight "unlabelled answers" turned
