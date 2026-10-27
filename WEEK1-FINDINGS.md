@@ -3849,3 +3849,94 @@ with a longer rule.
 
 Two hours, no subject runs, one new tool, one validator mode, two pinned defects, and three claims - all three
 of which fail.
+
+
+## Addendum 38: a question two records answer equally
+
+The precision phase found that the exam's three hundred slots were 288 distinct questions. This found the
+same defect in three more corpora and fixed it everywhere: a question text that two records answer equally
+is not a question, and none of its copies belongs in a corpus.
+
+The cause is not carelessness, it is real data. Two packages can carry the same description word for word -
+a fork and its original, a client and a server generated from one template - so a corpus that derives one
+question per description asks the same words twice with a different expected record and grades whichever
+answer the author did not pick as wrong. The counts, before this phase:
+
+| corpus | questions | distinct | slots two records answer equally |
+|---|---|---|---|
+| the exam | 300 | 288 | **24** |
+| the morphology sweep | 96 | 88 | **16** |
+| the distance ladder | 120 | 115 | **8** |
+| the supersession corpus | 72 | 69 | **6** |
+| multi-record, and the four hand-written corpora | 60 each | all distinct | 0 |
+
+Four of this repository's reports were scoring subjects on questions with two right answers, and the four
+hand-written corpora were clean only because a person chose every question.
+
+### The fix is a drop, not a merge
+
+`questions.py` now holds the rule once, and each builder calls it before writing: if a question text
+appears more than once, **every copy goes**. Merging the two expectations instead - crediting either record
+- would keep the slot, but the slot could then no longer separate a subject that found the fact from one
+that found its sibling, and a question that cannot separate anything is not worth the measurements it costs.
+
+The four corpora were rebuilt. Every retained question is **byte-identical** to the one already asked
+(verified against the committed files) and every record is unchanged, so no subject was re-measured: rows
+about retained questions stand, and the 594 rows about dropped questions - 54 slots across eleven subjects -
+are excluded from every count rather than rescued. Each corpus file now records what it dropped, so the
+report can say which questions went and why.
+
+### What changed in the published numbers
+
+The exam went from 300 questions to 276 and from 49 of 55 pairs separated to **43 of 55**; the two flips
+that survive are `control` against `duckdb` and `duckdb` against `memory-lean`, both at p = 0.000. The
+near-tie the power analysis was betting on - `control` against `memory-lean` - is unaffected: 11-7, p = 0.48.
+**Six of the eight separations the first version reported were the exam grading a coin toss**, which is also
+why the exam's totals had been understating two subjects.
+
+The other three reports moved by arithmetic rather than by finding: the morphology sweep is 20 questions per
+band instead of 24 and the same subjects fall at the same place; the distance ladder is 24 per band except
+d4, which is 16; supersession is 66 questions instead of 72 and `zenbrain` puts the current version first on
+52 of them. No conclusion in any of the four changed.
+
+### The claim that said the opposite of its own code
+
+Fixing the exam exposed a defect in the ledger. `longer-exam` read "asking three hundred questions instead of
+sixty changes which pairs the corpus can separate" and returned true only when **nothing** changed, so for
+two phases it printed FAILS beside a measurement that satisfied the sentence it was printed under. Sentence
+and code now agree on the reading the reports publish: more questions separate the pairs the short exam
+could not, and unsay no separation the short one found. It holds, and the ledger is 9 of 36.
+
+### Two more self-bugs, numbered 53 and 54
+
+**53. A guard that could be fooled by its own backups.** The first run of `questions.py` scanned
+`*corpus*.json` and counted the four copies I had saved to compare against - which are corpora by the
+glob and not by intent. The copies were deleted; the guard now says how many files it looked at, so the
+number can be argued with.
+
+**54. A report printed a sentence twice and a number once.** Splitting a hard-wrapped line in
+`distance_sweep.py` to change "out of 24" left "half of what it / it answered verbatim" in the generated
+report, and nothing in the pipeline reads its own prose. Regenerated and read by eye before committing - which
+is the only check there is for that class.
+
+### What this does not settle
+
+The rule treats one kind of ambiguity. Two records can also be equally good answers with *different*
+descriptions - a generic question about "a memory server" and two packages that both describe one - and
+nothing here detects that, because detecting it needs a judgement about meaning rather than a comparison of
+strings. What is fixed is the case a rule can see: the same words, twice, with two answers.
+
+Nor does any corpus now prove it has no ambiguous question. `questions.py` proves that no question text
+repeats; it cannot prove that no two *different* question texts name the same fact, and no cheap rule can.
+
+### What this costs
+
+Two hours, one new module, four builders touched, four reports regenerated, one claim corrected, and no
+subject run. The check that would have caught it five phases ago is forty lines long and runs in CI now.
+
+### What this proves about the instrument
+
+The corpus is part of the instrument, and this is the second time in two phases that a defect in it was
+found by reading the rows rather than by running anything. A checker whose question set can grade a right
+answer wrong is measuring the author, and the guard that prevents it costs less than the measurements it
+protects.

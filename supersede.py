@@ -30,6 +30,8 @@ import re
 import subprocess
 import sys
 
+import questions
+
 HERE = os.path.dirname(os.path.abspath(__file__))
 os.chdir(HERE)
 BT = chr(96)
@@ -72,15 +74,24 @@ def build():
         records.append({"id": new_id, "text": body(new)})
         queries.append({"query": desc, "expect": new_id, "stale": old_id, "difficulty": "current"})
 
+    # TWO PACKAGES WITH ONE DESCRIPTION make one question with two current versions, and a corpus that
+    # grades either answer wrong is not measuring recency. Both copies go.
+    queries, repeated = questions.once(queries)
+
     doc = {"why": ("Every real package record stored twice, differing only in a real version string. Each "
                    "question asks with the description both carry and expects the later one, so the score "
                    "is whether a memory can tell a current fact from the one it replaced."),
            "records": records, "queries": queries,
            "authored_by": "node_modules",
-           "authored_at": "not applicable - no author"}
+           "authored_at": "not applicable - no author",
+           "dropped": sorted(repeated)}
     with open(OUT, "w", encoding="utf-8", newline=chr(10)) as fh:
         fh.write(json.dumps(doc, ensure_ascii=False, indent=1) + chr(10))
     print("%d records, %d questions" % (len(records), len(queries)))
+    if repeated:
+        print("  dropped %d question(s) that two records answer equally: %s"
+              % (len(repeated), "; ".join(sorted(repeated))[:160]))
+
     return 0
 
 
@@ -108,7 +119,14 @@ def rows_of(slug):
     if not os.path.isfile(path):
         return None
     with open(path, encoding="utf-8") as fh:
-        return json.load(fh).get("rows") or None
+        rows = json.load(fh).get("rows") or None
+    if not rows:
+        return None
+    # ROWS ABOUT A QUESTION THE CORPUS NO LONGER ASKS ARE NOT MEASUREMENTS. Every corpus here is rebuilt
+    # when somebody finds a question that two records answer equally, and the old rows for the questions it
+    # dropped would otherwise keep counting in this table as though the corpus still asked them.
+    live = questions.live(OUT)
+    return [r for r in rows if r["query"] in live] or None
 
 
 def score(rows):

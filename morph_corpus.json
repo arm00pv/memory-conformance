@@ -292,26 +292,6 @@
  ],
  "queries": [
   {
-   "query": "State-of-the-art Machine Learning for the web. Run 🤗 Transformers directly in your browser, with no need for a server!",
-   "expect": "@huggingface/transformers",
-   "difficulty": "m0"
-  },
-  {
-   "query": "State-of-the-art Machine Learning for the web. Run 🤗 Transformerses directly in your browser, withs no need for a server!",
-   "expect": "@huggingface/transformers",
-   "difficulty": "m1"
-  },
-  {
-   "query": "State-of-the-art Machines Learning for the web. Run 🤗 Transformerses directly in yours browser, withs no need for a server!s",
-   "expect": "@huggingface/transformers",
-   "difficulty": "m2"
-  },
-  {
-   "query": "State-of-the-arts Machines Learnings for the web. Run 🤗 Transformerses directlies in yours browser,s withs no needs for a server!s",
-   "expect": "@huggingface/transformers",
-   "difficulty": "m3"
-  },
-  {
    "query": "Auto registering package. Exists to support bundlers without exports support such as webpack 4.",
    "expect": "chart.js-auto",
    "difficulty": "m0"
@@ -432,46 +412,6 @@
    "difficulty": "m3"
   },
   {
-   "query": "fs read and write streams based on minipass",
-   "expect": "@isaacs/fs-minipass",
-   "difficulty": "m0"
-  },
-  {
-   "query": "fs read and write streams baseds on minipass",
-   "expect": "@isaacs/fs-minipass",
-   "difficulty": "m1"
-  },
-  {
-   "query": "fs read and writes streams baseds on minipass",
-   "expect": "@isaacs/fs-minipass",
-   "difficulty": "m2"
-  },
-  {
-   "query": "fs reads and writes streamses baseds on minipasses",
-   "expect": "@isaacs/fs-minipass",
-   "difficulty": "m3"
-  },
-  {
-   "query": "State-of-the-art Machine Learning for the web. Run 🤗 Transformers directly in your browser, with no need for a server!",
-   "expect": "@xenova/transformers",
-   "difficulty": "m0"
-  },
-  {
-   "query": "State-of-the-art Machine Learning for the web. Run 🤗 Transformerses directly in your browser, withs no need for a server!",
-   "expect": "@xenova/transformers",
-   "difficulty": "m1"
-  },
-  {
-   "query": "State-of-the-art Machines Learning for the web. Run 🤗 Transformerses directly in yours browser, withs no need for a server!s",
-   "expect": "@xenova/transformers",
-   "difficulty": "m2"
-  },
-  {
-   "query": "State-of-the-arts Machines Learnings for the web. Run 🤗 Transformerses directlies in yours browser,s withs no needs for a server!s",
-   "expect": "@xenova/transformers",
-   "difficulty": "m3"
-  },
-  {
    "query": "Helpers package. Exists to support bundlers without exports support such as webpack 4.",
    "expect": "chart.js-helpers",
    "difficulty": "m0"
@@ -589,26 +529,6 @@
   {
    "query": "micromarks factories to parses markdowns titleses (found in resources,s definitions)s",
    "expect": "micromark-factory-title",
-   "difficulty": "m3"
-  },
-  {
-   "query": "fs read and write streams based on minipass",
-   "expect": "fs-minipass",
-   "difficulty": "m0"
-  },
-  {
-   "query": "fs read and write streams baseds on minipass",
-   "expect": "fs-minipass",
-   "difficulty": "m1"
-  },
-  {
-   "query": "fs read and writes streams baseds on minipass",
-   "expect": "fs-minipass",
-   "difficulty": "m2"
-  },
-  {
-   "query": "fs reads and writes streamses baseds on minipasses",
-   "expect": "fs-minipass",
    "difficulty": "m3"
   },
   {
@@ -773,5 +693,15 @@
   }
  ],
  "authored_by": "node_modules",
- "authored_at": "not applicable - no author"
+ "authored_at": "not applicable - no author",
+ "dropped": [
+  "State-of-the-art Machine Learning for the web. Run 🤗 Transformers directly in your browser, with no need for a server!",
+  "State-of-the-art Machine Learning for the web. Run 🤗 Transformerses directly in your browser, withs no need for a server!",
+  "State-of-the-art Machines Learning for the web. Run 🤗 Transformerses directly in yours browser, withs no need for a server!s",
+  "State-of-the-arts Machines Learnings for the web. Run 🤗 Transformerses directlies in yours browser,s withs no needs for a server!s",
+  "fs read and write streams based on minipass",
+  "fs read and write streams baseds on minipass",
+  "fs read and writes streams baseds on minipass",
+  "fs reads and writes streamses baseds on minipasses"
+ ]
 }

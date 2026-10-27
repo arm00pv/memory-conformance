@@ -13,7 +13,7 @@ using real package descriptions and a rule rather than a writer.
 | d1 | two of every three | 0.71 |
 | d2 | every second | 0.56 |
 | d3 | one in three | 0.33 |
-| d4 | the first two, in a question | 0.29 |
+| d4 | the first two, in a question | 0.33 |
 
 The ladder is measured rather than assumed: the last two steps are close together because a
 description with seven long words leaves two of them to a question, which is a third of the record
@@ -41,22 +41,23 @@ record's own words, which is a thing no person has ever asked.
 
 ## The curves
 
-hit@3 out of 24 questions per band, and the band at which each subject stops answering half of what
+hit@3 out of the questions in each band, and the band at which each subject stops answering half of
+what it
 it answered verbatim.
 
 | subject | d0 | d1 | d2 | d3 | d4 | half at |
 |---|---|---|---|---|---|---|
-| `control 1.0.0` | 24/24 | 24/24 | 24/24 | 23/24 | 13/24 | d4 |
-| `server-memory 1.0.0` | 24/24 | 0/24 | 0/24 | 1/24 | 0/24 | d0 |
-| `server-memory 2.0.0` | 24/24 | 0/24 | 0/24 | 1/24 | 0/24 | d0 |
-| `memory-lean 1.5.0` | 24/24 | 24/24 | 24/24 | 23/24 | 0/24 | d3 |
-| `mcp-knowledge-graph 1.3.2` | 24/24 | 0/24 | 0/24 | 1/24 | 0/24 | d0 |
-| `zenbrain 0.3.0` | 24/24 | 24/24 | 24/24 | 23/24 | 21/24 | d4 |
-| `memory-mcp-1file 0.9.2` | 24/24 | 24/24 | 22/24 | 20/24 | 18/24 | d4 |
-| `mcp-duckdb-memory-server 1.1.10` | 24/24 | 24/24 | 13/24 | 3/24 | 10/24 | d2 |
-| `memento 0.7.0` | 11/24 | 12/24 | 14/24 | 12/24 | 13/24 | d4 |
-| `memdb 1.4.0` | 0/24 | 0/24 | 0/24 | 1/24 | 2/24 | - |
-| `statecore-mcp 1.0.0` | 0/24 | 0/24 | 0/24 | 0/24 | 0/24 | - |
+| `control 1.0.0` | 24/24 | 24/24 | 24/24 | 23/24 | 9/16 | d3 |
+| `server-memory 1.0.0` | 24/24 | 0/24 | 0/24 | 1/24 | 0/16 | d0 |
+| `server-memory 2.0.0` | 24/24 | 0/24 | 0/24 | 1/24 | 0/16 | d0 |
+| `memory-lean 1.5.0` | 24/24 | 24/24 | 24/24 | 23/24 | 0/16 | d3 |
+| `mcp-knowledge-graph 1.3.2` | 24/24 | 0/24 | 0/24 | 1/24 | 0/16 | d0 |
+| `zenbrain 0.3.0` | 24/24 | 24/24 | 24/24 | 23/24 | 16/16 | d4 |
+| `memory-mcp-1file 0.9.2` | 24/24 | 24/24 | 22/24 | 20/24 | 15/16 | d4 |
+| `mcp-duckdb-memory-server 1.1.10` | 24/24 | 24/24 | 13/24 | 3/24 | 8/16 | d2 |
+| `memento 0.7.0` | 11/24 | 12/24 | 14/24 | 12/24 | 11/16 | d4 |
+| `memdb 1.4.0` | 0/24 | 0/24 | 0/24 | 1/24 | 0/16 | - |
+| `statecore-mcp 1.0.0` | 0/24 | 0/24 | 0/24 | 0/24 | 0/16 | - |
 
 ## Where the ranking stops being the same ranking
 
@@ -67,7 +68,7 @@ separates at the nearest distance, and how many at the furthest.
 - **d1**: 35 of 55 pairs separated, on 24 questions each
 - **d2**: 38 of 55 pairs separated, on 24 questions each
 - **d3**: 34 of 55 pairs separated, on 24 questions each
-- **d4**: 34 of 55 pairs separated, on 24 questions each
+- **d4**: 33 of 55 pairs separated, on 16 questions each
 
 The nearest distance separates fewer pairs than the middle one, because a question that quotes the
 record is answered by everybody with a substring counter and the top of the table becomes a tie at

@@ -11,28 +11,28 @@ record does not:
 | band | the question | vocabulary the record lacks, measured |
 |---|---|---|
 | m0 | the record's own words | 0.00 |
-| m1 | every fourth long word pluralised | 0.17 |
-| m2 | every second long word pluralised | 0.40 |
+| m1 | every fourth long word pluralised | 0.14 |
+| m2 | every second long word pluralised | 0.38 |
 | m3 | every long word pluralised | 0.83 |
 
 ## The curves
 
-hit@3 out of 24 questions per band. A subject that stems, or that indexes meaning rather than
+hit@3 out of the questions in each band. A subject that stems, or that indexes meaning rather than
 characters, should hold. A subject that matches substrings should fall away immediately.
 
 | subject | m0 | m1 | m2 | m3 | first drop |
 |---|---|---|---|---|---|
-| `control 1.0.0` | 24/24 | 24/24 | 24/24 | 9/24 | m3 |
-| `server-memory 1.0.0` | 24/24 | 0/24 | 0/24 | 0/24 | m1 |
-| `server-memory 2.0.0` | 24/24 | 0/24 | 0/24 | 0/24 | m1 |
-| `memory-lean 1.5.0` | 24/24 | 1/24 | 0/24 | 0/24 | m1 |
-| `mcp-knowledge-graph 1.3.2` | 24/24 | 0/24 | 0/24 | 0/24 | m1 |
-| `zenbrain 0.3.0` | 24/24 | 24/24 | 24/24 | 18/24 | - |
-| `mcp-duckdb-memory-server 1.1.10` | 24/24 | 24/24 | 24/24 | 24/24 | - |
-| `memory-mcp-1file 0.9.2` | 23/24 | 23/24 | 23/24 | 23/24 | - |
-| `memento 0.7.0` | 16/24 | 16/24 | 18/24 | 18/24 | - |
-| `memdb 1.4.0` | 0/24 | 0/24 | 0/24 | 0/24 | - |
-| `statecore-mcp 1.0.0` | 0/24 | 0/24 | 0/24 | 0/24 | - |
+| `control 1.0.0` | 20/20 | 20/20 | 20/20 | 9/20 | m3 |
+| `server-memory 1.0.0` | 20/20 | 0/20 | 0/20 | 0/20 | m1 |
+| `server-memory 2.0.0` | 20/20 | 0/20 | 0/20 | 0/20 | m1 |
+| `memory-lean 1.5.0` | 20/20 | 1/20 | 0/20 | 0/20 | m1 |
+| `mcp-knowledge-graph 1.3.2` | 20/20 | 0/20 | 0/20 | 0/20 | m1 |
+| `zenbrain 0.3.0` | 20/20 | 20/20 | 20/20 | 15/20 | - |
+| `mcp-duckdb-memory-server 1.1.10` | 20/20 | 20/20 | 20/20 | 20/20 | - |
+| `memory-mcp-1file 0.9.2` | 19/20 | 19/20 | 19/20 | 19/20 | - |
+| `memento 0.7.0` | 12/20 | 12/20 | 14/20 | 14/20 | - |
+| `memdb 1.4.0` | 0/20 | 0/20 | 0/20 | 0/20 | - |
+| `statecore-mcp 1.0.0` | 0/20 | 0/20 | 0/20 | 0/20 | - |
 
 ## The two coordinates together
 

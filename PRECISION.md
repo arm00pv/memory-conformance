@@ -13,42 +13,42 @@ This is that charge, read from rows that were already on disk.
 1. At least three subjects hand records back on questions with no answer.
    **HELD** - 8 of 11 subjects do: control 1.0.0, mcp-duckdb-memory-server 1.1.10, memdb 1.4.0, memento 0.7.0, memory-lean 1.5.0, memory-mcp-1file 0.9.2, statecore-mcp 1.0.0, zenbrain 0.3.0.
 2. A subject answers all of an absent band or none of it, never part.
-   **DID NOT HOLD** - mixed in 11 places: control 1.0.0 on large (8 of 99); memdb 1.4.0 on B (11 of 12); memdb 1.4.0 on large (98 of 99).
+   **DID NOT HOLD** - mixed in 11 places: control 1.0.0 on large (8 of 98); memdb 1.4.0 on B (11 of 12); memdb 1.4.0 on large (97 of 98).
 3. Noise per hit exceeds one for at least four subjects.
    **HELD** - 4 of 11 subjects exceed one somewhere: memdb 1.4.0, memento 0.7.0, memory-mcp-1file 0.9.2, zenbrain 0.3.0.
 4. The matcher that beats the control pays for its extra points in noise.
    **HELD** - checked on blind-search, which the prediction named: 69.00 noise per hit against the control's 0.32, answer share 1% against 63%. The adapter that actually scores 43 is greedy-match, and it fails the same way: 1.86 and 28%.
 5. At least 95% of the superseded siblings that came back are called near.
-   **HELD** - 578 of 578 superseded siblings recognised (100.0%).
+   **HELD** - 556 of 556 superseded siblings recognised (100.0%).
 6. The largest reading bill is a fixed-size lister, above 25,000 characters.
    **DID NOT HOLD** - memdb 1.4.0 at 10474 characters on corpus A against the control's 2608.
 
 ## The silence bill
 
 On a question whose answer is nothing, every record handed back is junk by construction. There is
-nothing for it to be. This is measured over 147 such questions - 12 in A, 12 in B, 12 in C, 12 in real, 99 in the long exam - and it needs no classifier,
+nothing for it to be. This is measured over 146 such questions - 12 in A, 12 in B, 12 in C, 12 in real, 98 in the long exam - and it needs no classifier,
 no rule and no argument. The classifier below is not used in this section at all.
 
 | subject | questions it answered | of the band | records handed back | characters |
 |---|---|---|---|---|
-| `memento 0.7.0` | **147 of 147** | 100% | 441 | 47985 |
-| `zenbrain 0.3.0` | **147 of 147** | 100% | 439 | 47310 |
-| `memdb 1.4.0` | **145 of 147** | 99% | 435 | 59264 |
-| `memory-mcp-1file 0.9.2` | **141 of 147** | 96% | 410 | 41498 |
-| `mcp-duckdb-memory-server 1.1.10` | **18 of 147** | 12% | 34 | 3495 |
-| `memory-lean 1.5.0` | **13 of 147** | 9% | 14 | 1500 |
-| `statecore-mcp 1.0.0` | **12 of 147** | 8% | 12 | 720 |
-| `control 1.0.0` | **8 of 147** | 5% | 10 | 980 |
-| `server-memory 1.0.0` | **0 of 147** | 0% | 0 | 0 |
-| `server-memory 2.0.0` | **0 of 147** | 0% | 0 | 0 |
-| `mcp-knowledge-graph 1.3.2` | **0 of 147** | 0% | 0 | 0 |
+| `memento 0.7.0` | **146 of 146** | 100% | 438 | 47678 |
+| `zenbrain 0.3.0` | **146 of 146** | 100% | 436 | 47042 |
+| `memdb 1.4.0` | **144 of 146** | 99% | 432 | 58805 |
+| `memory-mcp-1file 0.9.2` | **140 of 146** | 96% | 407 | 41240 |
+| `mcp-duckdb-memory-server 1.1.10` | **18 of 146** | 12% | 34 | 3495 |
+| `memory-lean 1.5.0` | **13 of 146** | 9% | 14 | 1500 |
+| `statecore-mcp 1.0.0` | **12 of 146** | 8% | 12 | 720 |
+| `control 1.0.0` | **8 of 146** | 5% | 10 | 980 |
+| `server-memory 1.0.0` | **0 of 146** | 0% | 0 | 0 |
+| `server-memory 2.0.0` | **0 of 146** | 0% | 0 | 0 |
+| `mcp-knowledge-graph 1.3.2` | **0 of 146** | 0% | 0 | 0 |
 
 **2 of the 11 subjects answer every unanswerable question, 3 answer none of them, and 6 answer
 part of the band.** That last group is the reason the two halves of this section exist: the four
 sixty-question corpora ask twelve unanswerable questions each, and twelve questions cannot tell
 a subject that declines everything from one that declines ninety-two per cent.
 
-The loudest is `memento 0.7.0`, which handed back 441 records and 47985 characters on
+The loudest is `memento 0.7.0`, which handed back 438 records and 47678 characters on
 questions that had no answer. Every one of those characters is paid by the caller and none of
 them can carry anything true.
 
@@ -65,14 +65,14 @@ record and warns about one that shares fewer, and here that distinction predicts
 | B | 12 | 0 | 0.00 | 0 |
 | C | 12 | 12 | 0.27 | 0 |
 | real | 12 | 11 | 0.25 | 0 |
-| the long exam | 99 | 94 | 0.26 | 8 |
+| the long exam | 98 | 93 | 0.26 | 8 |
 
 | subject | answers on the unanswerable bands | on a question with a neighbour | on one with none |
 |---|---|---|---|
-| `memento 0.7.0` | 147 | 121 | **26** |
-| `zenbrain 0.3.0` | 147 | 121 | **26** |
-| `memdb 1.4.0` | 145 | 121 | **24** |
-| `memory-mcp-1file 0.9.2` | 141 | 118 | **23** |
+| `memento 0.7.0` | 146 | 120 | **26** |
+| `zenbrain 0.3.0` | 146 | 120 | **26** |
+| `memdb 1.4.0` | 144 | 120 | **24** |
+| `memory-mcp-1file 0.9.2` | 140 | 117 | **23** |
 | `mcp-duckdb-memory-server 1.1.10` | 18 | 18 | 0 |
 | `memory-lean 1.5.0` | 13 | 13 | 0 |
 | `statecore-mcp 1.0.0` | 12 | 4 | **8** |
@@ -93,11 +93,11 @@ Which changes what the twelve free points are. The score hands twelve of sixty t
 returns nothing on the unanswerable questions, and items.py reported that every subject either
 takes all twelve or none of them - a habit, not an ability. These are the same rows read at a
 larger sample: the deciding subjects answer 15 of the 336 unanswerable questions in the four short
-bands and 36 of the 99 in the long exam, because a band drawn from a real pool of packages cannot
+bands and 36 of the 98 in the long exam, because a band drawn from a real pool of packages cannot
 avoid near neighbours. The points are not a habit and they are not a virtue. They are the price
 of a clean band, and the same subject pays a different price on a different corpus.
 
-That is also a charge against the corpora, and worth naming precisely: 8 of the exam's 99
+That is also a charge against the corpora, and worth naming precisely: 8 of the exam's 98
 unanswerable questions are at or above the validator's half-coverage line, so the rule this
 repository uses to certify that an unanswerable question is unanswerable calls them unlabelled
 answers. Nothing validated `large_corpus.json` before this phase, so the exam's
@@ -127,65 +127,65 @@ common to half the corpus. Both phrasings, all nine corpora, written half:
 
 | subject | answered | correct | records back | near | **noise** | noise per correct | answer share |
 |---|---|---|---|---|---|---|---|
-| `memdb 1.4.0` | 684 | 13 | 2047 | 30 | **1997** | 153.62 | 1% |
-| `memento 0.7.0` | 684 | 310 | 2052 | 567 | **1142** | 3.68 | 16% |
-| `zenbrain 0.3.0` | 684 | 635 | 2044 | 610 | **754** | 1.19 | 32% |
-| `memory-mcp-1file 0.9.2` | 678 | 642 | 1990 | 641 | **666** | 1.04 | 34% |
-| `control 1.0.0` | 611 | 603 | 1150 | 430 | **75** | 0.12 | 55% |
-| `mcp-duckdb-memory-server 1.1.10` | 501 | 485 | 920 | 366 | **45** | 0.09 | 55% |
-| `memory-lean 1.5.0` | 469 | 451 | 668 | 177 | **23** | 0.05 | 70% |
-| `mcp-knowledge-graph 1.3.2` | 230 | 227 | 342 | 99 | **8** | 0.04 | 70% |
-| `server-memory 1.0.0` | 230 | 227 | 312 | 77 | **0** | 0.00 | 78% |
-| `server-memory 2.0.0` | 230 | 227 | 312 | 77 | **0** | 0.00 | 78% |
+| `memdb 1.4.0` | 659 | 12 | 1972 | 29 | **1925** | 160.42 | 1% |
+| `memento 0.7.0` | 659 | 294 | 1977 | 555 | **1115** | 3.79 | 14% |
+| `zenbrain 0.3.0` | 659 | 614 | 1969 | 593 | **743** | 1.21 | 31% |
+| `memory-mcp-1file 0.9.2` | 654 | 622 | 1918 | 621 | **659** | 1.06 | 32% |
+| `control 1.0.0` | 589 | 585 | 1098 | 419 | **75** | 0.13 | 54% |
+| `mcp-duckdb-memory-server 1.1.10` | 479 | 468 | 862 | 348 | **44** | 0.09 | 53% |
+| `memory-lean 1.5.0` | 449 | 438 | 625 | 163 | **23** | 0.05 | 69% |
+| `mcp-knowledge-graph 1.3.2` | 222 | 222 | 321 | 91 | **8** | 0.04 | 70% |
+| `server-memory 1.0.0` | 222 | 222 | 293 | 71 | **0** | 0.00 | 78% |
+| `server-memory 2.0.0` | 222 | 222 | 293 | 71 | **0** | 0.00 | 78% |
 | `statecore-mcp 1.0.0` | 48 | 0 | 48 | 0 | **48** | - | 0% |
 
-**`memdb 1.4.0` carries 153.62 noise records for every question it answers correctly; 
+**`memdb 1.4.0` carries 160.42 noise records for every question it answers correctly; 
 `server-memory 1.0.0` carries 0.00 and puts 78% of its characters on the answer.** A ratio whose
 denominator is a handful is a description of a handful of questions rather than of a habit, and
 the counts beside each ratio are there so that can be seen.
 
-- `memento` answers 310 questions correctly and hands back 1142 records nobody asked
-  for; the control answers 603 and hands back 75.
+- `memento` answers 294 questions correctly and hands back 1115 records nobody asked
+  for; the control answers 585 and hands back 75.
 - The two are not separated by the score in any published table, and they are not the same thing.
 
 ### Where the noise lives, by corpus
 
 | subject | A | B | C | real | dist | morph | multi | large | super |
 |---|---|---|---|---|---|---|---|---|---|
-| `control 1.0.0` | 0.32 | 0.16 | 0.29 | 0.06 | 0.23 | 0.05 | 0.06 | 0.10 | 0.03 |
-| `mcp-duckdb-memory-server 1.1.10` | 0.00 | 0.31 | 0.17 | 0.08 | 0.15 | 0.05 | 0.00 | 0.11 | 0.05 |
+| `control 1.0.0` | 0.32 | 0.16 | 0.29 | 0.06 | 0.23 | 0.06 | 0.06 | 0.10 | 0.03 |
+| `mcp-duckdb-memory-server 1.1.10` | 0.00 | 0.31 | 0.17 | 0.08 | 0.14 | 0.05 | 0.00 | 0.11 | 0.05 |
 | `mcp-knowledge-graph 1.3.2` | - | - | - | 0.06 | 0.08 | 0.05 | 0.00 | 0.05 | 0.00 |
-| `memdb 1.4.0` | 20.83 | 136.00 | - | - | 169.00 | - | 28.67 | 564.00 | - |
-| `memento 0.7.0` | 7.57 | 3.47 | 5.29 | 3.96 | 3.02 | 2.20 | 3.05 | 4.16 | 4.72 |
-| `memory-lean 1.5.0` | 0.00 | - | - | 0.04 | 0.08 | 0.17 | 0.00 | 0.05 | 0.00 |
-| `memory-mcp-1file 0.9.2` | 1.64 | 0.78 | 1.82 | 1.04 | 1.12 | 0.87 | 1.26 | 1.01 | 0.43 |
+| `memdb 1.4.0` | 20.83 | 136.00 | - | - | 332.00 | - | 28.67 | 531.00 | - |
+| `memento 0.7.0` | 7.57 | 3.47 | 5.29 | 3.96 | 2.97 | 2.38 | 3.05 | 4.40 | 4.72 |
+| `memory-lean 1.5.0` | 0.00 | - | - | 0.04 | 0.08 | 0.19 | 0.00 | 0.05 | 0.00 |
+| `memory-mcp-1file 0.9.2` | 1.64 | 0.78 | 1.82 | 1.04 | 1.12 | 0.91 | 1.26 | 1.05 | 0.44 |
 | `server-memory 1.0.0` | - | - | - | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 |
 | `server-memory 2.0.0` | - | - | - | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 |
 | `statecore-mcp 1.0.0` | - | - | - | - | - | - | - | - | - |
-| `zenbrain 0.3.0` | 1.88 | 1.88 | 2.52 | 1.17 | 1.04 | 1.07 | 1.12 | 1.10 | 0.51 |
+| `zenbrain 0.3.0` | 1.88 | 1.88 | 2.52 | 1.17 | 1.05 | 1.11 | 1.12 | 1.14 | 0.52 |
 
 A dash is a subject that returned nothing, or nothing correct, on that corpus, so the ratio has no
 denominator - which is itself the answer for those cells.
 
 The near rule is checked where nearness is certain: the supersession corpus stores every record
 twice, so every superseded sibling is a near miss by construction and none of them is the answer.
-**578 of the 578 superseded siblings that came back were called near** and the rest noise, which is
+**556 of the 556 superseded siblings that came back were called near** and the rest noise, which is
 the check that the rule fires when it must - one direction only, as the closing section says.
 
 ## What it costs to read
 
 | subject | characters back | the answer | near misses | **noise** | per question |
 |---|---|---|---|---|---|
-| `memdb 1.4.0` | 334427 | 1781 | 3198 | 329448 | 402 |
-| `memento 0.7.0` | 272206 | 35150 | 60936 | 176120 | 327 |
-| `zenbrain 0.3.0` | 268928 | 70404 | 68336 | 130188 | 323 |
-| `memory-mcp-1file 0.9.2` | 250662 | 70488 | 67675 | 112499 | 301 |
-| `control 1.0.0` | 123909 | 67349 | 47034 | 9526 | 149 |
-| `mcp-duckdb-memory-server 1.1.10` | 98526 | 51887 | 37931 | 8708 | 118 |
-| `memory-lean 1.5.0` | 69663 | 47436 | 17829 | 4398 | 83 |
-| `mcp-knowledge-graph 1.3.2` | 33348 | 23301 | 9039 | 1008 | 40 |
-| `server-memory 1.0.0` | 29977 | 23301 | 6676 | 0 | 36 |
-| `server-memory 2.0.0` | 29977 | 23301 | 6676 | 0 | 36 |
+| `memdb 1.4.0` | 324274 | 1566 | 3087 | 319621 | 402 |
+| `memento 0.7.0` | 263501 | 31145 | 59810 | 172546 | 327 |
+| `zenbrain 0.3.0` | 260653 | 65168 | 66779 | 128706 | 323 |
+| `memory-mcp-1file 0.9.2` | 242717 | 65455 | 65784 | 111478 | 301 |
+| `control 1.0.0` | 118301 | 62821 | 45954 | 9526 | 146 |
+| `mcp-duckdb-memory-server 1.1.10` | 92392 | 47555 | 36255 | 8582 | 114 |
+| `memory-lean 1.5.0` | 65230 | 44262 | 16570 | 4398 | 81 |
+| `mcp-knowledge-graph 1.3.2` | 31222 | 21897 | 8317 | 1008 | 38 |
+| `server-memory 1.0.0` | 28021 | 21897 | 6124 | 0 | 34 |
+| `server-memory 2.0.0` | 28021 | 21897 | 6124 | 0 | 34 |
 | `statecore-mcp 1.0.0` | 3600 | 0 | 0 | 3600 | 4 |
 
 Per question is the number a caller pays. A memory that hands back three records whatever it is
@@ -235,13 +235,18 @@ report that needs no rule at all, and it is the part to quote when only one numb
 
 Nothing was re-run to write this. Every row was on disk already, so no subject was asked twice and
 no new measurement can contradict an old one - but a defect in a corpus is inherited here as
-everywhere else. Two were found by this reading rather than inherited: the exam's eight unanswerable
-questions that share half their words with a single record, and its twelve slots that repeat a
-question because two packages carry the same description. Both are charged above and pinned in
-`corpus-known.json`, and neither is fixed here, because fixing either changes which questions
-the exam asks and that is a re-measurement of eleven subjects rather than a re-reading of their
-rows. A reader who wants the exam's totals to be fair rather than merely disclosed should read that
-sentence as the next phase, not as a footnote.
+everywhere else, and this reading found two. The first is a question two records answer equally:
+two packages can carry the same description word for word, so a corpus built from real descriptions
+asked the same words twice with a different expected record and graded one of the two answers
+wrong. That is fixed - `questions.py` drops every copy, the four generated corpora were
+rebuilt without them, and the 594 rows measured against the
+dropped questions are excluded from every count here rather than re-run, because a question that two
+records answer equally was not measuring the subject.
+
+The second stands and is pinned: the exam's eight unanswerable questions whose words are half inside
+a single record. Those are fair questions - the covering record is not the answer - and the charge
+against them belongs to the validator's word-overlap rule, not to the corpus. A reader who wants the
+validator to stop making it should read that as the next phase rather than a footnote.
 
 Finally, no judgement of usefulness is made anywhere and none can be: deciding whether a returned
 record HELPS a caller is not a counting question. It is the one place in this repository where a

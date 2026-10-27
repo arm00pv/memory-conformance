@@ -362,11 +362,6 @@
    "difficulty": "d3"
   },
   {
-   "query": "tell me about AWS credential provider",
-   "expect": "@aws-sdk/credential-provider-ini",
-   "difficulty": "d4"
-  },
-  {
    "query": "Store information about any JS value in a side channel, using a linked list",
    "expect": "side-channel-list",
    "difficulty": "d0"
@@ -385,11 +380,6 @@
    "query": "about any JS in a channel, a list",
    "expect": "side-channel-list",
    "difficulty": "d3"
-  },
-  {
-   "query": "tell me about Store information",
-   "expect": "side-channel-list",
-   "difficulty": "d4"
   },
   {
    "query": "AWS SDK for JavaScript Ecs Client for Node.js, Browser and React Native",
@@ -462,11 +452,6 @@
    "difficulty": "d3"
   },
   {
-   "query": "tell me about micromark factory to",
-   "expect": "micromark-factory-destination",
-   "difficulty": "d4"
-  },
-  {
    "query": "Isomorphic fetch() in Node, Deno and Cloudflare Workers",
    "expect": "@libsql/isomorphic-fetch",
    "difficulty": "d0"
@@ -512,11 +497,6 @@
    "difficulty": "d3"
   },
   {
-   "query": "tell me about Store information",
-   "expect": "side-channel",
-   "difficulty": "d4"
-  },
-  {
    "query": "AWS credential provider that sources credentials from a Node.JS environment.",
    "expect": "@aws-sdk/credential-provider-node",
    "difficulty": "d0"
@@ -537,11 +517,6 @@
    "difficulty": "d3"
   },
   {
-   "query": "tell me about AWS credential provider",
-   "expect": "@aws-sdk/credential-provider-node",
-   "difficulty": "d4"
-  },
-  {
    "query": "micromark factory to parse markdown whitespace (found in lots of places)",
    "expect": "micromark-factory-whitespace",
    "difficulty": "d0"
@@ -560,11 +535,6 @@
    "query": "to parse (found in lots of",
    "expect": "micromark-factory-whitespace",
    "difficulty": "d3"
-  },
-  {
-   "query": "tell me about micromark factory to",
-   "expect": "micromark-factory-whitespace",
-   "difficulty": "d4"
   },
   {
    "query": "Get the visual width of the widest line in a string - the number of columns required to display it",
@@ -612,11 +582,6 @@
    "difficulty": "d3"
   },
   {
-   "query": "tell me about AWS credential provider",
-   "expect": "@smithy/credential-provider-imds",
-   "difficulty": "d4"
-  },
-  {
    "query": "MCP server enabling persistent memory for AI models through a local knowledge graph",
    "expect": "mcp-knowledge-graph",
    "difficulty": "d0"
@@ -660,11 +625,6 @@
    "query": "AWS that STS for temporary AWS",
    "expect": "@aws-sdk/credential-provider-web-identity",
    "difficulty": "d3"
-  },
-  {
-   "query": "tell me about AWS credential provider",
-   "expect": "@aws-sdk/credential-provider-web-identity",
-   "difficulty": "d4"
   },
   {
    "query": "Check if the character represented by a given Unicode code point is fullwidth",
@@ -893,5 +853,10 @@
   }
  ],
  "authored_by": "node_modules",
- "authored_at": "not applicable - no author"
+ "authored_at": "not applicable - no author",
+ "dropped": [
+  "tell me about AWS credential provider",
+  "tell me about Store information",
+  "tell me about micromark factory to"
+ ]
 }

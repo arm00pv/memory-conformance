@@ -21,23 +21,23 @@ later record.
 
 | subject | current, alone | stale, alone | both returned | neither | current first |
 |---|---|---|---|---|---|
-| `zenbrain 0.3.0` | 5 | 0 | 67 | 0 | **55 of 72** |
-| `memory-mcp-1file 0.9.2` | 2 | 2 | 68 | 0 | **29 of 72** |
-| `control 1.0.0` | 0 | 6 | 66 | 0 | **0 of 72** |
-| `server-memory 1.0.0` | 0 | 6 | 66 | 0 | **0 of 72** |
-| `server-memory 2.0.0` | 0 | 6 | 66 | 0 | **0 of 72** |
-| `memento 0.7.0` | 0 | 17 | 18 | 37 | **0 of 72** |
-| `memdb 1.4.0` | 0 | 0 | 0 | 72 | **0 of 72** |
-| `memory-lean 1.5.0` | 0 | 6 | 66 | 0 | **0 of 72** |
-| `mcp-knowledge-graph 1.3.2` | 0 | 6 | 66 | 0 | **0 of 72** |
-| `statecore-mcp 1.0.0` | 0 | 0 | 0 | 72 | **0 of 72** |
-| `mcp-duckdb-memory-server 1.1.10` | 0 | 6 | 66 | 0 | **0 of 72** |
+| `zenbrain 0.3.0` | 3 | 0 | 63 | 0 | **52 of 66** |
+| `memory-mcp-1file 0.9.2` | 0 | 0 | 66 | 0 | **28 of 66** |
+| `control 1.0.0` | 0 | 0 | 66 | 0 | **0 of 66** |
+| `server-memory 1.0.0` | 0 | 0 | 66 | 0 | **0 of 66** |
+| `server-memory 2.0.0` | 0 | 0 | 66 | 0 | **0 of 66** |
+| `memento 0.7.0` | 0 | 13 | 18 | 35 | **0 of 66** |
+| `memdb 1.4.0` | 0 | 0 | 0 | 66 | **0 of 66** |
+| `memory-lean 1.5.0` | 0 | 0 | 66 | 0 | **0 of 66** |
+| `mcp-knowledge-graph 1.3.2` | 0 | 0 | 66 | 0 | **0 of 66** |
+| `statecore-mcp 1.0.0` | 0 | 0 | 0 | 66 | **0 of 66** |
+| `mcp-duckdb-memory-server 1.1.10` | 0 | 0 | 66 | 0 | **0 of 66** |
 
-**The best subject puts the current record first on 55 of 72 questions, and 9 of the 11 subjects
+**The best subject puts the current record first on 52 of 66 questions, and 9 of the 11 subjects
 never put it first once.** Every one of those returns the SUPERSEDED record ahead of the record that
 replaced it, because the two bodies are nearly identical and nothing in either says which is later.
 
-Across the whole table, 55 answers came from the superseded record and 549 returned both, which is
+Across the whole table, 13 answers came from the superseded record and 543 returned both, which is
 the honest description of what these systems do with a fact that changed: they have no notion of
 which of two nearly identical records is later, and the text gives them none.
 

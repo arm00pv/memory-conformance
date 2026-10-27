@@ -10,7 +10,7 @@ claim about silence. A subject's SCORE is what the paired test pairs on - the ri
 top three, plus a credit for declining a question with no answer. Its HITS are only the questions
 that have an answer and were answered correctly. "It answers nothing" is a claim about hits.
 
-**7 of the 36 claims hold in every setting measured.** The rest are printed beside the setting
+**9 of the 36 claims hold in every setting measured.** The rest are printed beside the setting
 that breaks them, because that setting is the claim's real scope.
 
 | claim | A written | A keywords | B written | B keywords | status |
@@ -43,11 +43,11 @@ that breaks them, because that setting is the claim's real scope.
 | near-end-separates | no | no | **FAILS** |
 | plural-is-free | no | no | **FAILS** |
 | set-answers | no | no | **FAILS** |
-| longer-exam | no | no | **FAILS** |
+| longer-exam | yes | yes | **HOLDS** |
 | recency-visible | no | no | **FAILS** |
 | silent-everywhere | no | no | **FAILS** |
 | silence-is-a-habit | no | no | **FAILS** |
-| exam-questions-distinct | no | no | **FAILS** |
+| exam-questions-distinct | yes | yes | **HOLDS** |
 | noise-is-charged | no | no | **FAILS** |
 | score-sees-ordering | no | no | **FAILS** |
 | score-prefers-recalcitrance | no | no | **FAILS** |
@@ -177,40 +177,40 @@ that breaks them, because that setting is the claim's real scope.
   - B written: false (the leader on real text is control, and 1 of the three authored corpora agree (not A, B))
 
 **ranking-survives-paraphrase** - the subject that answers the most verbatim questions also answers the most paraphrased ones. *FAILS*
-  - A written: false (8 subject(s) tie at the ceiling on the verbatim questions (24 of 24) and zenbrain is first when two words survive (21 of 24))
-  - B written: false (8 subject(s) tie at the ceiling on the verbatim questions (24 of 24) and zenbrain is first when two words survive (21 of 24))
+  - A written: false (8 subject(s) tie at the ceiling on the verbatim questions (24 of 24) and zenbrain is first when two words survive (16 of 24))
+  - B written: false (8 subject(s) tie at the ceiling on the verbatim questions (24 of 24) and zenbrain is first when two words survive (16 of 24))
 
 **near-end-separates** - asking a record its own words back separates the subjects better than paraphrasing it. *FAILS*
   - A written: false (the verbatim band separates 26 of 55 pairs and the half-paraphrased band 38)
   - B written: false (the verbatim band separates 26 of 55 pairs and the half-paraphrased band 38)
 
 **plural-is-free** - a memory that answers a record's own words answers the plural of them too. *FAILS*
-  - A written: false (5 of 11 subjects lose more than half of their answers when the question pluralises the record's words (control 24 to 9, mcp-knowledge-graph 24 to 0, memory-lean 24 to 0, server-memory 24 to 0, server-memory 24 to 0))
-  - B written: false (5 of 11 subjects lose more than half of their answers when the question pluralises the record's words (control 24 to 9, mcp-knowledge-graph 24 to 0, memory-lean 24 to 0, server-memory 24 to 0, server-memory 24 to 0))
+  - A written: false (5 of 11 subjects lose more than half of their answers when the question pluralises the record's words (control 20 to 9, mcp-knowledge-graph 20 to 0, memory-lean 20 to 0, server-memory 20 to 0, server-memory 20 to 0))
+  - B written: false (5 of 11 subjects lose more than half of their answers when the question pluralises the record's words (control 20 to 9, mcp-knowledge-graph 20 to 0, memory-lean 20 to 0, server-memory 20 to 0, server-memory 20 to 0))
 
 **set-answers** - a subject that answers every single-record question answers every set question too. *FAILS*
   - A written: false (6 subject(s) answer every single-record question and still miss clusters (mcp-duckdb-memory-server 0 of 16, mcp-knowledge-graph 0 of 16, memory-lean 0 of 16, memory-mcp-1file 11 of 16, server-memory 0 of 16, server-memory 0 of 16))
   - B written: false (6 subject(s) answer every single-record question and still miss clusters (mcp-duckdb-memory-server 0 of 16, mcp-knowledge-graph 0 of 16, memory-lean 0 of 16, memory-mcp-1file 11 of 16, server-memory 0 of 16, server-memory 0 of 16))
 
-**longer-exam** - asking three hundred questions instead of sixty changes which pairs the corpus can separate. *FAILS*
-  - A written: false (8 pairs separated at 300 questions that were not at 60, and 0 the other way)
-  - B written: false (8 pairs separated at 300 questions that were not at 60, and 0 the other way)
+**longer-exam** - asking more questions of the same store separates pairs the short exam could not, and unsays none. *HOLDS*
+  - A written: true (2 pairs separated at 276 questions that were not at 60, and 0 the other way)
+  - B written: true (2 pairs separated at 276 questions that were not at 60, and 0 the other way)
 
 **recency-visible** - a memory that can find a record puts its current version first. *FAILS*
-  - A written: false (9 of 11 subjects never put the current record first (best: 55 of 72))
-  - B written: false (9 of 11 subjects never put the current record first (best: 55 of 72))
+  - A written: false (9 of 11 subjects never put the current record first (best: 52 of 66))
+  - B written: false (9 of 11 subjects never put the current record first (best: 52 of 66))
 
 **silent-everywhere** - the subjects that answer nothing on the authored corpora answer nothing on real text either. *FAILS*
   - A written: false (1 of 4 still answer nothing on real text (server-memory 33, server-memory 33, mcp-knowledge-graph 33 of 48 answered))
   - B written: false (1 of 4 still answer nothing on real text (server-memory 33, server-memory 33, mcp-knowledge-graph 33 of 48 answered))
 
 **silence-is-a-habit** - a subject that answers some of the unanswerable questions answers all of them. *FAILS*
-  - A written: false (5 of 11 subjects answer part of the exam's unanswerable band (control 8 of 99, mcp-duckdb-memory-server 16 of 99, memdb 98 of 99, memory-lean 12 of 99))
-  - B written: false (5 of 11 subjects answer part of the exam's unanswerable band (control 8 of 99, mcp-duckdb-memory-server 16 of 99, memdb 98 of 99, memory-lean 12 of 99))
+  - A written: false (5 of 11 subjects answer part of the exam's unanswerable band (control 8 of 98, mcp-duckdb-memory-server 16 of 98, memdb 97 of 98, memory-lean 12 of 98))
+  - B written: false (5 of 11 subjects answer part of the exam's unanswerable band (control 8 of 98, mcp-duckdb-memory-server 16 of 98, memdb 97 of 98, memory-lean 12 of 98))
 
-**exam-questions-distinct** - the exam's questions are distinct questions with one right answer each. *FAILS*
-  - A written: false (300 slots for 288 distinct questions, and 11 question text(s) two records answer equally)
-  - B written: false (300 slots for 288 distinct questions, and 11 question text(s) two records answer equally)
+**exam-questions-distinct** - the exam's questions are distinct questions with one right answer each. *HOLDS*
+  - A written: true (276 slots for 276 distinct questions, and 0 question text(s) two records answer equally)
+  - B written: true (276 slots for 276 distinct questions, and 0 question text(s) two records answer equally)
 
 **noise-is-charged** - a search pays for the unrelated records it hands back. *FAILS*
   - A written: false (the greedy matcher scores 43 and the single-record one 37, at 1.86 and 0.04 noise records per correct answer)

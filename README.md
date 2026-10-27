@@ -29,7 +29,7 @@ independently written corpora and in two phrasings, and writes the verdicts to `
 
 ```
 $ python claims.py
-**7 of the 36 claims hold in every setting measured.**
+**9 of the 36 claims hold in every setting measured.**
 ```
 
 Five survive everywhere, including the one that matters most: **memory-mcp-1file answers more
@@ -550,8 +550,8 @@ that distinction costs.
 
 The four corpora disagree, and the disagreement turned out to be one axis rather than four question sets:
 how far a question sits from the text that answers it. `distance_sweep.py` walks that axis on one fixed
-set of real records - the same 24 questions, with a third, then a half, then two thirds of their words
-taken away, down to two words and a question frame. [`DISTANCE.md`](DISTANCE.md)
+set of real records - each record asked with a third, then a half, then two thirds of its words taken
+away, down to two words and a question frame. [`DISTANCE.md`](DISTANCE.md)
 
 | band | the question keeps | of the record's long words, **measured** |
 |---|---|---|
@@ -559,28 +559,28 @@ taken away, down to two words and a question frame. [`DISTANCE.md`](DISTANCE.md)
 | d1 | two of every three | 0.71 |
 | d2 | every second | 0.56 |
 | d3 | one in three | 0.33 |
-| d4 | the first two, in a question | 0.29 |
+| d4 | the first two, in a question | 0.33 |
 
-hit@3 out of 24 questions per band:
+hit@3 out of the questions in each band, 24 per band and 16 at d4:
 
 | subject | d0 | d1 | d2 | d3 | d4 | half at |
 |---|---|---|---|---|---|---|
-| `control` | 24 | 24 | 24 | 23 | 13 | d4 |
-| `zenbrain` | 24 | 24 | 24 | 23 | **21** | d4 |
-| `memory-mcp-1file` | 24 | 24 | 22 | 20 | 18 | d4 |
+| `control` | 24 | 24 | 24 | 23 | 9 | d3 |
+| `zenbrain` | 24 | 24 | 24 | 23 | **16** | d4 |
+| `memory-mcp-1file` | 24 | 24 | 22 | 20 | 15 | d4 |
 | `memory-lean` | 24 | 24 | 24 | 23 | **0** | d3 |
-| `mcp-duckdb-memory-server` | 24 | 24 | **13** | **3** | 10 | d2 |
+| `mcp-duckdb-memory-server` | 24 | 24 | **13** | **3** | 8 | d2 |
 | `server-memory` 1.0.0 and 2.0.0 | 24 | **0** | 0 | 1 | 0 | d0 |
 | `mcp-knowledge-graph` | 24 | **0** | 0 | 1 | 0 | d0 |
-| `memento` | 11 | 12 | 14 | 12 | 13 | - |
-| `memdb` | 0 | 0 | 0 | 1 | 2 | - |
+| `memento` | 11 | 12 | 14 | 12 | 11 | - |
+| `memdb` | 0 | 0 | 0 | 1 | 0 | - |
 | `statecore-mcp` | 0 | 0 | 0 | 0 | 0 | - |
 
 **The subjects do not differ in quality; they differ in shape.** Three of them drop from a perfect 24 to
 **zero** when a third of the words are removed - they are exact-match engines, and their total failure on
 the authored corpora and their strong showing on real text are the same fact seen from two distances.
 Three hold most of the way and then fall. `memento` is flat and low at every distance, which is not a
-paraphrase problem at all. And `duckdb` is **not monotone** - 24, 24, 13, 3, then back up to 10 - because a
+paraphrase problem at all. And `duckdb` is **not monotone** - 24, 24, 13, 3, then back up to 8 of 16 - because a
 two-word query is a keyword query and it does better with less text than with the middle of a sentence.
 
 ### Where each corpus actually sat
@@ -608,7 +608,7 @@ person has ever asked.
 | d1 | 35 of 55 |
 | d2 | **38 of 55** |
 | d3 | 34 of 55 |
-| d4 | 34 of 55 |
+| d4 | 33 of 55 |
 
 The verbatim band separates **fewer** pairs than the middle of the ladder, because eight subjects tie at
 24 of 24 and a tie separates nobody. That is exactly what happened to the real corpus, where four subjects
@@ -628,25 +628,25 @@ record does not. [`MORPHOLOGY.md`](MORPHOLOGY.md)
 | band | the question | vocabulary the record lacks, **measured** |
 |---|---|---|
 | m0 | the record's own words | 0.00 |
-| m1 | every fourth long word pluralised | 0.17 |
-| m2 | every second long word pluralised | 0.40 |
+| m1 | every fourth long word pluralised | 0.14 |
+| m2 | every second long word pluralised | 0.38 |
 | m3 | every long word pluralised | 0.83 |
 
-hit@3 out of 24 per band:
+hit@3 out of 20 questions per band:
 
 | subject | m0 | m1 | m2 | m3 |
 |---|---|---|---|---|
-| `mcp-duckdb-memory-server` | 24 | 24 | 24 | **24** |
-| `memory-mcp-1file` | 23 | 23 | 23 | **23** |
-| `zenbrain` | 24 | 24 | 24 | **18** |
-| `memento` | 16 | 16 | 18 | 18 |
-| `control` | 24 | 24 | 24 | **9** |
-| `server-memory` 1.0.0 and 2.0.0 | 24 | **0** | 0 | 0 |
-| `mcp-knowledge-graph` | 24 | **0** | 0 | 0 |
-| `memory-lean` | 24 | **1** | 0 | 0 |
+| `mcp-duckdb-memory-server` | 20 | 20 | 20 | **20** |
+| `memory-mcp-1file` | 19 | 19 | 19 | **19** |
+| `zenbrain` | 20 | 20 | 20 | **15** |
+| `memento` | 12 | 12 | 14 | 14 |
+| `control` | 20 | 20 | 20 | **9** |
+| `server-memory` 1.0.0 and 2.0.0 | 20 | **0** | 0 | 0 |
+| `mcp-knowledge-graph` | 20 | **0** | 0 | 0 |
+| `memory-lean` | 20 | **1** | 0 | 0 |
 
 **Changing two letters on one word in four is enough to erase four subjects completely.** `server-memory`,
-`mcp-knowledge-graph` and `memory-lean` go from a perfect 24 at m0 to zero at m1 — they match substrings and
+`mcp-knowledge-graph` and `memory-lean` go from a perfect 20 at m0 to zero at m1 — they match substrings and
 nothing else. `duckdb` and the leader hold all the way, `zenbrain` loses a quarter, and the positive
 control — which is also a substring matcher — survives m2 and falls to nine at m3.
 
@@ -659,7 +659,7 @@ retrieval is a string comparison.
 | sweep | of the record, in the question | of the question, in the record |
 |---|---|---|
 | distance, d0 to d4 | 1.00 down to 0.29 | **1.00 at every band** |
-| morphology, m0 to m3 | **1.00 at every band** | 1.00 down to 0.17 |
+| morphology, m0 to m3 | **1.00 at every band** | 1.00 down to 0.18 |
 
 Neither sweep alone is what a person writes, and the two failure modes they isolate are different: losing
 the record's words is a recall problem, using only the record's own words is a normalisation problem. A
@@ -712,46 +712,60 @@ ever ingest.
 
 `band.py` has been quoting prices for three phases — 371 questions for the leader against the control, 679
 against zenbrain, 11,825 on corpus B — and none of them had ever been paid, so the arithmetic had never
-been checked against an experiment. `exam_size.py` pays one of them at a fifth of the size.
+been checked against an experiment. `exam_size.py` pays one of them at a little over four times the size.
 [`EXAM-SIZE.md`](EXAM-SIZE.md)
 
 **The store is identical to the sixty-question authorless corpus.** Same 72 real records, already ingested;
 only the question count changes — each record asked verbatim, with a third of its words gone, and with half
 of them gone, plus a drawn absent band.
 
-| subject | 300 questions | 60 questions |
+| subject | 276 questions | 60 questions |
 |---|---|---|
-| `control` | **292 of 300** | 60 of 60 |
-| `memory-lean` | **288 of 300** | 59 of 60 |
-| `mcp-duckdb-memory-server` | **251 of 300** | 59 of 60 |
-| `zenbrain` | **200 of 300** | 48 of 60 |
-| `memory-mcp-1file` | **199 of 300** | 47 of 60 |
-| `mcp-knowledge-graph`, `server-memory` ×2 | **168 of 300** | 45 of 60 |
-| `statecore-mcp` | **100 of 300** | 12 of 60 |
-| `memento` | **88 of 300** | 23 of 60 |
-| `memdb` | **2 of 300** | 0 of 60 |
+| `control` | **268 of 276** | 60 of 60 |
+| `memory-lean` | **264 of 276** | 59 of 60 |
+| `mcp-duckdb-memory-server` | **231 of 276** | 59 of 60 |
+| `zenbrain` | **178 of 276** | 48 of 60 |
+| `memory-mcp-1file` | **178 of 276** | 47 of 60 |
+| `mcp-knowledge-graph`, `server-memory` ×2 | **160 of 276** | 45 of 60 |
+| `statecore-mcp` | **98 of 276** | 12 of 60 |
+| `memento` | **72 of 276** | 23 of 60 |
+| `memdb` | **2 of 276** | 0 of 60 |
 
 | exam | pairs separated |
 |---|---|
 | 60 questions | **41 of 55** |
-| 300 questions | **49 of 55** |
+| 276 questions | **43 of 55** |
 
-**Eight pairs that were ties became separations**, five of them at p = 0.000: `control` against `duckdb` and
-against the leader, `duckdb` against `memory-lean`, `memory-lean` against the leader. That is the power
-analysis working exactly as advertised — those pairs had a real difference and the short exam could not see
-it.
+**Two pairs that were ties became separations**, both at p = 0.000: `control` against `duckdb`, and `duckdb`
+against `memory-lean`. That is the power analysis working as advertised — those pairs had a real difference
+and the short exam could not see it. It is fewer than the eight the first version of this exam found, and the
+next paragraph says why.
 
 **And the prediction that mattered was that one tie would survive.** `control` against `memory-lean` was
-1-0 in sixty and is **11-7 in three hundred** — exact p = 0.48. Five times the questions did not break it,
-which is what a price of a few hundred questions predicts: the exam grew, the margin did not. All three
-predictions written before the run held.
+1-0 in sixty and is **11-7 in 276** — exact p = 0.48. The longer exam did not break it, which is what a price
+of a few hundred questions predicts: the exam grew, the margin did not. All three predictions written before
+the run held.
+
+**The exam was 300 slots for 288 distinct questions, and 24 of those slots were not fair questions.** Two
+packages can carry the same description word for word — a fork and its original, a client and a server
+generated from one template — so the same words were asked twice with a different expected record, and a
+subject returning the other one of the two was graded wrong for being right. `questions.py` now holds the
+rule that drops every copy of a question two records answer equally. The four generated corpora were rebuilt
+with it and lost 54 slots between them, the exam 24, and **no subject was re-measured**: a retained question
+is byte-identical to the one already asked, so its rows stand, and the rows measured against a dropped
+question are excluded from every count rather than rescued.
 
 Honesty about what this costs: **three questions about one record are not three independent draws**, so the
-exam carries less than three hundred questions' worth of information. A larger store was tried first and
-abandoned — at 282 records the control alone needed nine minutes for 300 questions, because it reads the
-whole store on every search. Correlated questions make separation *harder*, so a tie broken here is real
-evidence and a tie that survives here is weaker evidence than 300 suggests. The ledger's `longer-exam`
-claim **FAILS** on the eight separations.
+exam carries less than 276 questions' worth of information. A larger store was tried first and abandoned —
+at 282 records the control alone needed nine minutes for three hundred questions, because it reads the whole
+store on every search. Correlated questions make separation *harder*, so a tie broken here is real evidence
+and a tie that survives here is weaker evidence than 276 suggests.
+
+The ledger's `longer-exam` claim **HOLDS**, and it took a correction to get there: its sentence said a longer
+exam "changes which pairs the corpus can separate" while its code reported the opposite — true only when
+nothing changed — so for two phases it printed the word FAILS beside a measurement that satisfied its own
+wording. Sentence and code now agree on the reading the reports publish: more questions separate the pairs
+the short exam could not, and unsay no separation the short one found.
 
 ## Does a memory know which version of a fact is current
 
@@ -765,18 +779,18 @@ body, and each question asks with the description both carry. The current answer
 
 | subject | current, alone | stale, alone | both returned | **current first** |
 |---|---|---|---|---|
-| `zenbrain` | 5 | 0 | 67 | **55 of 72** |
-| `memory-mcp-1file` | 2 | 2 | 68 | **29 of 72** |
-| `control`, `duckdb`, `memory-lean`, `mcp-knowledge-graph`, `server-memory` ×2 | 0 | 6 | 66 | **0 of 72** |
-| `memento` | 0 | 17 | 18 | **0 of 72** |
-| `memdb`, `statecore-mcp` | 0 | 0 | 0 | **0 of 72** |
+| `zenbrain` | 3 | 0 | 63 | **52 of 66** |
+| `memory-mcp-1file` | 0 | 0 | 66 | **28 of 66** |
+| `control`, `duckdb`, `memory-lean`, `mcp-knowledge-graph`, `server-memory` ×2 | 0 | 0 | 66 | **0 of 66** |
+| `memento` | 0 | 13 | 18 | **0 of 66** |
+| `memdb`, `statecore-mcp` | 0 | 0 | 0 | **0 of 66** |
 
-**Nine of the eleven subjects never put the current record first — not once in seventy-two questions.**
+**Nine of the eleven subjects never put the current record first — not once in sixty-six questions.**
 They return *both* versions nearly every time and rank the **superseded one ahead of the one that replaced
 it**, because the two bodies are almost identical and nothing in either says which is later. An agent
 reading a single result reads the fact that was replaced.
 
-Across the whole table 55 answers came from the superseded record alone and 549 returned both. `zenbrain`
+Across the whole table 13 answers came from the superseded record alone and 543 returned both. `zenbrain`
 is the only subject with a recency preference worth the name, and it gets it right about three times in
 four. The ledger's `recency-visible` claim **FAILS** for nine of eleven.
 
@@ -896,24 +910,27 @@ tell those two apart as different kinds of thing. This column can. The ledger's 
 given - the answerable ones and the twelve with no answer - handed back 144 records, got 2 right, and
 **138 of the rest share neither a name nor three words with what was asked for.** Its score is 2.
 
-### What the exam's three hundred questions actually ask
+### What the exam actually asks
 
 The precision axis found something about the exam that nothing had checked. `validate_corpus.py` had never
 been pointed at `large_corpus.json`; it now has an `--exam` mode for the three rules an exam
 legitimately breaks — band names, one record asked at several distances, more than one right answer — and
 under it the exam is charged with **12 duplicated questions and 8 questions half covered by one record**.
+The first twelve are fixed; the second eight are not defects, and the difference between the two is the
+finding.
 
-- **300 slots for 288 distinct questions.** Two packages can share a description word for word — a fork and
-  its original, a client and a server built from one template — so the same words are asked twice with a
-  different expected record, and a subject that returns the other one is graded wrong for being right. The
-  exam's totals understate two of the eleven subjects.
+- **300 slots for 288 distinct questions**, every one of the 24 surplus slots a question two records answer
+  equally. Those are dropped at build time now: `questions.py` holds the rule, the exam is 276 questions,
+  and the four generated corpora lost 54 slots between them. A subject that returned the sibling used to be
+  graded wrong for being right, and the exam's totals understated two of the eleven.
 - **The 8 absent charges are word-overlap alarms, not unlabelled answers.** `obliterator` is not a path
   library. What the rule detects is that a word-overlap matcher will answer the question, and the positive
   control answered exactly those. **A checker and a subject that share one idea cannot check each other**,
   which is why the absence of a semantic check is stated in `PRECISION.md` instead of being implied away.
 
-Both are pinned in `corpus-known.json`: a new defect fails the build, a pinned one that stops happening is
-reported as drift.
+The eight absent charges stay pinned in `corpus-known.json` — a new defect fails the build, a pinned one that
+stops happening is reported as drift — and `python questions.py` now runs in CI, so a corpus that asks a
+question twice fails the build instead of quietly becoming the sample size.
 
 `silence-is-a-habit`, `exam-questions-distinct` and `noise-is-charged` all **FAIL** in the ledger,
 on all four settings. Three claims added, and none of them survived contact.

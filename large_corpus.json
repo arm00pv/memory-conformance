@@ -292,36 +292,6 @@
  ],
  "queries": [
   {
-   "query": "State-of-the-art Machine Learning for the web. Run 🤗 Transformers directly in your browser, with no need for a server!",
-   "expect": "@huggingface/transformers",
-   "difficulty": "d0"
-  },
-  {
-   "query": "State-of-the-art Machine for the web. Run 🤗 Transformers directly in browser, with no for a server!",
-   "expect": "@huggingface/transformers",
-   "difficulty": "d3"
-  },
-  {
-   "query": "State-of-the-art Learning for the web. Run 🤗 directly in browser, no need for a",
-   "expect": "@huggingface/transformers",
-   "difficulty": "d2"
-  },
-  {
-   "query": "Store information about any JS value in a side channel. Uses WeakMap if available.",
-   "expect": "side-channel-weakmap",
-   "difficulty": "d0"
-  },
-  {
-   "query": "Store information any JS value in a side Uses WeakMap if",
-   "expect": "side-channel-weakmap",
-   "difficulty": "d3"
-  },
-  {
-   "query": "Store about any JS in a side Uses if available.",
-   "expect": "side-channel-weakmap",
-   "difficulty": "d2"
-  },
-  {
    "query": "Auto registering package. Exists to support bundlers without exports support such as webpack 4.",
    "expect": "chart.js-auto",
    "difficulty": "d0"
@@ -447,16 +417,6 @@
    "difficulty": "d0"
   },
   {
-   "query": "Model Context implementation for TypeScript - package",
-   "expect": "@modelcontextprotocol/client",
-   "difficulty": "d3"
-  },
-  {
-   "query": "Model Protocol for TypeScript - package",
-   "expect": "@modelcontextprotocol/client",
-   "difficulty": "d2"
-  },
-  {
    "query": "MCP server for enabling memory for Claude through a knowledge graph",
    "expect": "@modelcontextprotocol/server-memory",
    "difficulty": "d0"
@@ -502,21 +462,6 @@
    "difficulty": "d2"
   },
   {
-   "query": "fs read and write streams based on minipass",
-   "expect": "@isaacs/fs-minipass",
-   "difficulty": "d0"
-  },
-  {
-   "query": "fs read and write based on minipass",
-   "expect": "@isaacs/fs-minipass",
-   "difficulty": "d3"
-  },
-  {
-   "query": "fs read and streams on minipass",
-   "expect": "@isaacs/fs-minipass",
-   "difficulty": "d2"
-  },
-  {
    "query": "Isomorphic fetch() in Node, Deno and Cloudflare Workers",
    "expect": "@libsql/isomorphic-fetch",
    "difficulty": "d0"
@@ -529,36 +474,6 @@
   {
    "query": "Isomorphic in Node, and Cloudflare",
    "expect": "@libsql/isomorphic-fetch",
-   "difficulty": "d2"
-  },
-  {
-   "query": "State-of-the-art Machine Learning for the web. Run 🤗 Transformers directly in your browser, with no need for a server!",
-   "expect": "@xenova/transformers",
-   "difficulty": "d0"
-  },
-  {
-   "query": "State-of-the-art Machine for the web. Run 🤗 Transformers directly in browser, with no for a server!",
-   "expect": "@xenova/transformers",
-   "difficulty": "d3"
-  },
-  {
-   "query": "State-of-the-art Learning for the web. Run 🤗 directly in browser, no need for a",
-   "expect": "@xenova/transformers",
-   "difficulty": "d2"
-  },
-  {
-   "query": "Store information about any JS value in a side channel. Uses WeakMap if available.",
-   "expect": "side-channel",
-   "difficulty": "d0"
-  },
-  {
-   "query": "Store information any JS value in a side Uses WeakMap if",
-   "expect": "side-channel",
-   "difficulty": "d3"
-  },
-  {
-   "query": "Store about any JS in a side Uses if available.",
-   "expect": "side-channel",
    "difficulty": "d2"
   },
   {
@@ -687,16 +602,6 @@
    "difficulty": "d0"
   },
   {
-   "query": "Model Context implementation for TypeScript - package",
-   "expect": "@modelcontextprotocol/server",
-   "difficulty": "d3"
-  },
-  {
-   "query": "Model Protocol for TypeScript - package",
-   "expect": "@modelcontextprotocol/server",
-   "difficulty": "d2"
-  },
-  {
    "query": "MCP server enabling persistent memory for AI models through a local knowledge graph",
    "expect": "mcp-knowledge-graph",
    "difficulty": "d0"
@@ -739,21 +644,6 @@
   {
    "query": "AWS credential that STS assumeRole for AWS credentials",
    "expect": "@aws-sdk/credential-provider-web-identity",
-   "difficulty": "d2"
-  },
-  {
-   "query": "fs read and write streams based on minipass",
-   "expect": "fs-minipass",
-   "difficulty": "d0"
-  },
-  {
-   "query": "fs read and write based on minipass",
-   "expect": "fs-minipass",
-   "difficulty": "d3"
-  },
-  {
-   "query": "fs read and streams on minipass",
-   "expect": "fs-minipass",
    "difficulty": "d2"
   },
   {
@@ -1472,16 +1362,6 @@
    "difficulty": "absent"
   },
   {
-   "query": "This is a stub package.json for old bundlers",
-   "expect": null,
-   "difficulty": "absent"
-  },
-  {
-   "query": "This is a stub package.json for old bundlers",
-   "expect": null,
-   "difficulty": "absent"
-  },
-  {
    "query": "Create and parse Content-Disposition header",
    "expect": null,
    "difficulty": "absent"
@@ -1793,5 +1673,19 @@
   }
  ],
  "authored_by": "node_modules",
- "authored_at": "not applicable - no author"
+ "authored_at": "not applicable - no author",
+ "dropped": [
+  "Model Context implementation for TypeScript - package",
+  "Model Protocol for TypeScript - package",
+  "State-of-the-art Learning for the web. Run 🤗 directly in browser, no need for a",
+  "State-of-the-art Machine Learning for the web. Run 🤗 Transformers directly in your browser, with no need for a server!",
+  "State-of-the-art Machine for the web. Run 🤗 Transformers directly in browser, with no for a server!",
+  "Store about any JS in a side Uses if available.",
+  "Store information about any JS value in a side channel. Uses WeakMap if available.",
+  "Store information any JS value in a side Uses WeakMap if",
+  "This is a stub package.json for old bundlers",
+  "fs read and streams on minipass",
+  "fs read and write based on minipass",
+  "fs read and write streams based on minipass"
+ ]
 }

@@ -27,6 +27,8 @@ import os
 import re
 import sys
 
+import questions
+
 HERE = os.path.dirname(os.path.abspath(__file__))
 os.chdir(HERE)
 BT = chr(96)
@@ -82,18 +84,23 @@ def build():
     step = max(1, len(descs) // PER_BAND)
     picked = descs[::step][:PER_BAND]
 
-    queries, overlap = [], dict((b, []) for b in BANDS)
+    drafts = []
     for name, desc in picked:
-        have = set(long_words(desc))
         for band in BANDS:
             text = inflect(desc, STRIDE[band])
-            want = set(long_words(text))
-            if not want:
-                continue
-            queries.append({"query": text, "expect": name, "difficulty": band})
-            # THE COORDINATE BEING MOVED: the share of the question's long words that the record does not
-            # contain. At m0 it should be zero; at m3 it should be everything the pluraliser could change.
-            overlap[band].append(1.0 - len(want & have) / float(len(want)))
+            if long_words(text):
+                drafts.append({"query": text, "expect": name, "difficulty": band})
+    # THE SAME RULE AS EVERY OTHER CORPUS: a question two records answer equally is not a question. Two
+    # packages with one description collide at every band, pluralised or not.
+    queries, repeated = questions.once(drafts)
+    desc_of = dict(picked)
+    overlap = dict((b, []) for b in BANDS)
+    for q in queries:
+        want = set(long_words(q["query"]))
+        have = set(long_words(desc_of[q["expect"]]))
+        # THE COORDINATE BEING MOVED: the share of the question's long words that the record does not
+        # contain. At m0 it should be zero; at m3 it should be everything the pluraliser could change.
+        overlap[q["difficulty"]].append(1.0 - len(want & have) / float(len(want)))
 
     doc = {"why": ("The real package descriptions asked with a growing share of their long words "
                    "pluralised. The transformation is a three-rule pluraliser applied by position, so the "
@@ -101,10 +108,14 @@ def build():
                    "cannot produce."),
            "records": records, "queries": queries,
            "authored_by": "node_modules",
-           "authored_at": "not applicable - no author"}
+           "authored_at": "not applicable - no author",
+           "dropped": sorted(repeated)}
     with open(OUT, "w", encoding="utf-8", newline=chr(10)) as fh:
         fh.write(json.dumps(doc, ensure_ascii=False, indent=1) + chr(10))
     print("%d records, %d questions" % (len(records), len(queries)))
+    if repeated:
+        print("  dropped %d question(s) that two records answer equally: %s"
+              % (len(repeated), "; ".join(sorted(repeated))[:160]))
     for band in BANDS:
         s = overlap[band]
         if s:
@@ -141,7 +152,14 @@ def rows_of(slug):
     if not os.path.isfile(path):
         return None
     with open(path, encoding="utf-8") as fh:
-        return json.load(fh).get("rows") or None
+        rows = json.load(fh).get("rows") or None
+    if not rows:
+        return None
+    # ROWS ABOUT A QUESTION THE CORPUS NO LONGER ASKS ARE NOT MEASUREMENTS. Every corpus here is rebuilt
+    # when somebody finds a question that two records answer equally, and the old rows for the questions it
+    # dropped would otherwise keep counting in this table as though the corpus still asked them.
+    live = questions.live(OUT)
+    return [r for r in rows if r["query"] in live] or None
 
 
 def curve(rows):
@@ -200,7 +218,7 @@ def report():
     add("")
     add("## The curves")
     add("")
-    add("hit@3 out of 24 questions per band. A subject that stems, or that indexes meaning rather than")
+    add("hit@3 out of the questions in each band. A subject that stems, or that indexes meaning rather than")
     add("characters, should hold. A subject that matches substrings should fall away immediately.")
     add("")
     add("| subject | " + " | ".join(BANDS) + " | first drop |")

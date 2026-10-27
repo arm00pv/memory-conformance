@@ -163,6 +163,19 @@ jobs:
           grep -q "which version of a fact is current" SUPERSESSION.md
           grep -q "current first" SUPERSESSION.md
 
+      # A QUESTION TWO RECORDS ANSWER EQUALLY IS NOT A QUESTION. Four corpora here are generated from real
+      # package descriptions, and two packages can carry the same description word for word - so the same
+      # words were asked twice with a different expected record, and a subject returning the other one was
+      # graded wrong for being right. The exam alone did that in 24 of its 300 slots. questions.py holds the
+      # rule once; validate_corpus.py --exam checks the generated corpora for everything else it can see.
+      - name: every corpus must ask each question once, and a generated corpus must still be sound
+        run: |
+          python questions.py
+          python validate_corpus.py distance_corpus.json --exam
+          python validate_corpus.py morph_corpus.json --exam
+          python validate_corpus.py supersede_corpus.json --exam
+          python validate_corpus.py large_corpus.json --exam --baseline=corpus-known.json
+
       # WHAT COMES BACK BESIDES THE ANSWER. Every table in this repository counts whether the right record
       # arrived and none counts what arrived with it, so a subject that answers more questions by handing back
       # more records has been paid for the hit and never charged for the volume. The silence bill needs no

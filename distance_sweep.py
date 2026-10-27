@@ -31,6 +31,8 @@ import os
 import subprocess
 import sys
 
+import questions
+
 HERE = os.path.dirname(os.path.abspath(__file__))
 os.chdir(HERE)
 BT = chr(96)
@@ -102,28 +104,38 @@ def build():
     step = max(1, len(descs) // PER_BAND)
     picked = descs[::step][:PER_BAND]
 
-    queries, shares = [], dict((b, []) for b in BANDS)
+    drafts = []
     for name, desc in picked:
-        have = set(long_words(desc))
         for band, text in forms(desc).items():
-            want = set(long_words(text))
-            if not want:
-                continue
-            queries.append({"query": text, "expect": name, "difficulty": band})
-            # THE SHARE IS OF THE RECORD, NOT OF THE QUESTION. A question built by deleting words from a
-            # record shares every one of its own words with that record by construction, so measuring the
-            # other way round reports 1.00 at every distance and describes nothing.
-            shares[band].append(len(want & have) / float(len(have)))
+            if long_words(text):
+                drafts.append({"query": text, "expect": name, "difficulty": band})
+    # A QUESTION TWO RECORDS ANSWER EQUALLY IS NOT A QUESTION. At the far distances the forms collapse -
+    # "tell me about AWS credential provider" is four packages at once - and questions.py drops every copy
+    # rather than grading either answer wrong.
+    queries, repeated = questions.once(drafts)
+    desc_of = dict(picked)
+    shares = dict((b, []) for b in BANDS)
+    for q in queries:
+        want = set(long_words(q["query"]))
+        have = set(long_words(desc_of[q["expect"]]))
+        # THE SHARE IS OF THE RECORD, NOT OF THE QUESTION. A question built by deleting words from a
+        # record shares every one of its own words with that record by construction, so measuring the
+        # other way round reports 1.00 at every distance and describes nothing.
+        shares[q["difficulty"]].append(len(want & have) / float(len(have)))
 
     doc = {"why": ("The real package descriptions, asked at five graduated distances. Each form keeps a "
                    "declared fraction of the record's own long words, applied by rule, so the only thing "
                    "that varies between bands is how much of the answer survives into the question."),
            "records": records, "queries": queries,
            "authored_by": "node_modules",
-           "authored_at": "not applicable - no author"}
+           "authored_at": "not applicable - no author",
+           "dropped": sorted(repeated)}
     with open(OUT, "w", encoding="utf-8", newline=chr(10)) as fh:
         fh.write(json.dumps(doc, ensure_ascii=False, indent=1) + chr(10))
     print("%d records, %d questions" % (len(records), len(queries)))
+    if repeated:
+        print("  dropped %d question(s) that two records answer equally: %s"
+              % (len(repeated), "; ".join(sorted(repeated))[:160]))
     for band in BANDS:
         s = shares[band]
         if s:
@@ -160,7 +172,14 @@ def rows_of(slug):
     if not os.path.isfile(path):
         return None
     with open(path, encoding="utf-8") as fh:
-        return json.load(fh).get("rows") or None
+        rows = json.load(fh).get("rows") or None
+    if not rows:
+        return None
+    # ROWS ABOUT A QUESTION THE CORPUS NO LONGER ASKS ARE NOT MEASUREMENTS. Every corpus here is rebuilt
+    # when somebody finds a question that two records answer equally, and the old rows for the questions it
+    # dropped would otherwise keep counting in this table as though the corpus still asked them.
+    live = questions.live(OUT)
+    return [r for r in rows if r["query"] in live] or None
 
 
 def band_shares():
@@ -332,7 +351,8 @@ def report():
         add("")
     add("## The curves")
     add("")
-    add("hit@3 out of 24 questions per band, and the band at which each subject stops answering half of what")
+    add("hit@3 out of the questions in each band, and the band at which each subject stops answering half of")
+    add("what it")
     add("it answered verbatim.")
     add("")
     head = "| subject | " + " | ".join("%s" % b for b in BANDS) + " | half at |"

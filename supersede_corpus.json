@@ -580,18 +580,6 @@
  ],
  "queries": [
   {
-   "query": "State-of-the-art Machine Learning for the web. Run 🤗 Transformers directly in your browser, with no need for a server!",
-   "expect": "@huggingface/transformers@4",
-   "stale": "@huggingface/transformers@3",
-   "difficulty": "current"
-  },
-  {
-   "query": "Store information about any JS value in a side channel. Uses WeakMap if available.",
-   "expect": "side-channel-weakmap@2",
-   "stale": "side-channel-weakmap@1",
-   "difficulty": "current"
-  },
-  {
    "query": "Auto registering package. Exists to support bundlers without exports support such as webpack 4.",
    "expect": "chart.js-auto@0.0.2",
    "stale": "chart.js-auto@0.0.1",
@@ -664,27 +652,9 @@
    "difficulty": "current"
   },
   {
-   "query": "fs read and write streams based on minipass",
-   "expect": "@isaacs/fs-minipass@5",
-   "stale": "@isaacs/fs-minipass@4",
-   "difficulty": "current"
-  },
-  {
    "query": "Isomorphic fetch() in Node, Deno and Cloudflare Workers",
    "expect": "@libsql/isomorphic-fetch@1",
    "stale": "@libsql/isomorphic-fetch@0",
-   "difficulty": "current"
-  },
-  {
-   "query": "State-of-the-art Machine Learning for the web. Run 🤗 Transformers directly in your browser, with no need for a server!",
-   "expect": "@xenova/transformers@3",
-   "stale": "@xenova/transformers@2",
-   "difficulty": "current"
-  },
-  {
-   "query": "Store information about any JS value in a side channel. Uses WeakMap if available.",
-   "expect": "side-channel@2",
-   "stale": "side-channel@1",
    "difficulty": "current"
   },
   {
@@ -757,12 +727,6 @@
    "query": "AWS credential provider that calls STS assumeRole for temporary AWS credentials",
    "expect": "@aws-sdk/credential-provider-web-identity@4",
    "stale": "@aws-sdk/credential-provider-web-identity@3",
-   "difficulty": "current"
-  },
-  {
-   "query": "fs read and write streams based on minipass",
-   "expect": "fs-minipass@3",
-   "stale": "fs-minipass@2",
    "difficulty": "current"
   },
   {
@@ -1013,5 +977,10 @@
   }
  ],
  "authored_by": "node_modules",
- "authored_at": "not applicable - no author"
+ "authored_at": "not applicable - no author",
+ "dropped": [
+  "State-of-the-art Machine Learning for the web. Run 🤗 Transformers directly in your browser, with no need for a server!",
+  "Store information about any JS value in a side channel. Uses WeakMap if available.",
+  "fs read and write streams based on minipass"
+ ]
 }

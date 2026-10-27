@@ -533,12 +533,14 @@ def c_set_answers(ctx, corpus, shape):
 
 
 def c_longer_exam(ctx, corpus, shape):
-    """Asking more questions of the same store decides the pairs the short exam could not.
+    """Asking more questions of the same store separates pairs the short exam could not, and unsays none.
 
-    THE PRICE THE POWER ANALYSIS HAS BEEN QUOTING, PAID. band.py has said for three phases that a near-tie
-    would separate at some hundreds of questions. This is that exam: the same 72 records, three hundred
-    questions instead of sixty. If the near-ties survive it the price was right; if they break, the price
-    was the thing that was wrong.
+    THE PRICE THE POWER ANALYSIS HAS BEEN QUOTING, PAID, AND A SENTENCE THAT SAID THE OPPOSITE OF ITS OWN CODE.
+    This claim used to read "asking three hundred questions instead of sixty changes which pairs the corpus
+    can separate" while returning true only when NOTHING changed - so for two phases the ledger printed FAILS
+    beside a measurement that satisfied the sentence it was printed under. The sentence and the code now say
+    the same thing, and it is the thing the reports publish: the longer exam separates more pairs, and it
+    never unsays a separation the short one found.
     """
     import exam_size
     big_rows = exam_size.totals("-large")
@@ -552,7 +554,7 @@ def c_longer_exam(ctx, corpus, shape):
         return None
     broke = [k for k in common if sep_big[k]["separated"] and not sep_small[k]["separated"]]
     lost = [k for k in common if sep_small[k]["separated"] and not sep_big[k]["separated"]]
-    return (not broke and not lost,
+    return (bool(broke) and not lost,
             "%d pairs separated at %d questions that were not at %d, and %d the other way"
             % (len(broke), big_rows[0][1], small_rows[0][1], len(lost)))
 
@@ -1020,8 +1022,8 @@ CLAIMS = [    ("most-hits", "memory-mcp-1file answers more answerable questions 
      c_plural_is_free, False),
     ("set-answers", "a subject that answers every single-record question answers every set question too.",
      c_set_answers, False),
-    ("longer-exam", "asking three hundred questions instead of sixty changes which pairs the corpus can"
-     " separate.", c_longer_exam, False),
+    ("longer-exam", "asking more questions of the same store separates pairs the short exam could not, and"
+     " unsays none.", c_longer_exam, False),
     ("recency-visible", "a memory that can find a record puts its current version first.",
      c_recency_visible, False),
     ("silent-everywhere", "the subjects that answer nothing on the authored corpora answer nothing on"
