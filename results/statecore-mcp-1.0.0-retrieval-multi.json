@@ -1,0 +1,883 @@
+{
+  "adapter": "reference",
+  "summary": {
+    "all": {
+      "n": 32,
+      "hit1": 0,
+      "hit3": 0,
+      "hit1_keyword": 0,
+      "hit3_keyword": 0,
+      "runs": [
+        0,
+        0,
+        0
+      ]
+    }
+  },
+  "rows": [
+    {
+      "query": "which records mention browser directly learning machine need server state transformers with your",
+      "expect": "@huggingface/transformers",
+      "difficulty": "multi",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "record mention browser directly learning machine server state transformer",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "which records mention about channel information side store value",
+      "expect": "side-channel",
+      "difficulty": "multi",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "record mention channel information side store value",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "which records mention bundlers exists exports package such support webpack without",
+      "expect": "chart.js-auto",
+      "difficulty": "multi",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "record mention bundler exist export package support webpack",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "which records mention columns display number required string visual width",
+      "expect": "string-width",
+      "difficulty": "multi",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "record mention column display number required string visual width",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "which records mention browser client javascript native node react",
+      "expect": "@aws-sdk/client-ecs",
+      "difficulty": "multi",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "record mention browser client javascript native node react",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "which records mention based minipass read streams write",
+      "expect": "@isaacs/fs-minipass",
+      "difficulty": "multi",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "record mention based minipass read stream write",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "which records mention cloudflare deno isomorphic node workers",
+      "expect": "@libsql/isomorphic-fetch",
+      "difficulty": "multi",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "record mention cloudflare deno isomorphic node worker",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "which records mention bash braces javascript support with",
+      "expect": "braces",
+      "difficulty": "multi",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "record mention bash brace javascript support",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "which records mention bundlers json package stub this",
+      "expect": "compromise-one",
+      "difficulty": "multi",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "record mention bundler json package stub",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "which records mention across memory server sessions that",
+      "expect": "crbro-memory",
+      "difficulty": "multi",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "record mention across memory server session",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "which records mention calculating fast function string width",
+      "expect": "fast-string-truncated-width",
+      "difficulty": "multi",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "record mention calculating fast function string width",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "which records mention async avoid duplication flight requests",
+      "expect": "inflight",
+      "difficulty": "multi",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "record mention async avoid duplication flight request",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "which records mention hasna open shared source",
+      "expect": "@hasna/contracts",
+      "difficulty": "multi",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "record mention hasna open shared source",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "which records mention arrays implementation minimal number",
+      "expect": "@protobufjs/base64",
+      "difficulty": "multi",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "record mention array implementation minimal number",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "which records mention content create header parse",
+      "expect": "content-disposition",
+      "difficulty": "multi",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "record mention content create header parse",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "which records mention assignment back define object",
+      "expect": "define-data-property",
+      "difficulty": "multi",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "record mention assignment back define object",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "Check if the character represented by a given Unicode code point is fullwidth",
+      "expect": "is-fullwidth-code-point",
+      "difficulty": "single",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "check character represented given unicode code point fullwidth",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "AWS credential provider that sources credential_process from ~/.aws/credentials and ~/.aws/config",
+      "expect": "@aws-sdk/credential-provider-process",
+      "difficulty": "single",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "aws credential provider source credential process aws credential aws config",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "Universal memory system for AI agents - CLI + MCP server + library API",
+      "expect": "@hasna/mementos",
+      "difficulty": "single",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "universal memory system ai agent cli mcp server library api",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "MCP memory server using SQLite + FTS5 + sqlite-vec",
+      "expect": "@iachilles/memento",
+      "difficulty": "single",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "mcp memory server sqlite fts5 sqlite vec",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "Hrana client for connecting to sqld over HTTP or WebSocket",
+      "expect": "@libsql/hrana-client",
+      "difficulty": "single",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "hrana client connecting sqld http websocket",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "A library for efficiently walking a directory recursively",
+      "expect": "@nodelib/fs.walk",
+      "difficulty": "single",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "library efficiently walking directory recursively",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "A family of specs for interoperable TypeScript",
+      "expect": "@standard-schema/spec",
+      "difficulty": "single",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "family spec interoperable typescript",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "7-layer memory system for AI agents. Pluggable storage, embeddings, and LLM providers. Built on @zensation/algorithms.",
+      "expect": "@zensation/core",
+      "difficulty": "single",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "7 layer memory system ai agent pluggable storage embedding llm provider built zensation algorithm",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "Very powerful CLI arguments parser. Native port of argparse - python's options parsing library",
+      "expect": "argparse",
+      "difficulty": "single",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "powerful cli argument parser native port argparse python s option parsing library",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "A pure javascript BMP encoder and decoder",
+      "expect": "bmp-js",
+      "difficulty": "single",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "pure javascript bmp encoder decoder",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "Simple HTML5 charts using the canvas element.",
+      "expect": "chart.js",
+      "difficulty": "single",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "simple html5 chart canva element",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "Cross platform child_process#spawn and child_process#spawnSync",
+      "expect": "cross-spawn",
+      "difficulty": "single",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "cross platform child process spawn child process spawnsync",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "If available, the `Object.prototype.__proto__` accessor and mutator, call-bound",
+      "expect": "dunder-proto",
+      "difficulty": "single",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "available object prototype proto accessor mutator call bound",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "ES Object-related atoms: Object, ToObject, RequireObjectCoercible",
+      "expect": "es-object-atoms",
+      "difficulty": "single",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "es object related atom object toobject requireobjectcoercible",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "Basic IP rate-limiting middleware for Express. Use to limit repeated requests to public APIs and/or endpoints such as password reset.",
+      "expect": "express-rate-limit",
+      "difficulty": "single",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "basic ip rate limiting middleware express limit repeated request public api endpoint password reset",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "query": "Fill in a range of numbers or letters, optionally passing an increment or `step` to use, or create a regex-compatible range with `options.toRegex`",
+      "expect": "fill-range",
+      "difficulty": "single",
+      "returned": [],
+      "hit1": false,
+      "hit3": false,
+      "answered": false,
+      "error": null,
+      "keyword": "fill range number letter optionally passing increment step create regex compatible range option toregex",
+      "returned_keyword": [],
+      "hit1_keyword": false,
+      "hit3_keyword": false,
+      "answered_keyword": false,
+      "per_run": {
+        "hit3": [
+          false,
+          false,
+          false
+        ],
+        "answered": [
+          false,
+          false,
+          false
+        ]
+      }
+    }
+  ]
+}

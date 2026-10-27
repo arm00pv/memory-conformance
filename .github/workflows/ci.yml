@@ -129,6 +129,17 @@ jobs:
           grep -q "Does a memory survive a plural" MORPHOLOGY.md
           grep -q "The two coordinates together" MORPHOLOGY.md
 
+      # A QUESTION WITH THREE ANSWERS IS NOT THREE QUESTIONS. Every metric here has been single-answer;
+      # this report scores required sets from the returned list the rows have always carried.
+      - name: a question with more than one right answer must be scored as a set
+        run: |
+          python multi_query.py --report > /tmp/multi.txt
+          cat /tmp/multi.txt
+          test -s MULTI-RECORD.md
+          grep -q "Questions with more than one right answer" MULTI-RECORD.md
+          grep -q "required-set recall" MULTI-RECORD.md
+          grep -q "answer every cluster in full" MULTI-RECORD.md
+
       - name: a tie must be reported as one of its three kinds, with a price
         run: |
           python band.py > /tmp/band.txt

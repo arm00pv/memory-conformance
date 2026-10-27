@@ -10,7 +10,7 @@ claim about silence. A subject's SCORE is what the paired test pairs on - the ri
 top three, plus a credit for declining a question with no answer. Its HITS are only the questions
 that have an answer and were answered correctly. "It answers nothing" is a claim about hits.
 
-**7 of the 30 claims hold in every setting measured.** The rest are printed beside the setting
+**7 of the 31 claims hold in every setting measured.** The rest are printed beside the setting
 that breaks them, because that setting is the claim's real scope.
 
 | claim | A written | A keywords | B written | B keywords | status |
@@ -42,6 +42,7 @@ that breaks them, because that setting is the claim's real scope.
 | ranking-survives-paraphrase | no | no | **FAILS** |
 | near-end-separates | no | no | **FAILS** |
 | plural-is-free | no | no | **FAILS** |
+| set-answers | no | no | **FAILS** |
 | silent-everywhere | no | no | **FAILS** |
 | score-sees-ordering | no | no | **FAILS** |
 | score-prefers-recalcitrance | no | no | **FAILS** |
@@ -181,6 +182,10 @@ that breaks them, because that setting is the claim's real scope.
 **plural-is-free** - a memory that answers a record's own words answers the plural of them too. *FAILS*
   - A written: false (5 of 11 subjects lose more than half of their answers when the question pluralises the record's words (control 24 to 9, mcp-knowledge-graph 24 to 0, memory-lean 24 to 0, server-memory 24 to 0, server-memory 24 to 0))
   - B written: false (5 of 11 subjects lose more than half of their answers when the question pluralises the record's words (control 24 to 9, mcp-knowledge-graph 24 to 0, memory-lean 24 to 0, server-memory 24 to 0, server-memory 24 to 0))
+
+**set-answers** - a subject that answers every single-record question answers every set question too. *FAILS*
+  - A written: false (6 subject(s) answer every single-record question and still miss clusters (mcp-duckdb-memory-server 0 of 16, mcp-knowledge-graph 0 of 16, memory-lean 0 of 16, memory-mcp-1file 11 of 16, server-memory 0 of 16, server-memory 0 of 16))
+  - B written: false (6 subject(s) answer every single-record question and still miss clusters (mcp-duckdb-memory-server 0 of 16, mcp-knowledge-graph 0 of 16, memory-lean 0 of 16, memory-mcp-1file 11 of 16, server-memory 0 of 16, server-memory 0 of 16))
 
 **silent-everywhere** - the subjects that answer nothing on the authored corpora answer nothing on real text either. *FAILS*
   - A written: false (1 of 4 still answer nothing on real text (server-memory 33, server-memory 33, mcp-knowledge-graph 33 of 48 answered))

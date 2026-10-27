@@ -504,6 +504,34 @@ def c_plural_is_free(ctx, corpus, shape):
             " record's words (%s)" % (len(fell), len(curves), ", ".join(fell) or "none"))
 
 
+def c_set_answers(ctx, corpus, shape):
+    """A subject that answers every single-record question answers every set question too.
+
+    THE STEP EVERY METRIC IN THIS REPOSITORY HAS SKIPPED. A question whose answer is three records is not
+    three questions: it is one question about a set, and a search that returns one id and stops can answer
+    the first kind all day while failing the second completely. If that were not true, answering singles
+    would predict answering sets - and it does not.
+    """
+    import multi_query
+    import resolution
+    got = {}
+    for s in resolution.subjects():
+        rows = multi_query.rows_of(s["slug"])
+        if rows:
+            got[s["label"]] = multi_query.score(rows)
+    if len(got) < 4:
+        return None
+    broke = []
+    for label, s in sorted(got.items()):
+        if not s["n_single"] or s["single"] < s["n_single"]:
+            continue
+        if s["complete"] < s["n_multi"]:
+            broke.append("%s %d of %d" % (label.split()[0], s["complete"], s["n_multi"]))
+    return (not broke,
+            "%d subject(s) answer every single-record question and still miss clusters (%s)"
+            % (len(broke), ", ".join(broke) or "none"))
+
+
 def c_most_hits(ctx, corpus, shape):
     r = leads(LEADER, corpus, lambda n, c, s: hits(n, c, s), shape)
     return (r["strict"], fmt_lead(r, of="48")) if r else None
@@ -875,6 +903,8 @@ CLAIMS = [
      " paraphrasing it.", c_near_end_separates, False),
     ("plural-is-free", "a memory that answers a record's own words answers the plural of them too.",
      c_plural_is_free, False),
+    ("set-answers", "a subject that answers every single-record question answers every set question too.",
+     c_set_answers, False),
     ("silent-everywhere", "the subjects that answer nothing on the authored corpora answer nothing on"
      " real text either.", c_silent_everywhere, False),
     ("score-sees-ordering", "the retrieval score changes when a search returns its worst match first.",

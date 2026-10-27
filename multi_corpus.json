@@ -1,0 +1,524 @@
+{
+ "why": "Real package descriptions, clustered by shared vocabulary. A multi question requires every member of its cluster and a single question requires one record, on the same store, so what a single-record metric cannot see is visible in one run.",
+ "records": [
+  {
+   "id": "@aws-sdk/client-ecs",
+   "text": "AWS SDK for JavaScript Ecs Client for Node.js, Browser and React Native Version 3.1156.0. Licensed Apache-2.0."
+  },
+  {
+   "id": "@aws-sdk/client-s3",
+   "text": "AWS SDK for JavaScript S3 Client for Node.js, Browser and React Native Version 3.1156.0. Licensed Apache-2.0."
+  },
+  {
+   "id": "@aws-sdk/client-secrets-manager",
+   "text": "AWS SDK for JavaScript Secrets Manager Client for Node.js, Browser and React Native Version 3.1156.0. Licensed Apache-2.0."
+  },
+  {
+   "id": "widest-line",
+   "text": "Get the visual width of the widest line in a string - the number of columns required to display it Version 5.0.0. Licensed MIT."
+  },
+  {
+   "id": "@hasna/contracts",
+   "text": "Shared schemas and validators for Hasna open-source agent infrastructure contracts. Version 1.0.2. Licensed Apache-2.0."
+  },
+  {
+   "id": "@hasna/events",
+   "text": "Shared event envelopes, local subscriptions, and webhook delivery for Hasna open-source apps Version 0.1.6. Licensed Apache-2.0."
+  },
+  {
+   "id": "fast-string-truncated-width",
+   "text": "A fast function for calculating where a string should be truncated, given an optional width limit and an ellipsis string. Version 3.0.3. Licensed MIT."
+  },
+  {
+   "id": "fast-string-width",
+   "text": "A fast function for calculating the visual width of a string once printed to the terminal. Version 3.0.2. Licensed MIT."
+  },
+  {
+   "id": "@huggingface/transformers",
+   "text": "State-of-the-art Machine Learning for the web. Run 🤗 Transformers directly in your browser, with no need for a server! Version 3.8.1. Licensed Apache-2.0."
+  },
+  {
+   "id": "fs-minipass",
+   "text": "fs read and write streams based on minipass Version 2.1.0. Licensed ISC."
+  },
+  {
+   "id": "picomatch",
+   "text": "Blazing fast and accurate glob matcher written in JavaScript, with no dependencies and full support for standard and extended Bash glob features, including braces, extglobs, POSIX brackets, and regular expressions. Version 2.3.2. Licensed MIT."
+  },
+  {
+   "id": "@isaacs/fs-minipass",
+   "text": "fs read and write streams based on minipass Version 4.0.1. Licensed ISC."
+  },
+  {
+   "id": "promise-inflight",
+   "text": "One promise for multiple requests in flight to avoid async duplication Version 1.0.1. Licensed ISC."
+  },
+  {
+   "id": "@libsql/isomorphic-fetch",
+   "text": "Isomorphic fetch() in Node, Deno and Cloudflare Workers Version 0.3.1. Licensed MIT."
+  },
+  {
+   "id": "@libsql/isomorphic-ws",
+   "text": "Isomorphic WebSockets in Node, Bun, Deno and Cloudflare Workers Version 0.1.5. Licensed MIT."
+  },
+  {
+   "id": "@protobufjs/base64",
+   "text": "A minimal base64 implementation for number arrays. Version 1.1.2. Licensed BSD-3-Clause."
+  },
+  {
+   "id": "@protobufjs/utf8",
+   "text": "A minimal UTF8 implementation for number arrays. Version 1.1.2. Licensed BSD-3-Clause."
+  },
+  {
+   "id": "inflight",
+   "text": "Add callbacks to requests in flight to avoid async duplication Version 1.0.6. Licensed ISC."
+  },
+  {
+   "id": "@xenova/transformers",
+   "text": "State-of-the-art Machine Learning for the web. Run 🤗 Transformers directly in your browser, with no need for a server! Version 2.17.2. Licensed Apache-2.0."
+  },
+  {
+   "id": "side-channel-list",
+   "text": "Store information about any JS value in a side channel, using a linked list Version 1.0.1. Licensed MIT."
+  },
+  {
+   "id": "side-channel-weakmap",
+   "text": "Store information about any JS value in a side channel. Uses WeakMap if available. Version 1.0.2. Licensed MIT."
+  },
+  {
+   "id": "side-channel",
+   "text": "Store information about any JS value in a side channel. Uses WeakMap if available. Version 1.1.1. Licensed MIT."
+  },
+  {
+   "id": "braces",
+   "text": "Bash-like brace expansion, implemented in JavaScript. Safer than other brace expansion libs, with complete support for the Bash 4.3 braces specification, without sacrificing speed. Version 3.0.3. Licensed MIT."
+  },
+  {
+   "id": "content-type",
+   "text": "Create and parse HTTP Content-Type header Version 2.1.0. Licensed MIT."
+  },
+  {
+   "id": "chart.js-auto",
+   "text": "Auto registering package. Exists to support bundlers without exports support such as webpack 4."
+  },
+  {
+   "id": "chart.js-helpers",
+   "text": "Helpers package. Exists to support bundlers without exports support such as webpack 4."
+  },
+  {
+   "id": "string-width",
+   "text": "Get the visual width of a string - the number of columns required to display it Version 7.2.0. Licensed MIT."
+  },
+  {
+   "id": "compromise-one",
+   "text": "This is a stub package.json for old bundlers Version 0.0.0. Licensed MIT."
+  },
+  {
+   "id": "compromise-three",
+   "text": "This is a stub package.json for old bundlers Version 0.0.0. Licensed MIT."
+  },
+  {
+   "id": "compromise-two",
+   "text": "This is a stub package.json for old bundlers Version 0.0.0. Licensed MIT."
+  },
+  {
+   "id": "toon-memory",
+   "text": "The Continuity Layer for AI Agents — an MCP memory server that preserves project knowledge, decisions, and conventions across sessions so every session starts where the last one ended. Offline, token-efficient, no LLM, no server; works with 20+ agents. Version 4.3.5. Licensed MIT."
+  },
+  {
+   "id": "content-disposition",
+   "text": "Create and parse Content-Disposition header Version 2.0.1. Licensed MIT."
+  },
+  {
+   "id": "crbro-memory",
+   "text": "CRBRO — Persistent neural memory for AI. A biological file-based MCP server that gives your AI long-term memory across sessions. Version 2.10.0. Licensed MIT."
+  },
+  {
+   "id": "define-data-property",
+   "text": "Define a data property on an object. Will fall back to assignment in an engine without descriptors. Version 1.1.4. Licensed MIT."
+  },
+  {
+   "id": "define-properties",
+   "text": "Define multiple non-enumerable properties at once. Uses `Object.defineProperty` when available; falls back to standard assignment in older engines. Version 1.2.1. Licensed MIT."
+  },
+  {
+   "id": "is-fullwidth-code-point",
+   "text": "Check if the character represented by a given Unicode code point is fullwidth Version 4.0.0. Licensed MIT."
+  },
+  {
+   "id": "@aws-sdk/credential-provider-process",
+   "text": "AWS credential provider that sources credential_process from ~/.aws/credentials and ~/.aws/config Version 3.972.76. Licensed Apache-2.0."
+  },
+  {
+   "id": "@hasna/mementos",
+   "text": "Universal memory system for AI agents - CLI + MCP server + library API Version 0.17.10. Licensed Apache-2.0."
+  },
+  {
+   "id": "@iachilles/memento",
+   "text": "MCP memory server using SQLite + FTS5 + sqlite-vec Version 0.7.0. Licensed MIT."
+  },
+  {
+   "id": "@libsql/hrana-client",
+   "text": "Hrana client for connecting to sqld over HTTP or WebSocket Version 0.7.0. Licensed MIT."
+  },
+  {
+   "id": "@nodelib/fs.walk",
+   "text": "A library for efficiently walking a directory recursively Version 1.2.8. Licensed MIT."
+  },
+  {
+   "id": "@standard-schema/spec",
+   "text": "A family of specs for interoperable TypeScript Version 1.1.0. Licensed MIT."
+  },
+  {
+   "id": "@zensation/core",
+   "text": "7-layer memory system for AI agents. Pluggable storage, embeddings, and LLM providers. Built on @zensation/algorithms. Version 0.6.0. Licensed Apache-2.0."
+  },
+  {
+   "id": "argparse",
+   "text": "Very powerful CLI arguments parser. Native port of argparse - python's options parsing library Version 1.0.10. Licensed MIT."
+  },
+  {
+   "id": "bmp-js",
+   "text": "A pure javascript BMP encoder and decoder Version 0.1.0. Licensed MIT."
+  },
+  {
+   "id": "chart.js",
+   "text": "Simple HTML5 charts using the canvas element. Version 4.5.1. Licensed MIT."
+  },
+  {
+   "id": "cross-spawn",
+   "text": "Cross platform child_process#spawn and child_process#spawnSync Version 7.0.6. Licensed MIT."
+  },
+  {
+   "id": "dunder-proto",
+   "text": "If available, the `Object.prototype.__proto__` accessor and mutator, call-bound Version 1.0.1. Licensed MIT."
+  },
+  {
+   "id": "es-object-atoms",
+   "text": "ES Object-related atoms: Object, ToObject, RequireObjectCoercible Version 1.1.2. Licensed MIT."
+  },
+  {
+   "id": "express-rate-limit",
+   "text": "Basic IP rate-limiting middleware for Express. Use to limit repeated requests to public APIs and/or endpoints such as password reset. Version 8.7.1. Licensed MIT."
+  },
+  {
+   "id": "fill-range",
+   "text": "Fill in a range of numbers or letters, optionally passing an increment or `step` to use, or create a regex-compatible range with `options.toRegex` Version 7.1.1. Licensed MIT."
+  },
+  {
+   "id": "global-agent",
+   "text": "Global HTTP/HTTPS proxy configurable using environment variables. Version 3.0.0. Licensed BSD-3-Clause."
+  },
+  {
+   "id": "has-symbols",
+   "text": "Determine if the JS environment has Symbol support. Supports spec, or shams. Version 1.1.0. Licensed MIT."
+  },
+  {
+   "id": "ignore",
+   "text": "Ignore is a manager and filter for .gitignore rules, the one used by eslint, gitbook and many others. Version 7.0.13. Licensed MIT."
+  },
+  {
+   "id": "is-glob",
+   "text": "Returns `true` if the given string looks like a glob pattern or an extglob pattern. This makes it easy to create code that only uses external modules like node-glob when necessary, resulting in much faster code execution and initialization time, and a better user experience. Version 4.0.3. Licensed"
+  },
+  {
+   "id": "json-schema-traverse",
+   "text": "Traverse JSON Schema passing each schema object to callback Version 1.0.0. Licensed MIT."
+  },
+  {
+   "id": "markdownlint-rule-helpers",
+   "text": "A collection of markdownlint helper functions for custom rules Version 0.31.0. Licensed MIT."
+  },
+  {
+   "id": "mdast-util-gfm-task-list-item",
+   "text": "mdast extension to parse and serialize GFM task list items Version 2.0.0. Licensed MIT."
+  },
+  {
+   "id": "merge2",
+   "text": "Merge multiple streams into one stream in sequence or parallel. Version 1.4.1. Licensed MIT."
+  },
+  {
+   "id": "micromark-extension-math",
+   "text": "micromark extension to support math (`$C_L$`) Version 3.1.0. Licensed MIT."
+  },
+  {
+   "id": "micromark-util-combine-extensions",
+   "text": "micromark utility to combine syntax or html extensions Version 2.0.1. Licensed MIT."
+  },
+  {
+   "id": "micromatch",
+   "text": "Glob matching for javascript/node.js. A replacement and faster alternative to minimatch and multimatch. Version 4.0.8. Licensed MIT."
+  },
+  {
+   "id": "napi-build-utils",
+   "text": "A set of utilities to assist developers of tools that build N-API native add-ons Version 2.0.0. Licensed MIT."
+  },
+  {
+   "id": "on-finished",
+   "text": "Execute a callback when a request closes, finishes, or errors Version 2.4.1. Licensed MIT."
+  },
+  {
+   "id": "pg-protocol",
+   "text": "The postgres client/server binary protocol, implemented in TypeScript Version 1.16.1. Licensed MIT."
+  },
+  {
+   "id": "proper-lockfile",
+   "text": "A inter-process and inter-machine lockfile utility that works on a local or network file system Version 4.1.2. Licensed MIT."
+  },
+  {
+   "id": "jsdoc",
+   "text": "An API documentation generator for JavaScript. Version 3.6.11. Licensed Apache-2.0."
+  },
+  {
+   "id": "type-check",
+   "text": "type-check allows you to check the types of JavaScript values at runtime with a Haskell like type syntax. Version 0.3.2. Licensed MIT."
+  },
+  {
+   "id": "react-reconciler",
+   "text": "React package for creating custom renderers. Version 0.29.2. Licensed MIT."
+  },
+  {
+   "id": "rimraf",
+   "text": "A deep deletion module for node (like `rm -rf`) Version 3.0.2. Licensed ISC."
+  },
+  {
+   "id": "set-blocking",
+   "text": "set blocking stdio and stderr ensuring that terminal output does not truncate Version 2.0.0. Licensed ISC."
+  },
+  {
+   "id": "split2",
+   "text": "split a Text Stream into a Line Stream, using Stream 3 Version 4.2.0. Licensed ISC."
+  }
+ ],
+ "queries": [
+  {
+   "query": "which records mention browser directly learning machine need server state transformers with your",
+   "expect": "@huggingface/transformers",
+   "expect_all": [
+    "@huggingface/transformers",
+    "@xenova/transformers"
+   ],
+   "difficulty": "multi"
+  },
+  {
+   "query": "which records mention about channel information side store value",
+   "expect": "side-channel",
+   "expect_all": [
+    "side-channel",
+    "side-channel-list",
+    "side-channel-weakmap"
+   ],
+   "difficulty": "multi"
+  },
+  {
+   "query": "which records mention bundlers exists exports package such support webpack without",
+   "expect": "chart.js-auto",
+   "expect_all": [
+    "chart.js-auto",
+    "chart.js-helpers"
+   ],
+   "difficulty": "multi"
+  },
+  {
+   "query": "which records mention columns display number required string visual width",
+   "expect": "string-width",
+   "expect_all": [
+    "string-width",
+    "widest-line"
+   ],
+   "difficulty": "multi"
+  },
+  {
+   "query": "which records mention browser client javascript native node react",
+   "expect": "@aws-sdk/client-ecs",
+   "expect_all": [
+    "@aws-sdk/client-ecs",
+    "@aws-sdk/client-s3",
+    "@aws-sdk/client-secrets-manager"
+   ],
+   "difficulty": "multi"
+  },
+  {
+   "query": "which records mention based minipass read streams write",
+   "expect": "@isaacs/fs-minipass",
+   "expect_all": [
+    "@isaacs/fs-minipass",
+    "fs-minipass"
+   ],
+   "difficulty": "multi"
+  },
+  {
+   "query": "which records mention cloudflare deno isomorphic node workers",
+   "expect": "@libsql/isomorphic-fetch",
+   "expect_all": [
+    "@libsql/isomorphic-fetch",
+    "@libsql/isomorphic-ws"
+   ],
+   "difficulty": "multi"
+  },
+  {
+   "query": "which records mention bash braces javascript support with",
+   "expect": "braces",
+   "expect_all": [
+    "braces",
+    "picomatch"
+   ],
+   "difficulty": "multi"
+  },
+  {
+   "query": "which records mention bundlers json package stub this",
+   "expect": "compromise-one",
+   "expect_all": [
+    "compromise-one",
+    "compromise-three",
+    "compromise-two"
+   ],
+   "difficulty": "multi"
+  },
+  {
+   "query": "which records mention across memory server sessions that",
+   "expect": "crbro-memory",
+   "expect_all": [
+    "crbro-memory",
+    "toon-memory"
+   ],
+   "difficulty": "multi"
+  },
+  {
+   "query": "which records mention calculating fast function string width",
+   "expect": "fast-string-truncated-width",
+   "expect_all": [
+    "fast-string-truncated-width",
+    "fast-string-width"
+   ],
+   "difficulty": "multi"
+  },
+  {
+   "query": "which records mention async avoid duplication flight requests",
+   "expect": "inflight",
+   "expect_all": [
+    "inflight",
+    "promise-inflight"
+   ],
+   "difficulty": "multi"
+  },
+  {
+   "query": "which records mention hasna open shared source",
+   "expect": "@hasna/contracts",
+   "expect_all": [
+    "@hasna/contracts",
+    "@hasna/events"
+   ],
+   "difficulty": "multi"
+  },
+  {
+   "query": "which records mention arrays implementation minimal number",
+   "expect": "@protobufjs/base64",
+   "expect_all": [
+    "@protobufjs/base64",
+    "@protobufjs/utf8"
+   ],
+   "difficulty": "multi"
+  },
+  {
+   "query": "which records mention content create header parse",
+   "expect": "content-disposition",
+   "expect_all": [
+    "content-disposition",
+    "content-type"
+   ],
+   "difficulty": "multi"
+  },
+  {
+   "query": "which records mention assignment back define object",
+   "expect": "define-data-property",
+   "expect_all": [
+    "define-data-property",
+    "define-properties"
+   ],
+   "difficulty": "multi"
+  },
+  {
+   "query": "Check if the character represented by a given Unicode code point is fullwidth",
+   "expect": "is-fullwidth-code-point",
+   "difficulty": "single"
+  },
+  {
+   "query": "AWS credential provider that sources credential_process from ~/.aws/credentials and ~/.aws/config",
+   "expect": "@aws-sdk/credential-provider-process",
+   "difficulty": "single"
+  },
+  {
+   "query": "Universal memory system for AI agents - CLI + MCP server + library API",
+   "expect": "@hasna/mementos",
+   "difficulty": "single"
+  },
+  {
+   "query": "MCP memory server using SQLite + FTS5 + sqlite-vec",
+   "expect": "@iachilles/memento",
+   "difficulty": "single"
+  },
+  {
+   "query": "Hrana client for connecting to sqld over HTTP or WebSocket",
+   "expect": "@libsql/hrana-client",
+   "difficulty": "single"
+  },
+  {
+   "query": "A library for efficiently walking a directory recursively",
+   "expect": "@nodelib/fs.walk",
+   "difficulty": "single"
+  },
+  {
+   "query": "A family of specs for interoperable TypeScript",
+   "expect": "@standard-schema/spec",
+   "difficulty": "single"
+  },
+  {
+   "query": "7-layer memory system for AI agents. Pluggable storage, embeddings, and LLM providers. Built on @zensation/algorithms.",
+   "expect": "@zensation/core",
+   "difficulty": "single"
+  },
+  {
+   "query": "Very powerful CLI arguments parser. Native port of argparse - python's options parsing library",
+   "expect": "argparse",
+   "difficulty": "single"
+  },
+  {
+   "query": "A pure javascript BMP encoder and decoder",
+   "expect": "bmp-js",
+   "difficulty": "single"
+  },
+  {
+   "query": "Simple HTML5 charts using the canvas element.",
+   "expect": "chart.js",
+   "difficulty": "single"
+  },
+  {
+   "query": "Cross platform child_process#spawn and child_process#spawnSync",
+   "expect": "cross-spawn",
+   "difficulty": "single"
+  },
+  {
+   "query": "If available, the `Object.prototype.__proto__` accessor and mutator, call-bound",
+   "expect": "dunder-proto",
+   "difficulty": "single"
+  },
+  {
+   "query": "ES Object-related atoms: Object, ToObject, RequireObjectCoercible",
+   "expect": "es-object-atoms",
+   "difficulty": "single"
+  },
+  {
+   "query": "Basic IP rate-limiting middleware for Express. Use to limit repeated requests to public APIs and/or endpoints such as password reset.",
+   "expect": "express-rate-limit",
+   "difficulty": "single"
+  },
+  {
+   "query": "Fill in a range of numbers or letters, optionally passing an increment or `step` to use, or create a regex-compatible range with `options.toRegex`",
+   "expect": "fill-range",
+   "difficulty": "single"
+  }
+ ],
+ "authored_by": "node_modules",
+ "authored_at": "not applicable - no author"
+}
