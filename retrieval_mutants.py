@@ -80,6 +80,19 @@ def run_one(mutant, corpus, repeat):
         return json.load(fh), proc.stdout
 
 
+def read_saved(mutant, label):
+    """One saved lever run, or None when it is not on disk.
+
+    read by --report, which re-renders RETRIEVAL-MUTANTS.md from what was measured rather than measuring
+    again. A smoke run leaves its own name behind rather than replacing the committed repeat=3 files.
+    """
+    path = os.path.join(HERE, "results", "retrieval-%s-%s.json" % (mutant, label))
+    if not os.path.isfile(path):
+        return None
+    with open(path, encoding="utf-8") as fh:
+        return json.load(fh)
+
+
 def measures(rows, shape="written"):
     """The four numbers a reader could quote, from one saved run."""
     import compare
@@ -139,6 +152,7 @@ def orders(suffix, shape="written"):
 def main(argv=None):
     argv = list(sys.argv[1:] if argv is None else argv)
     repeat = 3
+    report_only = "--report" in argv
     out_md = os.path.join(HERE, "RETRIEVAL-MUTANTS.md")
     for a in argv:
         if a.startswith("--repeat="):
@@ -146,16 +160,24 @@ def main(argv=None):
         elif a.startswith("--md="):
             out_md = a.split("=", 1)[1]
     table = {}
+    repeat_seen = repeat
     for mutant in LEVERS:
         table[mutant] = {}
         for corpus in CORPORA:
-            doc, log = run_one(mutant, corpus, repeat)
+            if report_only:
+                doc, log = read_saved(mutant, corpus[0]), ""
+            else:
+                doc, log = run_one(mutant, corpus, repeat)
             if doc is None:
                 print("%s on corpus %s: COULD NOT RUN" % (mutant, corpus[0]))
                 print(log)
                 table[mutant][corpus[0]] = None
                 continue
-            got = measures(doc.get("rows") or [])
+            rows = doc.get("rows") or []
+            if report_only and rows:
+                # THE REPEAT COUNT IS A FACT ABOUT THE RUNS, NOT ABOUT THIS INVOCATION.
+                repeat_seen = max(repeat_seen, len((rows[0].get("per_run") or {}).get("hit3") or []) or 1)
+            got = measures(rows)
             base = baseline(corpus[0])
             table[mutant][corpus[0]] = {"got": got, "base": base}
             tail = ""
@@ -166,7 +188,7 @@ def main(argv=None):
                   % (mutant, corpus[0], got["hits"], got["hit1"], got["score"],
                      got["spoke"], tail), flush=True)
     flips = dict((label, orders(suffix)) for label, _p, suffix in CORPORA)
-    write_md(out_md, table, flips, repeat)
+    write_md(out_md, table, flips, repeat_seen)
     return 0
 
 

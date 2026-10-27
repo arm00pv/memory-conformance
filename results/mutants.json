@@ -1,0 +1,677 @@
+{
+ "bad": 0,
+ "results": [
+  {
+   "mutant": {
+    "name": "leak-everywhere",
+    "breaks": "isolation",
+    "what": "Every write is also written outside the store directory and every read returns both, so two separate stores are one store. This is memory-mcp-1file's defect.",
+    "expect": {
+     "isolation": "FAIL",
+     "ack_readback": "PASS",
+     "verbatim": "PASS",
+     "restart": "PASS",
+     "forget": "PASS",
+     "findable": "PASS",
+     "foreign_field": "PASS",
+     "foreign_record": "PASS",
+     "concurrent": "PASS",
+     "large_record": "PASS"
+    }
+   },
+   "got": {
+    "isolation": "FAIL",
+    "ack_readback": "PASS",
+    "verbatim": "PASS",
+    "restart": "PASS",
+    "forget": "PASS",
+    "findable": "PASS",
+    "foreign_field": "PASS",
+    "foreign_record": "PASS",
+    "concurrent": "PASS",
+    "large_record": "PASS"
+   },
+   "kinds": {
+    "isolation": "failed",
+    "ack_readback": "kept",
+    "verbatim": "kept",
+    "restart": "kept",
+    "forget": "kept",
+    "findable": "kept",
+    "foreign_field": "kept",
+    "foreign_record": "kept",
+    "concurrent": "kept",
+    "large_record": "kept"
+   },
+   "evidence": {
+    "isolation": "a record written into store A was visible from store B; verdicts for this subject describe leaked state",
+    "ack_readback": "acknowledged alpha; a fresh read returned 3 entities: ['alpha', 'isolation-marker-alpha', 'alpha']",
+    "verbatim": "all 9 strings came back byte for byte, over the wire: 2, 3 and 4-byte UTF-8, a combining pair, right-to-left text, JSON escapes, a zero-width space and an embedded newline, under a non-ASCII name",
+    "restart": "three writes across three server lifetimes; read back ['restart-0', 'restart-1', 'restart-2', 'isolation-marker-alpha', 'alpha']",
+    "forget": "asked to forget plinth-obsidian and the subject answered '{\"ok\": true, \"forgotten\": \"plinth-obsidian\", \"bytes\": 33}'; after a restart the other two came back and it did not",
+    "findable": "all 8 acknowledged records came back in the top 3 for a search on their own name",
+    "foreign_field": "the extra field survived the next write",
+    "foreign_record": "the unmodelled record survived",
+    "concurrent": "20 of 20 acknowledged writes survived two servers on one store",
+    "large_record": "wrote 100000 characters, read back 100000"
+   },
+   "disagreements": []
+  },
+  {
+   "mutant": {
+    "name": "no-persist",
+    "breaks": "ack_readback",
+    "what": "A write is acknowledged and never stored. Everything downstream reads a store that was never written, so the failure propagates by construction.",
+    "expect": {
+     "isolation": "PASS",
+     "ack_readback": "FAIL",
+     "verbatim": "FAIL",
+     "restart": "FAIL",
+     "forget": "UNKNOWN",
+     "findable": "FAIL",
+     "foreign_field": "UNKNOWN",
+     "foreign_record": "PASS",
+     "concurrent": "FAIL",
+     "large_record": "FAIL"
+    }
+   },
+   "got": {
+    "isolation": "PASS",
+    "ack_readback": "FAIL",
+    "verbatim": "FAIL",
+    "restart": "FAIL",
+    "forget": "UNKNOWN",
+    "findable": "FAIL",
+    "foreign_field": "UNKNOWN",
+    "foreign_record": "PASS",
+    "concurrent": "FAIL",
+    "large_record": "FAIL"
+   },
+   "kinds": {
+    "isolation": "kept",
+    "ack_readback": "failed",
+    "verbatim": "failed",
+    "restart": "failed",
+    "forget": "not-applicable",
+    "findable": "failed",
+    "foreign_field": "not-applicable",
+    "foreign_record": "kept",
+    "concurrent": "failed",
+    "large_record": "failed"
+   },
+   "evidence": {
+    "isolation": "store A's record was not visible from store B",
+    "ack_readback": "acknowledged alpha; a fresh read returned 0 entities: []",
+    "verbatim": "the record did not come back under the name it was written with, so there is nothing to compare: asked for verbatim-caf\\u00e9-\\u65e5\\u672c, the store answered with []",
+    "restart": "three writes across three server lifetimes; read back []",
+    "forget": "the two records nobody asked to forget did not both come back (0 of 2), so a successful deletion cannot be told from a store that lost everything; read back []",
+    "findable": "8 of 8 acknowledged records were not returned by a search for their own name: ['zephyr-quartz', 'ember-lattice', 'cobalt-thistle', 'marlin-obsidian']; every query returned nothing at all, whatever was asked",
+    "foreign_field": "the jsonl store could not be annotated out of band",
+    "foreign_record": "the unmodelled record survived",
+    "concurrent": "0 of 20 acknowledged writes survived two servers on one store",
+    "large_record": "wrote 100000 characters, read back None"
+   },
+   "disagreements": []
+  },
+  {
+   "mutant": {
+    "name": "keep-last",
+    "breaks": "restart",
+    "what": "Each write replaces the store with itself, so one write survives and three do not. The root probes come apart here: ack_readback still passes it.",
+    "expect": {
+     "isolation": "PASS",
+     "ack_readback": "PASS",
+     "verbatim": "FAIL",
+     "restart": "FAIL",
+     "forget": "UNKNOWN",
+     "findable": "FAIL",
+     "foreign_field": "FAIL",
+     "foreign_record": "FAIL",
+     "concurrent": "FAIL",
+     "large_record": "PASS"
+    }
+   },
+   "got": {
+    "isolation": "PASS",
+    "ack_readback": "PASS",
+    "verbatim": "FAIL",
+    "restart": "FAIL",
+    "forget": "UNKNOWN",
+    "findable": "FAIL",
+    "foreign_field": "FAIL",
+    "foreign_record": "FAIL",
+    "concurrent": "FAIL",
+    "large_record": "PASS"
+   },
+   "kinds": {
+    "isolation": "kept",
+    "ack_readback": "kept",
+    "verbatim": "failed",
+    "restart": "failed",
+    "forget": "not-applicable",
+    "findable": "failed",
+    "foreign_field": "failed",
+    "foreign_record": "failed",
+    "concurrent": "failed",
+    "large_record": "kept"
+   },
+   "evidence": {
+    "isolation": "store A's record was not visible from store B",
+    "ack_readback": "acknowledged alpha; a fresh read returned 1 entities: ['alpha']",
+    "verbatim": "the record did not come back under the name it was written with, so there is nothing to compare: asked for verbatim-caf\\u00e9-\\u65e5\\u672c, the store answered with ['verbatim-canary']",
+    "restart": "three writes across three server lifetimes; read back ['restart-2']",
+    "forget": "the two records nobody asked to forget did not both come back (1 of 2), so a successful deletion cannot be told from a store that lost everything; read back ['ember-thistle']",
+    "findable": "7 of 8 acknowledged records were not returned by a search for their own name: ['zephyr-quartz', 'ember-lattice', 'cobalt-thistle', 'marlin-obsidian']",
+    "foreign_field": "the extra field was silently dropped by the next write",
+    "foreign_record": "the unmodelled record was silently removed by the next write",
+    "concurrent": "1 of 20 acknowledged writes survived two servers on one store",
+    "large_record": "wrote 100000 characters, read back 100000"
+   },
+   "disagreements": []
+  },
+  {
+   "mutant": {
+    "name": "no-forget",
+    "breaks": "forget",
+    "what": "memory_forget answers ok and writes nothing. The record is still readable after the restart, which is the exact failure the caller cannot see.",
+    "expect": {
+     "isolation": "PASS",
+     "ack_readback": "PASS",
+     "verbatim": "PASS",
+     "restart": "PASS",
+     "forget": "FAIL",
+     "findable": "PASS",
+     "foreign_field": "PASS",
+     "foreign_record": "PASS",
+     "concurrent": "PASS",
+     "large_record": "PASS"
+    }
+   },
+   "got": {
+    "isolation": "PASS",
+    "ack_readback": "PASS",
+    "verbatim": "PASS",
+    "restart": "PASS",
+    "forget": "FAIL",
+    "findable": "PASS",
+    "foreign_field": "PASS",
+    "foreign_record": "PASS",
+    "concurrent": "PASS",
+    "large_record": "PASS"
+   },
+   "kinds": {
+    "isolation": "kept",
+    "ack_readback": "kept",
+    "verbatim": "kept",
+    "restart": "kept",
+    "forget": "failed",
+    "findable": "kept",
+    "foreign_field": "kept",
+    "foreign_record": "kept",
+    "concurrent": "kept",
+    "large_record": "kept"
+   },
+   "evidence": {
+    "isolation": "store A's record was not visible from store B",
+    "ack_readback": "acknowledged alpha; a fresh read returned 1 entities: ['alpha']",
+    "verbatim": "all 9 strings came back byte for byte, over the wire: 2, 3 and 4-byte UTF-8, a combining pair, right-to-left text, JSON escapes, a zero-width space and an embedded newline, under a non-ASCII name",
+    "restart": "three writes across three server lifetimes; read back ['restart-0', 'restart-1', 'restart-2']",
+    "forget": "asked to forget plinth-obsidian and the subject answered '{\"ok\": true, \"forgotten\": \"plinth-obsidian\", \"bytes\": 0}'; after a restart the other two came back and it STILL DID",
+    "findable": "all 8 acknowledged records came back in the top 3 for a search on their own name",
+    "foreign_field": "the extra field survived the next write",
+    "foreign_record": "the unmodelled record survived",
+    "concurrent": "20 of 20 acknowledged writes survived two servers on one store",
+    "large_record": "wrote 100000 characters, read back 100000"
+   },
+   "disagreements": []
+  },
+  {
+   "mutant": {
+    "name": "forget-all",
+    "breaks": "forget",
+    "what": "memory_forget deletes every record instead of the one named. From the caller's side the answer is identical to a clean delete, so only a probe that also checks what nobody asked to remove can tell them apart.",
+    "expect": {
+     "isolation": "PASS",
+     "ack_readback": "PASS",
+     "verbatim": "PASS",
+     "restart": "PASS",
+     "forget": "UNKNOWN",
+     "findable": "PASS",
+     "foreign_field": "PASS",
+     "foreign_record": "PASS",
+     "concurrent": "PASS",
+     "large_record": "PASS"
+    }
+   },
+   "got": {
+    "isolation": "PASS",
+    "ack_readback": "PASS",
+    "verbatim": "PASS",
+    "restart": "PASS",
+    "forget": "UNKNOWN",
+    "findable": "PASS",
+    "foreign_field": "PASS",
+    "foreign_record": "PASS",
+    "concurrent": "PASS",
+    "large_record": "PASS"
+   },
+   "kinds": {
+    "isolation": "kept",
+    "ack_readback": "kept",
+    "verbatim": "kept",
+    "restart": "kept",
+    "forget": "not-applicable",
+    "findable": "kept",
+    "foreign_field": "kept",
+    "foreign_record": "kept",
+    "concurrent": "kept",
+    "large_record": "kept"
+   },
+   "evidence": {
+    "isolation": "store A's record was not visible from store B",
+    "ack_readback": "acknowledged alpha; a fresh read returned 1 entities: ['alpha']",
+    "verbatim": "all 9 strings came back byte for byte, over the wire: 2, 3 and 4-byte UTF-8, a combining pair, right-to-left text, JSON escapes, a zero-width space and an embedded newline, under a non-ASCII name",
+    "restart": "three writes across three server lifetimes; read back ['restart-0', 'restart-1', 'restart-2']",
+    "forget": "the two records nobody asked to forget did not both come back (0 of 2), so a successful deletion cannot be told from a store that lost everything; read back []",
+    "findable": "all 8 acknowledged records came back in the top 3 for a search on their own name",
+    "foreign_field": "the extra field survived the next write",
+    "foreign_record": "the unmodelled record survived",
+    "concurrent": "20 of 20 acknowledged writes survived two servers on one store",
+    "large_record": "wrote 100000 characters, read back 100000"
+   },
+   "disagreements": []
+  },
+  {
+   "mutant": {
+    "name": "reshape-modelled",
+    "breaks": "foreign_field",
+    "what": "Records this server would have written are re-serialised from its own model, so a field another tool attached is discarded on the next write - while records it would never have written pass through untouched. The reference implementation's real defect.",
+    "expect": {
+     "isolation": "PASS",
+     "ack_readback": "PASS",
+     "verbatim": "PASS",
+     "restart": "PASS",
+     "forget": "PASS",
+     "findable": "PASS",
+     "foreign_field": "FAIL",
+     "foreign_record": "PASS",
+     "concurrent": "PASS",
+     "large_record": "PASS"
+    }
+   },
+   "got": {
+    "isolation": "PASS",
+    "ack_readback": "PASS",
+    "verbatim": "PASS",
+    "restart": "PASS",
+    "forget": "PASS",
+    "findable": "PASS",
+    "foreign_field": "FAIL",
+    "foreign_record": "PASS",
+    "concurrent": "PASS",
+    "large_record": "PASS"
+   },
+   "kinds": {
+    "isolation": "kept",
+    "ack_readback": "kept",
+    "verbatim": "kept",
+    "restart": "kept",
+    "forget": "kept",
+    "findable": "kept",
+    "foreign_field": "failed",
+    "foreign_record": "kept",
+    "concurrent": "kept",
+    "large_record": "kept"
+   },
+   "evidence": {
+    "isolation": "store A's record was not visible from store B",
+    "ack_readback": "acknowledged alpha; a fresh read returned 1 entities: ['alpha']",
+    "verbatim": "all 9 strings came back byte for byte, over the wire: 2, 3 and 4-byte UTF-8, a combining pair, right-to-left text, JSON escapes, a zero-width space and an embedded newline, under a non-ASCII name",
+    "restart": "three writes across three server lifetimes; read back ['restart-0', 'restart-1', 'restart-2']",
+    "forget": "asked to forget plinth-obsidian and the subject answered '{\"ok\": true, \"forgotten\": \"plinth-obsidian\", \"bytes\": 33}'; after a restart the other two came back and it did not",
+    "findable": "all 8 acknowledged records came back in the top 3 for a search on their own name",
+    "foreign_field": "the extra field was silently dropped by the next write",
+    "foreign_record": "the unmodelled record survived",
+    "concurrent": "20 of 20 acknowledged writes survived two servers on one store",
+    "large_record": "wrote 100000 characters, read back 100000"
+   },
+   "disagreements": []
+  },
+  {
+   "mutant": {
+    "name": "drop-unnamed",
+    "breaks": "foreign_record",
+    "what": "Anything that is not a record this server would have written is discarded on the next write, and modelled fields on its own records are kept. The mirror of reshape-modelled.",
+    "expect": {
+     "isolation": "PASS",
+     "ack_readback": "PASS",
+     "verbatim": "PASS",
+     "restart": "PASS",
+     "forget": "PASS",
+     "findable": "PASS",
+     "foreign_field": "PASS",
+     "foreign_record": "FAIL",
+     "concurrent": "PASS",
+     "large_record": "PASS"
+    }
+   },
+   "got": {
+    "isolation": "PASS",
+    "ack_readback": "PASS",
+    "verbatim": "PASS",
+    "restart": "PASS",
+    "forget": "PASS",
+    "findable": "PASS",
+    "foreign_field": "PASS",
+    "foreign_record": "FAIL",
+    "concurrent": "PASS",
+    "large_record": "PASS"
+   },
+   "kinds": {
+    "isolation": "kept",
+    "ack_readback": "kept",
+    "verbatim": "kept",
+    "restart": "kept",
+    "forget": "kept",
+    "findable": "kept",
+    "foreign_field": "kept",
+    "foreign_record": "failed",
+    "concurrent": "kept",
+    "large_record": "kept"
+   },
+   "evidence": {
+    "isolation": "store A's record was not visible from store B",
+    "ack_readback": "acknowledged alpha; a fresh read returned 1 entities: ['alpha']",
+    "verbatim": "all 9 strings came back byte for byte, over the wire: 2, 3 and 4-byte UTF-8, a combining pair, right-to-left text, JSON escapes, a zero-width space and an embedded newline, under a non-ASCII name",
+    "restart": "three writes across three server lifetimes; read back ['restart-0', 'restart-1', 'restart-2']",
+    "forget": "asked to forget plinth-obsidian and the subject answered '{\"ok\": true, \"forgotten\": \"plinth-obsidian\", \"bytes\": 33}'; after a restart the other two came back and it did not",
+    "findable": "all 8 acknowledged records came back in the top 3 for a search on their own name",
+    "foreign_field": "the extra field survived the next write",
+    "foreign_record": "the unmodelled record was silently removed by the next write",
+    "concurrent": "20 of 20 acknowledged writes survived two servers on one store",
+    "large_record": "wrote 100000 characters, read back 100000"
+   },
+   "disagreements": []
+  },
+  {
+   "mutant": {
+    "name": "stale-cache",
+    "breaks": "concurrent",
+    "what": "The store is read once at startup and rewritten from that copy forever. One process is indistinguishable from correct; two processes each lose the other's writes.",
+    "expect": {
+     "isolation": "PASS",
+     "ack_readback": "PASS",
+     "verbatim": "PASS",
+     "restart": "PASS",
+     "forget": "PASS",
+     "findable": "PASS",
+     "foreign_field": "PASS",
+     "foreign_record": "PASS",
+     "concurrent": "FAIL",
+     "large_record": "PASS"
+    }
+   },
+   "got": {
+    "isolation": "PASS",
+    "ack_readback": "PASS",
+    "verbatim": "PASS",
+    "restart": "PASS",
+    "forget": "PASS",
+    "findable": "PASS",
+    "foreign_field": "PASS",
+    "foreign_record": "PASS",
+    "concurrent": "FAIL",
+    "large_record": "PASS"
+   },
+   "kinds": {
+    "isolation": "kept",
+    "ack_readback": "kept",
+    "verbatim": "kept",
+    "restart": "kept",
+    "forget": "kept",
+    "findable": "kept",
+    "foreign_field": "kept",
+    "foreign_record": "kept",
+    "concurrent": "failed",
+    "large_record": "kept"
+   },
+   "evidence": {
+    "isolation": "store A's record was not visible from store B",
+    "ack_readback": "acknowledged alpha; a fresh read returned 1 entities: ['alpha']",
+    "verbatim": "all 9 strings came back byte for byte, over the wire: 2, 3 and 4-byte UTF-8, a combining pair, right-to-left text, JSON escapes, a zero-width space and an embedded newline, under a non-ASCII name",
+    "restart": "three writes across three server lifetimes; read back ['restart-0', 'restart-1', 'restart-2']",
+    "forget": "asked to forget plinth-obsidian and the subject answered '{\"ok\": true, \"forgotten\": \"plinth-obsidian\", \"bytes\": 33}'; after a restart the other two came back and it did not",
+    "findable": "all 8 acknowledged records came back in the top 3 for a search on their own name",
+    "foreign_field": "the extra field survived the next write",
+    "foreign_record": "the unmodelled record survived",
+    "concurrent": "10 of 20 acknowledged writes survived two servers on one store",
+    "large_record": "wrote 100000 characters, read back 100000"
+   },
+   "disagreements": []
+  },
+  {
+   "mutant": {
+    "name": "truncate-large",
+    "breaks": "large_record",
+    "what": "Anything longer than 1000 characters is cut to 1000 and acknowledged as stored. A silent cap, which is the failure the ladder in the probe exists to see.",
+    "expect": {
+     "isolation": "PASS",
+     "ack_readback": "PASS",
+     "verbatim": "PASS",
+     "restart": "PASS",
+     "forget": "PASS",
+     "findable": "PASS",
+     "foreign_field": "PASS",
+     "foreign_record": "PASS",
+     "concurrent": "PASS",
+     "large_record": "FAIL"
+    }
+   },
+   "got": {
+    "isolation": "PASS",
+    "ack_readback": "PASS",
+    "verbatim": "PASS",
+    "restart": "PASS",
+    "forget": "PASS",
+    "findable": "PASS",
+    "foreign_field": "PASS",
+    "foreign_record": "PASS",
+    "concurrent": "PASS",
+    "large_record": "FAIL"
+   },
+   "kinds": {
+    "isolation": "kept",
+    "ack_readback": "kept",
+    "verbatim": "kept",
+    "restart": "kept",
+    "forget": "kept",
+    "findable": "kept",
+    "foreign_field": "kept",
+    "foreign_record": "kept",
+    "concurrent": "kept",
+    "large_record": "failed"
+   },
+   "evidence": {
+    "isolation": "store A's record was not visible from store B",
+    "ack_readback": "acknowledged alpha; a fresh read returned 1 entities: ['alpha']",
+    "verbatim": "all 9 strings came back byte for byte, over the wire: 2, 3 and 4-byte UTF-8, a combining pair, right-to-left text, JSON escapes, a zero-width space and an embedded newline, under a non-ASCII name",
+    "restart": "three writes across three server lifetimes; read back ['restart-0', 'restart-1', 'restart-2']",
+    "forget": "asked to forget plinth-obsidian and the subject answered '{\"ok\": true, \"forgotten\": \"plinth-obsidian\", \"bytes\": 33}'; after a restart the other two came back and it did not",
+    "findable": "all 8 acknowledged records came back in the top 3 for a search on their own name",
+    "foreign_field": "the extra field survived the next write",
+    "foreign_record": "the unmodelled record survived",
+    "concurrent": "20 of 20 acknowledged writes survived two servers on one store",
+    "large_record": "wrote 100000 characters, read back 1000"
+   },
+   "disagreements": []
+  },
+  {
+   "mutant": {
+    "name": "lossy-locale",
+    "breaks": "verbatim",
+    "what": "Text is round-tripped through the machine's own codepage on the way to disk. cp1252 has an e-acute and does not have a CJK character, and nothing in it is an emoji. Every other probe in this suite uses ASCII names and passes it.",
+    "expect": {
+     "isolation": "PASS",
+     "ack_readback": "PASS",
+     "verbatim": "FAIL",
+     "restart": "PASS",
+     "forget": "PASS",
+     "findable": "PASS",
+     "foreign_field": "PASS",
+     "foreign_record": "PASS",
+     "concurrent": "PASS",
+     "large_record": "PASS"
+    }
+   },
+   "got": {
+    "isolation": "PASS",
+    "ack_readback": "PASS",
+    "verbatim": "FAIL",
+    "restart": "PASS",
+    "forget": "PASS",
+    "findable": "PASS",
+    "foreign_field": "PASS",
+    "foreign_record": "PASS",
+    "concurrent": "PASS",
+    "large_record": "PASS"
+   },
+   "kinds": {
+    "isolation": "kept",
+    "ack_readback": "kept",
+    "verbatim": "failed",
+    "restart": "kept",
+    "forget": "kept",
+    "findable": "kept",
+    "foreign_field": "kept",
+    "foreign_record": "kept",
+    "concurrent": "kept",
+    "large_record": "kept"
+   },
+   "evidence": {
+    "isolation": "store A's record was not visible from store B",
+    "ack_readback": "acknowledged alpha; a fresh read returned 1 entities: ['alpha']",
+    "verbatim": "5 of 9 strings did not come back intact. Wrote cjk: \\u65e5\\u672c\\u8a9e\\u306e\\u30c6\\u30ad\\u30b9\\u30c8; the nearest thing found is cjk: ????????, which agrees with it for its first 5 characters",
+    "restart": "three writes across three server lifetimes; read back ['restart-0', 'restart-1', 'restart-2']",
+    "forget": "asked to forget plinth-obsidian and the subject answered '{\"ok\": true, \"forgotten\": \"plinth-obsidian\", \"bytes\": 33}'; after a restart the other two came back and it did not",
+    "findable": "all 8 acknowledged records came back in the top 3 for a search on their own name",
+    "foreign_field": "the extra field survived the next write",
+    "foreign_record": "the unmodelled record survived",
+    "concurrent": "20 of 20 acknowledged writes survived two servers on one store",
+    "large_record": "wrote 100000 characters, read back 100000"
+   },
+   "disagreements": []
+  },
+  {
+   "mutant": {
+    "name": "mute-search",
+    "breaks": "findable",
+    "what": "The store is perfect and nothing is ever found. Retention without retrieval.",
+    "expect": {
+     "isolation": "PASS",
+     "ack_readback": "PASS",
+     "verbatim": "PASS",
+     "restart": "PASS",
+     "forget": "PASS",
+     "findable": "FAIL",
+     "foreign_field": "PASS",
+     "foreign_record": "PASS",
+     "concurrent": "PASS",
+     "large_record": "PASS"
+    }
+   },
+   "got": {
+    "isolation": "PASS",
+    "ack_readback": "PASS",
+    "verbatim": "PASS",
+    "restart": "PASS",
+    "forget": "PASS",
+    "findable": "FAIL",
+    "foreign_field": "PASS",
+    "foreign_record": "PASS",
+    "concurrent": "PASS",
+    "large_record": "PASS"
+   },
+   "kinds": {
+    "isolation": "kept",
+    "ack_readback": "kept",
+    "verbatim": "kept",
+    "restart": "kept",
+    "forget": "kept",
+    "findable": "failed",
+    "foreign_field": "kept",
+    "foreign_record": "kept",
+    "concurrent": "kept",
+    "large_record": "kept"
+   },
+   "evidence": {
+    "isolation": "store A's record was not visible from store B",
+    "ack_readback": "acknowledged alpha; a fresh read returned 1 entities: ['alpha']",
+    "verbatim": "all 9 strings came back byte for byte, over the wire: 2, 3 and 4-byte UTF-8, a combining pair, right-to-left text, JSON escapes, a zero-width space and an embedded newline, under a non-ASCII name",
+    "restart": "three writes across three server lifetimes; read back ['restart-0', 'restart-1', 'restart-2']",
+    "forget": "asked to forget plinth-obsidian and the subject answered '{\"ok\": true, \"forgotten\": \"plinth-obsidian\", \"bytes\": 33}'; after a restart the other two came back and it did not",
+    "findable": "8 of 8 acknowledged records were not returned by a search for their own name: ['zephyr-quartz', 'ember-lattice', 'cobalt-thistle', 'marlin-obsidian']; every query returned nothing at all, whatever was asked",
+    "foreign_field": "the extra field survived the next write",
+    "foreign_record": "the unmodelled record survived",
+    "concurrent": "20 of 20 acknowledged writes survived two servers on one store",
+    "large_record": "wrote 100000 characters, read back 100000"
+   },
+   "disagreements": []
+  },
+  {
+   "mutant": {
+    "name": "blind-search",
+    "breaks": "findable",
+    "what": "The same three records come back whatever is asked - memento's real defect, which every other probe in the suite would have scored as a pass.",
+    "expect": {
+     "isolation": "PASS",
+     "ack_readback": "PASS",
+     "verbatim": "PASS",
+     "restart": "PASS",
+     "forget": "PASS",
+     "findable": "FAIL",
+     "foreign_field": "PASS",
+     "foreign_record": "PASS",
+     "concurrent": "PASS",
+     "large_record": "PASS"
+    }
+   },
+   "got": {
+    "isolation": "PASS",
+    "ack_readback": "PASS",
+    "verbatim": "PASS",
+    "restart": "PASS",
+    "forget": "PASS",
+    "findable": "FAIL",
+    "foreign_field": "PASS",
+    "foreign_record": "PASS",
+    "concurrent": "PASS",
+    "large_record": "PASS"
+   },
+   "kinds": {
+    "isolation": "kept",
+    "ack_readback": "kept",
+    "verbatim": "kept",
+    "restart": "kept",
+    "forget": "kept",
+    "findable": "failed",
+    "foreign_field": "kept",
+    "foreign_record": "kept",
+    "concurrent": "kept",
+    "large_record": "kept"
+   },
+   "evidence": {
+    "isolation": "store A's record was not visible from store B",
+    "ack_readback": "acknowledged alpha; a fresh read returned 1 entities: ['alpha']",
+    "verbatim": "all 9 strings came back byte for byte, over the wire: 2, 3 and 4-byte UTF-8, a combining pair, right-to-left text, JSON escapes, a zero-width space and an embedded newline, under a non-ASCII name",
+    "restart": "three writes across three server lifetimes; read back ['restart-0', 'restart-1', 'restart-2']",
+    "forget": "asked to forget plinth-obsidian and the subject answered '{\"ok\": true, \"forgotten\": \"plinth-obsidian\", \"bytes\": 33}'; after a restart the other two came back and it did not",
+    "findable": "5 of 8 acknowledged records were not returned by a search for their own name: ['zephyr-quartz', 'marlin-obsidian', 'tundra-figment', 'quiver-nectar']; every query returned the same 3 records regardless of what was asked - the search does not discriminate",
+    "foreign_field": "the extra field survived the next write",
+    "foreign_record": "the unmodelled record survived",
+    "concurrent": "20 of 20 acknowledged writes survived two servers on one store",
+    "large_record": "wrote 100000 characters, read back 100000"
+   },
+   "disagreements": []
+  }
+ ]
+}

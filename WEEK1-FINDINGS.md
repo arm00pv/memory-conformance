@@ -4297,3 +4297,39 @@ a consistent wrong report. What it proves is that no report here can drift from 
 @@results/@@ without the build going red, which is a property this repository has claimed in prose for eight
 phases and has now earned.
 
+
+## Addendum 45: the hole in the guard, closed the same day
+
+Addendum 44 said the new regeneration guard covered seventeen report modes and named the three it could
+not: @@CALIBRATION.md@@, @@MUTANTS.md@@ and @@RETRIEVAL-MUTANTS.md@@, because refreshing them meant re-running
+subjects or mutants rather than re-reading rows. That is closed. Each of the three now has a @@--report@@ that
+renders from committed data, and the guard runs all twenty.
+
+**@@calibration.py --report@@** reads the eight saved control runs - four controls against two corpora, all of
+them already in @@results/@@ - and rebuilds the table. **@@retrieval_mutants.py --report@@** reads the eight saved
+lever runs the same way. **@@mutants.py@@** now writes @@results/mutants.json@@ (the twelve verdict sets it already
+computed and threw away), and @@--report@@ renders @@MUTANTS.md@@ from it.
+
+### What the three said when they were first pointed at their own output
+
+**@RETRIEVAL-MUTANTS.md@ and @MUTANTS.md@ reproduced byte for byte.** That is a real result rather than a
+formality: the mutant tables claim that every predicted verdict was written down before the run and that
+the run matched, and now the committed table is provably the render of the committed verdicts rather than a
+file somebody typed.
+
+**@@CALIBRATION.md@@ did not, and the fault was mine in the new code.** The report mode printed "Repeated 2
+times per question" where the table had said 3, because the run count was taken from
+@len(rows[0]["per_run"])@ - and @@per_run@@ is a **dict with two keys**, @@hit3@@ and @@answered@@, so its length is
+2 however many times the question was asked. Self-bug 62, and a good one: a plausible-looking wrong measure
+that produces a small integer in a sentence nobody would check. The count now comes from the runs inside
+that dict, which is where it lives.
+
+### What the guard now guarantees, and what is still outside it
+
+Twenty report modes, every one of them regenerating from committed results and failing the build on a
+changed byte. The remaining blind spot is nothing published: it is the three measurement jobs (probes,
+mutants, retrieval levers) whose *outputs* are the inputs to these reports, and a stale measurement is
+invisible to a check that compares a report to the results under it. That is the boundary of what
+regeneration can prove, and it is the same boundary this repository has been drawing all along: a report
+can only be as true as the rows it reads.
+

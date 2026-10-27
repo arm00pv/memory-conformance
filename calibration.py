@@ -63,6 +63,18 @@ def run_one(kind, mutant, corpus, repeat):
         return json.load(fh), proc.stdout
 
 
+def read_saved(mutant_name, label):
+    """One saved control run, or None when it is not on disk.
+
+    read by --report, which re-renders CALIBRATION.md from what was measured rather than measuring again.
+    """
+    path = os.path.join(HERE, "results", "calibration-%s-%s.json" % (mutant_name, label))
+    if not os.path.isfile(path):
+        return None
+    with open(path, encoding="utf-8") as fh:
+        return json.load(fh)
+
+
 def counts(rows):
     """Hits, and the score the paired tests use, for one phrasing."""
     hits = sum(1 for r in rows if r.get("hit3"))
@@ -85,6 +97,13 @@ def score(rows, shape):
 def main(argv=None):
     argv = list(sys.argv[1:] if argv is None else argv)
     repeat = 3
+    report_only = "--report" in argv
+    if report_only:
+        # A REPORT IS NOT A MEASUREMENT. This file was one of three published reports with no way to rebuild
+        # it except by running four controls against two corpora, so it could drift from the results under it
+        # and nothing would notice - which is exactly what the regeneration guard found in two other reports
+        # on its first run. The eight saved runs are on disk; this renders from them.
+        repeat = 0
     md = os.path.join(HERE, "CALIBRATION.md")
     for a in argv:
         if a.startswith("--repeat="):
@@ -96,13 +115,20 @@ def main(argv=None):
     for name, kind, mutant, what in CONTROLS:
         row = {"name": name, "what": what, "bands": {}}
         for label, path in CORPORA:
-            doc, log = run_one(kind, mutant, (label, path), repeat)
+            if report_only:
+                doc, log = read_saved(mutant or "control", label), ""
+            else:
+                doc, log = run_one(kind, mutant, (label, path), repeat)
             if doc is None:
                 print("%s %s: COULD NOT RUN" % (name, label))
                 print(log)
                 row["bands"][label] = None
                 continue
             rows = doc.get("rows") or []
+            if report_only and rows:
+                # THE REPEAT COUNT IS A FACT ABOUT THE RUNS, NOT ABOUT THIS INVOCATION. A report says
+                # "repeated N times per question", and N is what the saved rows recorded.
+                repeat = max(repeat, len((rows[0].get("per_run") or {}).get("hit3") or []) or 1)
             hits, hits_kw = counts(rows)
             n = len(rows)
             absent = sum(1 for r in rows if r["difficulty"] == "absent")
@@ -118,7 +144,7 @@ def main(argv=None):
                      b["hits_kw"], n, b["score"], b["score_kw"], b["spoke"], b["absent"]),
                   flush=True)
         table.append(row)
-    write_md(md, table, repeat)
+    write_md(md, table, repeat or 3)
     return 0
 
 

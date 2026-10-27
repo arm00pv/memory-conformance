@@ -203,6 +203,8 @@ jobs:
       # GROWTH.md's own title said 500 records beside five-thousand-record data, which was a bug in the report
       # mode rather than in the table. Only report modes are run here - anything that would re-measure a
       # subject belongs in its own job, and a check that edits the evidence it is checking is not a check.
+      # The three without a report mode - calibration.py, retrieval_mutants.py and mutants.py - have one now,
+      # so the tables describing the scale, the mutants and the probes are covered by the same rule.
       - name: the generated reports must match their generators
         run: |
           python matrix.py --report-only > /dev/null
@@ -220,6 +222,9 @@ jobs:
           python precision.py > /dev/null
           python judge.py --report > /dev/null
           python growth.py --report-only > /dev/null
+          python calibration.py --report > /dev/null
+          python retrieval_mutants.py --report > /dev/null
+          python mutants.py --report > /dev/null
           python claims.py > /dev/null
           git diff --stat
           git diff --exit-code

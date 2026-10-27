@@ -155,6 +155,21 @@ def main(argv=None):
 
     only = opt("only")
     md_path = opt("md", os.path.join(HERE, "MUTANTS.md"))
+    json_path = opt("json", os.path.join(HERE, "results", "mutants.json"))
+    if "--report" in argv:
+        # A REPORT IS NOT A MEASUREMENT. MUTANTS.md was the last published table with no way to rebuild it
+        # except by running twelve broken servers through ten probes each, so nothing could tell whether it
+        # still described the harness it claims to test. The verdicts are saved beside it now and this
+        # renders from them.
+        if not os.path.isfile(json_path):
+            sys.exit("no saved mutant verdicts at %s - run mutants.py once" % json_path)
+        with open(json_path, encoding="utf-8") as fh:
+            saved = json.load(fh)
+        results = saved.get("results") or []
+        bad = saved.get("bad") or 0
+        _matrix(results)
+        _write_md(md_path, results, bad)
+        return 1 if bad else 0
     workdir = tempfile.mkdtemp(prefix="memconf_mut_")
     results = []
     bad = 0
@@ -195,6 +210,9 @@ def main(argv=None):
     finally:
         shutil.rmtree(workdir, ignore_errors=True)
 
+    with open(json_path, "w", encoding="utf-8", newline=chr(10)) as fh:
+        fh.write(json.dumps({"bad": bad, "results": results}, indent=1) + chr(10))
+    print("saved %d verdict set(s) to %s" % (len(results), json_path))
     _matrix(results)
     _write_md(md_path, results, bad)
     return 1 if bad else 0
