@@ -35,6 +35,7 @@ jobs:
           grep -q "tie-means-same" CLAIMS.md
           grep -q "corpora-agree" CLAIMS.md
           grep -q "score-sees-ordering" CLAIMS.md
+          grep -q "agent-agrees-with-score" CLAIMS.md
           grep -q "score-prefers-recalcitrance" CLAIMS.md
       - name: every question must be analysed for whether it separates anybody
         run: |
@@ -79,6 +80,19 @@ jobs:
           grep -q "What it cannot see" /tmp/rm.md
           grep -q "What it rewards" /tmp/rm.md
           grep -q "different verdict depending on how many results are read" /tmp/rm.md
+
+      # THE NUMBER PUBLISHED IS NOT THE ONE A CALLER SEES. The score credits the top three; an agent
+      # reads the first record. This checks that the report which puts the two side by side still runs and
+      # still says both things - who leads each question, and that no subject gains under the stricter one.
+      - name: the metric a caller reads must be reported beside the one published
+        run: |
+          python agent.py > /tmp/agent.txt
+          cat /tmp/agent.txt
+          test -s AGENT.md
+          grep -q "What an agent actually reads" AGENT.md
+          grep -q "rulers at the top" AGENT.md
+          grep -q "what an agent reads" AGENT.md
+          grep -q "pairs reach a different verdict" AGENT.md
 
       - name: a tie must be reported as one of its three kinds, with a price
         run: |

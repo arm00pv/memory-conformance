@@ -337,6 +337,44 @@ def c_score_prefers_recalcitrance(ctx, corpus, shape):
             % (greedy[0], base[0], gained))
 
 
+def c_agent_agrees(ctx, corpus, shape):
+    """The ranking a caller with a token budget sees is the one this repository publishes.
+
+    THE SCORE CREDITS THE TOP THREE AND THE CALLER READS ONE. retrieval_mutants.py measured that the
+    score does not move when an answer moves from first to third, so the two are different questions and
+    the only open question was whether they ever disagree about who is best. They do, on five of the six
+    corpus and phrasing combinations measured.
+    """
+    import resolution
+    differ = []
+    for label, _path, suffix in resolution.CORPORA:
+        heads = {}
+        for metric in ("score", "top"):
+            got = []
+            for s in resolution.subjects():
+                rows = resolution.rows_of(s["slug"], suffix)
+                if not rows:
+                    continue
+                vals = [resolution.outcome(r, "written", metric) for r in rows]
+                vals = [v for v in vals if v is not None]
+                if vals:
+                    got.append((sum(1 for v in vals if v), s["label"]))
+            if not got:
+                continue
+            best = max(g[0] for g in got)
+            heads[metric] = set(n for v, n in got if v == best)
+        if "score" not in heads or "top" not in heads:
+            continue
+        if heads["score"] != heads["top"]:
+            differ.append("%s (score %s, agent %s)"
+                          % (label, "/".join(sorted(n.split()[0] for n in heads["score"])),
+                             "/".join(sorted(n.split()[0] for n in heads["top"]))))
+    total = len([1 for _l, _p, _s in resolution.CORPORA])
+    return (not differ,
+            "%d of %d corpora put a different subject on top when the metric is what a caller reads%s"
+            % (len(differ), total, (": " + "; ".join(differ)) if differ else ""))
+
+
 def c_most_hits(ctx, corpus, shape):
     r = leads(LEADER, corpus, lambda n, c, s: hits(n, c, s), shape)
     return (r["strict"], fmt_lead(r, of="48")) if r else None
@@ -698,6 +736,8 @@ CLAIMS = [
      c_tie_means_same, False),
     ("corpora-agree", "every pair of corpora here reaches the same verdict on every pair of subjects.",
      c_corpora_agree, False),
+    ("agent-agrees-with-score", "the ranking a caller with a token budget sees is the one this"
+     " repository publishes.", c_agent_agrees, False),
     ("score-sees-ordering", "the retrieval score changes when a search returns its worst match first.",
      c_score_sees_ordering, False),
     ("score-prefers-recalcitrance", "a search that accepts one shared word scores no better than one that"

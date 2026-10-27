@@ -8,30 +8,45 @@ fixed by asking more questions - another by asking different ones, and another b
 
 ## Who is at the top, ruler by ruler
 
-A ruler is one corpus, in one phrasing, on one metric - twelve of them, and the answer is not
-the same on all twelve.
+A ruler is one corpus, in one phrasing, on one metric - twenty-four of them, and the answer is
+not the same on all twenty-four. The four metrics are different questions: the score and the hit
+count both credit the right record anywhere in the top three, hit@1 asks only about the first,
+and the agent column is the first record back plus a correct silence.
 
 | corpus | phrasing | metric | top | at the top | margin over the next |
 |---|---|---|---|---|---|
 | A | written | score | **43 of 60** | `memory-mcp-1file 0.9.2` | 3 |
 | A | written | hits | **42 of 48** | `memory-mcp-1file 0.9.2` | 2 |
+| A | written | hit1 | **39 of 48** | `memory-mcp-1file 0.9.2` | 6 |
+| A | written | top | **40 of 60** | `memory-mcp-1file 0.9.2` | 3 |
 | A | keywords | score | **42 of 60** | `control 1.0.0`, `memory-mcp-1file 0.9.2` | 9 |
 | A | keywords | hits | **42 of 48** | `memory-mcp-1file 0.9.2` | 9 |
+| A | keywords | hit1 | **33 of 48** | `memory-mcp-1file 0.9.2` | 4 |
+| A | keywords | top | **40 of 60** | `control 1.0.0` | 7 |
 | B | written | score | **45 of 60** | `memory-mcp-1file 0.9.2` | 1 |
 | B | written | hits | **45 of 48** | `memory-mcp-1file 0.9.2` | 12 |
+| B | written | hit1 | **37 of 48** | `memory-mcp-1file 0.9.2` | 5 |
+| B | written | top | **41 of 60** | `control 1.0.0` | 4 |
 | B | keywords | score | **44 of 60** | `control 1.0.0` | 7 |
 | B | keywords | hits | **37 of 48** | `memory-mcp-1file 0.9.2` | 3 |
+| B | keywords | hit1 | **29 of 48** | `control 1.0.0`, `memory-mcp-1file 0.9.2` | 2 |
+| B | keywords | top | **41 of 60** | `control 1.0.0` | 12 |
 | C | written | score | **43 of 59** | `control 1.0.0` | 3 |
 | C | written | hits | **40 of 47** | `memory-mcp-1file 0.9.2` | 9 |
+| C | written | hit1 | **30 of 47** | `memory-mcp-1file 0.9.2` | 1 |
+| C | written | top | **40 of 59** | `control 1.0.0` | 10 |
 | C | keywords | score | **43 of 59** | `control 1.0.0` | 6 |
 | C | keywords | hits | **37 of 47** | `memory-mcp-1file 0.9.2` | 5 |
+| C | keywords | hit1 | **32 of 47** | `zenbrain 0.3.0` | 2 |
+| C | keywords | top | **42 of 59** | `control 1.0.0` | 10 |
 
 ### How many rulers each subject leads
 
 | subject | rulers at the top | of | rulers it leads |
 |---|---|---|---|
-| `memory-mcp-1file 0.9.2` | **9** | 12 | A written score, A written hits, A keywords score, A keywords hits, B written score, B written hits, B keywords hits, C written hits, C keywords hits |
-| `control 1.0.0` | **4** | 12 | A keywords score, B keywords score, C written score, C keywords score |
+| `memory-mcp-1file 0.9.2` | **15** | 24 | A written score, A written hits, A written hit1, A written top, A keywords score, A keywords hits, A keywords hit1, B written score, B written hits, B written hit1, B keywords hits, B keywords hit1, C written hits, C written hit1, C keywords hits |
+| `control 1.0.0` | **10** | 24 | A keywords score, A keywords top, B written top, B keywords score, B keywords hit1, B keywords top, C written score, C written top, C keywords score, C keywords top |
+| `zenbrain 0.3.0` | **1** | 24 | C keywords hit1 |
 
 A subject that leads on some rulers and not others is not the leader of anything. It is the
 answer to a question about which ruler was picked.
@@ -40,7 +55,6 @@ The band is wider than its leaders. These subjects lead nothing and are not sepa
 someone who does, which is the whole of their claim to be in the tables below:
 
 - `memory-lean 1.5.0` - A keywords score at p = 0.065
-- `zenbrain 0.3.0` - A written score at p = 0.581; A written hits at p = 0.774; B keywords hits at p = 0.453; C keywords hits at p = 0.267
 
 ## What kinds of tie there are
 
@@ -48,11 +62,11 @@ Every pair on every ruler, classified by what the corpus failed to separate:
 
 | kind | pair-rulers | what it means |
 |---|---|---|
-| IDENTICAL | **73** | the same outcome on every question, so nothing to separate |
-| NO DIRECTION | **4** | they disagree, but evenly; no corpus separates a coin |
-| SMALL BUT REAL | **94** | one side wins the disagreements and the corpus is too short |
-| OUT OF REACH | **27** | a real margin, worth more than 1000 questions to resolve |
-| SEPARATED NOW | **462** | this ruler already separates them |
+| IDENTICAL | **151** | the same outcome on every question, so nothing to separate |
+| NO DIRECTION | **6** | they disagree, but evenly; no corpus separates a coin |
+| SMALL BUT REAL | **197** | one side wins the disagreements and the corpus is too short |
+| OUT OF REACH | **56** | a real margin, worth more than 1000 questions to resolve |
+| SEPARATED NOW | **910** | this ruler already separates them |
 
 Only SMALL BUT REAL is a limitation of the question count. IDENTICAL needs no corpus, NO
 DIRECTION needs a different corpus rather than a longer one because more questions of the same
@@ -109,7 +123,7 @@ worth seeing, and the two columns are where those come apart: two subjects that 
 almost every question can carry the same p as two that agree on almost none, and only one of
 those pairs is worth another corpus.
 
-The 198 pair-rulers this instrument does not separate are not one population, and the
+The 410 pair-rulers this instrument does not separate are not one population, and the
 distance between the two ends is what the word tie hides.
 
 **Almost the same subject.** `mcp-knowledge-graph 1.3.2` vs `memdb 1.4.0` on corpus B written hits: **1 of 48 questions** were
@@ -117,8 +131,8 @@ answered differently, p = 1.000. On almost every question these two are the same
 and a corpus that separated them would have to be a corpus that asks something they do not
 both already get right.
 
-**Two different programs, and no verdict.** `memory-lean 1.5.0` vs `memory-mcp-1file 0.9.2` on corpus A keywords score:
-**36 of 60 questions** were answered differently, p = 0.065, and the totals differ by 12.
+**Two different programs, and no verdict.** `mcp-duckdb-memory-server 1.1.10` vs `memory-mcp-1file 0.9.2` on corpus B written top:
+**41 of 60 questions** were answered differently, p = 0.060, and the totals differ by 13.
 They fail different questions, and the instrument declines to rank them because the split
 is near its line. Not separated is not the same as similar, and a reader choosing between
 these two is choosing which failures to live with rather than which program is better.

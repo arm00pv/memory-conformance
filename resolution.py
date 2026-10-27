@@ -35,6 +35,11 @@ CORPORA = [("A", "retrieval_corpus.json", ""), ("B", "retrieval_corpus_b.json", 
            ("C", "retrieval_corpus_c.json", "-c")]
 SUFFIX = dict((label, suffix) for label, _p, suffix in CORPORA)
 SHAPES = ("written", "keywords")
+# FOUR QUESTIONS, NOT TWO. "score" and "hits" both credit the right record anywhere in the top three;
+# "hit1" asks only whether it arrived first, and "top" is what a caller with a token budget actually
+# reads - the first record, or nothing. retrieval_mutants.py showed the score does not move when the
+# answer moves from first to third, so these are different questions and not a refinement of one.
+METRICS = ("score", "hits", "hit1", "top")
 
 
 def subjects():
@@ -81,11 +86,13 @@ def outcome(row, shape, metric="score"):
     real difference - which is exactly what happens at the top of this table. Both are reported.
     """
     import compare
-    if metric == "hits":
+    if metric == "top":
+        return bool(compare.agent_keyword(row)) if shape == "keywords" else bool(compare.agent(row))
+    if metric in ("hits", "hit1"):
         if row.get("difficulty") == "absent":
             return None  # nothing to hit, so nothing to compare on this metric
-        key = "hit3" if shape == "written" else "hit3_keyword"
-        return bool(row.get(key))
+        base = "hit3" if metric == "hits" else "hit1"
+        return bool(row.get(base if shape == "written" else base + "_keyword"))
     return bool(compare.correct_keyword(row)) if shape == "keywords" else bool(compare.correct(row))
 
 
@@ -118,7 +125,7 @@ def main(argv=None):
     blocks = {}
     for label, _path, suffix in CORPORA:
         for shape in SHAPES:
-            for metric in ("score", "hits"):
+            for metric in METRICS:
                 cache = dict((s["slug"], rows_of(s["slug"], suffix)) for s in present)
                 cells = {}
                 for a, b in itertools.combinations(present, 2):
@@ -133,7 +140,7 @@ def main(argv=None):
 
     total = len(next(iter(blocks.values())))
     print("%d subjects, %d pairs" % (len(present), total))
-    for key in [(l, s, m) for l, _p, _u in CORPORA for s in SHAPES for m in ("score", "hits")]:
+    for key in [(l, s, m) for l, _p, _u in CORPORA for s in SHAPES for m in METRICS]:
         cells = blocks.get(key) or {}
         sep = [k for k, v in cells.items() if v["separated"]]
         print("  corpus %s, %-8s on %-5s %2d of %d pairs separated"
@@ -206,18 +213,27 @@ def write_md(path, present, blocks, all_groups, total):
     add("per-question outcomes gives p < 0.05. Everything below that is a difference this instrument")
     add("cannot see, and a table that lists it in order invites a reader to see one anyway.")
     add("")
+    add("FOUR QUESTIONS ARE ASKED OF EVERY PAIR, because retrieval_mutants.py showed that the score does not")
+    add("move when an answer moves from first to third. \"Score\" credits the right record anywhere in the top")
+    add("three and credits silence on a question with no answer. \"Hits\" is the top three alone. \"hit@1\" is")
+    add("only whether the right record arrived first. \"What an agent reads\" is the first record back plus a")
+    add("correct silence, which is the only one of the four that describes what a caller with a token budget")
+    add("can actually see. A pair whose verdict differs between the last two columns is a pair whose ranking")
+    add("depends on how many results the reader asks for.")
+    add("")
     for label, _p, _s in CORPORA:
         add("## Corpus %s" % label)
         add("")
-        add("| phrasing | on the score | on hits alone |")
-        add("|---|---|---|")
+        add("| phrasing | score: top three, or silence | hits: top three only | hit@1 only |"
+            " what an agent reads |")
+        add("|---|---|---|---|---|")
         for shape in SHAPES:
             row = []
-            for metric in ("score", "hits"):
+            for metric in METRICS:
                 cells = blocks.get((label, shape, metric)) or {}
                 sep = sum(1 for v in cells.values() if v["separated"])
                 row.append("**%d of %d**" % (sep, len(cells)))
-            add("| %s | %s | %s |" % (shape, row[0], row[1]))
+            add("| %s | %s |" % (shape, " | ".join(row)))
         add("")
         for shape in SHAPES:
             cells = blocks.get((label, shape, "score")) or {}
@@ -243,19 +259,19 @@ def write_md(path, present, blocks, all_groups, total):
     add("result - the two corpora never disagree - which is the failure mode this whole repository is")
     add("about. A count with a zero denominator is not a zero.")
     add("")
-    add("| corpora | phrasing | verdicts that differ, on the score | on hits alone |")
-    add("|---|---|---|---|")
+    add("| corpora | phrasing | differ on the score | on hits | on hit@1 | what an agent reads |")
+    add("|---|---|---|---|---|---|")
     names = [label for label, _p, _s in CORPORA]
     for c1, c2 in itertools.combinations(names, 2):
         for shape in SHAPES:
             row = []
-            for metric in ("score", "hits"):
+            for metric in METRICS:
                 a = blocks.get((c1, shape, metric)) or {}
                 b = blocks.get((c2, shape, metric)) or {}
                 common = set(a) & set(b)
                 diff = sum(1 for k in common if a[k]["separated"] != b[k]["separated"])
                 row.append("**%d of %d**" % (diff, len(common)))
-            add("| %s vs %s | %s | %s | %s |" % (c1, c2, shape, row[0], row[1]))
+            add("| %s vs %s | %s | %s |" % (c1, c2, shape, " | ".join(row)))
     add("")
     add("## The groups it cannot split")
     add("")

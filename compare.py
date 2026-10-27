@@ -74,6 +74,27 @@ def correct_keyword(row):
                     "hit3": bool(row.get("hit3_keyword"))})
 
 
+def agent(row):
+    """What the caller actually experiences: the FIRST record back, and silence when there is none.
+
+    THE THIRD METRIC, AND THE ONE NOBODY COMPUTED. The score credits the right record anywhere in the top
+    three, which is a set membership question; retrieval_mutants.py showed it does not move when the answer
+    moves from first to third. An agent with a token budget reads the first result and stops, and reads
+    nothing at all when the memory declines. So this counts hit@1 plus a correct silence, and it is neither
+    of the numbers this repository has been publishing.
+    """
+    if row["difficulty"] == "absent":
+        return not row["answered"]
+    return bool(row["hit1"])
+
+
+def agent_keyword(row):
+    """The same reading, of the same question put as keywords."""
+    return agent({"difficulty": row["difficulty"],
+                  "answered": bool(row.get("answered_keyword")),
+                  "hit1": bool(row.get("hit1_keyword"))})
+
+
 def exact_mcnemar(b, c):
     """Two-sided exact McNemar: how surprising is this split, if the two were equally good?"""
     n = b + c

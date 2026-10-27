@@ -40,7 +40,10 @@ import resolution
 
 CORPORA = [("A", ""), ("B", "-b"), ("C", "-c")]
 SHAPES = ("written", "keywords")
-METRICS = ("score", "hits")
+# FOUR QUESTIONS. The score and hits both credit the top three; hit1 asks only about the first record
+# and top is what an agent with a token budget actually reads. They are not refinements of each other -
+# retrieval_mutants.py measured that the score does not move when an answer moves from first to third.
+METRICS = ("score", "hits", "hit1", "top")
 TARGET_POWER = 0.80
 CAP = 40000         # disagreements; above this, no question count separates a split this even
 # A CORPUS NOBODY WILL WRITE IS NOT A MEASUREMENT PLAN. Past a thousand questions the honest report is
@@ -374,8 +377,10 @@ def write_md(path, people, leaders, contenders, pairs):
     add("")
     add("## Who is at the top, ruler by ruler")
     add("")
-    add("A ruler is one corpus, in one phrasing, on one metric - twelve of them, and the answer is not")
-    add("the same on all twelve.")
+    add("A ruler is one corpus, in one phrasing, on one metric - twenty-four of them, and the answer is")
+    add("not the same on all twenty-four. The four metrics are different questions: the score and the hit")
+    add("count both credit the right record anywhere in the top three, hit@1 asks only about the first,")
+    add("and the agent column is the first record back plus a correct silence.")
     add("")
     add("| corpus | phrasing | metric | top | at the top | margin over the next |")
     add("|---|---|---|---|---|---|")
