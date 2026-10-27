@@ -3605,6 +3605,66 @@ One generator, one measurement run of eleven subjects at 300 questions, one repo
 The store, the subjects and every earlier table are untouched, and the repository can now say what a longer
 exam buys with a measurement instead of an estimate.
 
+## Addendum 35: no memory here knows which version of a fact is current
+
+Thirty-four addenda have measured what a memory can find. Not one has asked the question a memory store
+exists for.
+
+A fact is written, then rewritten. The caller needs the value that replaced the old one, and the whole
+value of a memory holding thousands of facts over months depends on it. `restart` covers a record that is
+deleted and `forget` covers one asked to go. **Supersession - the same fact, revised - has never been in any
+corpus here.**
+
+The corpus is built from real data and no author: every chosen package record is stored twice, as two
+records whose only difference is the version string in the body, and each question asks with the
+description both of them carry. The current answer is the later record. Neither the id nor the text says
+"latest"; the only signal is which write came second.
+
+### The result
+
+| subject | current, alone | stale, alone | both returned | current first |
+|---|---|---|---|---|
+| `zenbrain` | 5 | 0 | 67 | 55 of 72 |
+| `memory-mcp-1file` | 2 | 2 | 68 | 29 of 72 |
+| `control`, `duckdb`, `memory-lean`, `mcp-knowledge-graph`, `server-memory` x2 | 0 | 6 | 66 | **0 of 72** |
+| `memento` | 0 | 17 | 18 | **0 of 72** |
+| `memdb`, `statecore-mcp` | 0 | 0 | 0 | **0 of 72** |
+
+**Nine of eleven subjects never once put the current record first.** They return both versions in 66 of
+72 questions and rank the superseded one ahead of its replacement. Across the table 55 answers came from
+the stale record alone and 549 returned both.
+
+The mechanism is not mysterious and it is not a bug in any subject: two nearly identical records tie on
+every keyword, the tie is broken by insertion order or by id, and the old record was written first. What is
+missing is any notion that a later write supersedes an earlier one - a missing capability, not a ranking
+defect.
+
+### The three predictions
+
+1. No subject above three quarters on current-alone. **Held** - the best is 5 of 72.
+2. Subjects returning several results return both about as often as either. **Held** - 549 of 792 returned
+   both.
+3. At least one subject below a quarter. **Held** - two scored nothing at all.
+
+All three held, and this is the first phase in the repository where every prediction was that the field
+would fail.
+
+### What this does not settle
+
+The two versions differ in the body and not in the record name, so this measures ranking between two
+candidates rather than storage semantics. A subject that overwrites on a repeated write would answer it
+trivially if both writes used one name; keeping the names distinct is deliberate, because the question is
+whether recency is visible at all. It also does not test an update protocol: asking a memory to *revise* a
+fact, and telling a revision from a second unrelated fact, is a capability none of these subjects claims
+and the probe suite has never asked for.
+
+### What this costs
+
+One generator, one measurement run of eleven subjects, one report, one claim that fails nine times. The
+question space now has a fourth dimension - whether a fact can change - and on it the field scores close to
+zero.
+
+
 
 
 

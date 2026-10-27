@@ -29,7 +29,7 @@ independently written corpora and in two phrasings, and writes the verdicts to `
 
 ```
 $ python claims.py
-**7 of the 32 claims hold in every setting measured.**
+**7 of the 33 claims hold in every setting measured.**
 ```
 
 Five survive everywhere, including the one that matters most: **memory-mcp-1file answers more
@@ -752,6 +752,33 @@ abandoned — at 282 records the control alone needed nine minutes for 300 quest
 whole store on every search. Correlated questions make separation *harder*, so a tie broken here is real
 evidence and a tie that survives here is weaker evidence than 300 suggests. The ledger's `longer-exam`
 claim **FAILS** on the eight separations.
+
+## Does a memory know which version of a fact is current
+
+Every corpus here asks about a record that does not change. A memory store is not used that way: a fact is
+written, then rewritten, and the first thing its owner needs is the current value rather than the one it
+replaced. `restart` and `forget` cover a record that is **deleted**; nothing covered a record that is
+**superseded**, which is the ordinary case. [`SUPERSESSION.md`](SUPERSESSION.md)
+
+Every chosen package record is stored twice, as two records differing only in the version string in the
+body, and each question asks with the description both carry. The current answer is the later record.
+
+| subject | current, alone | stale, alone | both returned | **current first** |
+|---|---|---|---|---|
+| `zenbrain` | 5 | 0 | 67 | **55 of 72** |
+| `memory-mcp-1file` | 2 | 2 | 68 | **29 of 72** |
+| `control`, `duckdb`, `memory-lean`, `mcp-knowledge-graph`, `server-memory` ×2 | 0 | 6 | 66 | **0 of 72** |
+| `memento` | 0 | 17 | 18 | **0 of 72** |
+| `memdb`, `statecore-mcp` | 0 | 0 | 0 | **0 of 72** |
+
+**Nine of the eleven subjects never put the current record first — not once in seventy-two questions.**
+They return *both* versions nearly every time and rank the **superseded one ahead of the one that replaced
+it**, because the two bodies are almost identical and nothing in either says which is later. An agent
+reading a single result reads the fact that was replaced.
+
+Across the whole table 55 answers came from the superseded record alone and 549 returned both. `zenbrain`
+is the only subject with a recency preference worth the name, and it gets it right about three times in
+four. The ledger's `recency-visible` claim **FAILS** for nine of eleven.
 
 ## A second corpus, written blind
 
