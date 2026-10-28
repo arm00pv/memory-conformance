@@ -266,6 +266,43 @@ def load_saved(entry):
     return report, summary
 
 
+def print_cost(W, cost):
+    """The cost table on its own, so a page can show it without showing the other two axes.
+
+    IT USED TO BE PRINTED ONLY AS THE LAST THIRD OF A FULL RUN, and the transcript in docs/cost.md was
+    a copy of it - a copy with no connection to the timings that produced it, which is the defect
+    figures.py exists to catch elsewhere. The block names a command; this is what that command prints
+    when it is asked to re-render rather than to measure.
+    """
+    print()
+    print("cost, measured once per subject with nothing else running. 'resp' is the median bytes the")
+    print("server sends back for one question and 'amp' is that divided by the answer's own size - a")
+    print("system that answers by returning the whole store shows up here. A subject that returns")
+    print("nothing is cheap for the wrong reason, so read this table with the one above it.")
+    header3 = "%-*s %-8s %-8s %-9s %-9s %-8s %-7s %-7s" % (
+        W, "subject", "startup", "lst write", "write p50", "search p50", "resp B", "amp", "vary")
+    print(header3)
+    print("-" * len(header3))
+    for label, c in cost:
+        if not c:
+            print("%-24s no measurement" % label)
+            continue
+        vary = ""
+        sv = steady_vary(c)
+        if sv is not None:
+            vary = "%.0f%%" % (sv * 100)
+        print("%-*s %7.2fs %7.2fs %8.3fs %8.3fs %8d %7s %7s" % (
+            W, label, c["startup_p50"], c["first_write"], c["write_p50"], c["search_p50"],
+            c["resp_bytes_p50"], ("x%.0f" % c["amp"]) if c.get("amp") else "-", vary))
+    print()
+    print("'vary' is how far the worst steady-state measurement moved across %d passes, as a fraction"
+          % COST_REPEAT)
+    print("of its own median: first write, write, search and response bytes, with timings under %d ms"
+          % int(VARY_FLOOR_SECONDS * 1000))
+    print("left out because a ratio of millisecond noise is not a measurement. Absolute ranges and")
+    print("the noisier startup/restart figures are in results/*-cost.json.")
+
+
 def main(argv):
     report_only = "--report-only" in argv
     cost_only = "--cost-only" in argv
@@ -277,6 +314,16 @@ def main(argv):
     want = set(argv)
     with open(os.path.join(HERE, "subjects.json"), encoding="utf-8") as fh:
         subjects = json.load(fh)
+    if cost_only and report_only:
+        # THE COST TABLE, RE-RENDERED FROM THE TIMINGS ALREADY ON DISK. --report-only must never launch
+        # a subject, and a timing is a measurement of the machine: re-taking one to fill in a page is
+        # exactly the thing this repository keeps finding in its own work. The page shows the command
+        # it names; that command names --report-only, so the page and the guard run the same thing.
+        cost = [(("%s %s" % (entry["name"], entry["version"])), load_cost(entry))
+                for entry in subjects if not want or entry["name"] in want]
+        print_cost(max([24] + [len(label) for label, _c in cost]), cost)
+        return 0
+
     if cost_only:
         # Timings are taken in one quiet pass of their own rather than interleaved with the probes,
         # because a write timed while nine other subjects are being probed is a timing of the machine.
@@ -413,33 +460,7 @@ def main(argv):
         print("a score quoted without its phrasing is half a measurement. Per-band detail is in SHAPE.md.")
 
     # --- third axis --------------------------------------------------------
-    print()
-    print("cost, measured once per subject with nothing else running. 'resp' is the median bytes the")
-    print("server sends back for one question and 'amp' is that divided by the answer's own size - a")
-    print("system that answers by returning the whole store shows up here. A subject that returns")
-    print("nothing is cheap for the wrong reason, so read this table with the one above it.")
-    header3 = "%-*s %-8s %-8s %-9s %-9s %-8s %-7s %-7s" % (
-        W, "subject", "startup", "lst write", "write p50", "search p50", "resp B", "amp", "vary")
-    print(header3)
-    print("-" * len(header3))
-    for label, c in cost:
-        if not c:
-            print("%-24s no measurement" % label)
-            continue
-        vary = ""
-        sv = steady_vary(c)
-        if sv is not None:
-            vary = "%.0f%%" % (sv * 100)
-        print("%-*s %7.2fs %7.2fs %8.3fs %8.3fs %8d %7s %7s" % (
-            W, label, c["startup_p50"], c["first_write"], c["write_p50"], c["search_p50"],
-            c["resp_bytes_p50"], ("x%.0f" % c["amp"]) if c.get("amp") else "-", vary))
-    print()
-    print("'vary' is how far the worst steady-state measurement moved across %d passes, as a fraction"
-          % COST_REPEAT)
-    print("of its own median: first write, write, search and response bytes, with timings under %d ms"
-          % int(VARY_FLOOR_SECONDS * 1000))
-    print("left out because a ratio of millisecond noise is not a measurement. Absolute ranges and")
-    print("the noisier startup/restart figures are in results/*-cost.json.")
+    print_cost(W, cost)
 
     with open("MATRIX.md", "w", encoding="utf-8", newline=chr(10)) as fh:
         fh.write("# Measured subjects" + chr(10) + chr(10))

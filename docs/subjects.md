@@ -91,13 +91,44 @@ The sharpest example is a pair a single score would have got wrong:
 
 ```
 $ python compare.py memento server-memory-1.0.0
-  only memento correct     11
-  only server-memory       12
-  exact McNemar p = 1.0000  -> not separated by this corpus
+
+memento-0.7.0-retrieval.json   vs server-memory-1.0.0-retrieval.json  (all bands)
+
+  as written
+    questions               60
+    correct for both        0
+    correct for neither     34
+    only memento correct    14
+    only server-memory-1.0.0 correct 12
+    exact McNemar p = 0.8450  -> not separated by this corpus
+    without the 12 unanswerable questions: 14-0, p = 0.0001 -> separated
+    THE TWELVE-POINT SWITCH DECIDES THIS ONE: not separated on the score, separated on hits alone.
+    The 12 unanswerable questions are one habit - decline all or answer all - and
+    they count for every subject regardless of what it can answer.
+
+  as keywords
+    questions               60
+    correct for both        1
+    correct for neither     35
+    only memento correct    11
+    only server-memory-1.0.0 correct 13
+    exact McNemar p = 0.8388  -> not separated by this corpus
+    without the 12 unanswerable questions: 11-1, p = 0.0063 -> separated
+    THE TWELVE-POINT SWITCH DECIDES THIS ONE: not separated on the score, separated on hits alone.
+    The 12 unanswerable questions are one habit - decline all or answer all - and
+    they count for every subject regardless of what it can answer.
+
+  the two phrasings reach the same verdict: not separated
 ```
 
 They are opposites — one answers everything including all twelve questions that have no answer, the
-other answers nothing at all — and on this corpus they are statistically identical.
+other answers nothing at all — and on this corpus they are statistically identical **on the score**
+and separated the moment the twelve unanswerable questions come out: 14 discordant questions to
+none, p = 0.0001. The score credits a subject for declining a question with no answer, so the twelve
+points are the whole of the difference here, in both phrasings. **The copy of this transcript that
+stood above said 11 and 12 with p = 1.0000 and concluded that the pair were identical, full stop** -
+a conclusion the current rows do not support, in a paragraph whose subject is a test that decides
+by counting.
 
 - **`@modelcontextprotocol/server-memory`, both versions** — 7 of 8 probes pass, and it answers
   **almost none** of the 60 questions: 0 as written, 2 as keywords. `search_nodes` matches the query
@@ -124,9 +155,32 @@ the *same* questions, the sharper test is the paired one:
 
 ```
 $ python compare.py zenbrain memdb
-  only zenbrain correct    15
-  only memdb correct        0
-  exact McNemar p = 0.0001  -> separated
+
+zenbrain-0.3.0-retrieval.json  vs memdb-1.4.0-retrieval.json      (all bands)
+
+  as written
+    questions               60
+    correct for both        6
+    correct for neither     20
+    only zenbrain correct   34
+    only memdb correct      0
+    exact McNemar p = 0.0000  -> separated
+    without the 12 unanswerable questions: 34-0, p = 0.0000 -> separated
+
+  as keywords
+    questions               60
+    correct for both        17
+    correct for neither     17
+    only zenbrain correct   16
+    only memdb correct      10
+    exact McNemar p = 0.3269  -> not separated by this corpus
+    without the 12 unanswerable questions: 16-2, p = 0.0013 -> separated
+    THE TWELVE-POINT SWITCH DECIDES THIS ONE: not separated on the score, separated on hits alone.
+    The 12 unanswerable questions are one habit - decline all or answer all - and
+    they count for every subject regardless of what it can answer.
+
+  THE PHRASING DECIDES THIS ONE: separated as written, not separated as keywords.
+  Neither number is the answer on its own. Report the pair.
 ```
 
 The control passing all nine is the claim that every probe *can* pass, which is the difference

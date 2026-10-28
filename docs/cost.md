@@ -7,18 +7,30 @@ at the top of the repository.
 ## Cost: the third axis
 
 ```
-$ python matrix.py --cost-only        # timings taken in a quiet pass of their own
+$ python matrix.py --cost-only --report-only   # timings from a quiet pass of their own; this block is re-rendered
 
-subject                  startup  lst write write p50 search p50 resp B   amp     vary
-control 1.0.0               0.23s    0.01s    0.009s    0.001s     4175     x72      0%
-server-memory 1.0.0         0.89s    0.05s    0.021s    0.005s       39      x1     62%
-server-memory 2.0.0         0.80s    0.03s    0.013s    0.005s       39      x1     69%
-memento 0.7.0               1.42s    4.54s    0.111s    0.045s     1497     x26    293%
-memdb 1.4.0                 0.42s    0.01s    0.001s    0.002s     1027     x18      0%
-memory-lean 1.5.0           0.12s    0.01s    0.004s    0.002s      164      x3      0%
-mcp-knowledge-graph 1.3.2   0.13s    0.01s    0.005s    0.003s       39      x1      0%
-zenbrain 0.3.0              0.43s    0.01s    0.001s    0.002s      663     x11      0%
-memory-mcp-1file 0.9.2      0.51s    1.56s    0.036s    0.055s     1969     x34     11%
+cost, measured once per subject with nothing else running. 'resp' is the median bytes the
+server sends back for one question and 'amp' is that divided by the answer's own size - a
+system that answers by returning the whole store shows up here. A subject that returns
+nothing is cheap for the wrong reason, so read this table with the one above it.
+subject                         startup  lst write write p50 search p50 resp B   amp     vary   
+------------------------------------------------------------------------------------------------
+control 1.0.0                      0.23s    0.01s    0.009s    0.001s     4175     x72      0%
+server-memory 1.0.0                0.89s    0.05s    0.021s    0.005s       39      x1     62%
+server-memory 2.0.0                0.80s    0.03s    0.013s    0.005s       39      x1     69%
+memento 0.7.0                      1.42s    4.54s    0.111s    0.045s     1497     x26    293%
+memdb 1.4.0                        0.42s    0.01s    0.001s    0.002s     1027     x18      0%
+memory-lean 1.5.0                  0.12s    0.01s    0.004s    0.002s      164      x3      0%
+mcp-knowledge-graph 1.3.2          0.13s    0.01s    0.005s    0.003s       39      x1      0%
+zenbrain 0.3.0                     0.43s    0.01s    0.001s    0.002s      663     x11      0%
+memory-mcp-1file 0.9.2             0.51s    1.56s    0.036s    0.055s     1969     x34     11%
+statecore-mcp 1.0.0                0.36s    0.02s    0.005s    0.002s     5710     x98      5%
+mcp-duckdb-memory-server 1.1.10    0.33s    0.14s    0.010s    0.005s      210      x4     25%
+
+'vary' is how far the worst steady-state measurement moved across 3 passes, as a fraction
+of its own median: first write, write, search and response bytes, with timings under 20 ms
+left out because a ratio of millisecond noise is not a measurement. Absolute ranges and
+the noisier startup/restart figures are in results/*-cost.json.
 ```
 
 `resp` is the median bytes a server sends back for one question, and `amp` is that divided by the size
@@ -31,9 +43,12 @@ runtime capping a tool call at 10 s faces a coin flip rather than a budget. `mem
 response size moved 11% between passes: the byte count is exact for one response, and the response is
 the subject's choice, which is why byte counts are repeated too.
 
-**Read this table with the retrieval one, or the cheapest memory looks like the best.** The two
-subjects that cost 39 bytes per question return *nothing*; efficiency achieved by silence is not
-efficiency. The highest retriever (`memory-mcp-1file`, 42/60 as written and 42 as keywords) is also
+**Read this table with the retrieval one, or the cheapest memory looks like the best.** Each of
+the 3 subjects that cost 39 bytes per question returns *nothing*; efficiency achieved by silence is
+not efficiency. That count is one of the things the copy of this table got wrong - it listed nine
+subjects and said "two", and the table has carried eleven since the last two were measured, so the
+sentence had been drifting with no table left to disagree with it. The highest retriever
+(`memory-mcp-1file`, 42/60 as written and 42 as keywords) is also
 among the most expensive per question at 34× the size of the answer. And one marketing claim survives
 measurement intact:
 `memory-lean` is genuinely lean — 164 bytes, 3×, and the fastest startup in the set.

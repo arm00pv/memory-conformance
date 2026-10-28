@@ -1,0 +1,28 @@
+Generate every command transcript, and find two that had drifted - one contradicting itself
+
+A pin checks the numbers somebody wrote down. The cost page's table is a copy of one the matrix
+tool prints, and the copy held nine subjects while the timings on disk hold eleven: statecore-mcp
+at 5,710 bytes per question (98x the answer) and mcp-duckdb-memory-server at 210 had been measured
+since and never copied. Every number in the copied rows was exactly right, which is the case a pin
+cannot catch. The same page said 'the two subjects that cost 39 bytes' where there are three.
+
+sync_readme.py filled the first matrix block it found and excluded the cost block by name, because
+matrix.py --cost-only forces a re-measurement. So it gains a --report-only path that prints the
+cost table from the cached timings and launches nothing, and sync_readme now fills every
+report-shaped transcript in every page by running the command the block names. It also preserves the
+fence's indentation, because a block inside a bullet belongs to the bullet.
+
+Filling the rest found two compare.py transcripts that had drifted. The README's zenbrain versus
+memory-mcp-1file test said 33 both, 4-10, p = 0.1796; the rows say 35, 5-8, p = 0.5811 as written
+and separated as keywords at p = 0.0225. The worse one is docs/subjects.md: it said memento versus
+server-memory was 11-12 at p = 1.0000 and concluded the pair were 'statistically identical', where
+the rows say 14-12 at p = 0.8450 on the score and 14-0 at p = 0.0001 once the twelve unanswerable
+questions come out. The paragraph's subject is a paired test that decides by counting, and its copy
+pointed at the opposite conclusion.
+
+Two more found on the way. The pin caught my own reading rather than the page (I pointed 'its 4.3 MB
+store' at memdb, whose floor is 0.75 MB; the antecedent is memento). And sync_readme silently
+skipped the README after a checkout gave it CRLF endings - no block matched, four successes
+printed, exit 0 - in exactly the page that carried the stale transcript.
+
+Seven cost sentences are pinned now, 34 numbers across four hand-written pages.

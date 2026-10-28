@@ -143,6 +143,25 @@ def _best_hits(label):
     return best
 
 
+def _cost(slug):
+    """One subject's timings, as committed. Cost is measured once and cached, so it is stable data."""
+    path = os.path.join("results", slug + "-cost.json")
+    if not os.path.isfile(path):
+        return None
+    with open(path, encoding="utf-8") as fh:
+        return json.load(fh)
+
+
+def _costs():
+    """Every timing file on disk, keyed by slug."""
+    out = {}
+    for name in sorted(os.listdir("results")):
+        if name.endswith("-cost.json"):
+            with open(os.path.join("results", name), encoding="utf-8") as fh:
+                out[name[:-len("-cost.json")]] = json.load(fh)
+    return out
+
+
 def _spearman():
     """The rank correlation of the blind corpus, computed by the tool that owns that definition."""
     import third_corpus
@@ -181,6 +200,19 @@ READINGS = {
     "exam.band.total": lambda: _bands()["exam.total"],
     "memdb.per_question": lambda: _totals("memdb-1.4.0")["per_question"],
     "control.per_question": lambda: _totals("control-1.0.0")["per_question"],
+    # THE COST PAGE. Timings are taken once, cached and committed, so they are as checkable as any
+    # count - and that page's table was a copy of a generated one, which is how it came to list nine
+    # subjects while the results held eleven and to say two where the count is three.
+    "cost.resp39": lambda: sum(1 for d in _costs().values() if d.get("resp_bytes_p50") == 39),
+    "cost.lean.bytes": lambda: _cost("memory-lean-1.5.0")["resp_bytes_p50"],
+    "cost.lean.amp": lambda: round(_cost("memory-lean-1.5.0")["amp"]),
+    "cost.one.amp": lambda: round(_cost("memory-mcp-1file-0.9.2")["amp"]),
+    "cost.memento.first.min": lambda: _cost("memento-0.7.0")["spread"]["first_write"]["min"],
+    "cost.memento.first.max": lambda: _cost("memento-0.7.0")["spread"]["first_write"]["max"],
+    # THE SENTENCE SAYS "ITS", and its antecedent is memento, not memdb: the store allocated once and
+    # then holding anything is memento's 4.3 MB. The first version of this reading pointed at memdb,
+    # whose floor is 0.75 MB, and the pin caught the mistake in the reading rather than in the page.
+    "cost.memento.floor.mb": lambda: _cost("memento-0.7.0")["store_floor_bytes"] / 1000000.0,
 }
 
 PINS = [
@@ -220,6 +252,28 @@ PINS = [
      "the reading bill per question at its widest, and the control it is measured against",
      r"to \*\*(\d+)\*\* \(`memdb`\),\s+against a control at (\d+)",
      ("memdb.per_question", "control.per_question")),
+    # THE COST PAGE. Its table is generated now, but the sentences around it still quote figures -
+    # and one of them counted subjects, which is the kind of number no table row can contradict.
+    ("docs/cost.md",
+     "how many subjects cost 39 bytes per question, all of them silent",
+     r"the (\d+) subjects that cost 39 bytes per question",
+     ("cost.resp39",)),
+    ("docs/cost.md",
+     "memory-lean's response bill and its multiplier",
+     r"genuinely lean . (\d+) bytes, (\d+)\u00d7",
+     ("cost.lean.bytes", "cost.lean.amp")),
+    ("docs/cost.md",
+     "the multiplier on the subject that retrieves most",
+     r"at (\d+)\u00d7 the size of the answer",
+     ("cost.one.amp",)),
+    ("docs/cost.md",
+     "memento's first write at both ends of its own spread",
+     r"first write ranged from ([\d.]+) s to ([\d.]+) s",
+     ("cost.memento.first.min", "cost.memento.first.max")),
+    ("docs/cost.md",
+     "the store that subject allocates once",
+     r"its ([\d.]+) MB store",
+     ("cost.memento.floor.mb",)),
 ]
 
 

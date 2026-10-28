@@ -4687,6 +4687,62 @@ rule-against-reader table can see that one. And the pairs come from the **enrich
 each kind, so this measures repeatability where the rule and a reader disagree rather than on a random
 draw - an easier test than it looks, and the only sample the readers were asked about.
 
+## Addendum 54: a pin cannot see an absence
+
+Addendum 52 ended by naming what the prose pin does not do: it checks the numbers somebody wrote
+down. The cost page showed why that is not enough. Its table is a *copy* of one the matrix tool
+prints, and the copy held nine subjects. The timings on disk hold **eleven**: `statecore-mcp` at
+5,710 bytes per question (98x the answer) and `mcp-duckdb-memory-server` at 210 had been measured
+since and never copied over. Every number in the copied rows was exactly right, which is precisely
+the case a pin cannot catch - `figures.py` would have checked all nine rows and passed.
+
+The same page also said "the two subjects that cost 39 bytes per question return *nothing*" when
+there are three, the third being `mcp-knowledge-graph` at 0.7x. That one a pin could have caught,
+and does now.
+
+### The transcripts are generated from the command they name
+
+`sync_readme.py` filled the first `$ python matrix.py` block it found, in the first page that had
+one. The cost block was excluded by name (`not "--cost-only"`), because `matrix.py --cost-only`
+**forces a re-measurement** - it is a timing pass, and a page cannot be rendered from a pass that
+runs eleven servers. So:
+
+- `matrix.py --cost-only --report-only` now prints that table from the cached `results/*-cost.json`
+  and launches nothing, which is the rule the file already stated about `--report-only`.
+- `sync_readme.py` fills **every** report-shaped transcript in **every** page, by running the
+  command the block names with `--report-only` added, and preserves the fence's own indentation
+  because a block inside a bullet belongs to the bullet.
+
+Filling the rest found two more transcripts that had drifted, both in `compare.py` blocks, and one
+of them was worse than stale.
+
+| the page said | the results say |
+|---|---|
+| README: zenbrain vs memory-mcp-1file, 33 both, 4-10, p = 0.1796 | 35 both, 5-8, p = 0.5811 as written; **separated as keywords, p = 0.0225** |
+| subjects: memento vs server-memory, 11-12, p = 1.0000 | 14-12, p = 0.8450 on the score, and **14-0, p = 0.0001 once the twelve unanswerable questions come out** |
+| and the prose under it: "they are statistically identical" | identical **on the score**, separated on hits - the twelve-point switch decides it |
+
+The second one is the one that matters. The paragraph's subject is a paired test that decides by
+counting, and the copy beside it was four questions out of date and pointed at the opposite
+conclusion from the one the current rows support. Nothing in this repository could see it: the
+block was not generated, was not pinned, and the tool that was supposed to fill it exited 0 having
+filled nothing.
+
+### Two things found while doing it
+
+The pin caught my own reading rather than the page. `its 4.3 MB store` - I pointed the reading at
+memdb, whose floor is 0.75 MB, and the sentence's antecedent is memento. The check failed, the page
+was right, and the mistake was in the translation from English to a computation. That is the
+position a reader is in with every number in this repository, and it is now the position the
+checker is in too.
+
+And `sync_readme.py` silently skipped the README after a checkout gave it CRLF line endings: every
+block's first line read as a carriage return, no block matched, the tool printed four successes and
+exited 0. The stale transcript lived in exactly the page it skipped. Normalising line endings on
+read costs nothing; trusting a tool that reports success without saying which files it touched does
+not.
+
+
 
 
 

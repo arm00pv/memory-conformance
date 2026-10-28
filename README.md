@@ -614,11 +614,29 @@ success reply is honest about the write and silent about the loss.
 
   ```
   $ python compare.py zenbrain memory-mcp-1file
-    questions                 60
-    correct for both          33
-    only zenbrain correct      4
-    only memory-mcp-1file     10
-    exact McNemar p = 0.1796  -> not separated by this corpus
+  
+  zenbrain-0.3.0-retrieval.json  vs memory-mcp-1file-0.9.2-retrieval.json  (all bands)
+  
+    as written
+      questions               60
+      correct for both        35
+      correct for neither     12
+      only zenbrain correct   5
+      only memory-mcp-1file correct 8
+      exact McNemar p = 0.5811  -> not separated by this corpus
+      without the 12 unanswerable questions: 5-7, p = 0.7744 -> not separated
+  
+    as keywords
+      questions               60
+      correct for both        31
+      correct for neither     16
+      only zenbrain correct   2
+      only memory-mcp-1file correct 11
+      exact McNemar p = 0.0225  -> separated
+      without the 12 unanswerable questions: 2-11, p = 0.0225 -> separated
+  
+    THE PHRASING DECIDES THIS ONE: separated as keywords, not separated as written.
+    Neither number is the answer on its own. Report the pair.
   ```
 
   A question with no answer counts as answered correctly when the subject returns nothing, so this

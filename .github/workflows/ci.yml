@@ -254,6 +254,17 @@ jobs:
           git diff --stat
           git diff --exit-code
 
+      # A TRANSCRIPT IS A CLAIM ABOUT WHAT A COMMAND PRINTS. docs/cost.md carried a copy of the cost
+      # table - nine rows where the results held eleven, and a sentence that counted "two" subjects at
+      # 39 bytes where there are three - because sync_readme filled the first matrix block it found and
+      # this one was never filled. Both blocks are generated from the command they name now, and this
+      # asserts they are still there so the next page cannot quietly go back to being a copy.
+      - name: every command transcript in the pages must be generated from the command it names
+        run: |
+          grep -q "python matrix.py --cost-only --report-only" docs/cost.md
+          grep -q "mcp-duckdb-memory-server 1.1.10" docs/cost.md
+          grep -q "python matrix.py$" docs/subjects.md
+          echo "both transcripts name a report-only command and carry the measured rows"
       # AND NOTHING CHECKED THAT THE LIST ABOVE WAS COMPLETE. A generator added later would write a
       # document with the same "Do not edit by hand" sentence, never be re-run, and pass every check
       # in this file. This reads the claim out of each document and the guard out of this workflow and
