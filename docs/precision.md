@@ -17,25 +17,25 @@ Three readings, and the first of them needs no rule at all.
 ### The silence bill
 
 On a question whose answer is nothing, every record handed back is junk **by construction** — there is nothing
-for it to be. Five corpora carry such a band, 147 questions in all, 99 of them the long exam's.
+for it to be. Five corpora carry such a band, 146 questions in all, 98 of them the long exam's.
 
 | subject | unanswerable questions answered | records handed back | characters |
 |---|---|---|---|
-| `memento` | **147 of 147** | 441 | 47,985 |
-| `zenbrain` | **147 of 147** | 439 | 47,310 |
-| `memdb` | 145 of 147 | 435 | **59,264** |
-| `memory-mcp-1file` | 141 of 147 | 410 | 41,498 |
-| `mcp-duckdb-memory-server` | 18 of 147 | 34 | 3,495 |
-| `memory-lean` | 13 of 147 | 14 | 1,500 |
-| `statecore-mcp` | 12 of 147 | 12 | 720 |
-| `control` | 8 of 147 | 10 | 980 |
-| `server-memory` ×2, `mcp-knowledge-graph` | **0 of 147** | 0 | 0 |
+| `memento` | **146 of 146** | 438 | 47,678 |
+| `control` | 8 of 146 | 10 | 980 |
+
+The whole table is generated in [`PRECISION.md`](../PRECISION.md) - these are the two rows the
+argument turns on, and every number copied onto this page is now pinned to the results it came
+from by `figures.py`. **This page carried the old copy for four phases**: 147 where the band held
+146, and eleven subject rows that no longer matched anything, because a hand-copied table has no
+connection a build can break.
 
 **Two subjects answer every unanswerable question, three answer none, and six answer part of the band** — and
 that last group is the finding. `items.py` reported that every subject either declines all twelve
 unanswerable questions or none of them, which made the twelve points a *habit*. Read at ten times the sample
 the habit becomes a **threshold**: the subjects that decide per question answer 15 of 336 on the four short
-bands and **36 of 99 on the long exam**.
+bands and **36 of 686 on the long exam** - the same 15-and-36 the old copy reported, against denominators
+that were one subject wide where they should have been seven.
 
 The reason is the corpus, not the subject. Every one of those 36 answers landed on a question that shares a
 word with a stored record, and no subject that decides per question ever answered a question whose words
@@ -51,18 +51,19 @@ into near misses — same family, one word off, which is what a top-three list i
 
 | subject | answered | correct | records back | near | **noise** | noise per correct | answer share |
 |---|---|---|---|---|---|---|---|
-| `memdb` | 711 | 14 | 2,128 | 33 | **2,075** | 148.21 | 1% |
-| `memento` | 711 | 326 | 2,133 | 625 | **1,169** | 3.59 | 15% |
-| `zenbrain` | 711 | 666 | 2,125 | 675 | **765** | 1.15 | 31% |
-| `memory-mcp-1file` | 704 | 664 | 2,069 | 715 | **674** | 1.02 | 32% |
-| `control` | 635 | 625 | 1,208 | 489 | **75** | 0.12 | 52% |
-| `memory-lean` | 489 | 464 | 711 | 223 | **23** | 0.05 | 65% |
-| `server-memory` ×2 | 238 | 232 | 331 | 99 | **0** | 0.00 | 72% |
+| `memdb` | 659 | 12 | 1972 | 29 | **1925** | 160.42 | 1% |
+| `memento` | 659 | 294 | 1977 | 555 | **1115** | 3.79 | 14% |
+| `control` | 589 | 585 | 1098 | 419 | **75** | 0.13 | 54% |
 
-`memento` answers 326 questions correctly and hands back **1,169 records nobody asked for**; the control
-answers 625 and hands back 75. The score separates them in no published table, and they are not the same
-thing. Per question the reading bill runs from **4 characters** (`statecore-mcp`) to **401** (`memdb`),
-against a control at 151.
+Three rows out of ten, and the same note as the table above: the full one is generated in
+[`PRECISION.md`](../PRECISION.md). Every figure in this copy was stale when the pin was written -
+`memento` at 326 correct rather than 294, the control at 625 rather than 585 - because the corpora
+kept being repaired and this page kept its copy.
+
+`memento` answers 294 questions correctly and hands back **1115 records nobody asked for**; the control
+answers 585 and hands back 75. The score separates them in no published table, and they are not the same
+thing. Per question the reading bill runs from **4 characters** (`statecore-mcp`) to **403** (`memdb`),
+against a control at 147.
 
 ### Does the score charge for this
 

@@ -505,6 +505,23 @@ def padding_landing(label):
     return out
 
 
+def score(rows):
+    """The published score: the right record in the top three, plus a credit for a correct silence.
+
+    ONE DEFINITION BECAUSE TWO COPIES IS HOW THE EXAM CAME TO READ 292 AGAINST 268. The number every
+    table in this repository quotes is this line, and the tools that quote it call it here.
+    """
+    return sum(1 for r in rows
+               if (r["difficulty"] == "absent" and not r["answered"])
+               or (r["difficulty"] != "absent" and r.get("hit3")))
+
+
+def live_rows(label, rows):
+    """The rows the corpus still asks. Every denominator in this report goes through here."""
+    live = questions.live(_corpus_path(label))
+    return [r for r in rows if r["query"] in live]
+
+
 def _corpus_path(label):
     for l, path, _suffix in CORPORA:
         if l == label:
@@ -519,8 +536,7 @@ def padding_panel():
         for name, lab, rs in padding_runs(label):
             if not rs:
                 continue
-            live = questions.live(_corpus_path(lab))
-            rs = [r for r in rs if r["query"] in live]
+            rs = live_rows(lab, rs)
             d = derive(read(lab, rs, "written"))
             # ONE DENOMINATOR PER ROW. The score and hit@3 were summed over every row in the file while the
             # noise figures beside them were summed over the live questions only, so the exam's control row
@@ -528,10 +544,7 @@ def padding_panel():
             # read as though padding had cost 22 answers. It had not; the two columns were counting
             # different questions. The rows are filtered once, at the top, and every number below is over
             # the same questions.
-            score = sum(1 for r in rs
-                        if (r["difficulty"] == "absent" and not r["answered"])
-                        or (r["difficulty"] != "absent" and r.get("hit3")))
-            rows.append({"run": name, "corpus": lab, "score": score,
+            rows.append({"run": name, "corpus": lab, "score": score(rs),
                          "hit3": sum(1 for r in rs if r.get("hit3")),
                          "noise": d["noise_records"], "near": d["near_records"],
                          "noise_per_hit": d["noise_per_hit"], "share": d["signal_share"]})

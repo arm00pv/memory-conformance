@@ -4570,6 +4570,73 @@ general lesson is the one this repository keeps relearning from a new angle: **t
 of the instrument**, and an assertion that can never be true fails exactly like an instrument that
 measures the wrong thing - quietly, in the direction of a green build, until somebody runs it.
 
+## Addendum 52: the hand-copied table was wrong for four phases
+
+Addendum 50 ended by naming what the coverage check does not do: it checks coverage, not freshness.
+Replace a results file, regenerate, and every page agrees with the new numbers. The prose was worse
+than that, because it was not regenerated at all. `docs/precision.md` is the docs version of the
+precision argument, moved out of the README when the README got long, and it carried its own copy of
+two generated tables.
+
+When the first pin ran, the copy said:
+
+| the page said | the results say |
+|---|---|
+| `memento` answers 326 questions correctly | **294** |
+| and hands back 1,169 records nobody asked for | **1115** |
+| the control answers 625 | **585** |
+| five corpora carry a silence band of 147 questions | **146**, and 98 of them the exam's, not 99 |
+| the whole junk table, 7 rows by 7 columns, `memdb` at 148.21 noise per correct | **160.42** |
+
+Every one of those was true when the page was written and none of them was true any more: the exam
+lost 24 duplicate slots, the corpora were repaired, and the page kept its copy. Nothing in this
+repository would have noticed - the guard re-runs generated pages, the claims are re-evaluated, and a
+hand-written sentence has no connection to anything a build can break.
+
+### The fix is to let the sentence be the pin
+
+`figures.py` names a file, a regular expression that must match it exactly once, and the readings
+behind each captured number. There is no second copy of a value to keep in step: the word in the page
+is the pin, and the comparison is against the same module that owns the definition. Rewording a
+pinned sentence is a build failure until the pin is restated, which is the intended cost - a sentence
+nobody can check is a sentence nobody has checked.
+
+Twenty numbers are pinned across three pages, and the check has been seen failing: CI moves the
+README's 37 to 38, requires the failure, requires it to name `control.score.A`, and puts the file back.
+
+### The tool was called numbers.py for one commit, and that cost a claim
+
+`numbers` is a standard library module. Python's `statistics` imports it, `claims.py` imports
+`statistics` somewhere down its stack, and a file called `numbers.py` in the working directory
+replaces the stdlib module for every script that runs from this directory. The first regeneration
+after it was added turned `search-is-flat` from **FAILS** into **UNMEASURED** - *module numbers has
+no attribute Rational* - and the ledger's headline would have gone from 12 of 40 to 11 of 40 for a
+reason that had nothing to do with any subject, any corpus or any server.
+
+Nothing was looking for that. It surfaced because the guard regenerates `CLAIMS.md` and the change
+appeared in a routine `git status`; a smaller shadowing bug - one that changed a number nobody
+regenerates - would have gone through. The file is `figures.py` now, which is a better name for what
+it holds, and CI refuses any file in this directory whose name is a standard library module.
+
+
+### Two things the pins found that are not drift
+
+The page said *the subjects that decide per question answer 15 of 336 on the four short bands and 36
+of 99 on the long exam.* The 15 of 336 held exactly. The second half never made sense: 99 was one
+subject's band before the exam lost its duplicate slots, and 36 is a count pooled over seven subjects.
+Both halves had drifted independently and the sentence read like a measurement the whole time. It is
+**36 of 686** now.
+
+And the page's two full tables are three rows each now, with a line pointing at the generated one.
+Duplicating a generated table into prose is a promise to keep forty numbers in step by hand, and the
+promise had already been broken for four phases. The argument survives on the rows it turns on.
+
+The limit is honest and narrow: **the check covers the numbers somebody thought to pin**, and only
+sentences, not tables. A page can gain an unpinned figure tomorrow and nothing will object. What has
+changed is that the failure mode this repository keeps hitting - a number quietly outliving its
+evidence - now has a place where it is caught, for the numbers that argue the case.
+
+
 
 
 

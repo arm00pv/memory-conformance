@@ -656,5 +656,12 @@ success reply is honest about the write and silent about the loss.
   entirely by a tool and did not say so. A coverage check is worth nothing unless it can be seen
   failing, so CI plants a page with an unknown generator and a workflow carrying a guard line that
   regenerates nothing, and requires both to fail. See Addendum 50.
+- **The prose is checked too, because a sentence can be a pin.** Coverage is not freshness: the pages
+  above are re-generated, but the sentences in `README.md` and under `docs/` quote figures and nothing
+  re-derived them. `figures.py` reads named sentences out of those pages, pulls the numbers out of them
+  and recomputes those numbers from the committed results, so a figure that moves is a build failure
+  that names the figure. On its first run it found `docs/precision.md` quoting `memento` at 326 correct
+  answers and a silence band of 147 questions where the results say 294 and 146 - a hand-copied table
+  that had been wrong for four phases. See Addendum 52.
 
 MIT licensed.

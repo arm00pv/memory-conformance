@@ -312,6 +312,51 @@ jobs:
           echo "7. and named it"
           git diff --exit-code docs
 
+      # COVERAGE IS NOT FRESHNESS. Every generated page is re-run above, so a table cannot drift - but
+      # the prose quotes figures in sentences and nothing re-derived them. docs/precision.md carried a
+      # hand-copied table that said memento answers 326 questions where the results say 294, and 147
+      # unanswerable questions where the band holds 146; nothing anywhere would have noticed. figures.py
+      # makes each sentence a pin: the words are read out of the file and the numbers recomputed.
+      - name: every number a hand-written page quotes must match the results, and this check must be able to fail
+        run: |
+          python figures.py | tee /tmp/figures.txt
+          grep -q "every number a hand-written page quotes still matches" /tmp/figures.txt
+          echo "1. the numbers in the hand-written pages agree with the results"
+          # AND IT HAS TO BE ABLE TO FAIL. Move one number in the README by one, require the check to
+          # refuse it by name, and put the file back. If the sentence itself has been reworded the sed
+          # changes nothing, the check passes, and this step fails - which is also what should happen.
+          sed -i 's/from 37 to \*\*43\*\*/from 38 to **43**/' README.md
+          if python figures.py > /tmp/planted.txt; then
+            cat /tmp/planted.txt
+            echo "the number check passed a sentence that disagrees with its results"
+            git checkout -- README.md
+            exit 1
+          fi
+          cat /tmp/planted.txt
+          grep -q "DISAGREES" /tmp/planted.txt
+          grep -q "control.score.A" /tmp/planted.txt
+          echo "2. it refused the moved number and named it"
+          git checkout -- README.md
+          git diff --exit-code README.md
+
+      # A TOOL IN THIS DIRECTORY SHADOWS THE STANDARD LIBRARY FOR EVERY OTHER TOOL IN IT. The check above
+      # was called numbers.py for one commit, which replaced the stdlib module of that name inside every
+      # script here: claims.py quietly turned search-is-flat from FAILS into UNMEASURED with "module
+      # numbers has no attribute Rational", and the ledger would have lost a claim for a reason that had
+      # nothing to do with any subject. Nothing was looking for that, and nothing would have found it
+      # except the regenerated CLAIMS.md happening to appear in a diff.
+      - name: no file in this repository may shadow a standard library module
+        run: |
+          python - <<'PY'
+          import os, sys
+          here = sorted(p for p in os.listdir(".") if p.endswith(".py"))
+          names = sorted(set(p[:-3] for p in here) & set(sys.stdlib_module_names))
+          print("%d python files in this directory" % len(here))
+          if names:
+              print("these shadow a standard library module: " + ", ".join(names))
+              raise SystemExit(1)
+          print("no file here shadows a standard library module")
+          PY
       # A QUESTION TWO RECORDS ANSWER EQUALLY IS NOT A QUESTION. Four corpora here are generated from real
       # package descriptions, and two packages can carry the same description word for word - so the same
       # words were asked twice with a different expected record, and a subject returning the other one was
