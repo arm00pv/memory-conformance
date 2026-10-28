@@ -42,6 +42,36 @@ On the **54 pairs both readers judged** they agree on 49 (91%), kappa **0.81**. 
 ceiling on how close any rule can come to what a reader thinks: the two readers disagree with
 each other on 5 of these pairs, so a rule cannot be closer to both than they are to themselves.
 
+
+## The same reader, asked twice
+
+Every comparison above is between two different readers, which leaves open whether the
+disagreement belongs to the task or to the model. A person is asked once; a model can be asked
+twice, so the pairs each reader had already judged were put to it again. The second pass runs at
+a non-zero temperature on purpose: a model at zero returns what it returned, and a number
+produced that way measures the sampler being switched off rather than the reader being unsure.
+
+| reader | pairs asked twice | said the same thing | kappa | relevant then not | not then relevant |
+|---|---|---|---|---|---|
+| `deepseek-v4.1-flash:cloud` | 60 | 56 (93%) | 0.87 | 2 | 2 |
+| `glm-5.3:cloud` | 53 | 53 (100%) | 1.00 | 0 | 0 |
+
+The steadiest reader is `glm-5.3:cloud`, at kappa **1.00** with itself against
+**0.81** with the other reader. That is the useful shape: two readers disagree with each
+other more than either disagrees with itself, so the 0.81 between them is a ceiling on
+the task and not on the sampling.
+
+**`glm-5.3:cloud` answered every pair the same way twice.** A perfect repetition
+under sampling is read two ways here and this report cannot choose between them: either the
+judgement never came close to the boundary, or the endpoint was not sampling at all. The
+other reader moved on 4 of 60 pairs under an identical request, which is the evidence that
+asking twice really is asking twice rather than reading the same answer back.
+
+What this cannot see: one model, one prompt and one training reading a pair twice is also one
+way of being wrong twice. A consistent misreading - a reader that calls every near miss useful
+- is invisible here, and it is exactly what the rule-against-reader table above is for. The two
+tables are halves of one question and neither of them is the answer.
+
 ## What both readers agree about, against what the rule says
 
 | the rule says | both readers say relevant | both say not | they split |

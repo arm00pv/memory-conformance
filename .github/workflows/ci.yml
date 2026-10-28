@@ -436,6 +436,12 @@ jobs:
           grep -q "Calibration" JUDGE.md
           grep -q "A person, as the third labeller" JUDGE.md
           grep -q "readers-match-a-person" CLAIMS.md
+          # THE READERS ARE THE ONE LABELLER THAT CAN BE ASKED TWICE. The section compares what a reader
+          # says about a pair with what it said the first time, which is the only measurement here of the
+          # instrument on itself rather than of one labeller against another - and a report that quietly
+          # drops it would leave the ceiling of 0.81 unexplained.
+          grep -q "The same reader, asked twice" JUDGE.md
+          grep -q "a-reader-is-steady" CLAIMS.md
 
       - name: a tie must be reported as one of its three kinds, with a price
         run: |

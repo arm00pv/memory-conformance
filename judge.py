@@ -151,7 +151,7 @@ def pairs():
     return out
 
 
-def ask_judge(model, pair):
+def ask_judge(model, pair, temperature=0.0):
     """One pair, one verdict, and the model's own reason kept beside it.
 
     THE REASONING MODELS ANSWER IN PROSE EVEN WHEN TOLD NOT TO, so the reply is asked for as JSON and read
@@ -160,7 +160,8 @@ def ask_judge(model, pair):
     decodes. A verdict that cannot be read is UNPARSED and is asked again next run rather than counted.
     """
     import author
-    text = author.ask(model, PROMPT % (pair["query"], pair["text"]), num_predict=600, temperature=0.0)
+    text = author.ask(model, PROMPT % (pair["query"], pair["text"]), num_predict=600,
+                      temperature=temperature)
     got = author.json_of(text, dict) or {}
     value = got.get("relevant")
     if isinstance(value, str):
@@ -221,6 +222,104 @@ def kappa(rows):
     q_yes = sum(1 for _a, b in rows if b) / float(n)
     pe = p_yes * q_yes + (1 - p_yes) * (1 - q_yes)
     return None if pe == 1 else (pa - pe) / (1 - pe)
+
+
+AGAIN = os.path.join("results", "judgments-again.json")
+
+
+def load_again():
+    """The second asking, kept in its own file so the first answers cannot be overwritten by it."""
+    if not os.path.isfile(AGAIN):
+        return {}
+    with open(AGAIN, encoding="utf-8") as fh:
+        return json.load(fh)
+
+
+def save_again(again):
+    with open(AGAIN, "w", encoding="utf-8", newline=chr(10)) as fh:
+        fh.write(json.dumps(again, indent=1, sort_keys=True) + chr(10))
+
+
+def text_index():
+    """(corpus, question, record) -> the pair including the record, for asking a second time.
+
+    The cache keeps what a reader said and not what it was shown, so a second asking has to find the
+    record again. It is found in the population the first sample was drawn from, which is the only
+    place that can rebuild a pair from a key.
+    """
+    return dict(((p["corpus"], p["query"], p["id"]), p) for p in population())
+
+
+def again(argv):
+    """THE SAME READER, ASKED AGAIN - the one labeller here that can be repeated at will.
+
+    A person is asked once. A model can be asked twice, so this is the only place the instrument can
+    measure its own noise rather than its distance from somebody else. Two things have to be true for
+    the number to mean anything: the pairs must be the ones already judged, and the second asking must
+    not be the first one repeated. A model at temperature 0 returns what it returned, so the second
+    pass runs warmer - the sampler variability is the thing being measured, and measuring it at zero
+    would measure the sampler being off.
+    """
+    models = list(MODELS)
+    temperature = 0.7
+    limit = None
+    for a in argv:
+        if a.startswith("--model="):
+            models = [a.split("=", 1)[1]]
+        elif a.startswith("--temperature="):
+            temperature = float(a.split("=", 1)[1])
+        elif a.startswith("--limit="):
+            limit = int(a.split("=", 1)[1])
+    cache = load()
+    index = text_index()
+    second = load_again()
+    for model in models:
+        todo = []
+        for _k, v in sorted(cache.items()):
+            if v.get("model") != model or v.get("verdict") not in ("YES", "NO"):
+                continue
+            where = (v["corpus"], v["query"], v["id"])
+            k = key(model, where[0], where[1], where[2])
+            if k in second or where not in index:
+                continue
+            todo.append((k, index[where]))
+        if limit:
+            todo = todo[:limit]
+        print("  %s: %d pair(s) to ask again at temperature %.2f" % (model, len(todo), temperature),
+              flush=True)
+        for n, (k, pair) in enumerate(todo, 1):
+            try:
+                got = ask_judge(model, pair, temperature=temperature)
+            except Exception as exc:
+                got = {"verdict": "ERROR", "raw": str(exc)[:200], "model": model}
+            got.update({"corpus": pair["corpus"], "query": pair["query"], "id": pair["id"],
+                        "kind": pair["kind"], "temperature": temperature})
+            second[k] = got
+            if n % 10 == 0 or n == len(todo):
+                print("    %d of %d" % (n, len(todo)), flush=True)
+                save_again(second)
+    save_again(second)
+    print("written to %s" % AGAIN)
+    return 0
+
+
+def test_retest():
+    """Per reader: what it said twice about the same pair, and the kappa of the two answers."""
+    first, second = by_model(load()), by_model(load_again())
+    out = {}
+    for model in sorted(set(first) & set(second)):
+        shared = sorted(p for p in set(first[model]) if p in second[model])
+        rows = [(first[model][p]["verdict"] == "YES", second[model][p]["verdict"] == "YES")
+                for p in shared]
+        if not rows:
+            continue
+        out[model] = {"n": len(rows),
+                      "agree": sum(1 for a, b in rows if a == b),
+                      "kappa": kappa(rows),
+                      "to_no": sum(1 for a, b in rows if a and not b),
+                      "to_yes": sum(1 for a, b in rows if b and not a),
+                      "temperature": second[model][shared[0]].get("temperature")}
+    return out
 
 
 HUMAN = os.path.join("results", "human.json")
@@ -428,6 +527,68 @@ def report():
         add("each other on %d of these pairs, so a rule cannot be closer to both than they are to themselves."
             % (len(rows) - agree))
         add("")
+        repeat = test_retest()
+        add("")
+        add("## The same reader, asked twice")
+        add("")
+        add("Every comparison above is between two different readers, which leaves open whether the")
+        add("disagreement belongs to the task or to the model. A person is asked once; a model can be asked")
+        add("twice, so the pairs each reader had already judged were put to it again. The second pass runs at")
+        add("a non-zero temperature on purpose: a model at zero returns what it returned, and a number")
+        add("produced that way measures the sampler being switched off rather than the reader being unsure.")
+        add("")
+        if repeat:
+            add("| reader | pairs asked twice | said the same thing | kappa | relevant then not | not then relevant |")
+            add("|---|---|---|---|---|---|")
+            for model in sorted(repeat):
+                a = repeat[model]
+                add("| " + BT + model + BT + " | %d | %d (%d%%) | %s | %d | %d |"
+                    % (a["n"], a["agree"], round(100 * a["agree"] / float(a["n"])),
+                       "n/a" if a["kappa"] is None else "%.2f" % a["kappa"],
+                       a["to_no"], a["to_yes"]))
+            add("")
+            inter = None
+            if len(models) > 1:
+                shared = sorted(p for p in set(per[models[0]]) if all(p in per[m] for m in models))
+                if len(shared) >= 12:
+                    inter = kappa([(per[models[0]][p]["verdict"] == "YES",
+                                    per[models[1]][p]["verdict"] == "YES") for p in shared])
+            steady = [m for m in repeat if repeat[m]["kappa"] is not None]
+            best = max(steady, key=lambda m: repeat[m]["kappa"]) if steady else None
+            if best and inter is not None:
+                a = repeat[best]
+                if a["kappa"] > inter:
+                    add("The steadiest reader is " + BT + best + BT + ", at kappa **%.2f** with itself against"
+                        % a["kappa"])
+                    add("**%.2f** with the other reader. That is the useful shape: two readers disagree with each"
+                        % inter)
+                    add("other more than either disagrees with itself, so the %.2f between them is a ceiling on"
+                        % inter)
+                    add("the task and not on the sampling.")
+                else:
+                    add("**The shape to notice: " + BT + best + BT + " agrees with itself at %.2f and with the other"
+                        % a["kappa"])
+                    add("reader at %.2f.** A reader no steadier than the pair of readers would put the ceiling"
+                        % inter)
+                    add("below the agreement rather than above it, and no claim here about how close a rule can")
+                    add("come to what a reader thinks would survive that.")
+                add("")
+            perfect = [m for m in sorted(repeat) if not repeat[m]["to_no"] and not repeat[m]["to_yes"]]
+            moved = [m for m in sorted(repeat) if repeat[m]["to_no"] + repeat[m]["to_yes"]]
+            if perfect and moved:
+                add("**" + BT + perfect[0] + BT + " answered every pair the same way twice.** A perfect repetition"
+                    )
+                add("under sampling is read two ways here and this report cannot choose between them: either the")
+                add("judgement never came close to the boundary, or the endpoint was not sampling at all. The")
+                add("other reader moved on %d of %d pairs under an identical request, which is the evidence that"
+                    % (repeat[moved[0]]["to_no"] + repeat[moved[0]]["to_yes"], repeat[moved[0]]["n"]))
+                add("asking twice really is asking twice rather than reading the same answer back.")
+                add("")
+            add("What this cannot see: one model, one prompt and one training reading a pair twice is also one")
+            add("way of being wrong twice. A consistent misreading - a reader that calls every near miss useful")
+            add("- is invisible here, and it is exactly what the rule-against-reader table above is for. The two")
+            add("tables are halves of one question and neither of them is the answer.")
+            add("")
         both_yes = [p for p in both if all(per[m][p]["verdict"] == "YES" for m in models)]
         both_no = [p for p in both if all(per[m][p]["verdict"] == "NO" for m in models)]
         add("## What both readers agree about, against what the rule says")
@@ -581,6 +742,11 @@ def report():
 def main(argv):
     if "--report" in argv:
         return report()
+    if "--again" in argv:
+        code = again(argv)
+        if "--no-report" not in argv:
+            report()
+        return code
     for a in argv:
         if a.startswith("--export-human="):
             count = int(a.split("=", 1)[1])

@@ -981,6 +981,42 @@ def c_rule_reads_like_a_reader(ctx, corpus, shape):
     return (held, "; ".join(said))
 
 
+def c_a_reader_is_steady(ctx, corpus, shape):
+    """A READER AGREES WITH ITSELF MORE THAN IT AGREES WITH THE OTHER READER.
+
+    The ceiling in the claim above is only a ceiling on the task if the readers are more repeatable than
+    they are mutually agreeing. judge.py asks each reader the same pairs a second time at a non-zero
+    temperature, which is the only labeller here that can be repeated at all - a person is asked once.
+    If a reader were no steadier with itself than the pair of readers is with each other, then some of
+    the apparent disagreement would be the sampler rather than the sample, and every claim about how
+    close a rule can come to a reader would be measuring the dice.
+    """
+    import judge
+    repeat = judge.test_retest()
+    steady = [m for m in repeat if repeat[m]["kappa"] is not None]
+    if not steady:
+        return None
+    per = _judged()
+    models = sorted(per)
+    if len(models) < 2:
+        return None
+    both = [p for p in per[models[0]] if all(p in per[m] for m in models)]
+    if len(both) < 12:
+        return None
+    inter = judge_kappa([(per[models[0]][p]["verdict"] == "YES",
+                          per[models[1]][p]["verdict"] == "YES") for p in both])
+    if inter is None:
+        return None
+    # EVERY READER, NOT THE STEADIEST ONE. The first version of this compared the best repeatability
+    # against the agreement and it held with room to spare, which is the kind of claim that is true
+    # because of which reader was picked. The claim is about the labeller, so the test is the least
+    # steady reader of the set.
+    held = all(repeat[m]["kappa"] > inter for m in steady)
+    said = "; ".join("%s %.2f on %d of %d pairs" % (m.split(":")[0], repeat[m]["kappa"],
+                                                 repeat[m]["agree"], repeat[m]["n"]) for m in steady)
+    return (held, "against %.2f between the two readers: %s" % (inter, said))
+
+
 def c_readers_agree_with_each_other(ctx, corpus, shape):
     """THE CEILING: how close two readers are to each other on the same pairs.
 
@@ -1164,6 +1200,8 @@ CLAIMS = [    ("most-hits", "memory-mcp-1file answers more answerable questions 
      " be measured against them.", c_readers_agree_with_each_other, False),
     ("readers-match-a-person", "where the rule excuses a near miss, the readers and a person agree it is"
      " unrelated.", c_readers_match_a_person, False),
+    ("a-reader-is-steady", "every reader asked the same pairs twice says the same thing more closely"
+     " than the two readers agree with each other.", c_a_reader_is_steady, False),
     ("score-sees-ordering", "the retrieval score changes when a search returns its worst match first.",
      c_score_sees_ordering, False),
     ("score-prefers-recalcitrance", "a search that accepts one shared word scores no better than one that"

@@ -4636,6 +4636,58 @@ sentences, not tables. A page can gain an unpinned figure tomorrow and nothing w
 changed is that the failure mode this repository keeps hitting - a number quietly outliving its
 evidence - now has a place where it is caught, for the numbers that argue the case.
 
+## Addendum 53: the instrument, measured on itself
+
+Every number in the judge ladder compares two different readers. That leaves the central question
+open: when two models agree on 49 of 54 pairs (kappa **0.81**), is the disagreement the *task* - the
+pairs are genuinely arguable - or is it the *model*, sampling a different answer each time? A person
+is asked once and cannot answer that. A model can be asked twice.
+
+So every pair each reader had already judged was put to it again, at temperature **0.70** rather than
+0.0. The temperature is the whole design: a model at zero returns what it returned, and a repeat that
+cannot disagree is not a test of anything. The second answers live in their own file
+(`results/judgments-again.json`) so the first ones cannot be overwritten by a re-run.
+
+| reader | pairs asked twice | said the same thing | kappa | relevant then not | not then relevant |
+|---|---|---|---|---|---|
+| `deepseek-v4.1-flash` | 60 | 56 (93%) | **0.87** | 2 | 2 |
+| `glm-5.3` | 53 | 53 (100%) | **1.00** | 0 | 0 |
+
+Both readers are steadier with themselves than the pair of readers is with each other - 0.87 and 1.00
+against 0.81 - so the ceiling is on the task and not on the dice. That is the answer the ladder was
+missing, and it is the first measurement in this repository where the *instrument* is the subject
+rather than another server.
+
+### The half of it that is suspicious
+
+`glm-5.3` repeated perfectly. Under sampling, a perfect repetition means one of two things and this
+report cannot tell them apart: the judgement never came near the boundary, or the endpoint was not
+sampling at all. The evidence that asking twice really was asking twice is the other reader, which
+moved on **4 of 60** pairs under an identical request - if the framework had been returning a cached
+reply, both would read 100% and the number would be worthless. It is written beside the result rather
+than below it, because a suspicious 1.00 that goes unremarked is how this repository has been wrong
+before.
+
+### The claim was made harder on purpose
+
+The first version of `a-reader-is-steady` compared the **steadiest** reader's repeatability against the
+agreement between readers, and it held with room to spare - the kind of claim that is true because of
+which reader got picked. It now requires **every** reader to beat the inter-reader agreement, which
+still holds (0.87 > 0.81) and no longer rests on a choice.
+
+The ledger reads **13 of 41**: the count moved because a claim was added and holds, not because any of
+the twelve that failed were repaired. Two of the forty-one - `padding-is-free` and this one - hold
+*because* they are defects.
+
+### What it does not settle
+
+One model, one prompt and one training set reading a pair twice is also one way of being wrong twice:
+a reader that calls every near miss useful is perfectly repeatable and still wrong, and only the
+rule-against-reader table can see that one. And the pairs come from the **enriched** sample, twenty of
+each kind, so this measures repeatability where the rule and a reader disagree rather than on a random
+draw - an easier test than it looks, and the only sample the readers were asked about.
+
+
 
 
 
