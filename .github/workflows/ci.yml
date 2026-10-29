@@ -238,6 +238,10 @@ jobs:
           # like the rest, and for four phases nothing re-ran it - guard_cover.py below is the check that
           # found it, and it is here now so the list and the documents agree.
           python third_corpus.py > /dev/null
+          # A DAMAGED STORE, RENDERED FROM WHAT WAS RECORDED WHEN IT WAS DAMAGED. durability.py --report
+          # reads results/durability.json and launches nothing; the damage itself happened once, on one
+          # machine, and re-taking it here would be re-measuring a subject inside a check.
+          python durability.py --report > /dev/null
           python real_corpus.py --report > /dev/null
           python distance_sweep.py --report > /dev/null
           python morph_sweep.py --report > /dev/null
@@ -356,6 +360,18 @@ jobs:
       # numbers has no attribute Rational", and the ledger would have lost a claim for a reason that had
       # nothing to do with any subject. Nothing was looking for that, and nothing would have found it
       # except the regenerated CLAIMS.md happening to appear in a diff.
+      # THE MORNING AFTER. Every other table here describes a working server; this one is what a
+      # subject does when a file it kept its records in is damaged. It is the only measurement in the
+      # repository that damages the evidence rather than reading it, so it gets its own assertions.
+      - name: a damaged store must be recorded, and the table must say what it found
+        run: |
+          python durability.py --report
+          grep -q "What a damaged store costs" DURABILITY.md
+          grep -q "A trailing fragment is survivable and a missing tail is not" DURABILITY.md
+          grep -q "no store file" DURABILITY.md
+          grep -q "started, could not read" DURABILITY.md
+          echo "the durability table is present and carries its four outcomes"
+
       - name: no file in this repository may shadow a standard library module
         run: |
           python - <<'PY'

@@ -4798,6 +4798,68 @@ The count: **17 sentences, 31 numbers, 40 table cells, across four hand-written 
 them is now a place where a number that outlives its evidence fails the build instead of quietly
 arguing something true in the wrong direction.
 
+## Addendum 57: the morning after a damaged store
+
+Every number this repository publishes describes a server that is working. A probe asks whether a
+write is acknowledged and whether it comes back; a table asks what a search returns from an intact
+store. None of it asks what a deployment asks on its worst morning: the machine went off during a
+write, or the disk filled, and now half a record is sitting at the end of the file. Is that one
+record lost, or the store?
+
+`durability.py` writes forty records, stops the server, damages the largest file the subject kept
+them in, restarts it, and counts what comes back. Two damages, both of them ordinary events:
+
+- **append** - a half-written record after the last good one.
+- **cut** - the last 40% of the file gone, which is what a torn write looks like from outside.
+
+The result is a table with four outcomes per cell, and the interesting part is that they are not four
+degrees of the same thing:
+
+| damage | kept everything | lost records | started, could not read | would not start |
+|---|---|---|---|---|
+| append | 8 | 1 | 1 | 0 |
+| cut | 2 | 4 | 1 | 3 |
+
+**A trailing fragment is survivable; a missing tail is not** - eight of the nine stores it was applied
+to still held everything, and cutting 40% left two. That is not a claim about care and it is not a
+ranking: it is what a parser does when the damage is at the end of a sequence of records instead of
+inside one.
+
+The worst shape is `mcp-knowledge-graph`, which **starts normally and cannot read anything**: the
+process is up, a write may even be acknowledged, and every read fails on the text it was handed. A
+server that will not start is a page; a server that starts and cannot read is a page that has not
+fired yet. `memdb`, `memento` and `statecore-mcp` will not start at all after the cut - the records
+are still on the disk and the server will not open them, which is a different failure from losing
+them and is the one a restore fixes.
+
+### Three ways the tool lied before it measured anything
+
+1. **It damaged the write-ahead log.** The largest file in a store is often its journal, which is
+   meant to be disposable - so memdb and zenbrain appeared to survive having their journal cut. The
+   same wrong-file defect as a wrong denominator; the fix is to exclude `-wal`, `-journal`, `-shm`,
+   `.lock`, `.tmp` and `.log` by name, and to say in the report that the exclusion is a judgement.
+2. **It read a capped listing as a store.** `statecore-mcp` returned exactly ten of forty under both
+   damages, and the first version published that as thirty lost records. The tool now searches for
+   up to three of the names the listing omitted, and `memory-lean` turned out to be the case that
+   matters: it shows 23 of 40 and all three sampled names were findable by search. **Counting what a
+   subject lists is not counting what it kept.**
+3. **It reported a relative store path.** `@modelcontextprotocol/server-memory` resolved the store
+   inside its own `node_modules/.../dist/`, which then read as "not installed" - wrong twice, and
+   caught only because the sentence looked absurd.
+
+And one more: a single-subject run wrote its one row over the eleven already measured. Re-running
+one subject to fix a path would have deleted nine from the evidence and left a table that still
+looked complete. It merges now.
+
+### What it does not settle
+
+One damage of each kind, on this machine, on this date, with no concurrent writer and no repeat - the
+same caveat every timing in this repository carries. `memory-mcp-1file` shows as having no store to
+damage because it writes inside its dependency directory rather than the store it was given, which is
+a fact about the harness and not about durability. Nothing here says what a subject does when the
+damage is *inside* a record rather than at the end of the file, which is the next damage to write.
+
+
 
 not.
 
