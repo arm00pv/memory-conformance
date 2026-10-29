@@ -122,9 +122,10 @@ Two readers at one temperature are two opinions, not a standard. Where they agre
 something to be wrong about; where they split, the question has no agreed answer and the rule's
 verdict there is a coin toss with a justification. Neither reader is calibrated against a person,
 and the pairs to calibrate them are already drawn: `results/human-sample.md` is sixty of
-them, at random, with a file beside it for the answers. `judge.py --export-human=60` draws
-another sixty; `--import-human` takes the answers and this report renders them. An hour of
-somebody's reading is the only thing standing between this and a rate instead of a search.
+them, at random, with a file beside it for the answers. `--import-human` takes
+the answers and this report renders them; `--export-human=60` draws another
+sixty, and now refuses while that file holds one. An hour of somebody's reading is the only
+thing standing between this and a rate instead of a search.
 
 The prompt is a judgement call of its own. It asks whether the record would help, not whether it
 is the answer, because the corpus already says which record is the answer and asking again would
