@@ -198,25 +198,77 @@ jobs:
           grep -q "which version of a fact is current" SUPERSESSION.md
           grep -q "current first" SUPERSESSION.md
 
-      # THE ONLY RUNG OF THE LADDER THAT NEEDS A PERSON, with the work prepared for them: sixty pairs drawn
-      # at random from every (question, returned record) pair the repository holds, question and record in
-      # front of the reader and nothing else. This checks the draw is reproducible and pre-answers nothing,
-      # because a questionnaire that quietly contained the answers would measure the person's patience.
-      - name: the sample a person would read must be drawn reproducibly, and pre-answer nothing
+      # THE ONE ARTIFACT A PERSON CAN SPOIL BY FILLING IT IN. This step used to re-export the sample
+      # inside the guard, so the first commit carrying sixty answers would have been rewritten to sixty
+      # blanks and then failed on the diff - the questionnaire could be handed out and never returned.
+      # It checks the draw now instead of rewriting it, and the answers are allowed to be there, which is
+      # also what makes the plants below possible: a filled verdict is the normal case, not the failure.
+      - name: the sample a person reads must still be the draw it was, and must refuse to eat an answer
         run: |
-          python judge.py --export-human=60
+          python judge.py --check-sample | tee /tmp/sample.txt
+          grep -q "still the draw it was" /tmp/sample.txt
+          grep -q "with an answer among them" /tmp/sample.txt
+          echo "1. the sample is the committed draw, and there is something on both sides to read"
+          # A VERDICT A PERSON COULD NOT HAVE WRITTEN. Anything but YES, NO or blank is imported as a
+          # pair left blank, which is how a typo in the answers file quietly becomes a shorter sample.
           python - <<'PY'
-          import json
-          doc = json.load(open('results/human-sample.json'))
-          labels = doc['labels']
-          assert len(labels) == 60, len(labels)
-          assert all(l['verdict'] == '' for l in labels), 'the export pre-filled an answer'
-          assert all(l['query'] and l['shown'] for l in labels), 'a pair has nothing to read'
-          ids = {(l['corpus'], l['query'], l['id']) for l in labels}
-          assert len(ids) == 60, 'the draw repeated a pair'
-          print('60 pairs drawn, distinct, none pre-answered')
+          import io
+          p = 'results/human-sample.json'
+          text = io.open(p, encoding='utf-8').read()
+          io.open(p, 'w', encoding='utf-8', newline=chr(10)).write(
+              text.replace('"verdict": ""', '"verdict": "MAYBE"', 1))
+          print('planted a verdict of MAYBE on the first pair')
           PY
-          git diff --exit-code results/human-sample.json results/human-sample.md
+          if python judge.py --check-sample > /tmp/planted.txt; then
+            cat /tmp/planted.txt
+            echo "the sample check passed a verdict nobody could have written"
+            git checkout -- results/human-sample.json
+            exit 1
+          fi
+          grep -q "carries a verdict of 'MAYBE'" /tmp/planted.txt
+          echo "2. it refused the verdict, and named the pair and the word"
+          git checkout -- results/human-sample.json
+          # THE PAGE AND THE KEY ARE THE SAME FILE, so an edit to what is shown would otherwise pass
+          # every check above: the record the person reads is also the record being scored against.
+          python - <<'PY'
+          import io
+          p = 'results/human-sample.json'
+          text = io.open(p, encoding='utf-8').read()
+          io.open(p, 'w', encoding='utf-8', newline=chr(10)).write(
+              text.replace('"shown": "', '"shown": "One ', 1))
+          print('edited the first record a person is shown')
+          PY
+          if python judge.py --check-sample > /tmp/moved.txt; then
+            cat /tmp/moved.txt
+            echo "the sample check passed a record that is not the one drawn"
+            git checkout -- results/human-sample.json
+            exit 1
+          fi
+          grep -q "the record shown changed" /tmp/moved.txt
+          echo "3. it refused the edited record"
+          git checkout -- results/human-sample.json
+          # AND THE EXPORT MUST NOT EAT THEM. Sixty answers are the only evidence in this repository
+          # that cannot be produced again by running something, so a redraw refuses and says what to move.
+          python - <<'PY'
+          import io
+          p = 'results/human-sample.json'
+          text = io.open(p, encoding='utf-8').read()
+          io.open(p, 'w', encoding='utf-8', newline=chr(10)).write(
+              text.replace('"verdict": ""', '"verdict": "YES"', 1))
+          print('filled in one answer')
+          PY
+          if python judge.py --export-human=60 > /tmp/redraw.txt 2>&1; then
+            cat /tmp/redraw.txt
+            echo "the export replaced a file that holds a person's answer"
+            git checkout -- results/human-sample.json results/human-sample.md
+            exit 1
+          fi
+          cat /tmp/redraw.txt
+          grep -q "already holds 1 of a person's answers" /tmp/redraw.txt
+          echo "4. a new draw refused to replace an answer"
+          git checkout -- results/human-sample.json results/human-sample.md
+          git diff --exit-code results
+          echo "5. the sample files are back to what is committed"
 
       # EVERY REPORT HERE SAYS "Generated by X. Do not edit by hand" AND NOTHING CHECKED IT. This regenerates
       # every one of them from the committed results and fails if a byte moved. It was written because two of

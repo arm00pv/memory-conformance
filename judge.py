@@ -349,21 +349,48 @@ Do not read the answers of anything else first. There is no right answer being l
 """
 
 
+SAMPLE_JSON = os.path.join("results", "human-sample.json")
+SAMPLE_COUNT = 60
+SAMPLE_SEED = 20261027
+
+
+def draw(count, seed):
+    """The pairs a person is asked to read, in the order they will read them, and the pool size."""
+    import random
+    pop = population()
+    if len(pop) < count:
+        raise SystemExit("only %d pairs in the population" % len(pop))
+    out = random.Random(seed).sample(pop, count)
+    out.sort(key=lambda p: (p["corpus"], p["query"], p["id"]))
+    return out, len(pop)
+
+
+def answers_in(path):
+    """How many of the pairs in a sample file already carry somebody's answer."""
+    if not os.path.isfile(path):
+        return 0
+    with open(path, encoding="utf-8") as fh:
+        doc = json.load(fh)
+    return sum(1 for l in doc.get("labels") or [] if str(l.get("verdict") or "").strip())
+
+
 def export_human(count, seed, json_path, md_path):
     """A random draw, written out for a person: one file to fill, one to read.
 
     THE ONLY PART OF THE LADDER THAT NEEDS SOMEBODY WHO IS NOT A MODEL, so the least this repository can do is
     hand them the work prepared: the pairs already drawn, at random rather than for disagreement, with the
     question and the record in front of them and nothing else.
+    AND A NEW DRAW MUST NOT EAT THE OLD ANSWERS. Once a person has filled that file, what is in it is
+    the only evidence here that cannot be re-measured by running anything again, so the export refuses
+    instead of replacing it, and says what to move.
     """
-    import random
-    pop = population()
-    if len(pop) < count:
-        raise SystemExit("only %d pairs in the population" % len(pop))
-    draw = random.Random(seed).sample(pop, count)
-    draw.sort(key=lambda p: (p["corpus"], p["query"], p["id"]))
+    if answers_in(json_path):
+        raise SystemExit("%s already holds %d of a person's answers; a new draw would replace them "
+                         "with blanks. Move the file first."
+                         % (json_path, answers_in(json_path)))
+    pairs, pop = draw(count, seed)
     labels = []
-    for n, p in enumerate(draw, 1):
+    for n, p in enumerate(pairs, 1):
         labels.append({"n": n, "corpus": p["corpus"], "query": p["query"], "id": p["id"],
                        "kind": p["kind"], "shown": p["text"], "verdict": ""})
     doc = {"why": "a random draw from every (question, returned record) pair this repository holds; the "
@@ -385,6 +412,76 @@ def export_human(count, seed, json_path, md_path):
     print("wrote %s (%d pairs to read) and %s (to fill)" % (md_path, len(labels), json_path))
     return 0
 
+
+def check_sample(json_path, count=SAMPLE_COUNT, seed=SAMPLE_SEED):
+    """Is the questionnaire still the draw it was, and still something a person can answer?
+
+    THE PIPELINE WOULD HAVE DESTROYED IT. The sample was re-exported inside the guard, so every run of
+    CI rewrote it - which means the first commit that carried sixty answers would have been replaced by
+    sixty blanks and then failed on the diff. A questionnaire that cannot be returned is not a
+    questionnaire, so this checks the draw rather than rewriting it, and treats a filled verdict as the
+    ordinary case it is.
+
+    Returns what is wrong with it and the facts worth printing. An empty list is the pass.
+    """
+    facts = {"pairs": 0, "answer": 0, "other": 0, "longest": 0, "answered": 0}
+    if not os.path.isfile(json_path):
+        return ["%s is missing: there is nothing for a person to read" % json_path], facts
+    with open(json_path, encoding="utf-8") as fh:
+        doc = json.load(fh)
+    labels = doc.get("labels") or []
+    bad = []
+    if len(labels) != count:
+        bad.append("the sample holds %d pairs where its header says %d" % (len(labels), count))
+    # THE POPULATION CALLS THE RECORD "text" AND THE QUESTIONNAIRE CALLS IT "shown", so the two sides
+    # are lined up by hand here. Comparing the dictionaries field by field reported all sixty pairs as
+    # edited, which is what a check looks like when it is comparing the wrong key.
+    fresh, pool = draw(count, seed)
+    for n, (got, want) in enumerate(zip(labels, fresh), 1):
+        mine = (got.get("corpus"), got.get("query"), got.get("id"), got.get("kind"), got.get("shown"))
+        theirs = (want["corpus"], want["query"], want["id"], want["kind"], want["text"])
+        moved = [name for name, a, b in zip(("corpus", "query", "id", "kind", "the record shown"),
+                                            mine, theirs) if a != b]
+        if moved:
+            bad.append("pair %d no longer matches the draw the seed makes: %s changed"
+                       % (n, " and ".join(moved)))
+    seen = {}
+    kinds = {}
+    for l in labels:
+        n, shown = l.get("n"), l.get("shown") or ""
+        kinds[l.get("kind")] = kinds.get(l.get("kind"), 0) + 1
+        facts["longest"] = max(facts["longest"], len(shown))
+        verdict = str(l.get("verdict") or "").strip().lower()
+        if verdict in ("yes", "y", "no", "n"):
+            facts["answered"] += 1
+        elif verdict:
+            bad.append("pair %s carries a verdict of %r, which is neither YES nor NO nor blank"
+                       % (n, l.get("verdict")))
+        if not (l.get("query") or "").strip():
+            bad.append("pair %s has no question to judge against" % n)
+        if not shown.strip():
+            bad.append("pair %s shows no record" % n)
+        elif chr(10) in shown or chr(13) in shown:
+            bad.append("pair %s shows a record with a line break in it, which breaks the page" % n)
+        elif len(shown) > 1200:
+            bad.append("pair %s shows %d characters: a document, not a record" % (n, len(shown)))
+        key = (l.get("query"), l.get("id"))
+        if key in seen:
+            bad.append("pair %s is pair %s again - same question, same record" % (n, seen[key]))
+        seen[key] = n
+    facts["pairs"] = len(labels)
+    facts["answer"] = kinds.get("answer", 0)
+    facts["other"] = sum(v for k, v in kinds.items() if k != "answer")
+    # A FLOOR UNDER EACH SIDE, BECAUSE SIXTY PAIRS CAN STILL MEASURE NOTHING. If almost every pair has
+    # no answer among them, a reader who writes NO sixty times agrees with the sample without reading
+    # any of it; six of each is the smallest draw that can tell reading from not reading.
+    if facts["answer"] < 6:
+        bad.append("only %d of the pairs have their answer among them, so a reader who said YES to "
+                   "everything would agree with the sample and prove nothing" % facts["answer"])
+    if facts["other"] < 6:
+        bad.append("only %d of the pairs have no answer among them, so a reader who said NO to "
+                   "everything would agree with the sample and prove nothing" % facts["other"])
+    return bad, facts
 
 def import_human(path):
     """Take a filled answers file, check it, and store it as the sampled labeller."""
@@ -747,6 +844,20 @@ def main(argv):
         if "--no-report" not in argv:
             report()
         return code
+
+    if "--check-sample" in argv:
+        bad, facts = check_sample(SAMPLE_JSON)
+        for line in bad:
+            print("  " + line)
+        if bad:
+            print("%d thing(s) wrong with the sample a person is asked to read" % len(bad))
+            return 1
+        print("the sample is still the draw it was: %d pairs, %d with an answer among them, "
+              "%d without, %d already answered, longest record %d characters"
+              % (facts["pairs"], facts["answer"], facts["other"], facts["answered"],
+                 facts["longest"]))
+        return 0
+
     for a in argv:
         if a.startswith("--export-human="):
             count = int(a.split("=", 1)[1])
