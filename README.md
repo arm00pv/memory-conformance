@@ -679,7 +679,7 @@ success reply is honest about the write and silent about the loss.
   `DURABILITY.md`. A trailing fragment is survivable and a missing tail is not; rot inside one record
   costs exactly that record where the store keeps one record per line, and everything where it parses
   the file as a single document; and two cells give a different answer on a repeat, which the report
-  prints rather than smooths. See Addenda 57 to 59.
+  prints rather than smooths. See Addenda 57 to 60.
 - **The prose is checked too, because a sentence can be a pin.** Coverage is not freshness: the pages
   above are re-generated, but the sentences in `README.md` and under `docs/` quote figures and nothing
   re-derived them. `figures.py` reads named sentences out of those pages, pulls the numbers out of them
