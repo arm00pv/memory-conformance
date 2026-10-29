@@ -4922,6 +4922,28 @@ measured those. It is the same species as the denominator bug in Addendum 48 and
 in Addendum 57: **the number was computed from the wrong list, and it looked exactly like a number.**
 The variable is `cells` now, with the reason written beside it.
 
+## Addendum 60: a second session, and the same one cell
+
+Addendum 59 published three runs per cell and two cells that disagreed with themselves. The obvious
+next question is whether repeating the whole battery later gives the same table, so `durability.py`
+takes a `--tag=` and the rows carry the session they came from. A second session was run - one pass
+of every damage, later in the same working day rather than the next one, because that is what could
+be done honestly here - and compared cell by cell:
+
+> **32 of the 33 cells gave the same answer in the second session as in the first.**
+
+The one that did not is `memdb` under rot: refused to start in the first session's first run, kept
+every record in the second. It is the same cell that already disagreed with itself inside the first
+session, which is the only reassuring thing about it: the table's own variance and the session's
+variance are the same variance, and it belongs to one subject whose store is a page file and to the
+place the bytes land rather than to the measurement.
+
+**That is what a repeat buys and all it buys.** It does not make a damage reproducible; it shows how
+far from reproducible the damage was, and lets a reader see that one cell in thirty-three is where
+the doubt lives. A day-apart session would test the machine's mood rather than the store's framing,
+and it is still worth doing once somebody leaves the repository alone overnight.
+
+
 
 
 

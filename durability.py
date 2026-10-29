@@ -146,7 +146,7 @@ def names_back(ad, srv, wanted):
     return back, hidden, sampled
 
 
-def one(entry, kind, run=1):
+def one(entry, kind, run=1, tag="first"):
     """Write, damage, restart, count - for one subject and one kind of damage."""
     slug = slug_of(entry)
     # AN ABSOLUTE STORE PATH, BECAUSE A SUBJECT MAY RESOLVE IT AGAINST ITS OWN MODULE DIRECTORY. A
@@ -154,7 +154,7 @@ def one(entry, kind, run=1):
     # which then reported as "not installed" - wrong twice over.
     store = os.path.abspath(os.path.join(WORK, slug, kind, "run-%d" % run))
     out = {"subject": "%s %s" % (entry["name"], entry["version"]), "slug": slug, "damage": kind,
-           "records": RECORDS, "run": run, "file": None, "bytes": None, "back": None,
+           "records": RECORDS, "run": run, "session": tag, "file": None, "bytes": None, "back": None,
            "why": None}
     shutil.rmtree(store, ignore_errors=True)
     os.makedirs(store)
@@ -228,17 +228,18 @@ def verdict(row):
     return "lost %d of 40" % (row["records"] - row["back"])
 
 
-def run(only=None, repeat=REPEAT):
+def run(only=None, repeat=REPEAT, tag="first"):
     with open("subjects.json", encoding="utf-8") as fh:
         subjects = json.load(fh)
     rows = []
-    if only and os.path.isfile(SAVE):
+    if os.path.isfile(SAVE):
         # A SINGLE-SUBJECT RUN EDITS THE TABLE RATHER THAN REPLACING IT. The first version wrote its one
         # row over the eleven already measured, so re-running one subject to fix a path would have
         # deleted nine subjects from the evidence and left a table that still looked complete.
         with open(SAVE, encoding="utf-8") as fh:
-            rows = [r for r in (json.load(fh).get("rows") or [])
-                    if not r["subject"].startswith(only + " ")]
+            kept = json.load(fh).get("rows") or []
+            rows = [r for r in kept if (r.get("session") or "first") != tag
+                    and not (only and r["subject"].startswith(only + " "))]
     for entry in subjects:
         if only and entry["name"] != only:
             continue
@@ -246,7 +247,7 @@ def run(only=None, repeat=REPEAT):
             for index in range(1, repeat + 1):
                 print("%s %s: %s (run %d of %d) ..."
                       % (entry["name"], entry["version"], kind, index, repeat), flush=True)
-                row = one(entry, kind, index)
+                row = one(entry, kind, index, tag)
                 print("  %s" % verdict(row), flush=True)
                 rows.append(row)
     with open(SAVE, "w", encoding="utf-8", newline=chr(10)) as fh:
@@ -310,8 +311,16 @@ def report(rows=None):
         add("| " + " | ".join(parts) + " |")
     add("")
 
+    sessions = sorted(set((r.get("session") or "first") for r in rows))
+    counted = {}
+    for r in rows:
+        key = r.get("session") or "first"
+        counted[key] = counted.get(key, 0) + 1
+    newest = max(counted, key=lambda k: counted[k])
     runs = {}
     for row in rows:
+        if (row.get("session") or "first") != newest:
+            continue
         runs.setdefault((row["subject"], row["damage"]), []).append(row)
     same, differ = [], []
     for key in sorted(runs):
@@ -424,12 +433,15 @@ def main(argv):
         return report()
     only = None
     repeat = REPEAT
+    tag = "first"
     for a in argv:
+        if a.startswith("--tag="):
+            tag = a.split("=", 1)[1]
         if a.startswith("--subject="):
             only = a.split("=", 1)[1]
         elif a.startswith("--repeat="):
             repeat = max(1, int(a.split("=", 1)[1]))
-    rows = run(only, repeat)
+    rows = run(only, repeat, tag)
     if "--no-report" not in argv:
         return report(rows)
     return 0
