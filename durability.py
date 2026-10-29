@@ -57,6 +57,7 @@ def slug_of(entry):
 # to and is *meant* to be disposable, so damaging it produced a table in which memdb and zenbrain 'kept
 # every record - because their journal was what got cut. That is the wrong-denominator defect one layer
 # down, and the fix is to name what is not a store.
+DAMAGES = ("append", "cut", "rot")
 NOT_A_STORE = ("-wal", "-shm", "-journal", ".wal", ".shm", ".journal", ".lock", ".tmp", ".log",
               ".pid")
 
@@ -77,7 +78,7 @@ def files_under(store):
 
 
 def damage(path, kind):
-    """Half a record at the end, or most of the file gone. Both happen; neither is exotic.
+    """Three damages, all ordinary: half a record at the end, a missing tail, and rot in the middle.
 
     A STORE FILE CAN STILL BE LOCKED WHEN THE SERVER HAS BEEN ASKED TO STOP. duckdb keeps a .wal
     beside its store and the first version of this crashed on it with PermissionError, which is the
@@ -90,6 +91,17 @@ def damage(path, kind):
             if kind == "append":
                 with open(path, "ab") as fh:
                     fh.write(HALF.encode("utf-8"))
+            elif kind == "rot":
+                # SIXTEEN BYTES OF RUBBISH IN THE MIDDLE OF THE FILE. The first two damages are about the
+                # end of a sequence of records; this one lands inside one, which is what a bad sector or an
+                # overlapping write does - and it is the damage a store that skips unparseable lines can
+                # survive while a store that parses the whole file cannot.
+                size = os.path.getsize(path)
+                if size < 64:
+                    raise ValueError("store is %d bytes, too small to corrupt without destroying it" % size)
+                with open(path, "r+b") as fh:
+                    fh.seek(size // 2)
+                    fh.write(b"#" * 16)
             else:
                 size = os.path.getsize(path)
                 with open(path, "r+b") as fh:
@@ -226,7 +238,7 @@ def run(only=None):
     for entry in subjects:
         if only and entry["name"] != only:
             continue
-        for kind in ("append", "cut"):
+        for kind in DAMAGES:
             print("%s %s: %s ..." % (entry["name"], entry["version"], kind), flush=True)
             row = one(entry, kind)
             print("  %s" % verdict(row), flush=True)
@@ -277,17 +289,19 @@ def report(rows=None):
     add("in practice, the server restarted, and the records it can still produce counted. Nothing here is")
     add("inferred from what a subject promises.")
     add("")
-    add("| subject | store file | half a record appended | last 40% of the file gone |")
-    add("|---|---|---|---|")
+    LABEL = {"append": "half a record appended", "cut": "last 40% of the file gone",
+             "rot": "sixteen bytes of rot in the middle"}
+    add("| subject | store file | " + " | ".join(LABEL[k] for k in DAMAGES) + " |")
+    add("|---" * (len(DAMAGES) + 2) + "|")
     for subject in sorted(by):
-        a, c = by[subject].get("append") or {}, by[subject].get("cut") or {}
-        where = a.get("file") or c.get("file") or "-"
-        add("| " + BT + subject + BT + " | " + BT + str(where) + BT + " | " + clipped(verdict(a))
-            + " | " + clipped(verdict(c)) + " |")
+        rows = [by[subject].get(k) or {} for k in DAMAGES]
+        where = next((r.get("file") for r in rows if r.get("file")), "-")
+        parts = [BT + subject + BT, BT + str(where) + BT] + [clipped(verdict(r)) for r in rows]
+        add("| " + " | ".join(parts) + " |")
     add("")
 
     tally = {}
-    for kind in ("append", "cut"):
+    for kind in DAMAGES:
         tally[kind] = {}
         for subject in by:
             word = outcome(by[subject].get(kind))
@@ -296,7 +310,7 @@ def report(rows=None):
                   for k in tally)
     add("| damage | tested | kept every record | lost records | started, could not read | would not start | no store to damage |")
     add("|---|---|---|---|---|---|---|")
-    for kind in ("append", "cut"):
+    for kind in DAMAGES:
         add("| " + kind + " | %d | %d | %d | %d | %d | %d |" % (
             tested[kind],
             tally[kind].get("kept every record", 0),
@@ -311,6 +325,18 @@ def report(rows=None):
            tally["cut"].get("kept every record", 0)))
     add("claim about care, and it is not a ranking: it is what a parser does when the damage sits at the end")
     add("of a sequence of records rather than inside one.")
+    add("")
+    rot_kept = [s for s in sorted(by) if (by[s].get("rot") or {}).get("back") is not None
+                and by[s]["rot"]["back"] >= by[s]["rot"]["records"]]
+    rot_one = [s for s in sorted(by) if (by[s].get("rot") or {}).get("back") == 39]
+    add("**Rot inside a record costs exactly that record, where the store can tell one record from the")
+    add("next.** Sixteen bytes overwritten in the middle of the file left %d of the %d stores complete, and"
+        % (len(rot_kept), tested["rot"]))
+    if rot_one:
+        add("%s lost exactly one of forty each:" % ", ".join(BT + s + BT for s in rot_one))
+        add("the record the rubbish landed in, and nothing else.")
+        add("That is what a line-per-record format buys, and the only place in this table where a damage")
+        add("costs what it damaged.")
     add("")
 
     unreadable = [s for s in sorted(by)
@@ -344,9 +370,12 @@ def report(rows=None):
     add("exactly that and reported two databases as invulnerable. A subject that keeps its records inside a")
     add("dependency directory rather than the store it was given shows here as having no store to damage.")
     add("")
-    add("Nothing was tested under a concurrent writer, nothing was damaged twice, and nothing was")
-    add("re-measured: this is one damage of each kind, on this machine, on this date - the same caveat every")
-    add("timing in this repository carries.")
+    add("**One damage of each kind is an anecdote, and the table has already shown it.** memdb's store was")
+    add("cut once and refused to start; cut again on the next run and it kept every record, because the cut")
+    add("landed in a different place relative to its pages. Nothing here is a rate and none of it should be")
+    add("quoted as one. Nothing was tested under a concurrent writer and nothing was re-measured: this is")
+    add("one damage of each kind, on this machine, on this date - the same caveat every timing in this")
+    add("repository carries.")
     add("")
     with open("DURABILITY.md", "w", encoding="utf-8", newline=chr(10)) as fh:
         fh.write(chr(10).join(lines) + chr(10))

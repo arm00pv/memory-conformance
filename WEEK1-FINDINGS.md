@@ -4859,6 +4859,41 @@ damage because it writes inside its dependency directory rather than the store i
 a fact about the harness and not about durability. Nothing here says what a subject does when the
 damage is *inside* a record rather than at the end of the file, which is the next damage to write.
 
+## Addendum 58: damage inside a record, and the one cell that changed its answer
+
+Addendum 57 named what it had not tested: damage *inside* a record rather than at the end of a file.
+Sixteen bytes of rubbish written over the middle of the store are that damage, and they are the ones
+that matter for the question the first two columns could not answer - what a format buys.
+
+| damage | kept everything | lost records | started, could not read | would not start |
+|---|---|---|---|---|
+| append | 8 | 1 | 1 | 0 |
+| cut | 3 | 4 | 1 | 2 |
+| rot | 5 | 4 | 1 | 0 |
+
+**Five of nine stores survive it completely, and three lose exactly one record of forty** -
+`control`, `server-memory` 1.0.0 and 2.0.0, the three subjects whose store is one JSON object per line.
+That is the only cell in this table where a damage costs what it damaged, and it is what a
+line-per-record format is for. The page-file stores ignore it outright. `mcp-knowledge-graph` fails
+again, for the third damage in a row, because its store is a line-per-record file that is parsed as a
+single document: it has the shape of the survivors and the failure mode of the lost.
+
+### And the table caught its own reproducibility problem
+
+`memdb`'s store was cut once and refused to start. Cut again on the next run it kept every record,
+because the cut landed in a different place relative to its pages. The published cell is the second
+one, and the honest sentence is not "memdb survives truncation" - it is that **one damage of each
+kind is an anecdote**, which is now written under the table instead of being left to a reader to
+notice. The same applies to the cut column generally: three of seven survived this time, two of six
+the time before, and neither figure is a rate.
+
+What this cost, in the shape this file keeps recording: three of the four columns were reported
+wrongly by my own tool before they were reported at all - the write-ahead log damaged instead of the
+store, a capped listing counted as a store, a relative path resolved inside a dependency. The table
+is worth what the caveats under it say it is worth, and that is exactly the repository's thesis
+pointed at itself.
+
+
 
 
 not.
