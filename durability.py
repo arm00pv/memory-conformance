@@ -57,6 +57,9 @@ def slug_of(entry):
 # to and is *meant* to be disposable, so damaging it produced a table in which memdb and zenbrain 'kept
 # every record - because their journal was what got cut. That is the wrong-denominator defect one layer
 # down, and the fix is to name what is not a store.
+# EVERY OTHER TABLE HERE CARRIES A runs COLUMN, and this one did not: one damage of each kind is an
+# anecdote, and the first repeat of the cut column produced two different answers for memdb.
+REPEAT = 3
 DAMAGES = ("append", "cut", "rot")
 NOT_A_STORE = ("-wal", "-shm", "-journal", ".wal", ".shm", ".journal", ".lock", ".tmp", ".log",
               ".pid")
@@ -143,15 +146,16 @@ def names_back(ad, srv, wanted):
     return back, hidden, sampled
 
 
-def one(entry, kind):
+def one(entry, kind, run=1):
     """Write, damage, restart, count - for one subject and one kind of damage."""
     slug = slug_of(entry)
     # AN ABSOLUTE STORE PATH, BECAUSE A SUBJECT MAY RESOLVE IT AGAINST ITS OWN MODULE DIRECTORY. A
     # relative one made @modelcontextprotocol/server-memory open its store inside node_modules/.../dist/,
     # which then reported as "not installed" - wrong twice over.
-    store = os.path.abspath(os.path.join(WORK, slug, kind))
+    store = os.path.abspath(os.path.join(WORK, slug, kind, "run-%d" % run))
     out = {"subject": "%s %s" % (entry["name"], entry["version"]), "slug": slug, "damage": kind,
-           "records": RECORDS, "file": None, "bytes": None, "back": None, "why": None}
+           "records": RECORDS, "run": run, "file": None, "bytes": None, "back": None,
+           "why": None}
     shutil.rmtree(store, ignore_errors=True)
     os.makedirs(store)
     ad = adapter_for(entry)
@@ -159,7 +163,7 @@ def one(entry, kind):
     # write and its entry says so; using the 30 s default made this tool report "initialize did not
     # answer" for a subject that was merely slow, which is the harness measuring itself again.
     import harness
-    harness.PROBE_TIMEOUT = float(entry.get("timeout") or 60)
+    harness.PROBE_TIMEOUT = min(float(entry.get("timeout") or 60), 60.0)
     try:
         srv = ad.server(store)
         try:
@@ -224,7 +228,7 @@ def verdict(row):
     return "lost %d of 40" % (row["records"] - row["back"])
 
 
-def run(only=None):
+def run(only=None, repeat=REPEAT):
     with open("subjects.json", encoding="utf-8") as fh:
         subjects = json.load(fh)
     rows = []
@@ -239,10 +243,12 @@ def run(only=None):
         if only and entry["name"] != only:
             continue
         for kind in DAMAGES:
-            print("%s %s: %s ..." % (entry["name"], entry["version"], kind), flush=True)
-            row = one(entry, kind)
-            print("  %s" % verdict(row), flush=True)
-            rows.append(row)
+            for index in range(1, repeat + 1):
+                print("%s %s: %s (run %d of %d) ..."
+                      % (entry["name"], entry["version"], kind, index, repeat), flush=True)
+                row = one(entry, kind, index)
+                print("  %s" % verdict(row), flush=True)
+                rows.append(row)
     with open(SAVE, "w", encoding="utf-8", newline=chr(10)) as fh:
         fh.write(json.dumps({"rows": rows}, indent=1, sort_keys=True) + chr(10))
     print("written to %s" % SAVE)
@@ -257,7 +263,7 @@ def report(rows=None):
             rows = json.load(fh).get("rows") or []
     by = {}
     for row in rows:
-        by.setdefault(row["subject"], {})[row["damage"]] = row
+        by.setdefault(row["subject"], {}).setdefault(row["damage"], row)
 
     def outcome(row):
         """Kept, lost, unreadable, would not start, or nothing to damage - one word each."""
@@ -294,10 +300,37 @@ def report(rows=None):
     add("| subject | store file | " + " | ".join(LABEL[k] for k in DAMAGES) + " |")
     add("|---" * (len(DAMAGES) + 2) + "|")
     for subject in sorted(by):
-        rows = [by[subject].get(k) or {} for k in DAMAGES]
-        where = next((r.get("file") for r in rows if r.get("file")), "-")
-        parts = [BT + subject + BT, BT + str(where) + BT] + [clipped(verdict(r)) for r in rows]
+        # NOT "rows": the loop below still needs the parameter of that name, and the first version of
+        # this shadowed it - so the section that counts the repeats was handed the last subject's three
+        # rows and reported "every damage was taken 1 times per subject". A variable named after the
+        # thing it borrows is how a table quietly measures the wrong list.
+        cells = [by[subject].get(k) or {} for k in DAMAGES]
+        where = next((r.get("file") for r in cells if r.get("file")), "-")
+        parts = [BT + subject + BT, BT + str(where) + BT] + [clipped(verdict(r)) for r in cells]
         add("| " + " | ".join(parts) + " |")
+    add("")
+
+    runs = {}
+    for row in rows:
+        runs.setdefault((row["subject"], row["damage"]), []).append(row)
+    same, differ = [], []
+    for key in sorted(runs):
+        seen = [verdict(r) for r in runs[key]]
+        (same if len(set(seen)) == 1 else differ).append((key, seen))
+    times = max(len(v) for v in runs.values())
+    add("**Every damage was taken %d times per subject, because one of them was not enough.** %d of the %d"
+        % (times, len(same), len(runs)))
+    add("subject-and-damage cells gave the same answer every time; the table above shows the first run.")
+    if differ:
+        add("")
+        add("| the cell that changed its answer | what it said, run by run |")
+        add("|---|---|")
+        for (subject, kind), seen in differ:
+            add("| " + BT + subject + BT + " " + kind + " | " + " / ".join(seen) + " |")
+        add("")
+        add("**A cell that disagrees with itself is not a measurement of the subject.** It is a measurement of")
+        add("where the damage landed, and the difference between those two things is the reason this column")
+        add("exists at all. None of these should be quoted as a rate without the runs beside it.")
     add("")
 
     tally = {}
@@ -390,10 +423,13 @@ def main(argv):
     if "--report" in argv:
         return report()
     only = None
+    repeat = REPEAT
     for a in argv:
         if a.startswith("--subject="):
             only = a.split("=", 1)[1]
-    rows = run(only)
+        elif a.startswith("--repeat="):
+            repeat = max(1, int(a.split("=", 1)[1]))
+    rows = run(only, repeat)
     if "--no-report" not in argv:
         return report(rows)
     return 0

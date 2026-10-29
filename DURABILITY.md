@@ -12,8 +12,8 @@ inferred from what a subject promises.
 | `control 1.0.0` | `memory.json` | kept all 40 | lost 16 of 40 | lost 1 of 40 |
 | `mcp-duckdb-memory-server 1.1.10` | `memory.json` | kept all 40 | kept all 40 | kept all 40 |
 | `mcp-knowledge-graph 1.3.2` | `memory.jsonl` | starts but cannot be read: MCP error: {"code": -32603, "message": "Unterminated string in JSON at position 75 ... | starts but cannot be read: MCP error: {"code": -32603, "message": "Unterminated string in JSON at position 80 ... | starts but cannot be read: MCP error: {"code": -32603, "message": "Expected ':' after property name in JSON at... |
-| `memdb 1.4.0` | `.memdb\memory.db` | kept all 40 | kept all 40 | kept all 40 |
-| `memento 0.7.0` | `memory.db` | kept all 40 | refuses to start: initialize did not answer within 180s | kept all 40 |
+| `memdb 1.4.0` | `.memdb\memory.db` | kept all 40 | kept all 40 | refuses to start: initialize did not answer within 60s |
+| `memento 0.7.0` | `memory.db` | kept all 40 | refuses to start: initialize did not answer within 60s | kept all 40 |
 | `memory-lean 1.5.0` | `memory.json` | kept all 40 | shows 23 of 40, and 3 of 3 sampled names are still findable | kept all 40 |
 | `memory-mcp-1file 0.9.2` | `-` | no store file to damage | no store file to damage | no store file to damage |
 | `server-memory 1.0.0` | `memory.json` | kept all 40 | lost 16 of 40 | lost 1 of 40 |
@@ -21,11 +21,23 @@ inferred from what a subject promises.
 | `statecore-mcp 1.0.0` | `statecore.db` | lost 30 of 40 | refuses to start: initialize did not answer within 60s | lost 30 of 40 |
 | `zenbrain 0.3.0` | `zenbrain.db` | kept all 40 | kept all 40 | kept all 40 |
 
+**Every damage was taken 3 times per subject, because one of them was not enough.** 31 of the 33
+subject-and-damage cells gave the same answer every time; the table above shows the first run.
+
+| the cell that changed its answer | what it said, run by run |
+|---|---|
+| `memdb 1.4.0` rot | refuses to start: initialize did not answer within 60s / kept all 40 / kept all 40 |
+| `statecore-mcp 1.0.0` cut | refuses to start: initialize did not answer within 60s / lost 30 of 40 / lost 30 of 40 |
+
+**A cell that disagrees with itself is not a measurement of the subject.** It is a measurement of
+where the damage landed, and the difference between those two things is the reason this column
+exists at all. None of these should be quoted as a rate without the runs beside it.
+
 | damage | tested | kept every record | lost records | started, could not read | would not start | no store to damage |
 |---|---|---|---|---|---|---|
 | append | 9 | 8 | 1 | 1 | 0 | 1 |
 | cut | 7 | 3 | 4 | 1 | 2 | 1 |
-| rot | 9 | 5 | 4 | 1 | 0 | 1 |
+| rot | 8 | 4 | 4 | 1 | 1 | 1 |
 
 **A trailing fragment is survivable and a missing tail is not.** Appending half a record leaves
 8 of the 9 stores it was applied to complete and cutting 40% of the file leaves 3. That is not a
@@ -33,7 +45,7 @@ claim about care, and it is not a ranking: it is what a parser does when the dam
 of a sequence of records rather than inside one.
 
 **Rot inside a record costs exactly that record, where the store can tell one record from the
-next.** Sixteen bytes overwritten in the middle of the file left 5 of the 9 stores complete, and
+next.** Sixteen bytes overwritten in the middle of the file left 4 of the 8 stores complete, and
 `control 1.0.0`, `server-memory 1.0.0`, `server-memory 2.0.0` lost exactly one of forty each:
 the record the rubbish landed in, and nothing else.
 That is what a line-per-record format buys, and the only place in this table where a damage

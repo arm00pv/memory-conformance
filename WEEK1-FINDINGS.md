@@ -4893,6 +4893,36 @@ store, a capped listing counted as a store, a relative path resolved inside a de
 is worth what the caveats under it say it is worth, and that is exactly the repository's thesis
 pointed at itself.
 
+## Addendum 59: three runs, and the two cells that still disagree
+
+Addendum 58 said one damage of each kind is an anecdote. So every damage is taken **three times per
+subject** - 99 runs - and the report prints what repeated:
+
+> **31 of the 33 subject-and-damage cells gave the same answer every time.**
+
+| the cell that changed its answer | what it said, run by run |
+|---|---|
+| `memdb` rot | refuses to start / kept all 40 / kept all 40 |
+| `statecore-mcp` cut | refuses to start / lost 30 of 40 / lost 30 of 40 |
+
+Both flips are in the direction that matters: the *first* run of a cell is as likely to be the odd one
+out as any other, so a table that showed the first run and called the cell decided would have been
+wrong twice out of 33 from three runs. The report shows the first run and says so, and the two cells
+that disagree with themselves are printed underneath rather than averaged away.
+
+The count is worth stating plainly: **a repeat does not make the damage reproducible.** It makes the
+variance visible, which is the most a single-machine, single-date measurement can offer.
+
+### And the counting itself was wrong first
+
+The section that counts the repeats reported "every damage was taken 1 times per subject" on its
+first rendering, because the table above it used the variable `rows` for one subject's cells and
+shadowed the parameter holding all 99. The section was handed the last subject's three rows and
+measured those. It is the same species as the denominator bug in Addendum 48 and the capped listing
+in Addendum 57: **the number was computed from the wrong list, and it looked exactly like a number.**
+The variable is `cells` now, with the reason written beside it.
+
+
 
 
 
