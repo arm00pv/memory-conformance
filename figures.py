@@ -265,6 +265,18 @@ def check_tables():
     return out
 
 
+def _real_rho(suffix):
+    """Rank correlation between the authorless corpus and an authored one, on the score.
+
+    THE DEFINITION LIVES IN real_corpus.py. This recomputes nothing: it asks that module for its totals
+    and then for its own Spearman, which is the difference between checking a number and restating it.
+    """
+    import real_corpus
+    base = dict((label, got) for got, _n, label in real_corpus.totals("-real", "score"))
+    other = dict((label, got) for got, _n, label in real_corpus.totals(suffix, "score"))
+    return real_corpus.spearman(base, other)
+
+
 def _spearman():
     """The rank correlation of the blind corpus, computed by the tool that owns that definition."""
     import third_corpus
@@ -297,6 +309,9 @@ READINGS = {
     "control.noise.all": lambda: _totals("control-1.0.0")["noise_records"],
     "rho.ac": lambda: _spearman()["ac"],
     "rho.bc": lambda: _spearman()["bc"],
+    "rho.realA.score": lambda: _real_rho(""),
+    "rho.realB.score": lambda: _real_rho("-b"),
+    "rho.realC.score": lambda: _real_rho("-c"),
     "short.band.answers": lambda: _bands()["short.answers"],
     "short.band.total": lambda: _bands()["short.total"],
     "exam.band.answers": lambda: _bands()["exam.answers"],
@@ -347,6 +362,18 @@ PINS = [
      "the rank correlation of the blind corpus against A and against B",
      r"Spearman ([\d.]+) against corpus A and ([\d.]+) against corpus B",
      ("rho.ac", "rho.bc")),
+    ("docs/corpora.md",
+     "the rank correlation of the authorless corpus with corpus A, on the score",
+     r"rank correlation with corpus A is ([\d.]+) on the score",
+     ("rho.realA.score",)),
+    ("docs/corpora.md",
+     "and the correlation between the two authored corpora it is being compared to",
+     r"\*\*B vs C, which is ([\d.]+)\*\*",
+     ("rho.bc",)),
+    ("docs/corpora.md",
+     "the authorless corpus against B and against C",
+     r"Against B it is ([0-9]+\.[0-9]+) and against C ([0-9]+\.[0-9]+)",
+     ("rho.realB.score", "rho.realC.score")),
     ("docs/precision.md",
      "the silence bill read as a threshold, pooled over the subjects that decide per question",
      r"answer (\d+) of (\d+) on the four short\s+bands and \*\*(\d+) of (\d+) on the long exam\*\*",
@@ -389,6 +416,11 @@ def _value(pid):
 
 def parse(text):
     """A number as the prose writes it: commas are thousands, and the decimals set the precision."""
+    # A NUMBER AT THE END OF A SENTENCE WEARS THE SENTENCE'S FULL STOP, and "0.68." is not a
+    # number. The first version of the correlation pin captured exactly that and crashed on
+    # float(), which is at least a loud failure - but a pin that has to be read carefully is
+    # worth making careful once.
+    text = text.strip().rstrip(".")
     raw = text.replace(",", "")
     places = len(text.split(".")[1]) if "." in text else 0
     return float(raw), places

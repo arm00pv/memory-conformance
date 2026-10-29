@@ -4768,6 +4768,37 @@ name is reported as unmeasured rather than skipped, and a row that names two sub
 if they actually agree - averaging them would produce a number neither of them scored, which is the
 denominator defect wearing a new hat.
 
+## Addendum 56: three numbers off by a hundredth, all the same way
+
+The same page again. `docs/corpora.md` compares the authorless corpus to the three authored ones, and
+the sentence with the rank correlations read:
+
+> the rank correlation with corpus A is **0.80** on the score ... against B it is **0.64** and against
+> C **0.68**
+
+The module that owns that definition says **0.777**, **0.632** and **0.664**. Each is off by one or
+two hundredths, and all three err in the same direction, which is the signature of one measurement
+movement rather than three arithmetic slips: a rank correlation moves when a subject is re-measured,
+because the ranks shift even when the order does not.
+
+That is exactly why nothing caught it. The paragraph's argument is an ordering - B vs C at 0.909
+beats either authored corpus against real text - and the ordering survived the drift. A number can be
+wrong for four phases and never once contradict the sentence it sits in, which is the argument for
+checking numbers against their source rather than against each other.
+
+### The pin nearly reported success on a full stop
+
+`Against B it is (\d+.\d+) and against C (\d+.\d+)` captured `0.68.` on its first outing - the
+number and the sentence's full stop - and died in `float()`. A crash is the right failure and this file
+has argued for it before, but a pin that depends on where a sentence happens to end is a pin somebody
+will eventually soften. `parse()` strips trailing punctuation now, and the pattern for that clause
+asks for digits explicitly.
+
+The count: **17 sentences, 31 numbers, 40 table cells, across four hand-written pages.** Every one of
+them is now a place where a number that outlives its evidence fails the build instead of quietly
+arguing something true in the wrong direction.
+
+
 not.
 
 

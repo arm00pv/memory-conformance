@@ -48,9 +48,14 @@ Nothing about those subjects changed. What changed is the question: the authored
 against a paraphrase and excellent against a near-quote, and the previous table was measuring the first
 while being read as a measure of memory.
 
-The rank correlation with corpus A is 0.80 on the score, which sounds reassuring until it is put beside
+The rank correlation with corpus A is 0.78 on the score, which sounds reassuring until it is put beside
 **B vs C, which is 0.909**: two corpora written by different authors about different worlds agree more
-than either agrees with real text. Against B it is 0.64 and against C 0.68.
+than either agrees with real text. Against B it is 0.63 and against C 0.66.
+
+All three read one to two hundredths higher in the copy that stood here - 0.80, 0.64, 0.68 - and this
+page has now been wrong in that way three times. The argument never noticed because it only needs the
+three ordered, and a rank correlation is exactly the kind of number that moves when one subject is
+re-measured: the ranks shift, the ordering mostly does not. `figures.py` pins all four now.
 
 ### The corpus cannot test paraphrase, and it says so
 
