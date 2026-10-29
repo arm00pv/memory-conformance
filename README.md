@@ -35,7 +35,7 @@ independently written corpora and in two phrasings, and writes the verdicts to `
 
 ```
 $ python claims.py
-**13 of the 41 claims hold in every setting measured.**
+**14 of the 42 claims hold in every setting measured.**
 ```
 
 Nine survive everywhere, including the one that matters most: **memory-mcp-1file answers more
@@ -674,6 +674,12 @@ success reply is honest about the write and silent about the loss.
   entirely by a tool and did not say so. A coverage check is worth nothing unless it can be seen
   failing, so CI plants a page with an unknown generator and a workflow carrying a guard line that
   regenerates nothing, and requires both to fail. See Addendum 50.
+- **The store itself can be damaged, and that is the newest axis.** `durability.py` writes forty
+  records, damages the file a subject kept them in, restarts it and counts what comes back - see
+  `DURABILITY.md`. A trailing fragment is survivable and a missing tail is not; rot inside one record
+  costs exactly that record where the store keeps one record per line, and everything where it parses
+  the file as a single document; and two cells give a different answer on a repeat, which the report
+  prints rather than smooths. See Addenda 57 to 59.
 - **The prose is checked too, because a sentence can be a pin.** Coverage is not freshness: the pages
   above are re-generated, but the sentences in `README.md` and under `docs/` quote figures and nothing
   re-derived them. `figures.py` reads named sentences out of those pages, pulls the numbers out of them

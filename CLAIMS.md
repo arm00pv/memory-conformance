@@ -12,7 +12,7 @@ claim about silence. A subject's SCORE is what the paired test pairs on - the ri
 top three, plus a credit for declining a question with no answer. Its HITS are only the questions
 that have an answer and were answered correctly. "It answers nothing" is a claim about hits.
 
-**13 of the 41 claims hold in every setting measured.** The rest are printed beside the setting
+**14 of the 42 claims hold in every setting measured.** The rest are printed beside the setting
 that breaks them, because that setting is the claim's real scope.
 
 | claim | A written | A keywords | B written | B keywords | status |
@@ -55,6 +55,7 @@ that breaks them, because that setting is the claim's real scope.
 | rule-reads-like-a-reader | no | no | **FAILS** |
 | readers-agree-with-each-other | yes | yes | **HOLDS** |
 | readers-match-a-person | yes | yes | **HOLDS** |
+| damage-costs-what-it-damaged | yes | yes | **HOLDS** |
 | a-reader-is-steady | yes | yes | **HOLDS** |
 | score-sees-ordering | no | no | **FAILS** |
 | score-prefers-recalcitrance | no | no | **FAILS** |
@@ -238,6 +239,10 @@ that breaks them, because that setting is the claim's real scope.
 **readers-match-a-person** - where the rule excuses a near miss, the readers and a person agree it is unrelated. *HOLDS*
   - A written: true (4 of 4 near pair(s) where the readers and the person agree; 1 of 1 answer pair(s) where the readers and the person agree)
   - B written: true (4 of 4 near pair(s) where the readers and the person agree; 1 of 1 answer pair(s) where the readers and the person agree)
+
+**damage-costs-what-it-damaged** - damage inside one record costs at most that record, in a store that keeps one record per line. *HOLDS*
+  - A written: true (rot cost 1 of 40 to control, 0 of 40 to mcp-duckdb-memory-server, 0 of 40 to memory-lean, 1 of 40 to server-memory)
+  - B written: true (rot cost 1 of 40 to control, 0 of 40 to mcp-duckdb-memory-server, 0 of 40 to memory-lean, 1 of 40 to server-memory)
 
 **a-reader-is-steady** - every reader asked the same pairs twice says the same thing more closely than the two readers agree with each other. *HOLDS*
   - A written: true (against 0.81 between the two readers: deepseek-v4.1-flash 0.87 on 56 of 60 pairs; glm-5.3 1.00 on 53 of 53 pairs)

@@ -981,6 +981,41 @@ def c_rule_reads_like_a_reader(ctx, corpus, shape):
     return (held, "; ".join(said))
 
 
+def c_damage_is_local(ctx, corpus, shape):
+    """ROT INSIDE ONE RECORD COSTS ONE RECORD, WHERE THE STORE CAN TELL RECORDS APART.
+
+    Sixteen bytes written over the middle of a store: the subjects whose store is one JSON object per
+    line lose exactly the record the rubbish landed in, and the subjects whose store is a single
+    document lose the ability to read anything at all. durability.py measures it; this is the sentence,
+    checked against the recorded runs rather than remembered.
+    """
+    import json
+    import os
+    path = os.path.join("results", "durability.json")
+    if not os.path.isfile(path):
+        return None
+    with open(path, encoding="utf-8") as fh:
+        rows = json.load(fh).get("rows") or []
+    checked = []
+    for row in rows:
+        if row.get("damage") != "rot" or row.get("why") or row.get("back") is None:
+            continue
+        if not str(row.get("file") or "").endswith(".json"):
+            continue
+        checked.append((row["subject"], row["records"] - row["back"]))
+    if len(checked) < 2:
+        return None
+    # ONE LINE PER SUBJECT, NOT ONE PER RUN. The first version printed every run of every subject, so
+    # the ledger read 1 of 40 to control three times in a row and buried the only number that matters.
+    loses = {}
+    for subject, lost in checked:
+        short = subject.split()[0]
+        loses[short] = max(loses.get(short, 0), lost)
+    held = all(lost <= 1 for lost in loses.values())
+    return (held, "rot cost " + ", ".join("%d of 40 to %s" % (lost, short)
+                                          for short, lost in sorted(loses.items())))
+
+
 def c_a_reader_is_steady(ctx, corpus, shape):
     """A READER AGREES WITH ITSELF MORE THAN IT AGREES WITH THE OTHER READER.
 
@@ -1200,6 +1235,8 @@ CLAIMS = [    ("most-hits", "memory-mcp-1file answers more answerable questions 
      " be measured against them.", c_readers_agree_with_each_other, False),
     ("readers-match-a-person", "where the rule excuses a near miss, the readers and a person agree it is"
      " unrelated.", c_readers_match_a_person, False),
+    ("damage-costs-what-it-damaged", "damage inside one record costs at most that record, in a store"
+     " that keeps one record per line.", c_damage_is_local, False),
     ("a-reader-is-steady", "every reader asked the same pairs twice says the same thing more closely"
      " than the two readers agree with each other.", c_a_reader_is_steady, False),
     ("score-sees-ordering", "the retrieval score changes when a search returns its worst match first.",
