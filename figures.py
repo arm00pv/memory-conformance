@@ -162,6 +162,109 @@ def _costs():
     return out
 
 
+def _row_scores(slugs, columns):
+    """The score of one row of subjects on each corpus a table names, or None where unmeasured."""
+    precision = _modules()
+    suffixes = dict((label, suffix) for label, _path, suffix in precision.CORPORA)
+    out = []
+    for label in columns:
+        vals = []
+        for slug in slugs:
+            rows = precision.rows_of(slug, suffixes[label])
+            vals.append(None if not rows else precision.score(precision.live_rows(label, rows)))
+        if any(v is None for v in vals):
+            out.append(None)
+        elif len(set(vals)) > 1:
+            # A ROW THAT NAMES TWO SUBJECTS CANNOT CARRY ONE CELL FOR THEM unless they agree, and a table
+            # that quietly averaged them would be reporting a number neither of them scored.
+            out.append(None)
+        else:
+            out.append(vals[0])
+    return out
+
+
+def markdown_rows(text, header):
+    """The body rows under a markdown table's header line, split into stripped cells."""
+    lines = text.splitlines()
+    for i, line in enumerate(lines):
+        if line.strip() == header:
+            out = []
+            for row in lines[i + 1:]:
+                if not row.strip().startswith("|"):
+                    break
+                if set(row.strip()) <= set("|-: "):
+                    continue
+                out.append([c.strip() for c in row.strip().strip("|").split("|")])
+            return out
+    return None
+
+
+# A TABLE IS A PIN TOO. docs/corpora.md carries a copy of the score every subject reaches on the four
+# authored corpora - 40 cells, hand-copied from the same results the matrix prints. Every one of them was
+# right except the one that mattered least to notice: memory-mcp-1file on real text, 47 where the rows say
+# 48. No sentence pinned it, because it is a cell rather than a sentence.
+TABLES = [{
+    "path": "docs/corpora.md",
+    "about": "every subject's score on the four authored corpora",
+    "header": "| subject | corpus A | corpus B | corpus C | **real text** |",
+    "columns": ["A", "B", "C", "real"],
+    "rows": {
+        "control": ["control-1.0.0"],
+        "memory-lean": ["memory-lean-1.5.0"],
+        "mcp-duckdb-memory-server": ["mcp-duckdb-memory-server-1.1.10"],
+        "zenbrain": ["zenbrain-0.3.0"],
+        "memory-mcp-1file": ["memory-mcp-1file-0.9.2"],
+        "mcp-knowledge-graph": ["mcp-knowledge-graph-1.3.2"],
+        "server-memory 1.0.0 and 2.0.0": ["server-memory-1.0.0", "server-memory-2.0.0"],
+        "memento": ["memento-0.7.0"],
+        "statecore-mcp": ["statecore-mcp-1.0.0"],
+        "memdb": ["memdb-1.4.0"],
+    },
+}]
+
+
+def check_tables():
+    """Every cell of every pinned table against the results it was copied from."""
+    out = []
+    for spec in TABLES:
+        row = {"path": spec["path"], "about": spec["about"], "why": None, "cells": []}
+        if not os.path.isfile(spec["path"]):
+            row["why"] = "the file is not on disk"
+            out.append(row)
+            continue
+        with open(spec["path"], encoding="utf-8") as fh:
+            text = fh.read().replace(chr(13) + chr(10), chr(10))
+        rows = markdown_rows(text, spec["header"])
+        if rows is None:
+            row["why"] = "the table this pin names is not in the file"
+            out.append(row)
+            continue
+        for cells in rows:
+            name = cells[0].replace(chr(96), "").replace("*", "").strip()
+            if name not in spec["rows"]:
+                row["cells"].append({"row": name, "column": "-", "prose": "-",
+                                     "results": None, "ok": False,
+                                     "why": "this row is not in the pin, so nothing checks it"})
+                continue
+            want = _row_scores(spec["rows"][name], spec["columns"])
+            for column, said, value in zip(spec["columns"], cells[1:], want):
+                written = said.replace("*", "").replace(chr(96), "").strip()
+                if not written or written in ("-", ""):
+                    continue
+                try:
+                    number = float(written)
+                except ValueError:
+                    row["cells"].append({"row": name, "column": column, "prose": written,
+                                         "results": value, "ok": False,
+                                         "why": "not a number"})
+                    continue
+                ok = value is not None and abs(float(value) - number) < 1e-9
+                row["cells"].append({"row": name, "column": column, "prose": written,
+                                     "results": value, "ok": ok, "why": None})
+        out.append(row)
+    return out
+
+
 def _spearman():
     """The rank correlation of the blind corpus, computed by the tool that owns that definition."""
     import third_corpus
@@ -336,6 +439,25 @@ def main():
                   % (row["path"], n["id"], n["prose"], shown,
                      "ok" if n["ok"] else "DISAGREES"))
             if not n["ok"]:
+                bad += 1
+    tables = check_tables()
+    cells = sum(len(t["cells"]) for t in tables)
+    if tables:
+        print("%d hand-copied table(s), %d cell(s)" % (len(tables), cells))
+        for t in tables:
+            if t["why"]:
+                print("  %-20s %s" % (t["path"], t["why"]))
+                bad += 1
+                continue
+            for c in t["cells"]:
+                if c["ok"]:
+                    continue
+                shown = c["results"]
+                if isinstance(shown, float):
+                    shown = "%.3f" % shown
+                print("  %-20s %-28s %-6s prose %-5s results %-6s %s"
+                      % (t["path"], c["row"], c["column"], c["prose"], shown,
+                         c["why"] or "DISAGREES"))
                 bad += 1
     if bad:
         print("%d of those numbers no longer match the results they were written from" % bad)

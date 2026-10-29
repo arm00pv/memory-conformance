@@ -4740,6 +4740,34 @@ And `sync_readme.py` silently skipped the README after a checkout gave it CRLF l
 block's first line read as a carriage return, no block matched, the tool printed four successes and
 exited 0. The stale transcript lived in exactly the page it skipped. Normalising line endings on
 read costs nothing; trusting a tool that reports success without saying which files it touched does
+
+## Addendum 55: a cell is not a sentence
+
+The prose pin reads sentences, and a table is not a sentence. `docs/corpora.md` carries a copy of the
+score every subject reaches on the four authored corpora - ten rows, four columns, forty cells - and
+nothing checked any of them, because `figures.py` looked for phrasing rather than for pipes.
+
+So a table is a pin now: the header line names it, each row names the subjects it covers, and every
+cell is recomputed from the same results the matrix prints. Thirty-nine of the forty cells were
+right. The fortieth:
+
+> `memory-mcp-1file` scores **47** on real text
+
+It scores **48** as written, which is what the column means. 47 is what the same subject reaches with
+the meaningless words stripped - the *keyword* figure, sitting in a written column. The page's other
+columns are written scores, and the generated table next door (`REAL-CORPUS.md`) has both numbers
+side by side, so the copy took the second one and nothing in the repository could tell.
+
+One cell wrong out of forty is not a scandal. What it is: the smallest possible instance of the same
+defect this file keeps recording, and the one a sentence-pin is structurally unable to catch. A pin
+that reads prose sees the numbers somebody chose to write about; a pin that reads a table sees the
+numbers somebody chose to *tabulate*, which is where a report lives.
+
+Two guards on the check itself, because a table pin is easy to make vacuous: a row the pin does not
+name is reported as unmeasured rather than skipped, and a row that names two subjects is checked only
+if they actually agree - averaging them would produce a number neither of them scored, which is the
+denominator defect wearing a new hat.
+
 not.
 
 

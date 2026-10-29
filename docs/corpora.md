@@ -26,12 +26,17 @@ written by anyone who knew the answer.
 | `memory-lean` | 26 | 12 | 12 | **59** |
 | `mcp-duckdb-memory-server` | 24 | 25 | 23 | **59** |
 | `zenbrain` | 40 | 33 | 31 | 48 |
-| `memory-mcp-1file` | 43 | 45 | 40 | 47 |
+| `memory-mcp-1file` | 43 | 45 | 40 | 48 |
 | `mcp-knowledge-graph` | 12 | 12 | 12 | **45** |
 | `server-memory` 1.0.0 and 2.0.0 | 12 | 12 | 12 | **45** |
 | `memento` | 14 | 19 | 17 | 23 |
 | `statecore-mcp` | 0 | 12 | 12 | 12 |
 | `memdb` | 6 | 2 | 0 | 0 |
+
+The columns are the **score as written**, which is why the last one is 48 and not the 47 the same
+subject reaches with the words stripped: this table was a hand-copy, and that single cell was the
+keyword figure sitting in a written column for as long as nobody checked a cell instead of a
+sentence. `figures.py` checks every cell of it now.
 
 On the three authored corpora, five subjects answer no answerable question at all and score exactly the
 twelve points for declining. On real text they answer **33 of 48**; `memory-lean`, near the floor
