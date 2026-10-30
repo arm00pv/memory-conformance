@@ -5113,3 +5113,21 @@ digits. Adding the words to the denominator fixes the arithmetic and ruins the m
 denominator made mostly of ordinary English. The two are reported apart now - 31 of 263 written as
 digits, and 2 spelled in words besides - which is the rule of Addendum 64 applied one level down: every
 ratio names the population it counts.
+
+
+## Addendum 66: a dated count that reads like a current one
+
+`docs/probes.md` reports, under the reference server's result, "**1 of 6 failed.** Node 24.19.0, Python
+3.14.7, Windows, 2026-10-19". A reader who has just read the ten probes listed at the top of that page -
+or the ten-probe transcript in the README - has to wonder which four are missing and why nobody said.
+
+Nothing is wrong with the number. `git show be11fb8:harness.py` lists exactly six probes that day:
+`ack_readback`, `restart`, `foreign_field`, `foreign_record`, `concurrent` and `large_record`. The four
+that came later - `isolation`, `findable`, `forget` and `verbatim` - arrived between 2026-10-19 and
+2026-10-25, the tenth of them in a410d49. The defect was the page's silence, not its arithmetic: **a
+count without the inventory it counted is a number a reader can only take on trust**, and it sat in the
+one page of this repository with no generator behind it, which is why nothing could notice.
+
+The page names the six now, and says the four later ones were first run against that subject afterwards.
+That is the rule the ledger already applies to a claim - a verdict without its scope is not a
+measurement - applied to a sentence that carried a date and no denominator.

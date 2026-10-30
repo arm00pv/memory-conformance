@@ -33,6 +33,12 @@ the same thing as a defect.
 
 **1 of 6 failed.** Node 24.19.0, Python 3.14.7, Windows, 2026-10-19.
 
+Those six were `ack_readback`, `restart`, `foreign_field`, `foreign_record`, `concurrent` and
+`large_record`: the suite held six probes that day and has grown to ten since, so the count is a
+statement about the dated run and not about the list at the top of this page. The probes added later -
+`isolation`, `findable`, `forget` and `verbatim` - were first run against this subject after that
+date, and the transcript in the README is the current one.
+
 `foreign_field`, reproduced:
 
 1. the server acknowledges an entity,
