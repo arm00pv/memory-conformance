@@ -12,7 +12,7 @@ claim about silence. A subject's SCORE is what the paired test pairs on - the ri
 top three, plus a credit for declining a question with no answer. Its HITS are only the questions
 that have an answer and were answered correctly. "It answers nothing" is a claim about hits.
 
-**14 of the 42 claims hold in every setting measured.** The rest are printed beside the setting
+**14 of the 43 claims hold in every setting measured.** The rest are printed beside the setting
 that breaks them, because that setting is the claim's real scope.
 
 | claim | A written | A keywords | B written | B keywords | status |
@@ -57,6 +57,7 @@ that breaks them, because that setting is the claim's real scope.
 | readers-match-a-person | yes | yes | **HOLDS** |
 | damage-costs-what-it-damaged | yes | yes | **HOLDS** |
 | a-reader-is-steady | yes | yes | **HOLDS** |
+| score-is-reproducible | no | no | **FAILS** |
 | score-sees-ordering | no | no | **FAILS** |
 | score-prefers-recalcitrance | no | no | **FAILS** |
 
@@ -247,6 +248,10 @@ that breaks them, because that setting is the claim's real scope.
 **a-reader-is-steady** - every reader asked the same pairs twice says the same thing more closely than the two readers agree with each other. *HOLDS*
   - A written: true (against 0.81 between the two readers: deepseek-v4.1-flash 0.87 on 56 of 60 pairs; glm-5.3 1.00 on 53 of 53 pairs)
   - B written: true (against 0.81 between the two readers: deepseek-v4.1-flash 0.87 on 56 of 60 pairs; glm-5.3 1.00 on 53 of 53 pairs)
+
+**score-is-reproducible** - the same questions asked twice against the same store give the same hit rate. *FAILS*
+  - A written: false (2 of 6090 repeated question(s) change their hit@3 between passes (memory-mcp-1file-0.9.2-retrieval-multi, zenbrain-0.3.0-retrieval-super))
+  - B written: false (2 of 6090 repeated question(s) change their hit@3 between passes (memory-mcp-1file-0.9.2-retrieval-multi, zenbrain-0.3.0-retrieval-super))
 
 **score-sees-ordering** - the retrieval score changes when a search returns its worst match first. *FAILS*
   - A written: false (reversing the result list moved the score by 0 and the hit count by 0 (score 37 against 37))

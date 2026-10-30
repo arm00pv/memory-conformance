@@ -5181,3 +5181,28 @@ The claim is unchanged. Rewriting the form of a claim in the week before the ans
 choosing the verdict first, and this ledger is worth reading only because its rows are not chosen. When
 the answers land, the shape of that row is the first thing to argue about, and this is the measurement to
 argue it with.
+
+
+## Addendum 69: the score asked twice, on 6,090 questions
+
+The ledger gains a row and loses a claim, which is the usual arithmetic here. `score-is-reproducible`
+says the same questions asked twice against the same store give the same hit rate. Every question asked
+more than once since the repeat machinery was built carries its per-pass results in the committed rows,
+so the claim is a count and not an assertion:
+
+> **2 of 6,090 repeated questions change their hit`3 between passes** - `memory-mcp-1file` on the multi
+> corpus (1 of 32) and `zenbrain` on the supersession corpus (1 of 72). The claim FAILS.
+
+That is the strongest thing this repository can currently say about the reproducibility of its own
+headline number: 6,088 of 6,090 identical questions get an identical answer, and the two that do not are
+named rather than averaged. It also puts a floor under every other retrieval number here - a score whose
+own repeat disagrees with itself on two questions is a score whose differences of one or two points are
+not signal.
+
+The claim is unanimity on purpose. "Reproducible within a per cent" is a threshold that would have been
+drawn after seeing two in six thousand, and a threshold chosen from the result is not a measurement.
+
+`retrieval.py` now keeps the ordered ids each pass returned, which nothing had kept: the merge kept a
+boolean per run and threw the ranked list away. That is the next axis - whether the *order* moves between
+two passes even when the hit does not - and it needs a run that commits its results, not a re-reading of
+the ones already on disk.

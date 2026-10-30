@@ -1110,6 +1110,42 @@ def c_readers_match_a_person(ctx, corpus, shape):
     return (held, "; ".join(said))
 
 
+def c_score_is_reproducible(ctx, corpus, shape):
+    """THE SAME QUESTIONS ASKED TWICE AGAINST THE SAME STORE GIVE THE SAME HIT RATE.
+
+    retrieval.py's own docstring says why this is a claim and not an assumption: two full runs on one
+    machine, one day, scored zenbrain 22 of 30 and then 24 of 30 - a difference no interval over thirty
+    questions accounts for. Every question asked more than once since then carries per_run in the
+    committed rows, so the question can be asked of the data rather than of the method: how many of the
+    repeated questions changed their answer between passes?
+
+    The claim is unanimity, and deliberately so. "Reproducible within a per cent" is a threshold that
+    would have been chosen after seeing 2 of 6,090, which is how a claim stops being a measurement.
+    """
+    import glob
+    import json
+    import os
+    rows = flips = 0
+    where = []
+    for path in sorted(glob.glob(os.path.join("results", "*-retrieval*.json"))):
+        with open(path, encoding="utf-8") as fh:
+            data = json.load(fh)
+        for r in data.get("rows") or []:
+            per = r.get("per_run") or {}
+            if not per.get("hit3"):
+                continue
+            rows += 1
+            if len(set(per["hit3"])) > 1:
+                flips += 1
+                where.append(os.path.basename(path)[:-5])
+    if not rows:
+        return None
+    held = flips == 0
+    said = "%d of %d repeated question(s) change their hit@3 between passes" % (flips, rows)
+    if where:
+        said += " (" + ", ".join(sorted(set(where))) + ")"
+    return (held, said)
+
 def c_padding_is_free(ctx, corpus, shape):
     """PADDING AN ANSWER WITH UNRELATED RECORDS COSTS NOTHING IN THE SCORE.
 
@@ -1239,6 +1275,8 @@ CLAIMS = [    ("most-hits", "memory-mcp-1file answers more answerable questions 
      " that keeps one record per line.", c_damage_is_local, False),
     ("a-reader-is-steady", "every reader asked the same pairs twice says the same thing more closely"
      " than the two readers agree with each other.", c_a_reader_is_steady, False),
+    ("score-is-reproducible", "the same questions asked twice against the same store give the same"
+     " hit rate.", c_score_is_reproducible, False),
     ("score-sees-ordering", "the retrieval score changes when a search returns its worst match first.",
      c_score_sees_ordering, False),
     ("score-prefers-recalcitrance", "a search that accepts one shared word scores no better than one that"

@@ -133,6 +133,11 @@ def run(ad, k=3, cases_path=None, repeat=1, shapes=False):
             row[key] = sum(votes) * 2 > len(votes)
         row["per_run"] = {"hit3": [bool(s.get("hit3")) for s in same],
                           "answered": [bool(s.get("answered")) for s in same]}
+        # THE RANKED LIST WAS COMPUTED AND THEN THROWN AWAY. The merge kept a boolean per run
+        # and dropped the ordered ids each pass returned, so the score's own variance was visible and
+        # the ranking's was not - a store whose top three arrive in one order on one pass and another
+        # order on the next cannot be scored without knowing how often that happens.
+        row["per_run_returned"] = [s.get("returned") for s in same]
         rows.append(row)
     return rows
 
