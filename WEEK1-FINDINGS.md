@@ -5131,3 +5131,23 @@ one page of this repository with no generator behind it, which is why nothing co
 The page names the six now, and says the four later ones were first run against that subject afterwards.
 That is the rule the ledger already applies to a claim - a verdict without its scope is not a
 measurement - applied to a sentence that carried a date and no denominator.
+
+
+## Addendum 67: the last page nothing looked at
+
+`docs/probes.md` is an argument rather than a table, and its transcripts carry timings - which nobody can
+reproduce, which is why it was the one page here that no check read. The parts of those transcripts that
+are not timings are already pinned somewhere: `expected.json` and `expected-control.json` name each probe's
+verdict for the reference server and for the control, and the probe job runs both against those pins on
+every push. So the page is compared with the pins instead of being re-run, which is the strongest thing
+that can be said about a transcript nobody can produce again.
+
+`probes_page.py` finds each fenced block whose command names a subject, reads the probe rows out of it and
+requires the names, their order and their verdicts to match the pin, and the "N probe(s) failed" line to
+match the pin's own count. It covers 20 rows: the ten in the README's reference-server transcript and the
+ten in the control transcript on the page. CI plants a flipped verdict - `foreign_field` PASS instead of
+FAIL - and requires the check to refuse it by name.
+
+What it does not cover is the rest of those transcripts: the timings, the evidence sentences, and the
+prose around them. A transcript can still be stale in every way except the two things the pins know, and
+that remainder is written down here rather than implied by a check that passes.

@@ -368,6 +368,29 @@ jobs:
           grep -q "mcp-duckdb-memory-server 1.1.10" docs/cost.md
           grep -q "python matrix.py$" docs/subjects.md
           echo "both transcripts name a report-only command and carry the measured rows"
+
+      # THE ONE PAGE WITH NO GENERATOR. docs/probes.md is an argument rather than a table, and its
+      # transcripts carry timings nobody can reproduce, so it was the last page here that no check
+      # looked at. The parts that are not timings - probe names, their order and their verdicts - are
+      # already pinned by expected.json and expected-control.json, so the page is compared with the
+      # pins instead of being re-run, which is the strongest thing that can be said about a transcript
+      # nobody can produce again.
+      - name: a transcript in a page must agree with the pin its command produces
+        run: |
+          python probes_page.py | tee /tmp/transcripts.txt
+          grep -q 'agree with their pins on 20 probe rows' /tmp/transcripts.txt
+          echo '1. both transcripts match the pins behind their commands'
+          sed -i 's/foreign_field    FAIL/foreign_field    PASS/' README.md
+          if python probes_page.py > /tmp/tplant.txt; then
+            cat /tmp/tplant.txt
+            echo 'the transcript check passed a page that disagrees with its pin'
+            git checkout -- README.md
+            exit 1
+          fi
+          grep -q 'the page says foreign_field is PASS' /tmp/tplant.txt
+          echo '2. it refused the transcript and named the probe'
+          git checkout -- README.md
+          git diff --exit-code README.md
       # AND NOTHING CHECKED THAT THE LIST ABOVE WAS COMPLETE. A generator added later would write a
       # document with the same "Do not edit by hand" sentence, never be re-run, and pass every check
       # in this file. This reads the claim out of each document and the guard out of this workflow and
