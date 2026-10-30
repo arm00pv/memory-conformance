@@ -458,6 +458,20 @@ jobs:
           grep -q "control.score.A" /tmp/planted.txt
           echo "3. it refused the moved number and named it"
           git checkout -- README.md
+          # AND A NUMBER SPELLED OUT IS STILL A NUMBER. The counts that go stale - how many subjects,
+          # how many corpora - are written in words, and a pin that could only read digits was blind to
+          # exactly the figures a new subject or a dropped corpus moves.
+          sed -i 's/five of eleven subjects/five of twelve subjects/' README.md
+          if python figures.py > /tmp/spelled.txt; then
+            cat /tmp/spelled.txt
+            echo "the number check passed a spelled count that disagrees with the results"
+            git checkout -- README.md
+            exit 1
+          fi
+          grep -q "subjects.count" /tmp/spelled.txt
+          grep -q "DISAGREES" /tmp/spelled.txt
+          echo "4. and it refuses a spelled number, naming the count"
+          git checkout -- README.md
           git diff --exit-code README.md
 
       # A TOOL IN THIS DIRECTORY SHADOWS THE STANDARD LIBRARY FOR EVERY OTHER TOOL IN IT. The check above

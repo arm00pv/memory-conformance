@@ -5077,3 +5077,29 @@ figure, and they are checked by two different mechanisms.
 be argued with. The split makes the gap visible and makes the claim about it falsifiable - if a future
 change moves pins from sentences into tables the sentence figure will fall, which is the direction a
 reader should worry about and the one the lumped ratio would have hidden.
+
+
+## Addendum 65: the counts that drift are the ones spelled out
+
+The coverage line now says 33 of 263 numbers in these pages' prose are pinned - it said 31 before this
+addendum, because two more sentences became readable. What that figure does not say is which kind of
+number the missing ones are, and the answer is the worst one available to a checker: the sentences
+carrying the most load-bearing counts here write them in words. "Five of eleven subjects", "all nine
+corpora", "nine of the eleven". A subject added or a corpus dropped moves every one of those, and a pin
+that could only read digits could not see a single one of them.
+
+**The pin was blind to exactly the figures most likely to go stale.**
+
+`figures.py` reads spelled numbers now, one to twenty, so two of the sentences that state the two counts
+this whole repository rests on are pinned:
+
+    README.md           subjects.count   prose eleven   results 11   ok
+    docs/precision.md   corpora.count    prose nine     results 9    ok
+
+The corpus count comes from the results rather than from the list of corpora the tools keep. A corpus
+whose file is missing stops being measured, and a list somebody maintains would go on counting it - the
+same reason `durability.py` reads the store rather than a table of stores.
+
+CI plants a spelled change, "five of eleven" to "five of twelve", and requires the check to refuse it by
+name. A new reading path that has never been seen failing is a new reading path nobody has tested, which
+is the rule this workflow has applied to every other check in it.

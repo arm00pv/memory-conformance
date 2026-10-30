@@ -291,6 +291,22 @@ def _spearman():
 # EVERY READING COMES FROM THE MODULE THAT OWNS THE DEFINITION. Nothing here recomputes a score,
 # counts a question or ranks a corpus with its own copy of the rule - a second copy is how the exam
 # came to read 292 against 268 in a table whose subject was denominators.
+def _subjects():
+    """How many subjects the harness would run, which is the number every page counts in words."""
+    import resolution
+    return len(resolution.subjects())
+
+
+def _corpora():
+    """How many corpora the results actually hold a reading for, taken from the results and not a list.
+
+    A corpus whose file is missing stops being measured and every page that counts it goes stale - so the
+    count is the union of the labels the measurements carry, not the length of a table somebody keeps.
+    """
+    got = _measure()
+    return len(set().union(*[set(v) for v in got.values()]))
+
+
 READINGS = {
     "control.score.A": lambda: _one("A", "control-1.0.0")["score"],
     "control.hits.A": lambda: _one("A", "control-1.0.0")["hits"],
@@ -331,6 +347,8 @@ READINGS = {
     # then holding anything is memento's 4.3 MB. The first version of this reading pointed at memdb,
     # whose floor is 0.75 MB, and the pin caught the mistake in the reading rather than in the page.
     "cost.memento.floor.mb": lambda: _cost("memento-0.7.0")["store_floor_bytes"] / 1000000.0,
+    "subjects.count": _subjects,
+    "corpora.count": _corpora,
 }
 
 PINS = [
@@ -404,6 +422,16 @@ PINS = [
      "the store that subject allocates once",
      r"its ([\d.]+) MB store",
      ("cost.memento.floor.mb",)),
+    # THE TWO COUNTS EVERY PAGE CARRIES IN WORDS. A subject added or a corpus dropped moves both, and
+    # until now the sentences that say them were outside every check in this repository.
+    ("README.md",
+     "how many subjects the forget probe cannot be asked of, and how many subjects there are",
+     r"UNKNOWN for five of (\w+) subjects",
+     ("subjects.count",)),
+    ("docs/precision.md",
+     "how many corpora the junk-around-the-answer reading covers",
+     r"All (\w+) corpora, both phrasings",
+     ("corpora.count",)),
 ]
 
 
@@ -414,6 +442,16 @@ def _value(pid):
         return "could not be read: %s" % exc
 
 
+# THE COUNTS THAT DRIFT ARE THE ONES SPELLED OUT. "five of eleven subjects" and "nine corpora" are
+# exactly the figures a subject being added or a corpus being dropped moves, and they were unpinnable
+# because a pin could only read digits - so the sentences carrying the most load-bearing counts in this
+# repository were the ones no check could see. A pin reads them now, in the words the page uses.
+NUMBERS = {"one": 1, "two": 2, "three": 3, "four": 4, "five": 5, "six": 6, "seven": 7, "eight": 8,
+           "nine": 9, "ten": 10, "eleven": 11, "twelve": 12, "thirteen": 13, "fourteen": 14,
+           "fifteen": 15, "sixteen": 16, "seventeen": 17, "eighteen": 18, "nineteen": 19,
+           "twenty": 20}
+
+
 def parse(text):
     """A number as the prose writes it: commas are thousands, and the decimals set the precision."""
     # A NUMBER AT THE END OF A SENTENCE WEARS THE SENTENCE'S FULL STOP, and "0.68." is not a
@@ -421,6 +459,8 @@ def parse(text):
     # float(), which is at least a loud failure - but a pin that has to be read carefully is
     # worth making careful once.
     text = text.strip().rstrip(".")
+    if text.lower() in NUMBERS:
+        return float(NUMBERS[text.lower()]), 0
     raw = text.replace(",", "")
     places = len(text.split(".")[1]) if "." in text else 0
     return float(raw), places
