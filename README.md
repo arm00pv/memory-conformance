@@ -684,7 +684,10 @@ success reply is honest about the write and silent about the loss.
   above are re-generated, but the sentences in `README.md` and under `docs/` quote figures and nothing
   re-derived them. `figures.py` reads named sentences out of those pages, pulls the numbers out of them
   and recomputes those numbers from the committed results, so a figure that moves is a build failure
-  that names the figure. On its first run it found `docs/precision.md` quoting `memento` at 326 correct
+  that names the figure. **What it covers is the sentences somebody named, which is a small part of
+  these pages** - `figures.py` prints how small on every run, and CI requires that line - and the rest
+  of the figures are read off the generated tables immediately above them. A number nobody pinned can
+  still be wrong, and that is the honest size of this check. On its first run it found `docs/precision.md` quoting `memento` at 326 correct
   answers and a silence band of 147 questions where the results say 294 and 146 - a hand-copied table
   that had been wrong for four phases. See Addendum 52.
 

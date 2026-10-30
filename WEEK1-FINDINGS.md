@@ -5032,3 +5032,27 @@ settles is the plumbing - the import stores what it says it stored, the section 
 number is the two readings combined rather than one of them twice. What it does not settle is the
 thing the section exists for: these three labellers were written by me, and a report of what a person
 thinks is still waiting for a person.
+
+
+## Addendum 63: the numbers nobody pinned
+
+`figures.py` reports that every pin agrees with the results, and a reader is entitled to read that as
+"the prose is checked". It is not: a pin is a sentence somebody chose to name. Measured against the
+pages themselves - every number in the four pinned pages, outside the code blocks the generators fill -
+the coverage is:
+
+> **71 of the 916 numbers these pages carry are pinned, and 845 are not.**
+
+Most of the 845 sit in tables a generator fills, which is why the real gap is smaller than the ratio
+looks. But "most" is exactly the word a report is not allowed to leave unquantified, and nothing here
+can sort the two kinds apart mechanically: a number read off a table above it and a number typed into a
+sentence look the same to a regular expression. So the number is printed on every run and CI requires
+the line, and the README now says what the check covers instead of letting the reader assume it covers
+the prose. A figure nobody pinned can still be wrong.
+
+The obvious next move is to pin the sentence that states the coverage, and it was tried on paper first:
+the sentence's own two numbers are inside the text being counted, so the moment it is pinned it counts
+itself, and 71 of 916 becomes 73 of 918 - correct, self-consistent, and rewritten every time any pin is
+added or removed. A number that has to move whenever the list it describes changes is a number that will
+eventually be wrong between two commits. It is printed instead, which is where a maintenance burden
+belongs: in the log, on every run, in front of whoever is changing the pins.

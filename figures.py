@@ -451,6 +451,33 @@ def check():
     return out
 
 
+PROSE = re.compile(r"(?<![\w.-])\d+(?:[.,]\d+)?(?![\w.-])")
+
+
+def coverage(rows, tables):
+    """How much of the prose this covers, because "every pin agrees" is not "every number matches".
+
+    A PIN IS A SENTENCE OR A CELL SOMEBODY CHOSE TO NAME. A report that only says its pins agree leaves
+    the figures nobody named unaccounted for, and the page reads as though all of them were checked.
+    This counts them: every number in the prose of the pages that carry pins, outside the code blocks a
+    generator fills, against the number the pins and the hand-copied tables actually read. The count is
+    mechanical - digits with a word boundary either side - so it is an upper bound on the figures that
+    matter and a fair measure of how much of a page is not checked at all.
+    """
+    fence = chr(96) * 3
+    pinned = sum(len(r["numbers"]) for r in rows)
+    for t in tables:
+        pinned += sum(1 for c in t["cells"] if c["ok"])
+    total = 0
+    for path in sorted(set(r["path"] for r in rows)):
+        if not os.path.isfile(path):
+            continue
+        with open(path, encoding="utf-8") as fh:
+            text = re.sub(fence + r".*?" + fence, "", fh.read(), flags=re.S)
+        total += len(PROSE.findall(text))
+    return pinned, total
+
+
 def main():
     rows = check()
     files = sorted(set(r["path"] for r in rows))
@@ -491,6 +518,9 @@ def main():
                       % (t["path"], c["row"], c["column"], c["prose"], shown,
                          c["why"] or "DISAGREES"))
                 bad += 1
+    pinned, total = coverage(rows, tables)
+    print("%d of the %d numbers these pages carry outside their code blocks are pinned, and %d are not"
+          % (pinned, total, total - pinned))
     if bad:
         print("%d of those numbers no longer match the results they were written from" % bad)
         return 1
