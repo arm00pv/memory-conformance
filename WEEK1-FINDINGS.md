@@ -5103,3 +5103,13 @@ same reason `durability.py` reads the store rather than a table of stores.
 CI plants a spelled change, "five of eleven" to "five of twelve", and requires the check to refuse it by
 name. A new reading path that has never been seen failing is a new reading path nobody has tested, which
 is the rule this workflow has applied to every other check in it.
+
+### And the two populations were added together first
+
+The line that reports this said "33 of 263 numbers in the sentences are pinned" for the length of one
+commit, and two of the 33 were words - "eleven", "nine" - that were not among the 263, which counted
+digits. Adding the words to the denominator fixes the arithmetic and ruins the measure: "one of them",
+"two kinds" and "no one" are pronouns, and counting them took the sentence total from 263 to 648, a
+denominator made mostly of ordinary English. The two are reported apart now - 31 of 263 written as
+digits, and 2 spelled in words besides - which is the rule of Addendum 64 applied one level down: every
+ratio names the population it counts.

@@ -492,6 +492,13 @@ def check():
 
 
 PROSE = re.compile(r"(?<![\w.-])\d+(?:[.,]\d+)?(?![\w.-])")
+# A COUNT WRITTEN IN WORDS IS STILL A COUNT, AND IT DOES NOT BELONG IN THE SAME DENOMINATOR. The two pins
+# added in Addendum 65 read "eleven" and "nine"; the first version of this line counted digits only and so
+# said "33 of 263" when two of the 33 were not among the 263. Counting the words too fixes that and spoils
+# the number: "one of them", "two kinds", "no one" are pronouns and quantities, not figures, and adding
+# them took the sentence count from 263 to 648 - a denominator made mostly of ordinary English. So the two
+# kinds are reported apart instead, which is the same rule Addendum 64 applied to tables: a figure is only
+# a measurement against a population it belongs to.
 
 
 def coverage(rows, tables):
@@ -502,11 +509,15 @@ def coverage(rows, tables):
     This counts them: every number in the prose of the pages that carry pins, outside the code blocks a
     generator fills, against the number the pins and the hand-copied tables actually read. The count is
     mechanical - digits with a word boundary either side - so it is an upper bound on the figures that
-    matter and a fair measure of how much of a page is not checked at all.
+    matter and a fair measure of how much of a page is not checked at all. Counts spelled in words are
+    pinned the same way and are counted apart, because most occurrences of "one" are a pronoun.
     """
     fence = chr(96) * 3
+    spoken = sum(1 for r in rows for n in r["numbers"]
+                 if str(n["prose"]).strip().rstrip(".").lower() in NUMBERS)
     pinned = {"table": sum(1 for t in tables for c in t["cells"] if c["ok"]),
-              "prose": sum(len(r["numbers"]) for r in rows)}
+              "prose": sum(len(r["numbers"]) for r in rows) - spoken,
+              "words": spoken}
     total = {"table": 0, "prose": 0}
     for path in sorted(set(r["path"] for r in rows)):
         if not os.path.isfile(path):
@@ -566,9 +577,10 @@ def main():
     # for: a number typed into a sentence has nothing behind it but the pin that names it.
     pinned, total = coverage(rows, tables)
     print("%d of the %d numbers in these pages' table rows are pinned and %d are not; in their sentences,"
-          " %d of %d are pinned and %d are not"
+          " %d of the %d written as digits are pinned and %d are not, and %d spelled in words are pinned"
+          " besides"
           % (pinned["table"], total["table"], total["table"] - pinned["table"],
-             pinned["prose"], total["prose"], total["prose"] - pinned["prose"]))
+             pinned["prose"], total["prose"], total["prose"] - pinned["prose"], pinned["words"]))
     if bad:
         print("%d of those numbers no longer match the results they were written from" % bad)
         return 1
