@@ -4993,3 +4993,42 @@ so the check will fail for a reason that has nothing to do with anybody having e
 the correct outcome and an awkward workflow: the answers have to be moved aside before a redraw, which
 `--export-human` now says out loud. Whether that reads as a nuisance or a protection depends entirely
 on how often the population moves.
+
+
+## Addendum 62: the answers coming back had never been rendered once
+
+Addendum 61 made it possible to return the questionnaire. That was half of it, and the other half had
+never been asked: whether sixty answers coming back render at all. `--import-human` stores them under
+"random" in `results/human.json`, and `judge.py --report` has a section for exactly that - one that had
+only ever run against an empty file, because the file has never held a random draw. It is also the
+section that crashed the report the first time it ran, when it read a sentence about how the probe's
+six pairs were chosen as if it were a dict of labels.
+
+Three answers files were made from the committed sample and put through the whole path. The first is
+a reader who agrees with the rule wherever the rule has an answer and calls every near miss unrelated
+- roughly what a careful person gives if they treat the near band the way the rule treats noise. The
+other two are the readers the sample's floors were written against: one who writes YES sixty times,
+one who writes NO sixty times.
+
+    faithful   50 of 60 (83%), kappa 0.67
+    all-yes    32 of 60 (53%), kappa 0.00
+    all-no     28 of 60 (47%), kappa 0.00
+
+**The two one-word readers score zero, and that is arithmetic rather than luck.** A reader who says YES
+to everything agrees with the rule exactly on the pairs the rule calls relevant and on nothing else, so
+the two counts must add to sixty - and 32 and 28 do. What those two are worth is the middle column:
+53% and 47% cannot be told from a coin, and the kappa says so while the rate does not. A report
+printing agreement alone would have described the laziest possible labeller as "about half right",
+which is a fair description of a coin.
+
+The faithful reader's 0.67 is a scale statement worth keeping too. Its disagreements are exactly the
+ten pairs in the near band and nothing else, so **ten pairs out of sixty, all of them in one band, is
+the whole distance between perfect agreement and kappa 0.67.**
+
+Both readings are CI checks now, because a section that renders once on my machine is not a section
+that renders: the three files are rebuilt from the committed sample on every push, imported, rendered,
+compared against the three lines above, and the repository is put back with `git checkout`. What that
+settles is the plumbing - the import stores what it says it stored, the section renders, and the
+number is the two readings combined rather than one of them twice. What it does not settle is the
+thing the section exists for: these three labellers were written by me, and a report of what a person
+thinks is still waiting for a person.
