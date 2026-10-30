@@ -5151,3 +5151,33 @@ FAIL - and requires the check to refuse it by name.
 What it does not cover is the rest of those transcripts: the timings, the evidence sentences, and the
 prose around them. A transcript can still be stale in every way except the two things the pins know, and
 that remainder is written down here rather than implied by a check that passes.
+
+
+## Addendum 68: the bottom rung is one answer away from flipping, four times over
+
+The claim `readers-match-a-person` reads: where the rule excuses a near miss, the readers and a person
+agree it is unrelated. It is checked as unanimity over the near pairs the probe asked about, which is
+four of them.
+
+Flipping each of those four verdicts in turn, one at a time, and re-running the claim:
+
+    auth-lockout                     NO -> YES   1 of 4 disagrees   claim FAILS
+    station-coble-platforms          NO -> YES   1 of 4 disagrees   claim FAILS
+    class-dunmere-age                NO -> YES   1 of 4 disagrees   claim FAILS
+    fast-string-truncated-width      NO -> YES   1 of 4 disagrees   claim FAILS
+
+**Every single judgement decides it.** That is what unanimous agreement over four pairs means, and a
+reader who sees "4 of 4" deserves to be told it rather than left to work it out.
+
+The sixty-pair sample does not fix this by itself, and that is the part worth writing down: with ten near
+pairs the same rule still flips on any one of the ten - unanimity over a bigger sample is *more* fragile,
+not less, because there are more ways to break it. What the larger sample fixes is the size of the
+estimate, a kappa with an interval instead of a shrug. What it does not fix is the shape of the claim, and
+the shape is what makes it one reading from retraction. If the honest statement is that the person and
+the readers agree on the near band, then the honest form is a rate with its denominator - eight of ten -
+rather than perfection.
+
+The claim is unchanged. Rewriting the form of a claim in the week before the answers arrive would be
+choosing the verdict first, and this ledger is worth reading only because its rows are not chosen. When
+the answers land, the shape of that row is the first thing to argue about, and this is the measurement to
+argue it with.
