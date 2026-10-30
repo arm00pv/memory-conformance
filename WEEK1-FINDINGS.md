@@ -5056,3 +5056,24 @@ itself, and 71 of 916 becomes 73 of 918 - correct, self-consistent, and rewritte
 added or removed. A number that has to move whenever the list it describes changes is a number that will
 eventually be wrong between two commits. It is printed instead, which is where a maintenance burden
 belongs: in the log, on every run, in front of whoever is changing the pins.
+
+
+## Addendum 64: one ratio was doing two jobs
+
+Addendum 63 published "71 of the 916 numbers these pages carry outside their code blocks are pinned".
+That number is arithmetically right and analytically useless: the pages hold two different kinds of
+figure, and they are checked by two different mechanisms.
+
+- **653 numbers sit in table rows**, of which 40 are pinned. Most of those rows are filled by a
+  generator and refilled by `sync_readme.py` on every push, so they are covered by the regeneration
+  guard rather than by a pin - a different check, in a different workflow step, and a reader who added
+  the two together learned nothing about either.
+- **263 numbers sit in sentences**, of which 31 are pinned. A number typed into a sentence has nothing
+  behind it but the pin that names it, so this is the real measure of the prose check: **12 per cent of
+  the figures in these pages' prose are checked.**
+
+`figures.py` prints both halves now. The lesson is the one this repository keeps relearning (Addenda
+48, 57, 59): a single number that averages two populations is not a summary, it is a number that cannot
+be argued with. The split makes the gap visible and makes the claim about it falsifiable - if a future
+change moves pins from sentences into tables the sentence figure will fall, which is the direction a
+reader should worry about and the one the lumped ratio would have hidden.

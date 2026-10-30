@@ -440,8 +440,9 @@ jobs:
           # pin names, and silent reads as checked. The report counts them now - 71 of the 916 numbers
           # the four pinned pages carry outside their code blocks - so the size of the gap is in the log
           # on every run rather than in one reader's head.
-          grep -q "numbers these pages carry outside their code blocks are pinned" /tmp/figures.txt
-          echo "2. and it reports how much of the prose it does not cover"
+          grep -q "in these pages' table rows are pinned" /tmp/figures.txt
+          grep -q "in their sentences" /tmp/figures.txt
+          echo "2. and it reports how much of the prose it does not cover, counted apart from the tables"
           # AND IT HAS TO BE ABLE TO FAIL. Move one number in the README by one, require the check to
           # refuse it by name, and put the file back. If the sentence itself has been reworded the sed
           # changes nothing, the check passes, and this step fails - which is also what should happen.

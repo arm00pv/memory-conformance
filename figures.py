@@ -465,16 +465,17 @@ def coverage(rows, tables):
     matter and a fair measure of how much of a page is not checked at all.
     """
     fence = chr(96) * 3
-    pinned = sum(len(r["numbers"]) for r in rows)
-    for t in tables:
-        pinned += sum(1 for c in t["cells"] if c["ok"])
-    total = 0
+    pinned = {"table": sum(1 for t in tables for c in t["cells"] if c["ok"]),
+              "prose": sum(len(r["numbers"]) for r in rows)}
+    total = {"table": 0, "prose": 0}
     for path in sorted(set(r["path"] for r in rows)):
         if not os.path.isfile(path):
             continue
         with open(path, encoding="utf-8") as fh:
             text = re.sub(fence + r".*?" + fence, "", fh.read(), flags=re.S)
-        total += len(PROSE.findall(text))
+        for line in text.split(chr(10)):
+            where = "table" if line.lstrip().startswith("|") else "prose"
+            total[where] += len(PROSE.findall(line))
     return pinned, total
 
 
@@ -518,9 +519,16 @@ def main():
                       % (t["path"], c["row"], c["column"], c["prose"], shown,
                          c["why"] or "DISAGREES"))
                 bad += 1
+    # ONE RATIO WAS DOING TWO JOBS. Most of the numbers in these pages sit inside table rows a generator
+    # fills or sync_readme refills, and those tables are checked by regeneration, not by a pin. Counting
+    # them together with the sentences made the gap look either better or worse than it is, depending on
+    # which kind a reader thought most of the 916 were. Split, the sentence figure is the one the pins are
+    # for: a number typed into a sentence has nothing behind it but the pin that names it.
     pinned, total = coverage(rows, tables)
-    print("%d of the %d numbers these pages carry outside their code blocks are pinned, and %d are not"
-          % (pinned, total, total - pinned))
+    print("%d of the %d numbers in these pages' table rows are pinned and %d are not; in their sentences,"
+          " %d of %d are pinned and %d are not"
+          % (pinned["table"], total["table"], total["table"] - pinned["table"],
+             pinned["prose"], total["prose"], total["prose"] - pinned["prose"]))
     if bad:
         print("%d of those numbers no longer match the results they were written from" % bad)
         return 1
