@@ -5247,3 +5247,29 @@ single writer in front of one SQLite file, which is the right decision and also 
 is unknown: what happens when another process opens `orchestrator.sqlite` and writes? Our reference
 subject already fails the field-level version of that question, and a runtime that holds a directory lock
 may not even notice the attempt.
+
+
+## Addendum 71: the ranking, asked twice, on one subject
+
+Addendum 69 counted the questions whose *hit* moves between two passes. The question underneath it is
+whether the *order* moves, which nothing could ask before because the merge kept a boolean per run and
+threw the ranked list away. `retrieval.py` keeps it now, so the control was asked everything twice:
+
+    python retrieval.py --adapter=control --cmd="python control/memory_server.py" --repeat=2
+    spread over 2 runs of the whole experiment: hit`3 25 25
+
+Sixty questions, two full experiments, 25 hits in each. The ordered top three was identical on both
+passes for **60 of 60 questions**, and the honest qualifier is the next number: only **10 of the 60**
+returned more than one record, so for the other fifty "identical order" is trivially true - there was no
+order to move.
+
+So the control's ranking is deterministic, on ten questions that had a ranking at all. That is a thin
+measurement and it is written down as one rather than promoted to a ledger row, for a reason that is
+worth being explicit about: a claim resting on one subject and ten rankable questions would be a row that
+says more than the measurement does. The two subjects whose rows already disagree with themselves -
+`zenbrain` on the supersede corpus and `memory-mcp-1file` on multi - are the interesting ones, and their
+launch commands live in `matrix.py` rather than in an adapter, which is the next step rather than this one.
+
+What this does buy is the direction of the error bar. If the ranking on a subject that scores everything
+correctly is stable, then a difference of one position between two subjects is a difference worth
+reading; if it were not stable, the three-place tables in MATRIX.md would be noise with a decimal point.
