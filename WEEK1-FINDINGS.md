@@ -5206,3 +5206,44 @@ drawn after seeing two in six thousand, and a threshold chosen from the result i
 boolean per run and threw the ranked list away. That is the next axis - whether the *order* moves between
 two passes even when the hit does not - and it needs a run that commits its results, not a re-reading of
 the ones already on disk.
+
+
+## Addendum 70: a super-agent that makes our promises about different objects
+
+DeepSeek published a research prototype, `dsh-superagent-prototype` (MIT, "for reference only, not an
+official DeepSeek product"): a proactive coding agent for one GitHub repository, packaged as a DeepSeek
+Harness bundle. It hears a request on GitHub or Feishu, opens a work item, works it in its own agent
+session and its own directory, answers with a pull request, and shows a panel of what needs a person.
+
+Read its documentation and it is not a memory server: no MCP, and `src/core/memory.ts` is an in-memory
+repository for tests. Its state is one SQLite file, `<stateDir>/orchestrator.sqlite`, "which only the
+Store opens", with a directory lock taken before the file is opened so a second process cannot migrate it.
+
+**But the promises it makes are the ones this suite exists to test, about different objects.** A Ticket's
+Input "counts as read after the Session takes it into a step and subsequently reports or ends a turn",
+and "Stopping or restarting the plugin ... Inputs not yet taken into Session history are retained". That
+is `ack_readback` - acknowledged means readable, and if the process dies first the message comes back -
+with messages in place of records. The rest of the table maps just as directly:
+
+| this suite's probe | the same promise, in theirs |
+|---|---|
+| `ack_readback` | an Input acked into a step survives and is re-delivered if the turn dies |
+| `restart` | restarts retain Inputs not yet in Session history |
+| `forget` | dropped and superseded Tickets, unread messages when a Ticket ends |
+| `findable` | Thread routing, follow-ups, which Triggers belong to which Thread |
+| `foreign_field`, `foreign_record` | their store is a SQLite file other tools can open |
+| `concurrent` | worker slots, an outbox, retries after two seconds doubling to a minute, one directory lock |
+| `large_record` | large pull requests, large context, long Session history |
+
+And the panel - "shows what needs a person" - is a classifier of what deserves a human's attention. This
+repository has measured that kind of judgement: a rule against a reader is kappa 0.67, two readers
+against each other 0.81, one reader with itself 1.00, and a reader who writes one word sixty times 0.00.
+Anything claiming a "needs a person" decision better than that is claiming something this instrument can
+test.
+
+**None of the above is a measurement, and this addendum contains none.** It is the mapping that would make
+one possible, and it points at the first probe worth writing: the foreign one. Their whole design puts a
+single writer in front of one SQLite file, which is the right decision and also the case where the answer
+is unknown: what happens when another process opens `orchestrator.sqlite` and writes? Our reference
+subject already fails the field-level version of that question, and a runtime that holds a directory lock
+may not even notice the attempt.
