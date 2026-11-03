@@ -5273,3 +5273,23 @@ launch commands live in `matrix.py` rather than in an adapter, which is the next
 What this does buy is the direction of the error bar. If the ranking on a subject that scores everything
 correctly is stable, then a difference of one position between two subjects is a difference worth
 reading; if it were not stable, the three-place tables in MATRIX.md would be noise with a decimal point.
+
+
+## Addendum 72: the multi-record phase gets the prediction it did not have
+
+Addendum 33 measured the multi-record axis and published the result without a prediction written first,
+and it is the one phase of the five in the instrumentation objective that did. This is a new measurement
+on the same axis, with the prediction committed before the measurement is read.
+
+**The prediction.** At least four subjects answer every single-record question on the multi corpus and no
+cluster at all: `memory-lean`, `mcp-duckdb-memory-server`, `server-memory` and
+`mcp-knowledge-graph`. Addendum 33 read that as a missing capability: a search that answers with one id
+and stops cannot return a set. If that reading is right, then for each of those four subjects the longest
+list returned for any question whose answer is a set of three is **exactly one record**. If any of the
+four ever returns three or more records for such a question, the reading is wrong and what Addendum 33
+found is a claim about list length rather than about capability.
+
+**The method, written before the number is read.** The rows are already committed:
+`results/<slug>-retrieval-multi.json`, whose per-row `returned` list has carried the full response since
+the first matrix. For each of the four slugs, take the rows whose expected answer is one of the cluster
+sets and record the length of `returned`. No new run, no subject started.
