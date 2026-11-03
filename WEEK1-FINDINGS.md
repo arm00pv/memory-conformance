@@ -5293,3 +5293,26 @@ found is a claim about list length rather than about capability.
 `results/<slug>-retrieval-multi.json`, whose per-row `returned` list has carried the full response since
 the first matrix. For each of the four slugs, take the rows whose expected answer is one of the cluster
 sets and record the length of `returned`. No new run, no subject started.
+
+
+### The result, read after the prediction was committed
+
+```
+subject                     set questions   longest list returned   distribution
+memory-lean                        16               1               0×15, 1×1
+mcp-duckdb-memory-server           16               1               0×14, 1×2
+server-memory                      16               0               0×16
+mcp-knowledge-graph                16               0               0×16
+```
+
+**The prediction held, and it sharpens the sentence it was written to test.** No subject among the four
+ever returns two or more records for a question whose answer is a set: the longest list is one. So the
+reading in Addendum 33 - a search that answers with one id and stops cannot return a set - is a claim
+about capability and not about list length.
+
+But two of the four never return *anything* on those questions, so "answers with one id and stops" is
+true only of `memory-lean` and `mcp-duckdb-memory-server`. `server-memory` and `mcp-knowledge-graph`
+return an empty list for every set question while answering every single-record question on the same
+store. That is a different failure: not a search that stops early, a search that finds nothing when the
+question mentions several things at once. Addendum 33's paragraph reads as one behaviour and the rows say
+two, and the second one is worse.
